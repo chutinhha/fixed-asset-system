@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E469B980-01B6-4D5F-9EC3-9DDFF69F8075}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FixedAsset</RootNamespace>
+    <AssemblyName>FixedAsset</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="List.aspx" />
+    <Content Include="main.aspx" />
+    <Content Include="Scripts\Ajax.js" />
+    <Content Include="Scripts\Calendar.js" />
+    <Content Include="Scripts\css.js" />
+    <Content Include="Scripts\Dialog.js" />
+    <Content Include="Scripts\Extjs\ext-all.js" />
+    <Content Include="Scripts\Extjs\ext-base.js" />
+    <Content Include="Scripts\IframeAutoFit.js" />
+    <Content Include="Scripts\jquery.js" />
+    <Content Include="Scripts\JScript.js" />
+    <Content Include="Scripts\location.js" />
+    <Content Include="Scripts\Main.js" />
+    <Content Include="Scripts\MainNew.js" />
+    <Content Include="Scripts\menu.js" />
+    <Content Include="Scripts\moo.fx.js" />
+    <Content Include="Scripts\moo.fx.pack.js" />
+    <Content Include="Scripts\prototype.lite.js" />
+    <Content Include="Scripts\ScrollPic.js" />
+    <Content Include="Scripts\star.js" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.4.1.js" />
+    <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="Styles\default.css" />
+    <Content Include="Styles\Dialog.css" />
+    <Content Include="Styles\Images\basic-dialog\btn-arrow.gif" />
+    <Content Include="Styles\Images\basic-dialog\btn-sprite.gif" />
+    <Content Include="Styles\Images\basic-dialog\btn_blank.gif" />
+    <Content Include="Styles\Images\basic-dialog\btn_Ok.gif" />
+    <Content Include="Styles\Images\basic-dialog\close.gif" />
+    <Content Include="Styles\Images\basic-dialog\collapse.gif" />
+    <Content Include="Styles\Images\basic-dialog\e-handle.gif" />
+    <Content Include="Styles\Images\basic-dialog\error.gif" />
+    <Content Include="Styles\Images\basic-dialog\expand.gif" />
+    <Content Include="Styles\Images\basic-dialog\footer_bg.gif" />
+    <Content Include="Styles\Images\basic-dialog\footer_left.gif" />
+    <Content Include="Styles\Images\basic-dialog\footer_right.gif" />
+    <Content Include="Styles\Images\basic-dialog\gradient-bg.gif" />
+    <Content Include="Styles\Images\basic-dialog\hd-sprite.gif" />
+    <Content Include="Styles\Images\basic-dialog\info.gif" />
+    <Content Include="Styles\Images\basic-dialog\left_Line.gif" />
+    <Content Include="Styles\Images\basic-dialog\messageInfo.gif" />
+    <Content Include="Styles\Images\basic-dialog\messageOk.gif" />
+    <Content Include="Styles\Images\basic-dialog\ok.gif" />
+    <Content Include="Styles\Images\basic-dialog\progress.gif" />
+    <Content Include="Styles\Images\basic-dialog\progress2.gif" />
+    <Content Include="Styles\Images\basic-dialog\right_Line.gif" />
+    <Content Include="Styles\Images\basic-dialog\s-handle.gif" />
+    <Content Include="Styles\Images\basic-dialog\se-handle.gif" />
+    <Content Include="Styles\Images\basic-dialog\selector.gif" />
+    <Content Include="Styles\Images\basic-dialog\top_bg.gif" />
+    <Content Include="Styles\Images\basic-dialog\top_left.gif" />
+    <Content Include="Styles\Images\basic-dialog\top_right.gif" />
+    <Content Include="Styles\style.css" />
+    <Content Include="Styles\tag.css" />
+    <Content Include="ViewDetail.aspx" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="List.aspx.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="List.aspx.designer.cs">
+      <DependentUpon>List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="main.aspx.cs">
+      <DependentUpon>main.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="main.aspx.designer.cs">
+      <DependentUpon>main.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="ViewDetail.aspx.cs">
+      <DependentUpon>ViewDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewDetail.aspx.designer.cs">
+      <DependentUpon>ViewDetail.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Site.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{F5DD7FAD-9D4D-41DA-B40D-447ED6F6B8EC}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IService\IService.csproj">
+      <Project>{35DA92BA-E437-4573-9506-937E014C3EB0}</Project>
+      <Name>IService</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>6077</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
