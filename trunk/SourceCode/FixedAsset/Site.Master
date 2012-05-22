@@ -1,0 +1,47 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.Master.cs" Inherits="FixedAsset.SiteMaster" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
+    <script src="~/Scripts/menu.js" type="text/javascript"></script>
+    <script src="~/Scripts/prototype.lite.js" type="text/javascript"></script>
+    <script src="~/Scripts/moo.fx.js" type="text/javascript"></script>
+    <script src="~/Scripts/moo.fx.pack.js" type="text/javascript"></script>
+    <script src="~/Scripts/Dialog.js" type="text/javascript"></script>
+    <link href="Styles/Dialog.css" rel="stylesheet" type="text/css" /> 
+    <link href="Styles/style.css" rel="stylesheet" type="text/css" /> 
+    <link href="Styles/default.css" rel="stylesheet" type="text/css" />
+    <link href="Styles/tag.css" rel="stylesheet" type="text/css" />
+    <title>固定资产管理系统</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+        <script type="text/javascript">
+            function myrefresh() {
+                window.location.reload();
+            }
+        </script>
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <asp:ScriptManager ID="Manager1" runat="server" EnablePartialRendering="true" AllowCustomErrorsRedirect="true"
+        EnablePageMethods="true">
+        <Scripts>
+            <asp:ScriptReference Path="~/Scripts/IframeAutoFit.js" />
+            <asp:ScriptReference Path="~/Scripts/Extjs/ext-base.js" />
+            <asp:ScriptReference Path="~/Scripts/Extjs/ext-all.js" />
+            <asp:ScriptReference Path="~/Scripts/Dialog.js" />
+            <asp:ScriptReference Path="~/Scripts/Ajax.js" />
+            <asp:ScriptReference Path="~/Scripts/Main.js" />
+            <asp:ScriptReference Path="~/Scripts/jquery-1.4.1.min.js" />
+        </Scripts>
+    </asp:ScriptManager>
+    <div id="contents">
+        <div class="right2">
+            <asp:ContentPlaceHolder ID="Content" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </div>
+    </form>
+</body>
+</html>
