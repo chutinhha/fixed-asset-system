@@ -10,7 +10,7 @@ using SeallNet.WebControls;
 
 namespace FixedAsset.Web.Admin
 {
-    public partial class ProcurePlanList : System.Web.UI.Page
+    public partial class ProcurePlanList:BasePage
     {
         #region Events
         protected override void OnLoad(EventArgs e)
@@ -21,6 +21,7 @@ namespace FixedAsset.Web.Admin
         }
         protected void BtnSearch_Click(object sender,EventArgs e)
         {
+            Alert("啥啥啥");
             LoadData(0);
         }
         protected void pageControl_PageIndexClick(object sender, PageIndexClickEventArgs e)

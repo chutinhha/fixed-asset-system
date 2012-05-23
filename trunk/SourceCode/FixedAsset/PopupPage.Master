@@ -1,0 +1,39 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="PopupPage.master.cs"
+    Inherits="FixedAsset.Web.PopupPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <asp:Literal ID="litStyle" runat="server"></asp:Literal>
+        <asp:ScriptManager ID="ScriptManager1" runat="server" EnableHistory="false" EnableScriptLocalization="true"
+            EnableSecureHistoryState="true" EnableScriptGlobalization="true">
+            <CompositeScript>
+                <Scripts>
+                    <asp:ScriptReference Name="AjaxControlToolkit.Common.Common.js" Assembly="AjaxControlToolkit" />
+                    <asp:ScriptReference Name="AjaxControlToolkit.Compat.Timer.Timer.js" Assembly="AjaxControlToolkit" />
+                    <asp:ScriptReference Name="AjaxControlToolkit.ExtenderBase.BaseScripts.js" Assembly="AjaxControlToolkit" />
+                    <asp:ScriptReference Name="SeallNet.WebControls.Page.js" Assembly="SeallNet.WebControls" />
+                    <asp:ScriptReference Name="SeallNet.WebControls.Common.js" Assembly="SeallNet.WebControls" />
+                    <asp:ScriptReference Path="~/Scripts/IframeAutoFit.js" />
+                    <asp:ScriptReference Path="~/Scripts/Extjs/ext-base.js" />
+                    <asp:ScriptReference Path="~/Scripts/Extjs/ext-all.js" />
+                    <asp:ScriptReference Path="~/Scripts/Dialog.js" />
+                    <asp:ScriptReference Path="~/Scripts/Ajax.js" />
+                    <asp:ScriptReference Path="~/Scripts/Main.js" />
+                    <asp:ScriptReference Path="~/Scripts/jquery-1.4.1.min.js" />
+                </Scripts>
+            </CompositeScript>
+        </asp:ScriptManager>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+</body>
+</html>
