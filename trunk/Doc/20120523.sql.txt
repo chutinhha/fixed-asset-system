@@ -1,0 +1,65 @@
+-- Create table
+create table PROCUREMENTSCHEDULEHEAD
+(
+  PSID                    VARCHAR2(50) not null,
+  PROCUREMENTSCHEDULEDATE DATE,
+  REASON                  NVARCHAR2(500),
+  SUBCOMPANY              VARCHAR2(50),
+  APPLYUSER               NVARCHAR2(50),
+  APPLYDATE               DATE,
+  APPROVEUSER             NVARCHAR2(50),
+  APPROVEDATE             DATE,
+  APPROVERESULT           INTERVAL YEAR(2) TO MONTH,
+  REJECTREASON            NVARCHAR2(500),
+  CREATEDDATE             DATE
+)
+tablespace USERS
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+-- Add comments to the table 
+comment on table PROCUREMENTSCHEDULEHEAD
+  is '采购计划单';
+-- Add comments to the columns 
+comment on column PROCUREMENTSCHEDULEHEAD.PSID
+  is '单号';
+comment on column PROCUREMENTSCHEDULEHEAD.PROCUREMENTSCHEDULEDATE
+  is '计划采购日期';
+comment on column PROCUREMENTSCHEDULEHEAD.REASON
+  is '事由';
+comment on column PROCUREMENTSCHEDULEHEAD.SUBCOMPANY
+  is '分公司';
+comment on column PROCUREMENTSCHEDULEHEAD.APPLYUSER
+  is '申请人';
+comment on column PROCUREMENTSCHEDULEHEAD.APPLYDATE
+  is '申请日期';
+comment on column PROCUREMENTSCHEDULEHEAD.APPROVEUSER
+  is '审核人';
+comment on column PROCUREMENTSCHEDULEHEAD.APPROVEDATE
+  is '审核日期';
+comment on column PROCUREMENTSCHEDULEHEAD.APPROVERESULT
+  is '审核结果（同意，拒绝）';
+comment on column PROCUREMENTSCHEDULEHEAD.REJECTREASON
+  is '拒绝理由';
+comment on column PROCUREMENTSCHEDULEHEAD.CREATEDDATE
+  is '采购单创建日期';
+-- Create/Recreate primary, unique and foreign key constraints 
+alter table PROCUREMENTSCHEDULEHEAD
+  add constraint PK_PROCUREMENTSCHEDULEHEAD_ID primary key (PSID)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
