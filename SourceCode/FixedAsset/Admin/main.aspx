@@ -1,6 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="main.aspx.cs" Inherits="FixedAsset.Web.Admin.main" %>
 
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -17,15 +16,23 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <asp:ScriptManager ID="SManager" runat="server" EnablePartialRendering="true" AllowCustomErrorsRedirect="true"
-        EnablePageMethods="true">
-        <Scripts>
-            <asp:ScriptReference Path="~/Scripts/IframeAutoFit.js" />
-            <asp:ScriptReference Path="~/Scripts/Extjs/ext-base.js" />
-            <asp:ScriptReference Path="~/Scripts/Extjs/ext-all.js" />
-            <asp:ScriptReference Path="~/Scripts/Dialog.js" />
-            <asp:ScriptReference Path="~/Scripts/Ajax.js" />
-        </Scripts>
+    <asp:ScriptManager ID="ScriptManager1" runat="server" EnableScriptLocalization="true"
+        EnableSecureHistoryState="true" EnableScriptGlobalization="true" EnableHistory="false"
+        EnablePartialRendering="true" AllowCustomErrorsRedirect="true" EnablePageMethods="true">
+        <CompositeScript>
+            <Scripts>
+                <asp:ScriptReference Name="AjaxControlToolkit.Common.Common.js" Assembly="AjaxControlToolkit" />
+                <asp:ScriptReference Name="AjaxControlToolkit.Compat.Timer.Timer.js" Assembly="AjaxControlToolkit" />
+                <asp:ScriptReference Name="AjaxControlToolkit.ExtenderBase.BaseScripts.js" Assembly="AjaxControlToolkit" />
+                <asp:ScriptReference Name="SeallNet.WebControls.Page.js" Assembly="SeallNet.WebControls" />
+                <asp:ScriptReference Name="SeallNet.WebControls.Common.js" Assembly="SeallNet.WebControls" />
+                <asp:ScriptReference Path="~/Scripts/IframeAutoFit.js" />
+                <asp:ScriptReference Path="~/Scripts/Extjs/ext-base.js" />
+                <asp:ScriptReference Path="~/Scripts/Extjs/ext-all.js" />
+                <asp:ScriptReference Path="~/Scripts/Dialog.js" />
+                <asp:ScriptReference Path="~/Scripts/Ajax.js" />
+            </Scripts>
+        </CompositeScript>
     </asp:ScriptManager>
     <div class="wrap">
     </div>
@@ -37,7 +44,7 @@
                     <img src="../images/mc-cell-exca.gif" /><a href="main.aspx">待办</a>
                 </p>
                 <p class="loginfor" height="37">
-                    <asp:LinkButton ID="lbtn_out" class="but3" runat="server" >退出</asp:LinkButton>
+                    <asp:LinkButton ID="lbtn_out" class="but3" runat="server">退出</asp:LinkButton>
                     <b>&nbsp;&nbsp;登录用户：<asp:Label ID="lb_userName" runat="server" Text=""></asp:Label>&nbsp;&nbsp;
                         |&nbsp;&nbsp;身份：<asp:Label ID="lb_userRole" runat="server" Text=""></asp:Label>&nbsp;&nbsp;|&nbsp;&nbsp;</b></p>
             </dd>
@@ -54,7 +61,7 @@
                     <h1 class='type'>
                         <a href='javascript:void(0)'>用户管理</a></h1>
                     <div class='content'>
-                        <ul class='MM'>                            
+                        <ul class='MM'>
                             <li><a href='user_list.aspx' target='aa'>用户管理</a></li>
                             <li><a href='ProcurePlanList.aspx' target='aa'>采购计划单管理</a></li>
                         </ul>
