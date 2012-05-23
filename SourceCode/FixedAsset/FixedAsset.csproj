@@ -368,8 +368,11 @@
     <Content Include="images\Button\user.GIF" />
     <Content Include="images\common_leftnavfooter.gif" />
     <Content Include="images\common_leftnavtop.gif" />
+    <Content Include="images\endPage.gif" />
     <Content Include="images\error.jpg" />
+    <Content Include="images\firstPage.gif" />
     <Content Include="images\foot_bg.gif" />
+    <Content Include="images\gotoPage.gif" />
     <Content Include="images\gr.gif" />
     <Content Include="images\h2_bg.jpg" />
     <Content Include="images\help_banner.jpg" />
@@ -412,9 +415,11 @@
     <Content Include="images\nav_bg.gif" />
     <Content Include="images\nav_txtbg.gif" />
     <Content Include="images\nav_xian.gif" />
+    <Content Include="images\nextPage.gif" />
     <Content Include="images\pic1.gif" />
     <Content Include="images\pic1.jpg" />
     <Content Include="images\position_bg.gif" />
+    <Content Include="images\prePage.gif" />
     <Content Include="images\quick_bg.gif" />
     <Content Include="images\qy.gif" />
     <Content Include="images\rt_tbg.gif" />
