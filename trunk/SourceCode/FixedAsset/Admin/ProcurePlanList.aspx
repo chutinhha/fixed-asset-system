@@ -122,10 +122,12 @@
                     </AlternatingItemTemplate>
                 </asp:Repeater>
                 <tr>
-                    <td colspan="9">
+                    <td>
+                    </td>
+                    <td colspan="8" style="height: 30px;width: 790px;">
                         <cc1:PageChangeControl ID="pageControl" PageSize="10" runat="server" OnPageIndexClick="pageControl_PageIndexClick" />
                     </td>
-                </tr>
+                </tr>  
             </table>
         </div>
     </div>

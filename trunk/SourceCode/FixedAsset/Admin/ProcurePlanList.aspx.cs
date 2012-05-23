@@ -80,22 +80,44 @@ namespace FixedAsset.Web.Admin
             //    search.EndCreateddate = endcreateddate;
             //}
             var procurementscheduleheadservice = new ProcurementscheduleheadService();
-            Procurementschedulehead data=new Procurementschedulehead();
-            data.Psid = Guid.NewGuid().ToString("N");
-            data.Procurementscheduledate = DateTime.Today;
-            data.Reason = "购买";
-            data.Subcompany = "华为";
-            data.Applyuser = "华为";
-            data.Applydate = DateTime.Today;
-            data.Approveuser = "华为1";
-            data.Approvedate = DateTime.Now.AddDays(3);
-            data.Approveresult = ApproveResult.Draft;
-            data.Rejectreason = "华为1";
-            data.Createddate =DateTime.Now;
-            procurementscheduleheadservice.CreateProcurementschedulehead(data);
+            var list = new List<Procurementschedulehead>();
+            for (int i = 0; i < 6; i++)
+            {
+                Procurementschedulehead data = new Procurementschedulehead();
+                data.Psid = Guid.NewGuid().ToString("N");
+                data.Procurementscheduledate = DateTime.Today;
+                data.Reason = "购买";
+                data.Subcompany = "华为";
+                data.Applyuser = "华为";
+                data.Applydate = DateTime.Today;
+                data.Approveuser = "华为1";
+                data.Approvedate = DateTime.Now.AddDays(3);
+                data.Approveresult = ApproveResult.Draft;
+                data.Rejectreason = "华为1";
+                data.Createddate = DateTime.Now;
+                //procurementscheduleheadservice.CreateProcurementschedulehead(data); 
+                list.Add(data);
+            }
 
-            int recordCount = 0;
-            var list = procurementscheduleheadservice.RetrieveProcurementscheduleheadsPaging(search, pageIndex, pageControl.PageSize, out recordCount);
+            int recordCount = list.Count;
+            
+
+            //Procurementschedulehead data=new Procurementschedulehead();
+            //data.Psid = Guid.NewGuid().ToString("N");
+            //data.Procurementscheduledate = DateTime.Today;
+            //data.Reason = "购买";
+            //data.Subcompany = "华为";
+            //data.Applyuser = "华为";
+            //data.Applydate = DateTime.Today;
+            //data.Approveuser = "华为1";
+            //data.Approvedate = DateTime.Now.AddDays(3);
+            //data.Approveresult = ApproveResult.Draft;
+            //data.Rejectreason = "华为1";
+            //data.Createddate =DateTime.Now;
+            //procurementscheduleheadservice.CreateProcurementschedulehead(data);
+
+            //int recordCount = 0;
+            //var list = procurementscheduleheadservice.RetrieveProcurementscheduleheadsPaging(search, pageIndex, pageControl.PageSize, out recordCount);
             rptProcureList.DataSource = list;
             rptProcureList.DataBind();
             pageControl.RecordCount = recordCount;
