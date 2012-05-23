@@ -66,7 +66,6 @@
                                 <%#Eval("Applyuser")%>
                             </td>
                             <td>
-                                <%#Eval("")%>
                                 <%#((DateTime)Eval("Applydate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
                             <td>
@@ -101,7 +100,6 @@
                                 <%#Eval("Applyuser")%>
                             </td>
                             <td>
-                                <%#Eval("")%>
                                 <%#((DateTime)Eval("Applydate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
                             <td>
