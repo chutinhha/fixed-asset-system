@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/MasterPage.master" AutoEventWireup="true"
     CodeBehind="ProcurePlanList.aspx.cs" Inherits="FixedAsset.Web.Admin.ProcurePlanList" %>
-
-<%@ Import Namespace="FixedAsset.Web.AppCode" %>
+<%@ Import Namespace="FixedAsset.Domain" %>
+<%@ Import Namespace="SeallNet.Utility" %>
 <%@ Register Assembly="SeallNet.WebControls" Namespace="SeallNet.WebControls" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -57,7 +57,7 @@
                                 <%#Eval("Psid")%>
                             </td>
                             <td>
-                                <%#((DateTime)Eval("Procurementscheduledate")).ToString(UiConst.DateFormat)%>
+                                <%#((DateTime)Eval("Procurementscheduledate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
                             <td>
                                 <%#Eval("Subcompany")%>
@@ -67,16 +67,16 @@
                             </td>
                             <td>
                                 <%#Eval("")%>
-                                <%#((DateTime)Eval("Applydate")).ToString(UiConst.DateFormat)%>
+                                <%#((DateTime)Eval("Applydate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
                             <td>
                                 <%#Eval("Approveuser")%>
                             </td>
                             <td>
-                                <%# Eval("Approvedate")==null?"":((DateTime)Eval("Approvedate")).ToString(UiConst.DateFormat)%>
+                                <%# Eval("Approvedate")==null?"":((DateTime)Eval("Approvedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
                             <td>
-                                <%#Eval("Approveresult")%>
+                                <%#EnumUtil.RetrieveEnumDescript((ApproveResult)Eval("Approveresult"))%>
                             </td>
                             <td align="right">
                                 <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/images/Button/edit.GIF"
@@ -92,7 +92,7 @@
                                 <%#Eval("Psid")%>
                             </td>
                             <td>
-                                <%#((DateTime)Eval("Procurementscheduledate")).ToString(UiConst.DateFormat)%>
+                                <%#((DateTime)Eval("Procurementscheduledate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
                             <td>
                                 <%#Eval("Subcompany")%>
@@ -102,16 +102,16 @@
                             </td>
                             <td>
                                 <%#Eval("")%>
-                                <%#((DateTime)Eval("Applydate")).ToString(UiConst.DateFormat)%>
+                                <%#((DateTime)Eval("Applydate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
                             <td>
                                 <%#Eval("Approveuser")%>
                             </td>
                             <td>
-                                <%# Eval("Approvedate")==null?"":((DateTime)Eval("Approvedate")).ToString(UiConst.DateFormat)%>
+                                <%# Eval("Approvedate")==null?"":((DateTime)Eval("Approvedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
                             <td>
-                                <%#Eval("Approveresult")%>
+                                <%#EnumUtil.RetrieveEnumDescript((ApproveResult)Eval("Approveresult"))%>
                             </td>
                             <td align="right">
                                 <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/images/Button/edit.GIF"

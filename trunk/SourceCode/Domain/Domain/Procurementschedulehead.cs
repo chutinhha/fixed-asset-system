@@ -78,7 +78,7 @@ namespace FixedAsset.Domain
         ///<summary>
         ///ColumnName:审核结果（同意，拒绝）;
         ///</summary>
-        public int Approveresult{  get;set;}
+        public ApproveResult Approveresult { get; set; }
         #endregion
 
         #region 拒绝理由
