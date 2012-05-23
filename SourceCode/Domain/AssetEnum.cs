@@ -18,8 +18,8 @@ namespace FixedAsset.Domain
         [EnumDescript(Descript = "日")]
         Day = 30,
     }
-    [EnumCatetory(EnumName = "审核结果")]
-    public enum Approveresult:int
+    [EnumCatetory(EnumName = "审核状态")]
+    public enum ApproveResult:int
     {
         [EnumDescript(Descript = "草稿")]
         Draft = 0,
