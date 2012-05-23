@@ -33,6 +33,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="SeallNet.Utility">
+      <HintPath>..\Dependencies\SeallNet.Utility.dll</HintPath>
+    </Reference>
     <Reference Include="SeallNet.WebControls">
       <HintPath>..\Dependencies\SeallNet.WebControls.dll</HintPath>
     </Reference>
