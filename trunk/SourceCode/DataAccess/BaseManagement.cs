@@ -1,4 +1,5 @@
 using System;
+using System.Configuration;
 using System.Data.Common;
 using System.Collections.Generic;
 using System.Data;
@@ -25,7 +26,8 @@ namespace FixedAsset.DataAccess
             {
                 if (this.m_DataBase == null)
                 {
-                    string connectionString=@"user id=wxsq;password=wxsq;Data Source=wxsqfull";
+                    if (ConfigurationManager.ConnectionStrings["FixedAsset"] == null) { throw new ConfigurationErrorsException(string.Format(@"«Î≈‰÷√œÓƒø£∫ConnectionStrings/FixedAsset°£")); }
+                    var connectionString = ConfigurationManager.ConnectionStrings["FixedAsset"].ConnectionString;
                     this.m_DataBase = new Database(DataBaseCategory.Oracle,connectionString);
                 }
 
