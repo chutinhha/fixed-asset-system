@@ -56,6 +56,7 @@
                     <div class='content'>
                         <ul class='MM'>                            
                             <li><a href='user_list.aspx' target='aa'>用户管理</a></li>
+                            <li><a href='ProcurePlanList.aspx' target='aa'>采购计划单管理</a></li>
                         </ul>
                     </div>
                 </div>

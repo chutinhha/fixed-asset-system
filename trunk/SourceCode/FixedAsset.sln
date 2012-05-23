@@ -12,6 +12,20 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IService", "IService\IService.csproj", "{35DA92BA-E437-4573-9506-937E014C3EB0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencies", "{D1FB0FDE-00FD-4F9B-8A5F-0651975B79E8}"
+	ProjectSection(SolutionItems) = preProject
+		Dependencies\AjaxControlToolkit.dll = Dependencies\AjaxControlToolkit.dll
+		Dependencies\Castle.Core.dll = Dependencies\Castle.Core.dll
+		Dependencies\Castle.DynamicProxy2.dll = Dependencies\Castle.DynamicProxy2.dll
+		Dependencies\Castle.MicroKernel.dll = Dependencies\Castle.MicroKernel.dll
+		Dependencies\Castle.Windsor.dll = Dependencies\Castle.Windsor.dll
+		Dependencies\Enyim.Caching.dll = Dependencies\Enyim.Caching.dll
+		Dependencies\ExcelLibrary.dll = Dependencies\ExcelLibrary.dll
+		Dependencies\log4net.dll = Dependencies\log4net.dll
+		Dependencies\SeallNet.CacheProvider.dll = Dependencies\SeallNet.CacheProvider.dll
+		Dependencies\SeallNet.Data.dll = Dependencies\SeallNet.Data.dll
+		Dependencies\SeallNet.Utility.dll = Dependencies\SeallNet.Utility.dll
+		Dependencies\SeallNet.WebControls.dll = Dependencies\SeallNet.WebControls.dll
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FixedAssetWeb", "FixedAssetWeb\FixedAssetWeb.csproj", "{D9C73C1E-B491-49FB-8281-55044330EBD2}"
 EndProject

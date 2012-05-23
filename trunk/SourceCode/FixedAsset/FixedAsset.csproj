@@ -62,6 +62,20 @@
       <DependentUpon>MasterPage.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Admin\ProcurePlanList.aspx.cs">
+      <DependentUpon>ProcurePlanList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ProcurePlanList.aspx.designer.cs">
+      <DependentUpon>ProcurePlanList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ProcurePlan_Add.aspx.cs">
+      <DependentUpon>ProcurePlan_Add.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ProcurePlan_Add.aspx.designer.cs">
+      <DependentUpon>ProcurePlan_Add.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\user_add.aspx.cs">
       <DependentUpon>user_add.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -228,6 +242,8 @@
     <Content Include="Admin\linklog\x_result1.jpg" />
     <Content Include="Admin\linklog\x_result3.jpg" />
     <Content Include="Admin\main.aspx" />
+    <Content Include="Admin\ProcurePlanList.aspx" />
+    <Content Include="Admin\ProcurePlan_Add.aspx" />
     <Content Include="Admin\user_add.aspx" />
     <Content Include="Admin\user_edit.aspx" />
     <Content Include="Admin\user_list.aspx" />
@@ -548,6 +564,10 @@
     <ProjectReference Include="..\IService\IService.csproj">
       <Project>{35DA92BA-E437-4573-9506-937E014C3EB0}</Project>
       <Name>IService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Service\Service.csproj">
+      <Project>{1701AC38-1432-4E79-8E92-89CB37B35974}</Project>
+      <Name>Service</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
