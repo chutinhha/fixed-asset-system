@@ -18,6 +18,10 @@ namespace FixedAsset.Web.Admin
             base.OnLoad(e);
             LoadData(0);
         }
+        protected void BtnSearch_Click(object sender,EventArgs e)
+        {
+            LoadData(0);
+        }
         protected void pageControl_PageIndexClick(object sender, PageIndexClickEventArgs e)
         {
             LoadData(e.PageIndex);
