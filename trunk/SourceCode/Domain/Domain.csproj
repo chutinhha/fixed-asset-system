@@ -41,10 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Domain\Procurementschedulehead.cs" />
-    <Compile Include="Domain\Susermoney.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchObject\ProcurementscheduleheadSearch.cs" />
-    <Compile Include="SearchObject\SusermoneySearch.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
