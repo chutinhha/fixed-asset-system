@@ -12,8 +12,9 @@
             <p>
                 用户名称
                 <asp:TextBox class="text-input small-input" ID="txt_userName" runat="server"></asp:TextBox>
-                <asp:Button ID="btn_Show" class="button" runat="server" Text="查询" />
-                <input type="button" class="button" runat="server" id="btnAdd" value="新增" onclick="window.location='user_edit.aspx'" />
+                <input type="button" class="button" runat="server" id="Button1" value="查询" onclick="window.location='user_edit.aspx'" />
+                
+                <input type="button" class="button" runat="server" id="btnAdd" value="新增" onclick="window.location='user_add.aspx'" />
             </p>
             <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
                 align="center">
