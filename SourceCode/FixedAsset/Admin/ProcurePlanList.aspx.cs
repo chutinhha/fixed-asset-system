@@ -16,7 +16,8 @@ namespace FixedAsset.Web.Admin
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            LoadData(0);
+            if(!IsPostBack)
+            { LoadData(0);}
         }
         protected void BtnSearch_Click(object sender,EventArgs e)
         {
@@ -94,9 +95,11 @@ namespace FixedAsset.Web.Admin
             procurementscheduleheadservice.CreateProcurementschedulehead(data);
 
             int recordCount = 0;
-            var list = procurementscheduleheadservice.RetrieveProcurementscheduleheadsPaging(search, pageIndex, 10, out recordCount);
+            var list = procurementscheduleheadservice.RetrieveProcurementscheduleheadsPaging(search, pageIndex, pageControl.PageSize, out recordCount);
             rptProcureList.DataSource = list;
             rptProcureList.DataBind();
+            pageControl.RecordCount = recordCount;
+            pageControl.CurrentIndex = pageIndex;
         }
         #endregion
     }

@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/MasterPage.master" AutoEventWireup="true"
     CodeBehind="ProcurePlanList.aspx.cs" Inherits="FixedAsset.Web.Admin.ProcurePlanList" %>
+
 <%@ Import Namespace="FixedAsset.Domain" %>
 <%@ Import Namespace="SeallNet.Utility" %>
 <%@ Register Assembly="SeallNet.WebControls" Namespace="SeallNet.WebControls" TagPrefix="cc1" %>
@@ -14,7 +15,7 @@
             <p>
                 单号
                 <asp:TextBox ID="txtSrchPsid" Width="150" CssClass="" runat="server"></asp:TextBox><asp:Button
-                    ID="BtnSearch" runat="server" CssClass="button" Text="查询"  OnClick="BtnSearch_Click"/>
+                    ID="BtnSearch" runat="server" CssClass="button" Text="查询" OnClick="BtnSearch_Click" />
                 <input type="button" class="button" runat="server" id="btnAdd" value="新增" onclick="window.location='ProcurePlan_Add.aspx'" />
             </p>
             <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
@@ -120,8 +121,12 @@
                         </tr>
                     </AlternatingItemTemplate>
                 </asp:Repeater>
+                <tr>
+                    <td colspan="9">
+                        <cc1:PageChangeControl ID="pageControl" PageSize="10" runat="server" OnPageIndexClick="pageControl_PageIndexClick" />
+                    </td>
+                </tr>
             </table>
-            <cc1:PageChangeControl ID="pageControl" PageSize="10" runat="server" OnPageIndexClick="pageControl_PageIndexClick" />
         </div>
     </div>
 </asp:Content>
