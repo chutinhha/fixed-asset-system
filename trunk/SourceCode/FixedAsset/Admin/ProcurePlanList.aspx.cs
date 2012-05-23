@@ -6,16 +6,25 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using FixedAsset.Domain;
 using FixedAsset.Services;
+using SeallNet.WebControls;
 
 namespace FixedAsset.Web.Admin
 {
     public partial class ProcurePlanList : System.Web.UI.Page
     {
+        #region Events
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
             LoadData(0);
         }
+        protected void pageControl_PageIndexClick(object sender, PageIndexClickEventArgs e)
+        {
+            LoadData(e.PageIndex);
+        }
+        #endregion
+
+        #region  Methods
         protected void LoadData(int pageIndex)
         {
             var search = new ProcurementscheduleheadSearch();
@@ -67,9 +76,10 @@ namespace FixedAsset.Web.Admin
             //}
             var procurementscheduleheadservice = new ProcurementscheduleheadService();
             int recordCount = 0;
-            var list = procurementscheduleheadservice.RetrieveProcurementscheduleheadsPaging(search, pageIndex, 10, out recordCount);
-            rptProcureList.DataSource = list;
-            rptProcureList.DataBind();
+            //var list = procurementscheduleheadservice.RetrieveProcurementscheduleheadsPaging(search, pageIndex, 10, out recordCount);
+            //rptProcureList.DataSource = list;
+            //rptProcureList.DataBind();
         }
+        #endregion
     }
 }
