@@ -76,9 +76,9 @@ namespace FixedAsset.Web.Admin
             //}
             var procurementscheduleheadservice = new ProcurementscheduleheadService();
             int recordCount = 0;
-            //var list = procurementscheduleheadservice.RetrieveProcurementscheduleheadsPaging(search, pageIndex, 10, out recordCount);
-            //rptProcureList.DataSource = list;
-            //rptProcureList.DataBind();
+            var list = procurementscheduleheadservice.RetrieveProcurementscheduleheadsPaging(search, pageIndex, 10, out recordCount);
+            rptProcureList.DataSource = list;
+            rptProcureList.DataBind();
         }
         #endregion
     }
