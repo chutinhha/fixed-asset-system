@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Advertisements>
+  <Ad>
+    <ImageUrl>prod_1.jpg</ImageUrl>
+    <NavigateUrl>ywqu.cnblogs.com</NavigateUrl>
+    <AlternateText>灵动生活</AlternateText>
+    <Impressions>30</Impressions>
+    <Keyword>small</Keyword>
+  </Ad>
+  <Ad>
+    <ImageUrl>prod_2.jpg</ImageUrl>
+    <NavigateUrl>ywqu.cnblogs.com</NavigateUrl>
+    <AlternateText>灵动生活</AlternateText>
+    <Impressions>30</Impressions>
+    <Keyword>small</Keyword>
+  </Ad>
+  <Ad>
+    <ImageUrl>prod_3.jpg</ImageUrl>
+    <NavigateUrl>ywqu.cnblogs.com</NavigateUrl>
+    <AlternateText>灵动生活</AlternateText>
+    <Impressions>30</Impressions>
+    <Keyword>small</Keyword>
+  </Ad>
+  <Ad>
+    <ImageUrl>prod_4.jpg</ImageUrl>
+    <NavigateUrl>ywqu.cnblogs.com</NavigateUrl>
+    <AlternateText>灵动生活</AlternateText>
+    <Impressions>30</Impressions>
+    <Keyword>small</Keyword>
+  </Ad>
+</Advertisements>
