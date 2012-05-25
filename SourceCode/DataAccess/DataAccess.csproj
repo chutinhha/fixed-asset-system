@@ -45,9 +45,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutoCode\AssetcategoryManagement.cs" />
+    <Compile Include="AutoCode\AssetmaintainManagement.cs" />
+    <Compile Include="AutoCode\AssetManagement.cs" />
+    <Compile Include="AutoCode\AssetmoveManagement.cs" />
+    <Compile Include="AutoCode\AssetremoveManagement.cs" />
+    <Compile Include="AutoCode\AssetsetupinfoManagement.cs" />
+    <Compile Include="AutoCode\BaccountManagement.cs" />
+    <Compile Include="AutoCode\ProcurementcontractdetailManagement.cs" />
+    <Compile Include="AutoCode\ProcurementcontractManagement.cs" />
+    <Compile Include="AutoCode\ProcurementscheduledetailManagement.cs" />
     <Compile Include="AutoCode\ProcurementscheduleheadManagement.cs" />
     <Compile Include="BaseManagement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserCode\AssetcategoryManagement.cs" />
+    <Compile Include="UserCode\AssetmaintainManagement.cs" />
+    <Compile Include="UserCode\AssetManagement.cs" />
+    <Compile Include="UserCode\AssetmoveManagement.cs" />
+    <Compile Include="UserCode\AssetremoveManagement.cs" />
+    <Compile Include="UserCode\AssetsetupinfoManagement.cs" />
+    <Compile Include="UserCode\BaccountManagement.cs" />
+    <Compile Include="UserCode\ProcurementcontractdetailManagement.cs" />
+    <Compile Include="UserCode\ProcurementcontractManagement.cs" />
+    <Compile Include="UserCode\ProcurementscheduledetailManagement.cs" />
     <Compile Include="UserCode\ProcurementscheduleheadManagement.cs" />
   </ItemGroup>
   <ItemGroup>
