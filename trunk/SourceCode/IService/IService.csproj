@@ -40,6 +40,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IAssetcategoryService.cs" />
+    <Compile Include="IAssetmaintainService.cs" />
+    <Compile Include="IAssetmoveService.cs" />
+    <Compile Include="IAssetremoveService.cs" />
+    <Compile Include="IAssetService.cs" />
+    <Compile Include="IAssetsetupinfoService.cs" />
+    <Compile Include="IBaccountService.cs" />
+    <Compile Include="IProcurementcontractdetailService.cs" />
+    <Compile Include="IProcurementcontractService.cs" />
+    <Compile Include="IProcurementscheduledetailService.cs" />
     <Compile Include="IProcurementscheduleheadService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -44,8 +44,28 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssetEnum.cs" />
+    <Compile Include="Domain\Asset.cs" />
+    <Compile Include="Domain\Assetcategory.cs" />
+    <Compile Include="Domain\Assetmaintain.cs" />
+    <Compile Include="Domain\Assetmove.cs" />
+    <Compile Include="Domain\Assetremove.cs" />
+    <Compile Include="Domain\Assetsetupinfo.cs" />
+    <Compile Include="Domain\Baccount.cs" />
+    <Compile Include="Domain\Procurementcontract.cs" />
+    <Compile Include="Domain\Procurementcontractdetail.cs" />
+    <Compile Include="Domain\Procurementscheduledetail.cs" />
     <Compile Include="Domain\Procurementschedulehead.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SearchObject\AssetcategorySearch.cs" />
+    <Compile Include="SearchObject\AssetmaintainSearch.cs" />
+    <Compile Include="SearchObject\AssetmoveSearch.cs" />
+    <Compile Include="SearchObject\AssetremoveSearch.cs" />
+    <Compile Include="SearchObject\AssetSearch.cs" />
+    <Compile Include="SearchObject\AssetsetupinfoSearch.cs" />
+    <Compile Include="SearchObject\BaccountSearch.cs" />
+    <Compile Include="SearchObject\ProcurementcontractdetailSearch.cs" />
+    <Compile Include="SearchObject\ProcurementcontractSearch.cs" />
+    <Compile Include="SearchObject\ProcurementscheduledetailSearch.cs" />
     <Compile Include="SearchObject\ProcurementscheduleheadSearch.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

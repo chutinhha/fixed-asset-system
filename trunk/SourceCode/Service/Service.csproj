@@ -40,7 +40,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssetcategoryService.cs" />
+    <Compile Include="AssetmaintainService.cs" />
+    <Compile Include="AssetmoveService.cs" />
+    <Compile Include="AssetremoveService.cs" />
+    <Compile Include="AssetService.cs" />
+    <Compile Include="AssetsetupinfoService.cs" />
+    <Compile Include="BaccountService.cs" />
     <Compile Include="BaseService.cs" />
+    <Compile Include="ProcurementcontractdetailService.cs" />
+    <Compile Include="ProcurementcontractService.cs" />
+    <Compile Include="ProcurementscheduledetailService.cs" />
     <Compile Include="ProcurementscheduleheadService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
