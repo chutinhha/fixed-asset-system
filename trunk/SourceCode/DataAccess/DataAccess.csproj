@@ -57,10 +57,17 @@
     <Compile Include="AutoCode\AssetsetupinfoManagement.cs" />
     <Compile Include="AutoCode\AssetsupplierManagement.cs" />
     <Compile Include="AutoCode\BaccountManagement.cs" />
+    <Compile Include="AutoCode\LbfgsManagement.cs" />
+    <Compile Include="AutoCode\LbfgsxmtManagement.cs" />
+    <Compile Include="AutoCode\MenuitemManagement.cs" />
     <Compile Include="AutoCode\ProcurementcontractdetailManagement.cs" />
     <Compile Include="AutoCode\ProcurementcontractManagement.cs" />
     <Compile Include="AutoCode\ProcurementscheduledetailManagement.cs" />
     <Compile Include="AutoCode\ProcurementscheduleheadManagement.cs" />
+    <Compile Include="AutoCode\RoleinfoManagement.cs" />
+    <Compile Include="AutoCode\RolepermissionManagement.cs" />
+    <Compile Include="AutoCode\TuserManagement.cs" />
+    <Compile Include="AutoCode\UsermaproleinfoManagement.cs" />
     <Compile Include="BaseManagement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserCode\AssetcategoryManagement.cs" />
@@ -75,10 +82,17 @@
     <Compile Include="UserCode\AssetsetupinfoManagement.cs" />
     <Compile Include="UserCode\AssetsupplierManagement.cs" />
     <Compile Include="UserCode\BaccountManagement.cs" />
+    <Compile Include="UserCode\LbfgsManagement.cs" />
+    <Compile Include="UserCode\LbfgsxmtManagement.cs" />
+    <Compile Include="UserCode\MenuitemManagement.cs" />
     <Compile Include="UserCode\ProcurementcontractdetailManagement.cs" />
     <Compile Include="UserCode\ProcurementcontractManagement.cs" />
     <Compile Include="UserCode\ProcurementscheduledetailManagement.cs" />
     <Compile Include="UserCode\ProcurementscheduleheadManagement.cs" />
+    <Compile Include="UserCode\RoleinfoManagement.cs" />
+    <Compile Include="UserCode\RolepermissionManagement.cs" />
+    <Compile Include="UserCode\TuserManagement.cs" />
+    <Compile Include="UserCode\UsermaproleinfoManagement.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj">
