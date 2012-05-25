@@ -56,10 +56,17 @@
     <Compile Include="Domain\Assetsetupinfo.cs" />
     <Compile Include="Domain\Assetsupplier.cs" />
     <Compile Include="Domain\Baccount.cs" />
+    <Compile Include="Domain\Lbfgs.cs" />
+    <Compile Include="Domain\Lbfgsxmt.cs" />
+    <Compile Include="Domain\Menuitem.cs" />
     <Compile Include="Domain\Procurementcontract.cs" />
     <Compile Include="Domain\Procurementcontractdetail.cs" />
     <Compile Include="Domain\Procurementscheduledetail.cs" />
     <Compile Include="Domain\Procurementschedulehead.cs" />
+    <Compile Include="Domain\Roleinfo.cs" />
+    <Compile Include="Domain\Rolepermission.cs" />
+    <Compile Include="Domain\Tuser.cs" />
+    <Compile Include="Domain\Usermaproleinfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchObject\AssetcategorySearch.cs" />
     <Compile Include="SearchObject\AssetmaintaindetailSearch.cs" />
@@ -73,10 +80,17 @@
     <Compile Include="SearchObject\AssetsetupinfoSearch.cs" />
     <Compile Include="SearchObject\AssetsupplierSearch.cs" />
     <Compile Include="SearchObject\BaccountSearch.cs" />
+    <Compile Include="SearchObject\LbfgsSearch.cs" />
+    <Compile Include="SearchObject\LbfgsxmtSearch.cs" />
+    <Compile Include="SearchObject\MenuitemSearch.cs" />
     <Compile Include="SearchObject\ProcurementcontractdetailSearch.cs" />
     <Compile Include="SearchObject\ProcurementcontractSearch.cs" />
     <Compile Include="SearchObject\ProcurementscheduledetailSearch.cs" />
     <Compile Include="SearchObject\ProcurementscheduleheadSearch.cs" />
+    <Compile Include="SearchObject\RoleinfoSearch.cs" />
+    <Compile Include="SearchObject\RolepermissionSearch.cs" />
+    <Compile Include="SearchObject\TuserSearch.cs" />
+    <Compile Include="SearchObject\UsermaproleinfoSearch.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

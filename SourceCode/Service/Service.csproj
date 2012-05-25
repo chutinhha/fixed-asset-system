@@ -53,11 +53,18 @@
     <Compile Include="AssetsupplierService.cs" />
     <Compile Include="BaccountService.cs" />
     <Compile Include="BaseService.cs" />
+    <Compile Include="LbfgsService.cs" />
+    <Compile Include="LbfgsxmtService.cs" />
+    <Compile Include="MenuitemService.cs" />
     <Compile Include="ProcurementcontractdetailService.cs" />
     <Compile Include="ProcurementcontractService.cs" />
     <Compile Include="ProcurementscheduledetailService.cs" />
     <Compile Include="ProcurementscheduleheadService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoleinfoService.cs" />
+    <Compile Include="RolepermissionService.cs" />
+    <Compile Include="TuserService.cs" />
+    <Compile Include="UsermaproleinfoService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccess\DataAccess.csproj">
