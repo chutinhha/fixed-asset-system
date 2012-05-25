@@ -1,7 +1,7 @@
 /********************************************************************
 * File Name:ProcurementscheduleheadManagement
 * Copyright (C) 2012 Bruce.huang 
-* Creater & Date:Bruce.huang - 2012-05-23
+* Creater & Date:Bruce.huang - 2012-05-25
 * Create Explain:
 * Description:Service Layer Class
 * Modify Explain:
@@ -18,6 +18,7 @@ namespace FixedAsset.Services
 {
     public partial class ProcurementscheduleheadService:BaseService,IProcurementscheduleheadService
     {
+
         #region Management
 
         private ProcurementscheduleheadManagement m_Management;
@@ -127,5 +128,6 @@ namespace FixedAsset.Services
             }
         }
         #endregion
+
     }
 }

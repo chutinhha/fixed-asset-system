@@ -39,7 +39,7 @@ namespace FixedAsset.Services
         #endregion
 
         #region RetrieveAssetmovedetailsPaging
-        public List<Assetmovedetail> RetrieveAssetmovedetailsPaging(AssetmovedetailSearch info,int pageIndex, int pageSize,out int count)
+        public List<AssetmovedetailEx> RetrieveAssetmovedetailsPaging(AssetmovedetailSearch info,int pageIndex, int pageSize,out int count)
         {
             return Management.RetrieveAssetmovedetailsPaging(info,pageIndex,pageSize,out count);
         }
@@ -56,6 +56,20 @@ namespace FixedAsset.Services
         public List<Assetmovedetail> RetrieveAssetmovedetailByDetailid(List<string> detailids)
         {
             return Management.RetrieveAssetmovedetailByDetailid(detailids);
+        }
+        #endregion
+
+        #region RetrieveAssetmovedetailListByAssetmoveid
+        public List<Assetmovedetail> RetrieveAssetmovedetailListByAssetmoveid(string assetmoveid)
+        {
+            return Management.RetrieveAssetmovedetailListByAssetmoveid(assetmoveid);
+        }
+        #endregion
+
+        #region RetrieveAssetmovedetailListByAssetmoveid
+        public List<Assetmovedetail> RetrieveAssetmovedetailListByAssetmoveid(List<string> assetmoveids)
+        {
+            return Management.RetrieveAssetmovedetailListByAssetmoveid(assetmoveids);
         }
         #endregion
 

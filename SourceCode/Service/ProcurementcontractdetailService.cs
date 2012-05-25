@@ -39,7 +39,7 @@ namespace FixedAsset.Services
         #endregion
 
         #region RetrieveProcurementcontractdetailsPaging
-        public List<Procurementcontractdetail> RetrieveProcurementcontractdetailsPaging(ProcurementcontractdetailSearch info,int pageIndex, int pageSize,out int count)
+        public List<ProcurementcontractdetailEx> RetrieveProcurementcontractdetailsPaging(ProcurementcontractdetailSearch info,int pageIndex, int pageSize,out int count)
         {
             return Management.RetrieveProcurementcontractdetailsPaging(info,pageIndex,pageSize,out count);
         }
@@ -56,6 +56,20 @@ namespace FixedAsset.Services
         public List<Procurementcontractdetail> RetrieveProcurementcontractdetailByContractdetailid(List<string> contractdetailids)
         {
             return Management.RetrieveProcurementcontractdetailByContractdetailid(contractdetailids);
+        }
+        #endregion
+
+        #region RetrieveProcurementcontractdetailListByContractid
+        public List<Procurementcontractdetail> RetrieveProcurementcontractdetailListByContractid(string contractid)
+        {
+            return Management.RetrieveProcurementcontractdetailListByContractid(contractid);
+        }
+        #endregion
+
+        #region RetrieveProcurementcontractdetailListByContractid
+        public List<Procurementcontractdetail> RetrieveProcurementcontractdetailListByContractid(List<string> contractids)
+        {
+            return Management.RetrieveProcurementcontractdetailListByContractid(contractids);
         }
         #endregion
 

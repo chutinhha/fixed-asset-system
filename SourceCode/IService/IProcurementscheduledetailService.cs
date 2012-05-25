@@ -14,10 +14,11 @@ namespace FixedAsset.IServices
 {
     public interface IProcurementscheduledetailService
     {
-        List<Procurementscheduledetail> RetrieveProcurementscheduledetailsPaging(ProcurementscheduledetailSearch info,int pageIndex, int pageSize,out int count);
+        List<ProcurementscheduledetailEx> RetrieveProcurementscheduledetailsPaging(ProcurementscheduledetailSearch info,int pageIndex, int pageSize,out int count);
         Procurementscheduledetail CreateProcurementscheduledetail(Procurementscheduledetail info);
         Procurementscheduledetail UpdateProcurementscheduledetailByDetailid(Procurementscheduledetail info);
         Procurementscheduledetail RetrieveProcurementscheduledetailByDetailid(string detailid);
         void DeleteProcurementscheduledetailByDetailid(string detailid);
+        List<Procurementscheduledetail> RetrieveProcurementscheduledetailListByPsid(string psid);
     }
 }

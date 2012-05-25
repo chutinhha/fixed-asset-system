@@ -14,10 +14,11 @@ namespace FixedAsset.IServices
 {
     public interface IAssetmovedetailService
     {
-        List<Assetmovedetail> RetrieveAssetmovedetailsPaging(AssetmovedetailSearch info,int pageIndex, int pageSize,out int count);
+        List<AssetmovedetailEx> RetrieveAssetmovedetailsPaging(AssetmovedetailSearch info,int pageIndex, int pageSize,out int count);
         Assetmovedetail CreateAssetmovedetail(Assetmovedetail info);
         Assetmovedetail UpdateAssetmovedetailByDetailid(Assetmovedetail info);
         Assetmovedetail RetrieveAssetmovedetailByDetailid(string detailid);
         void DeleteAssetmovedetailByDetailid(string detailid);
+        List<Assetmovedetail> RetrieveAssetmovedetailListByAssetmoveid(string assetmoveid);
     }
 }
