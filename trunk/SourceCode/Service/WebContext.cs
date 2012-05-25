@@ -90,12 +90,12 @@ namespace FixedAsset.Services
                     //    || (!string.IsNullOrEmpty(value.LastLoginIpAddress) && value.LastLoginIpAddress == UserHostAddress))
                     //{
                     //    //同一账户重复登录生成新的SessionId
-                    //    CurrentUserSessionId = Guid.NewGuid().ToString("N");//作为单点登录的SessionId
-                    //    if (HttpContext.Current != null)
-                    //    {
-                    //        CurrentUserSessionId = HttpContext.Current.Session.SessionID;
-                    //    }
-                    //    this[CurrentUserSessionId] = value;
+                    CurrentUserSessionId = Guid.NewGuid().ToString("N");//作为单点登录的SessionId
+                    if (HttpContext.Current != null)
+                    {
+                        CurrentUserSessionId = HttpContext.Current.Session.SessionID;
+                    }
+                    this[CurrentUserSessionId] = value;
                     //}
                     //else
                     //{
