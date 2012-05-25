@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using FixedAsset.Domain;
 using FixedAsset.Services;
-using SeallNet.WebControls;
 
 namespace FixedAsset.Web.Admin
 {
@@ -21,10 +16,9 @@ namespace FixedAsset.Web.Admin
         }
         protected void BtnSearch_Click(object sender,EventArgs e)
         {
-            Alert("啥啥啥");
             LoadData(0);
         }
-        protected void pageControl_PageIndexClick(object sender, PageIndexClickEventArgs e)
+        protected void pcData_PageIndexClick(object sender, KFSQ.Web.Controls.PageIndexClickEventArgs e)
         {
             LoadData(e.PageIndex);
         }
@@ -100,9 +94,7 @@ namespace FixedAsset.Web.Admin
                 list.Add(data);
             }
 
-            int recordCount = list.Count;
-            
-
+            int recordCount = list.Count; 
             //Procurementschedulehead data=new Procurementschedulehead();
             //data.Psid = Guid.NewGuid().ToString("N");
             //data.Procurementscheduledate = DateTime.Today;
@@ -121,8 +113,8 @@ namespace FixedAsset.Web.Admin
             //var list = procurementscheduleheadservice.RetrieveProcurementscheduleheadsPaging(search, pageIndex, pageControl.PageSize, out recordCount);
             rptProcureList.DataSource = list;
             rptProcureList.DataBind();
-            pageControl.RecordCount = recordCount;
-            pageControl.CurrentIndex = pageIndex;
+            pcData.RecordCount = recordCount;
+            pcData.CurrentIndex = pageIndex;
         }
         #endregion
     }

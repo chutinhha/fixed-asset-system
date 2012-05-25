@@ -35,15 +35,18 @@
     <Reference Include="AjaxControlToolkit">
       <HintPath>..\Dependencies\AjaxControlToolkit.dll</HintPath>
     </Reference>
+    <Reference Include="iKC.Web">
+      <HintPath>..\Dependencies\iKC.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="KFSQ.Web.Controls">
+      <HintPath>..\Dependencies\KFSQ.Web.Controls.dll</HintPath>
+    </Reference>
     <Reference Include="log4net">
       <HintPath>..\Dependencies\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="SeallNet.Utility">
       <HintPath>..\Dependencies\SeallNet.Utility.dll</HintPath>
-    </Reference>
-    <Reference Include="SeallNet.WebControls">
-      <HintPath>..\Dependencies\SeallNet.WebControls.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -61,6 +64,9 @@
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="WebCalendar">
+      <HintPath>..\Dependencies\WebCalendar.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="404.aspx.cs">
@@ -107,6 +113,7 @@
     <Compile Include="AppCode\BasePage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="AppCode\PageUtility.cs" />
     <Compile Include="AppCode\UiConst.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
