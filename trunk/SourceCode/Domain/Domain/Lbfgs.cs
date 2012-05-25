@@ -12,9 +12,9 @@ using System.Collections.Generic;
 
 namespace FixedAsset.Domain
 {
-    /// <summary>
-    ///LB_FGS
-    /// <summary>
+    ///<summary>
+    ///·Ö¹«Ë¾
+    ///</summary>
     [Serializable]
     public partial class Lbfgs
     {
@@ -68,6 +68,4 @@ namespace FixedAsset.Domain
         #endregion
 
     }
-
-
 }

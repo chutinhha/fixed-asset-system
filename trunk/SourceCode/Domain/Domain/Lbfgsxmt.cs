@@ -13,8 +13,8 @@ using System.Collections.Generic;
 namespace FixedAsset.Domain
 {
     /// <summary>
-    ///LB_FGS_XMT
-    /// <summary>
+    ///ПоДїМе
+    /// </summary>
     [Serializable]
     public partial class Lbfgsxmt
     {
