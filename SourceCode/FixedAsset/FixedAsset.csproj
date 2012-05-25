@@ -124,11 +124,20 @@
       <DependentUpon>user_list.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="AppCode\AdminBasePage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="AppCode\BasePage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="AppCode\EncodeHelper.cs" />
+    <Compile Include="AppCode\IdCardHelper.cs" />
+    <Compile Include="AppCode\MessageSet.cs" />
     <Compile Include="AppCode\PageUtility.cs" />
+    <Compile Include="AppCode\SerializeHelper.cs" />
     <Compile Include="AppCode\UiConst.cs" />
+    <Compile Include="AppCode\UIHelper.cs" />
+    <Compile Include="AppCode\Utility.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
