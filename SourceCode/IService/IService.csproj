@@ -41,11 +41,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IAssetcategoryService.cs" />
+    <Compile Include="IAssetmaintaindetailService.cs" />
     <Compile Include="IAssetmaintainService.cs" />
+    <Compile Include="IAssetmovedetailService.cs" />
     <Compile Include="IAssetmoveService.cs" />
+    <Compile Include="IAssetremovedetailService.cs" />
     <Compile Include="IAssetremoveService.cs" />
     <Compile Include="IAssetService.cs" />
+    <Compile Include="IAssetsetupdetailService.cs" />
     <Compile Include="IAssetsetupinfoService.cs" />
+    <Compile Include="IAssetsupplierService.cs" />
     <Compile Include="IBaccountService.cs" />
     <Compile Include="IProcurementcontractdetailService.cs" />
     <Compile Include="IProcurementcontractService.cs" />
