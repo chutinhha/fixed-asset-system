@@ -62,5 +62,9 @@ namespace FixedAsset.Domain
 
     }
 
+    [Serializable]
+    public partial class AssetmovedetailEx:Assetmovedetail
+    {
+    }
 
 }

@@ -13,7 +13,7 @@ using System.Collections.Generic;
 namespace FixedAsset.Domain
 {
     /// <summary>
-    ///设备信息
+    ///ASSET
     /// <summary>
     [Serializable]
     public partial class Asset
