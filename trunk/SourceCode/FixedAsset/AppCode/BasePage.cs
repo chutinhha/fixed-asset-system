@@ -1,18 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
-using System.Web;
-using System.Web.Configuration;
-using System.Web.UI;
 using FixedAsset.Web.AppCode;
 using log4net;
-using SeallNet.WebControls;
 
 namespace FixedAsset.Web
 {
-    public class BasePage : SeallNetPage
+    public class BasePage :System.Web.UI.Page
     {
         #region Properties
         protected ILog Log = LogManager.GetLogger(@"FixedAssetLog");

@@ -3,7 +3,8 @@
 
 <%@ Import Namespace="FixedAsset.Domain" %>
 <%@ Import Namespace="SeallNet.Utility" %>
-<%@ Register Assembly="SeallNet.WebControls" Namespace="SeallNet.WebControls" TagPrefix="cc1" %>
+<%@ Register Assembly="KFSQ.Web.Controls" Namespace="KFSQ.Web.Controls" TagPrefix="cc1" %>
+<%@ Register Assembly="iKC.Web" Namespace="iKC.Web.UI.WebControls" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
@@ -125,7 +126,8 @@
                     <td>
                     </td>
                     <td colspan="8" style="height: 30px;width: 790px;">
-                        <cc1:PageChangeControl ID="pageControl" PageSize="10" runat="server" OnPageIndexClick="pageControl_PageIndexClick" />
+                       <%-- <cc1:PageChangeControl ID="pageControl" PageSize="10" runat="server" OnPageIndexClick="pageControl_PageIndexClick" />--%>
+                       <cc1:PagingControl ID="pcData" runat="server" MaxNavigatePageCount="7" OnPageIndexClick="pcData_PageIndexClick" />
                     </td>
                 </tr>  
             </table>
