@@ -69,14 +69,102 @@ namespace FixedAsset.DataAccess
         }
         #endregion
 
+        #region RetrieveListInfoByForeignKeys RetrieveAssetremovedetailListByAssetremoveid
+        public List<Assetremovedetail> RetrieveAssetremovedetailListByAssetremoveid(string Assetremoveid)
+        {
+            try
+            {
+                this.Database.AddInParameter(":Assetremoveid", Assetremoveid);//DBType:VARCHAR2
+                string sqlCommand = @"SELECT * FROM ""ASSETREMOVEDETAIL"" WHERE  ""ASSETREMOVEID""=:Assetremoveid";
+                sqlCommand += @" ORDER BY ""DETAILID"" DESC";
+                return this.Database.ExecuteToList<Assetremovedetail>(sqlCommand);
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
+        #endregion
+
+        #region RetrieveAssetremovedetailListByAssetremoveid
+        public List<Assetremovedetail> RetrieveAssetremovedetailListByAssetremoveid(List<string> Assetremoveids)
+        {
+            try
+            {
+                if(Assetremoveids.Count==0){ return new List<Assetremovedetail>();}
+                StringBuilder sqlCommand = new StringBuilder();
+                sqlCommand.AppendLine(@"SELECT *  FROM  ""ASSETREMOVEDETAIL"" WHERE 1=1");
+                if(Assetremoveids.Count==1)
+                {
+                    this.Database.AddInParameter(":Assetremoveid"+0.ToString(),Assetremoveids[0]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" AND ""ASSETREMOVEID""=:Assetremoveid0");
+                }
+                else if(Assetremoveids.Count>1&&Assetremoveids.Count<=2000)
+                {
+                    this.Database.AddInParameter(":Assetremoveid"+0.ToString(),Assetremoveids[0]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" AND (""ASSETREMOVEID""=:Assetremoveid0");
+                    for (int i = 1; i < Assetremoveids.Count; i++)
+                    {
+                    this.Database.AddInParameter(":Assetremoveid"+i.ToString(),Assetremoveids[i]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" OR ""ASSETREMOVEID""=:Assetremoveid"+i.ToString());
+                    }
+                    sqlCommand.AppendLine(" )");
+                }
+
+                sqlCommand.AppendLine(@" ORDER BY ""DETAILID"" DESC");
+                return this.Database.ExecuteToList<Assetremovedetail>(sqlCommand.ToString());
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
+        #endregion
+
+        #region RetrieveCountOfAssetremovedetailByAssetremoveid
+        public int RetrieveCountOfAssetremovedetailByAssetremoveid(List<string> Assetremoveids)
+        {
+            try
+            {
+                if(Assetremoveids.Count==0){ return 0;}
+                StringBuilder sqlCommand = new StringBuilder();
+                sqlCommand.AppendLine(@"SELECT COUNT(*)  FROM  ""ASSETREMOVEDETAIL"" WHERE 1=1");
+                if(Assetremoveids.Count==1)
+                {
+                    this.Database.AddInParameter(":Assetremoveid"+0.ToString(),Assetremoveids[0]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" AND ""ASSETREMOVEID""=:Assetremoveid0");
+                }
+                else if(Assetremoveids.Count>1&&Assetremoveids.Count<=2000)
+                {
+                    this.Database.AddInParameter(":Assetremoveid"+0.ToString(),Assetremoveids[0]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" AND (""ASSETREMOVEID""=:Assetremoveid0");
+                    for (int i = 1; i < Assetremoveids.Count; i++)
+                    {
+                    this.Database.AddInParameter(":Assetremoveid"+i.ToString(),Assetremoveids[i]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" OR ""ASSETREMOVEID""=:Assetremoveid"+i.ToString());
+                    }
+                    sqlCommand.AppendLine(" )");
+                }
+
+                return int.Parse(this.Database.ExecuteScalar(sqlCommand.ToString()).ToString());
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
+        #endregion
+
         #region RetrieveAssetremovedetailsPaging
-        public List<Assetremovedetail> RetrieveAssetremovedetailsPaging(AssetremovedetailSearch info,int pageIndex, int pageSize,out int count)
+        public List<AssetremovedetailEx> RetrieveAssetremovedetailsPaging(AssetremovedetailSearch info,int pageIndex, int pageSize,out int count)
         {
             try
             {
                 StringBuilder sqlCommand = new StringBuilder(@" SELECT ""ASSETREMOVEDETAIL"".""DETAILID"",""ASSETREMOVEDETAIL"".""ASSETREMOVEID"",""ASSETREMOVEDETAIL"".""ASSETNO"",""ASSETREMOVEDETAIL"".""PLANREMOVEDATE"",""ASSETREMOVEDETAIL"".""ACTUALREMOVEDATE"",
                      ""ASSETREMOVEDETAIL"".""REMOVEDCONTENT""
+
                      FROM ""ASSETREMOVEDETAIL"" 
+                     INNER JOIN ""ASSETREMOVE"" ON ""ASSETREMOVEDETAIL"".""ASSETREMOVEID""=""ASSETREMOVE"".""ASSETREMOVEID"" 
                      WHERE 1=1");
                 if (!string.IsNullOrEmpty(info.Detailid))
                 {
@@ -120,7 +208,7 @@ namespace FixedAsset.DataAccess
                 }
 
                 sqlCommand.AppendLine(@"  ORDER BY ""ASSETREMOVEDETAIL"".""DETAILID"" DESC");
-                return this.ExecuteReaderPaging<Assetremovedetail>(sqlCommand.ToString(), pageIndex, pageSize, out count);
+                return this.ExecuteReaderPaging<AssetremovedetailEx>(sqlCommand.ToString(), pageIndex, pageSize, out count);
             }
             finally
             {

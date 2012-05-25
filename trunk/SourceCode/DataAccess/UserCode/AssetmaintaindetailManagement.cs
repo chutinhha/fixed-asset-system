@@ -69,14 +69,102 @@ namespace FixedAsset.DataAccess
         }
         #endregion
 
+        #region RetrieveListInfoByForeignKeys RetrieveAssetmaintaindetailListByAssetmaintainid
+        public List<Assetmaintaindetail> RetrieveAssetmaintaindetailListByAssetmaintainid(string Assetmaintainid)
+        {
+            try
+            {
+                this.Database.AddInParameter(":Assetmaintainid", Assetmaintainid);//DBType:VARCHAR2
+                string sqlCommand = @"SELECT * FROM ""ASSETMAINTAINDETAIL"" WHERE  ""ASSETMAINTAINID""=:Assetmaintainid";
+                sqlCommand += @" ORDER BY ""DETAILID"" DESC";
+                return this.Database.ExecuteToList<Assetmaintaindetail>(sqlCommand);
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
+        #endregion
+
+        #region RetrieveAssetmaintaindetailListByAssetmaintainid
+        public List<Assetmaintaindetail> RetrieveAssetmaintaindetailListByAssetmaintainid(List<string> Assetmaintainids)
+        {
+            try
+            {
+                if(Assetmaintainids.Count==0){ return new List<Assetmaintaindetail>();}
+                StringBuilder sqlCommand = new StringBuilder();
+                sqlCommand.AppendLine(@"SELECT *  FROM  ""ASSETMAINTAINDETAIL"" WHERE 1=1");
+                if(Assetmaintainids.Count==1)
+                {
+                    this.Database.AddInParameter(":Assetmaintainid"+0.ToString(),Assetmaintainids[0]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" AND ""ASSETMAINTAINID""=:Assetmaintainid0");
+                }
+                else if(Assetmaintainids.Count>1&&Assetmaintainids.Count<=2000)
+                {
+                    this.Database.AddInParameter(":Assetmaintainid"+0.ToString(),Assetmaintainids[0]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" AND (""ASSETMAINTAINID""=:Assetmaintainid0");
+                    for (int i = 1; i < Assetmaintainids.Count; i++)
+                    {
+                    this.Database.AddInParameter(":Assetmaintainid"+i.ToString(),Assetmaintainids[i]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" OR ""ASSETMAINTAINID""=:Assetmaintainid"+i.ToString());
+                    }
+                    sqlCommand.AppendLine(" )");
+                }
+
+                sqlCommand.AppendLine(@" ORDER BY ""DETAILID"" DESC");
+                return this.Database.ExecuteToList<Assetmaintaindetail>(sqlCommand.ToString());
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
+        #endregion
+
+        #region RetrieveCountOfAssetmaintaindetailByAssetmaintainid
+        public int RetrieveCountOfAssetmaintaindetailByAssetmaintainid(List<string> Assetmaintainids)
+        {
+            try
+            {
+                if(Assetmaintainids.Count==0){ return 0;}
+                StringBuilder sqlCommand = new StringBuilder();
+                sqlCommand.AppendLine(@"SELECT COUNT(*)  FROM  ""ASSETMAINTAINDETAIL"" WHERE 1=1");
+                if(Assetmaintainids.Count==1)
+                {
+                    this.Database.AddInParameter(":Assetmaintainid"+0.ToString(),Assetmaintainids[0]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" AND ""ASSETMAINTAINID""=:Assetmaintainid0");
+                }
+                else if(Assetmaintainids.Count>1&&Assetmaintainids.Count<=2000)
+                {
+                    this.Database.AddInParameter(":Assetmaintainid"+0.ToString(),Assetmaintainids[0]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" AND (""ASSETMAINTAINID""=:Assetmaintainid0");
+                    for (int i = 1; i < Assetmaintainids.Count; i++)
+                    {
+                    this.Database.AddInParameter(":Assetmaintainid"+i.ToString(),Assetmaintainids[i]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" OR ""ASSETMAINTAINID""=:Assetmaintainid"+i.ToString());
+                    }
+                    sqlCommand.AppendLine(" )");
+                }
+
+                return int.Parse(this.Database.ExecuteScalar(sqlCommand.ToString()).ToString());
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
+        #endregion
+
         #region RetrieveAssetmaintaindetailsPaging
-        public List<Assetmaintaindetail> RetrieveAssetmaintaindetailsPaging(AssetmaintaindetailSearch info,int pageIndex, int pageSize,out int count)
+        public List<AssetmaintaindetailEx> RetrieveAssetmaintaindetailsPaging(AssetmaintaindetailSearch info,int pageIndex, int pageSize,out int count)
         {
             try
             {
                 StringBuilder sqlCommand = new StringBuilder(@" SELECT ""ASSETMAINTAINDETAIL"".""DETAILID"",""ASSETMAINTAINDETAIL"".""ASSETMAINTAINID"",""ASSETMAINTAINDETAIL"".""ASSETNO"",""ASSETMAINTAINDETAIL"".""PLANMAINTAINDATE"",""ASSETMAINTAINDETAIL"".""ACTUALMAINTAINDATE"",
                      ""ASSETMAINTAINDETAIL"".""MAINTAINCONTENT""
+
                      FROM ""ASSETMAINTAINDETAIL"" 
+                     INNER JOIN ""ASSETMAINTAIN"" ON ""ASSETMAINTAINDETAIL"".""ASSETMAINTAINID""=""ASSETMAINTAIN"".""ASSETMAINTAINID"" 
                      WHERE 1=1");
                 if (!string.IsNullOrEmpty(info.Detailid))
                 {
@@ -120,7 +208,7 @@ namespace FixedAsset.DataAccess
                 }
 
                 sqlCommand.AppendLine(@"  ORDER BY ""ASSETMAINTAINDETAIL"".""DETAILID"" DESC");
-                return this.ExecuteReaderPaging<Assetmaintaindetail>(sqlCommand.ToString(), pageIndex, pageSize, out count);
+                return this.ExecuteReaderPaging<AssetmaintaindetailEx>(sqlCommand.ToString(), pageIndex, pageSize, out count);
             }
             finally
             {

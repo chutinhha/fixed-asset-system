@@ -69,14 +69,102 @@ namespace FixedAsset.DataAccess
         }
         #endregion
 
+        #region RetrieveListInfoByForeignKeys RetrieveAssetsetupdetailListBySetupid
+        public List<Assetsetupdetail> RetrieveAssetsetupdetailListBySetupid(string Setupid)
+        {
+            try
+            {
+                this.Database.AddInParameter(":Setupid", Setupid);//DBType:VARCHAR2
+                string sqlCommand = @"SELECT * FROM ""ASSETSETUPDETAIL"" WHERE  ""SETUPID""=:Setupid";
+                sqlCommand += @" ORDER BY ""DETAILID"" DESC";
+                return this.Database.ExecuteToList<Assetsetupdetail>(sqlCommand);
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
+        #endregion
+
+        #region RetrieveAssetsetupdetailListBySetupid
+        public List<Assetsetupdetail> RetrieveAssetsetupdetailListBySetupid(List<string> Setupids)
+        {
+            try
+            {
+                if(Setupids.Count==0){ return new List<Assetsetupdetail>();}
+                StringBuilder sqlCommand = new StringBuilder();
+                sqlCommand.AppendLine(@"SELECT *  FROM  ""ASSETSETUPDETAIL"" WHERE 1=1");
+                if(Setupids.Count==1)
+                {
+                    this.Database.AddInParameter(":Setupid"+0.ToString(),Setupids[0]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" AND ""SETUPID""=:Setupid0");
+                }
+                else if(Setupids.Count>1&&Setupids.Count<=2000)
+                {
+                    this.Database.AddInParameter(":Setupid"+0.ToString(),Setupids[0]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" AND (""SETUPID""=:Setupid0");
+                    for (int i = 1; i < Setupids.Count; i++)
+                    {
+                    this.Database.AddInParameter(":Setupid"+i.ToString(),Setupids[i]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" OR ""SETUPID""=:Setupid"+i.ToString());
+                    }
+                    sqlCommand.AppendLine(" )");
+                }
+
+                sqlCommand.AppendLine(@" ORDER BY ""DETAILID"" DESC");
+                return this.Database.ExecuteToList<Assetsetupdetail>(sqlCommand.ToString());
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
+        #endregion
+
+        #region RetrieveCountOfAssetsetupdetailBySetupid
+        public int RetrieveCountOfAssetsetupdetailBySetupid(List<string> Setupids)
+        {
+            try
+            {
+                if(Setupids.Count==0){ return 0;}
+                StringBuilder sqlCommand = new StringBuilder();
+                sqlCommand.AppendLine(@"SELECT COUNT(*)  FROM  ""ASSETSETUPDETAIL"" WHERE 1=1");
+                if(Setupids.Count==1)
+                {
+                    this.Database.AddInParameter(":Setupid"+0.ToString(),Setupids[0]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" AND ""SETUPID""=:Setupid0");
+                }
+                else if(Setupids.Count>1&&Setupids.Count<=2000)
+                {
+                    this.Database.AddInParameter(":Setupid"+0.ToString(),Setupids[0]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" AND (""SETUPID""=:Setupid0");
+                    for (int i = 1; i < Setupids.Count; i++)
+                    {
+                    this.Database.AddInParameter(":Setupid"+i.ToString(),Setupids[i]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" OR ""SETUPID""=:Setupid"+i.ToString());
+                    }
+                    sqlCommand.AppendLine(" )");
+                }
+
+                return int.Parse(this.Database.ExecuteScalar(sqlCommand.ToString()).ToString());
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
+        #endregion
+
         #region RetrieveAssetsetupdetailsPaging
-        public List<Assetsetupdetail> RetrieveAssetsetupdetailsPaging(AssetsetupdetailSearch info,int pageIndex, int pageSize,out int count)
+        public List<AssetsetupdetailEx> RetrieveAssetsetupdetailsPaging(AssetsetupdetailSearch info,int pageIndex, int pageSize,out int count)
         {
             try
             {
                 StringBuilder sqlCommand = new StringBuilder(@" SELECT ""ASSETSETUPDETAIL"".""DETAILID"",""ASSETSETUPDETAIL"".""SETUPID"",""ASSETSETUPDETAIL"".""ASSETNO"",""ASSETSETUPDETAIL"".""PLANSETUPDATE"",""ASSETSETUPDETAIL"".""ACTUALSETUPDATE"",
                      ""ASSETSETUPDETAIL"".""SETUPCONTENT""
+
                      FROM ""ASSETSETUPDETAIL"" 
+                     INNER JOIN ""ASSETSETUPINFO"" ON ""ASSETSETUPDETAIL"".""SETUPID""=""ASSETSETUPINFO"".""SETUPID"" 
                      WHERE 1=1");
                 if (!string.IsNullOrEmpty(info.Detailid))
                 {
@@ -100,7 +188,7 @@ namespace FixedAsset.DataAccess
                 }
 
                 sqlCommand.AppendLine(@"  ORDER BY ""ASSETSETUPDETAIL"".""DETAILID"" DESC");
-                return this.ExecuteReaderPaging<Assetsetupdetail>(sqlCommand.ToString(), pageIndex, pageSize, out count);
+                return this.ExecuteReaderPaging<AssetsetupdetailEx>(sqlCommand.ToString(), pageIndex, pageSize, out count);
             }
             finally
             {

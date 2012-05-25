@@ -69,14 +69,102 @@ namespace FixedAsset.DataAccess
         }
         #endregion
 
+        #region RetrieveListInfoByForeignKeys RetrieveProcurementscheduledetailListByPsid
+        public List<Procurementscheduledetail> RetrieveProcurementscheduledetailListByPsid(string Psid)
+        {
+            try
+            {
+                this.Database.AddInParameter(":Psid", Psid);//DBType:VARCHAR2
+                string sqlCommand = @"SELECT * FROM ""PROCUREMENTSCHEDULEDETAIL"" WHERE  ""PSID""=:Psid";
+                sqlCommand += @" ORDER BY ""DETAILID"" DESC";
+                return this.Database.ExecuteToList<Procurementscheduledetail>(sqlCommand);
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
+        #endregion
+
+        #region RetrieveProcurementscheduledetailListByPsid
+        public List<Procurementscheduledetail> RetrieveProcurementscheduledetailListByPsid(List<string> Psids)
+        {
+            try
+            {
+                if(Psids.Count==0){ return new List<Procurementscheduledetail>();}
+                StringBuilder sqlCommand = new StringBuilder();
+                sqlCommand.AppendLine(@"SELECT *  FROM  ""PROCUREMENTSCHEDULEDETAIL"" WHERE 1=1");
+                if(Psids.Count==1)
+                {
+                    this.Database.AddInParameter(":Psid"+0.ToString(),Psids[0]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" AND ""PSID""=:Psid0");
+                }
+                else if(Psids.Count>1&&Psids.Count<=2000)
+                {
+                    this.Database.AddInParameter(":Psid"+0.ToString(),Psids[0]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" AND (""PSID""=:Psid0");
+                    for (int i = 1; i < Psids.Count; i++)
+                    {
+                    this.Database.AddInParameter(":Psid"+i.ToString(),Psids[i]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" OR ""PSID""=:Psid"+i.ToString());
+                    }
+                    sqlCommand.AppendLine(" )");
+                }
+
+                sqlCommand.AppendLine(@" ORDER BY ""DETAILID"" DESC");
+                return this.Database.ExecuteToList<Procurementscheduledetail>(sqlCommand.ToString());
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
+        #endregion
+
+        #region RetrieveCountOfProcurementscheduledetailByPsid
+        public int RetrieveCountOfProcurementscheduledetailByPsid(List<string> Psids)
+        {
+            try
+            {
+                if(Psids.Count==0){ return 0;}
+                StringBuilder sqlCommand = new StringBuilder();
+                sqlCommand.AppendLine(@"SELECT COUNT(*)  FROM  ""PROCUREMENTSCHEDULEDETAIL"" WHERE 1=1");
+                if(Psids.Count==1)
+                {
+                    this.Database.AddInParameter(":Psid"+0.ToString(),Psids[0]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" AND ""PSID""=:Psid0");
+                }
+                else if(Psids.Count>1&&Psids.Count<=2000)
+                {
+                    this.Database.AddInParameter(":Psid"+0.ToString(),Psids[0]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" AND (""PSID""=:Psid0");
+                    for (int i = 1; i < Psids.Count; i++)
+                    {
+                    this.Database.AddInParameter(":Psid"+i.ToString(),Psids[i]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" OR ""PSID""=:Psid"+i.ToString());
+                    }
+                    sqlCommand.AppendLine(" )");
+                }
+
+                return int.Parse(this.Database.ExecuteScalar(sqlCommand.ToString()).ToString());
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
+        #endregion
+
         #region RetrieveProcurementscheduledetailsPaging
-        public List<Procurementscheduledetail> RetrieveProcurementscheduledetailsPaging(ProcurementscheduledetailSearch info,int pageIndex, int pageSize,out int count)
+        public List<ProcurementscheduledetailEx> RetrieveProcurementscheduledetailsPaging(ProcurementscheduledetailSearch info,int pageIndex, int pageSize,out int count)
         {
             try
             {
                 StringBuilder sqlCommand = new StringBuilder(@" SELECT ""PROCUREMENTSCHEDULEDETAIL"".""DETAILID"",""PROCUREMENTSCHEDULEDETAIL"".""ASSETCATEGORYID"",""PROCUREMENTSCHEDULEDETAIL"".""ASSETNAME"",""PROCUREMENTSCHEDULEDETAIL"".""ASSETSPECIFICATION"",""PROCUREMENTSCHEDULEDETAIL"".""UNITPRICE"",
                      ""PROCUREMENTSCHEDULEDETAIL"".""PLANNUMBER"",""PROCUREMENTSCHEDULEDETAIL"".""PSID""
+
                      FROM ""PROCUREMENTSCHEDULEDETAIL"" 
+                     INNER JOIN ""PROCUREMENTSCHEDULEHEAD"" ON ""PROCUREMENTSCHEDULEDETAIL"".""PSID""=""PROCUREMENTSCHEDULEHEAD"".""PSID"" 
                      WHERE 1=1");
                 if (!string.IsNullOrEmpty(info.Detailid))
                 {
@@ -105,7 +193,7 @@ namespace FixedAsset.DataAccess
                 }
 
                 sqlCommand.AppendLine(@"  ORDER BY ""PROCUREMENTSCHEDULEDETAIL"".""DETAILID"" DESC");
-                return this.ExecuteReaderPaging<Procurementscheduledetail>(sqlCommand.ToString(), pageIndex, pageSize, out count);
+                return this.ExecuteReaderPaging<ProcurementscheduledetailEx>(sqlCommand.ToString(), pageIndex, pageSize, out count);
             }
             finally
             {
