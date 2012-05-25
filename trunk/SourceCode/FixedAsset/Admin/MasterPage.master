@@ -23,30 +23,21 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <asp:ScriptManager ID="ScriptManager1" runat="server" 
-        EnableScriptLocalization="true" EnableSecureHistoryState="true" EnableScriptGlobalization="true"  EnableHistory="false"
-        EnablePartialRendering="true" AllowCustomErrorsRedirect="true" EnablePageMethods="true">
-        <CompositeScript>
-            <Scripts>
-                <asp:ScriptReference Name="AjaxControlToolkit.Common.Common.js" Assembly="AjaxControlToolkit" />
-                <asp:ScriptReference Name="AjaxControlToolkit.Compat.Timer.Timer.js" Assembly="AjaxControlToolkit" />
-                <asp:ScriptReference Name="AjaxControlToolkit.ExtenderBase.BaseScripts.js" Assembly="AjaxControlToolkit" />
-                <asp:ScriptReference Name="SeallNet.WebControls.Page.js" Assembly="SeallNet.WebControls" />
-                <asp:ScriptReference Name="SeallNet.WebControls.Common.js" Assembly="SeallNet.WebControls" />
-                
-            </Scripts>
-        </CompositeScript>
+    <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePartialRendering="true"
+        AllowCustomErrorsRedirect="true" EnablePageMethods="true">
+        <Scripts>
+            <asp:ScriptReference Path="~/Scripts/IframeAutoFit.js" />
+            <asp:ScriptReference Path="~/Scripts/Extjs/ext-base.js" />
+            <asp:ScriptReference Path="~/Scripts/Extjs/ext-all.js" />
+            <asp:ScriptReference Path="~/Scripts/Dialog.js" />
+            <asp:ScriptReference Path="~/Scripts/Ajax.js" />
+            <asp:ScriptReference Path="~/Scripts/Main.js" />
+            <asp:ScriptReference Path="~/Scripts/jquery-1.4.1.min.js" />
+        </Scripts>
     </asp:ScriptManager>
     <div id="contents">
         <div class="right2">
             <asp:ContentPlaceHolder ID="Content" runat="server">
-            <%--asp:ScriptReference Path="~/Scripts/IframeAutoFit.js" />
-                <asp:ScriptReference Path="~/Scripts/Extjs/ext-base.js" />
-                <asp:ScriptReference Path="~/Scripts/Extjs/ext-all.js" />
-                <asp:ScriptReference Path="~/Scripts/Dialog.js" />
-                <asp:ScriptReference Path="~/Scripts/Ajax.js" />
-                <asp:ScriptReference Path="~/Scripts/Main.js" />
-                <asp:ScriptReference Path="~/Scripts/jquery-1.4.1.min.js" />--%>
             </asp:ContentPlaceHolder>
         </div>
     </div>
