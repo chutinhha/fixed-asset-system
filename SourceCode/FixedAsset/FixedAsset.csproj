@@ -95,6 +95,20 @@
     <Compile Include="Admin\ProcurePlan_Add.aspx.designer.cs">
       <DependentUpon>ProcurePlan_Add.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\UserControl\ucSelectAsset.ascx.cs">
+      <DependentUpon>ucSelectAsset.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\UserControl\ucSelectAsset.ascx.designer.cs">
+      <DependentUpon>ucSelectAsset.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\UserControl\ucSelectUser.ascx.cs">
+      <DependentUpon>ucSelectUser.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\UserControl\ucSelectUser.ascx.designer.cs">
+      <DependentUpon>ucSelectUser.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\user_add.aspx.cs">
       <DependentUpon>user_add.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -275,6 +289,8 @@
     <Content Include="Admin\main.aspx" />
     <Content Include="Admin\ProcurePlanList.aspx" />
     <Content Include="Admin\ProcurePlan_Add.aspx" />
+    <Content Include="Admin\UserControl\ucSelectAsset.ascx" />
+    <Content Include="Admin\UserControl\ucSelectUser.ascx" />
     <Content Include="Admin\user_add.aspx" />
     <Content Include="Admin\user_edit.aspx" />
     <Content Include="Admin\user_list.aspx" />

@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -55,16 +56,17 @@
     <Compile Include="BaseService.cs" />
     <Compile Include="LbfgsService.cs" />
     <Compile Include="LbfgsxmtService.cs" />
-    <Compile Include="MenuitemService.cs" />
+    <Compile Include="SystemManagement\MenuitemService.cs" />
     <Compile Include="ProcurementcontractdetailService.cs" />
     <Compile Include="ProcurementcontractService.cs" />
     <Compile Include="ProcurementscheduledetailService.cs" />
     <Compile Include="ProcurementscheduleheadService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RoleinfoService.cs" />
-    <Compile Include="RolepermissionService.cs" />
-    <Compile Include="TuserService.cs" />
-    <Compile Include="UsermaproleinfoService.cs" />
+    <Compile Include="SystemManagement\RoleinfoService.cs" />
+    <Compile Include="SystemManagement\RolepermissionService.cs" />
+    <Compile Include="SystemManagement\TuserService.cs" />
+    <Compile Include="SystemManagement\UsermaproleinfoService.cs" />
+    <Compile Include="WebContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccess\DataAccess.csproj">
