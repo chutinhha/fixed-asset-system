@@ -1,3 +1,2 @@
 exp asset/asset@asset file= E:\Projects\七建资产管理\Doc\db\asset.dmp
 imp asset/asset@asset file= E:\Projects\七建资产管理\Doc\db\asset.dmp full=y
-imp asset/asset@asset file= E:\Projects\七建资产管理\Doc\fgs_xmt_user.dmp full=y
