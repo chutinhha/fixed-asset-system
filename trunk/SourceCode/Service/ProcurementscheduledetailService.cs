@@ -39,7 +39,7 @@ namespace FixedAsset.Services
         #endregion
 
         #region RetrieveProcurementscheduledetailsPaging
-        public List<Procurementscheduledetail> RetrieveProcurementscheduledetailsPaging(ProcurementscheduledetailSearch info,int pageIndex, int pageSize,out int count)
+        public List<ProcurementscheduledetailEx> RetrieveProcurementscheduledetailsPaging(ProcurementscheduledetailSearch info,int pageIndex, int pageSize,out int count)
         {
             return Management.RetrieveProcurementscheduledetailsPaging(info,pageIndex,pageSize,out count);
         }
@@ -56,6 +56,20 @@ namespace FixedAsset.Services
         public List<Procurementscheduledetail> RetrieveProcurementscheduledetailByDetailid(List<string> detailids)
         {
             return Management.RetrieveProcurementscheduledetailByDetailid(detailids);
+        }
+        #endregion
+
+        #region RetrieveProcurementscheduledetailListByPsid
+        public List<Procurementscheduledetail> RetrieveProcurementscheduledetailListByPsid(string psid)
+        {
+            return Management.RetrieveProcurementscheduledetailListByPsid(psid);
+        }
+        #endregion
+
+        #region RetrieveProcurementscheduledetailListByPsid
+        public List<Procurementscheduledetail> RetrieveProcurementscheduledetailListByPsid(List<string> psids)
+        {
+            return Management.RetrieveProcurementscheduledetailListByPsid(psids);
         }
         #endregion
 
