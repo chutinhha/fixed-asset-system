@@ -66,5 +66,4 @@ namespace FixedAsset.Domain
     public partial class AssetmaintaindetailEx:Assetmaintaindetail
     {
     }
-
 }
