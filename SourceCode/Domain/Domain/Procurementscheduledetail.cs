@@ -69,5 +69,9 @@ namespace FixedAsset.Domain
 
     }
 
+    [Serializable]
+    public partial class ProcurementscheduledetailEx:Procurementscheduledetail
+    {
+    }
 
 }
