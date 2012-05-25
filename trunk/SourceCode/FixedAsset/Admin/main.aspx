@@ -53,15 +53,41 @@
             <div class="left">
                 <div id="container">
                     <h1 class='type'>
-                        <a href='javascript:void(0)'>用户管理</a></h1>
+                        <a href='javascript:void(0)'>采购合同</a></h1>
                     <div class='content'>
                         <ul class='MM'>
-                            <li><a href='user_list.aspx' target='aa'>用户管理</a></li>
                             <li><a href='ProcurePlanList.aspx' target='aa'>采购计划单管理</a></li>
+                            <li><a href='ProcurePlanList.aspx' target='aa'>采购合同管理</a></li>
+                        </ul>
+                    </div>
+                    <h1 class='type'>
+                        <a href='javascript:void(0)'>验收登记</a></h1>
+                    <div class='content'>
+                        <ul class='MM'>
+                            <li><a href='ProcurePlanList.aspx' target='aa'>设备管理</a></li>
+                            <li><a href='ProcurePlanList.aspx' target='aa'>分类统计报表</a></li>
+                        </ul>
+                    </div>
+                    <h1 class='type'>
+                        <a href='javascript:void(0)'>安装运行</a></h1>
+                    <div class='content'>
+                        <ul class='MM'>
+                            <li><a href='ProcurePlanList.aspx' target='aa'>安装</a></li>
+                            <li><a href='ProcurePlanList.aspx' target='aa'>维修</a></li>
+                            <li><a href='ProcurePlanList.aspx' target='aa'>移机</a></li>
+                            <li><a href='ProcurePlanList.aspx' target='aa'>拆除</a></li>
+                        </ul>
+                    </div>
+                    <h1 class='type'>
+                        <a href='javascript:void(0)'>清产</a></h1>
+                    <div class='content'>
+                        <ul class='MM'>
+                            <li><a href='ProcurePlanList.aspx' target='aa'>B帐</a></li>
+                            <li><a href='ProcurePlanList.aspx' target='aa'>报废</a></li>
                         </ul>
                     </div>
                 </div>
-                <asp:HiddenField ID="HiddenField1" runat="server" Value="0" />
+                <%--<asp:HiddenField ID="HiddenField1" runat="server" Value="0" />--%>
             </div>
             <div class="right">
                 <iframe id="aa" name='aa' src="../index.aspx" width="100%" scrolling="no" frameborder="0"
