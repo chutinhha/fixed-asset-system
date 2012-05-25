@@ -69,14 +69,102 @@ namespace FixedAsset.DataAccess
         }
         #endregion
 
+        #region RetrieveListInfoByForeignKeys RetrieveAssetmovedetailListByAssetmoveid
+        public List<Assetmovedetail> RetrieveAssetmovedetailListByAssetmoveid(string Assetmoveid)
+        {
+            try
+            {
+                this.Database.AddInParameter(":Assetmoveid", Assetmoveid);//DBType:VARCHAR2
+                string sqlCommand = @"SELECT * FROM ""ASSETMOVEDETAIL"" WHERE  ""ASSETMOVEID""=:Assetmoveid";
+                sqlCommand += @" ORDER BY ""DETAILID"" DESC";
+                return this.Database.ExecuteToList<Assetmovedetail>(sqlCommand);
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
+        #endregion
+
+        #region RetrieveAssetmovedetailListByAssetmoveid
+        public List<Assetmovedetail> RetrieveAssetmovedetailListByAssetmoveid(List<string> Assetmoveids)
+        {
+            try
+            {
+                if(Assetmoveids.Count==0){ return new List<Assetmovedetail>();}
+                StringBuilder sqlCommand = new StringBuilder();
+                sqlCommand.AppendLine(@"SELECT *  FROM  ""ASSETMOVEDETAIL"" WHERE 1=1");
+                if(Assetmoveids.Count==1)
+                {
+                    this.Database.AddInParameter(":Assetmoveid"+0.ToString(),Assetmoveids[0]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" AND ""ASSETMOVEID""=:Assetmoveid0");
+                }
+                else if(Assetmoveids.Count>1&&Assetmoveids.Count<=2000)
+                {
+                    this.Database.AddInParameter(":Assetmoveid"+0.ToString(),Assetmoveids[0]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" AND (""ASSETMOVEID""=:Assetmoveid0");
+                    for (int i = 1; i < Assetmoveids.Count; i++)
+                    {
+                    this.Database.AddInParameter(":Assetmoveid"+i.ToString(),Assetmoveids[i]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" OR ""ASSETMOVEID""=:Assetmoveid"+i.ToString());
+                    }
+                    sqlCommand.AppendLine(" )");
+                }
+
+                sqlCommand.AppendLine(@" ORDER BY ""DETAILID"" DESC");
+                return this.Database.ExecuteToList<Assetmovedetail>(sqlCommand.ToString());
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
+        #endregion
+
+        #region RetrieveCountOfAssetmovedetailByAssetmoveid
+        public int RetrieveCountOfAssetmovedetailByAssetmoveid(List<string> Assetmoveids)
+        {
+            try
+            {
+                if(Assetmoveids.Count==0){ return 0;}
+                StringBuilder sqlCommand = new StringBuilder();
+                sqlCommand.AppendLine(@"SELECT COUNT(*)  FROM  ""ASSETMOVEDETAIL"" WHERE 1=1");
+                if(Assetmoveids.Count==1)
+                {
+                    this.Database.AddInParameter(":Assetmoveid"+0.ToString(),Assetmoveids[0]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" AND ""ASSETMOVEID""=:Assetmoveid0");
+                }
+                else if(Assetmoveids.Count>1&&Assetmoveids.Count<=2000)
+                {
+                    this.Database.AddInParameter(":Assetmoveid"+0.ToString(),Assetmoveids[0]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" AND (""ASSETMOVEID""=:Assetmoveid0");
+                    for (int i = 1; i < Assetmoveids.Count; i++)
+                    {
+                    this.Database.AddInParameter(":Assetmoveid"+i.ToString(),Assetmoveids[i]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" OR ""ASSETMOVEID""=:Assetmoveid"+i.ToString());
+                    }
+                    sqlCommand.AppendLine(" )");
+                }
+
+                return int.Parse(this.Database.ExecuteScalar(sqlCommand.ToString()).ToString());
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
+        #endregion
+
         #region RetrieveAssetmovedetailsPaging
-        public List<Assetmovedetail> RetrieveAssetmovedetailsPaging(AssetmovedetailSearch info,int pageIndex, int pageSize,out int count)
+        public List<AssetmovedetailEx> RetrieveAssetmovedetailsPaging(AssetmovedetailSearch info,int pageIndex, int pageSize,out int count)
         {
             try
             {
                 StringBuilder sqlCommand = new StringBuilder(@" SELECT ""ASSETMOVEDETAIL"".""DETAILID"",""ASSETMOVEDETAIL"".""ASSETMOVEID"",""ASSETMOVEDETAIL"".""ASSETNO"",""ASSETMOVEDETAIL"".""PLANMOVEDATE"",""ASSETMOVEDETAIL"".""ACTUALMOVEDATE"",
                      ""ASSETMOVEDETAIL"".""MOVEDCONTENT""
+
                      FROM ""ASSETMOVEDETAIL"" 
+                     INNER JOIN ""ASSETMOVE"" ON ""ASSETMOVEDETAIL"".""ASSETMOVEID""=""ASSETMOVE"".""ASSETMOVEID"" 
                      WHERE 1=1");
                 if (!string.IsNullOrEmpty(info.Detailid))
                 {
@@ -120,7 +208,7 @@ namespace FixedAsset.DataAccess
                 }
 
                 sqlCommand.AppendLine(@"  ORDER BY ""ASSETMOVEDETAIL"".""DETAILID"" DESC");
-                return this.ExecuteReaderPaging<Assetmovedetail>(sqlCommand.ToString(), pageIndex, pageSize, out count);
+                return this.ExecuteReaderPaging<AssetmovedetailEx>(sqlCommand.ToString(), pageIndex, pageSize, out count);
             }
             finally
             {

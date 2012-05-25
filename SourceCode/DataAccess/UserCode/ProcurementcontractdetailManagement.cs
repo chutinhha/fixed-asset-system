@@ -69,14 +69,102 @@ namespace FixedAsset.DataAccess
         }
         #endregion
 
+        #region RetrieveListInfoByForeignKeys RetrieveProcurementcontractdetailListByContractid
+        public List<Procurementcontractdetail> RetrieveProcurementcontractdetailListByContractid(string Contractid)
+        {
+            try
+            {
+                this.Database.AddInParameter(":Contractid", Contractid);//DBType:VARCHAR2
+                string sqlCommand = @"SELECT * FROM ""PROCUREMENTCONTRACTDETAIL"" WHERE  ""CONTRACTID""=:Contractid";
+                sqlCommand += @" ORDER BY ""CONTRACTDETAILID"" DESC";
+                return this.Database.ExecuteToList<Procurementcontractdetail>(sqlCommand);
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
+        #endregion
+
+        #region RetrieveProcurementcontractdetailListByContractid
+        public List<Procurementcontractdetail> RetrieveProcurementcontractdetailListByContractid(List<string> Contractids)
+        {
+            try
+            {
+                if(Contractids.Count==0){ return new List<Procurementcontractdetail>();}
+                StringBuilder sqlCommand = new StringBuilder();
+                sqlCommand.AppendLine(@"SELECT *  FROM  ""PROCUREMENTCONTRACTDETAIL"" WHERE 1=1");
+                if(Contractids.Count==1)
+                {
+                    this.Database.AddInParameter(":Contractid"+0.ToString(),Contractids[0]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" AND ""CONTRACTID""=:Contractid0");
+                }
+                else if(Contractids.Count>1&&Contractids.Count<=2000)
+                {
+                    this.Database.AddInParameter(":Contractid"+0.ToString(),Contractids[0]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" AND (""CONTRACTID""=:Contractid0");
+                    for (int i = 1; i < Contractids.Count; i++)
+                    {
+                    this.Database.AddInParameter(":Contractid"+i.ToString(),Contractids[i]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" OR ""CONTRACTID""=:Contractid"+i.ToString());
+                    }
+                    sqlCommand.AppendLine(" )");
+                }
+
+                sqlCommand.AppendLine(@" ORDER BY ""CONTRACTDETAILID"" DESC");
+                return this.Database.ExecuteToList<Procurementcontractdetail>(sqlCommand.ToString());
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
+        #endregion
+
+        #region RetrieveCountOfProcurementcontractdetailByContractid
+        public int RetrieveCountOfProcurementcontractdetailByContractid(List<string> Contractids)
+        {
+            try
+            {
+                if(Contractids.Count==0){ return 0;}
+                StringBuilder sqlCommand = new StringBuilder();
+                sqlCommand.AppendLine(@"SELECT COUNT(*)  FROM  ""PROCUREMENTCONTRACTDETAIL"" WHERE 1=1");
+                if(Contractids.Count==1)
+                {
+                    this.Database.AddInParameter(":Contractid"+0.ToString(),Contractids[0]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" AND ""CONTRACTID""=:Contractid0");
+                }
+                else if(Contractids.Count>1&&Contractids.Count<=2000)
+                {
+                    this.Database.AddInParameter(":Contractid"+0.ToString(),Contractids[0]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" AND (""CONTRACTID""=:Contractid0");
+                    for (int i = 1; i < Contractids.Count; i++)
+                    {
+                    this.Database.AddInParameter(":Contractid"+i.ToString(),Contractids[i]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" OR ""CONTRACTID""=:Contractid"+i.ToString());
+                    }
+                    sqlCommand.AppendLine(" )");
+                }
+
+                return int.Parse(this.Database.ExecuteScalar(sqlCommand.ToString()).ToString());
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
+        #endregion
+
         #region RetrieveProcurementcontractdetailsPaging
-        public List<Procurementcontractdetail> RetrieveProcurementcontractdetailsPaging(ProcurementcontractdetailSearch info,int pageIndex, int pageSize,out int count)
+        public List<ProcurementcontractdetailEx> RetrieveProcurementcontractdetailsPaging(ProcurementcontractdetailSearch info,int pageIndex, int pageSize,out int count)
         {
             try
             {
                 StringBuilder sqlCommand = new StringBuilder(@" SELECT ""PROCUREMENTCONTRACTDETAIL"".""CONTRACTDETAILID"",""PROCUREMENTCONTRACTDETAIL"".""CONTRACTID"",""PROCUREMENTCONTRACTDETAIL"".""ASSETCATEGORYID"",""PROCUREMENTCONTRACTDETAIL"".""ASSETNAME"",""PROCUREMENTCONTRACTDETAIL"".""ASSETSPECIFICATION"",
                      ""PROCUREMENTCONTRACTDETAIL"".""UNITPRICE"",""PROCUREMENTCONTRACTDETAIL"".""PROCURENUMBER""
+
                      FROM ""PROCUREMENTCONTRACTDETAIL"" 
+                     INNER JOIN ""PROCUREMENTCONTRACT"" ON ""PROCUREMENTCONTRACTDETAIL"".""CONTRACTID""=""PROCUREMENTCONTRACT"".""CONTRACTID"" 
                      WHERE 1=1");
                 if (!string.IsNullOrEmpty(info.Contractdetailid))
                 {
@@ -105,7 +193,7 @@ namespace FixedAsset.DataAccess
                 }
 
                 sqlCommand.AppendLine(@"  ORDER BY ""PROCUREMENTCONTRACTDETAIL"".""CONTRACTDETAILID"" DESC");
-                return this.ExecuteReaderPaging<Procurementcontractdetail>(sqlCommand.ToString(), pageIndex, pageSize, out count);
+                return this.ExecuteReaderPaging<ProcurementcontractdetailEx>(sqlCommand.ToString(), pageIndex, pageSize, out count);
             }
             finally
             {

@@ -1,7 +1,7 @@
 /********************************************************************
 * File Name:ProcurementscheduleheadManagement
 * Copyright (C) 2012 Bruce.Huang 
-* Creater & Date:Bruce.huang - 2012-05-23
+* Creater & Date:Bruce.huang - 2012-05-25
 * Create Explain:
 * Description:DataBase Access Class
 * Modify Explain:
