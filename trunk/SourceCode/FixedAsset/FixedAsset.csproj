@@ -73,6 +73,24 @@
       <DependentUpon>404.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Admin\ContractList.aspx.cs">
+      <DependentUpon>ContractList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ContractList.aspx.designer.cs">
+      <DependentUpon>ContractList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\EquipmentList.aspx.cs">
+      <DependentUpon>EquipmentList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\EquipmentList.aspx.designer.cs">
+      <DependentUpon>EquipmentList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\InstallList.aspx.cs">
+      <DependentUpon>InstallList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\InstallList.aspx.designer.cs">
+      <DependentUpon>InstallList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\main.aspx.cs">
       <DependentUpon>main.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -80,6 +98,48 @@
     <Compile Include="Admin\MasterPage.master.cs">
       <DependentUpon>MasterPage.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\MoveList.aspx.cs">
+      <DependentUpon>MoveList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\MoveList.aspx.designer.cs">
+      <DependentUpon>MoveList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\NewContacts.aspx.cs">
+      <DependentUpon>NewContacts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\NewContacts.aspx.designer.cs">
+      <DependentUpon>NewContacts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\NewEquipment.aspx.cs">
+      <DependentUpon>NewEquipment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\NewEquipment.aspx.designer.cs">
+      <DependentUpon>NewEquipment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\NewInstall.aspx.cs">
+      <DependentUpon>NewInstall.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\NewInstall.aspx.designer.cs">
+      <DependentUpon>NewInstall.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\NewMoving.aspx.cs">
+      <DependentUpon>NewMoving.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\NewMoving.aspx.designer.cs">
+      <DependentUpon>NewMoving.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\NewRemoving.aspx.cs">
+      <DependentUpon>NewRemoving.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\NewRemoving.aspx.designer.cs">
+      <DependentUpon>NewRemoving.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\NewRepairing.aspx.cs">
+      <DependentUpon>NewRepairing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\NewRepairing.aspx.designer.cs">
+      <DependentUpon>NewRepairing.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ProcurePlanDetail_Add.aspx.cs">
       <DependentUpon>ProcurePlanDetail_Add.aspx</DependentUpon>
@@ -101,6 +161,18 @@
     </Compile>
     <Compile Include="Admin\ProcurePlan_Add.aspx.designer.cs">
       <DependentUpon>ProcurePlan_Add.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\RemoveList.aspx.cs">
+      <DependentUpon>RemoveList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\RemoveList.aspx.designer.cs">
+      <DependentUpon>RemoveList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\RepairList.aspx.cs">
+      <DependentUpon>RepairList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\RepairList.aspx.designer.cs">
+      <DependentUpon>RepairList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\SelectSingleSubCompany.aspx.cs">
       <DependentUpon>SelectSingleSubCompany.aspx</DependentUpon>
@@ -194,9 +266,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="404.aspx" />
+    <Content Include="Admin\ContractList.aspx" />
     <Content Include="Admin\css\default.css" />
     <Content Include="Admin\css\style.css" />
     <Content Include="Admin\css\tag.css" />
+    <Content Include="Admin\EquipmentList.aspx" />
     <Content Include="Admin\images\11.gif" />
     <Content Include="Admin\images\12.gif" />
     <Content Include="Admin\images\13.gif" />
@@ -321,6 +395,7 @@
     <Content Include="Admin\img\Pencil.png" />
     <Content Include="Admin\img\Shortkey.png" />
     <Content Include="Admin\img\Text Edit.png" />
+    <Content Include="Admin\InstallList.aspx" />
     <Content Include="Admin\js\location.js" />
     <Content Include="Admin\js\menu.js" />
     <Content Include="Admin\js\moo.fx.js" />
@@ -331,9 +406,18 @@
     <Content Include="Admin\linklog\x_result1.jpg" />
     <Content Include="Admin\linklog\x_result3.jpg" />
     <Content Include="Admin\main.aspx" />
+    <Content Include="Admin\MoveList.aspx" />
+    <Content Include="Admin\NewContacts.aspx" />
+    <Content Include="Admin\NewEquipment.aspx" />
+    <Content Include="Admin\NewInstall.aspx" />
+    <Content Include="Admin\NewMoving.aspx" />
+    <Content Include="Admin\NewRemoving.aspx" />
+    <Content Include="Admin\NewRepairing.aspx" />
     <Content Include="Admin\ProcurePlanDetail_Add.aspx" />
     <Content Include="Admin\ProcurePlanList.aspx" />
     <Content Include="Admin\ProcurePlan_Add.aspx" />
+    <Content Include="Admin\RemoveList.aspx" />
+    <Content Include="Admin\RepairList.aspx" />
     <Content Include="Admin\SelectSingleSubCompany.aspx" />
     <Content Include="Admin\SelectSingleUsers.aspx" />
     <Content Include="Admin\UserControl\ucSelectAsset.ascx" />
