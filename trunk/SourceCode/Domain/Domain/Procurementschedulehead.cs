@@ -18,6 +18,8 @@ namespace FixedAsset.Domain
     [Serializable]
     public partial class Procurementschedulehead
     {
+        public const string RuleCode = "PSH";
+
         #region µ¥ºÅ
         ///<summary>
         ///ColumnName:µ¥ºÅ;Size:50;NOT NULL

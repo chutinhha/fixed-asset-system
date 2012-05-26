@@ -15,8 +15,8 @@ namespace FixedAsset.IServices
     public interface IProcurementscheduleheadService
     {
         List<Procurementschedulehead> RetrieveProcurementscheduleheadsPaging(ProcurementscheduleheadSearch info,int pageIndex, int pageSize,out int count);
-        Procurementschedulehead CreateProcurementschedulehead(Procurementschedulehead info);
-        Procurementschedulehead UpdateProcurementscheduleheadByPsid(Procurementschedulehead info);
+        Procurementschedulehead CreateProcurementschedulehead(Procurementschedulehead info,List<Procurementscheduledetail> detailInfos);
+        Procurementschedulehead UpdateProcurementscheduleheadByPsid(Procurementschedulehead info, List<Procurementscheduledetail> detailInfos);
         Procurementschedulehead RetrieveProcurementscheduleheadByPsid(string psid);
         void DeleteProcurementscheduleheadByPsid(string psid);
     }

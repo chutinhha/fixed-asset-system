@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
+using System.Linq;
 using FixedAsset.Domain;
 using FixedAsset.DataAccess;
 using FixedAsset.IServices;
@@ -60,13 +61,23 @@ namespace FixedAsset.Services
         #endregion
 
         #region CreateProcurementschedulehead
-        public Procurementschedulehead CreateProcurementschedulehead(Procurementschedulehead info)
+        public Procurementschedulehead CreateProcurementschedulehead(Procurementschedulehead info,List<Procurementscheduledetail> detailInfos)
         {
             try
             {
-                //var RetrieveTopProcurementscheduleheadPsId
+                var coderuleManagement=new CoderuleManagement(Management);
+                info.Psid = coderuleManagement.GenerateCodeRule(Procurementschedulehead.RuleCode);
+                foreach (var detailInfo in detailInfos)
+                {
+                    detailInfo.Psid = info.Psid;
+                }
+                var detailManagement = new ProcurementscheduledetailManagement(Management);
                 Management.BeginTransaction();
                 Management.CreateProcurementschedulehead(info);
+                foreach (var detailInfo in detailInfos)
+                {
+                    detailManagement.CreateProcurementscheduledetail(detailInfo);
+                }
                 Management.Commit();
             }
             catch
@@ -79,12 +90,30 @@ namespace FixedAsset.Services
         #endregion
 
         #region UpdateProcurementscheduleheadByPsid
-        public Procurementschedulehead UpdateProcurementscheduleheadByPsid(Procurementschedulehead info)
+        public Procurementschedulehead UpdateProcurementscheduleheadByPsid(Procurementschedulehead info, List<Procurementscheduledetail> detailInfos)
         {
             try
             {
+                foreach (var detailInfo in detailInfos)
+                {
+                    detailInfo.Psid = info.Psid;
+                }
+                var detailManagement = new ProcurementscheduledetailManagement(Management);
+                var dbDetails = detailManagement.RetrieveProcurementscheduledetailListByPsid(info.Psid);
                 Management.BeginTransaction();
                 Management.UpdateProcurementscheduleheadByPsid(info);
+                foreach (var detail in detailInfos)
+                {
+                    var existInfo = dbDetails.Where(p => p.Detailid == detail.Detailid).FirstOrDefault();
+                    if (existInfo == null)
+                    {
+                        detailManagement.CreateProcurementscheduledetail(detail);
+                    }
+                    else
+                    {
+                        detailManagement.UpdateProcurementscheduledetailByDetailid(detail);
+                    }
+                }
                 Management.Commit();
             }
             catch
