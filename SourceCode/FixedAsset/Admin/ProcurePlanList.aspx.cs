@@ -20,15 +20,8 @@ namespace FixedAsset.Web.Admin
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-<<<<<<< .mine
-            if(!IsPostBack)
-            { 
-                //LoadData(0);
-            }
-=======
             if (!IsPostBack)
             { LoadData(0); }
->>>>>>> .r66
         }
         protected void BtnSearch_Click(object sender,EventArgs e)
         {
