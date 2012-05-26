@@ -89,7 +89,6 @@
                                                 <li id="api" class="selectTag"><a href="#">设备明细</a> </li>
                                             </ul>
                                             <p class="gap">
-                                                <input type="button" class="button" runat="server" id="btnAdd" value="新增" onclick="ShowTopDialogFrame('新增明细', 'ProcurePlanDetail_Add.aspx','RefreshDetail()',790,500);return false;" />
                                             </p>
                                         </div>
                                         <p class="c">
@@ -98,6 +97,11 @@
                                             <div id="MyFile" style="display: block;">
                                                 <table style="width: 100%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
                                                     align="center" class="table_grayTH eoddTable">
+                                                    <tr style="border-bottom-width: 1px;">
+                                                        <td colspan="6" align="right">
+                                                            <input type="button" class="button" runat="server" id="Button1" value="新增" onclick="ShowTopDialogFrame('新增明细', 'ProcurePlanDetail_Add.aspx','RefreshDetail()',790,500);return false;" />
+                                                        </td>
+                                                    </tr>
                                                     <asp:Repeater ID="rptProcureDetailList" OnItemDataBound="rptProcureDetailList_ItemDataBound"
                                                         OnItemCommand="rptProcureDetailList_ItemCommand" runat="server">
                                                         <HeaderTemplate>
@@ -189,8 +193,7 @@
                                             OnClick="BtnSave_Click" />
                                         <asp:Button ID="btnSubmit" runat="server" Text="确 定" CssClass="button" ValidationGroup="Vaild"
                                             OnClick="btnSubmit_Click" />
-                                        <asp:Button ID="btnReset" runat="server" Text="重 置" CssClass="button" CausesValidation="false"
-                                            OnClientClick="reset();" />
+                                        <input type="button" class="button" runat="server" id="Button2" value="重 置" onclick="reset();" />
                                     </td>
                                 </tr>
                             </table>
