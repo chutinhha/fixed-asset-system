@@ -10,7 +10,7 @@
 namespace FixedAsset.Web.Admin {
     
     
-    public partial class ProcurePlan_Add {
+    public partial class ProcurePlanDetail_Add {
         
         /// <summary>
         /// UpdatePanel1 控件。
@@ -22,31 +22,22 @@ namespace FixedAsset.Web.Admin {
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
-        /// litTitle 控件。
+        /// txtAssetcategoryid 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litTitle;
+        protected global::System.Web.UI.WebControls.TextBox txtAssetcategoryid;
         
         /// <summary>
-        /// litPsid 控件。
+        /// txtAssetname 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label litPsid;
-        
-        /// <summary>
-        /// txtProcurementscheduledate 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtProcurementscheduledate;
+        protected global::System.Web.UI.WebControls.TextBox txtAssetname;
         
         /// <summary>
         /// RequiredFieldValidator7 控件。
@@ -58,13 +49,13 @@ namespace FixedAsset.Web.Admin {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator7;
         
         /// <summary>
-        /// txtReason 控件。
+        /// txtAssetspecification 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtReason;
+        protected global::System.Web.UI.WebControls.TextBox txtAssetspecification;
         
         /// <summary>
         /// RequiredFieldValidator2 控件。
@@ -76,31 +67,13 @@ namespace FixedAsset.Web.Admin {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
         
         /// <summary>
-        /// txtSubcompany 控件。
+        /// txtUnitprice 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSubcompany;
-        
-        /// <summary>
-        /// btnAppIdSelect 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnAppIdSelect;
-        
-        /// <summary>
-        /// txtApplyuser 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtApplyuser;
+        protected global::System.Web.UI.WebControls.TextBox txtUnitprice;
         
         /// <summary>
         /// RequiredFieldValidator3 控件。
@@ -112,58 +85,22 @@ namespace FixedAsset.Web.Admin {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
         
         /// <summary>
-        /// txtApplydate 控件。
+        /// txtPlannumber 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtApplydate;
+        protected global::System.Web.UI.WebControls.TextBox txtPlannumber;
         
         /// <summary>
-        /// RequiredFieldValidator4 控件。
+        /// RequiredFieldValidator1 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
-        
-        /// <summary>
-        /// btnAdd 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputButton btnAdd;
-        
-        /// <summary>
-        /// rptProcureDetailList 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptProcureDetailList;
-        
-        /// <summary>
-        /// BtnRefreshDetail 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnRefreshDetail;
-        
-        /// <summary>
-        /// BtnSave 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnSave;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
         
         /// <summary>
         /// btnSubmit 控件。

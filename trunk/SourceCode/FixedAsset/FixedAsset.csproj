@@ -81,6 +81,13 @@
       <DependentUpon>MasterPage.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Admin\ProcurePlanDetail_Add.aspx.cs">
+      <DependentUpon>ProcurePlanDetail_Add.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ProcurePlanDetail_Add.aspx.designer.cs">
+      <DependentUpon>ProcurePlanDetail_Add.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\ProcurePlanList.aspx.cs">
       <DependentUpon>ProcurePlanList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -324,6 +331,7 @@
     <Content Include="Admin\linklog\x_result1.jpg" />
     <Content Include="Admin\linklog\x_result3.jpg" />
     <Content Include="Admin\main.aspx" />
+    <Content Include="Admin\ProcurePlanDetail_Add.aspx" />
     <Content Include="Admin\ProcurePlanList.aspx" />
     <Content Include="Admin\ProcurePlan_Add.aspx" />
     <Content Include="Admin\SelectSingleSubCompany.aspx" />

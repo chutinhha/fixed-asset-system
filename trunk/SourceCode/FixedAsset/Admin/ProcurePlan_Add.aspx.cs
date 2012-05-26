@@ -30,13 +30,43 @@ namespace FixedAsset.Web.Admin
         {
             get { return new ProcurementscheduleheadService(); }
         }
+        public IProcurementscheduledetailService ProcurementscheduledetailService
+        {
+            get { return new ProcurementscheduledetailService(); }
+        }
+        protected List<Procurementscheduledetail> ProcureScheduleDetails
+        {
+            get
+            {
+                if (Session["ProcurePlan_Add_Procurementscheduledetail"] == null)
+                {
+                    Session["ProcurePlan_Add_Procurementscheduledetail"] = new List<Procurementscheduledetail>();
+                }
+                return Session["ProcurePlan_Add_Procurementscheduledetail"] as List<Procurementscheduledetail>;
+            }
+        }
         #endregion
 
         #region Events
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            if(!IsPostBack){}
+            if(!IsPostBack)
+            {
+                ProcureScheduleDetails.Clear();
+                Psid = PageUtility.GetQueryStringValue("Psid");
+                if(!string.IsNullOrEmpty(Psid))
+                {
+                    var headInfo = ProcurementscheduleheadService.RetrieveProcurementscheduleheadByPsid(Psid);
+                    if(headInfo!=null)
+                    {
+                        ReadEntityToControl(headInfo);
+                        var list = ProcurementscheduledetailService.RetrieveProcurementscheduledetailListByPsid(Psid);
+                        ProcureScheduleDetails.AddRange(list);
+                    }
+                }
+                LoadDetailList();
+            }
         }
         protected void BtnSave_Click(object sender,EventArgs e)
         {
@@ -78,8 +108,53 @@ namespace FixedAsset.Web.Admin
                 ProcurementscheduleheadService.UpdateProcurementscheduleheadByPsid(headInfo);
             }
         }
-        #endregion 
-        
+
+        #region 明细
+        protected void BtnAddContractDetail_Click(object sender, EventArgs e)
+        {
+            //var script = new StringBuilder();
+            //script.AppendFormat("EditContractDetail('{0}','{1}');", string.Format(ResolveUrl(@"~/Contract/AddContractDetail.aspx?RentContractState={0}"), RentContractState), BtnRefreshDetail.ClientID);
+            //this.ScriptStartup(script.ToString());
+        }
+        protected void BtnRefreshDetail_Click(object sender, EventArgs e)
+        {
+           LoadDetailList();
+        }
+        protected void rptProcureDetailList_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                var BtnEdit = e.Item.FindControl("BtnEdit") as ImageButton;
+                var BtnDeleted = e.Item.FindControl("BtnDeleted") as ImageButton;
+                var detailInfo = e.Item.DataItem as Procurementscheduledetail;
+                if(string.IsNullOrEmpty(detailInfo.Detailid))
+                {
+                    BtnEdit.Visible = false;
+                    BtnDeleted.Visible = false;
+                }
+            }
+        }
+        protected void rptProcureDetailList_ItemCommand(object sender, RepeaterCommandEventArgs e)
+        {
+            var detailId = e.CommandArgument.ToString();
+            if (e.CommandName.Equals("DeleteDetail"))
+            { 
+                if(!string.IsNullOrEmpty(detailId))
+                {
+                    ProcurementscheduledetailService.DeleteProcurementscheduledetailByDetailid(detailId);
+                    var detailInfo = ProcureScheduleDetails.Where(p => p.Detailid == detailId).FirstOrDefault();
+                    ProcureScheduleDetails.Remove(detailInfo);
+                }
+            }
+            if (e.CommandName.Equals("EditDetail"))
+            {
+                
+            }
+        }
+        #endregion
+
+        #endregion
+
         #region Methods
         protected void ReadEntityToControl(Procurementschedulehead headInfo)
         {
@@ -106,8 +181,7 @@ namespace FixedAsset.Web.Admin
             //{
             //    txtCreateddate.Text = procurementschedulehead.Createddate.ToString(PageConst.DateFormat);
             //}
-        }
-
+        }  
         protected void WriteControlValueToEntity(Procurementschedulehead headInfo)
         {
             headInfo.Psid = Guid.NewGuid().ToString("N");
@@ -145,6 +219,26 @@ namespace FixedAsset.Web.Admin
             {
                 headInfo.Createddate = DateTime.Now;
             }
+        }
+        protected void LoadDetailList()
+        { 
+            if(ProcureScheduleDetails.Count==0)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    ProcureScheduleDetails.Add(new Procurementscheduledetail(){Detailid = string.Empty});
+                }
+            }
+            else
+            {
+                var nullInfos = ProcureScheduleDetails.Where(p => string.IsNullOrEmpty(p.Detailid)).ToList();
+                foreach (var info in nullInfos)
+                {
+                    ProcureScheduleDetails.Remove(info);
+                }
+            }
+            rptProcureDetailList.DataSource = ProcureScheduleDetails;
+            rptProcureDetailList.DataBind();
         }
         #endregion
     }

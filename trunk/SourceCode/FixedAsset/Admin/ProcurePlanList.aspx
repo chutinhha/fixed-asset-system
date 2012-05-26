@@ -14,13 +14,13 @@
     <div id="cnt">
         <div id="dTab1" class="Box text_box">
             <p>
-                单号 <a href="ProcurePlan_Add.aspx">ProcurePlan_Add.aspx</a>
+                单号
                 <asp:TextBox ID="txtSrchPsid" Width="150" CssClass="" runat="server"></asp:TextBox><asp:Button
                     ID="BtnSearch" runat="server" CssClass="button" Text="查询" OnClick="BtnSearch_Click" />
                 <input type="button" class="button" runat="server" id="btnAdd" value="新增" onclick="window.location='ProcurePlan_Add.aspx'" />
             </p>
             <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
-                align="center">
+                align="center" class="table_grayTH eoddTable">
                 <asp:Repeater ID="rptProcureList" runat="server">
                     <HeaderTemplate>
                         <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
@@ -125,11 +125,11 @@
                 <tr>
                     <td>
                     </td>
-                    <td colspan="8" style="height: 30px;width: 790px;">
-                       <%-- <cc1:PageChangeControl ID="pageControl" PageSize="10" runat="server" OnPageIndexClick="pageControl_PageIndexClick" />--%>
-                       <cc1:PagingControl ID="pcData" runat="server" MaxNavigatePageCount="7" OnPageIndexClick="pcData_PageIndexClick" />
+                    <td colspan="8" style="height: 30px; width: 790px;">
+                        
+                        <cc1:PagingControl ID="pcData" runat="server" MaxNavigatePageCount="7" OnPageIndexClick="pcData_PageIndexClick" />
                     </td>
-                </tr>  
+                </tr>
             </table>
         </div>
     </div>
