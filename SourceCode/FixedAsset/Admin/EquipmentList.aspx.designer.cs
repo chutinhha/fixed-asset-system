@@ -10,7 +10,7 @@
 namespace FixedAsset.Web.Admin {
     
     
-    public partial class ProcurePlanList {
+    public partial class EquipmentList {
         
         /// <summary>
         /// txtSrchPsid control.
@@ -20,6 +20,51 @@ namespace FixedAsset.Web.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtSrchPsid;
+        
+        /// <summary>
+        /// ddlEquipmentType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlEquipmentType;
+        
+        /// <summary>
+        /// TextBox1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        
+        /// <summary>
+        /// ddlManagementModel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlManagementModel;
+        
+        /// <summary>
+        /// ddlEquipmentStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlEquipmentStatus;
+        
+        /// <summary>
+        /// ddlAccountingType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlAccountingType;
         
         /// <summary>
         /// BtnSearch control.
@@ -40,13 +85,13 @@ namespace FixedAsset.Web.Admin {
         protected global::System.Web.UI.HtmlControls.HtmlInputButton btnAdd;
         
         /// <summary>
-        /// rptProcureList control.
+        /// rptContactsList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptProcureList;
+        protected global::System.Web.UI.WebControls.Repeater rptContactsList;
         
         /// <summary>
         /// pcData control.
