@@ -95,6 +95,13 @@
     <Compile Include="Admin\ProcurePlan_Add.aspx.designer.cs">
       <DependentUpon>ProcurePlan_Add.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\SelectSingleSubCompany.aspx.cs">
+      <DependentUpon>SelectSingleSubCompany.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\SelectSingleSubCompany.aspx.designer.cs">
+      <DependentUpon>SelectSingleSubCompany.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\SelectSingleUsers.aspx.cs">
       <DependentUpon>SelectSingleUsers.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -319,6 +326,7 @@
     <Content Include="Admin\main.aspx" />
     <Content Include="Admin\ProcurePlanList.aspx" />
     <Content Include="Admin\ProcurePlan_Add.aspx" />
+    <Content Include="Admin\SelectSingleSubCompany.aspx" />
     <Content Include="Admin\SelectSingleUsers.aspx" />
     <Content Include="Admin\UserControl\ucSelectAsset.ascx" />
     <Content Include="Admin\UserControl\ucSelectSubCompany.ascx" />
