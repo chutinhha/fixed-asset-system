@@ -75,18 +75,21 @@
     </Compile>
     <Compile Include="Admin\ContractList.aspx.cs">
       <DependentUpon>ContractList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\ContractList.aspx.designer.cs">
       <DependentUpon>ContractList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\EquipmentList.aspx.cs">
       <DependentUpon>EquipmentList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\EquipmentList.aspx.designer.cs">
       <DependentUpon>EquipmentList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\InstallList.aspx.cs">
       <DependentUpon>InstallList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\InstallList.aspx.designer.cs">
       <DependentUpon>InstallList.aspx</DependentUpon>
@@ -101,42 +104,49 @@
     </Compile>
     <Compile Include="Admin\MoveList.aspx.cs">
       <DependentUpon>MoveList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\MoveList.aspx.designer.cs">
       <DependentUpon>MoveList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\NewContacts.aspx.cs">
       <DependentUpon>NewContacts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\NewContacts.aspx.designer.cs">
       <DependentUpon>NewContacts.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\NewEquipment.aspx.cs">
       <DependentUpon>NewEquipment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\NewEquipment.aspx.designer.cs">
       <DependentUpon>NewEquipment.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\NewInstall.aspx.cs">
       <DependentUpon>NewInstall.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\NewInstall.aspx.designer.cs">
       <DependentUpon>NewInstall.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\NewMoving.aspx.cs">
       <DependentUpon>NewMoving.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\NewMoving.aspx.designer.cs">
       <DependentUpon>NewMoving.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\NewRemoving.aspx.cs">
       <DependentUpon>NewRemoving.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\NewRemoving.aspx.designer.cs">
       <DependentUpon>NewRemoving.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\NewRepairing.aspx.cs">
       <DependentUpon>NewRepairing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\NewRepairing.aspx.designer.cs">
       <DependentUpon>NewRepairing.aspx</DependentUpon>
@@ -164,12 +174,14 @@
     </Compile>
     <Compile Include="Admin\RemoveList.aspx.cs">
       <DependentUpon>RemoveList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\RemoveList.aspx.designer.cs">
       <DependentUpon>RemoveList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\RepairList.aspx.cs">
       <DependentUpon>RepairList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\RepairList.aspx.designer.cs">
       <DependentUpon>RepairList.aspx</DependentUpon>
