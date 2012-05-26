@@ -13,8 +13,8 @@ using System.Collections.Generic;
 namespace FixedAsset.Domain
 {
     /// <summary>
-    ///ASSET
-    /// <summary>
+    ///设备信息
+    /// </summary>
     [Serializable]
     public partial class Asset
     {
@@ -78,14 +78,14 @@ namespace FixedAsset.Domain
         ///<summary>
         ///ColumnName:管理模式，托管:0自管:1;
         ///</summary>
-        public decimal Managemode{  get;set;}
+        public ManageMode Managemode { get; set; }
         #endregion
 
         #region 财务类别(A帐:0B帐:1)
         ///<summary>
         ///ColumnName:财务类别(A帐:0B帐:1);
         ///</summary>
-        public decimal Financecategory{  get;set;}
+        public FinanceCategory Financecategory { get; set; }
         #endregion
 
         #region 供应商
@@ -124,6 +124,4 @@ namespace FixedAsset.Domain
         #endregion
 
     }
-
-
 }

@@ -29,5 +29,41 @@ namespace FixedAsset.Domain
         Approved = 20,
         [EnumDescript(Descript = "同意")]
         Rejected = 30,
-    } 
+    }
+    /// <summary>
+    /// 在用，未用，报废
+    /// </summary>
+    [EnumCatetory(EnumName = "设备状态")]
+    public enum AssetState : int
+    {
+        [EnumDescript(Descript = "在用")]
+        InUse = 10,
+        [EnumDescript(Descript = "未用")]
+        NoUse = 20,
+        [EnumDescript(Descript = "报废")]
+        Scrapped = 30,
+    }
+    ///Managemode
+    /// /// <summary>
+    /// 托管:0自管:1
+    /// </summary>
+    [EnumCatetory(EnumName = "管理模式")]
+    public enum ManageMode : int
+    {
+        [EnumDescript(Descript = "托管")]
+        Managed = 0,
+        [EnumDescript(Descript = "自管")]
+        SelfManagement = 1
+    }
+    ///<summary>
+    /// 财务类别(A帐:0B帐:1)
+    /// </summary>
+    [EnumCatetory(EnumName = "财务类别")]
+    public enum FinanceCategory : int
+    {
+        [EnumDescript(Descript = "A帐")]
+        AAccount = 0,
+        [EnumDescript(Descript = "B帐")]
+        BAccount = 1
+    }
 }
