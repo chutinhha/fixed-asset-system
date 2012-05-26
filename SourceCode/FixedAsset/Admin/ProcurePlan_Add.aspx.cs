@@ -70,6 +70,17 @@ namespace FixedAsset.Web.Admin
         }
         protected void BtnSave_Click(object sender,EventArgs e)
         {
+            DateTime dateTime = DateTime.MinValue;
+            if (!DateTime.TryParse(Request.Form[txtProcurementscheduledate.UniqueID],out dateTime))
+            {
+                UIHelper.Alert(this.UpdatePanel1, "请选择计划采购日期");
+                return; 
+            }
+            if (!DateTime.TryParse(Request.Form[txtApplydate.UniqueID], out dateTime))
+            {
+                UIHelper.Alert(this.UpdatePanel1, "请选择申请日期");
+                return;
+            }
             Procurementschedulehead headInfo = null;
             if(string.IsNullOrEmpty(Psid))
             {
@@ -86,9 +97,21 @@ namespace FixedAsset.Web.Admin
                 WriteControlValueToEntity(headInfo);
                 ProcurementscheduleheadService.UpdateProcurementscheduleheadByPsid(headInfo, ProcureScheduleDetails);
             }
+            UIHelper.AlertMessageGoToURL(this.UpdatePanel1, "保存成功!", ResolveUrl("~/Admin/ProcurePlanList.aspx"));
         }
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            DateTime dateTime = DateTime.MinValue;
+            if (!DateTime.TryParse(Request.Form[txtProcurementscheduledate.UniqueID], out dateTime))
+            {
+                UIHelper.Alert(this.UpdatePanel1, "请选择计划采购日期");
+                return;
+            }
+            if (!DateTime.TryParse(Request.Form[txtApplydate.UniqueID], out dateTime))
+            {
+                UIHelper.Alert(this.UpdatePanel1, "请选择申请日期");
+                return;
+            }
             if(ProcureScheduleDetails.Count==0)
             {
                 UIHelper.Alert(this.UpdatePanel1, "对不起，计划已被删除,请重新录入！"); return;
@@ -111,6 +134,7 @@ namespace FixedAsset.Web.Admin
                 headInfo.Approveresult = ApproveResult.Approving;
                 ProcurementscheduleheadService.UpdateProcurementscheduleheadByPsid(headInfo, ProcureScheduleDetails);
             }
+            UIHelper.AlertMessageGoToURL(this.UpdatePanel1, "提交成功!", ResolveUrl("~/Admin/ProcurePlanList.aspx"));
         }
 
         #region 明细
@@ -143,9 +167,10 @@ namespace FixedAsset.Web.Admin
             { 
                 if(!string.IsNullOrEmpty(detailId))
                 {
-                    ProcurementscheduledetailService.DeleteProcurementscheduledetailByDetailid(detailId);
+                    if (!string.IsNullOrEmpty(Psid)) { ProcurementscheduledetailService.DeleteProcurementscheduledetailByDetailid(detailId); }
                     var detailInfo = ProcureScheduleDetails.Where(p => p.Detailid == detailId).FirstOrDefault();
                     ProcureScheduleDetails.Remove(detailInfo);
+                    LoadDetailList();
                 }
             }
             if (e.CommandName.Equals("EditDetail"))
@@ -175,7 +200,7 @@ namespace FixedAsset.Web.Admin
         }  
         protected void WriteControlValueToEntity(Procurementschedulehead headInfo)
         {
-            headInfo.Psid = Guid.NewGuid().ToString("N");
+            headInfo.Psid = litPsid.Text;
             headInfo.Procurementscheduledate = Convert.ToDateTime(Request.Form[txtProcurementscheduledate.UniqueID]);
             headInfo.Reason = txtReason.Text;
             headInfo.Subcompany = ucSubCompany.SubcompanyId;
@@ -188,21 +213,21 @@ namespace FixedAsset.Web.Admin
         }
         protected void LoadDetailList()
         { 
-            if(ProcureScheduleDetails.Count==0)
-            {
-                for (int i = 0; i < 3; i++)
-                {
-                    ProcureScheduleDetails.Add(new Procurementscheduledetail(){Detailid = string.Empty});
-                }
-            }
-            else
-            {
-                var nullInfos = ProcureScheduleDetails.Where(p => string.IsNullOrEmpty(p.Detailid)).ToList();
-                foreach (var info in nullInfos)
-                {
-                    ProcureScheduleDetails.Remove(info);
-                }
-            }
+            //if(ProcureScheduleDetails.Count==0)
+            //{
+            //    for (int i = 0; i < 3; i++)
+            //    {
+            //        ProcureScheduleDetails.Add(new Procurementscheduledetail(){Detailid = string.Empty});
+            //    }
+            //}
+            //else
+            //{
+            //    var nullInfos = ProcureScheduleDetails.Where(p => string.IsNullOrEmpty(p.Detailid)).ToList();
+            //    foreach (var info in nullInfos)
+            //    {
+            //        ProcureScheduleDetails.Remove(info);
+            //    }
+            //}
             rptProcureDetailList.DataSource = ProcureScheduleDetails;
             rptProcureDetailList.DataBind();
         }

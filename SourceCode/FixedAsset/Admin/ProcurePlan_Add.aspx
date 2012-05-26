@@ -38,7 +38,7 @@
                                         计划采购日期:<span style="color: Red">*</span>
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="txtProcurementscheduledate" class="text_inp" runat="server" Width="300"
+                                        <asp:TextBox ID="txtProcurementscheduledate" class="text_inp" runat="server" Width="150"
                                             onclick="new Calendar().show(this);" ReadOnly="true"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtProcurementscheduledate"
                                             Display="Dynamic" ErrorMessage="请选择计划采购日期！"></asp:RequiredFieldValidator>
@@ -51,7 +51,7 @@
                                     <td>
                                         <asp:TextBox ID="txtReason" Width="300" runat="server" MaxLength="1000" TextMode="MultiLine"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtReason"
-                                            Display="Dynamic" ErrorMessage="请输入终端名称！"></asp:RequiredFieldValidator>
+                                            Display="Dynamic" ErrorMessage="请输入采购事由！"></asp:RequiredFieldValidator>
                                     </td>
                                 </tr>
                                 <tr>
@@ -60,9 +60,6 @@
                                     </td>
                                     <td>
                                     <uc1:ucSelectSubCompany ID="ucSubCompany" runat="server" />
-                                        <%--<asp:TextBox ID="txtSubcompany" class="text_inp" runat="server" Width="300"></asp:TextBox>
-                                        <asp:ImageButton ID="btnAppIdSelect" ImageUrl="../images/Button/PickUp.GIF" runat="server"
-                                            OnClientClick="ShowTopDialogFrame('分公司选择', 'SelectSingleSubCompany.aspx','SelectSingleSubCompany()',790,500);return false;" />--%>
                                     </td>
                                 </tr>
                                 <tr>
