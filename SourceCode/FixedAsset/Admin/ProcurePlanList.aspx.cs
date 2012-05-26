@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Web.UI.WebControls;
 using FixedAsset.Domain;
 using FixedAsset.IServices;
 using FixedAsset.Services;
@@ -19,8 +20,8 @@ namespace FixedAsset.Web.Admin
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            if(!IsPostBack)
-            { LoadData(0);}
+            if (!IsPostBack)
+            { LoadData(0); }
         }
         protected void BtnSearch_Click(object sender,EventArgs e)
         {
@@ -29,6 +30,33 @@ namespace FixedAsset.Web.Admin
         protected void pcData_PageIndexClick(object sender, KFSQ.Web.Controls.PageIndexClickEventArgs e)
         {
             LoadData(e.PageIndex);
+        }
+        protected void rptProcureList_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                var BtnEdit = e.Item.FindControl("BtnEdit") as ImageButton;
+                var BtnDeleted = e.Item.FindControl("BtnDeleted") as ImageButton;
+                var headInfo = e.Item.DataItem as Procurementschedulehead;
+                BtnEdit.Attributes.Add("onclick", string.Format("javascript:window.location.href ='ProcurePlan_Add.aspx?Psid={0}';", headInfo.Psid));
+            }
+        }
+        protected void rptProcureList_ItemCommand(object sender, RepeaterCommandEventArgs e)
+        {
+            var detailId = e.CommandArgument.ToString();
+            if (e.CommandName.Equals("DeleteDetail"))
+            {
+                if (!string.IsNullOrEmpty(detailId))
+                {
+                    //ProcurementscheduledetailService.DeleteProcurementscheduledetailByDetailid(detailId);
+                    //var detailInfo = ProcureScheduleDetails.Where(p => p.Detailid == detailId).FirstOrDefault();
+                    //ProcureScheduleDetails.Remove(detailInfo);
+                }
+            }
+            if (e.CommandName.Equals("EditDetail"))
+            {
+
+            }
         }
         #endregion
 

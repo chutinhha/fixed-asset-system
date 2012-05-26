@@ -37,7 +37,8 @@
                                         计划采购日期:<span style="color: Red">*</span>
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="txtProcurementscheduledate" class="text_inp" runat="server" Width="300"></asp:TextBox>
+                                        <asp:TextBox ID="txtProcurementscheduledate" class="text_inp" runat="server" Width="300"
+                                            onclick="new Calendar().show(this);" ReadOnly="true"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtProcurementscheduledate"
                                             Display="Dynamic" ErrorMessage="请选择计划采购日期！"></asp:RequiredFieldValidator>
                                     </td>
@@ -144,11 +145,11 @@
                                                                     <%#Eval("Plannumber")%>
                                                                 </td>
                                                                 <td align="right">
-                                                                    <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"
+                                                                    <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"  CausesValidation="false"
                                                                         AlternateText="编辑" ToolTip="编辑" CommandArgument='<%#Eval("Detailid")%>' CommandName="EditDetail" />
                                                                     <asp:ImageButton ID="BtnDeleted" runat="server" ImageUrl="~/images/Button/delete.GIF"
                                                                         CommandArgument='<%#Eval("Detailid")%>' CommandName="DeleteDetail" OnClientClick="return confirm('确认要删除吗？');"
-                                                                        AlternateText="删除" ToolTip="删除" />
+                                                                        AlternateText="删除" ToolTip="删除" CausesValidation="false" />
                                                                 </td>
                                                             </tr>
                                                         </ItemTemplate>
@@ -170,18 +171,18 @@
                                                                     <%#Eval("Plannumber")%>
                                                                 </td>
                                                                 <td align="right">
-                                                                    <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"
+                                                                    <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"  CausesValidation="false"
                                                                         AlternateText="编辑" ToolTip="编辑" CommandArgument='<%#Eval("Detailid")%>' CommandName="EditDetail" />
                                                                     <asp:ImageButton ID="BtnDeleted" runat="server" ImageUrl="~/images/Button/delete.GIF"
                                                                         CommandArgument='<%#Eval("Detailid")%>' CommandName="DeleteDetail" OnClientClick="return confirm('确认要删除吗？');"
-                                                                        AlternateText="删除" ToolTip="删除" />
+                                                                        AlternateText="删除" ToolTip="删除" CausesValidation="false" />
                                                                 </td>
                                                             </tr>
                                                         </AlternatingItemTemplate>
                                                     </asp:Repeater>
                                                 </table>
                                                 <div style="display: none;">
-                                                    <asp:Button ID="BtnRefreshDetail" OnClick="BtnRefreshDetail_Click" Width="0" runat="server"
+                                                    <asp:Button ID="BtnRefreshDetail" OnClick="BtnRefreshDetail_Click" Width="0" runat="server"  CausesValidation="false"
                                                         Text="Button" /></div>
                                             </div>
                                         </div>
@@ -214,6 +215,7 @@
         function RefreshDetail() {
             var returnValue = getCookie("dialogReturn_key");
             if (returnValue != null) {
+                document.getElementById("<%=txtSubcompany.ClientID %>").value = returnValue;
                 document.getElementById("<%=BtnRefreshDetail.ClientID %>").click();
                 setCookie("dialogReturn_key", null);
             }
