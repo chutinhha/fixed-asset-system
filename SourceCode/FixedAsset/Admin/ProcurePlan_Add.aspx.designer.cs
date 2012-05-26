@@ -76,22 +76,13 @@ namespace FixedAsset.Web.Admin {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
         
         /// <summary>
-        /// txtSubcompany 控件。
+        /// ucSubCompany 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSubcompany;
-        
-        /// <summary>
-        /// btnAppIdSelect 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnAppIdSelect;
+        protected global::FixedAsset.Web.Admin.UserControl.ucSelectSubCompany ucSubCompany;
         
         /// <summary>
         /// txtApplyuser 控件。
