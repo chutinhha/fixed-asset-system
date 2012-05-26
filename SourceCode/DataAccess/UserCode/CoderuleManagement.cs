@@ -23,8 +23,8 @@ namespace FixedAsset.DataAccess
         {
             try
             {
-                this.Database.AddInParameter(":CODEPREFIX", codeprefix);
-                string sqlCommand = @"SELECT * FROM CODERULE WHERE  CODEPREFIX=:CODEPREFIX";
+                this.Database.AddInParameter(":Codeprefix", codeprefix);
+                string sqlCommand = @"SELECT * FROM CODERULE WHERE  ""CODEPREFIX""=:Codeprefix";
                 return this.Database.ExecuteToSingle<Coderule>(sqlCommand);
             }
             finally
@@ -99,6 +99,8 @@ namespace FixedAsset.DataAccess
                 codeRules = new Coderule();
                 codeRules.Codeprefix = codePreFix;
                 codeRules.Currentno = 0;
+                codeRules.Isneedcodeprefix = 1;
+                codeRules.Isdefault = 1;
                 codeRules.Startnumber = 1;
                 codeRules.Numberwidth = 4;
                 try
@@ -110,7 +112,7 @@ namespace FixedAsset.DataAccess
                 catch{this.Rollback();}
             }
             var content = new StringBuilder();
-            if (codeRules.Isneedcodeprefix)
+            if (codeRules.Isneedcodeprefix==1)
             {
                 content.Append(codeRules.Codeprefix);
             }

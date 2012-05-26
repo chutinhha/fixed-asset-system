@@ -63,8 +63,7 @@ namespace FixedAsset.Services
         #region CreateProcurementschedulehead
         public Procurementschedulehead CreateProcurementschedulehead(Procurementschedulehead info,List<Procurementscheduledetail> detailInfos)
         {
-            try
-            {
+            
                 var coderuleManagement=new CoderuleManagement(Management);
                 info.Psid = coderuleManagement.GenerateCodeRule(Procurementschedulehead.RuleCode);
                 foreach (var detailInfo in detailInfos)
@@ -72,19 +71,21 @@ namespace FixedAsset.Services
                     detailInfo.Psid = info.Psid;
                 }
                 var detailManagement = new ProcurementscheduledetailManagement(Management);
-                Management.BeginTransaction();
-                Management.CreateProcurementschedulehead(info);
-                foreach (var detailInfo in detailInfos)
+                try
                 {
-                    detailManagement.CreateProcurementscheduledetail(detailInfo);
+                    Management.BeginTransaction();
+                    Management.CreateProcurementschedulehead(info);
+                    foreach (var detailInfo in detailInfos)
+                    {
+                        detailManagement.CreateProcurementscheduledetail(detailInfo);
+                    }
+                    Management.Commit();
                 }
-                Management.Commit();
-            }
-            catch
-            {
-                Management.Rollback();
-                throw;
-            }
+                catch
+                {
+                    Management.Rollback();
+                    throw;
+                }
             return info;
         }
         #endregion
@@ -92,35 +93,36 @@ namespace FixedAsset.Services
         #region UpdateProcurementscheduleheadByPsid
         public Procurementschedulehead UpdateProcurementscheduleheadByPsid(Procurementschedulehead info, List<Procurementscheduledetail> detailInfos)
         {
-            try
-            {
+            
                 foreach (var detailInfo in detailInfos)
                 {
                     detailInfo.Psid = info.Psid;
                 }
                 var detailManagement = new ProcurementscheduledetailManagement(Management);
                 var dbDetails = detailManagement.RetrieveProcurementscheduledetailListByPsid(info.Psid);
-                Management.BeginTransaction();
-                Management.UpdateProcurementscheduleheadByPsid(info);
-                foreach (var detail in detailInfos)
+                try
                 {
-                    var existInfo = dbDetails.Where(p => p.Detailid == detail.Detailid).FirstOrDefault();
-                    if (existInfo == null)
+                    Management.BeginTransaction();
+                    Management.UpdateProcurementscheduleheadByPsid(info);
+                    foreach (var detail in detailInfos)
                     {
-                        detailManagement.CreateProcurementscheduledetail(detail);
+                        var existInfo = dbDetails.Where(p => p.Detailid == detail.Detailid).FirstOrDefault();
+                        if (existInfo == null)
+                        {
+                            detailManagement.CreateProcurementscheduledetail(detail);
+                        }
+                        else
+                        {
+                            detailManagement.UpdateProcurementscheduledetailByDetailid(detail);
+                        }
                     }
-                    else
-                    {
-                        detailManagement.UpdateProcurementscheduledetailByDetailid(detail);
-                    }
+                    Management.Commit();
                 }
-                Management.Commit();
-            }
-            catch
-            {
-                Management.Rollback();
-                throw;
-            }
+                catch
+                {
+                    Management.Rollback();
+                    throw;
+                }
             return info;
         }
         #endregion

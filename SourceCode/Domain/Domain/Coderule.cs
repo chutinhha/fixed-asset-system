@@ -36,14 +36,14 @@ namespace FixedAsset.Domain
         ///<summary>
         ///ColumnName:是否需要编码前缀;
         ///</summary>
-        public bool Isneedcodeprefix{  get;set;}
+        public decimal Isneedcodeprefix{  get;set;}
         #endregion
 
         #region 是否默认规则
         ///<summary>
         ///ColumnName:是否默认规则;
         ///</summary>
-        public bool Isdefault { get; set; }
+        public decimal Isdefault { get; set; }
         #endregion
 
         #region 开始序号
