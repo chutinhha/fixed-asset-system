@@ -32,6 +32,19 @@ namespace FixedAsset.DataAccess
                 this.Database.ClearParameter();
             }
         }
+        public Tuser RetrieveTuserByLoginid(string Loginid)
+        {
+            try
+            {
+                this.Database.AddInParameter(":Loginid", Loginid);
+                string sqlCommand = @"SELECT * FROM T_USER WHERE  Loginid=:ID";
+                return this.Database.ExecuteToSingle<Tuser>(sqlCommand);
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
         #endregion
 
         #region RetrieveTuserById

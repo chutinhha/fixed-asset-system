@@ -23,7 +23,7 @@
                 <div class="content-box-content">
                     <div class="tab-content default-tab">
                         <fieldset>
-                            <table>
+                            <table style="width:80%;">
                                 <tr>
                                     <td style="width: 180px;">
                                         单号:
@@ -48,7 +48,7 @@
                                     </td>
                                     <td>
                                         <asp:TextBox ID="txtReason" Width="300" runat="server" MaxLength="1000" TextMode="MultiLine"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtTerminalName"
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtReason"
                                             Display="Dynamic" ErrorMessage="请输入终端名称！"></asp:RequiredFieldValidator>
                                     </td>
                                 </tr>
@@ -86,8 +86,7 @@
                                     <td colspan="2">
                                         <div id="tag" class="thin blue">
                                             <ul id="tags">
-                                                <li id="api" class="selectTag"><a href="#" onclick="tabChange('api','dapi','dflow','dquestion','dabilityRemark','MyFile')">
-                                                    明细</a> </li>
+                                                <li id="api" class="selectTag"><a href="#">明细</a> </li>
                                             </ul>
                                             <p class="gap">
                                             </p>

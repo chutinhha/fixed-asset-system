@@ -83,12 +83,12 @@ namespace FixedAsset.Web.Admin
             //    search.EndCreateddate = endcreateddate;
             //}
 
-            int recordCount = 0;
-            var list = ProcurementscheduleheadService.RetrieveProcurementscheduleheadsPaging(search, pageIndex, pcData.PageSize, out recordCount);
-            rptProcureList.DataSource = list;
-            rptProcureList.DataBind();
-            pcData.RecordCount = recordCount;
-            pcData.CurrentIndex = pageIndex;
+            //int recordCount = 0;
+            //var list = ProcurementscheduleheadService.RetrieveProcurementscheduleheadsPaging(search, pageIndex, pcData.PageSize, out recordCount);
+            //rptProcureList.DataSource = list;
+            //rptProcureList.DataBind();
+            //pcData.RecordCount = recordCount;
+            //pcData.CurrentIndex = pageIndex;
         }
         #endregion
     }
