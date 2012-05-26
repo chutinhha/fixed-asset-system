@@ -129,5 +129,50 @@ namespace FixedAsset.Services
         }
         #endregion
 
+        public bool ValidateUserLogin(string userName, string password, out string errorMsg)
+        {
+            errorMsg = string.Empty;
+            Tuser loginUser = null;
+            loginUser = Management.RetrieveTuserByLoginid(userName);
+
+            //if (userName.Contains("@"))
+            //{
+            //    //邮件登陆
+            //    loginUser = Management.RetrieveUserInfoByEmail(userName);
+            //}
+            //else
+            //{
+            //    loginUser = Management.RetrieveUserInfoByUserName(userName);
+            //}
+            if (loginUser == null)
+            {
+                errorMsg = @"用户名或者密码不存在，请输入正确的用户名和密码！";
+                return false;
+            }
+            else
+            {
+                //if (loginUser.UserStatus == UserStatus.Applying)
+                //{
+                //    errorMsg = @"对不起，您的信息还需要系统管理员审核！";
+                //    return false;
+                //}
+                //if (loginUser.UserStatus == UserStatus.Disabled)
+                //{
+                //    errorMsg = @"对不起，您的帐号已停用！";
+                //    return false;
+                //}
+                if (loginUser.Userpassword.Equals(password))
+                {
+                    //添加处理
+                    WebContext.Current.CurrentUser = loginUser; //更新登录用户信息到DB
+                    return true;
+                }
+                else
+                {
+                    errorMsg = @"用户名或者密码不存在，请输入正确的用户名和密码！";
+                    return false;
+                }
+            }
+        }
     }
 }
