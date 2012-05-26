@@ -187,19 +187,21 @@ namespace FixedAsset.Web.Admin
         protected void WriteControlValueToEntity(Procurementschedulehead headInfo)
         {
             headInfo.Psid = Guid.NewGuid().ToString("N");
-            DateTime procurementscheduledate = DateTime.MinValue;
-            if (DateTime.TryParse(txtProcurementscheduledate.Text, out procurementscheduledate))
-            {
-                headInfo.Procurementscheduledate = procurementscheduledate;
-            }
+            //DateTime procurementscheduledate = DateTime.MinValue;
+            //if (DateTime.TryParse(txtProcurementscheduledate.Text, out procurementscheduledate))
+            //{
+            //    headInfo.Procurementscheduledate = procurementscheduledate;
+            //}
+            headInfo.Procurementscheduledate = Convert.ToDateTime(Request.Form[txtProcurementscheduledate.UniqueID]);
             headInfo.Reason = txtReason.Text;
             headInfo.Subcompany = txtSubcompany.Text;
             headInfo.Applyuser = txtApplyuser.Text;
-            DateTime applydate = DateTime.MinValue;
-            if (DateTime.TryParse(txtApplydate.Text, out applydate))
-            {
-                headInfo.Applydate = applydate;
-            }
+            //DateTime applydate = DateTime.MinValue;
+            //if (DateTime.TryParse(txtApplydate.Text, out applydate))
+            //{
+            //    headInfo.Applydate = applydate;
+            //}
+            headInfo.Applydate = Convert.ToDateTime(Request.Form[txtApplydate.UniqueID]);
             //procurementschedulehead.Approveuser = txtApproveuser.Text;
             //DateTime approvedate = DateTime.MinValue;
             //if (DateTime.TryParse(txtApprovedate.Text, out approvedate))

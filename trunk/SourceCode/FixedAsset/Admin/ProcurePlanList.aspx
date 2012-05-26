@@ -21,7 +21,8 @@
             </p>
             <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
                 align="center" class="table_grayTH eoddTable">
-                <asp:Repeater ID="rptProcureList" runat="server">
+                <asp:Repeater ID="rptProcureList" runat="server" OnItemDataBound="rptProcureList_ItemDataBound"
+                                                        OnItemCommand="rptProcureList_ItemCommand">
                     <HeaderTemplate>
                         <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
                             <td align="center">
@@ -80,10 +81,11 @@
                                 <%#EnumUtil.RetrieveEnumDescript((ApproveResult)Eval("Approveresult"))%>
                             </td>
                             <td align="right">
-                                <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/images/Button/edit.GIF"
-                                    AlternateText="编辑" ToolTip="编辑" />
-                                <asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="~/images/Button/delete.GIF"
-                                    OnClientClick="return confirm('确认要删除吗？');" AlternateText="删除" ToolTip="删除" />
+                                <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"
+                                    AlternateText="编辑" ToolTip="编辑" CommandArgument='<%#Eval("Psid")%>' CommandName="EditDetail" />
+                                <asp:ImageButton ID="BtnDeleted" runat="server" ImageUrl="~/images/Button/delete.GIF"
+                                    CommandArgument='<%#Eval("Psid")%>' CommandName="DeleteDetail" OnClientClick="return confirm('确认要删除吗？');"
+                                    AlternateText="删除" ToolTip="删除" />
                             </td>
                         </tr>
                     </ItemTemplate>
@@ -114,10 +116,11 @@
                                 <%#EnumUtil.RetrieveEnumDescript((ApproveResult)Eval("Approveresult"))%>
                             </td>
                             <td align="right">
-                                <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/images/Button/edit.GIF"
-                                    AlternateText="编辑" ToolTip="编辑" />
-                                <asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="~/images/Button/delete.GIF"
-                                    OnClientClick="return confirm('确认要删除吗？');" AlternateText="删除" ToolTip="删除" />
+                                <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"
+                                    AlternateText="编辑" ToolTip="编辑" CommandArgument='<%#Eval("Psid")%>' CommandName="EditDetail" />
+                                <asp:ImageButton ID="BtnDeleted" runat="server" ImageUrl="~/images/Button/delete.GIF"
+                                    CommandArgument='<%#Eval("Psid")%>' CommandName="DeleteDetail" OnClientClick="return confirm('确认要删除吗？');"
+                                    AlternateText="删除" ToolTip="删除" />
                             </td>
                         </tr>
                     </AlternatingItemTemplate>
@@ -126,7 +129,6 @@
                     <td>
                     </td>
                     <td colspan="8" style="height: 30px; width: 790px;">
-                        
                         <cc1:PagingControl ID="pcData" runat="server" MaxNavigatePageCount="7" OnPageIndexClick="pcData_PageIndexClick" />
                     </td>
                 </tr>
