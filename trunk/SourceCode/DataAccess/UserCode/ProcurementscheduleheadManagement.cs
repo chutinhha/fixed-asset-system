@@ -7,10 +7,8 @@
 * Modify Explain:
 * Version:1.0.0
 * ********************************************************************/
-using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Common;
 using System.Text;
 using FixedAsset.Domain;
 
@@ -150,5 +148,29 @@ namespace FixedAsset.DataAccess
         }
         #endregion
 
+        #region RetrieveTopProcurementscheduleheadPsId
+        public string RetrieveTopProcurementscheduleheadPsId()
+        {
+            try
+            {
+                var sqlCommand = new StringBuilder();
+                sqlCommand.AppendLine(@"SELECT PSID  FROM  ""PROCUREMENTSCHEDULEHEAD"" WHERE ROWNUM<2");
+                sqlCommand.AppendLine(@" ORDER BY ""PSID"" DESC");
+                var  obj= this.Database.ExecuteScalar(sqlCommand.ToString());
+                if (obj == null)
+                {
+                    return string.Empty;
+                }
+                else
+                {
+                    return obj.ToString();
+                }
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
+        #endregion
     }
 }
