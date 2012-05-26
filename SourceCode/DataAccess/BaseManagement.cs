@@ -167,6 +167,7 @@ namespace FixedAsset.DataAccess
             {
                 stringBuilder.AppendFormat(" WHERE {0}", condition);
             }
+            stringBuilder.Append(" ORDER BY ").Append(order).Append(" ");
 
             stringBuilder.AppendFormat(") TempTable WHERE RowNumber BETWEEN {0} AND {1}", pageIndex * pageSize + 1, (pageIndex + 1) * pageSize);
 

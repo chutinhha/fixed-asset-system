@@ -7,7 +7,7 @@ using FixedAsset.Services;
 
 namespace FixedAsset.Web.Admin
 {
-    public partial class ProcurePlanList:BasePage
+    public partial class ProcurePlanList : BasePage
     {
         #region Properties
         protected IProcurementscheduleheadService ProcurementscheduleheadService
@@ -23,7 +23,7 @@ namespace FixedAsset.Web.Admin
             if (!IsPostBack)
             { LoadData(0); }
         }
-        protected void BtnSearch_Click(object sender,EventArgs e)
+        protected void BtnSearch_Click(object sender, EventArgs e)
         {
             LoadData(0);
         }
@@ -38,15 +38,15 @@ namespace FixedAsset.Web.Admin
                 var BtnEdit = e.Item.FindControl("BtnEdit") as ImageButton;
                 var BtnDeleted = e.Item.FindControl("BtnDeleted") as ImageButton;
                 var headInfo = e.Item.DataItem as Procurementschedulehead;
-                BtnEdit.Attributes.Add("onclick", string.Format("javascript:window.location.href ='ProcurePlan_Add.aspx?Psid={0}';", headInfo.Psid));
+                //BtnEdit.Attributes.Add("onclick", string.Format("javascript:window.location.href ='ProcurePlan_Add.aspx?Psid={0}';", headInfo.Psid));
             }
         }
         protected void rptProcureList_ItemCommand(object sender, RepeaterCommandEventArgs e)
         {
-            var detailId = e.CommandArgument.ToString();
+            var Psid = e.CommandArgument.ToString();
             if (e.CommandName.Equals("DeleteDetail"))
             {
-                if (!string.IsNullOrEmpty(detailId))
+                if (!string.IsNullOrEmpty(Psid))
                 {
                     //ProcurementscheduledetailService.DeleteProcurementscheduledetailByDetailid(detailId);
                     //var detailInfo = ProcureScheduleDetails.Where(p => p.Detailid == detailId).FirstOrDefault();
@@ -55,7 +55,7 @@ namespace FixedAsset.Web.Admin
             }
             if (e.CommandName.Equals("EditDetail"))
             {
-
+                Response.Redirect(ResolveUrl(string.Format("~/Admin/ProcurePlan_Add.aspx?Psid={0}", Psid)));
             }
         }
         #endregion
