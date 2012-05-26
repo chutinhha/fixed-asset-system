@@ -159,6 +159,7 @@ namespace FixedAsset.DataAccess
             }
             content.Append(ToLengthString((int)codeRules.Currentno, (int)codeRules.Numberwidth));
             codeRules.Currentserialnumber = content.ToString();
+            this.UpdateCoderuleByCodeprefix(codeRules);
             return codeRules.Currentserialnumber;
         }
     }

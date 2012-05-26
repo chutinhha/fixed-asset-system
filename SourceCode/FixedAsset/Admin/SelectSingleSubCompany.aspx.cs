@@ -78,7 +78,7 @@ namespace FixedAsset.Web.Admin
             search.Fgs = txtSrchFgs.Text;
             var lbfgsservice = new LbfgsService();
             int recordCount = 0;
-            var list = lbfgsservice.RetrieveLbfgssPaging(search, pageIndex, 10, out recordCount);
+            var list = lbfgsservice.RetrieveLbfgssPaging(search, pageIndex, pcData.PageSize, out recordCount);
             gvSubCompanies.DataSource = list;
             gvSubCompanies.DataBind();
             pcData.RecordCount = recordCount;
