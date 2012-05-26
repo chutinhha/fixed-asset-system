@@ -8,7 +8,7 @@
     <div class="box">
         <div class="wrap clear">
             <div class="pd_nav">
-                <img src="img/signup-error.gif" width="150" height="42" /></div>
+                <img src="img/signup-error.gif" width="150" height="42" alt="" /></div>
             <div class="text_body4">
                 <div class="error">
                     <a href="#" class="fl">
