@@ -26,9 +26,13 @@ namespace FixedAsset.Web.Admin.UserControl
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            if(!string.IsNullOrEmpty(SubcompanyId))
+            if(!IsPostBack)
             {
-                LoadData();
+                btnSelectSingleSubCompany.Attributes.Add("onclick", string.Format("javascript:ShowTopDialogFrame('分公司选择', '{0}','SelectSingleSubCompany()',790,500);return false;", ResolveUrl("~/Admin/SelectSingleSubCompany.aspx")));
+                if (!string.IsNullOrEmpty(SubcompanyId))
+                {
+                    LoadData();
+                }
             }
         }
         protected void BtnRetrieveSubcompany_Click(object sender,EventArgs e)

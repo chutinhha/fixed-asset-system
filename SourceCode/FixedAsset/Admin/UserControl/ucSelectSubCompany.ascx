@@ -1,8 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ucSelectSubCompany.ascx.cs"
     Inherits="FixedAsset.Web.Admin.UserControl.ucSelectSubCompany" %>
 <asp:Literal ID="litSubCompanyName" runat="server" />
-<asp:ImageButton ID="btnAppIdSelect" ImageUrl="../../images/Button/PickUp.GIF" runat="server"
-    OnClientClick="ShowTopDialogFrame('分公司选择', '../SelectSingleSubCompany.aspx','SelectSingleSubCompany()',790,500);return false;" />
+<asp:ImageButton ID="btnSelectSingleSubCompany" ImageUrl="../../images/Button/PickUp.GIF" runat="server" CausesValidation="false" />
 <script type="text/javascript" language="javascript">
     function SelectSingleSubCompany() {
         var returnValue = getCookie("dialogReturn_key");
