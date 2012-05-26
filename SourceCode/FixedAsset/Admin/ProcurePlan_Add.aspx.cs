@@ -76,7 +76,7 @@ namespace FixedAsset.Web.Admin
                 //add
                 headInfo=new Procurementschedulehead();
                 WriteControlValueToEntity(headInfo);
-                this.ProcurementscheduleheadService.CreateProcurementschedulehead(headInfo);
+                this.ProcurementscheduleheadService.CreateProcurementschedulehead(headInfo, ProcureScheduleDetails);
             }
             else
             {
@@ -84,11 +84,15 @@ namespace FixedAsset.Web.Admin
                 headInfo = ProcurementscheduleheadService.RetrieveProcurementscheduleheadByPsid(Psid);
                 if(headInfo==null){UIHelper.Alert(this.UpdatePanel1,"对不起，计划已被删除,请重新录入！");return;}
                 WriteControlValueToEntity(headInfo);
-                ProcurementscheduleheadService.UpdateProcurementscheduleheadByPsid(headInfo);
+                ProcurementscheduleheadService.UpdateProcurementscheduleheadByPsid(headInfo, ProcureScheduleDetails);
             }
         }
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            if(ProcureScheduleDetails.Count==0)
+            {
+                UIHelper.Alert(this.UpdatePanel1, "对不起，计划已被删除,请重新录入！"); return;
+            }
             Procurementschedulehead headInfo = null;
             if (string.IsNullOrEmpty(Psid))
             {
@@ -96,7 +100,7 @@ namespace FixedAsset.Web.Admin
                 headInfo = new Procurementschedulehead();
                 WriteControlValueToEntity(headInfo);
                 headInfo.Approveresult = ApproveResult.Approving;
-                this.ProcurementscheduleheadService.CreateProcurementschedulehead(headInfo);
+                this.ProcurementscheduleheadService.CreateProcurementschedulehead(headInfo, ProcureScheduleDetails);
             }
             else
             {
@@ -105,17 +109,11 @@ namespace FixedAsset.Web.Admin
                 if (headInfo == null) { UIHelper.Alert(this.UpdatePanel1, "对不起，计划已被删除,请重新录入！"); return; }
                 WriteControlValueToEntity(headInfo);
                 headInfo.Approveresult = ApproveResult.Approving;
-                ProcurementscheduleheadService.UpdateProcurementscheduleheadByPsid(headInfo);
+                ProcurementscheduleheadService.UpdateProcurementscheduleheadByPsid(headInfo, ProcureScheduleDetails);
             }
         }
 
         #region 明细
-        protected void BtnAddContractDetail_Click(object sender, EventArgs e)
-        {
-            //var script = new StringBuilder();
-            //script.AppendFormat("EditContractDetail('{0}','{1}');", string.Format(ResolveUrl(@"~/Contract/AddContractDetail.aspx?RentContractState={0}"), RentContractState), BtnRefreshDetail.ClientID);
-            //this.ScriptStartup(script.ToString());
-        }
         protected void BtnRefreshDetail_Click(object sender, EventArgs e)
         {
            LoadDetailList();
@@ -131,6 +129,10 @@ namespace FixedAsset.Web.Admin
                 {
                     BtnEdit.Visible = false;
                     BtnDeleted.Visible = false;
+                }
+                else
+                {
+                    BtnEdit.Attributes.Add("onclick", string.Format("ShowTopDialogFrame('修改明细', 'ProcurePlanDetail_Add.aspx?Detailid={0}','RefreshDetail()',790,500);return false;",detailInfo.Detailid));
                 }
             }
         }

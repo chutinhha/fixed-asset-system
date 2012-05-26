@@ -36,14 +36,14 @@ namespace FixedAsset.Domain
         ///<summary>
         ///ColumnName:是否需要编码前缀;
         ///</summary>
-        public decimal Isneedcodeprefix{  get;set;}
+        public bool Isneedcodeprefix{  get;set;}
         #endregion
 
         #region 是否默认规则
         ///<summary>
         ///ColumnName:是否默认规则;
         ///</summary>
-        public decimal Isdefault{  get;set;}
+        public bool Isdefault { get; set; }
         #endregion
 
         #region 开始序号
@@ -79,9 +79,6 @@ namespace FixedAsset.Domain
         ///ColumnName:CURRENTSERIALNUMBER;Size:50;
         ///</summary>
         public string Currentserialnumber{  get;set;}
-        #endregion
-
+        #endregion 
     }
-
-
 }

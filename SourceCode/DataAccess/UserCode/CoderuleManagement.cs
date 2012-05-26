@@ -69,5 +69,86 @@ namespace FixedAsset.DataAccess
         }
         #endregion
 
+        #region Private Methods
+        private string ToLengthString(int currentNum, int width)
+        {
+            var content = new StringBuilder();
+            for (int ii = 0; ii < width - currentNum.ToString().Length; ii++)
+            {
+                content.Append("0");
+            }
+            content.Append(currentNum.ToString());
+            return content.ToString();
+        }
+        #endregion
+
+        /// <summary>
+        /// //编码格式：前缀+年+月+流水号（3位）,例如：201106001
+        /// </summary>
+        /// <param name="codePreFix"></param>
+        /// <returns></returns>
+        public string GenerateCodeRule(string  codePreFix)
+        {
+            if (string.IsNullOrEmpty(codePreFix))
+            {
+                return string.Empty;
+            }
+            var codeRules = this.RetrieveCoderuleByCodeprefix(codePreFix);
+            if (codeRules == null)
+            {
+                return string.Empty;
+            }
+            var content = new StringBuilder();
+            if (codeRules.Isneedcodeprefix)
+            {
+                content.Append(codeRules.Codeprefix);
+            }
+            //switch (codeRules.CodeMode)
+            //{
+            //    case CodeMode.Day:
+            //        if (codeRules.YearWidth == 4)
+            //        {
+            content.Append(DateTime.Today.ToString("yyyyMMdd"));
+            //        }
+            //        else
+            //        {
+            //            content.Append(DateTime.Today.ToString("yyMMdd"));
+            //        }
+            //        break;
+            //    case CodeMode.Month:
+            //        if (codeRules.YearWidth == 4)
+            //        {
+            //            content.Append(DateTime.Today.ToString("yyyyMM"));
+            //        }
+            //        else
+            //        {
+            //            content.Append(DateTime.Today.ToString("yyMM"));
+            //        }
+            //        break;
+            //    case CodeMode.Year:
+            //        if (codeRules.YearWidth == 4)
+            //        {
+            //            content.Append(DateTime.Today.ToString("yyyy"));
+            //        }
+            //        else
+            //        {
+            //            content.Append(DateTime.Today.ToString("yy"));
+            //        }
+            //        break;
+            //    default:
+            //        break;
+            //}
+            if (codeRules.Currentno == 0)
+            {
+                codeRules.Currentno = codeRules.Startnumber;
+            }
+            else
+            {
+                codeRules.Currentno += 1;
+            }
+            content.Append(ToLengthString((int)codeRules.Currentno, (int)codeRules.Numberwidth));
+            codeRules.Currentserialnumber = content.ToString();
+            return codeRules.Currentserialnumber;
+        }
     }
 }

@@ -61,8 +61,13 @@ namespace FixedAsset.Web.Admin
         }
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            var detailInfo = ProcureScheduleDetails.Where(p => p.Detailid == Detailid).FirstOrDefault(); 
-            if(detailInfo==null){detailInfo=new Procurementscheduledetail();ProcureScheduleDetails.Add(detailInfo);}
+            var detailInfo = ProcureScheduleDetails.Where(p => p.Detailid == Detailid).FirstOrDefault();
+            if (detailInfo == null)
+            {
+                detailInfo = new Procurementscheduledetail();
+                ProcureScheduleDetails.Add(detailInfo);
+                detailInfo.Detailid = Guid.NewGuid().ToString("N");
+            }
             WriteControlValueToEntity(detailInfo);
             ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString("N"), "setCookie('dialogReturn_key','1',1);CloseTopDialogFrame();",true);
         }
