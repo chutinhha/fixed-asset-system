@@ -96,7 +96,18 @@ namespace FixedAsset.DataAccess
             var codeRules = this.RetrieveCoderuleByCodeprefix(codePreFix);
             if (codeRules == null)
             {
-                return string.Empty;
+                codeRules = new Coderule();
+                codeRules.Codeprefix = codePreFix;
+                codeRules.Currentno = 0;
+                codeRules.Startnumber = 1;
+                codeRules.Numberwidth = 4;
+                try
+                {
+                    this.BeginTransaction();
+                    this.CreateCoderule(codeRules);
+                    this.Commit();
+                }
+                catch{this.Rollback();}
             }
             var content = new StringBuilder();
             if (codeRules.Isneedcodeprefix)
