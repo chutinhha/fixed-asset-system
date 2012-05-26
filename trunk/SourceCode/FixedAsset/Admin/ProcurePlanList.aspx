@@ -14,7 +14,7 @@
     <div id="cnt">
         <div id="dTab1" class="Box text_box">
             <p>
-                单号
+                单号 <a href="ProcurePlan_Add.aspx">ProcurePlan_Add.aspx</a>
                 <asp:TextBox ID="txtSrchPsid" Width="150" CssClass="" runat="server"></asp:TextBox><asp:Button
                     ID="BtnSearch" runat="server" CssClass="button" Text="查询" OnClick="BtnSearch_Click" />
                 <input type="button" class="button" runat="server" id="btnAdd" value="新增" onclick="window.location='ProcurePlan_Add.aspx'" />

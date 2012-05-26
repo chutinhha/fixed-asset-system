@@ -152,6 +152,13 @@
     <Compile Include="AppCode\UiConst.cs" />
     <Compile Include="AppCode\UIHelper.cs" />
     <Compile Include="AppCode\Utility.cs" />
+    <Compile Include="Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -348,6 +355,7 @@
     <Content Include="App_Themes\Control_Theme\Images\basic-dialog\top_bg.gif" />
     <Content Include="App_Themes\Control_Theme\Images\basic-dialog\top_left.gif" />
     <Content Include="App_Themes\Control_Theme\Images\basic-dialog\top_right.gif" />
+    <Content Include="Error.aspx" />
     <Content Include="Global.asax" />
     <Content Include="images\ad.jpg" />
     <Content Include="images\ad2.jpg" />
