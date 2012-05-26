@@ -166,59 +166,21 @@ namespace FixedAsset.Web.Admin
                 txtProcurementscheduledate.Text =headInfo.Procurementscheduledate.Value.ToString(UiConst.DateFormat);
             }
             txtReason.Text = headInfo.Reason;
-            txtSubcompany.Text = headInfo.Subcompany;
+            ucSubCompany.SubcompanyId = headInfo.Subcompany;
             txtApplyuser.Text = headInfo.Applyuser;
             if (headInfo.Applydate.HasValue)
             {
                 txtApplydate.Text = headInfo.Applydate.Value.ToString(UiConst.DateFormat);
             }
-            //txtApproveuser.Text = procurementschedulehead.Approveuser;
-            //if (procurementschedulehead.Approvedate != DateTime.MinValue)
-            //{
-            //    txtApprovedate.Text = procurementschedulehead.Approvedate.ToString(PageConst.DateFormat);
-            //}
-            //txtApproveresult.Text = procurementschedulehead.Approveresult.ToString(PageConst.MoneyFormat);
-            //txtRejectreason.Text = procurementschedulehead.Rejectreason;
-            //if (procurementschedulehead.Createddate != DateTime.MinValue)
-            //{
-            //    txtCreateddate.Text = procurementschedulehead.Createddate.ToString(PageConst.DateFormat);
-            //}
         }  
         protected void WriteControlValueToEntity(Procurementschedulehead headInfo)
         {
             headInfo.Psid = Guid.NewGuid().ToString("N");
-            //DateTime procurementscheduledate = DateTime.MinValue;
-            //if (DateTime.TryParse(txtProcurementscheduledate.Text, out procurementscheduledate))
-            //{
-            //    headInfo.Procurementscheduledate = procurementscheduledate;
-            //}
             headInfo.Procurementscheduledate = Convert.ToDateTime(Request.Form[txtProcurementscheduledate.UniqueID]);
             headInfo.Reason = txtReason.Text;
-            headInfo.Subcompany = txtSubcompany.Text;
+            headInfo.Subcompany = ucSubCompany.SubcompanyId;
             headInfo.Applyuser = txtApplyuser.Text;
-            //DateTime applydate = DateTime.MinValue;
-            //if (DateTime.TryParse(txtApplydate.Text, out applydate))
-            //{
-            //    headInfo.Applydate = applydate;
-            //}
             headInfo.Applydate = Convert.ToDateTime(Request.Form[txtApplydate.UniqueID]);
-            //procurementschedulehead.Approveuser = txtApproveuser.Text;
-            //DateTime approvedate = DateTime.MinValue;
-            //if (DateTime.TryParse(txtApprovedate.Text, out approvedate))
-            //{
-            //    procurementschedulehead.Approvedate = approvedate;
-            //}
-            //decimal approveresult = 0;
-            //if (decimal.TryParse(txtApproveresult.Text, out approveresult))
-            //{
-            //    procurementschedulehead.Approveresult = approveresult;
-            //}
-            //procurementschedulehead.Rejectreason = txtRejectreason.Text;
-            //DateTime createddate = DateTime.MinValue;
-            //if (DateTime.TryParse(txtCreateddate.Text, out createddate))
-            //{
-            //    procurementschedulehead.Createddate = createddate;
-            //}
             if (!headInfo.Createddate.HasValue)
             {
                 headInfo.Createddate = DateTime.Now;

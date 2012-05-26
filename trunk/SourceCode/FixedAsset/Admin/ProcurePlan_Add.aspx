@@ -2,6 +2,7 @@
     CodeBehind="ProcurePlan_Add.aspx.cs" Inherits="FixedAsset.Web.Admin.ProcurePlan_Add" %>
 
 <%@ Register Assembly="WebCalendar" Namespace="WebCalendar" TagPrefix="cc2" %>
+<%@ Register Src="~/Admin/UserControl/ucSelectSubCompany.ascx" TagName="ucSelectSubCompany" TagPrefix="uc1" %> 
 <asp:Content ID="head" ContentPlaceHolderID="head" runat="Server">
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
     <script src="../Scripts/calendar.js" type="text/javascript"></script>
@@ -58,9 +59,10 @@
                                         分公司: <span style="color: Red">*</span>
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="txtSubcompany" class="text_inp" runat="server" Width="300"></asp:TextBox>
+                                    <uc1:ucSelectSubCompany ID="ucSubCompany" runat="server" />
+                                        <%--<asp:TextBox ID="txtSubcompany" class="text_inp" runat="server" Width="300"></asp:TextBox>
                                         <asp:ImageButton ID="btnAppIdSelect" ImageUrl="../images/Button/PickUp.GIF" runat="server"
-                                            OnClientClick="ShowTopDialogFrame('分公司选择', 'SelectSingleSubCompany.aspx','SelectSingleSubCompany()',790,500);return false;" />
+                                            OnClientClick="ShowTopDialogFrame('分公司选择', 'SelectSingleSubCompany.aspx','SelectSingleSubCompany()',790,500);return false;" />--%>
                                     </td>
                                 </tr>
                                 <tr>
@@ -204,18 +206,10 @@
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
-    <script type="text/javascript" language="javascript">
-        function SelectSingleSubCompany() {
-            var returnValue = getCookie("dialogReturn_key");
-            if (returnValue != null) {
-                document.getElementById("<%=txtSubcompany.ClientID %>").value = returnValue;
-                setCookie("dialogReturn_key", null);
-            }
-        }
+    <script type="text/javascript" language="javascript">        
         function RefreshDetail() {
             var returnValue = getCookie("dialogReturn_key");
-            if (returnValue != null) {
-                document.getElementById("<%=txtSubcompany.ClientID %>").value = returnValue;
+            if (returnValue != null) {                
                 document.getElementById("<%=BtnRefreshDetail.ClientID %>").click();
                 setCookie("dialogReturn_key", null);
             }
