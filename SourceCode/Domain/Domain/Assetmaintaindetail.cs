@@ -58,8 +58,7 @@ namespace FixedAsset.Domain
         ///ColumnName:Î¬ÐÞËµÃ÷;Size:1000;
         ///</summary>
         public string Maintaincontent{  get;set;}
-        #endregion
-
+        #endregion  
     }
 
     [Serializable]

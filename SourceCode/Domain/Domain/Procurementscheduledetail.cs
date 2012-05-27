@@ -67,6 +67,7 @@ namespace FixedAsset.Domain
         public string Psid{  get;set;}
         #endregion
 
+        public string CategoryAllPathName { get; set; }
     }
 
     [Serializable]

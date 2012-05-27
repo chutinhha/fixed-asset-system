@@ -60,7 +60,6 @@ namespace FixedAsset.Domain
         public string Creator{  get;set;}
         #endregion
 
+        public string CategoryAllPathName { get; set; }
     }
-
-
 }
