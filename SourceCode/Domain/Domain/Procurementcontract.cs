@@ -18,6 +18,8 @@ namespace FixedAsset.Domain
     [Serializable]
     public partial class Procurementcontract
     {
+        public const string RuleCode = "PCONTRACT";
+
         #region 合同编号
         ///<summary>
         ///ColumnName:合同编号;Size:50;NOT NULL
@@ -74,14 +76,11 @@ namespace FixedAsset.Domain
         public string Creator{  get;set;}
         #endregion
 
-        #region 计划采购单号          
+        #region 计划采购单号
         ///<summary>
         ///ColumnName:计划采购单号          ;Size:50;
         ///</summary>
         public string Psid{  get;set;}
         #endregion
-
     }
-
-
 }
