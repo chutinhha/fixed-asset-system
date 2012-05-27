@@ -29,8 +29,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencie
 		Dependencies\SeallNet.WebControls.dll = Dependencies\SeallNet.WebControls.dll
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FixedAssetWeb", "FixedAssetWeb\FixedAssetWeb.csproj", "{D9C73C1E-B491-49FB-8281-55044330EBD2}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,10 +55,6 @@ Global
 		{35DA92BA-E437-4573-9506-937E014C3EB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35DA92BA-E437-4573-9506-937E014C3EB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35DA92BA-E437-4573-9506-937E014C3EB0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D9C73C1E-B491-49FB-8281-55044330EBD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D9C73C1E-B491-49FB-8281-55044330EBD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D9C73C1E-B491-49FB-8281-55044330EBD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D9C73C1E-B491-49FB-8281-55044330EBD2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
