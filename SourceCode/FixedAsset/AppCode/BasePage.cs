@@ -1,7 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
+using System.Web.UI.WebControls;
 using FixedAsset.Web.AppCode;
 using log4net;
+using FixedAsset.IServices;
+using FixedAsset.Services;
+using FixedAsset.Domain;
+using SeallNet.Utility;
 
 namespace FixedAsset.Web
 {
@@ -45,6 +51,7 @@ namespace FixedAsset.Web
             }
             set { ViewState["PrePageUrl"] = value; }
         }
+        
         #endregion
 
         #region Events
@@ -135,12 +142,11 @@ namespace FixedAsset.Web
             //    }
             //    ExceptionInfoService.CreateExceptionInfo(info);
             //}
-
             if (exception is System.Data.OracleClient.OracleException)
             {
                 exception = new Exception("系统出错了，请联系系统管理员！");
             }
-            Session[UiConst.CurrentException] = exception;
+            Session[SeallNet.Utility.UiConst.CurrentException] = exception;
             Server.ClearError();
             if (IsPoupPage)
             {
@@ -163,9 +169,42 @@ namespace FixedAsset.Web
         #endregion
 
         #region Methods
-
-        
-
+        protected void InitAssetState(DropDownList dropDownList,bool isLoadAll)
+        {
+            if(isLoadAll)
+            {
+                dropDownList.Items.Add(new ListItem("全部",""));
+            }
+            var dic = EnumUtil.RetrieveEnumDictionary(typeof(AssetState));
+            foreach (KeyValuePair<Enum, string> valuePair in dic)
+            {
+                dropDownList.Items.Add(new ListItem(valuePair.Value, valuePair.Key.ToString()));
+            }
+        }
+        protected void InitManageMode(DropDownList dropDownList,bool  isLoadAll)
+        {
+            if (isLoadAll)
+            {
+                dropDownList.Items.Add(new ListItem("全部", ""));
+            }
+            var dic = EnumUtil.RetrieveEnumDictionary(typeof(ManageMode));
+            foreach (KeyValuePair<Enum, string> valuePair in dic)
+            {
+                dropDownList.Items.Add(new ListItem(valuePair.Value, valuePair.Key.ToString()));
+            }
+        }
+        protected void InitFinanceCategory(DropDownList dropDownList, bool isLoadAll)
+        {
+            if (isLoadAll)
+            {
+                dropDownList.Items.Add(new ListItem("全部", ""));
+            }
+            var dic = EnumUtil.RetrieveEnumDictionary(typeof(FinanceCategory));
+            foreach (KeyValuePair<Enum, string> valuePair in dic)
+            {
+                dropDownList.Items.Add(new ListItem(valuePair.Value, valuePair.Key.ToString()));
+            }
+        }
         #endregion
     }
 }

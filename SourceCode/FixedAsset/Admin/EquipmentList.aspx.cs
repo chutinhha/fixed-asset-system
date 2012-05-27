@@ -4,23 +4,20 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using FixedAsset.Domain;
+using FixedAsset.Services;
 
 namespace FixedAsset.Web.Admin
 {
     public partial class EquipmentList : BasePage
-    {
-        protected void Page_Load(object sender, EventArgs e)
-        {
-
-        }
-
+    { 
         #region Events
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
             if (!IsPostBack)
             {
-                //LoadData(0);
+                LoadData(0);
             }
         }
         protected void BtnSearch_Click(object sender, EventArgs e)
@@ -34,59 +31,48 @@ namespace FixedAsset.Web.Admin
         #endregion
 
         #region  Methods
+        protected void InitData()
+        {
+            InitAssetState(ddlEquipmentStatus,true);
+            InitFinanceCategory(ddlAccountingType,true);
+            InitManageMode(ddlManagementModel,true);
+        }
         protected void LoadData(int pageIndex)
         {
-          
-            //DateTime startprocurementscheduledate = DateTime.MinValue;
-            //if (DateTime.TryParse(txtSrchStartProcurementscheduledate.Text, out startprocurementscheduledate))
+            AssetSearch search = new AssetSearch();
+            search.Assetno = txtSrchAssetno.Text;
+            //search.Assetcategoryid = txtSrchAssetcategoryid.Text;
+            //search.Assetname = txtSrchAssetname.Text;
+            //search.Storage = txtSrchStorage.Text;
+            //search.Brand = txtSrchBrand.Text;
+            //search.Supplierid = txtSrchSupplierid.Text;
+            //DateTime startpurchasedate = DateTime.MinValue;
+            //if (DateTime.TryParse(txtSrchStartPurchasedate.Text, out startpurchasedate))
             //{
-            //    search.StartProcurementscheduledate = startprocurementscheduledate;
+            //    search.StartPurchasedate = startpurchasedate;
             //}
-            //DateTime endprocurementscheduledate = DateTime.MinValue;
-            //if (DateTime.TryParse(txtSrchEndProcurementscheduledate.Text, out endprocurementscheduledate))
+            //DateTime endpurchasedate = DateTime.MinValue;
+            //if (DateTime.TryParse(txtSrchEndPurchasedate.Text, out endpurchasedate))
             //{
-            //    search.EndProcurementscheduledate = endprocurementscheduledate;
+            //    search.EndPurchasedate = endpurchasedate;
             //}
-            //search.Reason = txtSrchReason.Text;
-            //search.Subcompany = txtSrchSubcompany.Text;
-            //search.Applyuser = txtSrchApplyuser.Text;
-            //DateTime startapplydate = DateTime.MinValue;
-            //if (DateTime.TryParse(txtSrchStartApplydate.Text, out startapplydate))
+            //DateTime startexpireddate = DateTime.MinValue;
+            //if (DateTime.TryParse(txtSrchStartExpireddate.Text, out startexpireddate))
             //{
-            //    search.StartApplydate = startapplydate;
+            //    search.StartExpireddate = startexpireddate;
             //}
-            //DateTime endapplydate = DateTime.MinValue;
-            //if (DateTime.TryParse(txtSrchEndApplydate.Text, out endapplydate))
+            //DateTime endexpireddate = DateTime.MinValue;
+            //if (DateTime.TryParse(txtSrchEndExpireddate.Text, out endexpireddate))
             //{
-            //    search.EndApplydate = endapplydate;
+            //    search.EndExpireddate = endexpireddate;
             //}
-            //search.Approveuser = txtSrchApproveuser.Text;
-            //DateTime startapprovedate = DateTime.MinValue;
-            //if (DateTime.TryParse(txtSrchStartApprovedate.Text, out startapprovedate))
-            //{
-            //    search.StartApprovedate = startapprovedate;
-            //}
-            //DateTime endapprovedate = DateTime.MinValue;
-            //if (DateTime.TryParse(txtSrchEndApprovedate.Text, out endapprovedate))
-            //{
-            //    search.EndApprovedate = endapprovedate;
-            //}
-            //search.Rejectreason = txtSrchRejectreason.Text;
-            //DateTime startcreateddate = DateTime.MinValue;
-            //if (DateTime.TryParse(txtSrchStartCreateddate.Text, out startcreateddate))
-            //{
-            //    search.StartCreateddate = startcreateddate;
-            //}
-            //DateTime endcreateddate = DateTime.MinValue;
-            //if (DateTime.TryParse(txtSrchEndCreateddate.Text, out endcreateddate))
-            //{
-            //    search.EndCreateddate = endcreateddate;
-            //}
-
+            //search.Assetspecification = txtSrchAssetspecification.Text;
+            //search.Storageflag = txtSrchStorageflag.Text;
+            AssetService assetservice = new AssetService();
             int recordCount = 0;
-            //var list = ProcurementscheduleheadService.RetrieveProcurementscheduleheadsPaging(search, pageIndex, pcData.PageSize, out recordCount);
-            //rptProcureList.DataSource = list;
-            //rptProcureList.DataBind();
+            var list = assetservice.RetrieveAssetsPaging(search, pageIndex, pcData.PageSize, out recordCount);
+            rptAssetsList.DataSource = list;
+            rptAssetsList.DataBind();
             pcData.RecordCount = recordCount;
             pcData.CurrentIndex = pageIndex;
         }

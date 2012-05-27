@@ -21,6 +21,7 @@ namespace FixedAsset.Domain
         #region 设备编号
         ///<summary>
         ///ColumnName:设备编号;Size:20;NOT NULL
+        ///固定字符（2位）+分公司/公司（3位）+设备大类（2位）+设备小类（2位）+序号（4位）
         ///</summary>
         public string Assetno{  get;set;}
         #endregion
@@ -50,7 +51,7 @@ namespace FixedAsset.Domain
         ///<summary>
         ///ColumnName:设备状态;
         ///</summary>
-        public decimal State{  get;set;}
+        public AssetState State { get; set; }
         #endregion
 
         #region 折旧年限

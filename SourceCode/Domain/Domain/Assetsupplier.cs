@@ -37,9 +37,6 @@ namespace FixedAsset.Domain
         ///ColumnName:±¸×¢;Size:2000;
         ///</summary>
         public string Remark{  get;set;}
-        #endregion
-
+        #endregion 
     }
-
-
 }
