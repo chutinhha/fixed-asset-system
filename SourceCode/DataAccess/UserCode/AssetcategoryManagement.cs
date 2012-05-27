@@ -32,6 +32,45 @@ namespace FixedAsset.DataAccess
                 this.Database.ClearParameter();
             }
         }
+        public List<Assetcategory>   RetrieveAllAssetcategory()
+        {
+            string sqlCommand = @"SELECT * FROM ASSETCATEGORY ";
+            return this.Database.ExecuteToList<Assetcategory>(sqlCommand);
+        }
+        #endregion
+        #region RetrieveAssetcategoryByAssetcategoryid
+        public List<Assetcategory> RetrieveAssetcategoryByParentAssetcategoryid(List<string> parentAssetcategoryids)
+        {
+            try
+            {
+                if (parentAssetcategoryids.Count == 0) { return new List<Assetcategory>(); }
+                StringBuilder sqlCommand = new StringBuilder();
+                sqlCommand.AppendLine(@"SELECT *  FROM  ""ASSETCATEGORY"" WHERE 1=1");
+                if (parentAssetcategoryids.Count == 1)
+                {
+                    this.Database.AddInParameter(":ASSETPARENTCATEGORYID" + 0.ToString(), parentAssetcategoryids[0]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" AND ""ASSETPARENTCATEGORYID""=:ASSETPARENTCATEGORYID0");
+                }
+                else if (parentAssetcategoryids.Count > 1 && parentAssetcategoryids.Count <= 2000)
+                {
+                    this.Database.AddInParameter(":ASSETPARENTCATEGORYID" + 0.ToString(), parentAssetcategoryids[0]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" AND (""ASSETPARENTCATEGORYID""=:ASSETPARENTCATEGORYID0");
+                    for (int i = 1; i < parentAssetcategoryids.Count; i++)
+                    {
+                        this.Database.AddInParameter(":ASSETPARENTCATEGORYID" + i.ToString(), parentAssetcategoryids[i]);//DBType:VARCHAR2
+                        sqlCommand.AppendLine(@" OR ""ASSETPARENTCATEGORYID""=:ASSETPARENTCATEGORYID" + i.ToString());
+                    }
+                    sqlCommand.AppendLine(" )");
+                }
+
+                sqlCommand.AppendLine(@" ORDER BY ""ASSETCATEGORYID"" DESC");
+                return this.Database.ExecuteToList<Assetcategory>(sqlCommand.ToString());
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
         #endregion
 
         #region RetrieveAssetcategoryByAssetcategoryid
@@ -113,6 +152,5 @@ namespace FixedAsset.DataAccess
             }
         }
         #endregion
-
     }
 }
