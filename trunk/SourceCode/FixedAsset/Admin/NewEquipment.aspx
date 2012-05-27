@@ -16,7 +16,7 @@
             <div class="content-box">
                 <div class="content-box-header">
                     <h3 style="cursor: s-resize;">
-                        <asp:Literal runat="server" ID="litTitle" Text="新增应用" />
+                        <asp:Literal runat="server" ID="litTitle" Text="设备登记" />
                     </h3>
                 </div>
                 <div class="content-box-content">
@@ -28,7 +28,7 @@
                                         设备编号:
                                     </td>
                                     <td>
-                                        <asp:Label ID="litPsid" class="text_inp" runat="server" />
+                                        <asp:Label ID="litAssetno" class="text_inp" runat="server" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -36,7 +36,10 @@
                                         设备类别:
                                     </td>
                                     <td>
-                                        <asp:DropDownList ID="ddlEquipmentType" runat="server" Width="300px">
+                                        <asp:DropDownList ID="ddlAssetCategory" class="text_inp" runat="server" AutoPostBack="true"
+                                            OnSelectedIndexChanged="ddlAssetCategory_SelectedIndexChanged">
+                                        </asp:DropDownList>
+                                        <asp:DropDownList ID="ddlSubAssetCategory" class="text_inp" runat="server">
                                         </asp:DropDownList>
                                     </td>
                                 </tr>
@@ -45,7 +48,15 @@
                                         设备名称:
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="txtEquipmentName" runat="server" class="text_inp" Width="300px"></asp:TextBox>
+                                        <asp:TextBox ID="txtAssetname" runat="server" class="text_inp" Width="300px"></asp:TextBox>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 180px;">
+                                        设备规格:
+                                    </td>
+                                    <td>
+                                        <asp:TextBox ID="txtAssetspecification" runat="server" class="text_inp" Width="300px"></asp:TextBox>
                                     </td>
                                 </tr>
                                 <tr>
@@ -61,11 +72,7 @@
                                         设备状态:
                                     </td>
                                     <td>
-                                        <asp:DropDownList ID="ddlEquipmentStatus" runat="server" Width="300px">
-                                            <asp:ListItem>未用</asp:ListItem>
-                                            <asp:ListItem>在用</asp:ListItem>
-                                            <asp:ListItem>报废</asp:ListItem>
-                                        </asp:DropDownList>
+                                        <asp:Label ID="litState" class="text_inp" runat="server" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -73,7 +80,7 @@
                                         单价:
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="txtPrice" runat="server" class="text_inp" Width="300px"></asp:TextBox>
+                                        <asp:TextBox ID="txtUnitprice" runat="server" class="text_inp" Width="300px"></asp:TextBox>
                                     </td>
                                 </tr>
                                 <tr>
@@ -90,8 +97,6 @@
                                     </td>
                                     <td>
                                         <asp:DropDownList ID="ddlManagementModel" runat="server" Width="300px">
-                                            <asp:ListItem>托管</asp:ListItem>
-                                            <asp:ListItem>自管</asp:ListItem>
                                         </asp:DropDownList>
                                     </td>
                                 </tr>
@@ -100,9 +105,7 @@
                                         账务类别:
                                     </td>
                                     <td>
-                                        <asp:DropDownList ID="ddlAccountingType" runat="server" Width="300px">
-                                            <asp:ListItem>A账</asp:ListItem>
-                                            <asp:ListItem>B账</asp:ListItem>
+                                        <asp:DropDownList ID="ddlFinancecategory" runat="server" Width="300px">
                                         </asp:DropDownList>
                                     </td>
                                 </tr>
@@ -121,8 +124,8 @@
                                         购入日期:<span style="color: Red">*</span>
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="txtEquipmentPurchasedate" class="text_inp" runat="server" Width="300"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtEquipmentPurchasedate"
+                                        <asp:TextBox ID="txtPurchasedate" class="text_inp" runat="server" Width="300"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtPurchasedate"
                                             Display="Dynamic" ErrorMessage="请选择设备购入日期！"></asp:RequiredFieldValidator>
                                     </td>
                                 </tr>
@@ -131,7 +134,7 @@
                                         折旧年限: <span style="color: Red">*</span>
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="txtDepreciationPeriod" runat="server" Width="300px"></asp:TextBox>
+                                        <asp:TextBox ID="txtDepreciationyear" class="text_inp" runat="server" Width="300px"></asp:TextBox>
                                     </td>
                                 </tr>
                                 <tr style="text-align: center">

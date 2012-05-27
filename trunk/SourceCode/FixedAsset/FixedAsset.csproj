@@ -207,6 +207,13 @@
     <Compile Include="Admin\SelectSingleSubCompany.aspx.designer.cs">
       <DependentUpon>SelectSingleSubCompany.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\SelectSingleSupplier.aspx.cs">
+      <DependentUpon>SelectSingleSupplier.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\SelectSingleSupplier.aspx.designer.cs">
+      <DependentUpon>SelectSingleSupplier.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\SelectSingleUsers.aspx.cs">
       <DependentUpon>SelectSingleUsers.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -227,6 +234,13 @@
     </Compile>
     <Compile Include="Admin\UserControl\ucSelectSubCompany.ascx.designer.cs">
       <DependentUpon>ucSelectSubCompany.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\UserControl\ucSelectSupplier.ascx.cs">
+      <DependentUpon>ucSelectSupplier.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\UserControl\ucSelectSupplier.ascx.designer.cs">
+      <DependentUpon>ucSelectSupplier.ascx</DependentUpon>
     </Compile>
     <Compile Include="Admin\UserControl\ucSelectUser.ascx.cs">
       <DependentUpon>ucSelectUser.ascx</DependentUpon>
@@ -447,9 +461,11 @@
     <Content Include="Admin\RemoveList.aspx" />
     <Content Include="Admin\RepairList.aspx" />
     <Content Include="Admin\SelectSingleSubCompany.aspx" />
+    <Content Include="Admin\SelectSingleSupplier.aspx" />
     <Content Include="Admin\SelectSingleUsers.aspx" />
     <Content Include="Admin\UserControl\ucSelectAsset.ascx" />
     <Content Include="Admin\UserControl\ucSelectSubCompany.ascx" />
+    <Content Include="Admin\UserControl\ucSelectSupplier.ascx" />
     <Content Include="Admin\UserControl\ucSelectUser.ascx" />
     <Content Include="Admin\user_add.aspx" />
     <Content Include="Admin\user_edit.aspx" />
