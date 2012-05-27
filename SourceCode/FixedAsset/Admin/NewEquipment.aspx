@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/MasterPage.master" AutoEventWireup="true"
     CodeBehind="NewEquipment.aspx.cs" Inherits="FixedAsset.Web.Admin.NewEquipment" %>
-
+ <%@ Register Src="~/Admin/UserControl/ucSelectSubCompany.ascx" TagName="SelectSubCompany" TagPrefix="uc1" %> 
+ <%@ Register Src="~/Admin/UserControl/ucSelectSupplier.ascx" TagName="SelectSupplier" TagPrefix="uc1" %> 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
     <script src="../Scripts/calendar.js" type="text/javascript"></script>
@@ -114,9 +115,15 @@
                                         供应商: <span style="color: Red">*</span>
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="txtSuppliers" class="text_inp" runat="server" Width="300"></asp:TextBox>
-                                        <asp:ImageButton ID="btnAppIdSelect" ImageUrl="../images/Button/PickUp.GIF" runat="server"
-                                            OnClientClick="ShowTopDialogFrame('供应商选择', 'return_m2mApplication.aspx','AppIdSelect()',790,500);return false;" />
+                                        <uc1:SelectSupplier ID="ucSelectSupplier" runat="server" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        分公司: <span style="color: Red">*</span>
+                                    </td>
+                                    <td>
+                                        <uc1:SelectSubCompany ID="ucSelectSubCompany" runat="server" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -141,8 +148,8 @@
                                     <td colspan="2">
                                         <asp:Button ID="BtnSave" runat="server" Text="保 存" CssClass="button" ValidationGroup="Vaild"
                                             OnClick="BtnSave_Click" />
-                                        <asp:Button ID="btnSubmit" runat="server" Text="确 定" CssClass="button" ValidationGroup="Vaild"
-                                            OnClick="btnSubmit_Click" />
+                                        <%--<asp:Button ID="btnSubmit" runat="server" Text="确 定" CssClass="button" ValidationGroup="Vaild"
+                                            OnClick="btnSubmit_Click" />--%>
                                         <asp:Button ID="btnReset" runat="server" Text="重 置" CssClass="button" CausesValidation="false"
                                             OnClientClick="reset();" />
                                     </td>
@@ -154,13 +161,4 @@
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
-    <script type="text/javascript" language="javascript">
-        function AppIdSelect() {
-            var returnValue = getCookie("dialogReturn_key");
-            if (returnValue != null) {
-                document.getElementById("<%=txtSuppliers.ClientID %>").value = returnValue;
-                setCookie("dialogReturn_key", null);
-            }
-        }
-    </script>
 </asp:Content>

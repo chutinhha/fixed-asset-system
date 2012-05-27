@@ -74,6 +74,10 @@ namespace FixedAsset.Web.Admin
                     {
                         ReadEntityToControl(detailInfo);
                     }
+                    else
+                    {
+                        LoadSubAssetCategory();
+                    }
                 }
                 else
                 {

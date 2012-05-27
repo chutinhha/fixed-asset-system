@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
+using System.Text;
 using FixedAsset.Domain;
 using FixedAsset.DataAccess;
 using FixedAsset.IServices;
@@ -18,7 +19,6 @@ namespace FixedAsset.Services
 {
     public partial class AssetService:BaseService,IAssetService
     {
-
         #region Management
 
         private AssetManagement m_Management;
@@ -129,5 +129,36 @@ namespace FixedAsset.Services
         }
         #endregion
 
+        public void SaveAssetInfo(Asset info)
+        {
+            bool isEdited = !string.IsNullOrEmpty(info.Assetno);
+            if (string.IsNullOrEmpty(info.Assetno))
+            {
+                //固定字符（2位）+分公司/公司（3位）+设备大类（2位）+设备小类（2位）+序号（4位）
+                var codePrefix = new StringBuilder(Asset.RuleCode);
+                codePrefix.Append(info.Subcompany);
+                codePrefix.Append(info.Assetcategoryid);
+                var ruleManagement = new CoderuleManagement(Management);
+                info.Assetno = ruleManagement.GenerateCodeRule(codePrefix.ToString());
+            }
+            try
+            {
+                Management.BeginTransaction();
+                if (isEdited)
+                {
+                    Management.UpdateAssetByAssetno(info);
+                }
+                else
+                {
+                    Management.CreateAsset(info);
+                }
+                Management.Commit();
+            }
+            catch
+            {
+                Management.Rollback();
+                throw;
+            }
+        }
     }
 }

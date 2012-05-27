@@ -130,22 +130,22 @@ namespace FixedAsset.Web.Admin {
         protected global::System.Web.UI.WebControls.DropDownList ddlFinancecategory;
         
         /// <summary>
-        /// txtSuppliers 控件。
+        /// ucSelectSupplier 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSuppliers;
+        protected global::FixedAsset.Web.Admin.UserControl.ucSelectSupplier ucSelectSupplier;
         
         /// <summary>
-        /// btnAppIdSelect 控件。
+        /// ucSelectSubCompany 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnAppIdSelect;
+        protected global::FixedAsset.Web.Admin.UserControl.ucSelectSubCompany ucSelectSubCompany;
         
         /// <summary>
         /// txtPurchasedate 控件。
@@ -182,15 +182,6 @@ namespace FixedAsset.Web.Admin {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button BtnSave;
-        
-        /// <summary>
-        /// btnSubmit 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmit;
         
         /// <summary>
         /// btnReset 控件。

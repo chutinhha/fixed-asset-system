@@ -18,6 +18,7 @@ namespace FixedAsset.Domain
     [Serializable]
     public partial class Asset
     {
+        public const string RuleCode = "ZR";
         #region 设备编号
         ///<summary>
         ///ColumnName:设备编号;Size:20;NOT NULL
@@ -124,5 +125,11 @@ namespace FixedAsset.Domain
         public string Storageflag{  get;set;}
         #endregion
 
+        #region 分公司
+        ///<summary>
+        ///ColumnName:分公司;Size:50;
+        ///</summary>
+        public string Subcompany { get; set; }
+        #endregion
     }
 }
