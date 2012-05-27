@@ -84,9 +84,9 @@ namespace FixedAsset.Web.Admin
                 LoadDetailList();
             }
         }
-        protected void BtnApproved_Click(object sender, EventArgs e)
+        protected void BtnNewContract_Click(object sender, EventArgs e)
         {
-            
+            Response.Redirect(ResolveUrl(string.Format("~/Admin/NewContacts.aspx?Psid={0}", Psid)));
         }
         #region 明细
         protected void rptProcureDetailList_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -135,6 +135,10 @@ namespace FixedAsset.Web.Admin
             litApproveresult.Text = EnumUtil.RetrieveEnumDescript(headInfo.Approveresult);
             litRejectreason.Text = headInfo.Rejectreason;
             litCreateddate.Text = headInfo.Createddate.Value.ToString(UiConst.DateTimeFormat);
+            if(headInfo.Approveresult==ApproveResult.Approved)
+            {
+                BtnNewContract.Visible = true;
+            }
         }
         protected void LoadDetailList()
         {

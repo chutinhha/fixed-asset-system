@@ -196,8 +196,8 @@
                                 </tr>
                                 <tr style="text-align: center">
                                     <td colspan="2">
-                                        <asp:Button ID="BtnApproved" runat="server" Text="同 意" CssClass="button" ValidationGroup="Vaild"
-                                            OnClick="BtnApproved_Click" />
+                                        <asp:Button ID="BtnNewContract" runat="server" Text="生成合同" CssClass="button" 
+                                            OnClick="BtnNewContract_Click" Visible="false" />
                                         <input type="button" class="button" runat="server" id="Button2" value="返 回" onclick="reset();" />
                                     </td>
                                 </tr>
