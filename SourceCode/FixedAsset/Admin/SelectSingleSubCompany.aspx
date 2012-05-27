@@ -19,20 +19,20 @@
     <div id="contents">
         <div id="dTab1" class="Box text_box">
             分公司名称
-            <asp:TextBox class="text-input small-input" ID="txtSrchFgs" runat="server"></asp:TextBox>
+            <asp:TextBox class="text-input small-input" ID="txtSrchSubcompanyname" runat="server"></asp:TextBox>
             <asp:Button ID="btnSearch" class="button" runat="server" Text="查询" OnClick="btnSearch_Click" />
             <asp:SGridView ID="gvSubCompanies" GridLines="None" border="0" CssClass="table_grayTH eoddTable"
                 runat="server" Width="100%" ShowActionToolBar="false" PageSize="2" AutoGenerateColumns="false"
-                AllowCascade="false" DataKeyNames="Fgsid">
+                AllowCascade="false" DataKeyNames="Subcompanyid">
                 <Columns>
                     <asp:TemplateField>
                         <ItemTemplate>
-                            <asp:Label ID="lblSubCompanyId" runat="server" Text='<%#Eval("Fgsid") %>' Visible="false"></asp:Label>
+                            <asp:Label ID="lblSubCompanyId" runat="server" Text='<%#Eval("Subcompanyid") %>' Visible="false"></asp:Label>
                             <asp:RadioButton runat="server" ID="radioSelected" OnCheckedChanged="radioSelected_CheckedChanged"
                                 AutoPostBack="true" GroupName="templateGroup" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:BoundField DataField="Fgs" HeaderText="分公司名称" ControlStyle-Width="50" ItemStyle-CssClass="center" />
+                    <asp:BoundField DataField="Subcompanyname" HeaderText="分公司名称" ControlStyle-Width="50" ItemStyle-CssClass="center" />
                 </Columns>
                 <AlternatingRowStyle CssClass="alt-row"></AlternatingRowStyle>
                 <RowStyle HorizontalAlign="Center" />

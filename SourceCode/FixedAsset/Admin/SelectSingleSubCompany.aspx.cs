@@ -74,11 +74,11 @@ namespace FixedAsset.Web.Admin
         }
         protected void LoadData(int pageIndex)
         {
-            var search = new LbfgsSearch();
-            search.Fgs = txtSrchFgs.Text;
-            var lbfgsservice = new LbfgsService();
+            var search = new SubcompanyinfoSearch();
+            search.Subcompanyname = txtSrchSubcompanyname.Text;
+            var subcompanyinfoService = new SubcompanyinfoService();
             int recordCount = 0;
-            var list = lbfgsservice.RetrieveLbfgssPaging(search, pageIndex, pcData.PageSize, out recordCount);
+            var list = subcompanyinfoService.RetrieveSubcompanyinfosPaging(search, pageIndex, pcData.PageSize, out recordCount);
             gvSubCompanies.DataSource = list;
             gvSubCompanies.DataBind();
             pcData.RecordCount = recordCount;
