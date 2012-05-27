@@ -1,7 +1,7 @@
 /********************************************************************
 * File Name:AssetManagement
 * Copyright (C) 2012 Bruce.huang 
-* Creater & Date:Bruce.huang - 2012-05-25
+* Creater & Date:Bruce.huang - 2012-05-27
 * Create Explain:
 * Description:DataBase Access Class
 * Modify Explain:
@@ -16,13 +16,14 @@ using FixedAsset.Domain;
 
 namespace FixedAsset.DataAccess
 {
-    public partial class AssetManagement:BaseManagement
+    public partial class AssetManagement : BaseManagement
     {
         #region Construct
-        private const int ColumnCount = 15;
+        private const int ColumnCount = 16;
         public AssetManagement()
         { }
-        public AssetManagement(BaseManagement baseManagement): base(baseManagement)
+        public AssetManagement(BaseManagement baseManagement)
+            : base(baseManagement)
         { }
         #endregion
 
@@ -31,7 +32,7 @@ namespace FixedAsset.DataAccess
         {
             try
             {
-                string sqlCommand = @"INSERT INTO ""ASSET"" (""ASSETNO"",""ASSETCATEGORYID"",""ASSETNAME"",""STORAGE"",""STATE"",""DEPRECIATIONYEAR"",""UNITPRICE"",""BRAND"",""MANAGEMODE"",""FINANCECATEGORY"",""SUPPLIERID"",""PURCHASEDATE"",""EXPIREDDATE"",""ASSETSPECIFICATION"",""STORAGEFLAG"") VALUES (:Assetno,:Assetcategoryid,:Assetname,:Storage,:State,:Depreciationyear,:Unitprice,:Brand,:Managemode,:Financecategory,:Supplierid,:Purchasedate,:Expireddate,:Assetspecification,:Storageflag)";
+                string sqlCommand = @"INSERT INTO ""ASSET"" (""ASSETNO"",""ASSETCATEGORYID"",""ASSETNAME"",""STORAGE"",""STATE"",""DEPRECIATIONYEAR"",""UNITPRICE"",""BRAND"",""MANAGEMODE"",""FINANCECATEGORY"",""SUPPLIERID"",""PURCHASEDATE"",""EXPIREDDATE"",""ASSETSPECIFICATION"",""STORAGEFLAG"",""SUBCOMPANY"") VALUES (:Assetno,:Assetcategoryid,:Assetname,:Storage,:State,:Depreciationyear,:Unitprice,:Brand,:Managemode,:Financecategory,:Supplierid,:Purchasedate,:Expireddate,:Assetspecification,:Storageflag,:Subcompany)";
                 this.Database.AddInParameter(":Assetno", info.Assetno);//DBType:VARCHAR2
                 this.Database.AddInParameter(":Assetcategoryid", info.Assetcategoryid);//DBType:VARCHAR2
                 this.Database.AddInParameter(":Assetname", info.Assetname);//DBType:NVARCHAR2
@@ -47,6 +48,7 @@ namespace FixedAsset.DataAccess
                 this.Database.AddInParameter(":Expireddate", info.Expireddate);//DBType:DATE
                 this.Database.AddInParameter(":Assetspecification", info.Assetspecification);//DBType:NVARCHAR2
                 this.Database.AddInParameter(":Storageflag", info.Storageflag);//DBType:NVARCHAR2
+                this.Database.AddInParameter(":Subcompany", info.Subcompany);//DBType:VARCHAR2
                 this.Database.ExecuteNonQuery(sqlCommand);
 
             }
@@ -78,7 +80,8 @@ namespace FixedAsset.DataAccess
                 this.Database.AddInParameter(":Expireddate", info.Expireddate);//DBType:DATE
                 this.Database.AddInParameter(":Assetspecification", info.Assetspecification);//DBType:NVARCHAR2
                 this.Database.AddInParameter(":Storageflag", info.Storageflag);//DBType:NVARCHAR2
-                string sqlCommand = @"UPDATE ""ASSET"" SET  ""ASSETCATEGORYID""=:Assetcategoryid , ""ASSETNAME""=:Assetname , ""STORAGE""=:Storage , ""STATE""=:State , ""DEPRECIATIONYEAR""=:Depreciationyear , ""UNITPRICE""=:Unitprice , ""BRAND""=:Brand , ""MANAGEMODE""=:Managemode , ""FINANCECATEGORY""=:Financecategory , ""SUPPLIERID""=:Supplierid , ""PURCHASEDATE""=:Purchasedate , ""EXPIREDDATE""=:Expireddate , ""ASSETSPECIFICATION""=:Assetspecification , ""STORAGEFLAG""=:Storageflag WHERE  ""ASSETNO""=:Assetno";
+                this.Database.AddInParameter(":Subcompany", info.Subcompany);//DBType:VARCHAR2
+                string sqlCommand = @"UPDATE ""ASSET"" SET  ""ASSETCATEGORYID""=:Assetcategoryid , ""ASSETNAME""=:Assetname , ""STORAGE""=:Storage , ""STATE""=:State , ""DEPRECIATIONYEAR""=:Depreciationyear , ""UNITPRICE""=:Unitprice , ""BRAND""=:Brand , ""MANAGEMODE""=:Managemode , ""FINANCECATEGORY""=:Financecategory , ""SUPPLIERID""=:Supplierid , ""PURCHASEDATE""=:Purchasedate , ""EXPIREDDATE""=:Expireddate , ""ASSETSPECIFICATION""=:Assetspecification , ""STORAGEFLAG""=:Storageflag , ""SUBCOMPANY""=:Subcompany WHERE  ""ASSETNO""=:Assetno";
                 this.Database.ExecuteNonQuery(sqlCommand);
             }
             finally
@@ -110,22 +113,22 @@ namespace FixedAsset.DataAccess
         {
             try
             {
-                if(Assetnos.Count==0){ return ;}
+                if (Assetnos.Count == 0) { return; }
                 StringBuilder sqlCommand = new StringBuilder();
                 sqlCommand.AppendLine(@"DELETE FROM  ""ASSET"" WHERE 1=1");
-                if(Assetnos.Count==1)
+                if (Assetnos.Count == 1)
                 {
-                    this.Database.AddInParameter(":Assetno"+0.ToString(),Assetnos[0]);//DBType:VARCHAR2
+                    this.Database.AddInParameter(":Assetno" + 0.ToString(), Assetnos[0]);//DBType:VARCHAR2
                     sqlCommand.AppendLine(@" AND ""ASSETNO""=:Assetno0");
                 }
-                else if(Assetnos.Count>1&&Assetnos.Count<=2000)
+                else if (Assetnos.Count > 1 && Assetnos.Count <= 2000)
                 {
-                    this.Database.AddInParameter(":Assetno"+0.ToString(),Assetnos[0]);//DBType:VARCHAR2
+                    this.Database.AddInParameter(":Assetno" + 0.ToString(), Assetnos[0]);//DBType:VARCHAR2
                     sqlCommand.AppendLine(@" AND (""ASSETNO""=:Assetno0");
                     for (int i = 1; i < Assetnos.Count; i++)
                     {
-                    this.Database.AddInParameter(":Assetno"+i.ToString(),Assetnos[i]);//DBType:VARCHAR2
-                    sqlCommand.AppendLine(@" OR ""ASSETNO""=:Assetno"+i.ToString());
+                        this.Database.AddInParameter(":Assetno" + i.ToString(), Assetnos[i]);//DBType:VARCHAR2
+                        sqlCommand.AppendLine(@" OR ""ASSETNO""=:Assetno" + i.ToString());
                     }
                     sqlCommand.AppendLine(" )");
                 }

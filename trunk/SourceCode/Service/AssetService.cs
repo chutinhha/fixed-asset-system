@@ -139,7 +139,7 @@ namespace FixedAsset.Services
                 codePrefix.Append(info.Subcompany);
                 codePrefix.Append(info.Assetcategoryid);
                 var ruleManagement = new CoderuleManagement(Management);
-                info.Assetno = ruleManagement.GenerateCodeRule(codePrefix.ToString());
+                info.Assetno = ruleManagement.GenerateCodeRule(codePrefix.ToString(),false);
             }
             try
             {

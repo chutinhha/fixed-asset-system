@@ -87,7 +87,7 @@ namespace FixedAsset.DataAccess
         /// </summary>
         /// <param name="codePreFix"></param>
         /// <returns></returns>
-        public string GenerateCodeRule(string  codePreFix)
+        public string GenerateCodeRule(string  codePreFix,bool isDefaultYYYYMMDD)
         {
             if (string.IsNullOrEmpty(codePreFix))
             {
@@ -101,7 +101,7 @@ namespace FixedAsset.DataAccess
                 codeRules.Currentno = 0;
                 //codeRules.Isneedcodeprefix = 1;
                 codeRules.Isneedcodeprefix = true;
-                codeRules.Isdefault = true;
+                codeRules.Isdefault = isDefaultYYYYMMDD;
                 codeRules.Startnumber = 1;
                 codeRules.Numberwidth = 4;
                 try
@@ -123,7 +123,8 @@ namespace FixedAsset.DataAccess
             //    case CodeMode.Day:
             //        if (codeRules.YearWidth == 4)
             //        {
-            content.Append(DateTime.Today.ToString("yyyyMMdd"));
+            if(codeRules.Isdefault)
+            {content.Append(DateTime.Today.ToString("yyyyMMdd"));}
             //        }
             //        else
             //        {

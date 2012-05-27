@@ -21,7 +21,7 @@
             <asp:Button ID="btnSearch" class="button" runat="server" Text="查询" OnClick="btnSearch_Click" />
             <asp:SGridView ID="gvSuppliers" GridLines="None" border="0" CssClass="table_grayTH eoddTable"
                 runat="server" Width="100%" ShowActionToolBar="false" PageSize="2" AutoGenerateColumns="false"
-                AllowCascade="false" DataKeyNames="Fgsid">
+                AllowCascade="false" DataKeyNames="Supplierid">
                 <Columns>
                     <asp:TemplateField>
                         <ItemTemplate>

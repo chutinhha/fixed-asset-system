@@ -56,7 +56,7 @@ namespace FixedAsset.Web.Admin
                 Assetno = PageUtility.GetQueryStringValue("Assetno");
                 litState.Text = EnumUtil.RetrieveEnumDescript(AssetState.NoUse);
                 InitManageMode(ddlManagementModel, false);
-                InitFinanceCategory(ddlFinancecategory, true);
+                InitFinanceCategory(ddlFinancecategory, false);
                 LoadAssetCategory();
                 if(!string.IsNullOrEmpty(Assetno))
                 {
@@ -96,6 +96,7 @@ namespace FixedAsset.Web.Admin
                 if(assetInfo==null){assetInfo=new Asset();}
             }
             WriteControlValueToEntity(assetInfo);
+            assetInfo.State = AssetState.NoUse;
             AssetService.SaveAssetInfo(assetInfo);
             UIHelper.AlertMessageGoToURL(this.UpdatePanel1, "保存成功!", ResolveUrl("~/Admin/EquipmentList.aspx"));
         }
