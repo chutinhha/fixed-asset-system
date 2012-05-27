@@ -172,6 +172,20 @@
     <Compile Include="Admin\ProcurePlan_Add.aspx.designer.cs">
       <DependentUpon>ProcurePlan_Add.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\ProcurePlan_Approve.aspx.cs">
+      <DependentUpon>ProcurePlan_Approve.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ProcurePlan_Approve.aspx.designer.cs">
+      <DependentUpon>ProcurePlan_Approve.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ProcurePlan_View.aspx.cs">
+      <DependentUpon>ProcurePlan_View.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ProcurePlan_View.aspx.designer.cs">
+      <DependentUpon>ProcurePlan_View.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\RemoveList.aspx.cs">
       <DependentUpon>RemoveList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -428,6 +442,8 @@
     <Content Include="Admin\ProcurePlanDetail_Add.aspx" />
     <Content Include="Admin\ProcurePlanList.aspx" />
     <Content Include="Admin\ProcurePlan_Add.aspx" />
+    <Content Include="Admin\ProcurePlan_Approve.aspx" />
+    <Content Include="Admin\ProcurePlan_View.aspx" />
     <Content Include="Admin\RemoveList.aspx" />
     <Content Include="Admin\RepairList.aspx" />
     <Content Include="Admin\SelectSingleSubCompany.aspx" />

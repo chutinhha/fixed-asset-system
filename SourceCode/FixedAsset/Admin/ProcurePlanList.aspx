@@ -50,6 +50,9 @@
                                 审核结果
                             </td>
                             <td>
+                                创建日期
+                            </td>
+                            <td>
                                 操作
                             </td>
                         </tr>
@@ -79,6 +82,9 @@
                             </td>
                             <td>
                                 <%#EnumUtil.RetrieveEnumDescript((ApproveResult)Eval("Approveresult"))%>
+                            </td>
+                            <td>
+                                <%#((DateTime)Eval("Createddate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
                             <td align="right">
                                 <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"
@@ -114,6 +120,9 @@
                             </td>
                             <td>
                                 <%#EnumUtil.RetrieveEnumDescript((ApproveResult)Eval("Approveresult"))%>
+                            </td>
+                            <td>
+                                <%#((DateTime)Eval("Createddate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
                             <td align="right">
                                 <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"
