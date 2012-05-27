@@ -14,6 +14,18 @@ namespace FixedAsset.Web.Admin
     public partial class NewEquipment : BasePage
     {
         #region Properties
+        protected string Assetno
+        {
+            get
+            {
+                if (ViewState["Assetno"] == null)
+                {
+                    ViewState["Assetno"] = string.Empty;
+                }
+                return ViewState["Assetno"].ToString();
+            }
+            set { ViewState["Assetno"] = value; }
+        }
         protected IAssetcategoryService AssetcategoryService
         {
             get { return new AssetcategoryService(); }
@@ -29,6 +41,10 @@ namespace FixedAsset.Web.Admin
                 return Session["AssetCategories"] as List<Assetcategory>;
             }
         }
+        protected IAssetService AssetService
+        {
+            get { return new AssetService(); }
+        }
         #endregion
 
         #region Events
@@ -37,10 +53,27 @@ namespace FixedAsset.Web.Admin
             base.OnLoad(e);
             if(!IsPostBack)
             {
+                Assetno = PageUtility.GetQueryStringValue("Assetno");
                 litState.Text = EnumUtil.RetrieveEnumDescript(AssetState.NoUse);
                 InitManageMode(ddlManagementModel, false);
                 InitFinanceCategory(ddlFinancecategory, true);
                 LoadAssetCategory();
+                if(!string.IsNullOrEmpty(Assetno))
+                {
+                    var assetInfo = AssetService.RetrieveAssetByAssetno(Assetno);
+                    if(assetInfo!=null)
+                    {
+                        ReadEntityToControl(assetInfo);
+                    }
+                    else
+                    {
+                        LoadSubAssetCategory();
+                    }
+                }
+                else
+                {
+                    LoadSubAssetCategory();
+                }
             }
         }
         protected void ddlAssetCategory_SelectedIndexChanged(object sender, EventArgs e)
@@ -52,7 +85,19 @@ namespace FixedAsset.Web.Admin
         }
         protected void BtnSave_Click(object sender, EventArgs e)
         {
-
+            Asset assetInfo = null;
+            if(string.IsNullOrEmpty(Assetno))
+            {
+                assetInfo=new Asset();
+            }
+            else
+            {
+                assetInfo = AssetService.RetrieveAssetByAssetno(Assetno);
+                if(assetInfo==null){assetInfo=new Asset();}
+            }
+            WriteControlValueToEntity(assetInfo);
+            AssetService.SaveAssetInfo(assetInfo);
+            UIHelper.AlertMessageGoToURL(this.UpdatePanel1, "保存成功!", ResolveUrl("~/Admin/EquipmentList.aspx"));
         }
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
@@ -111,18 +156,19 @@ namespace FixedAsset.Web.Admin
             txtBrand.Text = asset.Brand;
             ddlManagementModel.SelectedValue = asset.Managemode.ToString();
             ddlManagementModel.SelectedValue = asset.Financecategory.ToString();
-            //txtSupplierid.Text = asset.Supplierid;
+            ucSelectSupplier.Supplierid = asset.Supplierid;
             if (asset.Purchasedate.HasValue)
             {
                 txtPurchasedate.Text = asset.Purchasedate.Value.ToString(UiConst.DateFormat);
             }
             txtAssetspecification.Text = asset.Assetspecification;
             //txtStorageflag.Text = asset.Storageflag;
-        }
-
+            ucSelectSubCompany.SubcompanyId = asset.Subcompany;
+        } 
         protected void WriteControlValueToEntity(Asset asset)
         {
             asset.Assetno = litAssetno.Text;
+            asset.Subcompany = ucSelectSubCompany.SubcompanyId;
             asset.Assetcategoryid = ddlSubAssetCategory.SelectedValue;
             asset.Assetname = txtAssetname.Text;
             asset.Storage = txtStorage.Text;
@@ -139,7 +185,7 @@ namespace FixedAsset.Web.Admin
             asset.Brand = txtBrand.Text;
             asset.Managemode = (ManageMode) Enum.Parse(typeof (ManageMode), ddlManagementModel.SelectedValue); 
             asset.Financecategory = (FinanceCategory)Enum.Parse(typeof(FinanceCategory), ddlFinancecategory.SelectedValue);
-            //asset.Supplierid = txtSupplierid.Text;
+            asset.Supplierid = ucSelectSupplier.Supplierid;
             DateTime purchasedate = DateTime.MinValue;
             if (DateTime.TryParse(txtPurchasedate.Text, out purchasedate))
             {
