@@ -132,8 +132,11 @@ namespace FixedAsset.Services
         {
             try
             {
+                var headInfo = Management.RetrieveProcurementscheduleheadByPsid(psid);
+                if(headInfo==null){return;}
+                headInfo.Approveresult = ApproveResult.Deleted;
                 Management.BeginTransaction();
-                Management.DeleteProcurementscheduleheadByPsid(psid);
+                Management.UpdateProcurementscheduleheadByPsid(headInfo);
                 Management.Commit();
             }
             catch

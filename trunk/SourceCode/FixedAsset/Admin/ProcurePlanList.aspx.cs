@@ -38,7 +38,14 @@ namespace FixedAsset.Web.Admin
                 var BtnEdit = e.Item.FindControl("BtnEdit") as ImageButton;
                 var BtnDeleted = e.Item.FindControl("BtnDeleted") as ImageButton;
                 var headInfo = e.Item.DataItem as Procurementschedulehead;
-                //BtnEdit.Attributes.Add("onclick", string.Format("javascript:window.location.href ='ProcurePlan_Add.aspx?Psid={0}';", headInfo.Psid));
+                if(headInfo.Approveresult==ApproveResult.Draft)
+                {
+                    BtnDeleted.Visible = true;
+                }
+                else
+                {
+                    BtnDeleted.Visible = false;
+                }
             }
         }
         protected void rptProcureList_ItemCommand(object sender, RepeaterCommandEventArgs e)
@@ -48,14 +55,27 @@ namespace FixedAsset.Web.Admin
             {
                 if (!string.IsNullOrEmpty(Psid))
                 {
-                    //ProcurementscheduledetailService.DeleteProcurementscheduledetailByDetailid(detailId);
-                    //var detailInfo = ProcureScheduleDetails.Where(p => p.Detailid == detailId).FirstOrDefault();
-                    //ProcureScheduleDetails.Remove(detailInfo);
+                    ProcurementscheduleheadService.DeleteProcurementscheduleheadByPsid(Psid);
+                    UIHelper.Alert(this,"删除成功");
+                    LoadData(pcData.CurrentIndex);
                 }
             }
             if (e.CommandName.Equals("EditDetail"))
             {
-                Response.Redirect(ResolveUrl(string.Format("~/Admin/ProcurePlan_Add.aspx?Psid={0}", Psid)));
+                var headInfo = ProcurementscheduleheadService.RetrieveProcurementscheduleheadByPsid(Psid);
+                if(headInfo==null){return;}
+                if (headInfo.Approveresult == ApproveResult.Draft)
+                {
+                    Response.Redirect(ResolveUrl(string.Format("~/Admin/ProcurePlan_Add.aspx?Psid={0}", Psid)));
+                }
+                else if (headInfo.Approveresult == ApproveResult.Approving)
+                {
+                    Response.Redirect(ResolveUrl(string.Format("~/Admin/ProcurePlan_Approve.aspx?Psid={0}", Psid)));
+                }
+                else 
+                {
+                    Response.Redirect(ResolveUrl(string.Format("~/Admin/ProcurePlan_View.aspx?Psid={0}", Psid)));
+                }
             }
         }
         #endregion
