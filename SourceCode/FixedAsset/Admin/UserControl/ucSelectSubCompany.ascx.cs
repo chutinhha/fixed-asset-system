@@ -10,6 +10,18 @@ namespace FixedAsset.Web.Admin.UserControl
 {
     public partial class ucSelectSubCompany : System.Web.UI.UserControl
     {
+        public bool IsShowSubCompanyName
+        {
+            get
+            {
+                if (ViewState["IsShowSubCompanyName"] == null)
+                {
+                    ViewState["IsShowSubCompanyName"] =false;
+                }
+                return bool.Parse(ViewState["IsShowSubCompanyName"].ToString());
+            }
+            set { ViewState["IsShowSubCompanyName"] = value; }
+        }
         public string SubcompanyId
         {
             get

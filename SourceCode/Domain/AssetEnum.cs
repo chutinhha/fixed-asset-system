@@ -29,6 +29,8 @@ namespace FixedAsset.Domain
         Approved = 2,
         [EnumDescript(Descript = "同意")]
         Rejected = 3,
+        [EnumDescript(Descript = "已废除")]
+        Deleted = 4,
     }
     /// <summary>
     /// 在用，未用，报废
