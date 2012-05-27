@@ -4,6 +4,7 @@ using System.Web.UI.WebControls;
 using FixedAsset.Domain;
 using FixedAsset.IServices;
 using FixedAsset.Services;
+using SeallNet.Utility;
 
 namespace FixedAsset.Web.Admin
 {
@@ -38,6 +39,7 @@ namespace FixedAsset.Web.Admin
                 var BtnEdit = e.Item.FindControl("BtnEdit") as ImageButton;
                 var BtnDeleted = e.Item.FindControl("BtnDeleted") as ImageButton;
                 var headInfo = e.Item.DataItem as Procurementschedulehead;
+                BtnEdit.AlternateText = EnumUtil.RetrieveEnumDescript(headInfo.Approveresult);
                 if(headInfo.Approveresult==ApproveResult.Draft)
                 {
                     BtnDeleted.Visible = true;
