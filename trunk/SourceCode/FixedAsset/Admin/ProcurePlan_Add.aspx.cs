@@ -30,7 +30,7 @@ namespace FixedAsset.Web.Admin
         {
             get { return new ProcurementscheduleheadService(); }
         }
-        public IProcurementscheduledetailService ProcurementscheduledetailService
+        protected IProcurementscheduledetailService ProcurementscheduledetailService
         {
             get { return new ProcurementscheduledetailService(); }
         }
@@ -45,6 +45,21 @@ namespace FixedAsset.Web.Admin
                 return Session["ProcurePlan_Add_Procurementscheduledetail"] as List<Procurementscheduledetail>;
             }
         }
+        protected IAssetcategoryService AssetcategoryService
+        {
+            get { return new AssetcategoryService(); }
+        }
+        protected List<Assetcategory> AssetCategories
+        {
+            get
+            {
+                if (Session["AssetCategories"] == null)
+                {
+                    Session["AssetCategories"] = new List<Assetcategory>();
+                }
+                return Session["AssetCategories"] as List<Assetcategory>;
+            }
+        }
         #endregion
 
         #region Events
@@ -53,7 +68,7 @@ namespace FixedAsset.Web.Admin
             base.OnLoad(e);
             if(!IsPostBack)
             {
-                ProcureScheduleDetails.Clear();
+                InitData();
                 Psid = PageUtility.GetQueryStringValue("Psid");
                 if(!string.IsNullOrEmpty(Psid))
                 {
@@ -183,6 +198,16 @@ namespace FixedAsset.Web.Admin
         #endregion
 
         #region Methods
+        protected void InitData()
+        {
+            AssetCategories.Clear();
+            ProcureScheduleDetails.Clear();
+            if (AssetCategories.Count == 0)
+            {
+                var list = AssetcategoryService.RetrieveAllAssetcategory();
+                AssetCategories.AddRange(list);
+            }
+        }
         protected void ReadEntityToControl(Procurementschedulehead headInfo)
         {
             litPsid.Text = headInfo.Psid;
@@ -228,6 +253,22 @@ namespace FixedAsset.Web.Admin
             //        ProcureScheduleDetails.Remove(info);
             //    }
             //}
+            foreach (var detail in ProcureScheduleDetails)
+            {
+                var subCategory =
+                    AssetCategories.Where(p => p.Assetcategoryid == detail.Assetcategoryid).FirstOrDefault();
+                if(subCategory==null)
+                {
+                    detail.CategoryAllPathName = detail.Assetcategoryid;
+                }
+                else
+                {
+                    var category =
+                        AssetCategories.Where(p => p.Assetcategoryid == subCategory.Assetparentcategoryid).
+                            FirstOrDefault();
+                    detail.CategoryAllPathName = string.Format(@"{0}-{1}",category.Assetcategoryname,subCategory.Assetcategoryname);
+                }
+            }
             rptProcureDetailList.DataSource = ProcureScheduleDetails;
             rptProcureDetailList.DataBind();
         }

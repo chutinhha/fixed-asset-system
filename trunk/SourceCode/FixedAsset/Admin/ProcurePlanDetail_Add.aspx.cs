@@ -63,7 +63,7 @@ namespace FixedAsset.Web.Admin
             base.OnLoad(e);
             if(!IsPostBack)
             {
-                AssetCategories.Clear();
+                //AssetCategories.Clear();
                 Detailid = PageUtility.GetQueryStringValue("Detailid");
                 LoadAssetCategory();
                 
@@ -112,9 +112,12 @@ namespace FixedAsset.Web.Admin
         {
              if(!IsPostBack)
              {
-                 var list = AssetcategoryService.RetrieveAllAssetcategory();
-                 AssetCategories.AddRange(list);
-                 var categories = list.Where(p => string.IsNullOrEmpty(p.Assetparentcategoryid)).ToList();
+                 if (AssetCategories.Count == 0)
+                 {
+                     var list = AssetcategoryService.RetrieveAllAssetcategory();
+                     AssetCategories.AddRange(list);
+                 }
+                 var categories = AssetCategories.Where(p => string.IsNullOrEmpty(p.Assetparentcategoryid)).ToList();
                  ddlAssetCategory.DataTextField = "Assetcategoryname";
                  ddlAssetCategory.DataValueField = "Assetcategoryid";
                  ddlAssetCategory.DataSource = categories;
