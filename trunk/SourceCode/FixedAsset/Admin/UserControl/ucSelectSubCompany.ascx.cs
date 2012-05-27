@@ -58,14 +58,14 @@ namespace FixedAsset.Web.Admin.UserControl
         }
         protected void LoadData()
         {
-            var lbfgsservice = new LbfgsService();
+            var subcompanyinfoService = new SubcompanyinfoService();
             decimal decSubcompanyId = 0;
             if(decimal.TryParse(SubcompanyId,out decSubcompanyId))
             {
-                var info = lbfgsservice.RetrieveLbfgsByFgsid(decSubcompanyId);
+                var info = subcompanyinfoService.RetrieveSubcompanyinfoBySubcompanyid(decSubcompanyId);
                 if (info != null)
                 {
-                    litSubCompanyName.Text = info.Fgs;
+                    litSubCompanyName.Text = info.Subcompanyname;
                 }  
             }
         }
