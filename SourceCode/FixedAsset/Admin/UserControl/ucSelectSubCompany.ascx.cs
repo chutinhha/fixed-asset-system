@@ -41,6 +41,7 @@ namespace FixedAsset.Web.Admin.UserControl
             if(!IsPostBack)
             {
                 btnSelectSingleSubCompany.Attributes.Add("onclick", string.Format("javascript:ShowTopDialogFrame('分公司选择', '{0}','SelectSingleSubCompany()',790,500);return false;", ResolveUrl("~/Admin/SelectSingleSubCompany.aspx")));
+                btnSelectSingleSubCompany.Visible = !IsShowSubCompanyName;
                 if (!string.IsNullOrEmpty(SubcompanyId))
                 {
                     LoadData();
@@ -58,10 +59,14 @@ namespace FixedAsset.Web.Admin.UserControl
         protected void LoadData()
         {
             var lbfgsservice = new LbfgsService();
-            var info = lbfgsservice.RetrieveLbfgsByFgsid(decimal.Parse(SubcompanyId));
-            if (info != null)
+            decimal decSubcompanyId = 0;
+            if(decimal.TryParse(SubcompanyId,out decSubcompanyId))
             {
-                litSubCompanyName.Text = info.Fgs;
+                var info = lbfgsservice.RetrieveLbfgsByFgsid(decSubcompanyId);
+                if (info != null)
+                {
+                    litSubCompanyName.Text = info.Fgs;
+                }  
             }
         }
     }
