@@ -110,6 +110,7 @@ namespace FixedAsset.Web.Admin
                 headInfo = ProcurementscheduleheadService.RetrieveProcurementscheduleheadByPsid(Psid);
                 if(headInfo==null){UIHelper.Alert(this.UpdatePanel1,"对不起，计划已被删除,请重新录入！");return;}
                 WriteControlValueToEntity(headInfo);
+                headInfo.Approveresult = ApproveResult.Draft;
                 ProcurementscheduleheadService.UpdateProcurementscheduleheadByPsid(headInfo, ProcureScheduleDetails);
             }
             UIHelper.AlertMessageGoToURL(this.UpdatePanel1, "保存成功!", ResolveUrl("~/Admin/ProcurePlanList.aspx"));

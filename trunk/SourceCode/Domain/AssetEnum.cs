@@ -24,11 +24,11 @@ namespace FixedAsset.Domain
         [EnumDescript(Descript = "草稿")]
         Draft = 0,
         [EnumDescript(Descript = "审核中")]
-        Approving = 10,
+        Approving = 1,
         [EnumDescript(Descript = "同意")]
-        Approved = 20,
+        Approved = 2,
         [EnumDescript(Descript = "同意")]
-        Rejected = 30,
+        Rejected = 3,
     }
     /// <summary>
     /// 在用，未用，报废
@@ -37,11 +37,11 @@ namespace FixedAsset.Domain
     public enum AssetState : int
     {
         [EnumDescript(Descript = "在用")]
-        InUse = 10,
+        InUse = 1,
         [EnumDescript(Descript = "未用")]
-        NoUse = 20,
+        NoUse = 2,
         [EnumDescript(Descript = "报废")]
-        Scrapped = 30,
+        Scrapped = 3,
     }
     ///Managemode
     /// /// <summary>
