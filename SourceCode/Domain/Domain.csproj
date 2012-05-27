@@ -66,6 +66,7 @@
     <Compile Include="Domain\Procurementschedulehead.cs" />
     <Compile Include="Domain\Roleinfo.cs" />
     <Compile Include="Domain\Rolepermission.cs" />
+    <Compile Include="Domain\Subcompanyinfo.cs" />
     <Compile Include="Domain\Tuser.cs" />
     <Compile Include="Domain\Usermaproleinfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="SearchObject\ProcurementscheduleheadSearch.cs" />
     <Compile Include="SearchObject\RoleinfoSearch.cs" />
     <Compile Include="SearchObject\RolepermissionSearch.cs" />
+    <Compile Include="SearchObject\SubcompanyinfoSearch.cs" />
     <Compile Include="SearchObject\TuserSearch.cs" />
     <Compile Include="SearchObject\UsermaproleinfoSearch.cs" />
   </ItemGroup>

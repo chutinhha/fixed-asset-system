@@ -67,6 +67,7 @@
     <Compile Include="AutoCode\ProcurementscheduleheadManagement.cs" />
     <Compile Include="AutoCode\RoleinfoManagement.cs" />
     <Compile Include="AutoCode\RolepermissionManagement.cs" />
+    <Compile Include="AutoCode\SubcompanyinfoManagement.cs" />
     <Compile Include="AutoCode\TuserManagement.cs" />
     <Compile Include="AutoCode\UsermaproleinfoManagement.cs" />
     <Compile Include="BaseManagement.cs" />
@@ -93,6 +94,7 @@
     <Compile Include="UserCode\ProcurementscheduleheadManagement.cs" />
     <Compile Include="UserCode\RoleinfoManagement.cs" />
     <Compile Include="UserCode\RolepermissionManagement.cs" />
+    <Compile Include="UserCode\SubcompanyinfoManagement.cs" />
     <Compile Include="UserCode\TuserManagement.cs" />
     <Compile Include="UserCode\UsermaproleinfoManagement.cs" />
   </ItemGroup>

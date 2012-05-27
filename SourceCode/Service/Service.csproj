@@ -56,6 +56,7 @@
     <Compile Include="BaseService.cs" />
     <Compile Include="LbfgsService.cs" />
     <Compile Include="LbfgsxmtService.cs" />
+    <Compile Include="SubcompanyinfoService.cs" />
     <Compile Include="SystemManagement\MenuitemService.cs" />
     <Compile Include="ProcurementcontractdetailService.cs" />
     <Compile Include="ProcurementcontractService.cs" />

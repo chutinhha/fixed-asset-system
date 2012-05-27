@@ -61,6 +61,7 @@
     <Compile Include="IProcurementscheduleheadService.cs" />
     <Compile Include="IRoleinfoService.cs" />
     <Compile Include="IRolepermissionService.cs" />
+    <Compile Include="ISubcompanyinfoService.cs" />
     <Compile Include="ITuserService.cs" />
     <Compile Include="IUsermaproleinfoService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
