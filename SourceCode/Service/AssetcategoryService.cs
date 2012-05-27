@@ -129,5 +129,15 @@ namespace FixedAsset.Services
         }
         #endregion
 
+
+
+        public List<Assetcategory> RetrieveAllAssetcategory()
+        {
+            return Management.RetrieveAllAssetcategory();
+        }
+        public List<Assetcategory> RetrieveAssetcategoryByParentAssetcategoryid(List<string> parentAssetcategoryids)
+        {
+            return Management.RetrieveAssetcategoryByParentAssetcategoryid(parentAssetcategoryids);
+        }
     }
 }
