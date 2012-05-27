@@ -129,7 +129,7 @@ namespace FixedAsset.Web.Admin
              if(ddlAssetCategory.SelectedIndex>=0)
              {
                  var subAssetCategories =
-                     AssetCategories.Where(p => p.Assetparentcategoryid == ddlSubAssetCategory.SelectedValue).ToList();
+                     AssetCategories.Where(p => p.Assetparentcategoryid == ddlAssetCategory.SelectedValue).ToList();
                  ddlSubAssetCategory.DataTextField = "Assetcategoryname";
                  ddlSubAssetCategory.DataValueField = "Assetcategoryid";
                  ddlSubAssetCategory.DataSource = subAssetCategories;
