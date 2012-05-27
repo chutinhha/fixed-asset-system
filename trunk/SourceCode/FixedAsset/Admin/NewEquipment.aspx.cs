@@ -85,6 +85,12 @@ namespace FixedAsset.Web.Admin
         }
         protected void BtnSave_Click(object sender, EventArgs e)
         {
+            DateTime dateTime = DateTime.MinValue;
+            if (!DateTime.TryParse(Request.Form[txtPurchasedate.UniqueID], out dateTime))
+            {
+                UIHelper.Alert(this.UpdatePanel1, "请选择计划采购日期");
+                return;
+            }
             Asset assetInfo = null;
             if(string.IsNullOrEmpty(Assetno))
             {
@@ -188,7 +194,7 @@ namespace FixedAsset.Web.Admin
             asset.Financecategory = (FinanceCategory)Enum.Parse(typeof(FinanceCategory), ddlFinancecategory.SelectedValue);
             asset.Supplierid = ucSelectSupplier.Supplierid;
             DateTime purchasedate = DateTime.MinValue;
-            if (DateTime.TryParse(txtPurchasedate.Text, out purchasedate))
+            if (DateTime.TryParse(Request.Form[txtPurchasedate.UniqueID], out purchasedate))
             {
                 asset.Purchasedate = purchasedate;
                 if(asset.Depreciationyear>0)

@@ -46,18 +46,23 @@
                                 </tr>
                                 <tr>
                                     <td style="width: 180px;">
-                                        设备名称:
+                                        设备名称: <span style="color: Red">*</span>
                                     </td>
                                     <td>
                                         <asp:TextBox ID="txtAssetname" runat="server" class="text_inp" Width="300px"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtAssetname"
+                                            Display="Dynamic" ErrorMessage="请输入设备名称！"></asp:RequiredFieldValidator>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style="width: 180px;">
-                                        设备规格:
+                                        设备规格: <span style="color: Red">*</span>
                                     </td>
                                     <td>
                                         <asp:TextBox ID="txtAssetspecification" runat="server" class="text_inp" Width="300px"></asp:TextBox>
+                                        
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtAssetspecification"
+                                            Display="Dynamic" ErrorMessage="请输入设备规格！"></asp:RequiredFieldValidator>
                                     </td>
                                 </tr>
                                 <tr>
@@ -78,7 +83,7 @@
                                 </tr>
                                 <tr>
                                     <td style="width: 180px;">
-                                        单价:
+                                        单价:<span style="color: Red">*</span>
                                     </td>
                                     <td>
                                         <asp:TextBox ID="txtUnitprice" runat="server" class="text_inp" Width="300px"></asp:TextBox>
@@ -106,7 +111,7 @@
                                         账务类别:
                                     </td>
                                     <td>
-                                        <asp:DropDownList ID="ddlFinancecategory" runat="server" Width="300px">
+                                        <asp:DropDownList ID="ddlFinancecategory" Enabled="false" runat="server" Width="300px">
                                         </asp:DropDownList>
                                     </td>
                                 </tr>
@@ -131,7 +136,7 @@
                                         购入日期:<span style="color: Red">*</span>
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="txtPurchasedate" class="text_inp" runat="server" Width="300"></asp:TextBox>
+                                        <asp:TextBox ID="txtPurchasedate" class="text_inp" runat="server" Width="300" onclick="new Calendar().show(this);"/>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtPurchasedate"
                                             Display="Dynamic" ErrorMessage="请选择设备购入日期！"></asp:RequiredFieldValidator>
                                     </td>
@@ -141,7 +146,9 @@
                                         折旧年限: <span style="color: Red">*</span>
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="txtDepreciationyear" class="text_inp" runat="server" Width="300px"></asp:TextBox>
+                                        <asp:TextBox ID="txtDepreciationyear" class="text_inp" runat="server" Width="300px" Text="10"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtDepreciationyear"
+                                            Display="Dynamic" ErrorMessage="请输入折旧年限！"></asp:RequiredFieldValidator>
                                     </td>
                                 </tr>
                                 <tr style="text-align: center">
