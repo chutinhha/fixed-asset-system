@@ -25,9 +25,24 @@ namespace FixedAsset.Web.Admin
             }
             set { ViewState["Detailid"] = value; }
         }
-        public IProcurementscheduledetailService ProcurementscheduledetailService
+        protected IProcurementscheduledetailService ProcurementscheduledetailService
         {
             get { return new ProcurementscheduledetailService(); }
+        }
+        protected IAssetcategoryService AssetcategoryService
+        {
+            get { return new AssetcategoryService(); }
+        }
+        protected List<Assetcategory> AssetCategories
+        {
+            get
+            {
+                if (Session["AssetCategories"] == null)
+                {
+                    Session["AssetCategories"] = new List<Assetcategory>();
+                }
+                return Session["AssetCategories"] as List<Assetcategory>;
+            }
         }
         protected List<Procurementscheduledetail> ProcureScheduleDetails
         {
@@ -48,7 +63,10 @@ namespace FixedAsset.Web.Admin
             base.OnLoad(e);
             if(!IsPostBack)
             {
+                AssetCategories.Clear();
                 Detailid = PageUtility.GetQueryStringValue("Detailid");
+                LoadAssetCategory();
+                
                 if(!string.IsNullOrEmpty(Detailid))
                 {
                     var detailInfo = ProcureScheduleDetails.Where(p => p.Detailid == Detailid).FirstOrDefault();
@@ -57,10 +75,19 @@ namespace FixedAsset.Web.Admin
                         ReadEntityToControl(detailInfo);
                     }
                 }
+                else
+                {
+                    LoadSubAssetCategory();
+                }
             }
         }
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            if(ddlSubAssetCategory.SelectedIndex<0)
+            {
+                UIHelper.Alert(this.UpdatePanel1,"请添加设备分类信息！");
+                return;
+            }
             var detailInfo = ProcureScheduleDetails.Where(p => p.Detailid == Detailid).FirstOrDefault();
             if (detailInfo == null)
             {
@@ -71,12 +98,54 @@ namespace FixedAsset.Web.Admin
             WriteControlValueToEntity(detailInfo);
             ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString("N"), "setCookie('dialogReturn_key','1',1);CloseTopDialogFrame();",true);
         }
+        protected void ddlAssetCategory_SelectedIndexChanged(object sender,EventArgs e)
+        {
+            if(ddlAssetCategory.SelectedIndex>=0)
+            {
+                LoadSubAssetCategory();
+            }
+        }
         #endregion
 
         #region Methods
+        protected void LoadAssetCategory()
+        {
+             if(!IsPostBack)
+             {
+                 var list = AssetcategoryService.RetrieveAllAssetcategory();
+                 AssetCategories.AddRange(list);
+                 var categories = list.Where(p => string.IsNullOrEmpty(p.Assetparentcategoryid)).ToList();
+                 ddlAssetCategory.DataTextField = "Assetcategoryname";
+                 ddlAssetCategory.DataValueField = "Assetcategoryid";
+                 ddlAssetCategory.DataSource = categories;
+                 ddlAssetCategory.DataBind();
+             }
+        }
+        protected void LoadSubAssetCategory()
+        {
+             if(ddlAssetCategory.SelectedIndex>=0)
+             {
+                 var subAssetCategories =
+                     AssetCategories.Where(p => p.Assetparentcategoryid == ddlSubAssetCategory.SelectedValue).ToList();
+                 ddlSubAssetCategory.DataTextField = "Assetcategoryname";
+                 ddlSubAssetCategory.DataValueField = "Assetcategoryid";
+                 ddlSubAssetCategory.DataSource = subAssetCategories;
+                 ddlSubAssetCategory.DataBind();
+             }
+        }
         protected void ReadEntityToControl(Procurementscheduledetail detailInfo)
         {
-            txtAssetcategoryid.Text = detailInfo.Assetcategoryid;
+            var subCategory =AssetCategories.Where(p => p.Assetcategoryid == detailInfo.Assetcategoryid).FirstOrDefault();
+            if (subCategory != null)
+            {
+                ddlAssetCategory.SelectedValue = subCategory.Assetparentcategoryid;
+                LoadSubAssetCategory();
+                ddlSubAssetCategory.SelectedValue = detailInfo.Assetcategoryid;
+            }
+            else
+            {
+                LoadSubAssetCategory();
+            }
             txtAssetname.Text = detailInfo.Assetname;
             txtAssetspecification.Text = detailInfo.Assetspecification;
             txtUnitprice.Text = detailInfo.Unitprice.ToString();
@@ -84,7 +153,8 @@ namespace FixedAsset.Web.Admin
         }
         protected void WriteControlValueToEntity(Procurementscheduledetail detailInfo)
         {
-            detailInfo.Assetcategoryid = txtAssetcategoryid.Text;
+            if (ddlSubAssetCategory.SelectedIndex>=0)
+            {detailInfo.Assetcategoryid = ddlSubAssetCategory.SelectedValue;}
             detailInfo.Assetname = txtAssetname.Text;
             detailInfo.Assetspecification = txtAssetspecification.Text;
             decimal unitprice = 0;

@@ -19,5 +19,7 @@ namespace FixedAsset.IServices
         Assetcategory UpdateAssetcategoryByAssetcategoryid(Assetcategory info);
         Assetcategory RetrieveAssetcategoryByAssetcategoryid(string assetcategoryid);
         void DeleteAssetcategoryByAssetcategoryid(string assetcategoryid);
+        List<Assetcategory> RetrieveAllAssetcategory();
+        List<Assetcategory> RetrieveAssetcategoryByParentAssetcategoryid(List<string> parentAssetcategoryids);
     }
 }
