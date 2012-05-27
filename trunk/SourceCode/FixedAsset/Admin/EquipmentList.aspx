@@ -68,7 +68,7 @@
             <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
                 align="center">
                 <asp:Repeater ID="rptAssetsList" runat="server" OnItemDataBound="rptAssetsList_ItemDataBound"
-                                                        OnItemCommand="rptAssetsList_ItemCommand">
+                    OnItemCommand="rptAssetsList_ItemCommand">
                     <HeaderTemplate>
                         <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
                             <td align="center">
@@ -106,7 +106,7 @@
                                 <%#Eval("Assetno")%>
                             </td>
                             <td>
-                                <%#Eval("Assetcategoryid")%>
+                                <asp:Literal ID="litCategoryName" runat="server" />
                             </td>
                             <td>
                                 <%#Eval("Assetname")%>
@@ -141,7 +141,7 @@
                                 <%#Eval("Assetno")%>
                             </td>
                             <td>
-                                <%#Eval("Assetcategoryid")%>
+                                <asp:Literal ID="litCategoryName" runat="server" />
                             </td>
                             <td>
                                 <%#Eval("Assetname")%>
