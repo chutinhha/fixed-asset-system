@@ -46,7 +46,7 @@
                                     <td>
                                         采购事由:
                                     </td>
-                                    <td>
+                                    <td style="word-wrap: break-word; overflow: hidden; width: 680px;">
                                         <asp:Label ID="litReason" class="text_inp" runat="server" />
                                     </td>
                                 </tr>
