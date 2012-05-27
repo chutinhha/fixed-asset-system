@@ -5,18 +5,38 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using FixedAsset.Domain;
+using FixedAsset.IServices;
 using FixedAsset.Services;
 
 namespace FixedAsset.Web.Admin
 {
     public partial class EquipmentList : BasePage
-    { 
+    {
+        #region Properties
+        protected IAssetcategoryService AssetcategoryService
+        {
+            get { return new AssetcategoryService(); }
+        }
+        protected List<Assetcategory> AssetCategories
+        {
+            get
+            {
+                if (Session["EquipmentListAssetCategories"] == null)
+                {
+                    Session["EquipmentListAssetCategories"] = new List<Assetcategory>();
+                }
+                return Session["EquipmentListAssetCategories"] as List<Assetcategory>;
+            }
+        }
+        #endregion
+
         #region Events
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
             if (!IsPostBack)
             {
+                AssetCategories.Clear();
                 LoadData(0);
             }
         }
@@ -32,6 +52,19 @@ namespace FixedAsset.Web.Admin
         {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
+                var litCategoryName = e.Item.FindControl("litCategoryName") as Literal;
+                var assetInfo = e.Item.DataItem as Asset;
+                var subCategory =AssetCategories.Where(p => p.Assetcategoryid == assetInfo.Assetcategoryid).FirstOrDefault();
+                if (subCategory == null)
+                {
+                    litCategoryName.Text = assetInfo.ToString();
+                }
+                else
+                {
+                    var category =AssetCategories.Where(p => p.Assetcategoryid == subCategory.Assetparentcategoryid).
+                            FirstOrDefault();
+                    litCategoryName.Text = string.Format(@"{0}-{1}", category.Assetcategoryname, subCategory.Assetcategoryname);
+                }
                 //var BtnEdit = e.Item.FindControl("BtnEdit") as ImageButton;
                 //var BtnDeleted = e.Item.FindControl("BtnDeleted") as ImageButton;
                 //var headInfo = e.Item.DataItem as Procurementschedulehead;
@@ -123,6 +156,17 @@ namespace FixedAsset.Web.Admin
             rptAssetsList.DataBind();
             pcData.RecordCount = recordCount;
             pcData.CurrentIndex = pageIndex;
+        }
+        protected void LoadAssetCategory()
+        {
+            if (!IsPostBack)
+            {
+                if (AssetCategories.Count == 0)
+                {
+                    var list = AssetcategoryService.RetrieveAllAssetcategory();
+                    AssetCategories.AddRange(list);
+                }
+            }
         }
         #endregion
     }
