@@ -20,7 +20,8 @@
             </p>
             <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
                 align="center">
-                <asp:Repeater ID="rptContactsList" runat="server">
+                <asp:Repeater ID="rptContactsList" runat="server"  OnItemDataBound="rptContactsList_ItemDataBound"
+                                                        OnItemCommand="rptContactsList_ItemCommand">
                     <HeaderTemplate>
                         <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
                             <td align="center">
@@ -57,10 +58,10 @@
                                 <%#((DateTime)Eval("Createddate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
                             <td align="right">
-                                <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/images/Button/edit.GIF"
-                                    AlternateText="编辑" ToolTip="编辑" />
+                                  <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/images/Button/edit.GIF"
+                                    AlternateText="编辑" ToolTip="编辑" CommandName="EditDetail" CommandArgument='<%#Eval("Contractid") %>' />
                                 <asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="~/images/Button/delete.GIF"
-                                    OnClientClick="return confirm('确认要删除吗？');" AlternateText="删除" ToolTip="删除" />
+                                    OnClientClick="return confirm('确认要删除吗？');" AlternateText="删除" ToolTip="删除" CommandName="DeleteDetail"  CommandArgument='<%#Eval("Contractid") %>' />
                             </td>
                         </tr>
                     </ItemTemplate>
@@ -82,9 +83,9 @@
                            
                             <td align="right">
                                 <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/images/Button/edit.GIF"
-                                    AlternateText="编辑" ToolTip="编辑" />
+                                    AlternateText="编辑" ToolTip="编辑" CommandName="EditDetail" CommandArgument='<%#Eval("Contractid") %>' />
                                 <asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="~/images/Button/delete.GIF"
-                                    OnClientClick="return confirm('确认要删除吗？');" AlternateText="删除" ToolTip="删除" />
+                                    OnClientClick="return confirm('确认要删除吗？');" AlternateText="删除" ToolTip="删除" CommandName="DeleteDetail"  CommandArgument='<%#Eval("Contractid") %>' />
                             </td>
                         </tr>
                     </AlternatingItemTemplate>
