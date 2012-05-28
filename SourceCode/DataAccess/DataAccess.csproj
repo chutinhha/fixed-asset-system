@@ -97,6 +97,7 @@
     <Compile Include="UserCode\SubcompanyinfoManagement.cs" />
     <Compile Include="UserCode\TuserManagement.cs" />
     <Compile Include="UserCode\UsermaproleinfoManagement.cs" />
+    <Compile Include="UserCode\VstorageaddressManagement.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj">

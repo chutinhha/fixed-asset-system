@@ -74,7 +74,7 @@ namespace FixedAsset.DataAccess
         {
             try
             {
-                StringBuilder sqlCommand = new StringBuilder(@" SELECT ""ASSET"".""ASSETNO"",""ASSET"".""ASSETCATEGORYID"",""ASSET"".""ASSETNAME"",""ASSET"".""STORAGE"",""ASSET"".""STATE"",
+                StringBuilder sqlCommand = new StringBuilder(@" SELECT ""ASSET"".""ASSETNO"",""ASSET"".""ASSETCATEGORYID"" AS ASSETCATEGORYID,""ASSET"".""ASSETNAME"",""ASSET"".""STORAGE"",""ASSET"".""STATE"",
                      ""ASSET"".""DEPRECIATIONYEAR"",""ASSET"".""UNITPRICE"",""ASSET"".""BRAND"",""ASSET"".""MANAGEMODE"",""ASSET"".""FINANCECATEGORY"",
                      ""ASSET"".""SUPPLIERID"",""ASSET"".""PURCHASEDATE"",""ASSET"".""EXPIREDDATE"",""ASSET"".""ASSETSPECIFICATION"",""ASSET"".""STORAGEFLAG"",
                      ""ASSET"".""SUBCOMPANY""
@@ -153,6 +153,28 @@ namespace FixedAsset.DataAccess
                     {
                         this.Database.AddInParameter(":State" + i.ToString(), info.States[i]);
                         sqlCommand.AppendLine(@" OR ""ASSET"".""STATE""=:State" + i.ToString());
+                    }
+                    sqlCommand.AppendLine(@" )");
+                }
+                if (info.FinanceCategories.Count > 0)
+                {
+                    this.Database.AddInParameter(":FINANCECATEGORY", info.FinanceCategories[0]);
+                    sqlCommand.AppendLine(@" AND (""ASSET"".""FINANCECATEGORY""=:FINANCECATEGORY");
+                    for (int i = 1; i < info.FinanceCategories.Count; i++)
+                    {
+                        this.Database.AddInParameter(":FINANCECATEGORY" + i.ToString(), info.FinanceCategories[i]);
+                        sqlCommand.AppendLine(@" OR ""ASSET"".""FINANCECATEGORY""=:FINANCECATEGORY" + i.ToString());
+                    }
+                    sqlCommand.AppendLine(@" )");
+                }
+                if (info.ManageModes.Count > 0)
+                {
+                    this.Database.AddInParameter(":MANAGEMODE", info.ManageModes[0]);
+                    sqlCommand.AppendLine(@" AND (""ASSET"".""MANAGEMODE""=:MANAGEMODE");
+                    for (int i = 1; i < info.States.Count; i++)
+                    {
+                        this.Database.AddInParameter(":MANAGEMODE" + i.ToString(), info.ManageModes[i]);
+                        sqlCommand.AppendLine(@" OR ""ASSET"".""MANAGEMODE""=:MANAGEMODE" + i.ToString());
                     }
                     sqlCommand.AppendLine(@" )");
                 }
