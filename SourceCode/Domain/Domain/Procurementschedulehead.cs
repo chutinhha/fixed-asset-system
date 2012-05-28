@@ -96,5 +96,12 @@ namespace FixedAsset.Domain
         ///</summary>
         public DateTime? Createddate{  get;set;}
         #endregion
+
+        #region 分公司名称
+        ///<summary>
+        ///ColumnName:分公司名称;Size:100;
+        ///</summary>
+        public string Subcompanyname { get; set; }
+        #endregion
     }
 }

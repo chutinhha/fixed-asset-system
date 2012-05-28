@@ -57,7 +57,7 @@ namespace FixedAsset.Web.Admin
                 var subCategory =AssetCategories.Where(p => p.Assetcategoryid == assetInfo.Assetcategoryid).FirstOrDefault();
                 if (subCategory == null)
                 {
-                    litCategoryName.Text = assetInfo.ToString();
+                    litCategoryName.Text = assetInfo.Assetcategoryid;
                 }
                 else
                 {

@@ -66,7 +66,7 @@
                                 <%#((DateTime)Eval("Procurementscheduledate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
                             <td>
-                                <%#Eval("Subcompany")%>
+                                <%#Eval("Subcompanyname")%>
                             </td>
                             <td>
                                 <%#Eval("Applyuser")%>
@@ -104,7 +104,7 @@
                                 <%#((DateTime)Eval("Procurementscheduledate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
                             <td>
-                                <%#Eval("Subcompany")%>
+                                <%#Eval("Subcompanyname")%>
                             </td>
                             <td>
                                 <%#Eval("Applyuser")%>
