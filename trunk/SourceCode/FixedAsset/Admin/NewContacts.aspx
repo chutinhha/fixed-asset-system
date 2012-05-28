@@ -1,4 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/MasterPage.master" AutoEventWireup="true" CodeBehind="NewContacts.aspx.cs" Inherits="FixedAsset.Web.Admin.NewContacts" %>
+<%@ Register Src="~/Admin/UserControl/ucSelectSupplier.ascx" TagName="ucSelectSupplier" TagPrefix="uc1" %> 
+<%@ Register Src="~/Admin/UserControl/ucSelectSubCompany.ascx" TagName="ucSelectSubCompany" TagPrefix="uc1" %> 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
   <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
     <script src="../Scripts/calendar.js" type="text/javascript"></script>
@@ -34,20 +36,28 @@
                                         签订日期:<span style="color: Red">*</span>
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="txtContactscheduledate" class="text_inp" runat="server" Width="300"></asp:TextBox>
+                                        <asp:TextBox ID="txtContactscheduledate" class="text_inp" runat="server" Width="300" onclick="new Calendar().show(this);"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtContactscheduledate"
                                             Display="Dynamic" ErrorMessage="请选择合同签订日期！"></asp:RequiredFieldValidator>
                                     </td>
                                 </tr>
-                               
+                                <tr>
+                                    <td>
+                                        分公司: <span style="color: Red">*</span>
+                                    </td>
+                                    <td>
+                                    <uc1:ucSelectSubCompany ID="ucSubCompany" runat="server" />
+                                    </td>
+                                </tr>
                                 <tr>
                                     <td>
                                         供应商: <span style="color: Red">*</span>
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="txtSuppliers" class="text_inp" runat="server" Width="300"></asp:TextBox>
+                                      <uc1:ucSelectSupplier ID="ucSelectSupplier" runat="server" />
+                                       <%-- <asp:TextBox ID="txtSuppliers" class="text_inp" runat="server" Width="300"></asp:TextBox>
                                         <asp:ImageButton ID="btnAppIdSelect" ImageUrl="../images/Button/PickUp.GIF" runat="server"
-                                            OnClientClick="ShowTopDialogFrame('供应商选择', 'return_m2mApplication.aspx','AppIdSelect()',790,500);return false;" />
+                                            OnClientClick="ShowTopDialogFrame('供应商选择', 'return_m2mApplication.aspx','AppIdSelect()',790,500);return false;" />--%>
                                     </td>
                                 </tr>
                                
@@ -77,7 +87,13 @@
                                             <div id="MyFile" style="display: block;">
                                                 <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
                                                     align="center">
-                                                    <asp:Repeater ID="rptProcureDetailList" runat="server">
+                                                     <tr style="border-bottom-width: 1px;">
+                                                        <td colspan="6" align="right">
+                                                            <input type="button" class="button" runat="server" id="Button1" value="新增" onclick="ShowTopDialogFrame('新增明细', 'ContactDetail_Add.aspx','RefreshDetail()',790,500);return false;" />
+                                                        </td>
+                                                    </tr>
+
+                                                    <asp:Repeater ID="rptContactDetailList" runat="server">
                                                         <HeaderTemplate>
                                                             <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
                                                                 <td>
@@ -86,8 +102,9 @@
                                                                 <td>
                                                                     设备名称
                                                                 </td>
+                                                              <td>设备规格</td>
                                                                 <td>
-                                                                    设备数量
+                                                                    采购数量
                                                                 </td>
                                                                 <td>
                                                                     单价
@@ -106,8 +123,9 @@
                                                                 <td>
                                                                     <%#Eval("Assetname")%>
                                                                 </td>
+                                                                  <td><%#Eval("Assetspecification")%></td>
                                                                 <td>
-                                                                    <%#Eval("Plannumber")%>
+                                                                    <%#Eval("Procurenumber")%>
                                                                 </td>
                                                                 <td>
                                                                     <%#Eval("Unitprice")%>
@@ -123,14 +141,15 @@
                                                         </ItemTemplate>
                                                         <AlternatingItemTemplate>
                                                             <tr class="alt-row">
-                                                                <td>
+                                                                 <td>
                                                                     <%#Eval("Assetcategoryid")%>
                                                                 </td>
                                                                 <td>
                                                                     <%#Eval("Assetname")%>
                                                                 </td>
-                                                                 <td>
-                                                                    <%#Eval("Plannumber")%>
+                                                                  <td><%#Eval("Assetspecification")%></td>
+                                                                <td>
+                                                                    <%#Eval("Procurenumber")%>
                                                                 </td>
                                                                 <td>
                                                                     <%#Eval("Unitprice")%>
@@ -146,6 +165,9 @@
                                                         </AlternatingItemTemplate>
                                                     </asp:Repeater>
                                                 </table>
+                                                 <div style="display: none;">
+                                                    <asp:Button ID="BtnRefreshDetail" OnClick="BtnRefreshDetail_Click" Width="0" runat="server"  CausesValidation="false"
+                                                        Text="Button" /></div>
                                             </div>
                                         </div>
                                     </td>
@@ -167,11 +189,11 @@
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
-    <script type="text/javascript" language="javascript">
-        function AppIdSelect() {
+    <script type="text/javascript" language="javascript">   
+        function RefreshDetail() {
             var returnValue = getCookie("dialogReturn_key");
-            if (returnValue != null) {
-                document.getElementById("<%=txtSuppliers.ClientID %>").value = returnValue;
+            if (returnValue != null) {                
+                document.getElementById("<%=BtnRefreshDetail.ClientID %>").click();
                 setCookie("dialogReturn_key", null);
             }
         }

@@ -67,6 +67,9 @@ namespace FixedAsset.Domain
         public decimal Procurenumber{  get;set;}
         #endregion
 
+
+        public string CategoryAllPathName { get; set; }
+
     }
 
     [Serializable]
