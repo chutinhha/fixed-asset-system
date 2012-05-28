@@ -44,19 +44,17 @@
                     <ItemTemplate>
                         <tr>
                             <td align="center">
-                                <%#Eval("Psid")%>
+                                <%#Eval("Contractid")%>
                             </td>
                             <td>
-                                <%#((DateTime)Eval("Procurementscheduledate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                <%#((DateTime)Eval("Contractdate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
                             <td>
                                 <%#Eval("Subcompany")%>
                             </td>
+                           
                             <td>
-                                <%#Eval("Applyuser")%>
-                            </td>
-                            <td>
-                                <%#((DateTime)Eval("Applydate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                <%#((DateTime)Eval("Createddate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
                             <td align="right">
                                 <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/images/Button/edit.GIF"
@@ -68,20 +66,18 @@
                     </ItemTemplate>
                     <AlternatingItemTemplate>
                         <tr class="alt-row">
-                            <td align="center">
-                                <%#Eval("Psid")%>
+                           <td align="center">
+                                <%#Eval("Contractid")%>
                             </td>
                             <td>
-                                <%#((DateTime)Eval("Procurementscheduledate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                <%#((DateTime)Eval("Contractdate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
                             <td>
                                 <%#Eval("Subcompany")%>
                             </td>
+                           
                             <td>
-                                <%#Eval("Applyuser")%>
-                            </td>
-                            <td>
-                                <%#((DateTime)Eval("Applydate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                <%#((DateTime)Eval("Createddate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
                            
                             <td align="right">

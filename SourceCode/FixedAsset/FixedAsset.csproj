@@ -75,6 +75,12 @@
       <DependentUpon>404.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Admin\ContactDetail_Add.aspx.cs">
+      <DependentUpon>ContactDetail_Add.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ContactDetail_Add.aspx.designer.cs">
+      <DependentUpon>ContactDetail_Add.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\ContractList.aspx.cs">
       <DependentUpon>ContractList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -308,6 +314,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="404.aspx" />
+    <Content Include="Admin\ContactDetail_Add.aspx" />
     <Content Include="Admin\ContractList.aspx" />
     <Content Include="Admin\css\default.css" />
     <Content Include="Admin\css\style.css" />

@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
+using System.Linq;
 using FixedAsset.Domain;
 using FixedAsset.DataAccess;
 using FixedAsset.IServices;
@@ -129,5 +130,72 @@ namespace FixedAsset.Services
         }
         #endregion
 
+
+
+        public Procurementcontract CreateProcurementcontract(Procurementcontract info, List<Procurementcontractdetail> detailInfos)
+        {
+
+            var coderuleManagement = new CoderuleManagement(Management);
+            info.Contractid = coderuleManagement.GenerateCodeRule(Procurementcontract.RuleCode, true);
+            foreach (var detailInfo in detailInfos)
+            {
+                detailInfo.Contractid = info.Contractid;
+            }
+            var detailManagement = new ProcurementcontractdetailManagement(Management);
+            try
+            {
+                Management.BeginTransaction();
+                Management.CreateProcurementcontract(info);
+                foreach (var detailInfo in detailInfos)
+                {
+                    detailManagement.CreateProcurementcontractdetail(detailInfo);
+                }
+                Management.Commit();
+            }
+            catch
+            {
+                Management.Rollback();
+                throw;
+            }
+            return info;
+        }
+
+        public Procurementcontract UpdateProcurementcontractByContractid(Procurementcontract info, List<Procurementcontractdetail> detailInfos)
+        {
+            foreach (var detailInfo in detailInfos)
+            {
+                detailInfo.Contractid = info.Contractid;
+            }
+            var detailManagement = new ProcurementcontractdetailManagement(Management);
+        
+            var dbContractDetails = detailManagement.RetrieveProcurementcontractdetailListByContractid(info.Contractid);
+          
+            try
+            {
+                Management.BeginTransaction();
+                Management.UpdateProcurementcontractByContractid(info);
+                
+                foreach (var detail in detailInfos)
+                {
+                    var existInfo = dbContractDetails.Where(p => p.Contractdetailid == detail.Contractdetailid).FirstOrDefault();
+                
+                    if (existInfo == null)
+                    {
+                        detailManagement.CreateProcurementcontractdetail(detail);
+                    }
+                    else
+                    {
+                        detailManagement.UpdateProcurementcontractdetailByContractdetailid(detail);
+                    }
+                }
+                Management.Commit();
+            }
+            catch
+            {
+                Management.Rollback();
+                throw;
+            }
+            return info;
+        }
     }
 }

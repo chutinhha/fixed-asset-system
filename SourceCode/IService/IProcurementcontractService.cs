@@ -15,8 +15,8 @@ namespace FixedAsset.IServices
     public interface IProcurementcontractService
     {
         List<Procurementcontract> RetrieveProcurementcontractsPaging(ProcurementcontractSearch info,int pageIndex, int pageSize,out int count);
-        Procurementcontract CreateProcurementcontract(Procurementcontract info);
-        Procurementcontract UpdateProcurementcontractByContractid(Procurementcontract info);
+        Procurementcontract CreateProcurementcontract(Procurementcontract info, List<Procurementcontractdetail> detailInfos);
+        Procurementcontract UpdateProcurementcontractByContractid(Procurementcontract info, List<Procurementcontractdetail> detailInfos);
         Procurementcontract RetrieveProcurementcontractByContractid(string contractid);
         void DeleteProcurementcontractByContractid(string contractid);
     }

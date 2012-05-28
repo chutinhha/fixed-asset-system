@@ -12,10 +12,10 @@ namespace FixedAsset.Web.Admin
     public partial class ContractList : BasePage
     {
         #region Properties
-        //protected IProcurementscheduleheadService ProcurementscheduleheadService
-        //{
-        //    get { return new ProcurementscheduleheadService(); }
-        //}
+        protected IProcurementcontractService ProcurementcontractService
+        {
+            get { return new ProcurementcontractService(); }
+        }
         #endregion
 
         #region Events
@@ -38,59 +38,14 @@ namespace FixedAsset.Web.Admin
         #region  Methods
         protected void LoadData(int pageIndex)
         {
-            //var search = new ProcurementscheduleheadSearch();
-            //search.Psid = txtSrchPsid.Text;
-            //DateTime startprocurementscheduledate = DateTime.MinValue;
-            //if (DateTime.TryParse(txtSrchStartProcurementscheduledate.Text, out startprocurementscheduledate))
-            //{
-            //    search.StartProcurementscheduledate = startprocurementscheduledate;
-            //}
-            //DateTime endprocurementscheduledate = DateTime.MinValue;
-            //if (DateTime.TryParse(txtSrchEndProcurementscheduledate.Text, out endprocurementscheduledate))
-            //{
-            //    search.EndProcurementscheduledate = endprocurementscheduledate;
-            //}
-            //search.Reason = txtSrchReason.Text;
-            //search.Subcompany = txtSrchSubcompany.Text;
-            //search.Applyuser = txtSrchApplyuser.Text;
-            //DateTime startapplydate = DateTime.MinValue;
-            //if (DateTime.TryParse(txtSrchStartApplydate.Text, out startapplydate))
-            //{
-            //    search.StartApplydate = startapplydate;
-            //}
-            //DateTime endapplydate = DateTime.MinValue;
-            //if (DateTime.TryParse(txtSrchEndApplydate.Text, out endapplydate))
-            //{
-            //    search.EndApplydate = endapplydate;
-            //}
-            //search.Approveuser = txtSrchApproveuser.Text;
-            //DateTime startapprovedate = DateTime.MinValue;
-            //if (DateTime.TryParse(txtSrchStartApprovedate.Text, out startapprovedate))
-            //{
-            //    search.StartApprovedate = startapprovedate;
-            //}
-            //DateTime endapprovedate = DateTime.MinValue;
-            //if (DateTime.TryParse(txtSrchEndApprovedate.Text, out endapprovedate))
-            //{
-            //    search.EndApprovedate = endapprovedate;
-            //}
-            //search.Rejectreason = txtSrchRejectreason.Text;
-            //DateTime startcreateddate = DateTime.MinValue;
-            //if (DateTime.TryParse(txtSrchStartCreateddate.Text, out startcreateddate))
-            //{
-            //    search.StartCreateddate = startcreateddate;
-            //}
-            //DateTime endcreateddate = DateTime.MinValue;
-            //if (DateTime.TryParse(txtSrchEndCreateddate.Text, out endcreateddate))
-            //{
-            //    search.EndCreateddate = endcreateddate;
-            //}
-
+            var search = new ProcurementcontractSearch();
+            search.Contractid = txtSrchPsid.Text;
+          
             int recordCount = 0;
-            //var list = ProcurementscheduleheadService.RetrieveProcurementscheduleheadsPaging(search, pageIndex, pcData.PageSize, out recordCount);
+            var list = ProcurementcontractService.RetrieveProcurementcontractsPaging(search, pageIndex, pcData.PageSize, out recordCount);
 
-            //rptContactsList.DataSource = list;
-            //rptContactsList.DataBind();
+            rptContactsList.DataSource = list;
+            rptContactsList.DataBind();
             pcData.RecordCount = recordCount;
             pcData.CurrentIndex = pageIndex;
         }
