@@ -64,7 +64,7 @@ namespace FixedAsset.Web.Admin
             if (!IsPostBack)
             {
                 //AssetCategories.Clear();
-                Detailid = PageUtility.GetQueryStringValue("Detailid");
+                Detailid = PageUtility.GetQueryStringValue("Contractdetailid");
                 LoadAssetCategory();
 
                 if (!string.IsNullOrEmpty(Detailid))

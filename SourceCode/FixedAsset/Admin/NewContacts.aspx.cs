@@ -82,6 +82,44 @@ namespace FixedAsset.Web.Admin
                 LoadDetailList();
             }
         }
+
+        protected void rptContactDetailList_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                var BtnEdit = e.Item.FindControl("BtnEdit") as ImageButton;
+                var BtnDeleted = e.Item.FindControl("BtnDeleted") as ImageButton;
+                var detailInfo = e.Item.DataItem as Procurementcontractdetail;
+                if (string.IsNullOrEmpty(detailInfo.Contractdetailid))
+                {
+                    BtnEdit.Visible = false;
+                    BtnDeleted.Visible = false;
+                }
+                else
+                {
+                    BtnEdit.Attributes.Add("onclick", string.Format("ShowTopDialogFrame('修改明细', 'ContactDetail_Add.aspx?Contractdetailid={0}','RefreshDetail()',790,500);return false;", detailInfo.Contractdetailid));
+                }
+            }
+        }
+        protected void rptContactDetailList_ItemCommand(object sender, RepeaterCommandEventArgs e)
+        {
+            var detailId = e.CommandArgument.ToString();
+            if (e.CommandName.Equals("DeleteDetail"))
+            {
+                if (!string.IsNullOrEmpty(detailId))
+                {
+                    if (!string.IsNullOrEmpty(Contractid)) { ProcurementcontractdetailService.DeleteProcurementcontractdetailByContractdetailid(detailId); }
+                    var detailInfo = ProcurementContractDetail.Where(p => p.Contractdetailid == detailId).FirstOrDefault();
+                    ProcurementContractDetail.Remove(detailInfo);
+                    LoadDetailList();
+                }
+            }
+            if (e.CommandName.Equals("EditDetail"))
+            {
+
+            }
+        }
+
         /// <summary>
         /// 保存
         /// </summary>

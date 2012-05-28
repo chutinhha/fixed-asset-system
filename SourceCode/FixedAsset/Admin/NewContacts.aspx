@@ -93,7 +93,8 @@
                                                         </td>
                                                     </tr>
 
-                                                    <asp:Repeater ID="rptContactDetailList" runat="server">
+                                                    <asp:Repeater ID="rptContactDetailList" runat="server" OnItemDataBound="rptContactDetailList_ItemDataBound"
+                                                        OnItemCommand="rptContactDetailList_ItemCommand">
                                                         <HeaderTemplate>
                                                             <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
                                                                 <td>
@@ -132,10 +133,10 @@
                                                                 </td>
                                                                 
                                                                 <td align="right">
-                                                                    <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/images/Button/edit.GIF"
-                                                                        AlternateText="编辑" ToolTip="编辑" />
-                                                                    <asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="~/images/Button/delete.GIF"
-                                                                        OnClientClick="return confirm('确认要删除吗？');" AlternateText="删除" ToolTip="删除" />
+                                                                    <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"
+                                                                        AlternateText="编辑" ToolTip="编辑" CommandArgument='<%#Eval("Contractdetailid")%>' CommandName="EditDetail"  />
+                                                                    <asp:ImageButton ID="BtnDeleted" runat="server" ImageUrl="~/images/Button/delete.GIF"
+                                                                          CommandArgument='<%#Eval("Contractdetailid")%>' CommandName="DeleteDetail" OnClientClick="return confirm('确认要删除吗？');" AlternateText="删除" ToolTip="删除" />
                                                                 </td>
                                                             </tr>
                                                         </ItemTemplate>
@@ -156,10 +157,10 @@
                                                                 </td>
                                                               
                                                                 <td align="right">
-                                                                    <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/images/Button/edit.GIF"
-                                                                        AlternateText="编辑" ToolTip="编辑" />
-                                                                    <asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="~/images/Button/delete.GIF"
-                                                                        OnClientClick="return confirm('确认要删除吗？');" AlternateText="删除" ToolTip="删除" />
+                                                                     <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"
+                                                                        AlternateText="编辑" ToolTip="编辑" CommandArgument='<%#Eval("Contractdetailid")%>' CommandName="EditDetail"  />
+                                                                    <asp:ImageButton ID="BtnDeleted" runat="server" ImageUrl="~/images/Button/delete.GIF"
+                                                                          CommandArgument='<%#Eval("Contractdetailid")%>' CommandName="DeleteDetail" OnClientClick="return confirm('确认要删除吗？');" AlternateText="删除" ToolTip="删除" />
                                                                 </td>
                                                             </tr>
                                                         </AlternatingItemTemplate>
