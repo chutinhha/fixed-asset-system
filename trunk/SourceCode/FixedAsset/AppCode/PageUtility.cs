@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 
@@ -325,5 +326,40 @@ namespace FixedAsset.Web
             return str5;
         }
         #endregion
+
+        public static List<string> SplitToStrings(string value)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                return new List<string>();
+            }
+            var values = value.Split(',');
+            if (values.Length == 0)
+            {
+                return new List<string>();
+            }
+            else
+            {
+                return values.Where(p => !string.IsNullOrEmpty(p)).Select(p => p).ToList();
+            }
+        }
+        public static string ListToString(List<string> values)
+        {
+            if (values.Count == 0)
+            {
+                return string.Empty;
+            }
+            else
+            {
+                var content = new StringBuilder();
+                foreach (var value in values)
+                {
+                    content.Append(value).Append(",");
+                }
+                var temp = content.ToString();
+                temp = temp.Substring(0, temp.LastIndexOf(','));
+                return temp;
+            }
+        }
     }
 }
