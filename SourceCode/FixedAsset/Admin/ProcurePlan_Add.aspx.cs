@@ -91,6 +91,11 @@ namespace FixedAsset.Web.Admin
                 UIHelper.Alert(UpdatePanel1, "请选择计划采购日期");
                 return; 
             }
+            if (string.IsNullOrEmpty(ucSubCompany.SubcompanyId))
+            {
+                UIHelper.Alert(UpdatePanel1, "请选择分公司!");
+                return;
+            }
             if (!DateTime.TryParse(Request.Form[txtApplydate.UniqueID], out dateTime))
             {
                 UIHelper.Alert(UpdatePanel1, "请选择申请日期");
@@ -121,6 +126,11 @@ namespace FixedAsset.Web.Admin
             if (!DateTime.TryParse(Request.Form[txtProcurementscheduledate.UniqueID], out dateTime))
             {
                 UIHelper.Alert(this.UpdatePanel1, "请选择计划采购日期");
+                return;
+            }
+            if (string.IsNullOrEmpty(ucSubCompany.SubcompanyId))
+            {
+                UIHelper.Alert(UpdatePanel1, "请选择分公司!");
                 return;
             }
             if (!DateTime.TryParse(Request.Form[txtApplydate.UniqueID], out dateTime))
