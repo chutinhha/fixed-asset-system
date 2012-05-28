@@ -145,7 +145,17 @@ namespace FixedAsset.DataAccess
                     this.Database.AddInParameter(":Subcompany", DbType.AnsiString, "%" + info.Subcompany + "%");
                     sqlCommand.AppendLine(@" AND ""ASSET"".""SUBCOMPANY"" LIKE :Subcompany");
                 }
-
+                if (info.States.Count > 0)
+                {
+                    this.Database.AddInParameter(":State", info.States[0]);
+                    sqlCommand.AppendLine(@" AND (""ASSET"".""STATE""=:State");
+                    for (int i = 1; i < info.States.Count; i++)
+                    {
+                        this.Database.AddInParameter(":State" + i.ToString(), info.States[i]);
+                        sqlCommand.AppendLine(@" OR ""ASSET"".""STATE""=:State" + i.ToString());
+                    }
+                    sqlCommand.AppendLine(@" )");
+                }
                 sqlCommand.AppendLine(@"  ORDER BY ""ASSET"".""ASSETNO"" DESC");
                 return this.ExecuteReaderPaging<Asset>(sqlCommand.ToString(), pageIndex, pageSize, out count);
             }

@@ -102,5 +102,16 @@ namespace FixedAsset.Domain
         ///</summary>
         public string Subcompany { get; set; }
         #endregion
+
+        #region �豸״̬
+        private readonly List<AssetState> _states = new List<AssetState>();
+        public List<AssetState> States
+        {
+            get
+            {
+                return _states;
+            }
+        }
+        #endregion
     }
 }
