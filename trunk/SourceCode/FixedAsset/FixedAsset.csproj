@@ -209,6 +209,13 @@
     <Compile Include="Admin\RepairList.aspx.designer.cs">
       <DependentUpon>RepairList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\SelectMultiProcurePlan.aspx.cs">
+      <DependentUpon>SelectMultiProcurePlan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\SelectMultiProcurePlan.aspx.designer.cs">
+      <DependentUpon>SelectMultiProcurePlan.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\SelectSingleSubCompany.aspx.cs">
       <DependentUpon>SelectSingleSubCompany.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -237,6 +244,12 @@
     <Compile Include="Admin\SelectStorageAddress.aspx.designer.cs">
       <DependentUpon>SelectStorageAddress.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\UserControl\ucMultiSelectProcurePlans.ascx.cs">
+      <DependentUpon>ucMultiSelectProcurePlans.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\UserControl\ucMultiSelectProcurePlans.ascx.designer.cs">
+      <DependentUpon>ucMultiSelectProcurePlans.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\UserControl\ucSelectAsset.ascx.cs">
       <DependentUpon>ucSelectAsset.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -246,6 +259,7 @@
     </Compile>
     <Compile Include="Admin\UserControl\ucSelectStorageAddress.ascx.cs">
       <DependentUpon>ucSelectStorageAddress.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\UserControl\ucSelectStorageAddress.ascx.designer.cs">
       <DependentUpon>ucSelectStorageAddress.ascx</DependentUpon>
@@ -483,10 +497,12 @@
     <Content Include="Admin\ProcurePlan_View.aspx" />
     <Content Include="Admin\RemoveList.aspx" />
     <Content Include="Admin\RepairList.aspx" />
+    <Content Include="Admin\SelectMultiProcurePlan.aspx" />
     <Content Include="Admin\SelectSingleSubCompany.aspx" />
     <Content Include="Admin\SelectSingleSupplier.aspx" />
     <Content Include="Admin\SelectSingleUsers.aspx" />
     <Content Include="Admin\SelectStorageAddress.aspx" />
+    <Content Include="Admin\UserControl\ucMultiSelectProcurePlans.ascx" />
     <Content Include="Admin\UserControl\ucSelectAsset.ascx" />
     <Content Include="Admin\UserControl\ucSelectStorageAddress.ascx" />
     <Content Include="Admin\UserControl\ucSelectSubCompany.ascx" />
