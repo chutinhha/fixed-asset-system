@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/MasterPage.master" AutoEventWireup="true"
-    CodeFile="user_edit.aspx.cs" Inherits="FixedAsset.Web.Admin.user_edit" %>
+    CodeBehind="user_edit.aspx.cs" Inherits="FixedAsset.Web.Admin.user_edit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>

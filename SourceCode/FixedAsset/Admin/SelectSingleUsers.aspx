@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SelectSingleUsers.aspx.cs"
     Inherits="FixedAsset.Web.Admin.SelectSingleUsers" %>
 
-<%--<%@ Page Language="C#" AutoEventWireup="true" CodeFile="return_user.aspx.cs" Inherits="Admin_return_user" %>--%>
+<%--<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="return_user.aspx.cs" Inherits="Admin_return_user" %>--%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@ Register Assembly="iKC.Web" Namespace="iKC.Web.UI.WebControls" TagPrefix="asp" %>
 <%@ Register Assembly="KFSQ.Web.Controls" Namespace="KFSQ.Web.Controls" TagPrefix="cc1" %>
