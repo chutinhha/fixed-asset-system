@@ -14,6 +14,7 @@ namespace FixedAsset.IServices
 {
     public interface IAssetService
     {
+        List<Vstorageaddress> RetrieveAllVstorageaddress();
         List<Asset> RetrieveAssetsPaging(AssetSearch info,int pageIndex, int pageSize,out int count);
         //Asset CreateAsset(Asset info);
         //Asset UpdateAssetByAssetno(Asset info);

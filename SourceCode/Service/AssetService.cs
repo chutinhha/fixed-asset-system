@@ -170,5 +170,11 @@ namespace FixedAsset.Services
                 throw;
             }
         }
+
+        public List<Vstorageaddress> RetrieveAllVstorageaddress()
+        {
+            var addressManagement= new VstorageaddressManagement(Management);
+            return addressManagement.RetrieveAllVstorageaddress();
+        }
     }
 }
