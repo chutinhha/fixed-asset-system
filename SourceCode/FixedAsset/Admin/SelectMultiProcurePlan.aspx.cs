@@ -5,12 +5,31 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using FixedAsset.Domain;
+using FixedAsset.IServices;
 using FixedAsset.Services;
 
 namespace FixedAsset.Web.Admin
 {
     public partial class SelectMultiProcurePlan : System.Web.UI.Page
     {
+        #region Properties
+        protected IProcurementscheduleheadService ProcurementscheduleheadService
+        {
+            get { return new ProcurementscheduleheadService(); }
+        }
+        public List<string> PsIds
+        {
+            get
+            {
+                if (ViewState["PsIds"] == null)
+                {
+                    ViewState["PsIds"] = new List<string>();
+                }
+                return ViewState["PsIds"] as List<string>;
+            }
+        }
+        #endregion
+
         #region Events
         protected override void OnLoad(EventArgs e)
         {
@@ -37,35 +56,64 @@ namespace FixedAsset.Web.Admin
         /// <param name="e"></param>
         protected void pcData_PageIndexClick(object sender, KFSQ.Web.Controls.PageIndexClickEventArgs e)
         {
+            CheckSelectedProcurePlan();
             LoadData(e.PageIndex);
         }
-        protected void radioSelected_CheckedChanged(object sender, EventArgs e)
+        protected void rptProcureList_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            var rdb = sender as RadioButton;
-
-            foreach (GridViewRow row in gvSubCompanies.Rows)
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
-                var radioButton = row.FindControl("radioSelected") as RadioButton;
-                if (radioButton == rdb) continue;
-                radioButton.Checked = false;
+                if (PsIds.Count > 0)
+                {
+                    var ckbPsId = e.Item.FindControl("ckbPsId") as CheckBox;
+                    if (PsIds.Contains(ckbPsId.Text.Trim()))
+                    {
+                        ckbPsId.Checked = true;
+                    }
+                }
             }
         }
         protected void btnOk_Click(object sender, EventArgs e)
         {
-            string returnValue = string.Empty;
-            foreach (GridViewRow gvr in gvSubCompanies.Rows)
-            {
-                if (((RadioButton)gvr.FindControl("radioSelected")).Checked)
-                {
-                    returnValue = (gvr.FindControl("lblSubCompanyId") as Label).Text;
-                    break;
-                }
-            }
+            var returnValue = PageUtility.ListToString(PsIds);
             ClientScript.RegisterStartupScript(this.GetType(), "", "<script>setCookie('dialogReturn_key','" + returnValue + "',1);CloseTopDialogFrame();</script>");
         }
         #endregion
 
         #region Methods
+        protected void CheckSelectedProcurePlan()
+        {
+            if (rptProcureList.Items.Count > 0)
+            {
+                for (int i = 0; i < rptProcureList.Items.Count; i++)
+                {
+                    var ckbPsId = rptProcureList.Items[i].FindControl("ckbPsId") as CheckBox;
+                    if (ckbPsId != null)
+                    {
+                        if (ckbPsId.Checked)
+                        {
+                            //选中，加到viewstate中来
+                            if (!PsIds.Contains(ckbPsId.Text.Trim()))
+                            {
+                                PsIds.Add(ckbPsId.Text.Trim());
+                            }
+                        }
+                        else
+                        {
+                            //取消选择，需要从viewstate里删除
+                            if (PsIds.Contains(ckbPsId.Text.Trim()))
+                            {
+                                PsIds.Remove(ckbPsId.Text.Trim());
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                PsIds.Clear();
+            }
+        }
         protected void ClearBrowserCache()
         {
             Response.Buffer = true;
@@ -74,13 +122,12 @@ namespace FixedAsset.Web.Admin
         }
         protected void LoadData(int pageIndex)
         {
-            var search = new SubcompanyinfoSearch();
-            search.Subcompanyname = txtSrchSubcompanyname.Text;
-            var subcompanyinfoService = new SubcompanyinfoService();
+            var search = new ProcurementscheduleheadSearch();
+            search.Psid = txtSrchPsid.Text;
             int recordCount = 0;
-            var list = subcompanyinfoService.RetrieveSubcompanyinfosPaging(search, pageIndex, pcData.PageSize, out recordCount);
-            gvSubCompanies.DataSource = list;
-            gvSubCompanies.DataBind();
+            var list = ProcurementscheduleheadService.RetrieveProcurementscheduleheadsPaging(search, pageIndex, pcData.PageSize, out recordCount);
+            rptProcureList.DataSource = list;
+            rptProcureList.DataBind();
             pcData.RecordCount = recordCount;
             pcData.CurrentIndex = pageIndex;
         }

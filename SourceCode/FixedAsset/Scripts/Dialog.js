@@ -403,6 +403,17 @@ function ReloadDefault(menuid,url,type)
         window.parent.location.href = '/Default.aspx?menu=' + menuid + '&openUrl=('+url+')';
     }
 }
-
-
-
+function AllChooseOrNoChoose(divControlId, checkBoxControl) {
+    var divControl = document.getElementById(divControlId);
+    if (divControl == null || checkBoxControl == null) {
+        return;
+    }
+    var controls = divControl.getElementsByTagName("input");
+    if (controls.length > 0) {
+        for (var i = 0; i < controls.length; i++) {
+            if (controls[i].type == 'checkbox') {
+                controls[i].checked = checkBoxControl.checked;
+            }
+        }
+    }
+}

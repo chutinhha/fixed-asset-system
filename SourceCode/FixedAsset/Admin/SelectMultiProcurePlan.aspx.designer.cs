@@ -31,13 +31,13 @@ namespace FixedAsset.Web.Admin {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// txtSrchSubcompanyname 控件。
+        /// txtSrchPsid 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSrchSubcompanyname;
+        protected global::System.Web.UI.WebControls.TextBox txtSrchPsid;
         
         /// <summary>
         /// btnSearch 控件。
@@ -49,13 +49,13 @@ namespace FixedAsset.Web.Admin {
         protected global::System.Web.UI.WebControls.Button btnSearch;
         
         /// <summary>
-        /// gvSubCompanies 控件。
+        /// rptProcureList 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::iKC.Web.UI.WebControls.SGridView gvSubCompanies;
+        protected global::System.Web.UI.WebControls.Repeater rptProcureList;
         
         /// <summary>
         /// pcData 控件。
