@@ -91,6 +91,16 @@ namespace FixedAsset.Web.Admin
                 UIHelper.Alert(this.UpdatePanel1, "请选择计划采购日期");
                 return;
             }
+            if (string.IsNullOrEmpty(ucSelectSubCompany.SubcompanyId))
+            {
+                UIHelper.Alert(UpdatePanel1, "请选择分公司!");
+                return;
+            }
+            if (string.IsNullOrEmpty(ucSelectSupplier.Supplierid))
+            {
+                UIHelper.Alert(UpdatePanel1, "请选择供应商!");
+                return;
+            }
             Asset assetInfo = null;
             if(string.IsNullOrEmpty(Assetno))
             {
