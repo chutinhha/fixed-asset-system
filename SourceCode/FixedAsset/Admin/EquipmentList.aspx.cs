@@ -17,6 +17,13 @@ namespace FixedAsset.Web.Admin
         {
             get { return new AssetcategoryService(); }
         }
+        protected IAssetService AssetService
+        {
+            get
+            {
+                return new AssetService();
+            }
+        }
         protected List<Assetcategory> AssetCategories
         {
             get
@@ -121,7 +128,7 @@ namespace FixedAsset.Web.Admin
         }
         protected void LoadData(int pageIndex)
         {
-            AssetSearch search = new AssetSearch();
+            var search = new AssetSearch();
             search.Assetno = txtSrchAssetno.Text;
             if(ddlEquipmentStatus.SelectedIndex>0)
             {
@@ -162,9 +169,8 @@ namespace FixedAsset.Web.Admin
             //}
             //search.Assetspecification = txtSrchAssetspecification.Text;
             //search.Storageflag = txtSrchStorageflag.Text;
-            var assetservice = new AssetService();
             int recordCount = 0;
-            var list = assetservice.RetrieveAssetsPaging(search, pageIndex, pcData.PageSize, out recordCount);
+            var list = AssetService.RetrieveAssetsPaging(search, pageIndex, pcData.PageSize, out recordCount);
             rptAssetsList.DataSource = list;
             rptAssetsList.DataBind();
             pcData.RecordCount = recordCount;
