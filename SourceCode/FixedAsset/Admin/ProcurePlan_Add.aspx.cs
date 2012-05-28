@@ -88,12 +88,12 @@ namespace FixedAsset.Web.Admin
             DateTime dateTime = DateTime.MinValue;
             if (!DateTime.TryParse(Request.Form[txtProcurementscheduledate.UniqueID],out dateTime))
             {
-                UIHelper.Alert(this.UpdatePanel1, "请选择计划采购日期");
+                UIHelper.Alert(UpdatePanel1, "请选择计划采购日期");
                 return; 
             }
             if (!DateTime.TryParse(Request.Form[txtApplydate.UniqueID], out dateTime))
             {
-                UIHelper.Alert(this.UpdatePanel1, "请选择申请日期");
+                UIHelper.Alert(UpdatePanel1, "请选择申请日期");
                 return;
             }
             Procurementschedulehead headInfo = null;

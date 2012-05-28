@@ -78,7 +78,7 @@ namespace FixedAsset.Domain
 
         #region 计划采购单号
         ///<summary>
-        ///ColumnName:计划采购单号          ;Size:50;
+        ///ColumnName:计划采购单号
         ///</summary>
         public string Psid{  get;set;}
         #endregion
