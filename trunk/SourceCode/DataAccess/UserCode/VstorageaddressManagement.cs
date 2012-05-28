@@ -4,10 +4,17 @@ using System.Linq;
 using System.Text;
 using FixedAsset.Domain;
 
-namespace FixedAsset.DataAccess.UserCode
+namespace FixedAsset.DataAccess
 {
     public class VstorageaddressManagement : BaseManagement
     {
+        #region Construct 
+        public VstorageaddressManagement()
+        { }
+        public VstorageaddressManagement(BaseManagement baseManagement)
+            : base(baseManagement)
+        { }
+        #endregion
         public List<Vstorageaddress>  RetrieveAllVstorageaddress()
         {
             try

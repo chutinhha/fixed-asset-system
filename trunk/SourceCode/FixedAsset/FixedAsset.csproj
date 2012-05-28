@@ -77,6 +77,7 @@
     </Compile>
     <Compile Include="Admin\ContactDetail_Add.aspx.cs">
       <DependentUpon>ContactDetail_Add.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\ContactDetail_Add.aspx.designer.cs">
       <DependentUpon>ContactDetail_Add.aspx</DependentUpon>
@@ -229,12 +230,25 @@
     <Compile Include="Admin\SelectSingleUsers.aspx.designer.cs">
       <DependentUpon>SelectSingleUsers.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\SelectStorageAddress.aspx.cs">
+      <DependentUpon>SelectStorageAddress.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\SelectStorageAddress.aspx.designer.cs">
+      <DependentUpon>SelectStorageAddress.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\UserControl\ucSelectAsset.ascx.cs">
       <DependentUpon>ucSelectAsset.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\UserControl\ucSelectAsset.ascx.designer.cs">
       <DependentUpon>ucSelectAsset.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\UserControl\ucSelectStorageAddress.ascx.cs">
+      <DependentUpon>ucSelectStorageAddress.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\UserControl\ucSelectStorageAddress.ascx.designer.cs">
+      <DependentUpon>ucSelectStorageAddress.ascx</DependentUpon>
     </Compile>
     <Compile Include="Admin\UserControl\ucSelectSubCompany.ascx.cs">
       <DependentUpon>ucSelectSubCompany.ascx</DependentUpon>
@@ -472,7 +486,9 @@
     <Content Include="Admin\SelectSingleSubCompany.aspx" />
     <Content Include="Admin\SelectSingleSupplier.aspx" />
     <Content Include="Admin\SelectSingleUsers.aspx" />
+    <Content Include="Admin\SelectStorageAddress.aspx" />
     <Content Include="Admin\UserControl\ucSelectAsset.ascx" />
+    <Content Include="Admin\UserControl\ucSelectStorageAddress.ascx" />
     <Content Include="Admin\UserControl\ucSelectSubCompany.ascx" />
     <Content Include="Admin\UserControl\ucSelectSupplier.ascx" />
     <Content Include="Admin\UserControl\ucSelectUser.ascx" />
