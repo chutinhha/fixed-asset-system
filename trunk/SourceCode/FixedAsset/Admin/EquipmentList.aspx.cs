@@ -37,6 +37,7 @@ namespace FixedAsset.Web.Admin
             if (!IsPostBack)
             {
                 AssetCategories.Clear();
+                InitData();
                 LoadData(0);
             }
         }
@@ -122,6 +123,18 @@ namespace FixedAsset.Web.Admin
         {
             AssetSearch search = new AssetSearch();
             search.Assetno = txtSrchAssetno.Text;
+            if(ddlEquipmentStatus.SelectedIndex>0)
+            {
+                search.States.Add((AssetState)Enum.Parse(typeof(AssetState),ddlEquipmentStatus.SelectedValue));
+            }
+            if (ddlAccountingType.SelectedIndex > 0)
+            {
+                search.FinanceCategories.Add((FinanceCategory)Enum.Parse(typeof(FinanceCategory), ddlAccountingType.SelectedValue));
+            }
+            if (ddlManagementModel.SelectedIndex > 0)
+            {
+                search.ManageModes.Add((ManageMode)Enum.Parse(typeof(ManageMode), ddlManagementModel.SelectedValue));
+            }
             //search.Assetcategoryid = txtSrchAssetcategoryid.Text;
             //search.Assetname = txtSrchAssetname.Text;
             //search.Storage = txtSrchStorage.Text;
@@ -149,7 +162,7 @@ namespace FixedAsset.Web.Admin
             //}
             //search.Assetspecification = txtSrchAssetspecification.Text;
             //search.Storageflag = txtSrchStorageflag.Text;
-            AssetService assetservice = new AssetService();
+            var assetservice = new AssetService();
             int recordCount = 0;
             var list = assetservice.RetrieveAssetsPaging(search, pageIndex, pcData.PageSize, out recordCount);
             rptAssetsList.DataSource = list;
