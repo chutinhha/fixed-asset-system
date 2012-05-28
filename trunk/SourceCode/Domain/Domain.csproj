@@ -69,6 +69,7 @@
     <Compile Include="Domain\Subcompanyinfo.cs" />
     <Compile Include="Domain\Tuser.cs" />
     <Compile Include="Domain\Usermaproleinfo.cs" />
+    <Compile Include="Domain\Vstorageaddress.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchObject\AssetcategorySearch.cs" />
     <Compile Include="SearchObject\AssetmaintaindetailSearch.cs" />

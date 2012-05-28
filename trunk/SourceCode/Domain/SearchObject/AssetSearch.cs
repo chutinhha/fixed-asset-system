@@ -12,9 +12,9 @@ using System.Collections.Generic;
 
 namespace FixedAsset.Domain
 {
-    /// <summary>
-    ///ASSET
-    /// </summary>
+    ///<summary>
+    ///资产信息
+    ///</summary>
     [Serializable]
     public partial class AssetSearch
     {
@@ -110,6 +110,28 @@ namespace FixedAsset.Domain
             get
             {
                 return _states;
+            }
+        }
+        #endregion
+
+        #region 财务类别
+        private readonly List<FinanceCategory> _financeCategories = new List<FinanceCategory>();
+        public List<FinanceCategory> FinanceCategories
+        {
+            get
+            {
+                return _financeCategories;
+            }
+        }
+        #endregion
+
+        #region 管理模式
+        private readonly List<ManageMode> _manageModes = new List<ManageMode>();
+        public List<ManageMode> ManageModes
+        {
+            get
+            {
+                return _manageModes;
             }
         }
         #endregion
