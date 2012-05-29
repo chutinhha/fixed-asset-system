@@ -23,7 +23,7 @@ namespace FixedAsset.Domain
     {
         [EnumDescript(Descript = "草稿")]
         Draft = 0,
-        [EnumDescript(Descript = "审核中")]
+        [EnumDescript(Descript = "已提交")]
         Approving = 1,
         [EnumDescript(Descript = "同意")]
         Approved = 2,
