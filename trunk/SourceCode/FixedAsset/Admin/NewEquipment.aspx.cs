@@ -85,7 +85,16 @@ namespace FixedAsset.Web.Admin
         }
         protected void BtnSave_Click(object sender, EventArgs e)
         {
-            DateTime dateTime = DateTime.MinValue;
+            if (string.IsNullOrEmpty(txtAssetname.Text))
+            {
+                UIHelper.Alert(this.UpdatePanel1, "请输入设备名称!");
+                return;
+            }
+            if(string.IsNullOrEmpty(txtAssetspecification.Text))
+            {
+                UIHelper.Alert(this.UpdatePanel1, "请输入设备规格!");
+                return;
+            }
             if(!ucPurchasedate.DateValue.HasValue)
             {
                 UIHelper.Alert(this.UpdatePanel1, "请选择购入日期!");

@@ -22,7 +22,7 @@
             <asp:TextBox class="text-input small-input" ID="txtSrchSubcompanyname" runat="server"></asp:TextBox>
             <asp:Button ID="btnSearch" class="button" runat="server" Text="查询" OnClick="btnSearch_Click" />
             <asp:SGridView ID="gvSubCompanies" GridLines="None" border="0" CssClass="table_grayTH eoddTable"
-                runat="server" Width="100%" ShowActionToolBar="false" PageSize="2" AutoGenerateColumns="false"
+                runat="server" Width="40%" ShowActionToolBar="false" AutoGenerateColumns="false"
                 AllowCascade="false" DataKeyNames="Subcompanyid">
                 <Columns>
                     <asp:TemplateField>
@@ -32,7 +32,7 @@
                                 AutoPostBack="true" GroupName="templateGroup" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:BoundField DataField="Subcompanyname" HeaderText="分公司名称" ControlStyle-Width="50" ItemStyle-CssClass="center" />
+                    <asp:BoundField DataField="Subcompanyname" HeaderText="分公司名称" ControlStyle-Width="50" ItemStyle-CssClass="left" />
                 </Columns>
                 <AlternatingRowStyle CssClass="alt-row"></AlternatingRowStyle>
                 <RowStyle HorizontalAlign="Center" />
