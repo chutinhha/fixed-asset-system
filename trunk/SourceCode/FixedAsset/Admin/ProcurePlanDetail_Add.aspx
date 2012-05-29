@@ -66,7 +66,7 @@
                         <td colspan="2">
                             <asp:Button ID="btnSubmit" runat="server" Text="确 定" CssClass="button" OnClick="btnSubmit_Click" />
                             <asp:Button ID="btnReset" runat="server" Text="关 闭" CssClass="button" CausesValidation="false"
-                                OnClientClick="reset();" />
+                                OnClientClick="javascript:CloseTopDialogFrame();" />
                         </td>
                     </tr>
                 </table>

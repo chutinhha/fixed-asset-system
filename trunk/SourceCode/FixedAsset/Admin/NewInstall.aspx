@@ -130,7 +130,7 @@
                                         <asp:Button ID="btnSubmit" runat="server" Text="确 定" CssClass="button" ValidationGroup="Vaild"
                                             OnClick="btnSubmit_Click" />
                                         <asp:Button ID="btnReset" runat="server" Text="重 置" CssClass="button" CausesValidation="false"
-                                            OnClientClick="reset();" />
+                                            OnClientClick="javascript:reset();" />
                                     </td>
                                 </tr>
                             </table>

@@ -189,7 +189,7 @@
                                             OnClick="BtnSave_Click" />
                                         <asp:Button ID="btnSubmit" runat="server" Text="确 定" CssClass="button" ValidationGroup="Vaild"
                                             OnClick="btnSubmit_Click" />
-                                        <input type="button" class="button" runat="server" id="Button2" value="重 置" onclick="reset();" />
+                                        <input type="button" class="button" runat="server" id="Button2" value="重 置" onclick="javascript:reset();" />
                                     </td>
                                 </tr>
                             </table>

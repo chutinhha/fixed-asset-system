@@ -17,7 +17,7 @@
                 单号
                 <asp:TextBox ID="txtSrchPsid" Width="150" CssClass="" runat="server"></asp:TextBox><asp:Button
                     ID="BtnSearch" runat="server" CssClass="button" Text="查询" OnClick="BtnSearch_Click" />
-                <input type="button" class="button" runat="server" id="btnAdd" value="新增" onclick="window.location='ProcurePlan_Add.aspx'" />
+                <input type="button" class="button" runat="server" id="btnAdd" value="新增" onclick="javascript:window.location='ProcurePlan_Add.aspx'" />
             </p>
             <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
                 align="center" class="table_grayTH eoddTable">

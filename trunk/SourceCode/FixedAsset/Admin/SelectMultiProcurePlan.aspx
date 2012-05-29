@@ -129,7 +129,7 @@
             </asp:SGridView>--%>
             
             <asp:Button ID="btnOk" runat="server" Text="确定" class="button" OnClick="btnOk_Click" />
-            <input type="button" value="取消" class="button" onclick="CloseTopDialogFrame();" />
+            <input type="button" value="取消" class="button" onclick="javascript:CloseTopDialogFrame();" />
         </div>
     </div>
     </form>
