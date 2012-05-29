@@ -131,7 +131,8 @@ namespace FixedAsset.Web.Admin
                 litApplydate.Text = headInfo.Applydate.Value.ToString(UiConst.DateFormat);
             }
             litApproveuser.Text = headInfo.Approveuser;
-            litApprovedate.Text = headInfo.Approvedate.Value.ToString(UiConst.DateFormat);
+            if (headInfo.Approvedate.HasValue)
+            {litApprovedate.Text = headInfo.Approvedate.Value.ToString(UiConst.DateFormat);}
             litApproveresult.Text = EnumUtil.RetrieveEnumDescript(headInfo.Approveresult);
             litRejectreason.Text = headInfo.Rejectreason;
             litCreateddate.Text = headInfo.Createddate.Value.ToString(UiConst.DateTimeFormat);

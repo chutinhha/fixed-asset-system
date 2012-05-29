@@ -157,8 +157,7 @@
                                             OnClick="BtnSave_Click" />
                                         <%--<asp:Button ID="btnSubmit" runat="server" Text="确 定" CssClass="button" ValidationGroup="Vaild"
                                             OnClick="btnSubmit_Click" />--%>
-                                        <asp:Button ID="btnReset" runat="server" Text="重 置" CssClass="button" CausesValidation="false"
-                                            OnClientClick="reset();" />
+                                        <input id="btnReset" type="button" value="重 置" class="button" onclick="reset();" />
                                     </td>
                                 </tr>
                             </table>
