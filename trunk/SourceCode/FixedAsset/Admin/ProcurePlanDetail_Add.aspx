@@ -14,7 +14,7 @@
                             设备名称:<span style="color: Red">*</span>
                         </td>
                         <td>
-                            <asp:TextBox ID="txtAssetname" class="text_inp" runat="server" Width="300"></asp:TextBox>
+                            <asp:TextBox ID="txtAssetname" class="text_inp" runat="server" Width="300" ValidationGroup="Vaild"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtAssetname"
                                 Display="Dynamic" ErrorMessage="请输入设备名称！"></asp:RequiredFieldValidator>
                         </td>
@@ -35,7 +35,7 @@
                             设备规格: <span style="color: Red">*</span>
                         </td>
                         <td>
-                            <asp:TextBox ID="txtAssetspecification" MaxLength="50" class="text_inp" runat="server"
+                            <asp:TextBox ID="txtAssetspecification" MaxLength="50" class="text_inp" runat="server" ValidationGroup="Vaild"
                                 Width="300"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtAssetspecification"
                                 Display="Dynamic" ErrorMessage="请输入设备规格！"></asp:RequiredFieldValidator>
@@ -46,7 +46,7 @@
                             单价: <span style="color: Red">*</span>
                         </td>
                         <td>
-                            <asp:TextBox ID="txtUnitprice" class="text_inp" runat="server" Width="300"></asp:TextBox>
+                            <asp:TextBox ID="txtUnitprice" class="text_inp" runat="server" Width="300" ValidationGroup="Vaild"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtUnitprice"
                                 Display="Dynamic" ErrorMessage="请输入单价！"></asp:RequiredFieldValidator>
                         </td>
@@ -56,14 +56,14 @@
                             计划采购数量: <span style="color: Red">*</span>
                         </td>
                         <td>
-                            <asp:TextBox ID="txtPlannumber" class="text_inp" runat="server" Width="300"></asp:TextBox>
+                            <asp:TextBox ID="txtPlannumber" class="text_inp" runat="server" Width="300" ValidationGroup="Vaild"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtPlannumber"
                                 Display="Dynamic" ErrorMessage="请输入数量！"></asp:RequiredFieldValidator>
                         </td>
                     </tr>
                     <tr style="text-align: center">
                         <td colspan="2">
-                            <asp:Button ID="btnSubmit" runat="server" Text="提 交" CssClass="button" OnClick="btnSubmit_Click" />
+                            <asp:Button ID="btnSubmit" runat="server" Text="提 交" CssClass="button" OnClick="btnSubmit_Click" ValidationGroup="Vaild"/>
                             <asp:Button ID="btnReset" runat="server" Text="关 闭" CssClass="button" CausesValidation="false"
                                 OnClientClick="javascript:CloseTopDialogFrame();" />
                         </td>
