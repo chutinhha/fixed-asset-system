@@ -42,7 +42,7 @@
                                         采购事由: <span style="color: Red">*</span>
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="txtReason" Width="300" runat="server" MaxLength="1000" TextMode="MultiLine"></asp:TextBox>
+                                        <asp:TextBox ID="txtReason" Width="300" runat="server" MaxLength="1000" TextMode="MultiLine" ValidationGroup="Vaild"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtReason"
                                             Display="Dynamic" ErrorMessage="请输入采购事由！"></asp:RequiredFieldValidator>
                                     </td>
@@ -60,7 +60,7 @@
                                         申请人: <span style="color: Red">*</span>
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="txtApplyuser" class="text_inp" runat="server" Width="300"></asp:TextBox>
+                                        <asp:TextBox ID="txtApplyuser" class="text_inp" runat="server" Width="300" ValidationGroup="Vaild"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtApplyuser"
                                             Display="Dynamic" ErrorMessage="请选择申请人！"></asp:RequiredFieldValidator>
                                     </td>
