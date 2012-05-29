@@ -82,9 +82,9 @@
                             生效时间: <span style="color: Red">*</span>
                         </td>
                         <td>
-                            <asp:TextBox ID="txtEffDate" class="text_inp" Width="150" onclick="new Calendar().show(this);"
+                            <%--<asp:TextBox ID="txtEffDate" class="text_inp" Width="150" onclick="new Calendar().show(this);"
                                 ReadOnly="true" runat="server"></asp:TextBox><asp:RequiredFieldValidator ID="RequiredFieldValidator4"
-                                    runat="server" ControlToValidate="txtEffDate" Display="Dynamic" ErrorMessage="请选择生效时间！"></asp:RequiredFieldValidator>
+                                    runat="server" ControlToValidate="txtEffDate" Display="Dynamic" ErrorMessage="请选择生效时间！"></asp:RequiredFieldValidator>--%>
                         </td>
                     </tr>
                     <tr>
@@ -92,9 +92,9 @@
                             失效时间: <span style="color: Red">*</span>
                         </td>
                         <td>
-                            <asp:TextBox ID="txtExpDate" class="text_inp" Width="150" onclick="new Calendar().show(this);"
+                            <%--<asp:TextBox ID="txtExpDate" class="text_inp" Width="150" onclick="new Calendar().show(this);"
                                 ReadOnly="true" runat="server" /><asp:RequiredFieldValidator ID="RequiredFieldValidator6"
-                                    runat="server" ControlToValidate="txtExpDate" Display="Dynamic" ErrorMessage="请选择失效时间！"></asp:RequiredFieldValidator>
+                                    runat="server" ControlToValidate="txtExpDate" Display="Dynamic" ErrorMessage="请选择失效时间！"></asp:RequiredFieldValidator>--%>
                         </td>
                     </tr>
                     <tr>

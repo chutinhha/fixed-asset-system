@@ -128,14 +128,14 @@ namespace FixedAsset.Web.Admin
         protected void BtnSave_Click(object sender, EventArgs e)
         {
             DateTime dateTime = DateTime.MinValue;
-            if (!DateTime.TryParse(Request.Form[txtContactscheduledate.UniqueID], out dateTime))
+            if (!ucContactscheduledate.DateValue.HasValue)
             {
-                UIHelper.Alert(this.UpdatePanel1, "请选择合同签订日期");
+                UIHelper.Alert(this.UpdatePanel1, "请选择合同签订日期!");
                 return;
             }
-            if (!DateTime.TryParse(Request.Form[txtApplydate.UniqueID], out dateTime))
+            if (!ucApplydate.DateValue.HasValue)
             {
-                UIHelper.Alert(this.UpdatePanel1, "请选择申请日期");
+                UIHelper.Alert(this.UpdatePanel1, "请选择创建日期!");
                 return;
             }
 
@@ -166,19 +166,19 @@ namespace FixedAsset.Web.Admin
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             DateTime dateTime = DateTime.MinValue;
-            if (!DateTime.TryParse(Request.Form[txtContactscheduledate.UniqueID], out dateTime))
+            if (!ucContactscheduledate.DateValue.HasValue)
             {
-                UIHelper.Alert(this.UpdatePanel1, "请选择合同签订日期");
+                UIHelper.Alert(this.UpdatePanel1, "请选择合同签订日期!");
                 return;
             }
-            if (!DateTime.TryParse(Request.Form[txtApplydate.UniqueID], out dateTime))
+            if (!ucApplydate.DateValue.HasValue)
             {
-                UIHelper.Alert(this.UpdatePanel1, "请选择申请日期");
+                UIHelper.Alert(this.UpdatePanel1, "请选择创建日期!");
                 return;
             }
             if (ProcurementContractDetail.Count == 0)
             {
-                UIHelper.Alert(this.UpdatePanel1, "对不起，计划已被删除,请重新录入！"); return;
+                UIHelper.Alert(this.UpdatePanel1, "请录入合同明细！"); return;
             }
             Procurementcontract headInfo = null;
             if (string.IsNullOrEmpty(Contractid))
@@ -242,6 +242,7 @@ namespace FixedAsset.Web.Admin
             }
         }
         #endregion
+
         #endregion
 
         #region Methods
@@ -260,23 +261,23 @@ namespace FixedAsset.Web.Admin
             litPsid.Text = headInfo.Contractid;
             if (headInfo.Contractdate.HasValue)
             {
-                txtContactscheduledate.Text = headInfo.Contractdate.Value.ToString(UiConst.DateFormat);
+                ucContactscheduledate.DateValue = headInfo.Contractdate;
             }
             ucSelectSupplier.Supplierid = headInfo.Supplier;
             ucSubCompany.SubcompanyId = headInfo.Subcompany;
             if (headInfo.Createddate.HasValue)
             {
-                txtApplydate.Text = headInfo.Createddate.Value.ToString(UiConst.DateFormat);
+                ucApplydate.DateValue = headInfo.Createddate;
             }
         }
         protected void WriteControlValueToEntity(Procurementcontract headInfo)
         {
             headInfo.Contractid = litPsid.Text;
-            headInfo.Contractdate = Convert.ToDateTime(Request.Form[txtContactscheduledate.UniqueID]);
+            headInfo.Contractdate = ucContactscheduledate.DateValue;
             headInfo.Psid=PageUtility.GetQueryStringValue("Psid");
             headInfo.Supplier = ucSelectSupplier.Supplierid;
             headInfo.Subcompany = ucSubCompany.SubcompanyId;
-            headInfo.Createddate = Convert.ToDateTime(Request.Form[txtApplydate.UniqueID]);
+            headInfo.Createddate = ucApplydate.DateValue;
             if (!headInfo.Createddate.HasValue)
             {
                 headInfo.Createddate = DateTime.Now;

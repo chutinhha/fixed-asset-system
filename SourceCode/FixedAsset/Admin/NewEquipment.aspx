@@ -140,9 +140,6 @@
                                     </td>
                                     <td>
                                         <uc1:DatePicker ID="ucPurchasedate" runat="server" />
-                                        <%--<asp:TextBox ID="txtPurchasedate" class="text_inp" runat="server" Width="300" onclick="new Calendar().show(this);" />
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtPurchasedate"
-                                            Display="Dynamic" ErrorMessage="请选择设备购入日期！"></asp:RequiredFieldValidator>--%>
                                     </td>
                                 </tr>
                                 <tr>
