@@ -6,12 +6,7 @@
     TagPrefix="uc1" %>
 <asp:Content ID="head" ContentPlaceHolderID="head" runat="Server">
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
-    <script src="../Scripts/calendar.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        function reset() {
-            window.location.href = "ProcurePlanList.aspx";
-        }
-    </script>
+    <script src="../Scripts/calendar.js" type="text/javascript"></script>  
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="Server">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -169,7 +164,7 @@
                                             OnClick="BtnApproved_Click" />
                                         <asp:Button ID="btnReject" runat="server" Text="拒 绝" CssClass="button" ValidationGroup="Vaild"
                                             OnClick="btnReject_Click" />
-                                        <input type="button" class="button" runat="server" id="Button2" value="返 回" onclick="javascript:reset();" />
+                                        <input type="button" class="button" runat="server" id="Button2" value="返 回" onclick="javascript:window.location.href = 'ProcurePlanList.aspx';" />
                                     </td>
                                 </tr>
                             </table>

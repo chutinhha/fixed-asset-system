@@ -27,8 +27,6 @@
                         设备类别
                     </td>
                     <td>
-                        <%--<asp:DropDownList ID="ddlSrchAssetcategoryid" runat="server" Width="150">
-                        </asp:DropDownList>--%>
                         <asp:DropDownList ID="ddlAssetCategory" class="text_inp" runat="server" AutoPostBack="true"
                             OnSelectedIndexChanged="ddlAssetCategory_SelectedIndexChanged">
                         </asp:DropDownList>

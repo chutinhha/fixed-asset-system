@@ -1,7 +1,7 @@
 /********************************************************************
 * File Name:AssetsetupinfoManagement
 * Copyright (C) 2012 Bruce.huang 
-* Creater & Date:Bruce.huang - 2012-05-25
+* Creater & Date:Bruce.huang - 2012-05-29
 * Create Explain:
 * Description:DataBase Access Class
 * Modify Explain:
@@ -16,13 +16,14 @@ using FixedAsset.Domain;
 
 namespace FixedAsset.DataAccess
 {
-    public partial class AssetsetupinfoManagement:BaseManagement
+    public partial class AssetsetupinfoManagement : BaseManagement
     {
         #region Construct
-        private const int ColumnCount = 22;
+        private const int ColumnCount = 24;
         public AssetsetupinfoManagement()
         { }
-        public AssetsetupinfoManagement(BaseManagement baseManagement): base(baseManagement)
+        public AssetsetupinfoManagement(BaseManagement baseManagement)
+            : base(baseManagement)
         { }
         #endregion
 
@@ -31,7 +32,7 @@ namespace FixedAsset.DataAccess
         {
             try
             {
-                string sqlCommand = @"INSERT INTO ""ASSETSETUPINFO"" (""SETUPID"",""APPLYSETUPDATE"",""APPLYDATE"",""APPLYUSERID"",""CONTACTPHONE"",""PROJECTCONTACTORID"",""PROJECTCONTACTORPHONE"",""PLANSETUPDATE"",""ACTUALSETUPDATE"",""APPLYCONTENT"",""SUBCOMPANY"",""REJECTREASON"",""APPROVEUSER"",""APPROVEDATE"",""APPROVERESULT"",""CREATEDDATE"",""SUBCOMPANYCONTACTORID"",""CREATOR"",""ASSETCATEGORYID"",""SETUPCONTENT"",""CONFIRMDATE"",""CONFIRMUSER"") VALUES (:Setupid,:Applysetupdate,:Applydate,:Applyuserid,:Contactphone,:Projectcontactorid,:Projectcontactorphone,:Plansetupdate,:Actualsetupdate,:Applycontent,:Subcompany,:Rejectreason,:Approveuser,:Approvedate,:Approveresult,:Createddate,:Subcompanycontactorid,:Creator,:Assetcategoryid,:Setupcontent,:Confirmdate,:Confirmuser)";
+                string sqlCommand = @"INSERT INTO ""ASSETSETUPINFO"" (""SETUPID"",""APPLYSETUPDATE"",""APPLYDATE"",""APPLYUSERID"",""CONTACTPHONE"",""PROJECTCONTACTORID"",""PROJECTCONTACTORPHONE"",""PLANSETUPDATE"",""ACTUALSETUPDATE"",""APPLYCONTENT"",""SUBCOMPANY"",""REJECTREASON"",""APPROVEUSER"",""APPROVEDATE"",""APPROVERESULT"",""CREATEDDATE"",""SUBCOMPANYCONTACTORID"",""CREATOR"",""ASSETCATEGORYID"",""SETUPCONTENT"",""CONFIRMDATE"",""CONFIRMUSER"",""STORAGETITLE"",""STORAGEID"") VALUES (:Setupid,:Applysetupdate,:Applydate,:Applyuserid,:Contactphone,:Projectcontactorid,:Projectcontactorphone,:Plansetupdate,:Actualsetupdate,:Applycontent,:Subcompany,:Rejectreason,:Approveuser,:Approvedate,:Approveresult,:Createddate,:Subcompanycontactorid,:Creator,:Assetcategoryid,:Setupcontent,:Confirmdate,:Confirmuser,:Storagetitle,:Storageid)";
                 this.Database.AddInParameter(":Setupid", info.Setupid);//DBType:VARCHAR2
                 this.Database.AddInParameter(":Applysetupdate", info.Applysetupdate);//DBType:DATE
                 this.Database.AddInParameter(":Applydate", info.Applydate);//DBType:DATE
@@ -54,6 +55,8 @@ namespace FixedAsset.DataAccess
                 this.Database.AddInParameter(":Setupcontent", info.Setupcontent);//DBType:NVARCHAR2
                 this.Database.AddInParameter(":Confirmdate", info.Confirmdate);//DBType:DATE
                 this.Database.AddInParameter(":Confirmuser", info.Confirmuser);//DBType:VARCHAR2
+                this.Database.AddInParameter(":Storagetitle", info.Storagetitle);//DBType:VARCHAR2
+                this.Database.AddInParameter(":Storageid", info.Storageid);//DBType:VARCHAR2
                 this.Database.ExecuteNonQuery(sqlCommand);
 
             }
@@ -92,7 +95,9 @@ namespace FixedAsset.DataAccess
                 this.Database.AddInParameter(":Setupcontent", info.Setupcontent);//DBType:NVARCHAR2
                 this.Database.AddInParameter(":Confirmdate", info.Confirmdate);//DBType:DATE
                 this.Database.AddInParameter(":Confirmuser", info.Confirmuser);//DBType:VARCHAR2
-                string sqlCommand = @"UPDATE ""ASSETSETUPINFO"" SET  ""APPLYSETUPDATE""=:Applysetupdate , ""APPLYDATE""=:Applydate , ""APPLYUSERID""=:Applyuserid , ""CONTACTPHONE""=:Contactphone , ""PROJECTCONTACTORID""=:Projectcontactorid , ""PROJECTCONTACTORPHONE""=:Projectcontactorphone , ""PLANSETUPDATE""=:Plansetupdate , ""ACTUALSETUPDATE""=:Actualsetupdate , ""APPLYCONTENT""=:Applycontent , ""SUBCOMPANY""=:Subcompany , ""REJECTREASON""=:Rejectreason , ""APPROVEUSER""=:Approveuser , ""APPROVEDATE""=:Approvedate , ""APPROVERESULT""=:Approveresult , ""CREATEDDATE""=:Createddate , ""SUBCOMPANYCONTACTORID""=:Subcompanycontactorid , ""CREATOR""=:Creator , ""ASSETCATEGORYID""=:Assetcategoryid , ""SETUPCONTENT""=:Setupcontent , ""CONFIRMDATE""=:Confirmdate , ""CONFIRMUSER""=:Confirmuser WHERE  ""SETUPID""=:Setupid";
+                this.Database.AddInParameter(":Storagetitle", info.Storagetitle);//DBType:VARCHAR2
+                this.Database.AddInParameter(":Storageid", info.Storageid);//DBType:VARCHAR2
+                string sqlCommand = @"UPDATE ""ASSETSETUPINFO"" SET  ""APPLYSETUPDATE""=:Applysetupdate , ""APPLYDATE""=:Applydate , ""APPLYUSERID""=:Applyuserid , ""CONTACTPHONE""=:Contactphone , ""PROJECTCONTACTORID""=:Projectcontactorid , ""PROJECTCONTACTORPHONE""=:Projectcontactorphone , ""PLANSETUPDATE""=:Plansetupdate , ""ACTUALSETUPDATE""=:Actualsetupdate , ""APPLYCONTENT""=:Applycontent , ""SUBCOMPANY""=:Subcompany , ""REJECTREASON""=:Rejectreason , ""APPROVEUSER""=:Approveuser , ""APPROVEDATE""=:Approvedate , ""APPROVERESULT""=:Approveresult , ""CREATEDDATE""=:Createddate , ""SUBCOMPANYCONTACTORID""=:Subcompanycontactorid , ""CREATOR""=:Creator , ""ASSETCATEGORYID""=:Assetcategoryid , ""SETUPCONTENT""=:Setupcontent , ""CONFIRMDATE""=:Confirmdate , ""CONFIRMUSER""=:Confirmuser , ""STORAGETITLE""=:Storagetitle , ""STORAGEID""=:Storageid WHERE  ""SETUPID""=:Setupid";
                 this.Database.ExecuteNonQuery(sqlCommand);
             }
             finally
@@ -124,22 +129,22 @@ namespace FixedAsset.DataAccess
         {
             try
             {
-                if(Setupids.Count==0){ return ;}
+                if (Setupids.Count == 0) { return; }
                 StringBuilder sqlCommand = new StringBuilder();
                 sqlCommand.AppendLine(@"DELETE FROM  ""ASSETSETUPINFO"" WHERE 1=1");
-                if(Setupids.Count==1)
+                if (Setupids.Count == 1)
                 {
-                    this.Database.AddInParameter(":Setupid"+0.ToString(),Setupids[0]);//DBType:VARCHAR2
+                    this.Database.AddInParameter(":Setupid" + 0.ToString(), Setupids[0]);//DBType:VARCHAR2
                     sqlCommand.AppendLine(@" AND ""SETUPID""=:Setupid0");
                 }
-                else if(Setupids.Count>1&&Setupids.Count<=2000)
+                else if (Setupids.Count > 1 && Setupids.Count <= 2000)
                 {
-                    this.Database.AddInParameter(":Setupid"+0.ToString(),Setupids[0]);//DBType:VARCHAR2
+                    this.Database.AddInParameter(":Setupid" + 0.ToString(), Setupids[0]);//DBType:VARCHAR2
                     sqlCommand.AppendLine(@" AND (""SETUPID""=:Setupid0");
                     for (int i = 1; i < Setupids.Count; i++)
                     {
-                    this.Database.AddInParameter(":Setupid"+i.ToString(),Setupids[i]);//DBType:VARCHAR2
-                    sqlCommand.AppendLine(@" OR ""SETUPID""=:Setupid"+i.ToString());
+                        this.Database.AddInParameter(":Setupid" + i.ToString(), Setupids[i]);//DBType:VARCHAR2
+                        sqlCommand.AppendLine(@" OR ""SETUPID""=:Setupid" + i.ToString());
                     }
                     sqlCommand.AppendLine(" )");
                 }
@@ -152,6 +157,5 @@ namespace FixedAsset.DataAccess
             }
         }
         #endregion
-
     }
 }

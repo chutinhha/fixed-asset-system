@@ -7,11 +7,6 @@
 <asp:Content ID="head" ContentPlaceHolderID="head" runat="Server">
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
     <script src="../Scripts/calendar.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        function reset() {
-            window.location.href = '<%=ResolveUrl("~/Admin/ProcurePlanList.aspx") %>';
-        }
-    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="Server">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -196,9 +191,7 @@
                                 </tr>
                                 <tr style="text-align: center">
                                     <td colspan="2">
-                                        <%--<asp:Button ID="BtnNewContract" runat="server" Text="生成合同" CssClass="button" 
-                                            OnClick="BtnNewContract_Click" Visible="false" />--%>
-                                        <input type="button" class="button" runat="server" id="Button2" value="返 回" onclick="javascript:reset();" />
+                                        <input type="button" class="button" runat="server" id="Button2" value="返 回" onclick="javascript:window.location.href = 'ProcurePlanList.aspx';" />
                                     </td>
                                 </tr>
                             </table>
