@@ -131,6 +131,9 @@
       <DependentUpon>MasterPage.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Admin\MasterPage.master.designer.cs">
+      <DependentUpon>MasterPage.master</DependentUpon>
+    </Compile>
     <Compile Include="Admin\MoveList.aspx.cs">
       <DependentUpon>MoveList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -264,6 +267,13 @@
     <Compile Include="Admin\SelectStorageAddress.aspx.designer.cs">
       <DependentUpon>SelectStorageAddress.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\UserControl\ucDatePicker.ascx.cs">
+      <DependentUpon>ucDatePicker.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\UserControl\ucDatePicker.ascx.designer.cs">
+      <DependentUpon>ucDatePicker.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\UserControl\ucMultiSelectProcurePlans.ascx.cs">
       <DependentUpon>ucMultiSelectProcurePlans.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -366,6 +376,33 @@
     <Content Include="Admin\ContactDetail_Add.aspx" />
     <Content Include="Admin\ContractList.aspx" />
     <Content Include="Admin\css\default.css" />
+    <Content Include="css\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="css\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="css\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="css\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="css\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="css\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="css\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="css\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="css\images\ui-icons_222222_256x240.png" />
+    <Content Include="css\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="css\images\ui-icons_454545_256x240.png" />
+    <Content Include="css\images\ui-icons_888888_256x240.png" />
+    <Content Include="css\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="css\jquery.ui.accordion.css" />
+    <Content Include="css\jquery.ui.all.css" />
+    <Content Include="css\jquery.ui.autocomplete.css" />
+    <Content Include="css\jquery.ui.base.css" />
+    <Content Include="css\jquery.ui.button.css" />
+    <Content Include="css\jquery.ui.core.css" />
+    <Content Include="css\jquery.ui.datepicker.css" />
+    <Content Include="css\jquery.ui.dialog.css" />
+    <Content Include="css\jquery.ui.progressbar.css" />
+    <Content Include="css\jquery.ui.resizable.css" />
+    <Content Include="css\jquery.ui.selectable.css" />
+    <Content Include="css\jquery.ui.slider.css" />
+    <Content Include="css\jquery.ui.tabs.css" />
+    <Content Include="css\jquery.ui.theme.css" />
     <Content Include="Admin\css\style.css" />
     <Content Include="Admin\css\tag.css" />
     <Content Include="Admin\EquipmentList.aspx" />
@@ -523,6 +560,7 @@
     <Content Include="Admin\SelectSingleSupplier.aspx" />
     <Content Include="Admin\SelectSingleUsers.aspx" />
     <Content Include="Admin\SelectStorageAddress.aspx" />
+    <Content Include="Admin\UserControl\ucDatePicker.ascx" />
     <Content Include="Admin\UserControl\ucMultiSelectProcurePlans.ascx" />
     <Content Include="Admin\UserControl\ucSelectAsset.ascx" />
     <Content Include="Admin\UserControl\ucSelectStorageAddress.ascx" />
@@ -836,7 +874,12 @@
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="Scripts\jquery-1.6.1.min.js" />
     <Content Include="Scripts\jquery.js" />
+    <Content Include="Scripts\jquery.ui.core.js" />
+    <Content Include="Scripts\jquery.ui.datepicker-zh-CN.js" />
+    <Content Include="Scripts\jquery.ui.datepicker.js" />
+    <Content Include="Scripts\jquery.ui.widget.js" />
     <Content Include="Scripts\JScript.js" />
     <Content Include="Scripts\Main.js" />
     <Content Include="Scripts\MainNew.js" />

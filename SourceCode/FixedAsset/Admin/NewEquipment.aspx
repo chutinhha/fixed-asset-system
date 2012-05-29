@@ -1,7 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/MasterPage.master" AutoEventWireup="true"
     CodeBehind="NewEquipment.aspx.cs" Inherits="FixedAsset.Web.Admin.NewEquipment" %>
- <%@ Register Src="~/Admin/UserControl/ucSelectSubCompany.ascx" TagName="SelectSubCompany" TagPrefix="uc1" %> 
- <%@ Register Src="~/Admin/UserControl/ucSelectSupplier.ascx" TagName="SelectSupplier" TagPrefix="uc1" %> 
+
+<%@ Register Src="~/Admin/UserControl/ucSelectSubCompany.ascx" TagName="SelectSubCompany"
+    TagPrefix="uc1" %>
+<%@ Register Src="~/Admin/UserControl/ucSelectSupplier.ascx" TagName="SelectSupplier"
+    TagPrefix="uc1" %>
+<%@ Register Src="~/Admin/UserControl/ucDatePicker.ascx" TagName="DatePicker" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
     <script src="../Scripts/calendar.js" type="text/javascript"></script>
@@ -60,7 +64,6 @@
                                     </td>
                                     <td>
                                         <asp:TextBox ID="txtAssetspecification" runat="server" class="text_inp" Width="300px"></asp:TextBox>
-                                        
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtAssetspecification"
                                             Display="Dynamic" ErrorMessage="请输入设备规格！"></asp:RequiredFieldValidator>
                                     </td>
@@ -136,9 +139,10 @@
                                         购入日期:<span style="color: Red">*</span>
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="txtPurchasedate" class="text_inp" runat="server" Width="300" onclick="new Calendar().show(this);"/>
+                                        <uc1:DatePicker ID="ucPurchasedate" runat="server" />
+                                        <%--<asp:TextBox ID="txtPurchasedate" class="text_inp" runat="server" Width="300" onclick="new Calendar().show(this);" />
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtPurchasedate"
-                                            Display="Dynamic" ErrorMessage="请选择设备购入日期！"></asp:RequiredFieldValidator>
+                                            Display="Dynamic" ErrorMessage="请选择设备购入日期！"></asp:RequiredFieldValidator>--%>
                                     </td>
                                 </tr>
                                 <tr>
@@ -146,7 +150,8 @@
                                         折旧年限: <span style="color: Red">*</span>
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="txtDepreciationyear" class="text_inp" runat="server" Width="300px" Text="10"></asp:TextBox>
+                                        <asp:TextBox ID="txtDepreciationyear" class="text_inp" runat="server" Width="300px"
+                                            Text="10"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtDepreciationyear"
                                             Display="Dynamic" ErrorMessage="请输入折旧年限！"></asp:RequiredFieldValidator>
                                     </td>
@@ -155,8 +160,6 @@
                                     <td colspan="2">
                                         <asp:Button ID="BtnSave" runat="server" Text="保 存" CssClass="button" ValidationGroup="Vaild"
                                             OnClick="BtnSave_Click" />
-                                        <%--<asp:Button ID="btnSubmit" runat="server" Text="确 定" CssClass="button" ValidationGroup="Vaild"
-                                            OnClick="btnSubmit_Click" />--%>
                                         <input id="btnReset" type="button" value="重 置" class="button" onclick="reset();" />
                                     </td>
                                 </tr>
