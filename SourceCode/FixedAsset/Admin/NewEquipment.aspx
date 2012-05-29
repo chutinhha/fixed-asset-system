@@ -11,7 +11,7 @@
     <script src="../Scripts/calendar.js" type="text/javascript"></script>
     <script type="text/javascript">
         function reset() {
-            window.location.href = "NewEquipment.aspx";
+            
         }
     </script>
 </asp:Content>
@@ -157,7 +157,7 @@
                                     <td colspan="2">
                                         <asp:Button ID="BtnSave" runat="server" Text="保 存" CssClass="button" ValidationGroup="Vaild"
                                             OnClick="BtnSave_Click" />
-                                        <input id="btnReset" type="button" value="重 置" class="button" onclick="javascript:reset();" />
+                                        <input id="btnReset" type="button" value="重 置" class="button" onclick='javascript:window.location.href = "NewEquipment.aspx";' />
                                     </td>
                                 </tr>
                             </table>
