@@ -5,6 +5,7 @@
 <%@ Import Namespace="SeallNet.Utility" %>
 <%@ Register Assembly="KFSQ.Web.Controls" Namespace="KFSQ.Web.Controls" TagPrefix="cc1" %>
 <%@ Register Assembly="iKC.Web" Namespace="iKC.Web.UI.WebControls" TagPrefix="asp" %>
+<%@ Register Src="~/Admin/UserControl/ucDatePicker.ascx" TagName="DatePicker" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
@@ -26,13 +27,21 @@
                         设备类别
                     </td>
                     <td>
-                        <asp:DropDownList ID="ddlSrchAssetcategoryid" runat="server" Width="150">
+                        <%--<asp:DropDownList ID="ddlSrchAssetcategoryid" runat="server" Width="150">
+                        </asp:DropDownList>--%>
+                        <asp:DropDownList ID="ddlAssetCategory" class="text_inp" runat="server" AutoPostBack="true"
+                            OnSelectedIndexChanged="ddlAssetCategory_SelectedIndexChanged">
+                        </asp:DropDownList>
+                        <asp:DropDownList ID="ddlSubAssetCategory" class="text_inp" runat="server">
                         </asp:DropDownList>
                     </td>
                     <td>
                         购入日期
                     </td>
                     <td>
+                        <uc1:DatePicker ID="ucStartPurchasedate" runat="server" />
+                        ~
+                        <uc1:DatePicker ID="ucEndPurchasedate" runat="server" />
                     </td>
                 </tr>
                 <tr>

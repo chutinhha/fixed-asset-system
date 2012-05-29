@@ -27,8 +27,7 @@
                             <asp:DropDownList ID="ddlAssetCategory" class="text_inp" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlAssetCategory_SelectedIndexChanged">
                             </asp:DropDownList>
                             <asp:DropDownList ID="ddlSubAssetCategory" class="text_inp" runat="server">
-                            </asp:DropDownList>
-                            <%--<asp:TextBox ID="txtAssetcategoryid" class="text_inp" runat="server" Width="300" />--%>
+                            </asp:DropDownList>                            
                         </td>
                     </tr>
                     <tr>

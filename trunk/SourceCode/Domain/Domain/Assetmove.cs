@@ -157,8 +157,5 @@ namespace FixedAsset.Domain
         ///</summary>
         public string Confirmuser{  get;set;}
         #endregion
-
     }
-
-
 }

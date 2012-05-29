@@ -45,6 +45,7 @@ namespace FixedAsset.Web.Admin
             {
                 AssetCategories.Clear();
                 LoadAssetCategory();
+                LoadSubAssetCategory();
                 InitData();
                 LoadData(0);
             }
@@ -118,6 +119,17 @@ namespace FixedAsset.Web.Admin
                 //}
             }
         }
+        protected void ddlAssetCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlAssetCategory.SelectedIndex > 0)
+            {
+                LoadSubAssetCategory();
+            }
+            else if (ddlAssetCategory.SelectedIndex==0)
+            {
+                ddlSubAssetCategory.Items.Clear();
+            }
+        }
         #endregion
 
         #region  Methods
@@ -130,7 +142,7 @@ namespace FixedAsset.Web.Admin
         protected void LoadData(int pageIndex)
         {
             var search = new AssetSearch();
-            search.Assetno = txtSrchAssetno.Text;
+            search.Assetno = txtSrchAssetno.Text.Trim();
             if(ddlEquipmentStatus.SelectedIndex>0)
             {
                 search.States.Add((AssetState)Enum.Parse(typeof(AssetState),ddlEquipmentStatus.SelectedValue));
@@ -143,7 +155,25 @@ namespace FixedAsset.Web.Admin
             {
                 search.ManageModes.Add((ManageMode)Enum.Parse(typeof(ManageMode), ddlManagementModel.SelectedValue));
             }
-            //search.Assetcategoryid = txtSrchAssetcategoryid.Text;
+            if(ucStartPurchasedate.DateValue.HasValue)
+            {
+                search.StartPurchasedate = ucStartPurchasedate.DateValue.Value;
+            }
+            if(ucEndPurchasedate.DateValue.HasValue)
+            {
+                search.EndPurchasedate = ucEndPurchasedate.DateValue.Value;
+            }
+            if(ddlAssetCategory.SelectedIndex>0)
+            {
+                if (ddlSubAssetCategory.SelectedIndex > 0)
+                {
+                    search.Assetcategoryid = ddlSubAssetCategory.SelectedValue;
+                }
+                else if(ddlSubAssetCategory.SelectedIndex==0)
+                {
+                    search.Assetcategoryid = ddlAssetCategory.SelectedValue;
+                }
+            }
             //search.Assetname = txtSrchAssetname.Text;
             //search.Storage = txtSrchStorage.Text;
             //search.Brand = txtSrchBrand.Text;
@@ -186,6 +216,25 @@ namespace FixedAsset.Web.Admin
                     var list = AssetcategoryService.RetrieveAllAssetcategory();
                     AssetCategories.AddRange(list);
                 }
+                var categories = AssetCategories.Where(p => string.IsNullOrEmpty(p.Assetparentcategoryid)).ToList();
+                categories.Insert(0, new Assetcategory() { Assetcategoryid = string.Empty, Assetcategoryname = "全部" });
+                ddlAssetCategory.DataTextField = "Assetcategoryname";
+                ddlAssetCategory.DataValueField = "Assetcategoryid";
+                ddlAssetCategory.DataSource = categories;
+                ddlAssetCategory.DataBind();
+            }
+        }
+        protected void LoadSubAssetCategory()
+        {
+            if (ddlAssetCategory.SelectedIndex >= 0)
+            {
+                var subAssetCategories =
+                    AssetCategories.Where(p => p.Assetparentcategoryid == ddlAssetCategory.SelectedValue).ToList();
+                subAssetCategories.Insert(0,new Assetcategory(){Assetcategoryid = string.Empty,Assetcategoryname = "全部"});
+                ddlSubAssetCategory.DataTextField = "Assetcategoryname";
+                ddlSubAssetCategory.DataValueField = "Assetcategoryid";
+                ddlSubAssetCategory.DataSource = subAssetCategories;
+                ddlSubAssetCategory.DataBind();
             }
         }
         #endregion
