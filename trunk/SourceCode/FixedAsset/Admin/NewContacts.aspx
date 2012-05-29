@@ -1,8 +1,13 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/MasterPage.master" AutoEventWireup="true" CodeBehind="NewContacts.aspx.cs" Inherits="FixedAsset.Web.Admin.NewContacts" %>
-<%@ Register Src="~/Admin/UserControl/ucSelectSupplier.ascx" TagName="ucSelectSupplier" TagPrefix="uc1" %> 
-<%@ Register Src="~/Admin/UserControl/ucSelectSubCompany.ascx" TagName="ucSelectSubCompany" TagPrefix="uc1" %> 
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/MasterPage.master" AutoEventWireup="true"
+    CodeBehind="NewContacts.aspx.cs" Inherits="FixedAsset.Web.Admin.NewContacts" %>
+
+<%@ Register Src="~/Admin/UserControl/ucSelectSupplier.ascx" TagName="ucSelectSupplier"
+    TagPrefix="uc1" %>
+<%@ Register Src="~/Admin/UserControl/ucSelectSubCompany.ascx" TagName="ucSelectSubCompany"
+    TagPrefix="uc1" %>
+<%@ Register TagPrefix="uc1" TagName="DatePicker" Src="~/Admin/UserControl/ucDatePicker.ascx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-  <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
     <script src="../Scripts/calendar.js" type="text/javascript"></script>
     <script type="text/javascript">
         function reset() {
@@ -25,7 +30,7 @@
                             <table>
                                 <tr>
                                     <td style="width: 180px;">
-                                       合同编号:
+                                        合同编号:
                                     </td>
                                     <td>
                                         <asp:Label ID="litPsid" class="text_inp" runat="server" />
@@ -36,9 +41,10 @@
                                         签订日期:<span style="color: Red">*</span>
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="txtContactscheduledate" class="text_inp" runat="server" Width="300" onclick="new Calendar().show(this);"></asp:TextBox>
+                                        <uc1:DatePicker ID="ucContactscheduledate" runat="server" />
+                                        <%--<asp:TextBox ID="txtContactscheduledate" class="text_inp" runat="server" Width="300" onclick="new Calendar().show(this);"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtContactscheduledate"
-                                            Display="Dynamic" ErrorMessage="请选择合同签订日期！"></asp:RequiredFieldValidator>
+                                            Display="Dynamic" ErrorMessage="请选择合同签订日期！"></asp:RequiredFieldValidator>--%>
                                     </td>
                                 </tr>
                                 <tr>
@@ -46,7 +52,7 @@
                                         分公司: <span style="color: Red">*</span>
                                     </td>
                                     <td>
-                                    <uc1:ucSelectSubCompany ID="ucSubCompany" runat="server" />
+                                        <uc1:ucSelectSubCompany ID="ucSubCompany" runat="server" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -54,21 +60,18 @@
                                         供应商: <span style="color: Red">*</span>
                                     </td>
                                     <td>
-                                      <uc1:ucSelectSupplier ID="ucSelectSupplier" runat="server" />
-                                       <%-- <asp:TextBox ID="txtSuppliers" class="text_inp" runat="server" Width="300"></asp:TextBox>
-                                        <asp:ImageButton ID="btnAppIdSelect" ImageUrl="../images/Button/PickUp.GIF" runat="server"
-                                            OnClientClick="ShowTopDialogFrame('供应商选择', 'return_m2mApplication.aspx','AppIdSelect()',790,500);return false;" />--%>
+                                        <uc1:ucSelectSupplier ID="ucSelectSupplier" runat="server" />
                                     </td>
                                 </tr>
-                               
                                 <tr>
                                     <td>
                                         创建日期: <span style="color: Red">*</span>
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="txtApplydate" class="text_inp" Width="150" onclick="new Calendar().show(this);"
+                                        <uc1:DatePicker ID="ucApplydate" runat="server" />
+                                        <%-- <asp:TextBox ID="txtApplydate" class="text_inp" Width="150" onclick="new Calendar().show(this);"
                                             ReadOnly="true" runat="server"></asp:TextBox><asp:RequiredFieldValidator ID="RequiredFieldValidator4"
-                                                runat="server" ControlToValidate="txtApplydate" Display="Dynamic" ErrorMessage="请选择创建日期！"></asp:RequiredFieldValidator>
+                                                runat="server" ControlToValidate="txtApplydate" Display="Dynamic" ErrorMessage="请选择创建日期！"></asp:RequiredFieldValidator>--%>
                                     </td>
                                 </tr>
                                 <tr>
@@ -87,12 +90,11 @@
                                             <div id="MyFile" style="display: block;">
                                                 <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
                                                     align="center">
-                                                     <tr style="border-bottom-width: 1px;">
+                                                    <tr style="border-bottom-width: 1px;">
                                                         <td colspan="6" align="right">
                                                             <input type="button" class="button" runat="server" id="Button1" value="新增" onclick="ShowTopDialogFrame('新增明细', 'ContactDetail_Add.aspx','RefreshDetail()',790,500);return false;" />
                                                         </td>
                                                     </tr>
-
                                                     <asp:Repeater ID="rptContactDetailList" runat="server" OnItemDataBound="rptContactDetailList_ItemDataBound"
                                                         OnItemCommand="rptContactDetailList_ItemCommand">
                                                         <HeaderTemplate>
@@ -103,14 +105,15 @@
                                                                 <td>
                                                                     设备名称
                                                                 </td>
-                                                              <td>设备规格</td>
+                                                                <td>
+                                                                    设备规格
+                                                                </td>
                                                                 <td>
                                                                     采购数量
                                                                 </td>
                                                                 <td>
                                                                     单价
                                                                 </td>
-                                                               
                                                                 <td>
                                                                     操作
                                                                 </td>
@@ -124,51 +127,57 @@
                                                                 <td>
                                                                     <%#Eval("Assetname")%>
                                                                 </td>
-                                                                  <td><%#Eval("Assetspecification")%></td>
+                                                                <td>
+                                                                    <%#Eval("Assetspecification")%>
+                                                                </td>
                                                                 <td>
                                                                     <%#Eval("Procurenumber")%>
                                                                 </td>
                                                                 <td>
                                                                     <%#Eval("Unitprice")%>
                                                                 </td>
-                                                                
                                                                 <td align="right">
                                                                     <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"
-                                                                        AlternateText="编辑" ToolTip="编辑" CommandArgument='<%#Eval("Contractdetailid")%>' CommandName="EditDetail"  />
+                                                                        AlternateText="编辑" ToolTip="编辑" CommandArgument='<%#Eval("Contractdetailid")%>'
+                                                                        CommandName="EditDetail" />
                                                                     <asp:ImageButton ID="BtnDeleted" runat="server" ImageUrl="~/images/Button/delete.GIF"
-                                                                          CommandArgument='<%#Eval("Contractdetailid")%>' CommandName="DeleteDetail" OnClientClick="return confirm('确认要删除吗？');" AlternateText="删除" ToolTip="删除" />
+                                                                        CommandArgument='<%#Eval("Contractdetailid")%>' CommandName="DeleteDetail" OnClientClick="return confirm('确认要删除吗？');"
+                                                                        AlternateText="删除" ToolTip="删除" />
                                                                 </td>
                                                             </tr>
                                                         </ItemTemplate>
                                                         <AlternatingItemTemplate>
                                                             <tr class="alt-row">
-                                                                 <td>
+                                                                <td>
                                                                     <%#Eval("Assetcategoryid")%>
                                                                 </td>
                                                                 <td>
                                                                     <%#Eval("Assetname")%>
                                                                 </td>
-                                                                  <td><%#Eval("Assetspecification")%></td>
+                                                                <td>
+                                                                    <%#Eval("Assetspecification")%>
+                                                                </td>
                                                                 <td>
                                                                     <%#Eval("Procurenumber")%>
                                                                 </td>
                                                                 <td>
                                                                     <%#Eval("Unitprice")%>
                                                                 </td>
-                                                              
                                                                 <td align="right">
-                                                                     <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"
-                                                                        AlternateText="编辑" ToolTip="编辑" CommandArgument='<%#Eval("Contractdetailid")%>' CommandName="EditDetail"  />
+                                                                    <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"
+                                                                        AlternateText="编辑" ToolTip="编辑" CommandArgument='<%#Eval("Contractdetailid")%>'
+                                                                        CommandName="EditDetail" />
                                                                     <asp:ImageButton ID="BtnDeleted" runat="server" ImageUrl="~/images/Button/delete.GIF"
-                                                                          CommandArgument='<%#Eval("Contractdetailid")%>' CommandName="DeleteDetail" OnClientClick="return confirm('确认要删除吗？');" AlternateText="删除" ToolTip="删除" />
+                                                                        CommandArgument='<%#Eval("Contractdetailid")%>' CommandName="DeleteDetail" OnClientClick="return confirm('确认要删除吗？');"
+                                                                        AlternateText="删除" ToolTip="删除" />
                                                                 </td>
                                                             </tr>
                                                         </AlternatingItemTemplate>
                                                     </asp:Repeater>
                                                 </table>
-                                                 <div style="display: none;">
-                                                    <asp:Button ID="BtnRefreshDetail" OnClick="BtnRefreshDetail_Click" Width="0" runat="server"  CausesValidation="false"
-                                                        Text="Button" /></div>
+                                                <div style="display: none;">
+                                                    <asp:Button ID="BtnRefreshDetail" OnClick="BtnRefreshDetail_Click" Width="0" runat="server"
+                                                        CausesValidation="false" Text="Button" /></div>
                                             </div>
                                         </div>
                                     </td>
@@ -190,10 +199,10 @@
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
-    <script type="text/javascript" language="javascript">   
+    <script type="text/javascript" language="javascript">
         function RefreshDetail() {
             var returnValue = getCookie("dialogReturn_key");
-            if (returnValue != null) {                
+            if (returnValue != null) {
                 document.getElementById("<%=BtnRefreshDetail.ClientID %>").click();
                 setCookie("dialogReturn_key", null);
             }

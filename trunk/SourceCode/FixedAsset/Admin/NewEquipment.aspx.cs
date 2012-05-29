@@ -88,7 +88,7 @@ namespace FixedAsset.Web.Admin
             DateTime dateTime = DateTime.MinValue;
             if(!ucPurchasedate.DateValue.HasValue)
             {
-                UIHelper.Alert(this.UpdatePanel1, "请选择采购日期");
+                UIHelper.Alert(this.UpdatePanel1, "请选择购入日期!");
                 return;
             }
             if (string.IsNullOrEmpty(ucSelectSubCompany.SubcompanyId))

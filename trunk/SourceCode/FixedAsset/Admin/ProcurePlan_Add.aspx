@@ -2,7 +2,8 @@
     CodeBehind="ProcurePlan_Add.aspx.cs" Inherits="FixedAsset.Web.Admin.ProcurePlan_Add" %>
 
 <%@ Register Assembly="WebCalendar" Namespace="WebCalendar" TagPrefix="cc2" %>
-<%@ Register Src="~/Admin/UserControl/ucSelectSubCompany.ascx" TagName="ucSelectSubCompany" TagPrefix="uc1" %> 
+<%@ Register Src="~/Admin/UserControl/ucSelectSubCompany.ascx" TagName="ucSelectSubCompany" TagPrefix="uc1" %>
+<%@ Register TagPrefix="uc1" TagName="DatePicker" Src="~/Admin/UserControl/ucDatePicker.ascx" %> 
 <asp:Content ID="head" ContentPlaceHolderID="head" runat="Server">
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
     <script src="../Scripts/calendar.js" type="text/javascript"></script>
@@ -38,10 +39,7 @@
                                         计划采购日期:<span style="color: Red">*</span>
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="txtProcurementscheduledate" class="text_inp" runat="server" Width="150"
-                                            onclick="new Calendar().show(this);" ReadOnly="true"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtProcurementscheduledate"
-                                            Display="Dynamic" ErrorMessage="请选择计划采购日期！"></asp:RequiredFieldValidator>
+                                    <uc1:DatePicker ID="ucProcurementscheduledate" runat="server" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -77,9 +75,7 @@
                                         申请日期: <span style="color: Red">*</span>
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="txtApplydate" class="text_inp" Width="150" onclick="new Calendar().show(this);"
-                                            ReadOnly="true" runat="server"></asp:TextBox><asp:RequiredFieldValidator ID="RequiredFieldValidator4"
-                                                runat="server" ControlToValidate="txtApplydate" Display="Dynamic" ErrorMessage="请选择申请日期！"></asp:RequiredFieldValidator>
+                                    <uc1:DatePicker ID="ucApplydate" runat="server" />
                                     </td>
                                 </tr>
                                 <tr>

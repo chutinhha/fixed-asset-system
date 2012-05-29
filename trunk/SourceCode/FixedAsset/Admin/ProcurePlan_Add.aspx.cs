@@ -86,9 +86,9 @@ namespace FixedAsset.Web.Admin
         protected void BtnSave_Click(object sender,EventArgs e)
         {
             DateTime dateTime = DateTime.MinValue;
-            if (!DateTime.TryParse(Request.Form[txtProcurementscheduledate.UniqueID],out dateTime))
+            if (!ucProcurementscheduledate.DateValue.HasValue)
             {
-                UIHelper.Alert(UpdatePanel1, "请选择计划采购日期");
+                UIHelper.Alert(UpdatePanel1, "请选择计划采购日期!");
                 return; 
             }
             if (string.IsNullOrEmpty(ucSubCompany.SubcompanyId))
@@ -96,9 +96,9 @@ namespace FixedAsset.Web.Admin
                 UIHelper.Alert(UpdatePanel1, "请选择分公司!");
                 return;
             }
-            if (!DateTime.TryParse(Request.Form[txtApplydate.UniqueID], out dateTime))
+            if (!ucApplydate.DateValue.HasValue)
             {
-                UIHelper.Alert(UpdatePanel1, "请选择申请日期");
+                UIHelper.Alert(UpdatePanel1, "请选择申请日期!");
                 return;
             }
             Procurementschedulehead headInfo = null;
@@ -123,9 +123,9 @@ namespace FixedAsset.Web.Admin
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             DateTime dateTime = DateTime.MinValue;
-            if (!DateTime.TryParse(Request.Form[txtProcurementscheduledate.UniqueID], out dateTime))
+            if (!ucProcurementscheduledate.DateValue.HasValue)
             {
-                UIHelper.Alert(this.UpdatePanel1, "请选择计划采购日期");
+                UIHelper.Alert(UpdatePanel1, "请选择计划采购日期!");
                 return;
             }
             if (string.IsNullOrEmpty(ucSubCompany.SubcompanyId))
@@ -133,14 +133,14 @@ namespace FixedAsset.Web.Admin
                 UIHelper.Alert(UpdatePanel1, "请选择分公司!");
                 return;
             }
-            if (!DateTime.TryParse(Request.Form[txtApplydate.UniqueID], out dateTime))
+            if (!ucApplydate.DateValue.HasValue)
             {
-                UIHelper.Alert(this.UpdatePanel1, "请选择申请日期");
+                UIHelper.Alert(UpdatePanel1, "请选择申请日期!");
                 return;
             }
             if(ProcureScheduleDetails.Count==0)
             {
-                UIHelper.Alert(this.UpdatePanel1, "对不起，计划已被删除,请重新录入！"); return;
+                UIHelper.Alert(this.UpdatePanel1, "请录入采购计划明细！"); return;
             }
             Procurementschedulehead headInfo = null;
             if (string.IsNullOrEmpty(Psid))
@@ -224,46 +224,31 @@ namespace FixedAsset.Web.Admin
             litPsid.Text = headInfo.Psid;
             if (headInfo.Procurementscheduledate.HasValue)
             {
-                txtProcurementscheduledate.Text =headInfo.Procurementscheduledate.Value.ToString(UiConst.DateFormat);
+                ucProcurementscheduledate.DateValue =headInfo.Procurementscheduledate;
             }
             txtReason.Text = headInfo.Reason;
             ucSubCompany.SubcompanyId = headInfo.Subcompany;
             txtApplyuser.Text = headInfo.Applyuser;
             if (headInfo.Applydate.HasValue)
             {
-                txtApplydate.Text = headInfo.Applydate.Value.ToString(UiConst.DateFormat);
+                ucApplydate.DateValue = headInfo.Applydate;
             }
         }  
         protected void WriteControlValueToEntity(Procurementschedulehead headInfo)
         {
             headInfo.Psid = litPsid.Text;
-            headInfo.Procurementscheduledate = Convert.ToDateTime(Request.Form[txtProcurementscheduledate.UniqueID]);
+            headInfo.Procurementscheduledate = ucProcurementscheduledate.DateValue;
             headInfo.Reason = txtReason.Text;
             headInfo.Subcompany = ucSubCompany.SubcompanyId;
             headInfo.Applyuser = txtApplyuser.Text;
-            headInfo.Applydate = Convert.ToDateTime(Request.Form[txtApplydate.UniqueID]);
+            headInfo.Applydate = ucApplydate.DateValue;
             if (!headInfo.Createddate.HasValue)
             {
                 headInfo.Createddate = DateTime.Now;
             }
         }
         protected void LoadDetailList()
-        { 
-            //if(ProcureScheduleDetails.Count==0)
-            //{
-            //    for (int i = 0; i < 3; i++)
-            //    {
-            //        ProcureScheduleDetails.Add(new Procurementscheduledetail(){Detailid = string.Empty});
-            //    }
-            //}
-            //else
-            //{
-            //    var nullInfos = ProcureScheduleDetails.Where(p => string.IsNullOrEmpty(p.Detailid)).ToList();
-            //    foreach (var info in nullInfos)
-            //    {
-            //        ProcureScheduleDetails.Remove(info);
-            //    }
-            //}
+        {
             foreach (var detail in ProcureScheduleDetails)
             {
                 var subCategory =
