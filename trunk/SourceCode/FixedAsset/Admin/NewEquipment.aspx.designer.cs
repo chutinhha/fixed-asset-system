@@ -166,22 +166,13 @@ namespace FixedAsset.Web.Admin {
         protected global::FixedAsset.Web.Admin.UserControl.ucSelectSubCompany ucSelectSubCompany;
         
         /// <summary>
-        /// txtPurchasedate 控件。
+        /// ucPurchasedate 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPurchasedate;
-        
-        /// <summary>
-        /// RequiredFieldValidator7 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator7;
+        protected global::FixedAsset.Web.Admin.UserControl.ucDatePicker ucPurchasedate;
         
         /// <summary>
         /// txtDepreciationyear 控件。

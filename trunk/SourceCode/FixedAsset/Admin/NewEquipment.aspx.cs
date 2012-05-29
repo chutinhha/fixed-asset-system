@@ -86,9 +86,9 @@ namespace FixedAsset.Web.Admin
         protected void BtnSave_Click(object sender, EventArgs e)
         {
             DateTime dateTime = DateTime.MinValue;
-            if (!DateTime.TryParse(Request.Form[txtPurchasedate.UniqueID], out dateTime))
+            if(!ucPurchasedate.DateValue.HasValue)
             {
-                UIHelper.Alert(this.UpdatePanel1, "请选择计划采购日期");
+                UIHelper.Alert(this.UpdatePanel1, "请选择采购日期");
                 return;
             }
             if (string.IsNullOrEmpty(ucSelectSubCompany.SubcompanyId))
@@ -174,10 +174,7 @@ namespace FixedAsset.Web.Admin
             ddlManagementModel.SelectedValue = asset.Managemode.ToString();
             ddlManagementModel.SelectedValue = asset.Financecategory.ToString();
             ucSelectSupplier.Supplierid = asset.Supplierid;
-            if (asset.Purchasedate.HasValue)
-            {
-                txtPurchasedate.Text = asset.Purchasedate.Value.ToString(UiConst.DateFormat);
-            }
+            ucPurchasedate.DateValue = asset.Purchasedate;
             txtAssetspecification.Text = asset.Assetspecification;
             //txtStorageflag.Text = asset.Storageflag;
             ucSelectSubCompany.SubcompanyId = asset.Subcompany;
@@ -203,11 +200,10 @@ namespace FixedAsset.Web.Admin
             asset.Managemode = (ManageMode) Enum.Parse(typeof (ManageMode), ddlManagementModel.SelectedValue); 
             asset.Financecategory = (FinanceCategory)Enum.Parse(typeof(FinanceCategory), ddlFinancecategory.SelectedValue);
             asset.Supplierid = ucSelectSupplier.Supplierid;
-            DateTime purchasedate = DateTime.MinValue;
-            if (DateTime.TryParse(Request.Form[txtPurchasedate.UniqueID], out purchasedate))
+            if(ucPurchasedate.DateValue.HasValue)
             {
-                asset.Purchasedate = purchasedate;
-                if(asset.Depreciationyear>0)
+                asset.Purchasedate = ucPurchasedate.DateValue.Value;
+                if (asset.Depreciationyear > 0)
                 {
                     asset.Expireddate = asset.Purchasedate.Value.AddYears((int)asset.Depreciationyear);
                 }

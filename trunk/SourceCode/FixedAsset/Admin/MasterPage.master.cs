@@ -1,24 +1,27 @@
-﻿/******************************************************************
- * Copyright(c)  
- * Description	 :系统管理母版页
- * CreateDate	 : 2012-1-9
- * Creater		 : peter.lu
- * LastChangeDate: 
- * LastChanger	 : 
- * Version Info	 : 
- * ******************************************************************/
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+﻿using System;
 using System.Text;
-using System.Data;
 namespace FixedAsset.Web.Admin
 {
     public partial class MasterPage : System.Web.UI.MasterPage
     {
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            if(!IsPostBack){InitialScriptAndStyle();}
+        }
+        protected void InitialScriptAndStyle()
+        {
+            var content = new StringBuilder();
+            content.AppendFormat(@"<script type=""text/javascript"" src=""{0}""></script>", ResolveUrl("~/Scripts/jquery-1.6.1.min.js")).AppendLine();
+            content.AppendFormat(@"<script type=""text/javascript"" src=""{0}""></script>", ResolveUrl("~/Scripts/jquery-latest.js")).AppendLine();
+            content.AppendFormat(@"<link href=""{0}"" rel=""stylesheet"" type=""text/css"" />", ResolveUrl("~/css/jquery.ui.all.css")).AppendLine();
+            content.AppendFormat(@"<script type=""text/javascript"" src=""{0}""></script>", ResolveUrl("~/Scripts/jquery-1.6.2.js")).AppendLine();
+            content.AppendFormat(@"<script type=""text/javascript"" src=""{0}""></script>", ResolveUrl("~/Scripts/jquery.ui.core.js")).AppendLine();
+            content.AppendFormat(@"<script type=""text/javascript"" src=""{0}""></script>", ResolveUrl("~/Scripts/jquery.ui.widget.js")).AppendLine();
+            content.AppendFormat(@"<script type=""text/javascript"" src=""{0}""></script>", ResolveUrl("~/Scripts/jquery.ui.datepicker.js")).AppendLine();
+            content.AppendFormat(@"<script type=""text/javascript"" src=""{0}""></script>", ResolveUrl("~/Scripts/jquery.ui.datepicker-zh-CN.js")).AppendLine();
+            litStyle.Text = content.ToString();
+        }
         //protected void Page_Load(object sender, EventArgs e)
         //{
         //    if (!IsPostBack)
