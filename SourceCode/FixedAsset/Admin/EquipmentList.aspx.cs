@@ -44,6 +44,7 @@ namespace FixedAsset.Web.Admin
             if (!IsPostBack)
             {
                 AssetCategories.Clear();
+                LoadAssetCategory();
                 InitData();
                 LoadData(0);
             }

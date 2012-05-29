@@ -5,6 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
+using FixedAsset.Domain;
+using FixedAsset.Services;
 using log4net.Config;
 
 namespace FixedAsset.Web
@@ -37,7 +39,7 @@ namespace FixedAsset.Web
 
         protected void Session_Start(object sender, EventArgs e)
         {
-
+            WebContext.Current.CurrentUser = new Tuser() { Username = "王玲玲", Adminflag = "SUPER", Loginid = "wll", Userpassword = "wll", Id = "8a898ad535e0bb250135e582eb8a0015" };
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)

@@ -213,6 +213,8 @@ namespace FixedAsset.Web.Admin
         {
             AssetCategories.Clear();
             ProcureScheduleDetails.Clear();
+            ucApplydate.DateValue = DateTime.Today;//申请日期，默认当天
+            txtApplyuser.Text = WebContext.Current.CurrentUser.Username;//默认当前登录用户
             if (AssetCategories.Count == 0)
             {
                 var list = AssetcategoryService.RetrieveAllAssetcategory();
