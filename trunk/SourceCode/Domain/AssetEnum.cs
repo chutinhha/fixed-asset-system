@@ -18,7 +18,7 @@ namespace FixedAsset.Domain
         [EnumDescript(Descript = "日")]
         Day = 30,
     }
-    [EnumCatetory(EnumName = "审核状态")]
+    [EnumCatetory(EnumName = "采购计划状态")]
     public enum ApproveResult:int
     {
         [EnumDescript(Descript = "草稿")]
@@ -32,6 +32,8 @@ namespace FixedAsset.Domain
         [EnumDescript(Descript = "已废除")]
         Deleted = 4,
     }
+    
+    #region 设备部分
     /// <summary>
     /// 在用，未用，报废
     /// </summary>
@@ -67,5 +69,21 @@ namespace FixedAsset.Domain
         AAccount = 0,
         [EnumDescript(Descript = "B帐")]
         BAccount = 1
+    }
+    #endregion
+
+    [EnumCatetory(EnumName = "设备安装状态")]
+    public enum SetupState : int
+    {
+        [EnumDescript(Descript = "草稿")]
+        Draft = 0,
+        [EnumDescript(Descript = "已提交")]
+        Approving = 1,
+        [EnumDescript(Descript = "同意")]
+        Approved = 2,
+        [EnumDescript(Descript = "拒绝")]
+        Rejected = 3,
+        [EnumDescript(Descript = "已废除")]
+        Deleted = 4,
     }
 }

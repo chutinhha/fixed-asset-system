@@ -205,6 +205,18 @@ namespace FixedAsset.Web
                 dropDownList.Items.Add(new ListItem(valuePair.Value, valuePair.Key.ToString()));
             }
         }
+        protected void InitSetupStates(DropDownList dropDownList,bool isLoadAll)
+        {
+            if (isLoadAll)
+            {
+                dropDownList.Items.Add(new ListItem("全部", ""));
+            }
+            var dic = EnumUtil.RetrieveEnumDictionary(typeof(SetupState));
+            foreach (KeyValuePair<Enum, string> valuePair in dic)
+            {
+                dropDownList.Items.Add(new ListItem(valuePair.Value, valuePair.Key.ToString()));
+            }
+        }
         #endregion
     }
 }

@@ -5,6 +5,7 @@
 <%@ Import Namespace="SeallNet.Utility" %>
 <%@ Register Assembly="KFSQ.Web.Controls" Namespace="KFSQ.Web.Controls" TagPrefix="cc1" %>
 <%@ Register Assembly="iKC.Web" Namespace="iKC.Web.UI.WebControls" TagPrefix="asp" %>
+<%@ Register Src="~/Admin/UserControl/ucDatePicker.ascx" TagName="DatePicker" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
@@ -17,10 +18,10 @@
                 align="center">
                 <tr>
                     <td>
-                        设备编号
+                        申请单号
                     </td>
                     <td>
-                        <asp:TextBox ID="txtSrchPsid" Width="150" CssClass="" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtSrchSetupid" Width="150" CssClass="" runat="server"></asp:TextBox>
                     </td>
                     <td>
                         项目体
@@ -33,9 +34,7 @@
                         状态
                     </td>
                     <td>
-                        <asp:DropDownList ID="ddlStatus" runat="server" Width="150px">
-                            <asp:ListItem>待安装</asp:ListItem>
-                            <asp:ListItem>已安装</asp:ListItem>
+                        <asp:DropDownList ID="ddlSetupStates" runat="server" Width="150px">
                         </asp:DropDownList>
                     </td>
                 </tr>
@@ -43,14 +42,10 @@
                     <td>
                         申请日期
                     </td>
-                    <td>
-                        <asp:TextBox ID="txtApplicationStartDate" Width="150" CssClass="" runat="server"></asp:TextBox>
-                    </td>
-                    <td>
-                        至
-                    </td>
                     <td colspan="3">
-                        <asp:TextBox ID="txtApplicationEndDate" Width="150" CssClass="" runat="server"></asp:TextBox>
+                        <uc1:DatePicker ID="ucSrchStartApplydate" runat="server" />
+                        ~
+                        <uc1:DatePicker ID="ucSrchEndApplydate" runat="server" />
                     </td>
                 </tr>
                 <tr>
@@ -60,22 +55,16 @@
                     </td>
                 </tr>
             </table>
-            <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
+            <table style="width: 100%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
                 align="center">
-                <asp:Repeater ID="rptContactsList" runat="server">
+                <asp:Repeater ID="rptAssetSetupList" runat="server">
                     <HeaderTemplate>
                         <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
-                            <td align="center">
-                                设备编号
+                            <td>
+                                申请单号
                             </td>
                             <td>
-                                设备数量
-                            </td>
-                            <td>
-                                设备名称
-                            </td>
-                            <td>
-                                设备状态
+                                状态
                             </td>
                             <td>
                                 申请人
@@ -84,76 +73,131 @@
                                 申请日期
                             </td>
                             <td>
+                                分公司
+                            </td>
+                            <td>
+                                项目体
+                            </td>
+                            <%--<td>
+                                计划安装日期
+                            </td>
+                            <td>
+                                实际安装日期
+                            </td>--%>
+                            <td>
+                                审核人
+                            </td>
+                            <td>
+                                审核日期
+                            </td>
+                            <td>
+                                确认人
+                            </td>
+                            <td>
+                                确认日期
+                            </td>
+                            <td>
                                 操作
                             </td>
                         </tr>
                     </HeaderTemplate>
                     <ItemTemplate>
                         <tr>
-                            <td align="center">
-                                <%#Eval("Psid")%>
+                            <td>
+                                <%#Eval("Setupid")%>
                             </td>
                             <td>
-                                <%#((DateTime)Eval("Procurementscheduledate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                <%#EnumUtil.RetrieveEnumDescript((SetupState)Eval("Approveresult"))%>
                             </td>
                             <td>
-                                <%#Eval("Subcompany")%>
-                            </td>
-                            <td>
-                                <%#Eval("Applyuser")%>
+                                <%#Eval("Applyuserid")%>
                             </td>
                             <td>
                                 <%#((DateTime)Eval("Applydate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
-                            <td align="center">
-                                <%#Eval("Psid")%>
+                            <td>
+                                分公司
+                            </td>
+                            <td>
+                                项目体
+                            </td>
+                            <%--<td>
+                                <%# Eval("Plansetupdate") == null ? "" : ((DateTime)Eval("Plansetupdate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                            </td>
+                            <td>
+                                <%# Eval("Actualsetupdate") == null ? "" : ((DateTime)Eval("Actualsetupdate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                            </td>--%>
+                            <td>
+                                <%#Eval("Approveuser")%>
+                            </td>
+                            <td>
+                                <%# Eval("Approvedate") == null ? "" : ((DateTime)Eval("Approvedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                            </td>
+                            <td>
+                                <%#Eval("Confirmuser")%>
+                            </td>
+                            <td>
+                                <%# Eval("Confirmdate") == null ? "" : ((DateTime)Eval("Confirmdate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
                             <td align="right">
-                                <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/images/Button/edit.GIF"
-                                    AlternateText="编辑" ToolTip="编辑" />
-                                <asp:ImageButton ID="ImageButton3" runat="server" ImageUrl="~/images/Button/edit.GIF"
-                                    AlternateText="回复" ToolTip="回复" />
-                                <asp:ImageButton ID="ImageButton4" runat="server" ImageUrl="~/images/Button/edit.GIF"
-                                    AlternateText="确认" ToolTip="确认" />
+                                <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"
+                                    AlternateText="编辑" ToolTip="编辑" CommandArgument='<%#Eval("Setupid")%>' CommandName="EditDetail" />
+                                <asp:ImageButton ID="BtnDeleted" runat="server" ImageUrl="~/images/Button/delete.GIF"
+                                    CommandArgument='<%#Eval("Setupid")%>' CommandName="DeleteDetail" OnClientClick="return confirm('确认要删除吗？');"
+                                    AlternateText="删除" ToolTip="删除" />
                             </td>
                         </tr>
                     </ItemTemplate>
                     <AlternatingItemTemplate>
                         <tr class="alt-row">
-                            <td align="center">
-                                <%#Eval("Psid")%>
+                            <td>
+                                <%#Eval("Setupid")%>
                             </td>
                             <td>
-                                <%#((DateTime)Eval("Procurementscheduledate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                <%#EnumUtil.RetrieveEnumDescript((SetupState)Eval("Approveresult"))%>
                             </td>
                             <td>
-                                <%#Eval("Subcompany")%>
-                            </td>
-                            <td>
-                                <%#Eval("Applyuser")%>
+                                <%#Eval("Applyuserid")%>
                             </td>
                             <td>
                                 <%#((DateTime)Eval("Applydate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
-                            <td align="center">
-                                <%#Eval("Psid")%>
+                            <td>
+                                分公司
+                            </td>
+                            <td>
+                                项目体
+                            </td>
+                            <%--<td>
+                                <%# Eval("Plansetupdate") == null ? "" : ((DateTime)Eval("Plansetupdate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                            </td>
+                            <td>
+                                <%# Eval("Actualsetupdate") == null ? "" : ((DateTime)Eval("Actualsetupdate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                            </td>--%>
+                            <td>
+                                <%#Eval("Approveuser")%>
+                            </td>
+                            <td>
+                                <%# Eval("Approvedate") == null ? "" : ((DateTime)Eval("Approvedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                            </td>
+                            <td>
+                                <%#Eval("Confirmuser")%>
+                            </td>
+                            <td>
+                                <%# Eval("Confirmdate") == null ? "" : ((DateTime)Eval("Confirmdate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
                             <td align="right">
-                                <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/images/Button/edit.GIF"
-                                    AlternateText="编辑" ToolTip="编辑" />
-                                <asp:ImageButton ID="ImageButton3" runat="server" ImageUrl="~/images/Button/edit.GIF"
-                                    AlternateText="回复" ToolTip="回复" />
-                                <asp:ImageButton ID="ImageButton4" runat="server" ImageUrl="~/images/Button/edit.GIF"
-                                    AlternateText="确认" ToolTip="确认" />
+                                <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"
+                                    AlternateText="编辑" ToolTip="编辑" CommandArgument='<%#Eval("Setupid")%>' CommandName="EditDetail" />
+                                <asp:ImageButton ID="BtnDeleted" runat="server" ImageUrl="~/images/Button/delete.GIF"
+                                    CommandArgument='<%#Eval("Setupid")%>' CommandName="DeleteDetail" OnClientClick="return confirm('确认要删除吗？');"
+                                    AlternateText="删除" ToolTip="删除" />
                             </td>
                         </tr>
                     </AlternatingItemTemplate>
                 </asp:Repeater>
                 <tr>
-                    <td>
-                    </td>
-                    <td colspan="6" style="height: 30px; width: 98%;">
-                        <%-- <cc1:PageChangeControl ID="pageControl" PageSize="10" runat="server" OnPageIndexClick="pageControl_PageIndexClick" />--%>
+                    <td colspan="12" style="height: 30px; width: 98%;" align="center">
                         <cc1:PagingControl ID="pcData" runat="server" MaxNavigatePageCount="7" OnPageIndexClick="pcData_PageIndexClick" />
                     </td>
                 </tr>

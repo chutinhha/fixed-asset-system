@@ -13,13 +13,13 @@ namespace FixedAsset.Web.Admin {
     public partial class InstallList {
         
         /// <summary>
-        /// txtSrchPsid 控件。
+        /// txtSrchSetupid 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSrchPsid;
+        protected global::System.Web.UI.WebControls.TextBox txtSrchSetupid;
         
         /// <summary>
         /// ddlProjects 控件。
@@ -31,31 +31,31 @@ namespace FixedAsset.Web.Admin {
         protected global::System.Web.UI.WebControls.DropDownList ddlProjects;
         
         /// <summary>
-        /// ddlStatus 控件。
+        /// ddlSetupStates 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlStatus;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSetupStates;
         
         /// <summary>
-        /// txtApplicationStartDate 控件。
+        /// ucSrchStartApplydate 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtApplicationStartDate;
+        protected global::FixedAsset.Web.Admin.UserControl.ucDatePicker ucSrchStartApplydate;
         
         /// <summary>
-        /// txtApplicationEndDate 控件。
+        /// ucSrchEndApplydate 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtApplicationEndDate;
+        protected global::FixedAsset.Web.Admin.UserControl.ucDatePicker ucSrchEndApplydate;
         
         /// <summary>
         /// BtnSearch 控件。
@@ -76,13 +76,13 @@ namespace FixedAsset.Web.Admin {
         protected global::System.Web.UI.HtmlControls.HtmlInputButton btnAdd;
         
         /// <summary>
-        /// rptContactsList 控件。
+        /// rptAssetSetupList 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptContactsList;
+        protected global::System.Web.UI.WebControls.Repeater rptAssetSetupList;
         
         /// <summary>
         /// pcData 控件。

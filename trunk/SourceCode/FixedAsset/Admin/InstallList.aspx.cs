@@ -4,23 +4,26 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using FixedAsset.Domain;
+using FixedAsset.IServices;
+using FixedAsset.Services;
 
 namespace FixedAsset.Web.Admin
 {
     public partial class InstallList : BasePage
     {
-        protected void Page_Load(object sender, EventArgs e)
+        public IAssetsetupinfoService AssetSetupinfoService
         {
-
+            get { return new AssetsetupinfoService(); }
         }
-
         #region Events
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
             if (!IsPostBack)
             {
-                //LoadData(0);
+                InitSetupStates(ddlSetupStates, true);
+                LoadData(0);
             }
         }
         protected void BtnSearch_Click(object sender, EventArgs e)
@@ -36,57 +39,14 @@ namespace FixedAsset.Web.Admin
         #region  Methods
         protected void LoadData(int pageIndex)
         {
-
-            //DateTime startprocurementscheduledate = DateTime.MinValue;
-            //if (DateTime.TryParse(txtSrchStartProcurementscheduledate.Text, out startprocurementscheduledate))
-            //{
-            //    search.StartProcurementscheduledate = startprocurementscheduledate;
-            //}
-            //DateTime endprocurementscheduledate = DateTime.MinValue;
-            //if (DateTime.TryParse(txtSrchEndProcurementscheduledate.Text, out endprocurementscheduledate))
-            //{
-            //    search.EndProcurementscheduledate = endprocurementscheduledate;
-            //}
-            //search.Reason = txtSrchReason.Text;
-            //search.Subcompany = txtSrchSubcompany.Text;
-            //search.Applyuser = txtSrchApplyuser.Text;
-            //DateTime startapplydate = DateTime.MinValue;
-            //if (DateTime.TryParse(txtSrchStartApplydate.Text, out startapplydate))
-            //{
-            //    search.StartApplydate = startapplydate;
-            //}
-            //DateTime endapplydate = DateTime.MinValue;
-            //if (DateTime.TryParse(txtSrchEndApplydate.Text, out endapplydate))
-            //{
-            //    search.EndApplydate = endapplydate;
-            //}
-            //search.Approveuser = txtSrchApproveuser.Text;
-            //DateTime startapprovedate = DateTime.MinValue;
-            //if (DateTime.TryParse(txtSrchStartApprovedate.Text, out startapprovedate))
-            //{
-            //    search.StartApprovedate = startapprovedate;
-            //}
-            //DateTime endapprovedate = DateTime.MinValue;
-            //if (DateTime.TryParse(txtSrchEndApprovedate.Text, out endapprovedate))
-            //{
-            //    search.EndApprovedate = endapprovedate;
-            //}
-            //search.Rejectreason = txtSrchRejectreason.Text;
-            //DateTime startcreateddate = DateTime.MinValue;
-            //if (DateTime.TryParse(txtSrchStartCreateddate.Text, out startcreateddate))
-            //{
-            //    search.StartCreateddate = startcreateddate;
-            //}
-            //DateTime endcreateddate = DateTime.MinValue;
-            //if (DateTime.TryParse(txtSrchEndCreateddate.Text, out endcreateddate))
-            //{
-            //    search.EndCreateddate = endcreateddate;
-            //}
-
+            var search = new AssetsetupinfoSearch();
+            search.Setupid = txtSrchSetupid.Text;
+            search.StartApplydate = ucSrchStartApplydate.DateValue;
+            search.EndApplydate = ucSrchEndApplydate.DateValue;
             int recordCount = 0;
-            //var list = ProcurementscheduleheadService.RetrieveProcurementscheduleheadsPaging(search, pageIndex, pcData.PageSize, out recordCount);
-            //rptProcureList.DataSource = list;
-            //rptProcureList.DataBind();
+            var list = AssetSetupinfoService.RetrieveAssetsetupinfosPaging(search, pageIndex, pcData.PageSize, out recordCount);
+            rptAssetSetupList.DataSource = list;
+            rptAssetSetupList.DataBind();
             pcData.RecordCount = recordCount;
             pcData.CurrentIndex = pageIndex;
         }
