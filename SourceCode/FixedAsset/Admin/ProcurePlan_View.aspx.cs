@@ -136,10 +136,10 @@ namespace FixedAsset.Web.Admin
             litApproveresult.Text = EnumUtil.RetrieveEnumDescript(headInfo.Approveresult);
             litRejectreason.Text = headInfo.Rejectreason;
             litCreateddate.Text = headInfo.Createddate.Value.ToString(UiConst.DateTimeFormat);
-            if(headInfo.Approveresult==ApproveResult.Approved)
-            {
-                BtnNewContract.Visible = true;
-            }
+            //if(headInfo.Approveresult==ApproveResult.Approved)
+            //{
+            //    BtnNewContract.Visible = true;
+            //}
         }
         protected void LoadDetailList()
         {

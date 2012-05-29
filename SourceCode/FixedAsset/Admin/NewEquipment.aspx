@@ -157,7 +157,7 @@
                                     <td colspan="2">
                                         <asp:Button ID="BtnSave" runat="server" Text="保 存" CssClass="button" ValidationGroup="Vaild"
                                             OnClick="BtnSave_Click" />
-                                        <input id="btnReset" type="button" value="重 置" class="button" onclick="reset();" />
+                                        <input id="btnReset" type="button" value="重 置" class="button" onclick="javascript:reset();" />
                                     </td>
                                 </tr>
                             </table>

@@ -169,7 +169,7 @@
                                             OnClick="BtnApproved_Click" />
                                         <asp:Button ID="btnReject" runat="server" Text="拒 绝" CssClass="button" ValidationGroup="Vaild"
                                             OnClick="btnReject_Click" />
-                                        <input type="button" class="button" runat="server" id="Button2" value="返 回" onclick="reset();" />
+                                        <input type="button" class="button" runat="server" id="Button2" value="返 回" onclick="javascript:reset();" />
                                     </td>
                                 </tr>
                             </table>
