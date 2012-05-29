@@ -38,5 +38,19 @@ namespace FixedAsset.Domain
         ///</summary>
         public string Remark{  get;set;}
         #endregion 
+
+        #region 对应系统
+        ///<summary>
+        ///ColumnName:对应系统;Size:80;
+        ///</summary>
+        public string System { get; set; }
+        #endregion
+
+        #region 对应的资产大类ID
+        ///<summary>
+        ///ColumnName:对应的资产大类ID;Size:80;
+        ///</summary>
+        public string Assetcategoryid { get; set; }
+        #endregion
     }
 }
