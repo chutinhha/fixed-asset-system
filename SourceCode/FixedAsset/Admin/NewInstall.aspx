@@ -1,10 +1,12 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/MasterPage.master" AutoEventWireup="true" CodeBehind="NewInstall.aspx.cs" Inherits="FixedAsset.Web.Admin.NewInstall" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/MasterPage.master" AutoEventWireup="true"
+    CodeBehind="NewInstall.aspx.cs" Inherits="FixedAsset.Web.Admin.NewInstall" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
     <script src="../Scripts/calendar.js" type="text/javascript"></script>
     <script type="text/javascript">
         function reset() {
-            window.location.href = "NewInstall.aspx";
+            ;
         }
     </script>
 </asp:Content>
@@ -59,7 +61,7 @@
                                         申请日期:
                                     </td>
                                     <td>
-                                       <asp:TextBox ID="txtApplyDate" runat="server" class="text_inp" Width="300px"></asp:TextBox>
+                                        <asp:TextBox ID="txtApplyDate" runat="server" class="text_inp" Width="300px"></asp:TextBox>
                                     </td>
                                 </tr>
                                 <tr>
@@ -91,7 +93,7 @@
                                         项目体联系人:
                                     </td>
                                     <td>
-                                       <asp:TextBox ID="txtProjectContact" runat="server" class="text_inp" Width="300px"></asp:TextBox>
+                                        <asp:TextBox ID="txtProjectContact" runat="server" class="text_inp" Width="300px"></asp:TextBox>
                                     </td>
                                 </tr>
                                 <tr>
@@ -100,7 +102,6 @@
                                     </td>
                                     <td>
                                         <asp:TextBox ID="txtProjectContactNum" class="text_inp" runat="server" Width="300"></asp:TextBox>
-                                       
                                     </td>
                                 </tr>
                                 <tr>
@@ -118,7 +119,7 @@
                                         实际安装日期: <span style="color: Red">*</span>
                                     </td>
                                     <td>
-                                           <asp:TextBox ID="txtActualIntallDate" class="text_inp" runat="server" Width="300"></asp:TextBox>
+                                        <asp:TextBox ID="txtActualIntallDate" class="text_inp" runat="server" Width="300"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtActualIntallDate"
                                             Display="Dynamic" ErrorMessage="请选择设备实际安装日期！"></asp:RequiredFieldValidator>
                                     </td>
@@ -130,7 +131,7 @@
                                         <asp:Button ID="btnSubmit" runat="server" Text="提 交" CssClass="button" ValidationGroup="Vaild"
                                             OnClick="btnSubmit_Click" />
                                         <asp:Button ID="btnReset" runat="server" Text="重 置" CssClass="button" CausesValidation="false"
-                                            OnClientClick="javascript:reset();" />
+                                            OnClientClick="javascript:window.location.href = 'NewInstall.aspx';" />
                                     </td>
                                 </tr>
                             </table>
