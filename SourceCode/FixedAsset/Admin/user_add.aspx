@@ -150,7 +150,7 @@
                     </tr>
                     <tr style="text-align: center">
                         <td colspan="2">
-                            <asp:Button ID="btnSubmit" runat="server" Text="确 定" CssClass="button" />
+                            <asp:Button ID="btnSubmit" runat="server" Text="提 交" CssClass="button" />
                             <asp:Button ID="btnReset" runat="server" Text="重 置" CssClass="button" CausesValidation="false"
                                 OnClientClick="reset();" />
                         </td>
