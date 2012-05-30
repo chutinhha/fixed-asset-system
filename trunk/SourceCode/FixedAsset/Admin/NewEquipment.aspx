@@ -7,6 +7,7 @@
     TagPrefix="uc1" %>
 <%@ Register Src="~/Admin/UserControl/ucDatePicker.ascx" TagName="DatePicker" TagPrefix="uc1" %>
 <%@ Register Src="~/Admin/UserControl/ucSelectedMultiAssets.ascx" TagName="SelectedMultiAssets" TagPrefix="uc1" %>
+<%@ Register Src="~/Admin/UserControl/ucSelectStorageAddress.ascx" TagName="SelectStorageAddress" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />   
 </asp:Content>
@@ -41,7 +42,7 @@
                                         </asp:DropDownList>
                                         <asp:DropDownList ID="ddlSubAssetCategory" class="text_inp" runat="server">
                                         </asp:DropDownList>
-                                       <%-- <uc1:SelectedMultiAssets ID="ucSelectedMultiAssets" runat="server" />--%>
+                                        <uc1:SelectStorageAddress ID="ucSelectStorageAddress" runat="server" OnSelectedStorageNodeChange="ucSelectStorageAddress_SelectedStorageNodeChange"/>
                                     </td>
                                 </tr>
                                 <tr>

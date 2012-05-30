@@ -84,6 +84,10 @@ namespace FixedAsset.Web.Admin
                 LoadSubAssetCategory();
             }
         }
+        protected void ucSelectStorageAddress_SelectedStorageNodeChange(object sender, EventArgs e)
+        {
+            txtStorage.Text = ucSelectStorageAddress.Storagename;
+        }
         protected void BtnSave_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtAssetname.Text))
