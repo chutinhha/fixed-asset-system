@@ -297,6 +297,7 @@
     </Compile>
     <Compile Include="Admin\UserControl\ucSelectedMultiAssets.ascx.cs">
       <DependentUpon>ucSelectedMultiAssets.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\UserControl\ucSelectedMultiAssets.ascx.designer.cs">
       <DependentUpon>ucSelectedMultiAssets.ascx</DependentUpon>
