@@ -28,8 +28,10 @@ namespace FixedAsset.Domain
         #region 设备类别
         public string Assetcategoryid
         {
-            get;set; 
+            get;
+            set;
         }
+        public string FirstLevelCategoryId { get; set; }
         #endregion
 
         #region 设备名称

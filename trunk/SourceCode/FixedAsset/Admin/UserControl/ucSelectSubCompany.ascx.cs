@@ -33,8 +33,7 @@ namespace FixedAsset.Web.Admin.UserControl
                 return ViewState["SubcompanyId"].ToString();
             }
             set { ViewState["SubcompanyId"] = value; }
-        }
-        
+        } 
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
