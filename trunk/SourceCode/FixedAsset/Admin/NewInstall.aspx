@@ -2,13 +2,7 @@
     CodeBehind="NewInstall.aspx.cs" Inherits="FixedAsset.Web.Admin.NewInstall" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
-    <script src="../Scripts/calendar.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        function reset() {
-            ;
-        }
-    </script>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
