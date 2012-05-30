@@ -93,5 +93,15 @@ namespace FixedAsset.Domain
         }
         #endregion
 
+        #region ÉóºË½á¹û
+        private readonly List<ApproveResult> _approveResults = new List<ApproveResult>();
+        public List<ApproveResult> ApproveResults
+        {
+            get
+            {
+                return _approveResults;
+            }
+        }
+        #endregion
     }
 }

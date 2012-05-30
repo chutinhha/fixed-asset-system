@@ -5,6 +5,8 @@
     TagPrefix="uc1" %>
 <%@ Register Src="~/Admin/UserControl/ucSelectSubCompany.ascx" TagName="ucSelectSubCompany"
     TagPrefix="uc1" %>
+    <%@ Register Src="~/Admin/UserControl/ucMultiSelectProcurePlans.ascx" TagName="MultiSelectProcurePlans"
+    TagPrefix="uc1" %>
 <%@ Register TagPrefix="uc1" TagName="DatePicker" Src="~/Admin/UserControl/ucDatePicker.ascx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
@@ -91,7 +93,7 @@
                                                 <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
                                                     align="center">
                                                     <tr style="border-bottom-width: 1px;">
-                                                        <td colspan="6" align="right">
+                                                        <td colspan="6" align="right"> <%--<uc1:MultiSelectProcurePlans ID="ucMultiSelectProcurePlans" runat="server" OnSelectProcurePlanChange="ucMultiSelectProcurePlans_SelectProcurePlanChange" />--%>
                                                             <input type="button" class="button" runat="server" id="Button1" value="新增" onclick="ShowTopDialogFrame('新增明细', 'ContactDetail_Add.aspx','RefreshDetail()',790,500);return false;" />
                                                         </td>
                                                     </tr>
