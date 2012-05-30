@@ -77,6 +77,17 @@ namespace FixedAsset.DataAccess
                      ""PROCUREMENTSCHEDULEHEAD"".""CREATEDDATE""
                      FROM ""PROCUREMENTSCHEDULEHEAD"",""SUBCOMPANYINFO"" 
                      WHERE PROCUREMENTSCHEDULEHEAD.SUBCOMPANY=SUBCOMPANYINFO.SUBCOMPANYID");
+                if (info.ApproveResults.Count > 0)
+                {
+                    this.Database.AddInParameter(":State", info.ApproveResults[0]);
+                    sqlCommand.AppendLine(@" AND (""PROCUREMENTSCHEDULEHEAD"".""APPROVERESULT""=:State");
+                    for (int i = 1; i < info.ApproveResults.Count; i++)
+                    {
+                        this.Database.AddInParameter(":State" + i.ToString(), info.ApproveResults[i]);
+                        sqlCommand.AppendLine(@" OR ""PROCUREMENTSCHEDULEHEAD"".""APPROVERESULT""=:State" + i.ToString());
+                    }
+                    sqlCommand.AppendLine(@" )");
+                }
                 if (!string.IsNullOrEmpty(info.Psid))
                 {
                     this.Database.AddInParameter(":Psid",DbType.AnsiString,"%"+info.Psid+"%");

@@ -130,6 +130,7 @@ namespace FixedAsset.Web.Admin
         {
             var search = new ProcurementscheduleheadSearch();
             search.Psid = txtSrchPsid.Text;
+            search.ApproveResults.Add(ApproveResult.Approved);
             int recordCount = 0;
             var list = ProcurementscheduleheadService.RetrieveProcurementscheduleheadsPaging(search, pageIndex, pcData.PageSize, out recordCount);
             rptProcureList.DataSource = list;
