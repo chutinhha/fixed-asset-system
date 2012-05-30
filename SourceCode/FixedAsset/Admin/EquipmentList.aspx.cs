@@ -163,15 +163,12 @@ namespace FixedAsset.Web.Admin
             {
                 search.EndPurchasedate = ucEndPurchasedate.DateValue.Value;
             }
-            if(ddlAssetCategory.SelectedIndex>0)
+            if (ddlAssetCategory.SelectedIndex > 0)
             {
+                search.FirstLevelCategoryId = ddlAssetCategory.SelectedValue;
                 if (ddlSubAssetCategory.SelectedIndex > 0)
                 {
                     search.Assetcategoryid = ddlSubAssetCategory.SelectedValue;
-                }
-                else if(ddlSubAssetCategory.SelectedIndex==0)
-                {
-                    search.Assetcategoryid = ddlAssetCategory.SelectedValue;
                 }
             }
             //search.Assetname = txtSrchAssetname.Text;

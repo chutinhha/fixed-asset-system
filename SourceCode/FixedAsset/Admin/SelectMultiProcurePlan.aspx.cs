@@ -75,6 +75,12 @@ namespace FixedAsset.Web.Admin
         }
         protected void btnOk_Click(object sender, EventArgs e)
         {
+            CheckSelectedProcurePlan();
+            if (PsIds.Count == 0)
+            {
+                UIHelper.AlertMessage(this,"请选择！");
+                return;
+            }
             var returnValue = PageUtility.ListToString(PsIds);
             ClientScript.RegisterStartupScript(this.GetType(), "", "<script>setCookie('dialogReturn_key','" + returnValue + "',1);CloseTopDialogFrame();</script>");
         }

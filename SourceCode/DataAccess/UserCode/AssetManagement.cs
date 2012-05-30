@@ -78,18 +78,26 @@ namespace FixedAsset.DataAccess
                      ""ASSET"".""DEPRECIATIONYEAR"",""ASSET"".""UNITPRICE"",""ASSET"".""BRAND"",""ASSET"".""MANAGEMODE"",""ASSET"".""FINANCECATEGORY"",
                      ""ASSET"".""SUPPLIERID"",""ASSET"".""PURCHASEDATE"",""ASSET"".""EXPIREDDATE"",""ASSET"".""ASSETSPECIFICATION"",""ASSET"".""STORAGEFLAG"",
                      ""ASSET"".""SUBCOMPANY""
-                     FROM ""ASSET"" 
-                     WHERE 1=1");
+                     FROM ""ASSET"" ,""ASSETCATEGORY"" 
+                     WHERE ""ASSET"".""ASSETCATEGORYID""=""ASSETCATEGORY"".""ASSETCATEGORYID""");
                 if (!string.IsNullOrEmpty(info.Assetno))
                 {
                     this.Database.AddInParameter(":Assetno", DbType.AnsiString, "%" + info.Assetno + "%");
                     sqlCommand.AppendLine(@" AND ""ASSET"".""ASSETNO"" LIKE :Assetno");
                 }
+                #region 资产分类
+                if (!string.IsNullOrEmpty(info.FirstLevelCategoryId))
+                {
+                    this.Database.AddInParameter(":Assetparentcategoryid", DbType.AnsiString,  info.FirstLevelCategoryId);
+                    sqlCommand.AppendLine(@" AND ""ASSETCATEGORY"".""ASSETPARENTCATEGORYID"" = :Assetparentcategoryid");
+                }
                 if (!string.IsNullOrEmpty(info.Assetcategoryid))
                 {
-                    this.Database.AddInParameter(":Assetcategoryid", DbType.AnsiString, "%" + info.Assetcategoryid + "%");
-                    sqlCommand.AppendLine(@" AND ""ASSET"".""ASSETCATEGORYID"" LIKE :Assetcategoryid");
+                    this.Database.AddInParameter(":Assetcategoryid", DbType.AnsiString, info.Assetcategoryid);
+                    sqlCommand.AppendLine(@" AND ""ASSET"".""ASSETCATEGORYID"" = :Assetcategoryid");
                 }
+                #endregion
+
                 if (!string.IsNullOrEmpty(info.Assetname))
                 {
                     this.Database.AddInParameter(":Assetname", "%" + info.Assetname + "%");
