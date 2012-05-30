@@ -232,6 +232,13 @@
     <Compile Include="Admin\RepairList.aspx.designer.cs">
       <DependentUpon>RepairList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\SelectedMultiAssets.aspx.cs">
+      <DependentUpon>SelectedMultiAssets.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\SelectedMultiAssets.aspx.designer.cs">
+      <DependentUpon>SelectedMultiAssets.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\SelectMultiProcurePlan.aspx.cs">
       <DependentUpon>SelectMultiProcurePlan.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -287,6 +294,12 @@
     </Compile>
     <Compile Include="Admin\UserControl\ucSelectAsset.ascx.designer.cs">
       <DependentUpon>ucSelectAsset.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\UserControl\ucSelectedMultiAssets.ascx.cs">
+      <DependentUpon>ucSelectedMultiAssets.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\UserControl\ucSelectedMultiAssets.ascx.designer.cs">
+      <DependentUpon>ucSelectedMultiAssets.ascx</DependentUpon>
     </Compile>
     <Compile Include="Admin\UserControl\ucSelectStorageAddress.ascx.cs">
       <DependentUpon>ucSelectStorageAddress.ascx</DependentUpon>
@@ -376,6 +389,8 @@
     <Content Include="Admin\ContactDetail_Add.aspx" />
     <Content Include="Admin\ContractList.aspx" />
     <Content Include="Admin\css\default.css" />
+    <Content Include="Admin\SelectedMultiAssets.aspx" />
+    <Content Include="Admin\UserControl\ucSelectedMultiAssets.ascx" />
     <Content Include="css\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="css\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="css\images\ui-bg_glass_55_fbf9ee_1x400.png" />
