@@ -1,6 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ucSelectedMultiAssets.ascx.cs"
     Inherits="FixedAsset.Web.Admin.UserControl.ucSelectedMultiAssets" %>
-<asp:Literal ID="litSubCompanyName" runat="server" />
 <asp:ImageButton ID="btnSelectedMultiAssets" ImageUrl="../../images/Button/PickUp.GIF"
     runat="server" CausesValidation="false" OnClick="btnSelectedMultiAssets_Click" />
 <script type="text/javascript" language="javascript">
