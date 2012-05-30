@@ -80,6 +80,7 @@ namespace FixedAsset.Web.Admin
         {
             if (ddlAssetCategory.SelectedIndex >= 0)
             {
+                //ucSelectedMultiAssets.AssetCategoryId = ddlAssetCategory.SelectedValue;
                 LoadSubAssetCategory();
             }
         }

@@ -42,53 +42,53 @@
                     </td>
                 </tr>
             </table>
-            <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
+            <table style="width: 100%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
                 align="center" class="table_grayTH eoddTable" id="tbAssetList">
                 <asp:Repeater ID="rptAssetsList" runat="server" OnItemDataBound="rptAssetsList_ItemDataBound">
                     <HeaderTemplate>
                         <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
-                            <td align="center">
+                            <td align="center" >
                                 设备编号<input id="ckbAllSelected" onclick="javascript:AllChooseOrNoChoose('tbAssetList',this);"
                                     type="checkbox" />
-                                <td>
+                                <td align="center">
                                     设备类别
                                 </td>
-                                <td>
+                                <td align="center">
                                     设备名称
                                 </td>
-                                <td>
+                                <td align="center">
                                     设备状态
                                 </td>
                         </tr>
                     </HeaderTemplate>
                     <ItemTemplate>
                         <tr>
-                            <td align="center">
+                            <td align="left">
                                 <asp:CheckBox ID="ckbAssetno" Text='<%#Eval("Assetno")%>' runat="server" />
                             </td>
-                            <td>
+                            <td align="left">
                                 <asp:Literal ID="litCategoryName" runat="server" />
                             </td>
-                            <td>
+                            <td align="left">
                                 <%#Eval("Assetname")%>
                             </td>
-                            <td>
+                            <td align="left">
                                 <%#EnumUtil.RetrieveEnumDescript((AssetState)Eval("State"))%>
                             </td>
                         </tr>
                     </ItemTemplate>
                     <AlternatingItemTemplate>
                         <tr class="alt-row">
-                            <td align="center">
+                            <td align="left">
                                 <asp:CheckBox ID="ckbAssetno" Text='<%#Eval("Assetno")%>' runat="server" />
                             </td>
-                            <td>
+                            <td align="left">
                                 <asp:Literal ID="litCategoryName" runat="server" />
                             </td>
-                            <td>
+                            <td align="left">
                                 <%#Eval("Assetname")%>
                             </td>
-                            <td>
+                            <td align="left">
                                 <%#EnumUtil.RetrieveEnumDescript((AssetState)Eval("State"))%>
                             </td>
                         </tr>
