@@ -114,57 +114,30 @@ namespace FixedAsset.Web
             base.OnError(e);
             Exception exception = Server.GetLastError();
             Log.Error(exception.Message, exception);
-            //A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. 
-            //if (!exception.Message.Contains("establishing a connection"))
-            //{
-            //    var info = new ExceptionInfo();
-            //    info.LogId = Guid.NewGuid().ToString("N");
-            //    info.EventId = 0;
-            //    info.Category = exception.GetType().Name;
-            //    info.Priority = 0;
-            //    info.Severity = @"NoKnown";
-            //    info.Title = info.Category;
-            //    info.Timestamp = DateTime.Now;
-            //    info.MachineName = Server.MachineName;
-            //    info.IPAddress = WebContext.Current.UserHostAddress; ;//nvarchar(MAX)
-            //    info.AppDomainName = AppDomain.CurrentDomain.FriendlyName;
-            //    info.ProcessID = string.Empty;
-            //    info.ProcessName = string.Empty;//nvarchar(MAX)
-            //    info.ThreadName = Thread.CurrentThread.Name;//nvarchar(MAX)
-            //    info.Win32ThreadId = Thread.CurrentThread.Name;//nvarchar(MAX)
-            //    info.Message = FunctionId + ":" + exception.Message;//nvarchar(MAX)
-            //    info.FormattedMessage = exception.StackTrace;//nvarchar(MAX)
-            //    info.CreateOn = DateTime.Now; //dateTime
-            //    if (WebContext.Current.CurrentUser != null)
-            //    {
-            //        info.CreateUserID = WebContext.Current.CurrentUser.UserId; //BigInt
-            //        info.CreateBy = WebContext.Current.CurrentUser.UserName; //nvarchar(MAX)
-            //    }
-            //    ExceptionInfoService.CreateExceptionInfo(info);
-            //}
             if (exception is System.Data.OracleClient.OracleException)
             {
                 exception = new Exception("系统出错了，请联系系统管理员！");
             }
-            Session[SeallNet.Utility.UiConst.CurrentException] = exception;
-            Server.ClearError();
-            if (IsPoupPage)
-            {
-                var script = new StringBuilder();
-                script.Append(@"<script type=""text/javascript"">");
-                script.Append("window.");
-                for (int i = 1; i <= PoupPageLevel; i++)
-                {
-                    script.Append("parent.");
-                }
-                script.AppendFormat(@"location.href='{0}'", ResolveUrl("~/Error.aspx"));
-                script.Append("</script>");
-                Response.Write(script.ToString());
-            }
-            else
-            {
-                Response.Redirect(ResolveUrl("~/Error.aspx"));
-            }
+            //Session[SeallNet.Utility.UiConst.CurrentException] = exception;
+            //Server.ClearError();
+            //if (IsPoupPage)
+            //{
+            //    var script = new StringBuilder();
+            //    script.Append(@"<script type=""text/javascript"">");
+            //    script.Append("window.");
+            //    for (int i = 1; i <= PoupPageLevel; i++)
+            //    {
+            //        script.Append("parent.");
+            //    }
+            //    script.AppendFormat(@"location.href='{0}'", ResolveUrl("~/Error.aspx"));
+            //    script.Append("</script>");
+            //    Response.Write(script.ToString());
+            //}
+            //else
+            //{
+            //    Response.Redirect(ResolveUrl("~/Error.aspx"));
+            //}
+            throw exception;
         }
         #endregion
 
