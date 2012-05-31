@@ -108,7 +108,12 @@ namespace FixedAsset.Web.Admin
             } 
             else
             {
-                litStorage.Text = currentInfo.Storagename;
+                if (string.IsNullOrEmpty(currentInfo.Subcompanyname))
+                {litStorage.Text = currentInfo.Storagename;}
+                else
+                {
+                    litStorage.Text = string.Format(@"{0}->{1}", currentInfo.Subcompanyname, currentInfo.Storagename); 
+                }
             }
         }
         protected void BtnSave_Click(object sender, EventArgs e)
