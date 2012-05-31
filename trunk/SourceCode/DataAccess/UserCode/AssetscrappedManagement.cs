@@ -16,7 +16,7 @@ using FixedAsset.Domain;
 
 namespace FixedAsset.DataAccess
 {
-    public partial class AssetscrappedManagement:BaseManagement
+    public partial class AssetscrappedManagement : BaseManagement
     {
         #region RetrieveAssetscrappedByAssetscrappedid
         public Assetscrapped RetrieveAssetscrappedByAssetscrappedid(string assetscrappedid)
@@ -39,22 +39,22 @@ namespace FixedAsset.DataAccess
         {
             try
             {
-                if(Assetscrappedids.Count==0){ return new List<Assetscrapped>();}
+                if (Assetscrappedids.Count == 0) { return new List<Assetscrapped>(); }
                 StringBuilder sqlCommand = new StringBuilder();
                 sqlCommand.AppendLine(@"SELECT *  FROM  ""ASSET_SCRAPPED"" WHERE 1=1");
-                if(Assetscrappedids.Count==1)
+                if (Assetscrappedids.Count == 1)
                 {
-                    this.Database.AddInParameter(":Assetscrappedid"+0.ToString(),Assetscrappedids[0]);//DBType:VARCHAR2
+                    this.Database.AddInParameter(":Assetscrappedid" + 0.ToString(), Assetscrappedids[0]);//DBType:VARCHAR2
                     sqlCommand.AppendLine(@" AND ""ASSET_SCRAPPED_ID""=:Assetscrappedid0");
                 }
-                else if(Assetscrappedids.Count>1&&Assetscrappedids.Count<=2000)
+                else if (Assetscrappedids.Count > 1 && Assetscrappedids.Count <= 2000)
                 {
-                    this.Database.AddInParameter(":Assetscrappedid"+0.ToString(),Assetscrappedids[0]);//DBType:VARCHAR2
+                    this.Database.AddInParameter(":Assetscrappedid" + 0.ToString(), Assetscrappedids[0]);//DBType:VARCHAR2
                     sqlCommand.AppendLine(@" AND (""ASSET_SCRAPPED_ID""=:Assetscrappedid0");
                     for (int i = 1; i < Assetscrappedids.Count; i++)
                     {
-                    this.Database.AddInParameter(":Assetscrappedid"+i.ToString(),Assetscrappedids[i]);//DBType:VARCHAR2
-                    sqlCommand.AppendLine(@" OR ""ASSET_SCRAPPED_ID""=:Assetscrappedid"+i.ToString());
+                        this.Database.AddInParameter(":Assetscrappedid" + i.ToString(), Assetscrappedids[i]);//DBType:VARCHAR2
+                        sqlCommand.AppendLine(@" OR ""ASSET_SCRAPPED_ID""=:Assetscrappedid" + i.ToString());
                     }
                     sqlCommand.AppendLine(" )");
                 }
@@ -70,63 +70,74 @@ namespace FixedAsset.DataAccess
         #endregion
 
         #region RetrieveAssetscrappedsPaging
-        public List<Assetscrapped> RetrieveAssetscrappedsPaging(AssetscrappedSearch info,int pageIndex, int pageSize,out int count)
+        public List<Assetscrapped> RetrieveAssetscrappedsPaging(AssetscrappedSearch info, int pageIndex, int pageSize, out int count)
         {
             try
             {
                 StringBuilder sqlCommand = new StringBuilder(@" SELECT ""ASSET_SCRAPPED"".""ASSET_SCRAPPED_ID"",""ASSET_SCRAPPED"".""SCRAPPEDDATE"",""ASSET_SCRAPPED"".""SCRAPPEDUSER"",""ASSET_SCRAPPED"".""ASSETNO"",""ASSET_SCRAPPED"".""APPROVEUSER"",
-                     ""ASSET_SCRAPPED"".""APPROVEDATE"",""ASSET_SCRAPPED"".""REJECTREASON"",""ASSET_SCRAPPED"".""CREATEDDATE"",""ASSET_SCRAPPED"".""CREATOR""
+                     ""ASSET_SCRAPPED"".""APPROVEDATE"",""ASSET_SCRAPPED"".""REJECTREASON"",""ASSET_SCRAPPED"".""CREATEDDATE"",""ASSET_SCRAPPED"".""CREATOR"",""ASSET_SCRAPPED"".""APPROVEDSTATE""
                      FROM ""ASSET_SCRAPPED"" 
                      WHERE 1=1");
                 if (!string.IsNullOrEmpty(info.Assetscrappedid))
                 {
-                    this.Database.AddInParameter(":Assetscrappedid",DbType.AnsiString,"%"+info.Assetscrappedid+"%");
+                    this.Database.AddInParameter(":Assetscrappedid", DbType.AnsiString, "%" + info.Assetscrappedid + "%");
                     sqlCommand.AppendLine(@" AND ""ASSET_SCRAPPED"".""ASSET_SCRAPPED_ID"" LIKE :Assetscrappedid");
                 }
                 if (info.StartScrappeddate.HasValue)
                 {
-                    this.Database.AddInParameter(":StartScrappeddate",info.StartScrappeddate.Value.Date);
+                    this.Database.AddInParameter(":StartScrappeddate", info.StartScrappeddate.Value.Date);
                     sqlCommand.AppendLine(@" AND ""ASSET_SCRAPPED"".""SCRAPPEDDATE"" >= :StartScrappeddate");
                 }
                 if (info.EndScrappeddate.HasValue)
                 {
-                    this.Database.AddInParameter(":EndScrappeddate",info.EndScrappeddate.Value.Date.AddDays(1).AddSeconds(-1));
+                    this.Database.AddInParameter(":EndScrappeddate", info.EndScrappeddate.Value.Date.AddDays(1).AddSeconds(-1));
                     sqlCommand.AppendLine(@" AND ""ASSET_SCRAPPED"".""SCRAPPEDDATE"" <= :EndScrappeddate");
                 }
                 if (!string.IsNullOrEmpty(info.Scrappeduser))
                 {
-                    this.Database.AddInParameter(":Scrappeduser", "%"+info.Scrappeduser+"%");
+                    this.Database.AddInParameter(":Scrappeduser", "%" + info.Scrappeduser + "%");
                     sqlCommand.AppendLine(@" AND ""ASSET_SCRAPPED"".""SCRAPPEDUSER"" LIKE :Scrappeduser");
                 }
                 if (!string.IsNullOrEmpty(info.Assetno))
                 {
-                    this.Database.AddInParameter(":Assetno",DbType.AnsiString,"%"+info.Assetno+"%");
+                    this.Database.AddInParameter(":Assetno", DbType.AnsiString, "%" + info.Assetno + "%");
                     sqlCommand.AppendLine(@" AND ""ASSET_SCRAPPED"".""ASSETNO"" LIKE :Assetno");
                 }
                 if (!string.IsNullOrEmpty(info.Approveuser))
                 {
-                    this.Database.AddInParameter(":Approveuser", "%"+info.Approveuser+"%");
+                    this.Database.AddInParameter(":Approveuser", "%" + info.Approveuser + "%");
                     sqlCommand.AppendLine(@" AND ""ASSET_SCRAPPED"".""APPROVEUSER"" LIKE :Approveuser");
                 }
                 if (info.StartApprovedate.HasValue)
                 {
-                    this.Database.AddInParameter(":StartApprovedate",info.StartApprovedate.Value.Date);
+                    this.Database.AddInParameter(":StartApprovedate", info.StartApprovedate.Value.Date);
                     sqlCommand.AppendLine(@" AND ""ASSET_SCRAPPED"".""APPROVEDATE"" >= :StartApprovedate");
                 }
                 if (info.EndApprovedate.HasValue)
                 {
-                    this.Database.AddInParameter(":EndApprovedate",info.EndApprovedate.Value.Date.AddDays(1).AddSeconds(-1));
+                    this.Database.AddInParameter(":EndApprovedate", info.EndApprovedate.Value.Date.AddDays(1).AddSeconds(-1));
                     sqlCommand.AppendLine(@" AND ""ASSET_SCRAPPED"".""APPROVEDATE"" <= :EndApprovedate");
                 }
                 if (!string.IsNullOrEmpty(info.Rejectreason))
                 {
-                    this.Database.AddInParameter(":Rejectreason", "%"+info.Rejectreason+"%");
+                    this.Database.AddInParameter(":Rejectreason", "%" + info.Rejectreason + "%");
                     sqlCommand.AppendLine(@" AND ""ASSET_SCRAPPED"".""REJECTREASON"" LIKE :Rejectreason");
                 }
                 if (!string.IsNullOrEmpty(info.Creator))
                 {
-                    this.Database.AddInParameter(":Creator", "%"+info.Creator+"%");
+                    this.Database.AddInParameter(":Creator", "%" + info.Creator + "%");
                     sqlCommand.AppendLine(@" AND ""ASSET_SCRAPPED"".""CREATOR"" LIKE :Creator");
+                }
+                if (info.Approvedstates.Count > 0)
+                {
+                    this.Database.AddInParameter(":Approvedstate", info.Approvedstates[0]);
+                    sqlCommand.AppendLine(@" AND (""ASSET_SCRAPPED"".""APPROVEDSTATE""=:Approvedstate");
+                    for (int i = 1; i < info.Approvedstates.Count; i++)
+                    {
+                        this.Database.AddInParameter(":Approvedstate" + i.ToString(), info.Approvedstates[i]);
+                        sqlCommand.AppendLine(@" OR ""ASSET_SCRAPPED"".""APPROVEDSTATE""=:Approvedstate" + i.ToString());
+                    }
+                    sqlCommand.AppendLine(@" )");
                 }
 
                 sqlCommand.AppendLine(@"  ORDER BY ""ASSET_SCRAPPED"".""ASSET_SCRAPPED_ID"" DESC");
@@ -138,6 +149,5 @@ namespace FixedAsset.DataAccess
             }
         }
         #endregion
-
     }
 }

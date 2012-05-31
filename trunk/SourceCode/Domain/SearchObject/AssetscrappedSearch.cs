@@ -82,5 +82,15 @@ namespace FixedAsset.Domain
         }
         #endregion
 
+        #region ÉóºË×´Ì¬
+        private List<decimal> _Approvedstates = new List<decimal>();
+        public List<decimal> Approvedstates
+        {
+            get
+            {
+                return _Approvedstates;
+            }
+        }
+        #endregion
     }
 }
