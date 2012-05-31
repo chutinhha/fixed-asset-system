@@ -51,7 +51,7 @@
                                 <%#((DateTime)Eval("Contractdate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
                             <td>
-                                <%#Eval("SUPPLIERNAME")%>
+                                <%#Eval("Suppliername")%>
                             </td>
                            
                             <td>
@@ -74,7 +74,7 @@
                                 <%#((DateTime)Eval("Contractdate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
                             <td>
-                                <%#Eval("SUPPLIERNAME")%>
+                                <%#Eval("Suppliername")%>
                             </td>
                            
                             <td>
