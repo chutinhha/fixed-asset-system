@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutoCode\AssetcategoryManagement.cs" />
+    <Compile Include="AutoCode\AssetconfigManagement.cs" />
     <Compile Include="AutoCode\AssetmaintaindetailManagement.cs" />
     <Compile Include="AutoCode\AssetmaintainManagement.cs" />
     <Compile Include="AutoCode\AssetManagement.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="AutoCode\AssetmoveManagement.cs" />
     <Compile Include="AutoCode\AssetremovedetailManagement.cs" />
     <Compile Include="AutoCode\AssetremoveManagement.cs" />
+    <Compile Include="AutoCode\AssetscrappedManagement.cs" />
     <Compile Include="AutoCode\AssetsetupdetailManagement.cs" />
     <Compile Include="AutoCode\AssetsetupinfoManagement.cs" />
     <Compile Include="AutoCode\AssetsupplierManagement.cs" />
@@ -91,6 +93,7 @@
     <Compile Include="BaseManagement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserCode\AssetcategoryManagement.cs" />
+    <Compile Include="UserCode\AssetconfigManagement.cs" />
     <Compile Include="UserCode\AssetmaintaindetailManagement.cs" />
     <Compile Include="UserCode\AssetmaintainManagement.cs" />
     <Compile Include="UserCode\AssetManagement.cs" />
@@ -98,6 +101,7 @@
     <Compile Include="UserCode\AssetmoveManagement.cs" />
     <Compile Include="UserCode\AssetremovedetailManagement.cs" />
     <Compile Include="UserCode\AssetremoveManagement.cs" />
+    <Compile Include="UserCode\AssetscrappedManagement.cs" />
     <Compile Include="UserCode\AssetsetupdetailManagement.cs" />
     <Compile Include="UserCode\AssetsetupinfoManagement.cs" />
     <Compile Include="UserCode\AssetsupplierManagement.cs" />
