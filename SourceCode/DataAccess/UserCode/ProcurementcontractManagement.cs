@@ -74,10 +74,11 @@ namespace FixedAsset.DataAccess
         {
             try
             {
-                StringBuilder sqlCommand = new StringBuilder(@" SELECT ""PROCUREMENTCONTRACT"".""CONTRACTID"",""PROCUREMENTCONTRACT"".""CONTENT"",""PROCUREMENTCONTRACT"".""CREATEDDATE"",""PROCUREMENTCONTRACT"".""CONTRACTDATE"",""PROCUREMENTCONTRACT"".""SUPPLIER"",
+                StringBuilder sqlCommand = new StringBuilder(@" SELECT ""PROCUREMENTCONTRACT"".""CONTRACTID"",""PROCUREMENTCONTRACT"".""CONTENT"",""PROCUREMENTCONTRACT"".""CREATEDDATE"",
+                 ""PROCUREMENTCONTRACT"".""CONTRACTDATE"",""PROCUREMENTCONTRACT"".""SUPPLIER"",""SUPPLIERNAME"",
                      ""PROCUREMENTCONTRACT"".""OPERATOR"",""PROCUREMENTCONTRACT"".""SUBCOMPANY"",""PROCUREMENTCONTRACT"".""CREATOR"",""PROCUREMENTCONTRACT"".""PSID""
-                     FROM ""PROCUREMENTCONTRACT"" 
-                     WHERE 1=1");
+                     FROM ""PROCUREMENTCONTRACT"" ,""ASSETSUPPLIER""
+                     WHERE PROCUREMENTCONTRACT.SUPPLIER=ASSETSUPPLIER.SUPPLIERID");
                 if (!string.IsNullOrEmpty(info.Contractid))
                 {
                     this.Database.AddInParameter(":Contractid",DbType.AnsiString,"%"+info.Contractid+"%");
