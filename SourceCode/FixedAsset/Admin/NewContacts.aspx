@@ -124,7 +124,7 @@
                                                         <ItemTemplate>
                                                             <tr>
                                                                 <td>
-                                                                    <%#Eval("Assetcategoryid")%>
+                                                                    <%#Eval("CategoryAllPathName")%>
                                                                 </td>
                                                                 <td>
                                                                     <%#Eval("Assetname")%>
@@ -151,7 +151,7 @@
                                                         <AlternatingItemTemplate>
                                                             <tr class="alt-row">
                                                                 <td>
-                                                                    <%#Eval("Assetcategoryid")%>
+                                                                    <%#Eval("CategoryAllPathName")%>
                                                                 </td>
                                                                 <td>
                                                                     <%#Eval("Assetname")%>
