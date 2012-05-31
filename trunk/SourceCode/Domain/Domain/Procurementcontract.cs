@@ -53,6 +53,7 @@ namespace FixedAsset.Domain
         ///ColumnName:供应商;Size:100;
         ///</summary>
         public string Supplier{  get;set;}
+        public string SUPPLIERNAME { get; set; }
         #endregion
 
         #region 合同负责人
