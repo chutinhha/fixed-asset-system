@@ -282,6 +282,10 @@ namespace FixedAsset.Web.Admin
             {
                 headInfo.Createddate = DateTime.Now;
             }
+            if(WebContext.Current.CurrentUser!=null)
+            {
+                headInfo.Creator = WebContext.Current.CurrentUser.Username;
+            }
         }
         protected void LoadDetailList()
         {
