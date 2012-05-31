@@ -131,5 +131,19 @@ namespace FixedAsset.Domain
         ///</summary>
         public string Subcompany { get; set; }
         #endregion
+
+        #region 合同编号
+        ///<summary>
+        ///ColumnName:合同编号;Size:50;
+        ///</summary>
+        public string Contractid { get; set; }
+        #endregion
+
+        #region 合同明细编号
+        ///<summary>
+        ///ColumnName:合同明细编号;Size:50;
+        ///</summary>
+        public string Contractdetailid { get; set; }
+        #endregion
     }
 }
