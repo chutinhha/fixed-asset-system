@@ -77,6 +77,7 @@ namespace FixedAsset.Web.Admin
                         ReadEntityToControl(headInfo);
                         var list = ProcurementcontractdetailService.RetrieveProcurementcontractdetailListByContractid(Contractid);
                         ProcurementContractDetail.AddRange(list);
+                        BtmImortAssets.Visible = true;
                     }
                 }
                 LoadDetailList();
@@ -198,7 +199,10 @@ namespace FixedAsset.Web.Admin
             }
             UIHelper.AlertMessageGoToURL(this.UpdatePanel1, "提交成功!", ResolveUrl("~/Admin/ContractList.aspx"));
         }
-
+         protected void BtmImortAssets_Click(object sender,EventArgs e)
+         {
+             Response.Redirect("~/Admin/ImportAssetFromContract.aspx");
+         }
 
         #region 明细
         protected void BtnRefreshDetail_Click(object sender, EventArgs e)

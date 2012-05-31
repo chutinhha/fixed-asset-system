@@ -190,6 +190,8 @@
                                             OnClick="BtnSave_Click" />
                                         <asp:Button ID="btnSubmit" runat="server" Text="提 交" CssClass="button" ValidationGroup="Vaild"
                                             OnClick="btnSubmit_Click" />
+                                            <asp:Button ID="BtmImortAssets" runat="server" Text="生成设备" Visible="false" CssClass="button" CausesValidation="false"
+                                            OnClick="BtmImortAssets_Click" />
                                         <asp:Button ID="btnReset" runat="server" Text="重 置" CssClass="button" CausesValidation="false"
                                             OnClientClick="javascript:reset();" />
                                     </td>
