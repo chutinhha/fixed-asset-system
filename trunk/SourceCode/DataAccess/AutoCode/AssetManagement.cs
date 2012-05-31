@@ -1,7 +1,7 @@
 /********************************************************************
 * File Name:AssetManagement
 * Copyright (C) 2012 Bruce.huang 
-* Creater & Date:Bruce.huang - 2012-05-27
+* Creater & Date:Bruce.huang - 2012-05-31
 * Create Explain:
 * Description:DataBase Access Class
 * Modify Explain:
@@ -19,7 +19,7 @@ namespace FixedAsset.DataAccess
     public partial class AssetManagement : BaseManagement
     {
         #region Construct
-        private const int ColumnCount = 16;
+        private const int ColumnCount = 18;
         public AssetManagement()
         { }
         public AssetManagement(BaseManagement baseManagement)
@@ -32,7 +32,7 @@ namespace FixedAsset.DataAccess
         {
             try
             {
-                string sqlCommand = @"INSERT INTO ""ASSET"" (""ASSETNO"",""ASSETCATEGORYID"",""ASSETNAME"",""STORAGE"",""STATE"",""DEPRECIATIONYEAR"",""UNITPRICE"",""BRAND"",""MANAGEMODE"",""FINANCECATEGORY"",""SUPPLIERID"",""PURCHASEDATE"",""EXPIREDDATE"",""ASSETSPECIFICATION"",""STORAGEFLAG"",""SUBCOMPANY"") VALUES (:Assetno,:Assetcategoryid,:Assetname,:Storage,:State,:Depreciationyear,:Unitprice,:Brand,:Managemode,:Financecategory,:Supplierid,:Purchasedate,:Expireddate,:Assetspecification,:Storageflag,:Subcompany)";
+                string sqlCommand = @"INSERT INTO ""ASSET"" (""ASSETNO"",""ASSETCATEGORYID"",""ASSETNAME"",""STORAGE"",""STATE"",""DEPRECIATIONYEAR"",""UNITPRICE"",""BRAND"",""MANAGEMODE"",""FINANCECATEGORY"",""SUPPLIERID"",""PURCHASEDATE"",""EXPIREDDATE"",""ASSETSPECIFICATION"",""STORAGEFLAG"",""SUBCOMPANY"",""CONTRACTID"",""CONTRACTDETAILID"") VALUES (:Assetno,:Assetcategoryid,:Assetname,:Storage,:State,:Depreciationyear,:Unitprice,:Brand,:Managemode,:Financecategory,:Supplierid,:Purchasedate,:Expireddate,:Assetspecification,:Storageflag,:Subcompany,:Contractid,:Contractdetailid)";
                 this.Database.AddInParameter(":Assetno", info.Assetno);//DBType:VARCHAR2
                 this.Database.AddInParameter(":Assetcategoryid", info.Assetcategoryid);//DBType:VARCHAR2
                 this.Database.AddInParameter(":Assetname", info.Assetname);//DBType:NVARCHAR2
@@ -49,6 +49,8 @@ namespace FixedAsset.DataAccess
                 this.Database.AddInParameter(":Assetspecification", info.Assetspecification);//DBType:NVARCHAR2
                 this.Database.AddInParameter(":Storageflag", info.Storageflag);//DBType:NVARCHAR2
                 this.Database.AddInParameter(":Subcompany", info.Subcompany);//DBType:VARCHAR2
+                this.Database.AddInParameter(":Contractid", info.Contractid);//DBType:VARCHAR2
+                this.Database.AddInParameter(":Contractdetailid", info.Contractdetailid);//DBType:VARCHAR2
                 this.Database.ExecuteNonQuery(sqlCommand);
 
             }
@@ -81,7 +83,9 @@ namespace FixedAsset.DataAccess
                 this.Database.AddInParameter(":Assetspecification", info.Assetspecification);//DBType:NVARCHAR2
                 this.Database.AddInParameter(":Storageflag", info.Storageflag);//DBType:NVARCHAR2
                 this.Database.AddInParameter(":Subcompany", info.Subcompany);//DBType:VARCHAR2
-                string sqlCommand = @"UPDATE ""ASSET"" SET  ""ASSETCATEGORYID""=:Assetcategoryid , ""ASSETNAME""=:Assetname , ""STORAGE""=:Storage , ""STATE""=:State , ""DEPRECIATIONYEAR""=:Depreciationyear , ""UNITPRICE""=:Unitprice , ""BRAND""=:Brand , ""MANAGEMODE""=:Managemode , ""FINANCECATEGORY""=:Financecategory , ""SUPPLIERID""=:Supplierid , ""PURCHASEDATE""=:Purchasedate , ""EXPIREDDATE""=:Expireddate , ""ASSETSPECIFICATION""=:Assetspecification , ""STORAGEFLAG""=:Storageflag , ""SUBCOMPANY""=:Subcompany WHERE  ""ASSETNO""=:Assetno";
+                this.Database.AddInParameter(":Contractid", info.Contractid);//DBType:VARCHAR2
+                this.Database.AddInParameter(":Contractdetailid", info.Contractdetailid);//DBType:VARCHAR2
+                string sqlCommand = @"UPDATE ""ASSET"" SET  ""ASSETCATEGORYID""=:Assetcategoryid , ""ASSETNAME""=:Assetname , ""STORAGE""=:Storage , ""STATE""=:State , ""DEPRECIATIONYEAR""=:Depreciationyear , ""UNITPRICE""=:Unitprice , ""BRAND""=:Brand , ""MANAGEMODE""=:Managemode , ""FINANCECATEGORY""=:Financecategory , ""SUPPLIERID""=:Supplierid , ""PURCHASEDATE""=:Purchasedate , ""EXPIREDDATE""=:Expireddate , ""ASSETSPECIFICATION""=:Assetspecification , ""STORAGEFLAG""=:Storageflag , ""SUBCOMPANY""=:Subcompany , ""CONTRACTID""=:Contractid , ""CONTRACTDETAILID""=:Contractdetailid WHERE  ""ASSETNO""=:Assetno";
                 this.Database.ExecuteNonQuery(sqlCommand);
             }
             finally

@@ -1,7 +1,7 @@
 /********************************************************************
 * File Name:ProcurementcontractdetailManagement
 * Copyright (C) 2012 Bruce.huang 
-* Creater & Date:Bruce.huang - 2012-05-25
+* Creater & Date:Bruce.huang - 2012-05-31
 * Create Explain:
 * Description:DataBase Access Class
 * Modify Explain:
@@ -16,13 +16,14 @@ using FixedAsset.Domain;
 
 namespace FixedAsset.DataAccess
 {
-    public partial class ProcurementcontractdetailManagement:BaseManagement
+    public partial class ProcurementcontractdetailManagement : BaseManagement
     {
         #region Construct
-        private const int ColumnCount = 7;
+        private const int ColumnCount = 8;
         public ProcurementcontractdetailManagement()
         { }
-        public ProcurementcontractdetailManagement(BaseManagement baseManagement): base(baseManagement)
+        public ProcurementcontractdetailManagement(BaseManagement baseManagement)
+            : base(baseManagement)
         { }
         #endregion
 
@@ -31,7 +32,7 @@ namespace FixedAsset.DataAccess
         {
             try
             {
-                string sqlCommand = @"INSERT INTO ""PROCUREMENTCONTRACTDETAIL"" (""CONTRACTDETAILID"",""CONTRACTID"",""ASSETCATEGORYID"",""ASSETNAME"",""ASSETSPECIFICATION"",""UNITPRICE"",""PROCURENUMBER"") VALUES (:Contractdetailid,:Contractid,:Assetcategoryid,:Assetname,:Assetspecification,:Unitprice,:Procurenumber)";
+                string sqlCommand = @"INSERT INTO ""PROCUREMENTCONTRACTDETAIL"" (""CONTRACTDETAILID"",""CONTRACTID"",""ASSETCATEGORYID"",""ASSETNAME"",""ASSETSPECIFICATION"",""UNITPRICE"",""PROCURENUMBER"",""INPUTNUMBER"") VALUES (:Contractdetailid,:Contractid,:Assetcategoryid,:Assetname,:Assetspecification,:Unitprice,:Procurenumber,:Inputnumber)";
                 this.Database.AddInParameter(":Contractdetailid", info.Contractdetailid);//DBType:VARCHAR2
                 this.Database.AddInParameter(":Contractid", info.Contractid);//DBType:VARCHAR2
                 this.Database.AddInParameter(":Assetcategoryid", info.Assetcategoryid);//DBType:VARCHAR2
@@ -39,6 +40,7 @@ namespace FixedAsset.DataAccess
                 this.Database.AddInParameter(":Assetspecification", info.Assetspecification);//DBType:NVARCHAR2
                 this.Database.AddInParameter(":Unitprice", info.Unitprice);//DBType:NUMBER
                 this.Database.AddInParameter(":Procurenumber", info.Procurenumber);//DBType:NUMBER
+                this.Database.AddInParameter(":Inputnumber", info.Inputnumber);//DBType:NUMBER
                 this.Database.ExecuteNonQuery(sqlCommand);
 
             }
@@ -62,7 +64,8 @@ namespace FixedAsset.DataAccess
                 this.Database.AddInParameter(":Assetspecification", info.Assetspecification);//DBType:NVARCHAR2
                 this.Database.AddInParameter(":Unitprice", info.Unitprice);//DBType:NUMBER
                 this.Database.AddInParameter(":Procurenumber", info.Procurenumber);//DBType:NUMBER
-                string sqlCommand = @"UPDATE ""PROCUREMENTCONTRACTDETAIL"" SET  ""CONTRACTID""=:Contractid , ""ASSETCATEGORYID""=:Assetcategoryid , ""ASSETNAME""=:Assetname , ""ASSETSPECIFICATION""=:Assetspecification , ""UNITPRICE""=:Unitprice , ""PROCURENUMBER""=:Procurenumber WHERE  ""CONTRACTDETAILID""=:Contractdetailid";
+                this.Database.AddInParameter(":Inputnumber", info.Inputnumber);//DBType:NUMBER
+                string sqlCommand = @"UPDATE ""PROCUREMENTCONTRACTDETAIL"" SET  ""CONTRACTID""=:Contractid , ""ASSETCATEGORYID""=:Assetcategoryid , ""ASSETNAME""=:Assetname , ""ASSETSPECIFICATION""=:Assetspecification , ""UNITPRICE""=:Unitprice , ""PROCURENUMBER""=:Procurenumber , ""INPUTNUMBER""=:Inputnumber WHERE  ""CONTRACTDETAILID""=:Contractdetailid";
                 this.Database.ExecuteNonQuery(sqlCommand);
             }
             finally
@@ -94,22 +97,56 @@ namespace FixedAsset.DataAccess
         {
             try
             {
-                if(Contractdetailids.Count==0){ return ;}
+                if (Contractdetailids.Count == 0) { return; }
                 StringBuilder sqlCommand = new StringBuilder();
                 sqlCommand.AppendLine(@"DELETE FROM  ""PROCUREMENTCONTRACTDETAIL"" WHERE 1=1");
-                if(Contractdetailids.Count==1)
+                if (Contractdetailids.Count == 1)
                 {
-                    this.Database.AddInParameter(":Contractdetailid"+0.ToString(),Contractdetailids[0]);//DBType:VARCHAR2
+                    this.Database.AddInParameter(":Contractdetailid" + 0.ToString(), Contractdetailids[0]);//DBType:VARCHAR2
                     sqlCommand.AppendLine(@" AND ""CONTRACTDETAILID""=:Contractdetailid0");
                 }
-                else if(Contractdetailids.Count>1&&Contractdetailids.Count<=2000)
+                else if (Contractdetailids.Count > 1 && Contractdetailids.Count <= 2000)
                 {
-                    this.Database.AddInParameter(":Contractdetailid"+0.ToString(),Contractdetailids[0]);//DBType:VARCHAR2
+                    this.Database.AddInParameter(":Contractdetailid" + 0.ToString(), Contractdetailids[0]);//DBType:VARCHAR2
                     sqlCommand.AppendLine(@" AND (""CONTRACTDETAILID""=:Contractdetailid0");
                     for (int i = 1; i < Contractdetailids.Count; i++)
                     {
-                    this.Database.AddInParameter(":Contractdetailid"+i.ToString(),Contractdetailids[i]);//DBType:VARCHAR2
-                    sqlCommand.AppendLine(@" OR ""CONTRACTDETAILID""=:Contractdetailid"+i.ToString());
+                        this.Database.AddInParameter(":Contractdetailid" + i.ToString(), Contractdetailids[i]);//DBType:VARCHAR2
+                        sqlCommand.AppendLine(@" OR ""CONTRACTDETAILID""=:Contractdetailid" + i.ToString());
+                    }
+                    sqlCommand.AppendLine(" )");
+                }
+
+                this.Database.ExecuteNonQuery(sqlCommand.ToString());
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
+        #endregion
+
+        #region DeleteProcurementcontractdetailsByContractid
+        public void DeleteProcurementcontractdetailsByContractid(List<string> Contractids)
+        {
+            try
+            {
+                if (Contractids.Count == 0) { return; }
+                StringBuilder sqlCommand = new StringBuilder();
+                sqlCommand.AppendLine(@"DELETE FROM  ""PROCUREMENTCONTRACTDETAIL"" WHERE 1=1");
+                if (Contractids.Count == 1)
+                {
+                    this.Database.AddInParameter(":Contractid" + 0.ToString(), Contractids[0]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" AND ""CONTRACTID""=:Contractid0");
+                }
+                else if (Contractids.Count > 1 && Contractids.Count <= 2000)
+                {
+                    this.Database.AddInParameter(":Contractid" + 0.ToString(), Contractids[0]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" AND (""CONTRACTID""=:Contractid0");
+                    for (int i = 1; i < Contractids.Count; i++)
+                    {
+                        this.Database.AddInParameter(":Contractid" + i.ToString(), Contractids[i]);//DBType:VARCHAR2
+                        sqlCommand.AppendLine(@" OR ""CONTRACTID""=:Contractid" + i.ToString());
                     }
                     sqlCommand.AppendLine(" )");
                 }

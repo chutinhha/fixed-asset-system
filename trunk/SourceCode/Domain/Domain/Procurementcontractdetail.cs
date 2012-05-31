@@ -65,8 +65,14 @@ namespace FixedAsset.Domain
         ///ColumnName:采购数量;
         ///</summary>
         public decimal Procurenumber{  get;set;}
-        #endregion
+        #endregion 
 
+        #region 已验收登记数量
+        ///<summary>
+        ///ColumnName:已验收登记数量;
+        ///</summary>
+        public decimal Inputnumber { get; set; }
+        #endregion
 
         public string CategoryAllPathName { get; set; }
 
@@ -76,5 +82,4 @@ namespace FixedAsset.Domain
     public partial class ProcurementcontractdetailEx:Procurementcontractdetail
     {
     }
-
 }
