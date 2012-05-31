@@ -16,13 +16,14 @@ using FixedAsset.Domain;
 
 namespace FixedAsset.DataAccess
 {
-    public partial class AssetscrappedManagement:BaseManagement
+    public partial class AssetscrappedManagement : BaseManagement
     {
         #region Construct
-        private const int ColumnCount = 9;
+        private const int ColumnCount = 10;
         public AssetscrappedManagement()
         { }
-        public AssetscrappedManagement(BaseManagement baseManagement): base(baseManagement)
+        public AssetscrappedManagement(BaseManagement baseManagement)
+            : base(baseManagement)
         { }
         #endregion
 
@@ -31,7 +32,7 @@ namespace FixedAsset.DataAccess
         {
             try
             {
-                string sqlCommand = @"INSERT INTO ""ASSET_SCRAPPED"" (""ASSET_SCRAPPED_ID"",""SCRAPPEDDATE"",""SCRAPPEDUSER"",""ASSETNO"",""APPROVEUSER"",""APPROVEDATE"",""REJECTREASON"",""CREATEDDATE"",""CREATOR"") VALUES (:Assetscrappedid,:Scrappeddate,:Scrappeduser,:Assetno,:Approveuser,:Approvedate,:Rejectreason,:Createddate,:Creator)";
+                string sqlCommand = @"INSERT INTO ""ASSET_SCRAPPED"" (""ASSET_SCRAPPED_ID"",""SCRAPPEDDATE"",""SCRAPPEDUSER"",""ASSETNO"",""APPROVEUSER"",""APPROVEDATE"",""REJECTREASON"",""CREATEDDATE"",""CREATOR"",""APPROVEDSTATE"") VALUES (:Assetscrappedid,:Scrappeddate,:Scrappeduser,:Assetno,:Approveuser,:Approvedate,:Rejectreason,:Createddate,:Creator,:Approvedstate)";
                 this.Database.AddInParameter(":Assetscrappedid", info.Assetscrappedid);//DBType:VARCHAR2
                 this.Database.AddInParameter(":Scrappeddate", info.Scrappeddate);//DBType:DATE
                 this.Database.AddInParameter(":Scrappeduser", info.Scrappeduser);//DBType:NVARCHAR2
@@ -41,6 +42,7 @@ namespace FixedAsset.DataAccess
                 this.Database.AddInParameter(":Rejectreason", info.Rejectreason);//DBType:NVARCHAR2
                 this.Database.AddInParameter(":Createddate", info.Createddate);//DBType:DATE
                 this.Database.AddInParameter(":Creator", info.Creator);//DBType:NVARCHAR2
+                this.Database.AddInParameter(":Approvedstate", info.Approvedstate);//DBType:NUMBER
                 this.Database.ExecuteNonQuery(sqlCommand);
 
             }
@@ -66,7 +68,8 @@ namespace FixedAsset.DataAccess
                 this.Database.AddInParameter(":Rejectreason", info.Rejectreason);//DBType:NVARCHAR2
                 this.Database.AddInParameter(":Createddate", info.Createddate);//DBType:DATE
                 this.Database.AddInParameter(":Creator", info.Creator);//DBType:NVARCHAR2
-                string sqlCommand = @"UPDATE ""ASSET_SCRAPPED"" SET  ""SCRAPPEDDATE""=:Scrappeddate , ""SCRAPPEDUSER""=:Scrappeduser , ""ASSETNO""=:Assetno , ""APPROVEUSER""=:Approveuser , ""APPROVEDATE""=:Approvedate , ""REJECTREASON""=:Rejectreason , ""CREATEDDATE""=:Createddate , ""CREATOR""=:Creator WHERE  ""ASSET_SCRAPPED_ID""=:Assetscrappedid";
+                this.Database.AddInParameter(":Approvedstate", info.Approvedstate);//DBType:NUMBER
+                string sqlCommand = @"UPDATE ""ASSET_SCRAPPED"" SET  ""SCRAPPEDDATE""=:Scrappeddate , ""SCRAPPEDUSER""=:Scrappeduser , ""ASSETNO""=:Assetno , ""APPROVEUSER""=:Approveuser , ""APPROVEDATE""=:Approvedate , ""REJECTREASON""=:Rejectreason , ""CREATEDDATE""=:Createddate , ""CREATOR""=:Creator , ""APPROVEDSTATE""=:Approvedstate WHERE  ""ASSET_SCRAPPED_ID""=:Assetscrappedid";
                 this.Database.ExecuteNonQuery(sqlCommand);
             }
             finally
@@ -98,22 +101,22 @@ namespace FixedAsset.DataAccess
         {
             try
             {
-                if(Assetscrappedids.Count==0){ return ;}
+                if (Assetscrappedids.Count == 0) { return; }
                 StringBuilder sqlCommand = new StringBuilder();
                 sqlCommand.AppendLine(@"DELETE FROM  ""ASSET_SCRAPPED"" WHERE 1=1");
-                if(Assetscrappedids.Count==1)
+                if (Assetscrappedids.Count == 1)
                 {
-                    this.Database.AddInParameter(":Assetscrappedid"+0.ToString(),Assetscrappedids[0]);//DBType:VARCHAR2
+                    this.Database.AddInParameter(":Assetscrappedid" + 0.ToString(), Assetscrappedids[0]);//DBType:VARCHAR2
                     sqlCommand.AppendLine(@" AND ""ASSET_SCRAPPED_ID""=:Assetscrappedid0");
                 }
-                else if(Assetscrappedids.Count>1&&Assetscrappedids.Count<=2000)
+                else if (Assetscrappedids.Count > 1 && Assetscrappedids.Count <= 2000)
                 {
-                    this.Database.AddInParameter(":Assetscrappedid"+0.ToString(),Assetscrappedids[0]);//DBType:VARCHAR2
+                    this.Database.AddInParameter(":Assetscrappedid" + 0.ToString(), Assetscrappedids[0]);//DBType:VARCHAR2
                     sqlCommand.AppendLine(@" AND (""ASSET_SCRAPPED_ID""=:Assetscrappedid0");
                     for (int i = 1; i < Assetscrappedids.Count; i++)
                     {
-                    this.Database.AddInParameter(":Assetscrappedid"+i.ToString(),Assetscrappedids[i]);//DBType:VARCHAR2
-                    sqlCommand.AppendLine(@" OR ""ASSET_SCRAPPED_ID""=:Assetscrappedid"+i.ToString());
+                        this.Database.AddInParameter(":Assetscrappedid" + i.ToString(), Assetscrappedids[i]);//DBType:VARCHAR2
+                        sqlCommand.AppendLine(@" OR ""ASSET_SCRAPPED_ID""=:Assetscrappedid" + i.ToString());
                     }
                     sqlCommand.AppendLine(" )");
                 }

@@ -12,9 +12,9 @@ using System.Collections.Generic;
 
 namespace FixedAsset.Domain
 {
-    /// <summary>
-    ///ASSET_SCRAPPED
-    /// <summary>
+    ///<summary>
+    ///±¨·ÏÐÅÏ¢±í
+    ///</summary>
     [Serializable]
     public partial class Assetscrapped
     {
@@ -81,7 +81,11 @@ namespace FixedAsset.Domain
         public string Creator{  get;set;}
         #endregion
 
+        #region ÉóºË×´Ì¬
+        ///<summary>
+        ///ColumnName:ÉóºË×´Ì¬;
+        ///</summary>
+        public decimal Approvedstate { get; set; }
+        #endregion
     }
-
-
 }
