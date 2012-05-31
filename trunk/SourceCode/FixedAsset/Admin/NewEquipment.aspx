@@ -41,8 +41,7 @@
                                             OnSelectedIndexChanged="ddlAssetCategory_SelectedIndexChanged">
                                         </asp:DropDownList>
                                         <asp:DropDownList ID="ddlSubAssetCategory" class="text_inp" runat="server">
-                                        </asp:DropDownList>
-                                        <uc1:SelectStorageAddress ID="ucSelectStorageAddress" runat="server" OnSelectedStorageNodeChange="ucSelectStorageAddress_SelectedStorageNodeChange"/>
+                                        </asp:DropDownList>                                        
                                     </td>
                                 </tr>
                                 <tr>
@@ -69,7 +68,7 @@
                                     <td style="width: 180px;">
                                         存放地点:
                                     </td>
-                                    <td>
+                                    <td><uc1:SelectStorageAddress ID="ucSelectStorageAddress" runat="server" OnSelectedStorageNodeChange="ucSelectStorageAddress_SelectedStorageNodeChange"/>
                                         <asp:TextBox ID="txtStorage" runat="server" class="text_inp" Width="300px"></asp:TextBox>
                                     </td>
                                 </tr>

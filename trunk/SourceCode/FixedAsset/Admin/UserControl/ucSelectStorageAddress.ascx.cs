@@ -119,7 +119,9 @@ namespace FixedAsset.Web.Admin.UserControl
             {
                 Storagetitle = rootNode.Parent.Value;
             }
+            
             var currentInfo = VStorageAddress.Where(p => p.Storagetitle == this.Storagetitle && p.Storageid == tvStorageAddress.SelectedNode.Value).FirstOrDefault();
+            if (currentInfo == null) { return; }
             if (currentInfo.Storagetitle == Vstorageaddress.Supplier || currentInfo.Storagetitle == Vstorageaddress.Subcompany)
             {
                 this.StorageId = currentInfo.Storageid;
