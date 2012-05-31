@@ -41,6 +41,17 @@ namespace FixedAsset.Web.Admin
                 return Session["AssetCategories"] as List<Assetcategory>;
             }
         }
+        protected List<Vstorageaddress> VStorageAddress
+        {
+            get
+            {
+                if (Session["VStorageAddress"] == null)
+                {
+                    Session["VStorageAddress"] = new List<Vstorageaddress>();
+                }
+                return Session["VStorageAddress"] as List<Vstorageaddress>;
+            }
+        }
         protected IAssetService AssetService
         {
             get { return new AssetService(); }
@@ -80,13 +91,25 @@ namespace FixedAsset.Web.Admin
         {
             if (ddlAssetCategory.SelectedIndex >= 0)
             {
-                //ucSelectedMultiAssets.AssetCategoryId = ddlAssetCategory.SelectedValue;
                 LoadSubAssetCategory();
             }
         }
         protected void ucSelectStorageAddress_SelectedStorageNodeChange(object sender, EventArgs e)
         {
-            txtStorage.Text = ucSelectStorageAddress.Storagename;
+            //litStorage.Text = ucSelectStorageAddress.Storagename;
+            var currentInfo =
+                VStorageAddress.Where(
+                    p =>
+                    p.Storagetitle == ucSelectStorageAddress.Storagetitle &&
+                    p.Storageid == ucSelectStorageAddress.StorageId).FirstOrDefault();
+            if (currentInfo == null)
+            {
+                litStorage.Text = string.Empty;
+            } 
+            else
+            {
+                litStorage.Text = currentInfo.Storagename;
+            }
         }
         protected void BtnSave_Click(object sender, EventArgs e)
         {
@@ -180,7 +203,10 @@ namespace FixedAsset.Web.Admin
                 LoadSubAssetCategory();
             }
             txtAssetname.Text = asset.Assetname;
-            txtStorage.Text = asset.Storage;  //存放地点要做特殊处理
+            //txtStorageflag.Text = asset.Storageflag;
+            //txtStorage.Text = asset.Storage;  //存放地点要做特殊处理
+            ucSelectStorageAddress.Storagetitle = asset.Storageflag;
+            ucSelectStorageAddress.StorageId = asset.Storage; //存放地点
             litState.Text = EnumUtil.RetrieveEnumDescript(asset.State);//设备状态
             txtDepreciationyear.Text = asset.Depreciationyear.ToString(); //设备年限
             txtUnitprice.Text = asset.Unitprice.ToString();
@@ -190,7 +216,6 @@ namespace FixedAsset.Web.Admin
             ucSelectSupplier.Supplierid = asset.Supplierid;
             ucPurchasedate.DateValue = asset.Purchasedate;
             txtAssetspecification.Text = asset.Assetspecification;
-            //txtStorageflag.Text = asset.Storageflag;
             ucSelectSubCompany.SubcompanyId = asset.Subcompany;
         } 
         protected void WriteControlValueToEntity(Asset asset)
@@ -199,7 +224,7 @@ namespace FixedAsset.Web.Admin
             asset.Subcompany = ucSelectSubCompany.SubcompanyId;
             asset.Assetcategoryid = ddlSubAssetCategory.SelectedValue;
             asset.Assetname = txtAssetname.Text;
-            asset.Storage = txtStorage.Text;
+            
             decimal depreciationyear = 0;
             if (decimal.TryParse(txtDepreciationyear.Text, out depreciationyear))
             {
@@ -223,7 +248,8 @@ namespace FixedAsset.Web.Admin
                 }
             }
             asset.Assetspecification = txtAssetspecification.Text;
-            //asset.Storageflag = txtStorageflag.Text;
+            asset.Storageflag = ucSelectStorageAddress.Storagetitle;
+            asset.Storage =ucSelectStorageAddress.StorageId;
         }
         #endregion
     }

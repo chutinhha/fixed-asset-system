@@ -6,23 +6,44 @@
 <%@ Register Src="~/Admin/UserControl/ucSelectSupplier.ascx" TagName="SelectSupplier"
     TagPrefix="uc1" %>
 <%@ Register Src="~/Admin/UserControl/ucDatePicker.ascx" TagName="DatePicker" TagPrefix="uc1" %>
-<%@ Register Src="~/Admin/UserControl/ucSelectedMultiAssets.ascx" TagName="SelectedMultiAssets" TagPrefix="uc1" %>
-<%@ Register Src="~/Admin/UserControl/ucSelectStorageAddress.ascx" TagName="SelectStorageAddress" TagPrefix="uc1" %>
+<%@ Register Src="~/Admin/UserControl/ucSelectedMultiAssets.ascx" TagName="SelectedMultiAssets"
+    TagPrefix="uc1" %>
+<%@ Register Src="~/Admin/UserControl/ucSelectStorageAddress.ascx" TagName="SelectStorageAddress"
+    TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />   
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-            <div class="content-box">
+            <%--<div class="content-box">
                 <div class="content-box-header">
                     <h3 style="cursor: s-resize;">
-                        <asp:Literal runat="server" ID="litTitle" Text="设备登记" />
+                        
                     </h3>
                 </div>
                 <div class="content-box-content">
                     <div class="tab-content default-tab">
                         <fieldset>
+                            
+                        </fieldset>
+                    </div>
+                </div>
+            </div>--%>
+            <div class="content-box">
+                <div class="content-box-header">
+                    <h3 style="cursor: s-resize;">
+                        <asp:Literal runat="server" ID="litTitle" Text="设备登记" /></h3>
+                </div>
+                <div class="content-box-content">
+                    <div class="tab-content default-tab">
+                        <div class="column-left">
+                            <b>选中存放地点：</b>
+                            <div class="listbox">
+                                <uc1:SelectStorageAddress ID="ucSelectStorageAddress" runat="server" OnSelectedStorageNodeChange="ucSelectStorageAddress_SelectedStorageNodeChange" />
+                            </div>
+                        </div>
+                        <div class="column-right">
                             <table>
                                 <tr>
                                     <td style="width: 180px;">
@@ -41,7 +62,7 @@
                                             OnSelectedIndexChanged="ddlAssetCategory_SelectedIndexChanged">
                                         </asp:DropDownList>
                                         <asp:DropDownList ID="ddlSubAssetCategory" class="text_inp" runat="server">
-                                        </asp:DropDownList>                                        
+                                        </asp:DropDownList>
                                     </td>
                                 </tr>
                                 <tr>
@@ -59,7 +80,8 @@
                                         设备规格: <span style="color: Red">*</span>
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="txtAssetspecification" runat="server" class="text_inp" Width="300px" ValidationGroup="Vaild"></asp:TextBox>
+                                        <asp:TextBox ID="txtAssetspecification" runat="server" class="text_inp" Width="300px"
+                                            ValidationGroup="Vaild"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtAssetspecification"
                                             Display="Dynamic" ErrorMessage="请输入设备规格！"></asp:RequiredFieldValidator>
                                     </td>
@@ -68,8 +90,8 @@
                                     <td style="width: 180px;">
                                         存放地点:
                                     </td>
-                                    <td><uc1:SelectStorageAddress ID="ucSelectStorageAddress" runat="server" OnSelectedStorageNodeChange="ucSelectStorageAddress_SelectedStorageNodeChange"/>
-                                        <asp:TextBox ID="txtStorage" runat="server" class="text_inp" Width="300px"></asp:TextBox>
+                                    <td>
+                                        <asp:Literal runat="server" ID="litStorage" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -85,7 +107,7 @@
                                         单价:<span style="color: Red">*</span>
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="txtUnitprice" runat="server" class="text_inp" Width="300px" ValidationGroup="Vaild"></asp:TextBox>                                        
+                                        <asp:TextBox ID="txtUnitprice" runat="server" class="text_inp" Width="300px" ValidationGroup="Vaild"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtUnitprice"
                                             Display="Dynamic" ErrorMessage="请输入单价！"></asp:RequiredFieldValidator>
                                     </td>
@@ -159,7 +181,9 @@
                                     </td>
                                 </tr>
                             </table>
-                        </fieldset>
+                            <div class="clear">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
