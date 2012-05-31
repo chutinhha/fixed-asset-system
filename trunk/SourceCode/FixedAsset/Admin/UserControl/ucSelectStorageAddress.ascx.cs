@@ -102,6 +102,14 @@ namespace FixedAsset.Web.Admin.UserControl
             {
                InitData(); 
                LoadTreeView();
+               //加载选中节点
+              if(!string.IsNullOrEmpty(StorageId))
+              {
+                  if(SelectedStorageNodeChange!=null)
+                  {
+                      SelectedStorageNodeChange(this,new EventArgs());
+                  }
+              }
             }
         }
         protected void tvStorageAddress_SelectedNodeChanged(object sender, EventArgs e)
@@ -129,10 +137,10 @@ namespace FixedAsset.Web.Admin.UserControl
             }
             else if (currentInfo.Storagetitle == Vstorageaddress.Project)
             {
-                this.StorageId = currentInfo.Storageid;
-                this.Storagename = currentInfo.Storagename;
-                this.Subcompanyid = currentInfo.Subcompanyid;
-                this.Subcompanyname = currentInfo.Subcompanyname;
+                StorageId = currentInfo.Storageid;
+                Storagename = currentInfo.Storagename;
+                Subcompanyid = currentInfo.Subcompanyid;
+                Subcompanyname = currentInfo.Subcompanyname;
             }
             if(SelectedStorageNodeChange!=null)
             {
@@ -155,17 +163,17 @@ namespace FixedAsset.Web.Admin.UserControl
             var infos = VStorageAddress.Where(p => p.Storagetitle == Vstorageaddress.Supplier);
             foreach (var info in infos)
             {
-               //trNodeSupplier.ChildNodes.Add(new TreeNode(info.Storagename,string.Format("{0}-{1}",info.Storagetitle,info.StorageId)));
                 trNodeSupplier.ChildNodes.Add(new TreeNode(info.Storagename, info.Storageid));
             }
+            trNodeSupplier.Expanded = false;
             tvStorageAddress.Nodes.Add(trNodeSupplier);
             var trNodeSubCommpanies = new TreeNode("分公司", Vstorageaddress.Subcompany);
             infos = VStorageAddress.Where(p => p.Storagetitle == Vstorageaddress.Subcompany);
             foreach (var info in infos)
             {
-                //trNodeSubCommpanies.ChildNodes.Add(new TreeNode(info.Storagename, string.Format("{0}-{1}", info.Storagetitle, info.StorageId)));
                 trNodeSubCommpanies.ChildNodes.Add(new TreeNode(info.Storagename, info.Storageid));
             }
+            trNodeSubCommpanies.Expanded = false;
             tvStorageAddress.Nodes.Add(trNodeSubCommpanies);
             //分公司项目体
             var trNodeProjects = new TreeNode("分公司项目体", Vstorageaddress.Project);
@@ -178,12 +186,13 @@ namespace FixedAsset.Web.Admin.UserControl
                 var currentProjects = infos.Where(p => p.Subcompanyid == subCompany).ToList();
                 foreach (var currentProject in currentProjects)
                 {
-                    //currentSubCompanyNode.ChildNodes.Add(new TreeNode(currentProject.Storagename, Server.HtmlEncode(string.Format("{0}-{1}", currentProject.Storagetitle, currentProject.StorageId))));
                     currentSubCompanyNode.ChildNodes.Add(new TreeNode(currentProject.Storagename, currentProject.Storageid));
                 }
+                currentSubCompanyNode.Expanded = false;
                 trNodeProjects.ChildNodes.Add(currentSubCompanyNode);
             }
             tvStorageAddress.Nodes.Add(trNodeProjects);
+            tvStorageAddress.ShowExpandCollapse = true;
         }
         #endregion
     }
