@@ -6,6 +6,8 @@
 <%@ Register Assembly="KFSQ.Web.Controls" Namespace="KFSQ.Web.Controls" TagPrefix="cc1" %>
 <%@ Register Assembly="iKC.Web" Namespace="iKC.Web.UI.WebControls" TagPrefix="asp" %>
 <%@ Register Src="~/Admin/UserControl/ucDatePicker.ascx" TagName="DatePicker" TagPrefix="uc1" %>
+<%@ Register Src="~/Admin/UserControl/ucShowAssetDetail.ascx" TagName="ucShowAssetDetail"
+    TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
@@ -110,7 +112,7 @@
                     <ItemTemplate>
                         <tr>
                             <td align="center">
-                                <%#Eval("Assetno")%>
+                                <uc1:ucShowAssetDetail ID="ucShowAssetDetail" runat="server" Assetno='<%#Eval("Assetno")%>' />
                             </td>
                             <td>
                                 <asp:Literal ID="litCategoryName" runat="server" />
@@ -145,7 +147,7 @@
                     <AlternatingItemTemplate>
                         <tr class="alt-row">
                             <td align="center">
-                                <%#Eval("Assetno")%>
+                                <uc1:ucShowAssetDetail ID="ucShowAssetDetail" runat="server" Assetno='<%#Eval("Assetno")%>' />
                             </td>
                             <td>
                                 <asp:Literal ID="litCategoryName" runat="server" />

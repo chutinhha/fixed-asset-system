@@ -38,7 +38,7 @@ namespace FixedAsset.Web
             {
                 throw;
             }
-            return null;
+            //return null;
         }
 
         #endregion 把对象序列化并返回相应的字节
