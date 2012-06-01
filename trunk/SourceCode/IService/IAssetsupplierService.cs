@@ -19,5 +19,6 @@ namespace FixedAsset.IServices
         Assetsupplier UpdateAssetsupplierBySupplierid(Assetsupplier info);
         Assetsupplier RetrieveAssetsupplierBySupplierid(string supplierid);
         void DeleteAssetsupplierBySupplierid(string supplierid);
+        List<Assetsupplier> RetrieveAllAssetsupplier();
     }
 }
