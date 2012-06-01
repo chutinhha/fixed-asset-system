@@ -281,6 +281,13 @@
     <Compile Include="Admin\SelectStorageAddress.aspx.designer.cs">
       <DependentUpon>SelectStorageAddress.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\ShowAssetDetail.aspx.cs">
+      <DependentUpon>ShowAssetDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ShowAssetDetail.aspx.designer.cs">
+      <DependentUpon>ShowAssetDetail.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\UserControl\ucDatePicker.ascx.cs">
       <DependentUpon>ucDatePicker.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -351,6 +358,20 @@
     <Compile Include="Admin\UserControl\ucSeletedSystem.ascx.designer.cs">
       <DependentUpon>ucSeletedSystem.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\UserControl\ucShowAssetDetail.ascx.cs">
+      <DependentUpon>ucShowAssetDetail.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\UserControl\ucShowAssetDetail.ascx.designer.cs">
+      <DependentUpon>ucShowAssetDetail.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\UserControl\ucShowStorageAddress.ascx.cs">
+      <DependentUpon>ucShowStorageAddress.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\UserControl\ucShowStorageAddress.ascx.designer.cs">
+      <DependentUpon>ucShowStorageAddress.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\user_add.aspx.cs">
       <DependentUpon>user_add.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -413,9 +434,12 @@
     <Content Include="Admin\css\default.css" />
     <Content Include="Admin\ImportAssetFromContract.aspx" />
     <Content Include="Admin\SelectedMultiAssets.aspx" />
+    <Content Include="Admin\ShowAssetDetail.aspx" />
     <Content Include="Admin\UserControl\ucSelectedMultiAssets.ascx" />
     <Content Include="Admin\UserControl\ucSelectStorageAddress2.ascx" />
     <Content Include="Admin\UserControl\ucSeletedSystem.ascx" />
+    <Content Include="Admin\UserControl\ucShowAssetDetail.ascx" />
+    <Content Include="Admin\UserControl\ucShowStorageAddress.ascx" />
     <Content Include="css\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="css\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="css\images\ui-bg_glass_55_fbf9ee_1x400.png" />
