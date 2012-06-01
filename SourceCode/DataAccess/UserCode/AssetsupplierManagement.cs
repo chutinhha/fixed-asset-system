@@ -101,7 +101,21 @@ namespace FixedAsset.DataAccess
                 this.Database.ClearParameter();
             }
         }
-        #endregion
+        #endregion 
 
+        #region RetrieveAllAssetsupplier
+        public List<Assetsupplier> RetrieveAllAssetsupplier()
+        {
+            try
+            {
+                string sqlCommand = @"SELECT * FROM ASSETSUPPLIER ";
+                return this.Database.ExecuteToList<Assetsupplier>(sqlCommand);
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
+        #endregion
     }
 }

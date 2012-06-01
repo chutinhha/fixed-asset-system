@@ -129,5 +129,11 @@ namespace FixedAsset.Services
         }
         #endregion
 
+        #region RetrieveAllAssetsupplier
+        public List<Assetsupplier> RetrieveAllAssetsupplier()
+        {
+            return Management.RetrieveAllAssetsupplier();
+        }
+        #endregion
     }
 }

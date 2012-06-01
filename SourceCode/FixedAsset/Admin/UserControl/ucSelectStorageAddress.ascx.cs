@@ -210,7 +210,7 @@ namespace FixedAsset.Web.Admin.UserControl
             //tvStorageAddress.Nodes.Add(trNodeSubCommpanies);
             //分公司项目体
             //var trNodeProjects = new TreeNode("分公司项目体", Vstorageaddress.Project);
-            infos = VStorageAddress.Where(p => p.Storagetitle == Vstorageaddress.Project);
+            infos = VStorageAddress.Where(p => p.Storagetitle == Vstorageaddress.Project).OrderBy(p=>p.Subcompanyname);
             var subCompanies = infos.Select(p => p.Subcompanyid).Distinct();
             foreach (var subCompany in subCompanies)
             {
