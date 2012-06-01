@@ -15,6 +15,8 @@ namespace FixedAsset.DataAccess
             : base(baseManagement)
         { }
         #endregion
+
+        
         public List<Vstorageaddress>  RetrieveAllVstorageaddress()
         {
             try
@@ -27,5 +29,22 @@ namespace FixedAsset.DataAccess
                 this.Database.ClearParameter();
             }  
         }
+
+        #region RetrieveVstorageaddressByStorageId
+        public Vstorageaddress RetrieveVstorageaddressByStorageId(string Storagetitle, string StorageId)
+        {
+            try
+            {
+                this.Database.AddInParameter(":Storagetitle", Storagetitle);
+                this.Database.AddInParameter(":StorageId", StorageId);
+                string sqlCommand = @"SELECT * FROM v_storage_address WHERE  StorageTitle=:Storagetitle AND StorageId=:StorageId ";
+                return this.Database.ExecuteToSingle<Vstorageaddress>(sqlCommand);
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
+        #endregion
     }
 }
