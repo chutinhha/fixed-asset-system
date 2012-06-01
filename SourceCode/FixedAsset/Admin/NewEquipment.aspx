@@ -10,6 +10,8 @@
     TagPrefix="uc1" %>
 <%@ Register Src="~/Admin/UserControl/ucSelectStorageAddress.ascx" TagName="SelectStorageAddress"
     TagPrefix="uc1" %>
+    <%@ Register Src="~/Admin/UserControl/ucSelectStorageAddress2.ascx" TagName="SelectStorageAddress2"
+    TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
 </asp:Content>
@@ -92,6 +94,7 @@
                                     </td>
                                     <td>
                                         <asp:Literal runat="server" ID="litStorage" />
+                                       <%-- <uc1:SelectStorageAddress2 ID="SelectStorageAddress1" runat="server" />--%>
                                     </td>
                                 </tr>
                                 <tr>

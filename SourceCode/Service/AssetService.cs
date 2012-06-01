@@ -176,5 +176,10 @@ namespace FixedAsset.Services
             var addressManagement= new VstorageaddressManagement(Management);
             return addressManagement.RetrieveAllVstorageaddress();
         }
+        public Vstorageaddress RetrieveVstorageaddressByStorageId(string Storagetitle, string StorageId)
+        {
+            var addressManagement = new VstorageaddressManagement(Management);
+            return addressManagement.RetrieveVstorageaddressByStorageId(Storagetitle, StorageId);
+        }
     }
 }

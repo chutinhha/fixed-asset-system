@@ -218,6 +218,10 @@ namespace FixedAsset.Web.Admin
             //txtStorage.Text = asset.Storage;  //存放地点要做特殊处理
             ucSelectStorageAddress.Storagetitle = asset.Storageflag;
             ucSelectStorageAddress.StorageId = asset.Storage; //存放地点
+
+            //SelectStorageAddress1.Storagetitle = asset.Storageflag;
+            //SelectStorageAddress1.StorageId = asset.Storage; //存放地点
+
             litState.Text = EnumUtil.RetrieveEnumDescript(asset.State);//设备状态
             txtDepreciationyear.Text = asset.Depreciationyear.ToString(); //设备年限
             txtUnitprice.Text = asset.Unitprice.ToString();
