@@ -46,6 +46,8 @@ namespace FixedAsset.Domain
         NoUse = 2,
         [EnumDescript(Descript = "报废")]
         Scrapped = 3,
+        [EnumDescript(Descript = "已废除")]
+        LogicalDeleted = 4,
     }
     ///Managemode
     /// /// <summary>

@@ -96,27 +96,20 @@ namespace FixedAsset.Web.Admin
             {
                 if (!string.IsNullOrEmpty(assetno))
                 {
-                    //ProcurementscheduleheadService.DeleteProcurementscheduleheadByPsid(Psid);
-                    //UIHelper.Alert(this, "删除成功");
-                    //LoadData(pcData.CurrentIndex);
+                    var currentAsset = AssetService.RetrieveAssetByAssetno(assetno);
+                    if(currentAsset!=null)
+                    {
+                        currentAsset.State = AssetState.LogicalDeleted;
+                        //AssetService.UpdateAssetByAssetno(currentAsset);
+                        AssetService.DeleteAssetByAssetno(assetno);
+                        UIHelper.Alert(this, "删除成功");
+                        LoadData(pcData.CurrentIndex);  
+                    }
                 }
             }
             if (e.CommandName.Equals("EditDetail"))
             {
-                //var headInfo = ProcurementscheduleheadService.RetrieveProcurementscheduleheadByPsid(Psid);
-                //if (headInfo == null) { return; }
-                //if (headInfo.Approveresult == ApproveResult.Draft)
-                //{
                 Response.Redirect(ResolveUrl(string.Format("~/Admin/NewEquipment.aspx?assetno={0}", assetno)));
-                //}
-                //else if (headInfo.Approveresult == ApproveResult.Approving)
-                //{
-                //    Response.Redirect(ResolveUrl(string.Format("~/Admin/ProcurePlan_Approve.aspx?Psid={0}", Psid)));
-                //}
-                //else
-                //{
-                //    Response.Redirect(ResolveUrl(string.Format("~/Admin/ProcurePlan_View.aspx?Psid={0}", Psid)));
-                //}
             }
         }
         protected void ddlAssetCategory_SelectedIndexChanged(object sender, EventArgs e)
