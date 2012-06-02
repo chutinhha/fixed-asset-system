@@ -70,7 +70,7 @@
                 <tr>
                     <td colspan="6" align="right">
                         <asp:Button ID="BtnSearch" runat="server" CssClass="button" Text="查询" OnClick="BtnSearch_Click" />
-                        <input type="button" class="button" runat="server" id="btnAdd" value="新增" onclick="javascript:window.location='NewEquipment.aspx'" />                        
+                        <input type="button" class="button" runat="server" id="btnAdd" value="新增" onclick="javascript:window.location='NewEquipment.aspx'" />
                     </td>
                 </tr>
             </table>
@@ -112,7 +112,8 @@
                     <ItemTemplate>
                         <tr>
                             <td align="center">
-                                <uc1:ucShowAssetDetail ID="ucShowAssetDetail" runat="server" Assetno='<%#Eval("Assetno")%>' />
+                                <a href='javascript:ShowTopDialogFrame("设备明细", "ShowAssetDetail.aspx?Assetno=<%#Eval("Assetno")%>","",900,700);'>
+                                    <%#Eval("Assetno")%></a>
                             </td>
                             <td>
                                 <asp:Literal ID="litCategoryName" runat="server" />
@@ -147,7 +148,8 @@
                     <AlternatingItemTemplate>
                         <tr class="alt-row">
                             <td align="center">
-                                <uc1:ucShowAssetDetail ID="ucShowAssetDetail" runat="server" Assetno='<%#Eval("Assetno")%>' />
+                                <a href='javascript:ShowTopDialogFrame("设备明细", "ShowAssetDetail.aspx?Assetno=<%#Eval("Assetno")%>","",900,700);'>
+                                    <%#Eval("Assetno")%></a>
                             </td>
                             <td>
                                 <asp:Literal ID="litCategoryName" runat="server" />
