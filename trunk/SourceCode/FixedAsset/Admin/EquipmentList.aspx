@@ -70,7 +70,7 @@
                 <tr>
                     <td colspan="6" align="right">
                         <asp:Button ID="BtnSearch" runat="server" CssClass="button" Text="查询" OnClick="BtnSearch_Click" />
-                        <input type="button" class="button" runat="server" id="btnAdd" value="新增" onclick="javascript:window.location='NewEquipment.aspx'" />
+                        <input type="button" class="button" runat="server" id="btnAdd" value="新增" onclick="javascript:window.location='NewEquipment.aspx'" />                        
                     </td>
                 </tr>
             </table>

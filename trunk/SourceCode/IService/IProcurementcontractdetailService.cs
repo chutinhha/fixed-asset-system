@@ -18,6 +18,7 @@ namespace FixedAsset.IServices
         Procurementcontractdetail CreateProcurementcontractdetail(Procurementcontractdetail info);
         Procurementcontractdetail UpdateProcurementcontractdetailByContractdetailid(Procurementcontractdetail info);
         Procurementcontractdetail RetrieveProcurementcontractdetailByContractdetailid(string contractdetailid);
+        List<Procurementcontractdetail> RetrieveProcurementcontractdetailByContractdetailid(List<string> contractdetailids);
         void DeleteProcurementcontractdetailByContractdetailid(string contractdetailid);
         List<Procurementcontractdetail> RetrieveProcurementcontractdetailListByContractid(string contractid);
     }

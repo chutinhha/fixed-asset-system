@@ -123,6 +123,13 @@
     <Compile Include="Admin\ImportAssetFromContract.aspx.designer.cs">
       <DependentUpon>ImportAssetFromContract.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\ImportContractDetail_Edit.aspx.cs">
+      <DependentUpon>ImportContractDetail_Edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ImportContractDetail_Edit.aspx.designer.cs">
+      <DependentUpon>ImportContractDetail_Edit.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\InstallList.aspx.cs">
       <DependentUpon>InstallList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -440,6 +447,7 @@
     <Content Include="Admin\ContractList.aspx" />
     <Content Include="Admin\css\default.css" />
     <Content Include="Admin\ImportAssetFromContract.aspx" />
+    <Content Include="Admin\ImportContractDetail_Edit.aspx" />
     <Content Include="Admin\Login.aspx" />
     <Content Include="Admin\SelectedMultiAssets.aspx" />
     <Content Include="Admin\ShowAssetDetail.aspx" />

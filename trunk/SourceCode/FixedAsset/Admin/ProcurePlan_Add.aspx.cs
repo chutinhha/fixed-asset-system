@@ -66,14 +66,14 @@ namespace FixedAsset.Web.Admin
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 InitData();
                 Psid = PageUtility.GetQueryStringValue("Psid");
-                if(!string.IsNullOrEmpty(Psid))
+                if (!string.IsNullOrEmpty(Psid))
                 {
                     var headInfo = ProcurementscheduleheadService.RetrieveProcurementscheduleheadByPsid(Psid);
-                    if(headInfo!=null)
+                    if (headInfo != null)
                     {
                         ReadEntityToControl(headInfo);
                         var list = ProcurementscheduledetailService.RetrieveProcurementscheduledetailListByPsid(Psid);
@@ -83,13 +83,13 @@ namespace FixedAsset.Web.Admin
                 LoadDetailList();
             }
         }
-        protected void BtnSave_Click(object sender,EventArgs e)
+        protected void BtnSave_Click(object sender, EventArgs e)
         {
             DateTime dateTime = DateTime.MinValue;
             if (!ucProcurementscheduledate.DateValue.HasValue)
             {
                 UIHelper.Alert(UpdatePanel1, "请选择计划采购日期!");
-                return; 
+                return;
             }
             if (string.IsNullOrEmpty(ucSubCompany.SubcompanyId))
             {
@@ -102,10 +102,10 @@ namespace FixedAsset.Web.Admin
                 return;
             }
             Procurementschedulehead headInfo = null;
-            if(string.IsNullOrEmpty(Psid))
+            if (string.IsNullOrEmpty(Psid))
             {
                 //add
-                headInfo=new Procurementschedulehead();
+                headInfo = new Procurementschedulehead();
                 WriteControlValueToEntity(headInfo);
                 this.ProcurementscheduleheadService.CreateProcurementschedulehead(headInfo, ProcureScheduleDetails);
             }
@@ -113,7 +113,7 @@ namespace FixedAsset.Web.Admin
             {
                 //edit
                 headInfo = ProcurementscheduleheadService.RetrieveProcurementscheduleheadByPsid(Psid);
-                if(headInfo==null){UIHelper.Alert(this.UpdatePanel1,"对不起，计划已被删除,请重新录入！");return;}
+                if (headInfo == null) { UIHelper.Alert(this.UpdatePanel1, "对不起，计划已被删除,请重新录入！"); return; }
                 WriteControlValueToEntity(headInfo);
                 headInfo.Approveresult = ApproveResult.Draft;
                 ProcurementscheduleheadService.UpdateProcurementscheduleheadByPsid(headInfo, ProcureScheduleDetails);
@@ -138,7 +138,7 @@ namespace FixedAsset.Web.Admin
                 UIHelper.Alert(UpdatePanel1, "请选择申请日期!");
                 return;
             }
-            if(ProcureScheduleDetails.Count==0)
+            if (ProcureScheduleDetails.Count == 0)
             {
                 UIHelper.Alert(this.UpdatePanel1, "请录入采购计划明细！"); return;
             }
@@ -166,7 +166,7 @@ namespace FixedAsset.Web.Admin
         #region 明细
         protected void BtnRefreshDetail_Click(object sender, EventArgs e)
         {
-           LoadDetailList();
+            LoadDetailList();
         }
         protected void rptProcureDetailList_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
@@ -175,14 +175,14 @@ namespace FixedAsset.Web.Admin
                 var BtnEdit = e.Item.FindControl("BtnEdit") as ImageButton;
                 var BtnDeleted = e.Item.FindControl("BtnDeleted") as ImageButton;
                 var detailInfo = e.Item.DataItem as Procurementscheduledetail;
-                if(string.IsNullOrEmpty(detailInfo.Detailid))
+                if (string.IsNullOrEmpty(detailInfo.Detailid))
                 {
                     BtnEdit.Visible = false;
                     BtnDeleted.Visible = false;
                 }
                 else
                 {
-                    BtnEdit.Attributes.Add("onclick", string.Format("ShowTopDialogFrame('修改明细', 'ProcurePlanDetail_Add.aspx?Detailid={0}','RefreshDetail()',790,500);return false;",detailInfo.Detailid));
+                    BtnEdit.Attributes.Add("onclick", string.Format("ShowTopDialogFrame('修改明细', 'ProcurePlanDetail_Add.aspx?Detailid={0}','RefreshDetail()',790,500);return false;", detailInfo.Detailid));
                 }
             }
         }
@@ -190,8 +190,8 @@ namespace FixedAsset.Web.Admin
         {
             var detailId = e.CommandArgument.ToString();
             if (e.CommandName.Equals("DeleteDetail"))
-            { 
-                if(!string.IsNullOrEmpty(detailId))
+            {
+                if (!string.IsNullOrEmpty(detailId))
                 {
                     if (!string.IsNullOrEmpty(Psid)) { ProcurementscheduledetailService.DeleteProcurementscheduledetailByDetailid(detailId); }
                     var detailInfo = ProcureScheduleDetails.Where(p => p.Detailid == detailId).FirstOrDefault();
@@ -201,7 +201,7 @@ namespace FixedAsset.Web.Admin
             }
             if (e.CommandName.Equals("EditDetail"))
             {
-                
+
             }
         }
         #endregion
@@ -214,7 +214,10 @@ namespace FixedAsset.Web.Admin
             AssetCategories.Clear();
             ProcureScheduleDetails.Clear();
             ucApplydate.DateValue = DateTime.Today;//申请日期，默认当天
-            txtApplyuser.Text = WebContext.Current.CurrentUser.Username;//默认当前登录用户
+            if (WebContext.Current.CurrentUser != null)
+            {
+                txtApplyuser.Text = WebContext.Current.CurrentUser.Username;//默认当前登录用户
+            }
             if (AssetCategories.Count == 0)
             {
                 var list = AssetcategoryService.RetrieveAllAssetcategory();
@@ -226,7 +229,7 @@ namespace FixedAsset.Web.Admin
             litPsid.Text = headInfo.Psid;
             if (headInfo.Procurementscheduledate.HasValue)
             {
-                ucProcurementscheduledate.DateValue =headInfo.Procurementscheduledate;
+                ucProcurementscheduledate.DateValue = headInfo.Procurementscheduledate;
             }
             txtReason.Text = headInfo.Reason;
             ucSubCompany.SubcompanyId = headInfo.Subcompany;
@@ -235,7 +238,7 @@ namespace FixedAsset.Web.Admin
             {
                 ucApplydate.DateValue = headInfo.Applydate;
             }
-        }  
+        }
         protected void WriteControlValueToEntity(Procurementschedulehead headInfo)
         {
             headInfo.Psid = litPsid.Text;
@@ -255,7 +258,7 @@ namespace FixedAsset.Web.Admin
             {
                 var subCategory =
                     AssetCategories.Where(p => p.Assetcategoryid == detail.Assetcategoryid).FirstOrDefault();
-                if(subCategory==null)
+                if (subCategory == null)
                 {
                     detail.CategoryAllPathName = detail.Assetcategoryid;
                 }
@@ -264,7 +267,7 @@ namespace FixedAsset.Web.Admin
                     var category =
                         AssetCategories.Where(p => p.Assetcategoryid == subCategory.Assetparentcategoryid).
                             FirstOrDefault();
-                    detail.CategoryAllPathName = string.Format(@"{0}-{1}",category.Assetcategoryname,subCategory.Assetcategoryname);
+                    detail.CategoryAllPathName = string.Format(@"{0}-{1}", category.Assetcategoryname, subCategory.Assetcategoryname);
                 }
             }
             rptProcureDetailList.DataSource = ProcureScheduleDetails;
