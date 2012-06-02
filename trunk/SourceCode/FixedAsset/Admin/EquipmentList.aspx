@@ -112,7 +112,7 @@
                     <ItemTemplate>
                         <tr>
                             <td align="center">
-                                <a href='javascript:ShowTopDialogFrame("设备明细", "ShowAssetDetail.aspx?Assetno=<%#Eval("Assetno")%>","",900,700);'>
+                                <a href='javascript:ShowTopDialogFrame("设备明细", "ShowAssetDetail.aspx?Assetno=<%#Eval("Assetno")%>","",900,560);'>
                                     <%#Eval("Assetno")%></a>
                             </td>
                             <td>
@@ -148,7 +148,7 @@
                     <AlternatingItemTemplate>
                         <tr class="alt-row">
                             <td align="center">
-                                <a href='javascript:ShowTopDialogFrame("设备明细", "ShowAssetDetail.aspx?Assetno=<%#Eval("Assetno")%>","",900,700);'>
+                                <a href='javascript:ShowTopDialogFrame("设备明细", "ShowAssetDetail.aspx?Assetno=<%#Eval("Assetno")%>","",900,560);'>
                                     <%#Eval("Assetno")%></a>
                             </td>
                             <td>
