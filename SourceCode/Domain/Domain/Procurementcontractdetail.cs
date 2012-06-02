@@ -12,9 +12,9 @@ using System.Collections.Generic;
 
 namespace FixedAsset.Domain
 {
-    /// <summary>
-    ///PROCUREMENTCONTRACTDETAIL
-    /// <summary>
+    ///<summary>
+    ///采购合同明细
+    ///</summary>
     [Serializable]
     public partial class Procurementcontractdetail
     {

@@ -19,6 +19,7 @@ namespace FixedAsset.Domain
     public partial class Asset
     {
         public const string RuleCode = "ZR";
+
         #region 设备编号
         ///<summary>
         ///ColumnName:设备编号;Size:20;NOT NULL

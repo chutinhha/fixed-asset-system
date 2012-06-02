@@ -163,11 +163,7 @@ namespace FixedAsset.Web.Admin
             assetInfo.State = AssetState.NoUse;
             AssetService.SaveAssetInfo(assetInfo);
             UIHelper.AlertMessageGoToURL(this.UpdatePanel1, "保存成功!", ResolveUrl("~/Admin/EquipmentList.aspx"));
-        }
-        protected void btnSubmit_Click(object sender, EventArgs e)
-        {
-
-        }
+        }  
         #endregion
 
         #region Methods
