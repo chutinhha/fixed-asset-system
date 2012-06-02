@@ -58,6 +58,16 @@ namespace FixedAsset.Web.Admin
         #endregion
 
         #region Events
+        protected override void OnInit(EventArgs e)
+        {
+            base.OnInit(e);
+            txtPlannumber.Attributes.Add("onblur", string.Format("return ValidateInt32(this,{0});", 1));
+            txtPlannumber.Text = 1.ToString();
+            txtPlannumber.Attributes.Add("style", "text-align:right;");
+            txtUnitprice.Attributes.Add("onblur", string.Format("return ValidatePrice(this,{0});", 1));
+            txtUnitprice.Text = 1.ToString();
+            txtUnitprice.Attributes.Add("style", "text-align:right;");
+        }
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
@@ -100,6 +110,16 @@ namespace FixedAsset.Web.Admin
                 detailInfo.Contractdetailid = Guid.NewGuid().ToString("N");
             }
             WriteControlValueToEntity(detailInfo);
+            if (detailInfo.Unitprice <= 0)
+            {
+                UIHelper.Alert(this.UpdatePanel1, "单价不能小于等于0！");
+                return;
+            }
+            if (detailInfo.Procurenumber <= 0)
+            {
+                UIHelper.Alert(this.UpdatePanel1, "采购数量不能小于等于0！");
+                return;
+            }
             ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString("N"), "setCookie('dialogReturn_key','1',1);CloseTopDialogFrame();", true);
         }
         protected void ddlAssetCategory_SelectedIndexChanged(object sender, EventArgs e)

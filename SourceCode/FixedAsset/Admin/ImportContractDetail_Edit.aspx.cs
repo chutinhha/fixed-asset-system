@@ -70,6 +70,16 @@ namespace FixedAsset.Web.Admin
         #endregion
 
         #region Events
+        protected override void OnInit(EventArgs e)
+        {
+            base.OnInit(e);
+            txtPlannumber.Attributes.Add("onblur", string.Format("return ValidateInt32(this,{0});", 1));
+            txtPlannumber.Text = 1.ToString();
+            txtPlannumber.Attributes.Add("style", "text-align:right;");
+            txtUnitprice.Attributes.Add("onblur", string.Format("return ValidatePrice(this,{0});", 1));
+            txtUnitprice.Text = 1.ToString();
+            txtUnitprice.Attributes.Add("style", "text-align:right;");
+        }
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
@@ -136,6 +146,16 @@ namespace FixedAsset.Web.Admin
                 return;
             }
             WriteControlValueToEntity(detailInfo);
+            if (detailInfo.Unitprice <= 0)
+            {
+                UIHelper.Alert(this.UpdatePanel1, "单价不能小于等于0！");
+                return;
+            }
+            if (detailInfo.ImportNumber <= 0)
+            {
+                UIHelper.Alert(this.UpdatePanel1, "导入数量不能小于等于0！");
+                return;
+            }
             if (detailInfo.ImportNumber>(detailInfo.Procurenumber-detailInfo.Inputnumber))
             {
                 UIHelper.Alert(this.UpdatePanel1, "可导入数量不能大于（采购数量-已验证登记数量）！");
