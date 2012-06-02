@@ -27,9 +27,9 @@ namespace FixedAsset.Web.Admin.UserControl
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
-                litAssetNo.Text =string.Format(@"<a href=""javascript:ShowTopDialogFrame('设备明细', 'ShowAssetDetail.aspx?Assetno={0}','',900,700);"">{0}</a> ", Assetno);
+                litAssetNo.Text = string.Format(@"<a href=""javascript:ShowTopDialogFrame('设备明细', 'ShowAssetDetail.aspx?Assetno={0}','',900,700);"">{0}</a> ", Assetno);
             }
         }
     }
