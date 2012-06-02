@@ -216,7 +216,9 @@ namespace FixedAsset.Web.Admin
             ucApplydate.DateValue = DateTime.Today;//申请日期，默认当天
             if (WebContext.Current.CurrentUser != null)
             {
-                txtApplyuser.Text = WebContext.Current.CurrentUser.Username;//默认当前登录用户
+                //txtApplyuser.Text = WebContext.Current.CurrentUser.Username;//默认当前登录用户
+                ucApplyuser.UserId = WebContext.Current.CurrentUser.Id;//默认当前登录用户
+                //ucApplyuser.Username = WebContext.Current.CurrentUser.Username;//默认当前登录用户
             }
             if (AssetCategories.Count == 0)
             {
@@ -233,7 +235,8 @@ namespace FixedAsset.Web.Admin
             }
             txtReason.Text = headInfo.Reason;
             ucSubCompany.SubcompanyId = headInfo.Subcompany;
-            txtApplyuser.Text = headInfo.Applyuser;
+            //txtApplyuser.Text = headInfo.Applyuser;
+            ucApplyuser.Username = headInfo.Applyuser;
             if (headInfo.Applydate.HasValue)
             {
                 ucApplydate.DateValue = headInfo.Applydate;
@@ -245,7 +248,7 @@ namespace FixedAsset.Web.Admin
             headInfo.Procurementscheduledate = ucProcurementscheduledate.DateValue;
             headInfo.Reason = txtReason.Text;
             headInfo.Subcompany = ucSubCompany.SubcompanyId;
-            headInfo.Applyuser = txtApplyuser.Text;
+            headInfo.Applyuser = ucApplyuser.Username;
             headInfo.Applydate = ucApplydate.DateValue;
             if (!headInfo.Createddate.HasValue)
             {

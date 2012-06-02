@@ -31,31 +31,40 @@ namespace FixedAsset.Web.Admin {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// txt_userName 控件。
+        /// txtSrchUsername 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_userName;
+        protected global::System.Web.UI.WebControls.TextBox txtSrchUsername;
         
         /// <summary>
-        /// btn_Show 控件。
+        /// txtSrchLoginid 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_Show;
+        protected global::System.Web.UI.WebControls.TextBox txtSrchLoginid;
         
         /// <summary>
-        /// grdResult 控件。
+        /// btnSearch 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::iKC.Web.UI.WebControls.SGridView grdResult;
+        protected global::System.Web.UI.WebControls.Button btnSearch;
+        
+        /// <summary>
+        /// gvSuppliers 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::iKC.Web.UI.WebControls.SGridView gvSuppliers;
         
         /// <summary>
         /// pcData 控件。

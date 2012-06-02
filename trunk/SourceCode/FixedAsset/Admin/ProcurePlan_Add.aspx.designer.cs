@@ -76,22 +76,13 @@ namespace FixedAsset.Web.Admin {
         protected global::FixedAsset.Web.Admin.UserControl.ucSelectSubCompany ucSubCompany;
         
         /// <summary>
-        /// txtApplyuser 控件。
+        /// ucApplyuser 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtApplyuser;
-        
-        /// <summary>
-        /// RequiredFieldValidator3 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
+        protected global::FixedAsset.Web.Admin.UserControl.ucSelectUser ucApplyuser;
         
         /// <summary>
         /// ucApplydate 控件。
