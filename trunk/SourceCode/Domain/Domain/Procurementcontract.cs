@@ -18,7 +18,7 @@ namespace FixedAsset.Domain
     [Serializable]
     public partial class Procurementcontract
     {
-        public const string RuleCode = "PCONTRACT";
+        public const string RuleCode = "采购合同";
 
         #region 合同编号
         ///<summary>
