@@ -147,6 +147,11 @@ namespace FixedAsset.Web.Admin
         /// <param name="e"></param>
         protected void BtnSave_Click(object sender, EventArgs e)
         {
+            if (ImportAssetContractdetailContractDetail.Count==0)
+            {
+                UIHelper.AlertMessageGoToURL(this.UpdatePanel1, "对不起，该合同已没设备可再导入了!", ResolveUrl("~/Admin/EquipmentList.aspx"));
+                return;
+            }
             foreach (var importAssetContractdetail in ImportAssetContractdetailContractDetail)
             {
                 if(string.IsNullOrEmpty(importAssetContractdetail.Storage))
