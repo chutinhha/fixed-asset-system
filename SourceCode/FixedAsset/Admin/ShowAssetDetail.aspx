@@ -112,7 +112,7 @@
                     品牌：
                 </td>
                 <td>
-                    <asp:Literal ID="litBrand" runat="server" />年
+                    <asp:Literal ID="litBrand" runat="server" />
                 </td>
             </tr>
             <tr style="height: 22px;">
@@ -126,7 +126,7 @@
                     财务类别：
                 </td>
                 <td>
-                    <asp:Literal ID="litFinancecategory" runat="server" />年
+                    <asp:Literal ID="litFinancecategory" runat="server" />
                 </td>
             </tr>
             <tr style="height: auto;">
