@@ -201,7 +201,7 @@ namespace FixedAsset.Web.Admin
         }
          protected void BtmImortAssets_Click(object sender,EventArgs e)
          {
-             Response.Redirect("~/Admin/ImportAssetFromContract.aspx");
+             Response.Redirect(ResolveUrl(string.Format(@"~/Admin/ImportAssetFromContract.aspx?Contractid={0}", Contractid)));
          }
 
         #region 明细
