@@ -2,8 +2,11 @@
     CodeBehind="ProcurePlan_Add.aspx.cs" Inherits="FixedAsset.Web.Admin.ProcurePlan_Add" %>
 
 <%@ Register Assembly="WebCalendar" Namespace="WebCalendar" TagPrefix="cc2" %>
-<%@ Register Src="~/Admin/UserControl/ucSelectSubCompany.ascx" TagName="ucSelectSubCompany" TagPrefix="uc1" %>
-<%@ Register TagPrefix="uc1" TagName="DatePicker" Src="~/Admin/UserControl/ucDatePicker.ascx" %> 
+<%@ Register Src="~/Admin/UserControl/ucSelectSubCompany.ascx" TagName="ucSelectSubCompany"
+    TagPrefix="uc1" %>
+<%@ Register TagPrefix="uc1" TagName="DatePicker" Src="~/Admin/UserControl/ucDatePicker.ascx" %>
+<%@ Register TagPrefix="uc1" TagName="ucSelectUser" Src="~/Admin/UserControl/ucSelectUser.ascx" %>
+
 <asp:Content ID="head" ContentPlaceHolderID="head" runat="Server">
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
     <script src="../Scripts/calendar.js" type="text/javascript"></script>
@@ -34,7 +37,7 @@
                                         计划采购日期:<span style="color: Red">*</span>
                                     </td>
                                     <td>
-                                    <uc1:DatePicker ID="ucProcurementscheduledate" runat="server" />
+                                        <uc1:DatePicker ID="ucProcurementscheduledate" runat="server" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -42,7 +45,8 @@
                                         采购事由: <span style="color: Red">*</span>
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="txtReason" Width="300" runat="server" MaxLength="1000" TextMode="MultiLine" ValidationGroup="Vaild"></asp:TextBox>
+                                        <asp:TextBox ID="txtReason" Width="300" runat="server" MaxLength="1000" TextMode="MultiLine"
+                                            ValidationGroup="Vaild"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtReason"
                                             Display="Dynamic" ErrorMessage="请输入采购事由！"></asp:RequiredFieldValidator>
                                     </td>
@@ -52,7 +56,7 @@
                                         分公司: <span style="color: Red">*</span>
                                     </td>
                                     <td>
-                                    <uc1:ucSelectSubCompany ID="ucSubCompany" runat="server" />
+                                        <uc1:ucSelectSubCompany ID="ucSubCompany" runat="server" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -60,9 +64,10 @@
                                         申请人: <span style="color: Red">*</span>
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="txtApplyuser" class="text_inp" runat="server" Width="300" ValidationGroup="Vaild"></asp:TextBox>
+                                        <uc1:ucSelectUser ID="ucApplyuser" runat="server" />
+                                        <%--<asp:TextBox ID="txtApplyuser" class="text_inp" runat="server" Width="300" ValidationGroup="Vaild"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtApplyuser"
-                                            Display="Dynamic" ErrorMessage="请选择申请人！"></asp:RequiredFieldValidator>
+                                            Display="Dynamic" ErrorMessage="请选择申请人！"></asp:RequiredFieldValidator>--%>
                                     </td>
                                 </tr>
                                 <tr>
@@ -70,7 +75,7 @@
                                         申请日期: <span style="color: Red">*</span>
                                     </td>
                                     <td>
-                                    <uc1:DatePicker ID="ucApplydate" runat="server" />
+                                        <uc1:DatePicker ID="ucApplydate" runat="server" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -135,8 +140,9 @@
                                                                     <%#Eval("Plannumber")%>
                                                                 </td>
                                                                 <td align="right">
-                                                                    <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"  CausesValidation="false"
-                                                                        AlternateText="编辑" ToolTip="编辑" CommandArgument='<%#Eval("Detailid")%>' CommandName="EditDetail" />
+                                                                    <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"
+                                                                        CausesValidation="false" AlternateText="编辑" ToolTip="编辑" CommandArgument='<%#Eval("Detailid")%>'
+                                                                        CommandName="EditDetail" />
                                                                     <asp:ImageButton ID="BtnDeleted" runat="server" ImageUrl="~/images/Button/delete.GIF"
                                                                         CommandArgument='<%#Eval("Detailid")%>' CommandName="DeleteDetail" OnClientClick="return confirm('确认要删除吗？');"
                                                                         AlternateText="删除" ToolTip="删除" CausesValidation="false" />
@@ -161,8 +167,9 @@
                                                                     <%#Eval("Plannumber")%>
                                                                 </td>
                                                                 <td align="right">
-                                                                    <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"  CausesValidation="false"
-                                                                        AlternateText="编辑" ToolTip="编辑" CommandArgument='<%#Eval("Detailid")%>' CommandName="EditDetail" />
+                                                                    <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"
+                                                                        CausesValidation="false" AlternateText="编辑" ToolTip="编辑" CommandArgument='<%#Eval("Detailid")%>'
+                                                                        CommandName="EditDetail" />
                                                                     <asp:ImageButton ID="BtnDeleted" runat="server" ImageUrl="~/images/Button/delete.GIF"
                                                                         CommandArgument='<%#Eval("Detailid")%>' CommandName="DeleteDetail" OnClientClick="return confirm('确认要删除吗？');"
                                                                         AlternateText="删除" ToolTip="删除" CausesValidation="false" />
@@ -172,8 +179,8 @@
                                                     </asp:Repeater>
                                                 </table>
                                                 <div style="display: none;">
-                                                    <asp:Button ID="BtnRefreshDetail" OnClick="BtnRefreshDetail_Click" Width="0" runat="server"  CausesValidation="false"
-                                                        Text="Button" /></div>
+                                                    <asp:Button ID="BtnRefreshDetail" OnClick="BtnRefreshDetail_Click" Width="0" runat="server"
+                                                        CausesValidation="false" Text="Button" /></div>
                                             </div>
                                         </div>
                                     </td>
@@ -194,10 +201,10 @@
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
-    <script type="text/javascript" language="javascript">        
+    <script type="text/javascript" language="javascript">
         function RefreshDetail() {
             var returnValue = getCookie("dialogReturn_key");
-            if (returnValue != null) {                
+            if (returnValue != null) {
                 document.getElementById("<%=BtnRefreshDetail.ClientID %>").click();
                 setCookie("dialogReturn_key", null);
             }

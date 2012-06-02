@@ -1,7 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SelectSingleUsers.aspx.cs"
-    Inherits="FixedAsset.Web.Admin.SelectSingleUsers" %>
-
-<%--<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="return_user.aspx.cs" Inherits="Admin_return_user" %>--%>
+    Inherits="FixedAsset.Web.Admin.SelectSingleUsers" %> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@ Register Assembly="iKC.Web" Namespace="iKC.Web.UI.WebControls" TagPrefix="asp" %>
 <%@ Register Assembly="KFSQ.Web.Controls" Namespace="KFSQ.Web.Controls" TagPrefix="cc1" %>
@@ -19,30 +17,26 @@
     <form id="form1" runat="server">
     <div id="contents">
         <div id="dTab1" class="Box text_box">
-            用户名称
-            <asp:TextBox class="text-input small-input" ID="txt_userName" runat="server"></asp:TextBox>
-            <asp:Button ID="btn_Show" class="button" runat="server" Text="查询" OnClick="btn_Show_Click" />
-            <asp:SGridView ID="grdResult" runat="server" Width="100%" ShowActionToolBar="false"
-                PageSize="2" AutoGenerateColumns="false" AllowCascade="false" DataKeyNames="ID,departmentid">
+            用户姓名<asp:TextBox ID="txtSrchUsername" Width="150" CssClass="text-input small-input"
+                runat="server" />
+            登录账号<asp:TextBox ID="txtSrchLoginid" Width="150" CssClass="text-input small-input"
+                runat="server" />
+            <asp:Button ID="btnSearch" class="button" runat="server" Text="查询" OnClick="btnSearch_Click" />
+            <asp:SGridView ID="gvSuppliers" GridLines="None" border="0" CssClass="table_grayTH eoddTable"
+                runat="server" Width="100%" ShowActionToolBar="false" PageSize="2" AutoGenerateColumns="false"
+                AllowCascade="false" DataKeyNames="Id">
                 <Columns>
                     <asp:TemplateField>
                         <ItemTemplate>
-                            <asp:Label ID="lb_userid" runat="server" Text='<%#Eval("ID") %>' Visible="false"></asp:Label>
-                            <asp:Label ID="lb_departmentid" runat="server" Text='<%#Eval("departmentid") %>'
-                                Visible="false"></asp:Label>
+                            <asp:Label ID="lblUserId" runat="server" Text='<%#Eval("Id") %>' Visible="false"></asp:Label>
                             <asp:RadioButton runat="server" ID="radioSelected" OnCheckedChanged="radioSelected_CheckedChanged"
                                 AutoPostBack="true" GroupName="templateGroup" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:BoundField DataField="username" HeaderText="角色名称" />
-                    <asp:BoundField DataField="TEL" HeaderText="电话" />
-                    <asp:BoundField DataField="mobile" HeaderText="手机" />
-                    <asp:BoundField DataField="email" HeaderText="Email" />
-                    <asp:BoundField DataField="departmentname" HeaderText="部门" />
-                    <asp:BoundField DataField="statename" HeaderText="状态" />
+                    <asp:BoundField DataField="Username" HeaderText="用户姓名" ControlStyle-Width="50" ItemStyle-CssClass="center" />
+                    <asp:BoundField DataField="Loginid" HeaderText="登录账号" ControlStyle-Width="50" ItemStyle-CssClass="center" />
                 </Columns>
                 <AlternatingRowStyle CssClass="alt-row"></AlternatingRowStyle>
-                <HeaderStyle BackColor="#EFFFEA" HorizontalAlign="Center" />
                 <RowStyle HorizontalAlign="Center" />
             </asp:SGridView>
             <cc1:PagingControl ID="pcData" runat="server" MaxNavigatePageCount="7" OnPageIndexClick="pcData_PageIndexClick" />
