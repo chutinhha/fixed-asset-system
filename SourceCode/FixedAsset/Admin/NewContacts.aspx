@@ -5,17 +5,11 @@
     TagPrefix="uc1" %>
 <%@ Register Src="~/Admin/UserControl/ucSelectSubCompany.ascx" TagName="ucSelectSubCompany"
     TagPrefix="uc1" %>
-    <%@ Register Src="~/Admin/UserControl/ucMultiSelectProcurePlans.ascx" TagName="MultiSelectProcurePlans"
+<%@ Register Src="~/Admin/UserControl/ucMultiSelectProcurePlans.ascx" TagName="MultiSelectProcurePlans"
     TagPrefix="uc1" %>
 <%@ Register TagPrefix="uc1" TagName="DatePicker" Src="~/Admin/UserControl/ucDatePicker.ascx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
-    <script src="../Scripts/calendar.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        function reset() {
-            window.location.href = "NewContacts.aspx";
-        }
-    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -31,7 +25,7 @@
                         <fieldset>
                             <table style="width: 80%;">
                                 <tr>
-                                    <td style="width: 180px;">
+                                    <td style="width: auto;">
                                         合同编号:
                                     </td>
                                     <td>
@@ -93,7 +87,8 @@
                                                 <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
                                                     align="center">
                                                     <tr style="border-bottom-width: 1px;">
-                                                        <td colspan="6" align="right"> <%--<uc1:MultiSelectProcurePlans ID="ucMultiSelectProcurePlans" runat="server" OnSelectProcurePlanChange="ucMultiSelectProcurePlans_SelectProcurePlanChange" />--%>
+                                                        <td colspan="6" align="right">
+                                                            <%--<uc1:MultiSelectProcurePlans ID="ucMultiSelectProcurePlans" runat="server" OnSelectProcurePlanChange="ucMultiSelectProcurePlans_SelectProcurePlanChange" />--%>
                                                             <input type="button" class="button" runat="server" id="Button1" value="新增" onclick="ShowTopDialogFrame('新增明细', 'ContactDetail_Add.aspx','RefreshDetail()',790,500);return false;" />
                                                         </td>
                                                     </tr>
@@ -190,10 +185,9 @@
                                             OnClick="BtnSave_Click" />
                                         <asp:Button ID="btnSubmit" runat="server" Text="提 交" CssClass="button" ValidationGroup="Vaild"
                                             OnClick="btnSubmit_Click" />
-                                            <asp:Button ID="BtmImortAssets" runat="server" Text="生成设备" Visible="false" CssClass="button" CausesValidation="false"
-                                            OnClick="BtmImortAssets_Click" />
-                                        <asp:Button ID="btnReset" runat="server" Text="重 置" CssClass="button" CausesValidation="false"
-                                            OnClientClick="javascript:reset();" />
+                                        <asp:Button ID="BtmImortAssets" runat="server" Text="生成设备" Visible="false" CssClass="button"
+                                            CausesValidation="false" OnClick="BtmImortAssets_Click" />
+                                        <input type="button" class="button" runat="server" id="btnReset" value="重 置" onclick="javascript:window.location.href = 'NewContacts.aspx';" />
                                     </td>
                                 </tr>
                             </table>
