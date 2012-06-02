@@ -148,12 +148,12 @@
                             </tr>
                             <tr>
                                 <td>
-                                    可导入数量: <span style="color: Red">*</span>
+                                    导入数量: <span style="color: Red">*</span>
                                 </td>
                                 <td>
                                     <asp:TextBox ID="txtPlannumber" class="text_inp" runat="server" Width="300" ValidationGroup="Vaild"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtPlannumber"
-                                        Display="Dynamic" ErrorMessage="请输入可导入数量！"></asp:RequiredFieldValidator>
+                                        Display="Dynamic" ErrorMessage="请输入导入数量！"></asp:RequiredFieldValidator>
                                 </td>
                             </tr>
                             <tr style="text-align: center">
