@@ -130,6 +130,13 @@
     <Compile Include="Admin\InstallList.aspx.designer.cs">
       <DependentUpon>InstallList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\main.aspx.cs">
       <DependentUpon>main.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -433,6 +440,7 @@
     <Content Include="Admin\ContractList.aspx" />
     <Content Include="Admin\css\default.css" />
     <Content Include="Admin\ImportAssetFromContract.aspx" />
+    <Content Include="Admin\Login.aspx" />
     <Content Include="Admin\SelectedMultiAssets.aspx" />
     <Content Include="Admin\ShowAssetDetail.aspx" />
     <Content Include="Admin\UserControl\ucSelectedMultiAssets.ascx" />

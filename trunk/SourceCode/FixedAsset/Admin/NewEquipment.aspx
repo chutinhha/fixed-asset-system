@@ -17,21 +17,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-        <ContentTemplate>
-            <%--<div class="content-box">
-                <div class="content-box-header">
-                    <h3 style="cursor: s-resize;">
-                        
-                    </h3>
-                </div>
-                <div class="content-box-content">
-                    <div class="tab-content default-tab">
-                        <fieldset>
-                            
-                        </fieldset>
-                    </div>
-                </div>
-            </div>--%>
+        <ContentTemplate>           
             <div class="content-box">
                 <div class="content-box-header">
                     <h3 style="cursor: s-resize;">
