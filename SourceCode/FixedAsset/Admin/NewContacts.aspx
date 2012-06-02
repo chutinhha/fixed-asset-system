@@ -29,7 +29,7 @@
                 <div class="content-box-content">
                     <div class="tab-content default-tab">
                         <fieldset>
-                            <table>
+                            <table style="width: 80%;">
                                 <tr>
                                     <td style="width: 180px;">
                                         合同编号:
