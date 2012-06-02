@@ -65,7 +65,7 @@ namespace FixedAsset.Services
         {
             
                 var coderuleManagement=new CoderuleManagement(Management);
-                info.Psid = coderuleManagement.GenerateCodeRule(Procurementschedulehead.RuleCode,true);
+                info.Psid = coderuleManagement.GenerateCodeRule(Procurementschedulehead.RuleCode+DateTime.Today.ToString("yyyyMM"),false);
                 foreach (var detailInfo in detailInfos)
                 {
                     detailInfo.Psid = info.Psid;

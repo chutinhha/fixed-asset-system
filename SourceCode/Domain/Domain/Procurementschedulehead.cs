@@ -14,11 +14,11 @@ namespace FixedAsset.Domain
 {
     ///<summary>
     ///采购计划单
-    ///<summary>
+    ///</summary>
     [Serializable]
     public partial class Procurementschedulehead
     {
-        public const string RuleCode = "PS";
+        public const string RuleCode = "采购计划";
 
         #region 单号
         ///<summary>

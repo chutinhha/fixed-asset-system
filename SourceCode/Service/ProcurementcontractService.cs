@@ -136,7 +136,7 @@ namespace FixedAsset.Services
         {
 
             var coderuleManagement = new CoderuleManagement(Management);
-            info.Contractid = coderuleManagement.GenerateCodeRule(Procurementcontract.RuleCode, true);
+            info.Contractid = coderuleManagement.GenerateCodeRule(Procurementcontract.RuleCode+DateTime.Today.ToString("yyyyMM"), false);
             foreach (var detailInfo in detailInfos)
             {
                 detailInfo.Contractid = info.Contractid;
