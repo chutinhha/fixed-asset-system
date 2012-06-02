@@ -19,5 +19,6 @@ namespace FixedAsset.IServices
         Tuser UpdateTuserById(Tuser info);
         Tuser RetrieveTuserById(string id);
         void DeleteTuserById(string id);
+        bool ValidateUserLogin(string userName, string password, out string errorMsg);
     }
 }

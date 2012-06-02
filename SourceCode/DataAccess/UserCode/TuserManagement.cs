@@ -37,7 +37,7 @@ namespace FixedAsset.DataAccess
             try
             {
                 this.Database.AddInParameter(":Loginid", Loginid);
-                string sqlCommand = @"SELECT * FROM T_USER WHERE  Loginid=:ID";
+                string sqlCommand = @"SELECT * FROM T_USER WHERE  Loginid=:Loginid";
                 return this.Database.ExecuteToSingle<Tuser>(sqlCommand);
             }
             finally
