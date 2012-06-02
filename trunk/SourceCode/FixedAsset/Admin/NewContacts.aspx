@@ -74,7 +74,7 @@
                                     <td colspan="2">
                                         <div id="tag" class="thin blue">
                                             <ul id="tags">
-                                                <li id="api" class="selectTag"><a href="#" onclick="tabChange('api','dapi','dflow','dquestion','dabilityRemark','MyFile')">
+                                                <li id="api" class="selectTag"><a href="#" >
                                                     明细</a> </li>
                                             </ul>
                                             <p class="gap">
@@ -185,7 +185,7 @@
                                             OnClick="BtnSave_Click" />
                                         <asp:Button ID="btnSubmit" runat="server" Text="提 交" CssClass="button" ValidationGroup="Vaild"
                                             OnClick="btnSubmit_Click" />
-                                        <asp:Button ID="BtmImortAssets" runat="server" Text="生成设备" Visible="false" CssClass="button"
+                                        <asp:Button ID="BtmImortAssets" runat="server" Text="导入登记" Visible="false" CssClass="button"
                                             CausesValidation="false" OnClick="BtmImortAssets_Click" />
                                         <input type="button" class="button" runat="server" id="btnReset" value="重 置" onclick="javascript:window.location.href = 'NewContacts.aspx';" />
                                     </td>

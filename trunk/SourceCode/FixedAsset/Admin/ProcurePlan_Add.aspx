@@ -22,7 +22,7 @@
                         <fieldset>
                             <table style="width: 80%;">
                                 <tr>
-                                    <td style="width: 180px;">
+                                    <td style="width: auto;">
                                         单号:
                                     </td>
                                     <td>
