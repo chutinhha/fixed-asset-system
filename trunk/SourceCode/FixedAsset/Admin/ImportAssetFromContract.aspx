@@ -8,6 +8,7 @@
 <%@ Register Src="~/Admin/UserControl/ucMultiSelectProcurePlans.ascx" TagName="MultiSelectProcurePlans"
     TagPrefix="uc1" %>
 <%@ Register TagPrefix="uc1" TagName="DatePicker" Src="~/Admin/UserControl/ucDatePicker.ascx" %>
+<%@ Register TagPrefix="uc1" TagName="ucSelectProject" Src="~/Admin/UserControl/ucSelectProject.ascx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
 </asp:Content>
@@ -44,6 +45,7 @@
                                     </td>
                                     <td>
                                         <uc1:ucSelectSubCompany ID="ucSubCompany" runat="server" IsShowSubCompanyName="true" />
+                                        <%--<uc1:ucSelectProject ID="ucSelectProject" runat="server" />--%>
                                     </td>
                                     <td>
                                         供应商:
