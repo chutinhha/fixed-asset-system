@@ -74,7 +74,8 @@ namespace FixedAsset.DataAccess
         {
             try
             {
-                StringBuilder sqlCommand = new StringBuilder(@" SELECT ""ROLEINFO"".""ROLEID"",""ROLEINFO"".""ROLENAME"",""ROLEINFO"".""ROLESTATE"",""ROLEINFO"".""DESCRIPTION""
+                StringBuilder sqlCommand = new StringBuilder(@" SELECT ""ROLEINFO"".""ROLEID"",""ROLEINFO"".""ROLENAME"",""ROLEINFO"".""ROLESTATE"",""ROLEINFO"".""DESCRIPTION"",""ROLEINFO"".""ALLOWEDIT"",
+                     ""ROLEINFO"".""CREATEDDATE"",""ROLEINFO"".""CREATOR"",""ROLEINFO"".""LASTMODIFIEDDATE"",""ROLEINFO"".""LSTMOFIFIEDBY""
                      FROM ""ROLEINFO"" 
                      WHERE 1=1");
                 if (!string.IsNullOrEmpty(info.Roleid))
@@ -103,7 +104,26 @@ namespace FixedAsset.DataAccess
                     this.Database.AddInParameter(":Description", "%" + info.Description + "%");
                     sqlCommand.AppendLine(@" AND ""ROLEINFO"".""DESCRIPTION"" LIKE :Description");
                 }
-
+                //if (!string.IsNullOrEmpty(info.Creator))
+                //{
+                //    this.Database.AddInParameter(":Creator", "%" + info.Creator + "%");
+                //    sqlCommand.AppendLine(@" AND ""ROLEINFO"".""CREATOR"" LIKE :Creator");
+                //}
+                //if (info.StartLastmodifieddate.HasValue)
+                //{
+                //    this.Database.AddInParameter(":StartLastmodifieddate", info.StartLastmodifieddate.Value.Date);
+                //    sqlCommand.AppendLine(@" AND ""ROLEINFO"".""LASTMODIFIEDDATE"" >= :StartLastmodifieddate");
+                //}
+                //if (info.EndLastmodifieddate.HasValue)
+                //{
+                //    this.Database.AddInParameter(":EndLastmodifieddate", info.EndLastmodifieddate.Value.Date.AddDays(1).AddSeconds(-1));
+                //    sqlCommand.AppendLine(@" AND ""ROLEINFO"".""LASTMODIFIEDDATE"" <= :EndLastmodifieddate");
+                //}
+                //if (!string.IsNullOrEmpty(info.Lstmofifiedby))
+                //{
+                //    this.Database.AddInParameter(":Lstmofifiedby", "%" + info.Lstmofifiedby + "%");
+                //    sqlCommand.AppendLine(@" AND ""ROLEINFO"".""LSTMOFIFIEDBY"" LIKE :Lstmofifiedby");
+                //}
                 sqlCommand.AppendLine(@"  ORDER BY ""ROLEINFO"".""ROLEID"" DESC");
                 return this.ExecuteReaderPaging<Roleinfo>(sqlCommand.ToString(), pageIndex, pageSize, out count);
             }
@@ -113,6 +133,5 @@ namespace FixedAsset.DataAccess
             }
         }
         #endregion
-
     }
 }

@@ -19,7 +19,7 @@ namespace FixedAsset.Domain
         [EnumDescript(Descript = "有效")]
         Normal = 0,
         [EnumDescript(Descript = "无效")]
-        Deleted = 4,
+        Deleted = 1,
     }
 
     ///<summary>
