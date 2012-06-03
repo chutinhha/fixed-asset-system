@@ -38,11 +38,12 @@
                     <img src="../images/mc-cell-exca.gif" /><a href="main.aspx">待办</a>
                 </p>
                 <p class="loginfor" height="37">
-                    <asp:LinkButton ID="lbtn_out" class="but3" runat="server">退出</asp:LinkButton>
-                    <b>&nbsp;&nbsp;登录用户：<asp:Label ID="lb_userName" runat="server" Text=""></asp:Label>&nbsp;&nbsp;
-                        |&nbsp;&nbsp;身份：<asp:Label ID="lb_userRole" runat="server" Text=""></asp:Label>&nbsp;&nbsp;|&nbsp;&nbsp;</b></p>
+                    <asp:LinkButton ID="BtnLogout" class="but3" runat="server" OnClick="BtnLogout_Click">退出</asp:LinkButton>
+                    <b>&nbsp;&nbsp;登录用户：<asp:Literal ID="litUsername"  runat="server"/>&nbsp;&nbsp;
+                        |&nbsp;&nbsp;身份：<asp:Literal ID="litUserRole"  runat="server"/>&nbsp;&nbsp;|&nbsp;&nbsp;</b></p>
             </dd>
         </dl>
+        
         <div id="contents">
             <%--<div class="left">
                 <div id="container">
@@ -84,7 +85,7 @@
                         <a href='javascript:void(0)'>清产</a></h1>
                     <div class='content' style="height: auto;">
                         <ul class='MM'>
-                            <li><a href='B_Account.aspx' target='aa'>B帐</a></li>
+                            <li><a href='ProcurePlanList.aspx' target='aa'>B帐</a></li>
                             <li><a href='ProcurePlanList.aspx' target='aa'>报废</a></li>
                         </ul>
                     </div>
