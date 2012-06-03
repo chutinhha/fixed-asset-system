@@ -59,7 +59,12 @@ namespace FixedAsset.Web.Admin
                 UIHelper.Alert(this.UpdatePanel1, "请输入角色名!");
                 return;
             }
-
+            var existInfo = RoleinfoService.RetrieveRoleinfoByRoleName(txtRolename.Text.Trim());
+            if(existInfo!=null&&existInfo.Roleid!=Roleid)
+            {
+                UIHelper.Alert(this.UpdatePanel1, "角色名重复，请重新输入角色名!");
+                return;
+            }
             Roleinfo roleInfo = null;
             if (string.IsNullOrEmpty(Roleid))
             {
@@ -67,7 +72,8 @@ namespace FixedAsset.Web.Admin
             }
             else
             {
-                roleInfo = RoleinfoService.RetrieveRoleinfoByRoleid(Roleid);
+                //roleInfo = RoleinfoService.RetrieveRoleinfoByRoleid(Roleid);
+                roleInfo = existInfo;
                 if (roleInfo == null) { roleInfo = new Roleinfo(); }
             }
             WriteControlValueToEntity(roleInfo);
@@ -100,7 +106,7 @@ namespace FixedAsset.Web.Admin
             {
                 litLastmodifieddate.Text = roleinfo.Lastmodifieddate.Value.ToString(UiConst.DateFormat);//最近修改时间
             }
-            litLstmofifiedby.Text = roleinfo.Lstmofifiedby;//最近修改者
+            litLstmofifiedby.Text = roleinfo.Lastmodifiedby;//最近修改者
         }
 
         protected void WriteControlValueToEntity(Roleinfo roleinfo)
@@ -120,7 +126,7 @@ namespace FixedAsset.Web.Admin
                 roleinfo.Lastmodifieddate = DateTime.Now;//最近修改时间
                 if (WebContext.Current.CurrentUser != null)
                 {
-                    roleinfo.Lstmofifiedby = WebContext.Current.CurrentUser.Username; //最近修改者
+                    roleinfo.Lastmodifiedby = WebContext.Current.CurrentUser.Username; //最近修改者
                 }
             }
         }

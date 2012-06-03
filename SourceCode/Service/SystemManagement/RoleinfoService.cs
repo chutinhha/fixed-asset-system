@@ -129,5 +129,9 @@ namespace FixedAsset.Services
         }
         #endregion
 
+        public Roleinfo RetrieveRoleinfoByRoleName(string roleName)
+        {
+            return Management.RetrieveRoleinfoByRoleName(roleName);
+        }
     }
 }

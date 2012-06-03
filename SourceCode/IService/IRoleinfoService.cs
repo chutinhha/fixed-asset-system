@@ -18,6 +18,7 @@ namespace FixedAsset.IServices
         Roleinfo CreateRoleinfo(Roleinfo info);
         Roleinfo UpdateRoleinfoByRoleid(Roleinfo info);
         Roleinfo RetrieveRoleinfoByRoleid(string roleid);
+        Roleinfo RetrieveRoleinfoByRoleName(string Rolename);
         void DeleteRoleinfoByRoleid(string roleid);
     }
 }

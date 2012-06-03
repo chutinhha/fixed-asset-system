@@ -78,7 +78,7 @@ namespace FixedAsset.Domain
         ///<summary>
         ///ColumnName:最近修改者;Size:40;
         ///</summary>
-        public string Lstmofifiedby { get; set; }
+        public string Lastmodifiedby { get; set; }
         #endregion
     }
 }

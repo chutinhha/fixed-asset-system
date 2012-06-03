@@ -32,7 +32,7 @@ namespace FixedAsset.DataAccess
         {
             try
             {
-                string sqlCommand = @"INSERT INTO ""ROLEINFO"" (""ROLEID"",""ROLENAME"",""ROLESTATE"",""DESCRIPTION"",""ALLOWEDIT"",""CREATEDDATE"",""CREATOR"",""LASTMODIFIEDDATE"",""LSTMOFIFIEDBY"") VALUES (:Roleid,:Rolename,:Rolestate,:Description,:Allowedit,:Createddate,:Creator,:Lastmodifieddate,:Lstmofifiedby)";
+                string sqlCommand = @"INSERT INTO ""ROLEINFO"" (""ROLEID"",""ROLENAME"",""ROLESTATE"",""DESCRIPTION"",""ALLOWEDIT"",""CREATEDDATE"",""CREATOR"",""LASTMODIFIEDDATE"",""LASTMODIFIEDBY"") VALUES (:Roleid,:Rolename,:Rolestate,:Description,:Allowedit,:Createddate,:Creator,:Lastmodifieddate,:Lastmodifiedby)";
                 this.Database.AddInParameter(":Roleid", info.Roleid);//DBType:VARCHAR2
                 this.Database.AddInParameter(":Rolename", info.Rolename);//DBType:NVARCHAR2
                 this.Database.AddInParameter(":Rolestate", info.Rolestate);//DBType:NUMBER
@@ -41,7 +41,7 @@ namespace FixedAsset.DataAccess
                 this.Database.AddInParameter(":Createddate", info.Createddate);//DBType:DATE
                 this.Database.AddInParameter(":Creator", info.Creator);//DBType:NVARCHAR2
                 this.Database.AddInParameter(":Lastmodifieddate", info.Lastmodifieddate);//DBType:DATE
-                this.Database.AddInParameter(":Lstmofifiedby", info.Lstmofifiedby);//DBType:NVARCHAR2
+                this.Database.AddInParameter(":Lastmodifiedby", info.Lastmodifiedby);//DBType:NVARCHAR2
                 this.Database.ExecuteNonQuery(sqlCommand);
 
             }
@@ -66,8 +66,8 @@ namespace FixedAsset.DataAccess
                 this.Database.AddInParameter(":Createddate", info.Createddate);//DBType:DATE
                 this.Database.AddInParameter(":Creator", info.Creator);//DBType:NVARCHAR2
                 this.Database.AddInParameter(":Lastmodifieddate", info.Lastmodifieddate);//DBType:DATE
-                this.Database.AddInParameter(":Lstmofifiedby", info.Lstmofifiedby);//DBType:NVARCHAR2
-                string sqlCommand = @"UPDATE ""ROLEINFO"" SET  ""ROLENAME""=:Rolename , ""ROLESTATE""=:Rolestate , ""DESCRIPTION""=:Description , ""ALLOWEDIT""=:Allowedit , ""CREATEDDATE""=:Createddate , ""CREATOR""=:Creator , ""LASTMODIFIEDDATE""=:Lastmodifieddate , ""LSTMOFIFIEDBY""=:Lstmofifiedby WHERE  ""ROLEID""=:Roleid";
+                this.Database.AddInParameter(":Lastmodifiedby", info.Lastmodifiedby);//DBType:NVARCHAR2
+                string sqlCommand = @"UPDATE ""ROLEINFO"" SET  ""ROLENAME""=:Rolename , ""ROLESTATE""=:Rolestate , ""DESCRIPTION""=:Description , ""ALLOWEDIT""=:Allowedit , ""CREATEDDATE""=:Createddate , ""CREATOR""=:Creator , ""LASTMODIFIEDDATE""=:Lastmodifieddate , ""LASTMODIFIEDBY""=:Lastmodifiedby WHERE  ""ROLEID""=:Roleid";
                 this.Database.ExecuteNonQuery(sqlCommand);
             }
             finally
