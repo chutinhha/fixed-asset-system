@@ -110,6 +110,25 @@ namespace FixedAsset.Web.Admin
         }
         protected void ucSelectStorageAddress_SelectedStorageNodeChange(object sender, EventArgs e)
         {
+            //if (string.IsNullOrEmpty(ucSelectStorageAddress.StorageId) || string.IsNullOrEmpty(ucSelectStorageAddress.Storagename))
+            //{
+            //    litStorage.Text = string.Empty;
+            //}
+            //else
+            //{
+            //    if (string.IsNullOrEmpty(ucSelectStorageAddress.Subcompanyname))
+            //    {
+            //        litStorage.Text = ucSelectStorageAddress.Storagename;
+            //    }
+            //    else if (ucSelectStorageAddress.Subcompanyname != ucSelectStorageAddress.Storagename)
+            //    {
+            //        litStorage.Text = string.Format(@"{0}->{1}", ucSelectStorageAddress.Subcompanyname, ucSelectStorageAddress.Storagename);
+            //    }
+            //    else
+            //    {
+            //        litStorage.Text = ucSelectStorageAddress.Storagename;
+            //    }
+            //}
             var currentInfo = VStorageAddress.Where(p => p.Storagetitle == ucSelectStorageAddress.Storagetitle &&
                     p.Storageid == ucSelectStorageAddress.StorageId).FirstOrDefault();
             if (currentInfo == null)
