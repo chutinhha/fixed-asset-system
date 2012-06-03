@@ -99,11 +99,11 @@ namespace FixedAsset.Web.Admin
         #region Methods
         protected void InitRoles()
         {
-            ddlRoleList.Items.Add(new ListItem("==请选择==",string.Empty));
             var search = new RoleinfoSearch();
             int recordCount = 0;
             search.Rolestates.Add(RoleState.Normal);
             var list = RoleinfoService.RetrieveRoleinfosPaging(search, 0, int.MaxValue, out recordCount);
+            list.Insert(0, new Roleinfo() { Rolename = "==请选择==", Roleid = string.Empty });
             ddlRoleList.DataTextField = "Rolename";
             ddlRoleList.DataValueField = "Roleid";
             ddlRoleList.DataSource = list;
