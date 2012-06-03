@@ -62,8 +62,8 @@
                                 <%# Eval("Lastmodifieddate") == null ? "" : ((DateTime)Eval("Lastmodifieddate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
                             <td align="right">
-                                <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"
-                                    AlternateText="编辑" ToolTip="编辑" CommandArgument='<%#Eval("Id")%>' CommandName="EditDetail" />
+                                <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/user.GIF"
+                                    AlternateText="分配角色" ToolTip="分配角色" CommandArgument='<%#Eval("Id")%>' CommandName="EditDetail" />
                                 <asp:ImageButton ID="BtnDeleted" runat="server" ImageUrl="~/images/Button/delete.GIF"
                                      CommandArgument='<%#Eval("Id")%>' CommandName="DeleteDetail" OnClientClick="return confirm('确认要删除吗？');"
                                     AlternateText="删除" ToolTip="删除" />
@@ -88,8 +88,8 @@
                                 <%# Eval("Lastmodifieddate") == null ? "" : ((DateTime)Eval("Lastmodifieddate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
                             <td align="right">
-                                <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"
-                                    AlternateText="编辑" ToolTip="编辑" CommandArgument='<%#Eval("Id")%>' CommandName="EditDetail" />
+                                <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/user.GIF"
+                                    AlternateText="分配角色" ToolTip="分配角色" CommandArgument='<%#Eval("Id")%>' CommandName="EditDetail" />
                                 <asp:ImageButton ID="BtnDeleted" runat="server" ImageUrl="~/images/Button/delete.GIF"
                                     CommandArgument='<%#Eval("Id")%>' CommandName="DeleteDetail" OnClientClick="return confirm('确认要删除吗？');"
                                     AlternateText="删除" ToolTip="删除" />
