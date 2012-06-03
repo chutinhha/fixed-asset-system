@@ -284,12 +284,12 @@
     <Compile Include="Admin\Role_Add.aspx.designer.cs">
       <DependentUpon>Role_Add.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Role_AddRigth.aspx.cs">
-      <DependentUpon>Role_AddRigth.aspx</DependentUpon>
+    <Compile Include="Admin\Role_AddRight.aspx.cs">
+      <DependentUpon>Role_AddRight.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\Role_AddRigth.aspx.designer.cs">
-      <DependentUpon>Role_AddRigth.aspx</DependentUpon>
+    <Compile Include="Admin\Role_AddRight.aspx.designer.cs">
+      <DependentUpon>Role_AddRight.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Role_List.aspx.cs">
       <DependentUpon>Role_List.aspx</DependentUpon>
@@ -508,7 +508,7 @@
     <Content Include="Admin\Report_AssetState.aspx" />
     <Content Include="Admin\Report_AssetStorageAddress.aspx" />
     <Content Include="Admin\Role_Add.aspx" />
-    <Content Include="Admin\Role_AddRigth.aspx" />
+    <Content Include="Admin\Role_AddRight.aspx" />
     <Content Include="Admin\Role_List.aspx" />
     <Content Include="Admin\SelectedMultiAssets.aspx" />
     <Content Include="Admin\ShowAssetDetail.aspx" />

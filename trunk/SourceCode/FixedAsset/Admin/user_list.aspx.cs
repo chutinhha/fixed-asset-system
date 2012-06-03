@@ -12,7 +12,7 @@ namespace FixedAsset.Web.Admin
 {
     public partial class User_List :BasePage
     {
-        #region Events
+        #region Properties
         protected ITuserService TuserService
         {
             get
@@ -20,6 +20,9 @@ namespace FixedAsset.Web.Admin
                 return new TuserService();
             }
         }
+        #endregion
+
+        #region Events
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
@@ -52,24 +55,14 @@ namespace FixedAsset.Web.Admin
             {
                 var BtnEdit = e.Item.FindControl("BtnEdit") as ImageButton;
                 var BtnDeleted = e.Item.FindControl("BtnDeleted") as ImageButton;
-                //var headInfo = e.Item.DataItem as Roleinfo;
-                //BtnEdit.AlternateText = EnumUtil.RetrieveEnumDescript(headInfo.Approveresult);
-                //if (headInfo.Approveresult == ApproveResult.Draft)
-                //{
-                //    BtnDeleted.Visible = true;
-                //}
-                //else
-                //{
-                //    BtnDeleted.Visible = false;
-                //}
             }
         }
         protected void rptUserRoleList_ItemCommand(object sender, RepeaterCommandEventArgs e)
         {
-            var roleId = e.CommandArgument.ToString();
+            var userId = e.CommandArgument.ToString();
             if (e.CommandName.Equals("DeleteDetail"))
             {
-                if (!string.IsNullOrEmpty(roleId))
+                if (!string.IsNullOrEmpty(userId))
                 {
                     //RoleinfoService.DeleteRoleinfoByRoleid(roleId);
                     //UIHelper.Alert(this, "删除成功");
@@ -78,7 +71,7 @@ namespace FixedAsset.Web.Admin
             }
             if (e.CommandName.Equals("EditDetail"))
             {
-                Response.Redirect(ResolveUrl(string.Format("~/Admin/Role_Add.aspx?roleId={0}", roleId)));
+                Response.Redirect(ResolveUrl(string.Format("~/Admin/User_AddRole.aspx?UserId={0}", userId)));
                 //var headInfo = ProcurementscheduleheadService.RetrieveProcurementscheduleheadByPsid(Psid);
                 //if (headInfo == null) { return; }
                 //if (headInfo.Approveresult == ApproveResult.Draft)
@@ -100,7 +93,7 @@ namespace FixedAsset.Web.Admin
         #region Methods 
         protected void LoadData(int pageIndex)
         {
-            TuserSearch search = new TuserSearch();
+            var search = new TuserSearch();
             search.Username = txtSrchUsername.Text;//用户姓名
             search.Loginid = txtSrchLoginid.Text;//登录账号
             int recordCount = 0;

@@ -18,6 +18,8 @@ namespace FixedAsset.IServices
         Usermaproleinfo CreateUsermaproleinfo(Usermaproleinfo info);
         Usermaproleinfo UpdateUsermaproleinfoByUseridRoleid(Usermaproleinfo info);
         Usermaproleinfo RetrieveUsermaproleinfoByUseridRoleid(string userid,string roleid);
+        List<Usermaproleinfo> RetrieveUsermaproleinfoByUseridRoleid(List<string> userids, List<string> roleids);
         void DeleteUsermaproleinfoByUseridRoleid(string userid,string roleid);
+        void DeleteUsermaproleinfoByUseridRoleid(List<string> userids, List<string> roleids);
     }
 }
