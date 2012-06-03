@@ -253,6 +253,27 @@
     <Compile Include="Admin\RepairList.aspx.designer.cs">
       <DependentUpon>RepairList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Report_AssetCategory.aspx.cs">
+      <DependentUpon>Report_AssetCategory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Report_AssetCategory.aspx.designer.cs">
+      <DependentUpon>Report_AssetCategory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Report_AssetState.aspx.cs">
+      <DependentUpon>Report_AssetState.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Report_AssetState.aspx.designer.cs">
+      <DependentUpon>Report_AssetState.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Report_AssetStorageAddress.aspx.cs">
+      <DependentUpon>Report_AssetStorageAddress.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Report_AssetStorageAddress.aspx.designer.cs">
+      <DependentUpon>Report_AssetStorageAddress.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Role_Add.aspx.cs">
       <DependentUpon>Role_Add.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -414,6 +435,13 @@
     <Compile Include="Admin\user_add.aspx.designer.cs">
       <DependentUpon>user_add.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\User_AddRole.aspx.cs">
+      <DependentUpon>User_AddRole.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\User_AddRole.aspx.designer.cs">
+      <DependentUpon>User_AddRole.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\user_edit.aspx.cs">
       <DependentUpon>user_edit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -421,6 +449,9 @@
     <Compile Include="Admin\user_list.aspx.cs">
       <DependentUpon>user_list.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\User_List.aspx.designer.cs">
+      <DependentUpon>user_list.aspx</DependentUpon>
     </Compile>
     <Compile Include="AppCode\AdminBasePage.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -470,6 +501,9 @@
     <Content Include="Admin\ImportAssetFromContract.aspx" />
     <Content Include="Admin\ImportContractDetail_Edit.aspx" />
     <Content Include="Admin\Login.aspx" />
+    <Content Include="Admin\Report_AssetCategory.aspx" />
+    <Content Include="Admin\Report_AssetState.aspx" />
+    <Content Include="Admin\Report_AssetStorageAddress.aspx" />
     <Content Include="Admin\Role_Add.aspx" />
     <Content Include="Admin\Role_AddRigth.aspx" />
     <Content Include="Admin\Role_List.aspx" />
@@ -480,6 +514,7 @@
     <Content Include="Admin\UserControl\ucSeletedSystem.ascx" />
     <Content Include="Admin\UserControl\ucShowAssetDetail.ascx" />
     <Content Include="Admin\UserControl\ucShowStorageAddress.ascx" />
+    <Content Include="Admin\User_AddRole.aspx" />
     <Content Include="css\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="css\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="css\images\ui-bg_glass_55_fbf9ee_1x400.png" />
