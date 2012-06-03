@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/MasterPage.master" AutoEventWireup="true" CodeBehind="NewMoving.aspx.cs" Inherits="FixedAsset.Web.Admin.NewMoving" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-  <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
-    <script src="../Scripts/calendar.js" type="text/javascript"></script>
+  <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />    
     <script type="text/javascript">
         function reset() {
             window.location.href = "NewMoving.aspx";
