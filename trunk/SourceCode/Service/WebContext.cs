@@ -213,7 +213,7 @@ namespace FixedAsset.Services
             }
             private set { this[ConstUserMenuItems] = value; }
         }
-        public IServices.ITuserService UserService
+        protected ITuserService UserService
         {
             get { return new TuserService() ; }
         }
