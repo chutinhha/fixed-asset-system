@@ -45,5 +45,40 @@ namespace FixedAsset.Domain
         ///</summary>
         public string Description { get; set; }
         #endregion
+
+        #region 允许编辑
+        ///<summary>
+        ///ColumnName:允许编辑;
+        ///</summary>
+        public bool Allowedit { get; set; }
+        #endregion
+
+        #region 创建时间
+        ///<summary>
+        ///ColumnName:创建时间;
+        ///</summary>
+        public DateTime? Createddate { get; set; }
+        #endregion
+
+        #region 创建者
+        ///<summary>
+        ///ColumnName:创建者;Size:40;
+        ///</summary>
+        public string Creator { get; set; }
+        #endregion
+
+        #region 最近修改时间
+        ///<summary>
+        ///ColumnName:最近修改时间;
+        ///</summary>
+        public DateTime? Lastmodifieddate { get; set; }
+        #endregion
+
+        #region 最近修改者
+        ///<summary>
+        ///ColumnName:最近修改者;Size:40;
+        ///</summary>
+        public string Lstmofifiedby { get; set; }
+        #endregion
     }
 }
