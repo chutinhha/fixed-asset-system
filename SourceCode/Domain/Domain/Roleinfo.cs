@@ -12,9 +12,9 @@ using System.Collections.Generic;
 
 namespace FixedAsset.Domain
 {
-    /// <summary>
+    ///<summary>
     ///ROLEINFO
-    /// <summary>
+    ///</summary>
     [Serializable]
     public partial class Roleinfo
     {
@@ -36,10 +36,14 @@ namespace FixedAsset.Domain
         ///<summary>
         ///ColumnName:½ÇÉ«×´Ì¬;
         ///</summary>
-        public decimal Rolestate{  get;set;}
+        public RoleState Rolestate { get; set; }
         #endregion
 
+        #region ½ÇÉ«ÃèÊö
+        ///<summary>
+        ///ColumnName:½ÇÉ«ÃèÊö;Size:400;
+        ///</summary>
+        public string Description { get; set; }
+        #endregion
     }
-
-
 }

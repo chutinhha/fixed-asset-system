@@ -1,7 +1,7 @@
 /********************************************************************
 * File Name:RoleinfoManagement
 * Copyright (C) 2012 Bruce.huang 
-* Creater & Date:Bruce.huang - 2012-05-25
+* Creater & Date:Bruce.huang - 2012-06-03
 * Create Explain:
 * Description:DataBase Access Class
 * Modify Explain:
@@ -16,13 +16,14 @@ using FixedAsset.Domain;
 
 namespace FixedAsset.DataAccess
 {
-    public partial class RoleinfoManagement:BaseManagement
+    public partial class RoleinfoManagement : BaseManagement
     {
         #region Construct
-        private const int ColumnCount = 3;
+        private const int ColumnCount = 4;
         public RoleinfoManagement()
         { }
-        public RoleinfoManagement(BaseManagement baseManagement): base(baseManagement)
+        public RoleinfoManagement(BaseManagement baseManagement)
+            : base(baseManagement)
         { }
         #endregion
 
@@ -31,10 +32,11 @@ namespace FixedAsset.DataAccess
         {
             try
             {
-                string sqlCommand = @"INSERT INTO ""ROLEINFO"" (""ROLEID"",""ROLENAME"",""ROLESTATE"") VALUES (:Roleid,:Rolename,:Rolestate)";
+                string sqlCommand = @"INSERT INTO ""ROLEINFO"" (""ROLEID"",""ROLENAME"",""ROLESTATE"",""DESCRIPTION"") VALUES (:Roleid,:Rolename,:Rolestate,:Description)";
                 this.Database.AddInParameter(":Roleid", info.Roleid);//DBType:VARCHAR2
                 this.Database.AddInParameter(":Rolename", info.Rolename);//DBType:NVARCHAR2
                 this.Database.AddInParameter(":Rolestate", info.Rolestate);//DBType:NUMBER
+                this.Database.AddInParameter(":Description", info.Description);//DBType:NVARCHAR2
                 this.Database.ExecuteNonQuery(sqlCommand);
 
             }
@@ -54,7 +56,8 @@ namespace FixedAsset.DataAccess
                 this.Database.AddInParameter(":Roleid", info.Roleid);//DBType:VARCHAR2
                 this.Database.AddInParameter(":Rolename", info.Rolename);//DBType:NVARCHAR2
                 this.Database.AddInParameter(":Rolestate", info.Rolestate);//DBType:NUMBER
-                string sqlCommand = @"UPDATE ""ROLEINFO"" SET  ""ROLENAME""=:Rolename , ""ROLESTATE""=:Rolestate WHERE  ""ROLEID""=:Roleid";
+                this.Database.AddInParameter(":Description", info.Description);//DBType:NVARCHAR2
+                string sqlCommand = @"UPDATE ""ROLEINFO"" SET  ""ROLENAME""=:Rolename , ""ROLESTATE""=:Rolestate , ""DESCRIPTION""=:Description WHERE  ""ROLEID""=:Roleid";
                 this.Database.ExecuteNonQuery(sqlCommand);
             }
             finally
@@ -86,22 +89,22 @@ namespace FixedAsset.DataAccess
         {
             try
             {
-                if(Roleids.Count==0){ return ;}
+                if (Roleids.Count == 0) { return; }
                 StringBuilder sqlCommand = new StringBuilder();
                 sqlCommand.AppendLine(@"DELETE FROM  ""ROLEINFO"" WHERE 1=1");
-                if(Roleids.Count==1)
+                if (Roleids.Count == 1)
                 {
-                    this.Database.AddInParameter(":Roleid"+0.ToString(),Roleids[0]);//DBType:VARCHAR2
+                    this.Database.AddInParameter(":Roleid" + 0.ToString(), Roleids[0]);//DBType:VARCHAR2
                     sqlCommand.AppendLine(@" AND ""ROLEID""=:Roleid0");
                 }
-                else if(Roleids.Count>1&&Roleids.Count<=2000)
+                else if (Roleids.Count > 1 && Roleids.Count <= 2000)
                 {
-                    this.Database.AddInParameter(":Roleid"+0.ToString(),Roleids[0]);//DBType:VARCHAR2
+                    this.Database.AddInParameter(":Roleid" + 0.ToString(), Roleids[0]);//DBType:VARCHAR2
                     sqlCommand.AppendLine(@" AND (""ROLEID""=:Roleid0");
                     for (int i = 1; i < Roleids.Count; i++)
                     {
-                    this.Database.AddInParameter(":Roleid"+i.ToString(),Roleids[i]);//DBType:VARCHAR2
-                    sqlCommand.AppendLine(@" OR ""ROLEID""=:Roleid"+i.ToString());
+                        this.Database.AddInParameter(":Roleid" + i.ToString(), Roleids[i]);//DBType:VARCHAR2
+                        sqlCommand.AppendLine(@" OR ""ROLEID""=:Roleid" + i.ToString());
                     }
                     sqlCommand.AppendLine(" )");
                 }

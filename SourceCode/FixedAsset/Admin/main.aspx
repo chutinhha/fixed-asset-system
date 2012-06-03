@@ -35,22 +35,15 @@
             <dt></dt>
             <dd>
                 <p class="title">
-                    <img src="../images/mc-cell-exca.gif" /><a href="main.aspx">待办</a>
+                    <img src="../images/mc-cell-exca.gif" alt="待办" /><a href="main.aspx">待办</a>
                 </p>
                 <p class="loginfor" height="37">
                     <asp:LinkButton ID="BtnLogout" class="but3" runat="server" OnClick="BtnLogout_Click">退出</asp:LinkButton>
-                    <b>&nbsp;&nbsp;登录用户：<asp:Literal ID="litUsername"  runat="server"/>&nbsp;&nbsp;
-                        |&nbsp;&nbsp;身份：<asp:Literal ID="litUserRole"  runat="server"/>&nbsp;&nbsp;|&nbsp;&nbsp;</b></p>
+                    <b>&nbsp;&nbsp;登录用户：<asp:Literal ID="litUsername" runat="server" />&nbsp;&nbsp; |&nbsp;&nbsp;身份：<asp:Literal
+                        ID="litUserRole" runat="server" />&nbsp;&nbsp;|&nbsp;&nbsp;</b></p>
             </dd>
         </dl>
-        
         <div id="contents">
-            <%--<div class="left">
-                <div id="container">
-                    <asp:Literal ID="lb_menu" runat="server"></asp:Literal>
-                </div>
-                <asp:HiddenField ID="HiddenField1" runat="server" Value="0" />
-            </div>--%>
             <div class="left">
                 <div id="container">
                     <h1 class='type'>
@@ -98,7 +91,6 @@
                         </ul>
                     </div>
                 </div>
-                <%--<asp:HiddenField ID="HiddenField1" runat="server" Value="0" />--%>
             </div>
             <div class="right">
                 <iframe id="aa" name='aa' src="../index.aspx" width="100%" scrolling="no" frameborder="0"
@@ -122,14 +114,10 @@
             var iframe = document.getElementById("aa");
             try {
                 var bHeight = iframe.contentWindow.document.body.scrollHeight;
-                //alert(bHeight);
                 var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
-                //                alert(bHeight)
-                //                alert(dHeight)
                 var height = Math.min(bHeight, dHeight);
                 alert(height);
                 iframe.height = height;
-                //                alert("ok");
             } catch (ex) { }
         }
     </script>
