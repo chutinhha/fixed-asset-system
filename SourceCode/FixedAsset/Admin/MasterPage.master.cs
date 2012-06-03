@@ -7,7 +7,10 @@ namespace FixedAsset.Web.Admin
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            if(!IsPostBack){InitialScriptAndStyle();}
+            if(!IsPostBack)
+            {
+                InitialScriptAndStyle();
+            }
         }
         protected void InitialScriptAndStyle()
         {

@@ -2,7 +2,7 @@
     CodeBehind="ProcurePlanDetail_Add.aspx.cs" Inherits="FixedAsset.Web.Admin.ProcurePlanDetail_Add" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-    <script src="../Scripts/calendar.js" type="text/javascript"></script>
+    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="Server">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">

@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/MasterPage.master" AutoEventWireup="true" CodeBehind="NewRemoving.aspx.cs" Inherits="FixedAsset.Web.Admin.NewRemoving" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
   <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
-    <script src="../Scripts/calendar.js" type="text/javascript"></script>
+    
     <script type="text/javascript">
         function reset() {
             window.location.href = "NewRemoving.aspx";
