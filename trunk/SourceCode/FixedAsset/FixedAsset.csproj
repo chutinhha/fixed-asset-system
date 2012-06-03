@@ -312,6 +312,13 @@
     <Compile Include="Admin\SelectMultiProcurePlan.aspx.designer.cs">
       <DependentUpon>SelectMultiProcurePlan.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\SelectSingleProject.aspx.cs">
+      <DependentUpon>SelectSingleProject.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\SelectSingleProject.aspx.designer.cs">
+      <DependentUpon>SelectSingleProject.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\SelectSingleSubCompany.aspx.cs">
       <DependentUpon>SelectSingleSubCompany.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -374,6 +381,12 @@
     </Compile>
     <Compile Include="Admin\UserControl\ucSelectedMultiAssets.ascx.designer.cs">
       <DependentUpon>ucSelectedMultiAssets.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\UserControl\ucSelectProject.ascx.cs">
+      <DependentUpon>ucSelectProject.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\UserControl\ucSelectProject.ascx.designer.cs">
+      <DependentUpon>ucSelectProject.ascx</DependentUpon>
     </Compile>
     <Compile Include="Admin\UserControl\ucSelectStorageAddress.ascx.cs">
       <DependentUpon>ucSelectStorageAddress.ascx</DependentUpon>
@@ -511,8 +524,10 @@
     <Content Include="Admin\Role_AddRight.aspx" />
     <Content Include="Admin\Role_List.aspx" />
     <Content Include="Admin\SelectedMultiAssets.aspx" />
+    <Content Include="Admin\SelectSingleProject.aspx" />
     <Content Include="Admin\ShowAssetDetail.aspx" />
     <Content Include="Admin\UserControl\ucSelectedMultiAssets.ascx" />
+    <Content Include="Admin\UserControl\ucSelectProject.ascx" />
     <Content Include="Admin\UserControl\ucSelectStorageAddress2.ascx" />
     <Content Include="Admin\UserControl\ucSeletedSystem.ascx" />
     <Content Include="Admin\UserControl\ucShowAssetDetail.ascx" />
