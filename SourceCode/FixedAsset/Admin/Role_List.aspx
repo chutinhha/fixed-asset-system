@@ -24,9 +24,6 @@
                     OnItemCommand="rptRoleList_ItemCommand">
                     <HeaderTemplate>
                         <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
-                            <%--<td>
-                                角色ID
-                            </td>--%>
                             <td>
                                 角色名
                             </td>
@@ -52,9 +49,6 @@
                     </HeaderTemplate>
                     <ItemTemplate>
                         <tr>
-                            <%--<td>
-                                <%#Eval("Roleid")%>
-                            </td>--%>
                             <td>
                                 <%#Eval("Rolename")%>
                             </td>
@@ -69,6 +63,9 @@
                             </td>
                             <td>
                                 <%# Eval("Lastmodifieddate") == null ? "" : ((DateTime)Eval("Lastmodifieddate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                            </td>
+                            <td>
+                                <%#Eval("Lstmofifiedby")%>
                             </td>
                             <td align="right">
                                 <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"
@@ -82,9 +79,6 @@
                     </ItemTemplate>
                     <AlternatingItemTemplate>
                         <tr class="alt-row">
-                            <%--<td>
-                                <%#Eval("Roleid")%>
-                            </td>--%>
                             <td>
                                 <%#Eval("Rolename")%>
                             </td>
@@ -100,6 +94,9 @@
                             <td>
                                 <%# Eval("Lastmodifieddate") == null ? "" : ((DateTime)Eval("Lastmodifieddate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
+                            <td>
+                                <%#Eval("Lstmofifiedby")%>
+                            </td>
                             <td align="right">
                                 <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"
                                     Visible='<%#Eval("Allowedit")%>' AlternateText="编辑" ToolTip="编辑" CommandArgument='<%#Eval("Roleid")%>'
@@ -112,7 +109,7 @@
                     </AlternatingItemTemplate>
                 </asp:Repeater>
                 <tr>
-                    <td colspan="7" style="height: 30px; width: 790px;">
+                    <td colspan="6" style="height: 30px; width: auto;">
                         <cc1:PagingControl ID="pcData" runat="server" MaxNavigatePageCount="7" OnPageIndexClick="pcData_PageIndexClick" />
                     </td>
                 </tr>
