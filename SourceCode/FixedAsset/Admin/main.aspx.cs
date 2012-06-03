@@ -1,7 +1,22 @@
-﻿namespace FixedAsset.Web.Admin
-{ 
+﻿using System;
+using System.Web;
+using FixedAsset.Services;
+
+namespace FixedAsset.Web.Admin
+{
     public partial class main : System.Web.UI.Page
     {
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            if (!this.IsPostBack)
+            {
+                if (WebContext.Current.CurrentUser != null)
+                {
+                    litUsername.Text = WebContext.Current.CurrentUser.Username;//用户姓名
+                }
+            }
+        }
         //protected void Page_Load(object sender, EventArgs e)
         //{
         //    if (!IsPostBack)
@@ -44,25 +59,11 @@
         //        lb_menu.Text = htmlstr.ToString();
         //    }
         //}
-        ////退出系统
-        //protected void lbtn_out_Click(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        Session["Login_user"] = null;
-        //        string loginid = (string)WebCaching.LogUserCaching;
-        //        SLoginlogEntity en = new SLoginlogEntity();
-        //        en = SLoginlog.GetSLoginlogByID(loginid);
-        //        en.LoginoutDate = DateTime.Now;
-        //        SLoginlog.UpdateSLoginlog(en);
-        //        WebCaching.LogUserCaching = null;
-        //    }
-        //    catch (Exception ex)
-        //    { }
-        //    finally
-        //    {
-        //        Response.Redirect("login.aspx");
-        //    }
-        //}
+        //退出系统
+        protected void BtnLogout_Click(object sender, EventArgs e)
+        {
+            Response.SetCookie(new HttpCookie("ASP.NET_SessionId"));
+            Response.Redirect(ResolveUrl("~/admin/Login.aspx"));
+        }
     }
 }
