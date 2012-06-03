@@ -34,6 +34,22 @@ namespace FixedAsset.DataAccess
         }
         #endregion
 
+        #region RetrieveRoleinfoByRoleName
+        public Roleinfo RetrieveRoleinfoByRoleName(string Rolename)
+        {
+            try
+            {
+                this.Database.AddInParameter(":Rolename", Rolename);
+                string sqlCommand = @"SELECT * FROM ROLEINFO WHERE  Rolename=:Rolename";
+                return this.Database.ExecuteToSingle<Roleinfo>(sqlCommand);
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
+        #endregion
+
         #region RetrieveRoleinfoByRoleid
         public List<Roleinfo> RetrieveRoleinfoByRoleid(List<string> Roleids)
         {
@@ -75,7 +91,7 @@ namespace FixedAsset.DataAccess
             try
             {
                 StringBuilder sqlCommand = new StringBuilder(@" SELECT ""ROLEINFO"".""ROLEID"",""ROLEINFO"".""ROLENAME"",""ROLEINFO"".""ROLESTATE"",""ROLEINFO"".""DESCRIPTION"",""ROLEINFO"".""ALLOWEDIT"",
-                     ""ROLEINFO"".""CREATEDDATE"",""ROLEINFO"".""CREATOR"",""ROLEINFO"".""LASTMODIFIEDDATE"",""ROLEINFO"".""LSTMOFIFIEDBY""
+                     ""ROLEINFO"".""CREATEDDATE"",""ROLEINFO"".""CREATOR"",""ROLEINFO"".""LASTMODIFIEDDATE"",""ROLEINFO"".""LASTMODIFIEDBY""
                      FROM ""ROLEINFO"" 
                      WHERE 1=1");
                 if (!string.IsNullOrEmpty(info.Roleid))

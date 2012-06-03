@@ -14,7 +14,7 @@ namespace FixedAsset.Domain
 {
     /// <summary>
     ///USERMAPROLEINFO
-    /// <summary>
+    ///</summary>
     [Serializable]
     public partial class Usermaproleinfo
     {
@@ -44,9 +44,6 @@ namespace FixedAsset.Domain
         ///ColumnName:最近修改者;Size:40;
         ///</summary>
         public string Lastmodifiedby{  get;set;}
-        #endregion
-
+        #endregion 
     }
-
-
 }

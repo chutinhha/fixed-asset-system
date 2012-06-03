@@ -65,7 +65,7 @@
                                 <%# Eval("Lastmodifieddate") == null ? "" : ((DateTime)Eval("Lastmodifieddate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
                             <td>
-                                <%#Eval("Lstmofifiedby")%>
+                                <%#Eval("Lastmodifiedby")%>
                             </td>
                             <td align="right">
                                 <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"
@@ -95,7 +95,7 @@
                                 <%# Eval("Lastmodifieddate") == null ? "" : ((DateTime)Eval("Lastmodifieddate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
                             <td>
-                                <%#Eval("Lstmofifiedby")%>
+                                <%#Eval("Lastmodifiedby")%>
                             </td>
                             <td align="right">
                                 <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"

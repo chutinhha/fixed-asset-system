@@ -87,11 +87,14 @@ namespace FixedAsset.DataAccess
         {
             try
             {
-                StringBuilder sqlCommand = new StringBuilder(@" SELECT ""T_USER"".""ID"",""T_USER"".""USERCODE"",""T_USER"".""USERNAME"",""T_USER"".""LOGINID"",""T_USER"".""USERPASSWORD"",
-                     ""T_USER"".""ISLOCK"",""T_USER"".""ADMINFLAG"",""T_USER"".""NOTE"",""T_USER"".""EMAIL"",""T_USER"".""EXT1"",
-                     ""T_USER"".""OAID""
-                     FROM ""T_USER"" 
+                StringBuilder sqlCommand = new StringBuilder(@" SELECT ""T_USER"".""ID"",""T_USER"".""USERCODE"",""T_USER"".""USERNAME"",""T_USER"".""LOGINID""
+                    ,""T_USER"".""USERPASSWORD""
+                    ,""T_USER"".""ISLOCK"",""T_USER"".""ADMINFLAG"",""T_USER"".""NOTE"",""T_USER"".""EMAIL"",""T_USER"".""EXT1"",
+                     ""T_USER"".""OAID"",""ROLEINFO"".""ROLENAME"",""USERMAPROLEINFO"".""LASTMODIFIEDDATE"",""USERMAPROLEINFO"".""LASTMODIFIEDBY""
+                     FROM ""T_USER"" LEFT JOIN USERMAPROLEINFO ON   ""T_USER"".""ID""=""USERMAPROLEINFO"".""USERID""
+                                     LEFT JOIN ""ROLEINFO"" ON ""ROLEINFO"".""ROLEID""=""USERMAPROLEINFO"".""ROLEID"" AND ""ROLEINFO"".""ROLESTATE""=:Rolestate 
                      WHERE 1=1");
+                this.Database.AddInParameter(":Rolestate", RoleState.Normal);//有效的角色
                 if (!string.IsNullOrEmpty(info.Id))
                 {
                     this.Database.AddInParameter(":Id",DbType.AnsiString,"%"+info.Id+"%");

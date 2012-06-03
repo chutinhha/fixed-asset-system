@@ -95,7 +95,26 @@ namespace FixedAsset.Domain
         public decimal Oaid{  get;set;}
         #endregion
 
-    }
+        #region 角色名
+        ///<summary>
+        ///ColumnName:角色名;Size:40;
+        ///</summary>
+        public string Rolename { get; set; }
 
+        #region 最近修改时间
+        ///<summary>
+        ///ColumnName:最近修改时间;
+        ///</summary>
+        public DateTime? Lastmodifieddate { get; set; }
+        #endregion
 
+        #region 最近修改者
+        ///<summary>
+        ///ColumnName:最近修改者;Size:40;
+        ///</summary>
+        public string Lastmodifiedby { get; set; }
+        #endregion 
+
+        #endregion
+    } 
 }
