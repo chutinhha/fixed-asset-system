@@ -252,6 +252,8 @@ namespace FixedAsset.Web.Admin
         #region Methods
         protected void InitData()
         {
+            ucApplydate.DateValue = DateTime.Today;
+            ucContactscheduledate.DateValue = DateTime.Today;
             AssetCategories.Clear();
             ProcurementContractDetail.Clear();
             if (AssetCategories.Count == 0)
