@@ -186,7 +186,5 @@ namespace FixedAsset.Domain
         public DateTime? Createddate{  get;set;}
         #endregion
 
-    }
-
-
+    } 
 }
