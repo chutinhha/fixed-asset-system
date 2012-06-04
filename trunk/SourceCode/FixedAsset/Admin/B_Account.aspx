@@ -7,10 +7,11 @@
 <%@ Register Assembly="iKC.Web" Namespace="iKC.Web.UI.WebControls" TagPrefix="asp" %>
 <%@ Register Src="~/Admin/UserControl/ucDatePicker.ascx" TagName="DatePicker" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script src="../Scripts/jquery-1.4.1-vsdoc.js" type="text/javascript"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
     <ul id="TabPage1">
-        <li id="Tab1" title="B账">B账</li>
+        <li id="Tab1" title="设备管理">B账</li>
     </ul>
     <div id="cnt">
         <div id="dTab1" class="Box text_box">
@@ -21,194 +22,194 @@
                         设备编号
                     </td>
                     <td>
-                       <asp:TextBox ID="txtEquipmentID" Width="260" CssClass="" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtSrchAssetno" Width="150" CssClass="" runat="server"></asp:TextBox>
                     </td>
                     <td>
                         设备类别
                     </td>
                     <td>
-                        <asp:DropDownList ID="ddlType" runat="server" Width="120">
+                        <asp:DropDownList ID="ddlAssetCategory" class="text_inp" runat="server" AutoPostBack="true"
+                            OnSelectedIndexChanged="ddlAssetCategory_SelectedIndexChanged">
+                        </asp:DropDownList>
+                        <asp:DropDownList ID="ddlSubAssetCategory" class="text_inp" runat="server">
                         </asp:DropDownList>
                     </td>
+                </tr>
+                <tr>
                     <td>
                         设备名称
                     </td>
                     <td>
-                        <asp:TextBox ID="txtEquipmentName" runat="server" Width="120"></asp:TextBox>
+                        <asp:TextBox ID="txtSrchAssetname" Width="150" CssClass="" runat="server"></asp:TextBox>
+                    </td>
+                     <td>
+                        账务类别
+                    </td>
+                    <td>
+                        <asp:DropDownList ID="ddlAccountingType" runat="server" Width="150">
+                        </asp:DropDownList>
                     </td>
                 </tr>
                 <tr>
-                
-                     <td>
+                    <td>
                         入账日期
                     </td>
                     <td>
-                   
-                         <uc1:DatePicker ID="ucImportStartDate" runat="server" Width="120"/>
-                        ~
-                        <uc1:DatePicker ID="ucImportEndDate" runat="server" Width="120" />
+                        <uc1:DatePicker ID="ucStartPurchasedate" runat="server" />
+                        ~<uc1:DatePicker ID="ucEndPurchasedate" runat="server" />
                     </td>
                     <td>
                         预计折旧日期
                     </td>
-                    <td colspan="2">
-                       <uc1:DatePicker ID="ucZJStartDate" runat="server" Width="120"/>
-                        ~
-                        <uc1:DatePicker ID="ucZJEndDate" runat="server" Width="120"/>
-                      
+                    <td>
+                        <uc1:DatePicker ID="ucStartExpireddate" runat="server" />
+                        ~<uc1:DatePicker ID="ucEndExpireddate" runat="server" />
                     </td>
-                    <td><asp:Button ID="BtnSearch" runat="server" CssClass="button" Text="查询" OnClick="BtnSearch_Click" /></td>
                 </tr>
-              <%--  <tr>
-                   
-                    
-                    
-                    <td colspan="7" align="right">
-                     
+                <tr>
+                    <td colspan="6" align="right">
+                        <asp:Button ID="BtnSearch" runat="server" CssClass="button" Text="查询" OnClick="BtnSearch_Click" />
+                        <asp:Button ID="btnB_Account" runat="server" CssClass="button" Text="进入B账" OnClick="btnB_Account_Click" />
                     </td>
-                </tr>--%>
-               
+                </tr>
             </table>
             <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
                 align="center">
-                <asp:Repeater ID="rptBAcountsList" runat="server" OnItemDataBound="rptBAcountsList_ItemDataBound"
-                    OnItemCommand="rptBAcountsList_ItemCommand">
+                <asp:Repeater ID="rptB_Account" runat="server" OnItemDataBound="rptB_Account_ItemDataBound">
                     <HeaderTemplate>
                         <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
-                            <td align="center">
+                            <td style="width: 10%">
+                                <input type="checkbox" id="chkAll" />全选/反选
+                            </td>
+                            <td align="center" style="width: 12%">
                                 设备编号
                             </td>
-                            <td>
+                            <td style="width: 8%">
                                 设备类别
                             </td>
-                            <td>
+                            <td style="width: 9%">
                                 设备名称
                             </td>
-                            <td>
-                                存放地点
-                            </td>
-                            <td>
+                            <td style="width: 7%">
                                 设备状态
                             </td>
-                            <td>
+                            <td style="width: 7%">
                                 折旧年限
                             </td>
-                            <td>
+                            <td style="width: 6%">
                                 供应商
                             </td>
-                            <td>
+                            <td style="width: 7%">
                                 账务类别
                             </td>
-                            <td>
+                            <td style="width: 7%">
                                 管理模式
                             </td>
-                            <td>
+                            <td style="width: 8%">
                                 入账日期
                             </td>
-                            <td>
+                            <td style="width: 10%">
                                 预计折旧日期
-                            </td>
-                            <td>
-                                操作
                             </td>
                         </tr>
                     </HeaderTemplate>
                     <ItemTemplate>
                         <tr>
                             <td align="center">
-                                <%#Eval("Contractid")%>
-                            </td>
-                            <td>
-                                <%#((DateTime)Eval("Contractdate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
-                            </td>
-                            <td>
-                                <%#Eval("SUPPLIERNAME")%>
-                            </td>
-                            <td>
-                                <%#((DateTime)Eval("Createddate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                <input type="checkbox" runat="server" id="ckbB_Account" value='<%#Eval("Assetno")%>' />
                             </td>
                             <td align="center">
-                                <%#Eval("Contractid")%>
+                                <%#Eval("Assetno")%>
                             </td>
                             <td>
-                                <%#((DateTime)Eval("Contractdate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                <asp:Literal ID="litCategoryName" runat="server" />
                             </td>
                             <td>
-                                <%#Eval("SUPPLIERNAME")%>
+                                <%#Eval("Assetname")%>
                             </td>
                             <td>
-                                <%#((DateTime)Eval("Createddate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                <%#EnumUtil.RetrieveEnumDescript((AssetState)Eval("State"))%>
                             </td>
                             <td>
-                                <%#((DateTime)Eval("Contractdate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                <%#Eval("Depreciationyear")%>
                             </td>
                             <td>
-                                <%#Eval("SUPPLIERNAME")%>
+                                <asp:Literal ID="LitSupplierName" runat="server" />
                             </td>
                             <td>
-                                <%#((DateTime)Eval("Createddate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                <%#EnumUtil.RetrieveEnumDescript((FinanceCategory)Eval("Financecategory"))%>
                             </td>
-                            <td align="right">
-                                <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/images/Button/edit.GIF"
-                                    AlternateText="编辑" ToolTip="编辑" CommandName="EditDetail" CommandArgument='<%#Eval("Contractid") %>' />
-                                <asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="~/images/Button/delete.GIF"
-                                    OnClientClick="return confirm('确认要删除吗？');" AlternateText="删除" ToolTip="删除" CommandName="DeleteDetail"
-                                    CommandArgument='<%#Eval("Contractid") %>' />
+                            <td>
+                                <%#EnumUtil.RetrieveEnumDescript((ManageMode)Eval("Managemode"))%>
+                            </td>
+                            <td>
+                                <%#((DateTime)Eval("Purchasedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                            </td>
+                            <td>
+                                <%#((DateTime)Eval("Expireddate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
                         </tr>
                     </ItemTemplate>
                     <AlternatingItemTemplate>
                         <tr class="alt-row">
                             <td align="center">
-                                <%#Eval("Contractid")%>
-                            </td>
-                            <td>
-                                <%#((DateTime)Eval("Contractdate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
-                            </td>
-                            <td>
-                                <%#Eval("SUPPLIERNAME")%>
-                            </td>
-                            <td>
-                                <%#((DateTime)Eval("Createddate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                <input type="checkbox" runat="server" id="ckbB_Account" value='<%#Eval("Assetno")%>' />
                             </td>
                             <td align="center">
-                                <%#Eval("Contractid")%>
+                                <%#Eval("Assetno")%>
                             </td>
                             <td>
-                                <%#((DateTime)Eval("Contractdate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                <asp:Literal ID="litCategoryName" runat="server" />
                             </td>
                             <td>
-                                <%#Eval("SUPPLIERNAME")%>
+                                <%#Eval("Assetname")%>
                             </td>
                             <td>
-                                <%#((DateTime)Eval("Createddate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                <%#EnumUtil.RetrieveEnumDescript((AssetState)Eval("State"))%>
                             </td>
                             <td>
-                                <%#((DateTime)Eval("Contractdate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                <%#Eval("Depreciationyear")%>
                             </td>
                             <td>
-                                <%#Eval("SUPPLIERNAME")%>
+                                <asp:Literal ID="LitSupplierName" runat="server" />
                             </td>
                             <td>
-                                <%#((DateTime)Eval("Createddate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                <%#EnumUtil.RetrieveEnumDescript((FinanceCategory)Eval("Financecategory"))%>
                             </td>
-                            <td align="right">
-                                <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/images/Button/edit.GIF"
-                                    AlternateText="编辑" ToolTip="编辑" CommandName="EditDetail" CommandArgument='<%#Eval("Contractid") %>' />
-                                <asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="~/images/Button/delete.GIF"
-                                    OnClientClick="return confirm('确认要删除吗？');" AlternateText="删除" ToolTip="删除" CommandName="DeleteDetail"
-                                    CommandArgument='<%#Eval("Contractid") %>' />
+                            <td>
+                                <%#EnumUtil.RetrieveEnumDescript((ManageMode)Eval("Managemode"))%>
+                            </td>
+                            <td>
+                                <%#((DateTime)Eval("Purchasedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                            </td>
+                            <td>
+                                <%#((DateTime)Eval("Expireddate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
                         </tr>
                     </AlternatingItemTemplate>
                 </asp:Repeater>
                 <tr>
-                    <td colspan="12" style="height: 30px; width: 100%;">
-                        <%-- <cc1:PageChangeControl ID="pageControl" PageSize="10" runat="server" OnPageIndexClick="pageControl_PageIndexClick" />--%>
+                    <td colspan="9" style="height: 30px; width: 98%;">
                         <cc1:PagingControl ID="pcData" runat="server" MaxNavigatePageCount="7" OnPageIndexClick="pcData_PageIndexClick" />
                     </td>
                 </tr>
             </table>
         </div>
     </div>
+    <script type="text/javascript">
+        $(function () {
+            //全选/反选
+            $("#chkAll").click(function () {
+                $("input[type='checkbox']").attr("checked", this.checked);
+            });
+            //var chk = $("input[type='checkbox']").get(0);
+            //chk.click(function () {
+                //                var chkallcheck = $("input[type=checkbox]:checked");
+                //                var chkall = $("input[type=checkbox]");
+                //                var hasChecked = chkallcheck.length == chkall.length - 1;
+                //                $("#chkAll").attr("checked", hasChecked);
+
+            //});
+        });
+        </script>
 </asp:Content>
