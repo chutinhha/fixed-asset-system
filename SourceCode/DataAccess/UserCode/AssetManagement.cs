@@ -195,5 +195,77 @@ namespace FixedAsset.DataAccess
             }
         }
         #endregion 
+
+        #region RetrieveAssetsUsed
+        public List<Asset> RetrieveAssetsUsed(AssetSearch info, int pageIndex, int pageSize, out int count)
+        {
+            try
+            {
+                StringBuilder sqlCommand = new StringBuilder(@" SELECT ""ASSET"".""ASSETNO"",""ASSET"".""ASSETCATEGORYID"" AS ASSETCATEGORYID,""ASSET"".""ASSETNAME"",""ASSET"".""STATE"",
+                     ""ASSET"".""DEPRECIATIONYEAR"",""ASSET"".""MANAGEMODE"",""ASSET"".""FINANCECATEGORY"",""ASSET"".""SUPPLIERID"",""ASSET"".""PURCHASEDATE"",""ASSET"".""EXPIREDDATE""
+                     FROM ""ASSET"" ,""ASSETCATEGORY"" 
+                     WHERE ""ASSET"".""ASSETCATEGORYID""=""ASSETCATEGORY"".""ASSETCATEGORYID"" AND (""ASSET"".""STATE""= 1 OR ""ASSET"".""STATE""= 2) AND ""ASSET"".""EXPIREDDATE""<= Sysdate ");
+                if (!string.IsNullOrEmpty(info.Assetno))
+                {
+                    this.Database.AddInParameter(":Assetno", DbType.AnsiString, "%" + info.Assetno + "%");
+                    sqlCommand.AppendLine(@" AND ""ASSET"".""ASSETNO"" LIKE :Assetno");
+                }
+                if (!string.IsNullOrEmpty(info.Assetname))
+                {
+                    this.Database.AddInParameter(":Assetname", "%" + info.Assetname + "%");
+                    sqlCommand.AppendLine(@" AND ""ASSET"".""ASSETNAME"" LIKE :Assetname");
+                }
+                #region 资产分类
+                if (!string.IsNullOrEmpty(info.FirstLevelCategoryId))
+                {
+                    this.Database.AddInParameter(":Assetparentcategoryid", DbType.AnsiString, info.FirstLevelCategoryId);
+                    sqlCommand.AppendLine(@" AND ""ASSETCATEGORY"".""ASSETPARENTCATEGORYID"" = :Assetparentcategoryid");
+                }
+                if (!string.IsNullOrEmpty(info.Assetcategoryid))
+                {
+                    this.Database.AddInParameter(":Assetcategoryid", DbType.AnsiString, info.Assetcategoryid);
+                    sqlCommand.AppendLine(@" AND ""ASSET"".""ASSETCATEGORYID"" = :Assetcategoryid");
+                }
+                #endregion
+                if (info.FinanceCategories.Count > 0)
+                {
+                    this.Database.AddInParameter(":FINANCECATEGORY", info.FinanceCategories[0]);
+                    sqlCommand.AppendLine(@" AND (""ASSET"".""FINANCECATEGORY""=:FINANCECATEGORY");
+                    for (int i = 1; i < info.FinanceCategories.Count; i++)
+                    {
+                        this.Database.AddInParameter(":FINANCECATEGORY" + i.ToString(), info.FinanceCategories[i]);
+                        sqlCommand.AppendLine(@" OR ""ASSET"".""FINANCECATEGORY""=:FINANCECATEGORY" + i.ToString());
+                    }
+                    sqlCommand.AppendLine(@" )");
+                }
+                if (info.StartPurchasedate.HasValue)
+                {
+                    this.Database.AddInParameter(":StartPurchasedate", info.StartPurchasedate.Value.Date);
+                    sqlCommand.AppendLine(@" AND ""ASSET"".""PURCHASEDATE"" >= :StartPurchasedate");
+                }
+                if (info.EndPurchasedate.HasValue)
+                {
+                    this.Database.AddInParameter(":EndPurchasedate", info.EndPurchasedate.Value.Date.AddDays(1).AddSeconds(-1));
+                    sqlCommand.AppendLine(@" AND ""ASSET"".""PURCHASEDATE"" <= :EndPurchasedate");
+                }
+                if (info.StartExpireddate.HasValue)
+                {
+                    this.Database.AddInParameter(":StartExpireddate", info.StartExpireddate.Value.Date);
+                    sqlCommand.AppendLine(@" AND ""ASSET"".""EXPIREDDATE"" >= :StartExpireddate");
+                }
+                if (info.EndExpireddate.HasValue)
+                {
+                    this.Database.AddInParameter(":EndExpireddate", info.EndExpireddate.Value.Date.AddDays(1).AddSeconds(-1));
+                    sqlCommand.AppendLine(@" AND ""ASSET"".""EXPIREDDATE"" <= :EndExpireddate");
+                }
+                sqlCommand.AppendLine(@"  ORDER BY ""ASSET"".""EXPIREDDATE"" DESC");
+                return this.ExecuteReaderPaging<Asset>(sqlCommand.ToString(), pageIndex, pageSize, out count);
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
+        #endregion 
     }
 }
