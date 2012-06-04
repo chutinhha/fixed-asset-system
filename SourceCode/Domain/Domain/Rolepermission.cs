@@ -1,7 +1,7 @@
 /********************************************************************
 * File Name:Rolepermission
 * Copyright (C) 2012 Bruce.Huang 
-* Creater & Date:Bruce.Huang - 2012-05-25
+* Creater & Date:Bruce.Huang - 2012-06-05
 * Modify Explain:
 * Description:Entity Class(DTO)
 * Modify Explain:
@@ -12,9 +12,9 @@ using System.Collections.Generic;
 
 namespace FixedAsset.Domain
 {
-    /// <summary>
-    ///ROLEPERMISSION
-    /// <summary>
+    ///<summary>
+    ///角色权限表
+    ///</summary>
     [Serializable]
     public partial class Rolepermission
     {
@@ -53,7 +53,12 @@ namespace FixedAsset.Domain
         public string Lastmodifiedby{  get;set;}
         #endregion
 
-    }
+        #region 权限编码(以逗号的方式分割)
+        ///<summary>
+        ///ColumnName:权限编码(以逗号的方式分割);Size:400;
+        ///</summary>
+        public string Rightcode{  get;set;}
+        #endregion
 
-
+    } 
 }

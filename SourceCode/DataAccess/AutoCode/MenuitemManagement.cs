@@ -1,7 +1,7 @@
 /********************************************************************
 * File Name:MenuitemManagement
 * Copyright (C) 2012 Bruce.huang 
-* Creater & Date:Bruce.huang - 2012-05-25
+* Creater & Date:Bruce.huang - 2012-06-05
 * Create Explain:
 * Description:DataBase Access Class
 * Modify Explain:
@@ -19,7 +19,7 @@ namespace FixedAsset.DataAccess
     public partial class MenuitemManagement:BaseManagement
     {
         #region Construct
-        private const int ColumnCount = 6;
+        private const int ColumnCount = 7;
         public MenuitemManagement()
         { }
         public MenuitemManagement(BaseManagement baseManagement): base(baseManagement)
@@ -31,13 +31,14 @@ namespace FixedAsset.DataAccess
         {
             try
             {
-                string sqlCommand = @"INSERT INTO ""MENUITEM"" (""MENUID"",""MENUNAME"",""PARENTMENUID"",""MENUADDRESS"",""ORDERBY"",""FUNCTIONID"") VALUES (:Menuid,:Menuname,:Parentmenuid,:Menuaddress,:Orderby,:Functionid)";
+                string sqlCommand = @"INSERT INTO ""MENUITEM"" (""MENUID"",""MENUNAME"",""PARENTMENUID"",""MENUADDRESS"",""ORDERBY"",""FUNCTIONID"",""BUTTONID"") VALUES (:Menuid,:Menuname,:Parentmenuid,:Menuaddress,:Orderby,:Functionid,:Buttonid)";
                 this.Database.AddInParameter(":Menuid", info.Menuid);//DBType:VARCHAR2
                 this.Database.AddInParameter(":Menuname", info.Menuname);//DBType:NVARCHAR2
                 this.Database.AddInParameter(":Parentmenuid", info.Parentmenuid);//DBType:VARCHAR2
                 this.Database.AddInParameter(":Menuaddress", info.Menuaddress);//DBType:VARCHAR2
                 this.Database.AddInParameter(":Orderby", info.Orderby);//DBType:NUMBER
                 this.Database.AddInParameter(":Functionid", info.Functionid);//DBType:VARCHAR2
+                this.Database.AddInParameter(":Buttonid", info.Buttonid);//DBType:VARCHAR2
                 this.Database.ExecuteNonQuery(sqlCommand);
 
             }
@@ -60,7 +61,8 @@ namespace FixedAsset.DataAccess
                 this.Database.AddInParameter(":Menuaddress", info.Menuaddress);//DBType:VARCHAR2
                 this.Database.AddInParameter(":Orderby", info.Orderby);//DBType:NUMBER
                 this.Database.AddInParameter(":Functionid", info.Functionid);//DBType:VARCHAR2
-                string sqlCommand = @"UPDATE ""MENUITEM"" SET  ""MENUNAME""=:Menuname , ""PARENTMENUID""=:Parentmenuid , ""MENUADDRESS""=:Menuaddress , ""ORDERBY""=:Orderby , ""FUNCTIONID""=:Functionid WHERE  ""MENUID""=:Menuid";
+                this.Database.AddInParameter(":Buttonid", info.Buttonid);//DBType:VARCHAR2
+                string sqlCommand = @"UPDATE ""MENUITEM"" SET  ""MENUNAME""=:Menuname , ""PARENTMENUID""=:Parentmenuid , ""MENUADDRESS""=:Menuaddress , ""ORDERBY""=:Orderby , ""FUNCTIONID""=:Functionid , ""BUTTONID""=:Buttonid WHERE  ""MENUID""=:Menuid";
                 this.Database.ExecuteNonQuery(sqlCommand);
             }
             finally
