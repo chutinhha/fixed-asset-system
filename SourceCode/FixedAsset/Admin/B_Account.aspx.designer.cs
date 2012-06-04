@@ -13,67 +13,85 @@ namespace FixedAsset.Web.Admin {
     public partial class B_Account {
         
         /// <summary>
-        /// txtEquipmentID control.
+        /// txtSrchAssetno control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEquipmentID;
+        protected global::System.Web.UI.WebControls.TextBox txtSrchAssetno;
         
         /// <summary>
-        /// ddlType control.
+        /// ddlAssetCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlType;
+        protected global::System.Web.UI.WebControls.DropDownList ddlAssetCategory;
         
         /// <summary>
-        /// txtEquipmentName control.
+        /// ddlSubAssetCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEquipmentName;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSubAssetCategory;
         
         /// <summary>
-        /// ucImportStartDate control.
+        /// txtSrchAssetname control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::FixedAsset.Web.Admin.UserControl.ucDatePicker ucImportStartDate;
+        protected global::System.Web.UI.WebControls.TextBox txtSrchAssetname;
         
         /// <summary>
-        /// ucImportEndDate control.
+        /// ddlAccountingType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::FixedAsset.Web.Admin.UserControl.ucDatePicker ucImportEndDate;
+        protected global::System.Web.UI.WebControls.DropDownList ddlAccountingType;
         
         /// <summary>
-        /// ucZJStartDate control.
+        /// ucStartPurchasedate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::FixedAsset.Web.Admin.UserControl.ucDatePicker ucZJStartDate;
+        protected global::FixedAsset.Web.Admin.UserControl.ucDatePicker ucStartPurchasedate;
         
         /// <summary>
-        /// ucZJEndDate control.
+        /// ucEndPurchasedate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::FixedAsset.Web.Admin.UserControl.ucDatePicker ucZJEndDate;
+        protected global::FixedAsset.Web.Admin.UserControl.ucDatePicker ucEndPurchasedate;
+        
+        /// <summary>
+        /// ucStartExpireddate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::FixedAsset.Web.Admin.UserControl.ucDatePicker ucStartExpireddate;
+        
+        /// <summary>
+        /// ucEndExpireddate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::FixedAsset.Web.Admin.UserControl.ucDatePicker ucEndExpireddate;
         
         /// <summary>
         /// BtnSearch control.
@@ -85,13 +103,22 @@ namespace FixedAsset.Web.Admin {
         protected global::System.Web.UI.WebControls.Button BtnSearch;
         
         /// <summary>
-        /// rptBAcountsList control.
+        /// btnB_Account control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptBAcountsList;
+        protected global::System.Web.UI.WebControls.Button btnB_Account;
+        
+        /// <summary>
+        /// rptB_Account control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptB_Account;
         
         /// <summary>
         /// pcData control.
