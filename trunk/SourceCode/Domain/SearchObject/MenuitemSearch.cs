@@ -1,7 +1,7 @@
 /********************************************************************
 * File Name:Menuitem
 * Copyright (C) 2012 Bruce.huang 
-* Creater & Date:Bruce.huang - 2012-05-25
+* Creater & Date:Bruce.huang - 2012-06-05
 * Modify Explain:
 * Description:DataBase Entity Class
 * Modify Explain:
@@ -12,9 +12,9 @@ using System.Collections.Generic;
 
 namespace FixedAsset.Domain
 {
-    /// <summary>
-    ///MENUITEM
-    /// </summary>
+    ///<summary>
+    ///菜单表
+    ///</summary>
     [Serializable]
     public partial class MenuitemSearch
     {
@@ -46,8 +46,15 @@ namespace FixedAsset.Domain
         }
         #endregion
 
-        #region 功能Id
+        #region 功能编号
         public string Functionid
+        {
+            get;set; 
+        }
+        #endregion
+
+        #region 按钮编号（以逗号分割）
+        public string Buttonid
         {
             get;set; 
         }

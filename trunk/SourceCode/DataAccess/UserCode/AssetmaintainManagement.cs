@@ -88,6 +88,7 @@ namespace FixedAsset.DataAccess
                     sqlCommand.AppendLine(@" AND ""ASSETMAINTAIN"".""ASSETMAINTAINID"" LIKE :Assetmaintainid");
                 }
                 #endregion
+
                 #region (系统)设备大类
                 if (!string.IsNullOrEmpty(info.Assetcategoryid))
                 {
@@ -95,6 +96,7 @@ namespace FixedAsset.DataAccess
                     sqlCommand.AppendLine(@" AND ""ASSETMAINTAIN"".""ASSETCATEGORYID"" LIKE :Assetcategoryid");
                 }
                 #endregion
+
                 #region 保修来源：(项目体、自检、月检）数据字典
                 if (!string.IsNullOrEmpty(info.Maintaintype))
                 {
@@ -102,6 +104,7 @@ namespace FixedAsset.DataAccess
                     sqlCommand.AppendLine(@" AND ""ASSETMAINTAIN"".""MAINTAINTYPE"" LIKE :Maintaintype");
                 }
                 #endregion
+
                 #region 申请维修日期
                 if (info.StartApplydate.HasValue)
                 {

@@ -1,7 +1,7 @@
 /********************************************************************
 * File Name:RolepermissionManagement
 * Copyright (C) 2012 Bruce.huang 
-* Creater & Date:Bruce.huang - 2012-05-25
+* Creater & Date:Bruce.huang - 2012-06-05
 * Create Explain:
 * Description:DataBase Access Class
 * Modify Explain:
@@ -19,7 +19,7 @@ namespace FixedAsset.DataAccess
     public partial class RolepermissionManagement:BaseManagement
     {
         #region Construct
-        private const int ColumnCount = 5;
+        private const int ColumnCount = 6;
         public RolepermissionManagement()
         { }
         public RolepermissionManagement(BaseManagement baseManagement): base(baseManagement)
@@ -31,12 +31,13 @@ namespace FixedAsset.DataAccess
         {
             try
             {
-                string sqlCommand = @"INSERT INTO ""ROLEPERMISSION"" (""ROLEID"",""MENUID"",""REMARK"",""LASTMODIFIEDDATE"",""LASTMODIFIEDBY"") VALUES (:Roleid,:Menuid,:Remark,:Lastmodifieddate,:Lastmodifiedby)";
+                string sqlCommand = @"INSERT INTO ""ROLEPERMISSION"" (""ROLEID"",""MENUID"",""REMARK"",""LASTMODIFIEDDATE"",""LASTMODIFIEDBY"",""RIGHTCODE"") VALUES (:Roleid,:Menuid,:Remark,:Lastmodifieddate,:Lastmodifiedby,:Rightcode)";
                 this.Database.AddInParameter(":Roleid", info.Roleid);//DBType:VARCHAR2
                 this.Database.AddInParameter(":Menuid", info.Menuid);//DBType:VARCHAR2
                 this.Database.AddInParameter(":Remark", info.Remark);//DBType:NVARCHAR2
                 this.Database.AddInParameter(":Lastmodifieddate", info.Lastmodifieddate);//DBType:DATE
                 this.Database.AddInParameter(":Lastmodifiedby", info.Lastmodifiedby);//DBType:VARCHAR2
+                this.Database.AddInParameter(":Rightcode", info.Rightcode);//DBType:VARCHAR2
                 this.Database.ExecuteNonQuery(sqlCommand);
 
             }
@@ -58,7 +59,8 @@ namespace FixedAsset.DataAccess
                 this.Database.AddInParameter(":Remark", info.Remark);//DBType:NVARCHAR2
                 this.Database.AddInParameter(":Lastmodifieddate", info.Lastmodifieddate);//DBType:DATE
                 this.Database.AddInParameter(":Lastmodifiedby", info.Lastmodifiedby);//DBType:VARCHAR2
-                string sqlCommand = @"UPDATE ""ROLEPERMISSION"" SET  ""REMARK""=:Remark , ""LASTMODIFIEDDATE""=:Lastmodifieddate , ""LASTMODIFIEDBY""=:Lastmodifiedby WHERE  ""ROLEID""=:Roleid AND ""MENUID""=:Menuid";
+                this.Database.AddInParameter(":Rightcode", info.Rightcode);//DBType:VARCHAR2
+                string sqlCommand = @"UPDATE ""ROLEPERMISSION"" SET  ""REMARK""=:Remark , ""LASTMODIFIEDDATE""=:Lastmodifieddate , ""LASTMODIFIEDBY""=:Lastmodifiedby , ""RIGHTCODE""=:Rightcode WHERE  ""ROLEID""=:Roleid AND ""MENUID""=:Menuid";
                 this.Database.ExecuteNonQuery(sqlCommand);
             }
             finally

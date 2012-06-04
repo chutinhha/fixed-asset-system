@@ -1,7 +1,7 @@
 /********************************************************************
 * File Name:RolepermissionManagement
 * Copyright (C) 2012 Bruce.Huang 
-* Creater & Date:Bruce.huang - 2012-05-25
+* Creater & Date:Bruce.huang - 2012-06-05
 * Create Explain:
 * Description:DataBase Access Class
 * Modify Explain:
@@ -92,24 +92,35 @@ namespace FixedAsset.DataAccess
         {
             try
             {
-                StringBuilder sqlCommand = new StringBuilder(@" SELECT ""ROLEPERMISSION"".""ROLEID"",""ROLEPERMISSION"".""MENUID"",""ROLEPERMISSION"".""REMARK"",""ROLEPERMISSION"".""LASTMODIFIEDDATE"",""ROLEPERMISSION"".""LASTMODIFIEDBY""
+                StringBuilder sqlCommand = new StringBuilder(@" SELECT ""ROLEPERMISSION"".""ROLEID"",""ROLEPERMISSION"".""MENUID"",""ROLEPERMISSION"".""REMARK"",""ROLEPERMISSION"".""LASTMODIFIEDDATE"",""ROLEPERMISSION"".""LASTMODIFIEDBY"",
+                     ""ROLEPERMISSION"".""RIGHTCODE""
                      FROM ""ROLEPERMISSION"" 
                      WHERE 1=1");
+                #region 角色编号
                 if (!string.IsNullOrEmpty(info.Roleid))
                 {
                     this.Database.AddInParameter(":Roleid",DbType.AnsiString,"%"+info.Roleid+"%");
                     sqlCommand.AppendLine(@" AND ""ROLEPERMISSION"".""ROLEID"" LIKE :Roleid");
                 }
+                #endregion
+
+                #region 菜单编号
                 if (!string.IsNullOrEmpty(info.Menuid))
                 {
                     this.Database.AddInParameter(":Menuid",DbType.AnsiString,"%"+info.Menuid+"%");
                     sqlCommand.AppendLine(@" AND ""ROLEPERMISSION"".""MENUID"" LIKE :Menuid");
                 }
+                #endregion
+
+                #region 备注
                 if (!string.IsNullOrEmpty(info.Remark))
                 {
                     this.Database.AddInParameter(":Remark", "%"+info.Remark+"%");
                     sqlCommand.AppendLine(@" AND ""ROLEPERMISSION"".""REMARK"" LIKE :Remark");
                 }
+                #endregion
+
+                #region 最近修改时间
                 if (info.StartLastmodifieddate.HasValue)
                 {
                     this.Database.AddInParameter(":StartLastmodifieddate",info.StartLastmodifieddate.Value.Date);
@@ -120,11 +131,24 @@ namespace FixedAsset.DataAccess
                     this.Database.AddInParameter(":EndLastmodifieddate",info.EndLastmodifieddate.Value.Date.AddDays(1).AddSeconds(-1));
                     sqlCommand.AppendLine(@" AND ""ROLEPERMISSION"".""LASTMODIFIEDDATE"" <= :EndLastmodifieddate");
                 }
+                #endregion
+
+                #region 最近修改者
                 if (!string.IsNullOrEmpty(info.Lastmodifiedby))
                 {
                     this.Database.AddInParameter(":Lastmodifiedby",DbType.AnsiString,"%"+info.Lastmodifiedby+"%");
                     sqlCommand.AppendLine(@" AND ""ROLEPERMISSION"".""LASTMODIFIEDBY"" LIKE :Lastmodifiedby");
                 }
+                #endregion
+
+                #region 权限编码(以逗号的方式分割)
+                if (!string.IsNullOrEmpty(info.Rightcode))
+                {
+                    this.Database.AddInParameter(":Rightcode",DbType.AnsiString,"%"+info.Rightcode+"%");
+                    sqlCommand.AppendLine(@" AND ""ROLEPERMISSION"".""RIGHTCODE"" LIKE :Rightcode");
+                }
+                #endregion
+
 
                 sqlCommand.AppendLine(@"  ORDER BY ""ROLEPERMISSION"".""ROLEID"" DESC,""ROLEPERMISSION"".""MENUID"" DESC");
                 return this.ExecuteReaderPaging<Rolepermission>(sqlCommand.ToString(), pageIndex, pageSize, out count);

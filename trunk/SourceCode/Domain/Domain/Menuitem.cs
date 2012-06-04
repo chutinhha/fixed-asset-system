@@ -1,7 +1,7 @@
 /********************************************************************
 * File Name:Menuitem
 * Copyright (C) 2012 Bruce.Huang 
-* Creater & Date:Bruce.Huang - 2012-05-25
+* Creater & Date:Bruce.Huang - 2012-06-05
 * Modify Explain:
 * Description:Entity Class(DTO)
 * Modify Explain:
@@ -12,9 +12,9 @@ using System.Collections.Generic;
 
 namespace FixedAsset.Domain
 {
-    /// <summary>
-    ///MENUITEM
-    /// <summary>
+    ///<summary>
+    ///菜单表
+    ///</summary>
     [Serializable]
     public partial class Menuitem
     {
@@ -53,11 +53,18 @@ namespace FixedAsset.Domain
         public decimal Orderby{  get;set;}
         #endregion
 
-        #region 功能Id
+        #region 功能编号
         ///<summary>
-        ///ColumnName:功能Id;Size:50;
+        ///ColumnName:功能编号;Size:50;
         ///</summary>
         public string Functionid{  get;set;}
+        #endregion
+
+        #region 按钮编号（以逗号分割）
+        ///<summary>
+        ///ColumnName:按钮编号（以逗号分割）;Size:200;
+        ///</summary>
+        public string Buttonid{  get;set;}
         #endregion
 
     }
