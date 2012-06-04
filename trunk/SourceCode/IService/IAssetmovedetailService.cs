@@ -1,7 +1,7 @@
 /********************************************************************
 * File Name:AssetmovedetailManagement
 * Copyright (C) 2012 Bruce.huang 
-* Creater & Date:Bruce.huang - 2012-05-25
+* Creater & Date:Bruce.huang - 2012-06-04
 * Create Explain:
 * Description:Service Layer Class
 * Modify Explain:
@@ -18,6 +18,7 @@ namespace FixedAsset.IServices
         Assetmovedetail CreateAssetmovedetail(Assetmovedetail info);
         Assetmovedetail UpdateAssetmovedetailByDetailid(Assetmovedetail info);
         Assetmovedetail RetrieveAssetmovedetailByDetailid(string detailid);
+        List<Assetmovedetail> RetrieveAssetmovedetailByDetailid(List<string> detailid);
         void DeleteAssetmovedetailByDetailid(string detailid);
         List<Assetmovedetail> RetrieveAssetmovedetailListByAssetmoveid(string assetmoveid);
     }

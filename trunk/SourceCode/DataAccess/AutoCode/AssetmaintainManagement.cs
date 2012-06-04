@@ -1,7 +1,7 @@
 /********************************************************************
 * File Name:AssetmaintainManagement
 * Copyright (C) 2012 Bruce.huang 
-* Creater & Date:Bruce.huang - 2012-05-25
+* Creater & Date:Bruce.huang - 2012-06-04
 * Create Explain:
 * Description:DataBase Access Class
 * Modify Explain:
@@ -19,7 +19,7 @@ namespace FixedAsset.DataAccess
     public partial class AssetmaintainManagement:BaseManagement
     {
         #region Construct
-        private const int ColumnCount = 21;
+        private const int ColumnCount = 24;
         public AssetmaintainManagement()
         { }
         public AssetmaintainManagement(BaseManagement baseManagement): base(baseManagement)
@@ -31,28 +31,31 @@ namespace FixedAsset.DataAccess
         {
             try
             {
-                string sqlCommand = @"INSERT INTO ""ASSETMAINTAIN"" (""ASSETMAINTAINID"",""MAINTAINTYPE"",""APPLYDATE"",""APPLYUSERID"",""APPLYCONTENT"",""SUBCOMPANY"",""SUBCOMPANYCONTACTORID"",""CREATOR"",""CREATEDDATE"",""PROJECTCONTACTORID"",""PROJECTCONTACTORPHONE"",""PLANMAINTAINDATE"",""ACTUALMAINTAINDATE"",""REJECTREASON"",""APPROVEUSER"",""APPROVEDATE"",""APPROVERESULT"",""ASSETCATEGORYID"",""MAINTAINCONTENT"",""CONFIRMDATE"",""CONFIRMUSER"") VALUES (:Assetmaintainid,:Maintaintype,:Applydate,:Applyuserid,:Applycontent,:Subcompany,:Subcompanycontactorid,:Creator,:Createddate,:Projectcontactorid,:Projectcontactorphone,:Planmaintaindate,:Actualmaintaindate,:Rejectreason,:Approveuser,:Approvedate,:Approveresult,:Assetcategoryid,:Maintaincontent,:Confirmdate,:Confirmuser)";
+                string sqlCommand = @"INSERT INTO ""ASSETMAINTAIN"" (""ASSETMAINTAINID"",""ASSETCATEGORYID"",""MAINTAINTYPE"",""APPLYDATE"",""APPLYUSERID"",""APPLYCONTENT"",""APPROVEUSER"",""APPROVEDATE"",""APPROVERESULT"",""REJECTREASON"",""PLANMAINTAINDATE"",""ACTUALMAINTAINDATE"",""CONFIRMDATE"",""CONFIRMUSER"",""MAINTAINCONTENT"",""STORAGETITLE"",""STORAGEID"",""SUBCOMPANY"",""SUBCOMPANYCONTACTORID"",""CONTACTPHONE"",""PROJECTCONTACTORID"",""PROJECTCONTACTORPHONE"",""CREATOR"",""CREATEDDATE"") VALUES (:Assetmaintainid,:Assetcategoryid,:Maintaintype,:Applydate,:Applyuserid,:Applycontent,:Approveuser,:Approvedate,:Approveresult,:Rejectreason,:Planmaintaindate,:Actualmaintaindate,:Confirmdate,:Confirmuser,:Maintaincontent,:Storagetitle,:Storageid,:Subcompany,:Subcompanycontactorid,:Contactphone,:Projectcontactorid,:Projectcontactorphone,:Creator,:Createddate)";
                 this.Database.AddInParameter(":Assetmaintainid", info.Assetmaintainid);//DBType:VARCHAR2
-                this.Database.AddInParameter(":Maintaintype", info.Maintaintype);//DBType:NUMBER
+                this.Database.AddInParameter(":Assetcategoryid", info.Assetcategoryid);//DBType:VARCHAR2
+                this.Database.AddInParameter(":Maintaintype", info.Maintaintype);//DBType:VARCHAR2
                 this.Database.AddInParameter(":Applydate", info.Applydate);//DBType:DATE
                 this.Database.AddInParameter(":Applyuserid", info.Applyuserid);//DBType:VARCHAR2
                 this.Database.AddInParameter(":Applycontent", info.Applycontent);//DBType:NVARCHAR2
-                this.Database.AddInParameter(":Subcompany", info.Subcompany);//DBType:NVARCHAR2
-                this.Database.AddInParameter(":Subcompanycontactorid", info.Subcompanycontactorid);//DBType:VARCHAR2
-                this.Database.AddInParameter(":Creator", info.Creator);//DBType:VARCHAR2
-                this.Database.AddInParameter(":Createddate", info.Createddate);//DBType:DATE
-                this.Database.AddInParameter(":Projectcontactorid", info.Projectcontactorid);//DBType:VARCHAR2
-                this.Database.AddInParameter(":Projectcontactorphone", info.Projectcontactorphone);//DBType:VARCHAR2
-                this.Database.AddInParameter(":Planmaintaindate", info.Planmaintaindate);//DBType:DATE
-                this.Database.AddInParameter(":Actualmaintaindate", info.Actualmaintaindate);//DBType:DATE
-                this.Database.AddInParameter(":Rejectreason", info.Rejectreason);//DBType:NVARCHAR2
                 this.Database.AddInParameter(":Approveuser", info.Approveuser);//DBType:NVARCHAR2
                 this.Database.AddInParameter(":Approvedate", info.Approvedate);//DBType:DATE
                 this.Database.AddInParameter(":Approveresult", info.Approveresult);//DBType:NUMBER
-                this.Database.AddInParameter(":Assetcategoryid", info.Assetcategoryid);//DBType:VARCHAR2
-                this.Database.AddInParameter(":Maintaincontent", info.Maintaincontent);//DBType:NVARCHAR2
+                this.Database.AddInParameter(":Rejectreason", info.Rejectreason);//DBType:NVARCHAR2
+                this.Database.AddInParameter(":Planmaintaindate", info.Planmaintaindate);//DBType:DATE
+                this.Database.AddInParameter(":Actualmaintaindate", info.Actualmaintaindate);//DBType:DATE
                 this.Database.AddInParameter(":Confirmdate", info.Confirmdate);//DBType:DATE
                 this.Database.AddInParameter(":Confirmuser", info.Confirmuser);//DBType:VARCHAR2
+                this.Database.AddInParameter(":Maintaincontent", info.Maintaincontent);//DBType:NVARCHAR2
+                this.Database.AddInParameter(":Storagetitle", info.Storagetitle);//DBType:VARCHAR2
+                this.Database.AddInParameter(":Storageid", info.Storageid);//DBType:VARCHAR2
+                this.Database.AddInParameter(":Subcompany", info.Subcompany);//DBType:NVARCHAR2
+                this.Database.AddInParameter(":Subcompanycontactorid", info.Subcompanycontactorid);//DBType:VARCHAR2
+                this.Database.AddInParameter(":Contactphone", info.Contactphone);//DBType:VARCHAR2
+                this.Database.AddInParameter(":Projectcontactorid", info.Projectcontactorid);//DBType:VARCHAR2
+                this.Database.AddInParameter(":Projectcontactorphone", info.Projectcontactorphone);//DBType:VARCHAR2
+                this.Database.AddInParameter(":Creator", info.Creator);//DBType:VARCHAR2
+                this.Database.AddInParameter(":Createddate", info.Createddate);//DBType:DATE
                 this.Database.ExecuteNonQuery(sqlCommand);
 
             }
@@ -70,27 +73,30 @@ namespace FixedAsset.DataAccess
             try
             {
                 this.Database.AddInParameter(":Assetmaintainid", info.Assetmaintainid);//DBType:VARCHAR2
-                this.Database.AddInParameter(":Maintaintype", info.Maintaintype);//DBType:NUMBER
+                this.Database.AddInParameter(":Assetcategoryid", info.Assetcategoryid);//DBType:VARCHAR2
+                this.Database.AddInParameter(":Maintaintype", info.Maintaintype);//DBType:VARCHAR2
                 this.Database.AddInParameter(":Applydate", info.Applydate);//DBType:DATE
                 this.Database.AddInParameter(":Applyuserid", info.Applyuserid);//DBType:VARCHAR2
                 this.Database.AddInParameter(":Applycontent", info.Applycontent);//DBType:NVARCHAR2
-                this.Database.AddInParameter(":Subcompany", info.Subcompany);//DBType:NVARCHAR2
-                this.Database.AddInParameter(":Subcompanycontactorid", info.Subcompanycontactorid);//DBType:VARCHAR2
-                this.Database.AddInParameter(":Creator", info.Creator);//DBType:VARCHAR2
-                this.Database.AddInParameter(":Createddate", info.Createddate);//DBType:DATE
-                this.Database.AddInParameter(":Projectcontactorid", info.Projectcontactorid);//DBType:VARCHAR2
-                this.Database.AddInParameter(":Projectcontactorphone", info.Projectcontactorphone);//DBType:VARCHAR2
-                this.Database.AddInParameter(":Planmaintaindate", info.Planmaintaindate);//DBType:DATE
-                this.Database.AddInParameter(":Actualmaintaindate", info.Actualmaintaindate);//DBType:DATE
-                this.Database.AddInParameter(":Rejectreason", info.Rejectreason);//DBType:NVARCHAR2
                 this.Database.AddInParameter(":Approveuser", info.Approveuser);//DBType:NVARCHAR2
                 this.Database.AddInParameter(":Approvedate", info.Approvedate);//DBType:DATE
                 this.Database.AddInParameter(":Approveresult", info.Approveresult);//DBType:NUMBER
-                this.Database.AddInParameter(":Assetcategoryid", info.Assetcategoryid);//DBType:VARCHAR2
-                this.Database.AddInParameter(":Maintaincontent", info.Maintaincontent);//DBType:NVARCHAR2
+                this.Database.AddInParameter(":Rejectreason", info.Rejectreason);//DBType:NVARCHAR2
+                this.Database.AddInParameter(":Planmaintaindate", info.Planmaintaindate);//DBType:DATE
+                this.Database.AddInParameter(":Actualmaintaindate", info.Actualmaintaindate);//DBType:DATE
                 this.Database.AddInParameter(":Confirmdate", info.Confirmdate);//DBType:DATE
                 this.Database.AddInParameter(":Confirmuser", info.Confirmuser);//DBType:VARCHAR2
-                string sqlCommand = @"UPDATE ""ASSETMAINTAIN"" SET  ""MAINTAINTYPE""=:Maintaintype , ""APPLYDATE""=:Applydate , ""APPLYUSERID""=:Applyuserid , ""APPLYCONTENT""=:Applycontent , ""SUBCOMPANY""=:Subcompany , ""SUBCOMPANYCONTACTORID""=:Subcompanycontactorid , ""CREATOR""=:Creator , ""CREATEDDATE""=:Createddate , ""PROJECTCONTACTORID""=:Projectcontactorid , ""PROJECTCONTACTORPHONE""=:Projectcontactorphone , ""PLANMAINTAINDATE""=:Planmaintaindate , ""ACTUALMAINTAINDATE""=:Actualmaintaindate , ""REJECTREASON""=:Rejectreason , ""APPROVEUSER""=:Approveuser , ""APPROVEDATE""=:Approvedate , ""APPROVERESULT""=:Approveresult , ""ASSETCATEGORYID""=:Assetcategoryid , ""MAINTAINCONTENT""=:Maintaincontent , ""CONFIRMDATE""=:Confirmdate , ""CONFIRMUSER""=:Confirmuser WHERE  ""ASSETMAINTAINID""=:Assetmaintainid";
+                this.Database.AddInParameter(":Maintaincontent", info.Maintaincontent);//DBType:NVARCHAR2
+                this.Database.AddInParameter(":Storagetitle", info.Storagetitle);//DBType:VARCHAR2
+                this.Database.AddInParameter(":Storageid", info.Storageid);//DBType:VARCHAR2
+                this.Database.AddInParameter(":Subcompany", info.Subcompany);//DBType:NVARCHAR2
+                this.Database.AddInParameter(":Subcompanycontactorid", info.Subcompanycontactorid);//DBType:VARCHAR2
+                this.Database.AddInParameter(":Contactphone", info.Contactphone);//DBType:VARCHAR2
+                this.Database.AddInParameter(":Projectcontactorid", info.Projectcontactorid);//DBType:VARCHAR2
+                this.Database.AddInParameter(":Projectcontactorphone", info.Projectcontactorphone);//DBType:VARCHAR2
+                this.Database.AddInParameter(":Creator", info.Creator);//DBType:VARCHAR2
+                this.Database.AddInParameter(":Createddate", info.Createddate);//DBType:DATE
+                string sqlCommand = @"UPDATE ""ASSETMAINTAIN"" SET  ""ASSETCATEGORYID""=:Assetcategoryid , ""MAINTAINTYPE""=:Maintaintype , ""APPLYDATE""=:Applydate , ""APPLYUSERID""=:Applyuserid , ""APPLYCONTENT""=:Applycontent , ""APPROVEUSER""=:Approveuser , ""APPROVEDATE""=:Approvedate , ""APPROVERESULT""=:Approveresult , ""REJECTREASON""=:Rejectreason , ""PLANMAINTAINDATE""=:Planmaintaindate , ""ACTUALMAINTAINDATE""=:Actualmaintaindate , ""CONFIRMDATE""=:Confirmdate , ""CONFIRMUSER""=:Confirmuser , ""MAINTAINCONTENT""=:Maintaincontent , ""STORAGETITLE""=:Storagetitle , ""STORAGEID""=:Storageid , ""SUBCOMPANY""=:Subcompany , ""SUBCOMPANYCONTACTORID""=:Subcompanycontactorid , ""CONTACTPHONE""=:Contactphone , ""PROJECTCONTACTORID""=:Projectcontactorid , ""PROJECTCONTACTORPHONE""=:Projectcontactorphone , ""CREATOR""=:Creator , ""CREATEDDATE""=:Createddate WHERE  ""ASSETMAINTAINID""=:Assetmaintainid";
                 this.Database.ExecuteNonQuery(sqlCommand);
             }
             finally

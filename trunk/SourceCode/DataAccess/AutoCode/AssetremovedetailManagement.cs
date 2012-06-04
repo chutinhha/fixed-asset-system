@@ -1,7 +1,7 @@
 /********************************************************************
 * File Name:AssetremovedetailManagement
 * Copyright (C) 2012 Bruce.huang 
-* Creater & Date:Bruce.huang - 2012-05-25
+* Creater & Date:Bruce.huang - 2012-06-04
 * Create Explain:
 * Description:DataBase Access Class
 * Modify Explain:
@@ -108,6 +108,40 @@ namespace FixedAsset.DataAccess
                     {
                     this.Database.AddInParameter(":Detailid"+i.ToString(),Detailids[i]);//DBType:VARCHAR2
                     sqlCommand.AppendLine(@" OR ""DETAILID""=:Detailid"+i.ToString());
+                    }
+                    sqlCommand.AppendLine(" )");
+                }
+
+                this.Database.ExecuteNonQuery(sqlCommand.ToString());
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
+        #endregion
+
+        #region DeleteAssetremovedetailsByAssetremoveid
+        public void DeleteAssetremovedetailsByAssetremoveid(List<string> Assetremoveids)
+        {
+            try
+            {
+                if(Assetremoveids.Count==0){ return ;}
+                StringBuilder sqlCommand = new StringBuilder();
+                sqlCommand.AppendLine(@"DELETE FROM  ""ASSETREMOVEDETAIL"" WHERE 1=1");
+                if(Assetremoveids.Count==1)
+                {
+                    this.Database.AddInParameter(":Assetremoveid"+0.ToString(),Assetremoveids[0]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" AND ""ASSETREMOVEID""=:Assetremoveid0");
+                }
+                else if(Assetremoveids.Count>1&&Assetremoveids.Count<=2000)
+                {
+                    this.Database.AddInParameter(":Assetremoveid"+0.ToString(),Assetremoveids[0]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" AND (""ASSETREMOVEID""=:Assetremoveid0");
+                    for (int i = 1; i < Assetremoveids.Count; i++)
+                    {
+                    this.Database.AddInParameter(":Assetremoveid"+i.ToString(),Assetremoveids[i]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" OR ""ASSETREMOVEID""=:Assetremoveid"+i.ToString());
                     }
                     sqlCommand.AppendLine(" )");
                 }

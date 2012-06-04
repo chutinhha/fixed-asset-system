@@ -1,7 +1,7 @@
 /********************************************************************
 * File Name:AssetmaintainManagement
 * Copyright (C) 2012 Bruce.huang 
-* Creater & Date:Bruce.huang - 2012-05-25
+* Creater & Date:Bruce.huang - 2012-06-04
 * Create Explain:
 * Description:Service Layer Class
 * Modify Explain:
@@ -18,6 +18,7 @@ namespace FixedAsset.IServices
         Assetmaintain CreateAssetmaintain(Assetmaintain info);
         Assetmaintain UpdateAssetmaintainByAssetmaintainid(Assetmaintain info);
         Assetmaintain RetrieveAssetmaintainByAssetmaintainid(string assetmaintainid);
+        List<Assetmaintain> RetrieveAssetmaintainByAssetmaintainid(List<string> assetmaintainid);
         void DeleteAssetmaintainByAssetmaintainid(string assetmaintainid);
     }
 }

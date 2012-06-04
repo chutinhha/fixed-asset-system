@@ -1,7 +1,7 @@
 /********************************************************************
 * File Name:AssetmaintaindetailManagement
 * Copyright (C) 2012 Bruce.Huang 
-* Creater & Date:Bruce.huang - 2012-05-25
+* Creater & Date:Bruce.huang - 2012-06-04
 * Create Explain:
 * Description:DataBase Access Class
 * Modify Explain:
@@ -160,52 +160,70 @@ namespace FixedAsset.DataAccess
         {
             try
             {
-                StringBuilder sqlCommand = new StringBuilder(@" SELECT ""ASSETMAINTAINDETAIL"".""DETAILID"",""ASSETMAINTAINDETAIL"".""ASSETMAINTAINID"",""ASSETMAINTAINDETAIL"".""ASSETNO"",""ASSETMAINTAINDETAIL"".""PLANMAINTAINDATE"",""ASSETMAINTAINDETAIL"".""ACTUALMAINTAINDATE"",
+                StringBuilder sqlCommand = new StringBuilder(@" SELECT ""ASSETMAINTAINDETAIL"".""DETAILID"",""ASSETMAINTAINDETAIL"".""ASSETMAINTAINID"",""ASSETMAINTAINDETAIL"".""ASSETNO"",""ASSETMAINTAINDETAIL"".""PLANDATE"",""ASSETMAINTAINDETAIL"".""ACTUALDATE"",
                      ""ASSETMAINTAINDETAIL"".""MAINTAINCONTENT""
 
                      FROM ""ASSETMAINTAINDETAIL"" 
                      INNER JOIN ""ASSETMAINTAIN"" ON ""ASSETMAINTAINDETAIL"".""ASSETMAINTAINID""=""ASSETMAINTAIN"".""ASSETMAINTAINID"" 
                      WHERE 1=1");
+
+                #region 明细编号
                 if (!string.IsNullOrEmpty(info.Detailid))
                 {
                     this.Database.AddInParameter(":Detailid",DbType.AnsiString,"%"+info.Detailid+"%");
                     sqlCommand.AppendLine(@" AND ""ASSETMAINTAINDETAIL"".""DETAILID"" LIKE :Detailid");
                 }
+                #endregion
+
+                #region 设备维修编号
                 if (!string.IsNullOrEmpty(info.Assetmaintainid))
                 {
                     this.Database.AddInParameter(":Assetmaintainid",DbType.AnsiString,"%"+info.Assetmaintainid+"%");
                     sqlCommand.AppendLine(@" AND ""ASSETMAINTAINDETAIL"".""ASSETMAINTAINID"" LIKE :Assetmaintainid");
                 }
+                #endregion
+
+                #region 设备编号
                 if (!string.IsNullOrEmpty(info.Assetno))
                 {
                     this.Database.AddInParameter(":Assetno",DbType.AnsiString,"%"+info.Assetno+"%");
                     sqlCommand.AppendLine(@" AND ""ASSETMAINTAINDETAIL"".""ASSETNO"" LIKE :Assetno");
                 }
-                if (info.StartPlanmaintaindate.HasValue)
+                #endregion
+
+                #region 计划维修日期
+                if (info.StartPlandate.HasValue)
                 {
-                    this.Database.AddInParameter(":StartPlanmaintaindate",info.StartPlanmaintaindate.Value.Date);
-                    sqlCommand.AppendLine(@" AND ""ASSETMAINTAINDETAIL"".""PLANMAINTAINDATE"" >= :StartPlanmaintaindate");
+                    this.Database.AddInParameter(":StartPlandate",info.StartPlandate.Value.Date);
+                    sqlCommand.AppendLine(@" AND ""ASSETMAINTAINDETAIL"".""PLANDATE"" >= :StartPlandate");
                 }
-                if (info.EndPlanmaintaindate.HasValue)
+                if (info.EndPlandate.HasValue)
                 {
-                    this.Database.AddInParameter(":EndPlanmaintaindate",info.EndPlanmaintaindate.Value.Date.AddDays(1).AddSeconds(-1));
-                    sqlCommand.AppendLine(@" AND ""ASSETMAINTAINDETAIL"".""PLANMAINTAINDATE"" <= :EndPlanmaintaindate");
+                    this.Database.AddInParameter(":EndPlandate",info.EndPlandate.Value.Date.AddDays(1).AddSeconds(-1));
+                    sqlCommand.AppendLine(@" AND ""ASSETMAINTAINDETAIL"".""PLANDATE"" <= :EndPlandate");
                 }
-                if (info.StartActualmaintaindate.HasValue)
+                #endregion
+
+                #region 实际维修日期
+                if (info.StartActualdate.HasValue)
                 {
-                    this.Database.AddInParameter(":StartActualmaintaindate",info.StartActualmaintaindate.Value.Date);
-                    sqlCommand.AppendLine(@" AND ""ASSETMAINTAINDETAIL"".""ACTUALMAINTAINDATE"" >= :StartActualmaintaindate");
+                    this.Database.AddInParameter(":StartActualdate",info.StartActualdate.Value.Date);
+                    sqlCommand.AppendLine(@" AND ""ASSETMAINTAINDETAIL"".""ACTUALDATE"" >= :StartActualdate");
                 }
-                if (info.EndActualmaintaindate.HasValue)
+                if (info.EndActualdate.HasValue)
                 {
-                    this.Database.AddInParameter(":EndActualmaintaindate",info.EndActualmaintaindate.Value.Date.AddDays(1).AddSeconds(-1));
-                    sqlCommand.AppendLine(@" AND ""ASSETMAINTAINDETAIL"".""ACTUALMAINTAINDATE"" <= :EndActualmaintaindate");
+                    this.Database.AddInParameter(":EndActualdate",info.EndActualdate.Value.Date.AddDays(1).AddSeconds(-1));
+                    sqlCommand.AppendLine(@" AND ""ASSETMAINTAINDETAIL"".""ACTUALDATE"" <= :EndActualdate");
                 }
+                #endregion
+
+                #region 维修说明
                 if (!string.IsNullOrEmpty(info.Maintaincontent))
                 {
                     this.Database.AddInParameter(":Maintaincontent", "%"+info.Maintaincontent+"%");
                     sqlCommand.AppendLine(@" AND ""ASSETMAINTAINDETAIL"".""MAINTAINCONTENT"" LIKE :Maintaincontent");
                 }
+                #endregion
 
                 sqlCommand.AppendLine(@"  ORDER BY ""ASSETMAINTAINDETAIL"".""DETAILID"" DESC");
                 return this.ExecuteReaderPaging<AssetmaintaindetailEx>(sqlCommand.ToString(), pageIndex, pageSize, out count);

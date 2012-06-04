@@ -1,7 +1,7 @@
 /********************************************************************
 * File Name:Assetmaintaindetail
 * Copyright (C) 2012 Bruce.Huang 
-* Creater & Date:Bruce.Huang - 2012-05-25
+* Creater & Date:Bruce.Huang - 2012-06-04
 * Modify Explain:
 * Description:Entity Class(DTO)
 * Modify Explain:
@@ -12,22 +12,22 @@ using System.Collections.Generic;
 
 namespace FixedAsset.Domain
 {
-    /// <summary>
-    ///ASSETMAINTAINDETAIL
-    /// <summary>
+    ///<summary>
+    ///维修明细信息
+    ///</summary>
     [Serializable]
     public partial class Assetmaintaindetail
     {
-        #region 明细Id
+        #region 明细编号
         ///<summary>
-        ///ColumnName:明细Id;Size:40;NOT NULL
+        ///ColumnName:明细编号;Size:40;NOT NULL
         ///</summary>
         public string Detailid{  get;set;}
         #endregion
 
-        #region 设备维护ID
+        #region 设备维修编号
         ///<summary>
-        ///ColumnName:设备维护ID;Size:40;NOT NULL
+        ///ColumnName:设备维修编号;Size:40;NOT NULL
         ///</summary>
         public string Assetmaintainid{  get;set;}
         #endregion
@@ -43,14 +43,14 @@ namespace FixedAsset.Domain
         ///<summary>
         ///ColumnName:计划维修日期;
         ///</summary>
-        public DateTime? Planmaintaindate{  get;set;}
+        public DateTime? Plandate{  get;set;}
         #endregion
 
         #region 实际维修日期
         ///<summary>
         ///ColumnName:实际维修日期;
         ///</summary>
-        public DateTime? Actualmaintaindate{  get;set;}
+        public DateTime? Actualdate{  get;set;}
         #endregion
 
         #region 维修说明
@@ -58,11 +58,13 @@ namespace FixedAsset.Domain
         ///ColumnName:维修说明;Size:1000;
         ///</summary>
         public string Maintaincontent{  get;set;}
-        #endregion  
+        #endregion
+
     }
 
     [Serializable]
     public partial class AssetmaintaindetailEx:Assetmaintaindetail
     {
     }
+
 }

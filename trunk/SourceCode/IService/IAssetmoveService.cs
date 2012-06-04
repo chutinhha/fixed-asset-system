@@ -1,7 +1,7 @@
 /********************************************************************
 * File Name:AssetmoveManagement
 * Copyright (C) 2012 Bruce.huang 
-* Creater & Date:Bruce.huang - 2012-05-25
+* Creater & Date:Bruce.huang - 2012-06-04
 * Create Explain:
 * Description:Service Layer Class
 * Modify Explain:
@@ -18,6 +18,7 @@ namespace FixedAsset.IServices
         Assetmove CreateAssetmove(Assetmove info);
         Assetmove UpdateAssetmoveByAssetmoveid(Assetmove info);
         Assetmove RetrieveAssetmoveByAssetmoveid(string assetmoveid);
+        List<Assetmove> RetrieveAssetmoveByAssetmoveid(List<string> assetmoveid);
         void DeleteAssetmoveByAssetmoveid(string assetmoveid);
     }
 }
