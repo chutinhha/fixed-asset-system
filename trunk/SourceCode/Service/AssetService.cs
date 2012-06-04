@@ -43,6 +43,15 @@ namespace FixedAsset.Services
         {
             return Management.RetrieveAssetsPaging(info,pageIndex,pageSize,out count);
         }
+
+
+        #endregion
+
+        #region RetrieveAssetsUsed
+        public List<Asset> RetrieveAssetsUsed(AssetSearch info, int pageIndex, int pageSize, out int count)
+        {
+            return Management.RetrieveAssetsUsed(info, pageIndex, pageSize, out count);
+        }
         #endregion
 
         #region RetrieveAssetByAssetno
@@ -84,6 +93,24 @@ namespace FixedAsset.Services
             {
                 Management.BeginTransaction();
                 Management.UpdateAssetByAssetno(info);
+                Management.Commit();
+            }
+            catch
+            {
+                Management.Rollback();
+                throw;
+            }
+            return info;
+        }
+        #endregion
+
+        #region UpdateFinancecategoryByAssetno
+        public Asset UpdateFinancecategoryByAssetno(Asset info)
+        {
+            try
+            {
+                Management.BeginTransaction();
+                Management.UpdateFinancecategoryByAssetno(info);
                 Management.Commit();
             }
             catch
@@ -180,6 +207,13 @@ namespace FixedAsset.Services
         {
             var addressManagement = new VstorageaddressManagement(Management);
             return addressManagement.RetrieveVstorageaddressByStorageId(Storagetitle, StorageId);
+        }
+
+
+        public List<Asset> RetrieveAllAsset()
+        {
+
+            return Management.RetrieveAllAsset();
         }
     }
 }
