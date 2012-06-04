@@ -1,7 +1,7 @@
 /********************************************************************
 * File Name:AssetmovedetailManagement
 * Copyright (C) 2012 Bruce.huang 
-* Creater & Date:Bruce.huang - 2012-05-25
+* Creater & Date:Bruce.huang - 2012-06-04
 * Create Explain:
 * Description:DataBase Access Class
 * Modify Explain:
@@ -108,6 +108,40 @@ namespace FixedAsset.DataAccess
                     {
                     this.Database.AddInParameter(":Detailid"+i.ToString(),Detailids[i]);//DBType:VARCHAR2
                     sqlCommand.AppendLine(@" OR ""DETAILID""=:Detailid"+i.ToString());
+                    }
+                    sqlCommand.AppendLine(" )");
+                }
+
+                this.Database.ExecuteNonQuery(sqlCommand.ToString());
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
+        #endregion
+
+        #region DeleteAssetmovedetailsByAssetmoveid
+        public void DeleteAssetmovedetailsByAssetmoveid(List<string> Assetmoveids)
+        {
+            try
+            {
+                if(Assetmoveids.Count==0){ return ;}
+                StringBuilder sqlCommand = new StringBuilder();
+                sqlCommand.AppendLine(@"DELETE FROM  ""ASSETMOVEDETAIL"" WHERE 1=1");
+                if(Assetmoveids.Count==1)
+                {
+                    this.Database.AddInParameter(":Assetmoveid"+0.ToString(),Assetmoveids[0]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" AND ""ASSETMOVEID""=:Assetmoveid0");
+                }
+                else if(Assetmoveids.Count>1&&Assetmoveids.Count<=2000)
+                {
+                    this.Database.AddInParameter(":Assetmoveid"+0.ToString(),Assetmoveids[0]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" AND (""ASSETMOVEID""=:Assetmoveid0");
+                    for (int i = 1; i < Assetmoveids.Count; i++)
+                    {
+                    this.Database.AddInParameter(":Assetmoveid"+i.ToString(),Assetmoveids[i]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" OR ""ASSETMOVEID""=:Assetmoveid"+i.ToString());
                     }
                     sqlCommand.AppendLine(" )");
                 }

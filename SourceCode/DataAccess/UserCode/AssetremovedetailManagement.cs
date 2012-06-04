@@ -1,7 +1,7 @@
 /********************************************************************
 * File Name:AssetremovedetailManagement
 * Copyright (C) 2012 Bruce.Huang 
-* Creater & Date:Bruce.huang - 2012-05-25
+* Creater & Date:Bruce.huang - 2012-06-04
 * Create Explain:
 * Description:DataBase Access Class
 * Modify Explain:
@@ -166,21 +166,28 @@ namespace FixedAsset.DataAccess
                      FROM ""ASSETREMOVEDETAIL"" 
                      INNER JOIN ""ASSETREMOVE"" ON ""ASSETREMOVEDETAIL"".""ASSETREMOVEID""=""ASSETREMOVE"".""ASSETREMOVEID"" 
                      WHERE 1=1");
+                #region 明细编号
                 if (!string.IsNullOrEmpty(info.Detailid))
                 {
                     this.Database.AddInParameter(":Detailid",DbType.AnsiString,"%"+info.Detailid+"%");
                     sqlCommand.AppendLine(@" AND ""ASSETREMOVEDETAIL"".""DETAILID"" LIKE :Detailid");
                 }
+                #endregion
+                #region 移机单号
                 if (!string.IsNullOrEmpty(info.Assetremoveid))
                 {
                     this.Database.AddInParameter(":Assetremoveid",DbType.AnsiString,"%"+info.Assetremoveid+"%");
                     sqlCommand.AppendLine(@" AND ""ASSETREMOVEDETAIL"".""ASSETREMOVEID"" LIKE :Assetremoveid");
                 }
+                #endregion
+                #region 设备编号
                 if (!string.IsNullOrEmpty(info.Assetno))
                 {
                     this.Database.AddInParameter(":Assetno",DbType.AnsiString,"%"+info.Assetno+"%");
                     sqlCommand.AppendLine(@" AND ""ASSETREMOVEDETAIL"".""ASSETNO"" LIKE :Assetno");
                 }
+                #endregion
+                #region 计划拆机日期
                 if (info.StartPlanremovedate.HasValue)
                 {
                     this.Database.AddInParameter(":StartPlanremovedate",info.StartPlanremovedate.Value.Date);
@@ -191,6 +198,8 @@ namespace FixedAsset.DataAccess
                     this.Database.AddInParameter(":EndPlanremovedate",info.EndPlanremovedate.Value.Date.AddDays(1).AddSeconds(-1));
                     sqlCommand.AppendLine(@" AND ""ASSETREMOVEDETAIL"".""PLANREMOVEDATE"" <= :EndPlanremovedate");
                 }
+                #endregion
+                #region 实际拆机日期
                 if (info.StartActualremovedate.HasValue)
                 {
                     this.Database.AddInParameter(":StartActualremovedate",info.StartActualremovedate.Value.Date);
@@ -201,11 +210,14 @@ namespace FixedAsset.DataAccess
                     this.Database.AddInParameter(":EndActualremovedate",info.EndActualremovedate.Value.Date.AddDays(1).AddSeconds(-1));
                     sqlCommand.AppendLine(@" AND ""ASSETREMOVEDETAIL"".""ACTUALREMOVEDATE"" <= :EndActualremovedate");
                 }
+                #endregion
+                #region 移机说明
                 if (!string.IsNullOrEmpty(info.Removedcontent))
                 {
                     this.Database.AddInParameter(":Removedcontent", "%"+info.Removedcontent+"%");
                     sqlCommand.AppendLine(@" AND ""ASSETREMOVEDETAIL"".""REMOVEDCONTENT"" LIKE :Removedcontent");
                 }
+                #endregion
 
                 sqlCommand.AppendLine(@"  ORDER BY ""ASSETREMOVEDETAIL"".""DETAILID"" DESC");
                 return this.ExecuteReaderPaging<AssetremovedetailEx>(sqlCommand.ToString(), pageIndex, pageSize, out count);

@@ -1,7 +1,7 @@
 /********************************************************************
 * File Name:Assetremovedetail
 * Copyright (C) 2012 Bruce.huang 
-* Creater & Date:Bruce.huang - 2012-05-25
+* Creater & Date:Bruce.huang - 2012-06-04
 * Modify Explain:
 * Description:DataBase Entity Class
 * Modify Explain:
@@ -12,13 +12,13 @@ using System.Collections.Generic;
 
 namespace FixedAsset.Domain
 {
-    /// <summary>
-    ///ASSETREMOVEDETAIL
-    /// </summary>
+    ///<summary>
+    ///拆机明细
+    ///</summary>
     [Serializable]
     public partial class AssetremovedetailSearch
     {
-        #region 明细Id
+        #region 明细编号
         public string Detailid
         {
             get;set; 

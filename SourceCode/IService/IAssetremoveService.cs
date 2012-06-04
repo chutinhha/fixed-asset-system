@@ -1,7 +1,7 @@
 /********************************************************************
 * File Name:AssetremoveManagement
 * Copyright (C) 2012 Bruce.huang 
-* Creater & Date:Bruce.huang - 2012-05-25
+* Creater & Date:Bruce.huang - 2012-06-04
 * Create Explain:
 * Description:Service Layer Class
 * Modify Explain:
@@ -18,6 +18,7 @@ namespace FixedAsset.IServices
         Assetremove CreateAssetremove(Assetremove info);
         Assetremove UpdateAssetremoveByAssetremoveid(Assetremove info);
         Assetremove RetrieveAssetremoveByAssetremoveid(string assetremoveid);
+        List<Assetremove> RetrieveAssetremoveByAssetremoveid(List<string> assetremoveid);
         void DeleteAssetremoveByAssetremoveid(string assetremoveid);
     }
 }

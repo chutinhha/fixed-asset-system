@@ -1,7 +1,7 @@
 /********************************************************************
 * File Name:AssetmovedetailManagement
 * Copyright (C) 2012 Bruce.Huang 
-* Creater & Date:Bruce.huang - 2012-05-25
+* Creater & Date:Bruce.huang - 2012-06-04
 * Create Explain:
 * Description:DataBase Access Class
 * Modify Explain:
@@ -166,21 +166,28 @@ namespace FixedAsset.DataAccess
                      FROM ""ASSETMOVEDETAIL"" 
                      INNER JOIN ""ASSETMOVE"" ON ""ASSETMOVEDETAIL"".""ASSETMOVEID""=""ASSETMOVE"".""ASSETMOVEID"" 
                      WHERE 1=1");
+                #region 明细编号
                 if (!string.IsNullOrEmpty(info.Detailid))
                 {
                     this.Database.AddInParameter(":Detailid",DbType.AnsiString,"%"+info.Detailid+"%");
                     sqlCommand.AppendLine(@" AND ""ASSETMOVEDETAIL"".""DETAILID"" LIKE :Detailid");
                 }
+                #endregion
+                #region 移机单号
                 if (!string.IsNullOrEmpty(info.Assetmoveid))
                 {
                     this.Database.AddInParameter(":Assetmoveid",DbType.AnsiString,"%"+info.Assetmoveid+"%");
                     sqlCommand.AppendLine(@" AND ""ASSETMOVEDETAIL"".""ASSETMOVEID"" LIKE :Assetmoveid");
                 }
+                #endregion
+                #region 设备编号
                 if (!string.IsNullOrEmpty(info.Assetno))
                 {
                     this.Database.AddInParameter(":Assetno",DbType.AnsiString,"%"+info.Assetno+"%");
                     sqlCommand.AppendLine(@" AND ""ASSETMOVEDETAIL"".""ASSETNO"" LIKE :Assetno");
                 }
+                #endregion
+                #region 计划移机日期
                 if (info.StartPlanmovedate.HasValue)
                 {
                     this.Database.AddInParameter(":StartPlanmovedate",info.StartPlanmovedate.Value.Date);
@@ -191,6 +198,8 @@ namespace FixedAsset.DataAccess
                     this.Database.AddInParameter(":EndPlanmovedate",info.EndPlanmovedate.Value.Date.AddDays(1).AddSeconds(-1));
                     sqlCommand.AppendLine(@" AND ""ASSETMOVEDETAIL"".""PLANMOVEDATE"" <= :EndPlanmovedate");
                 }
+                #endregion
+                #region 实际移机日期
                 if (info.StartActualmovedate.HasValue)
                 {
                     this.Database.AddInParameter(":StartActualmovedate",info.StartActualmovedate.Value.Date);
@@ -201,11 +210,14 @@ namespace FixedAsset.DataAccess
                     this.Database.AddInParameter(":EndActualmovedate",info.EndActualmovedate.Value.Date.AddDays(1).AddSeconds(-1));
                     sqlCommand.AppendLine(@" AND ""ASSETMOVEDETAIL"".""ACTUALMOVEDATE"" <= :EndActualmovedate");
                 }
+                #endregion
+                #region 移机说明
                 if (!string.IsNullOrEmpty(info.Movedcontent))
                 {
                     this.Database.AddInParameter(":Movedcontent", "%"+info.Movedcontent+"%");
                     sqlCommand.AppendLine(@" AND ""ASSETMOVEDETAIL"".""MOVEDCONTENT"" LIKE :Movedcontent");
                 }
+                #endregion
 
                 sqlCommand.AppendLine(@"  ORDER BY ""ASSETMOVEDETAIL"".""DETAILID"" DESC");
                 return this.ExecuteReaderPaging<AssetmovedetailEx>(sqlCommand.ToString(), pageIndex, pageSize, out count);

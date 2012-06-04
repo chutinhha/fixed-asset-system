@@ -1,7 +1,7 @@
 /********************************************************************
 * File Name:Assetremovedetail
 * Copyright (C) 2012 Bruce.Huang 
-* Creater & Date:Bruce.Huang - 2012-05-25
+* Creater & Date:Bruce.Huang - 2012-06-04
 * Modify Explain:
 * Description:Entity Class(DTO)
 * Modify Explain:
@@ -12,15 +12,15 @@ using System.Collections.Generic;
 
 namespace FixedAsset.Domain
 {
-    /// <summary>
-    ///ASSETREMOVEDETAIL
-    /// <summary>
+    ///<summary>
+    ///²ð»úÃ÷Ï¸
+    ///</summary>
     [Serializable]
     public partial class Assetremovedetail
     {
-        #region Ã÷Ï¸Id
+        #region Ã÷Ï¸±àºÅ
         ///<summary>
-        ///ColumnName:Ã÷Ï¸Id;Size:40;NOT NULL
+        ///ColumnName:Ã÷Ï¸±àºÅ;Size:40;NOT NULL
         ///</summary>
         public string Detailid{  get;set;}
         #endregion

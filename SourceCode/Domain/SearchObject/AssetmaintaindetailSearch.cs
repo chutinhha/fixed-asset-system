@@ -1,7 +1,7 @@
 /********************************************************************
 * File Name:Assetmaintaindetail
 * Copyright (C) 2012 Bruce.huang 
-* Creater & Date:Bruce.huang - 2012-05-25
+* Creater & Date:Bruce.huang - 2012-06-04
 * Modify Explain:
 * Description:DataBase Entity Class
 * Modify Explain:
@@ -12,20 +12,20 @@ using System.Collections.Generic;
 
 namespace FixedAsset.Domain
 {
-    /// <summary>
-    ///ASSETMAINTAINDETAIL
-    /// </summary>
+    ///<summary>
+    ///维修明细信息
+    ///</summary>
     [Serializable]
     public partial class AssetmaintaindetailSearch
     {
-        #region 明细Id
+        #region 明细编号
         public string Detailid
         {
             get;set; 
         }
         #endregion
 
-        #region 设备维护ID
+        #region 设备维修编号
         public string Assetmaintainid
         {
             get;set; 
@@ -40,22 +40,22 @@ namespace FixedAsset.Domain
         #endregion
 
         #region 计划维修日期
-        public DateTime? StartPlanmaintaindate
+        public DateTime? StartPlandate
         {
             get;set; 
         }
-        public DateTime? EndPlanmaintaindate
+        public DateTime? EndPlandate
         {
             get;set; 
         }
         #endregion
 
         #region 实际维修日期
-        public DateTime? StartActualmaintaindate
+        public DateTime? StartActualdate
         {
             get;set; 
         }
-        public DateTime? EndActualmaintaindate
+        public DateTime? EndActualdate
         {
             get;set; 
         }
