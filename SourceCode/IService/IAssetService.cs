@@ -17,9 +17,13 @@ namespace FixedAsset.IServices
         List<Vstorageaddress> RetrieveAllVstorageaddress();
         Vstorageaddress RetrieveVstorageaddressByStorageId(string Storagetitle, string StorageId);
         List<Asset> RetrieveAssetsPaging(AssetSearch info,int pageIndex, int pageSize,out int count);
+        List<Asset> RetrieveAssetsUsed(AssetSearch info, int pageIndex, int pageSize, out int count);
         void SaveAssetInfo(Asset info);
         Asset UpdateAssetByAssetno(Asset info);
+        Asset UpdateFinancecategoryByAssetno(Asset info);
         Asset RetrieveAssetByAssetno(string assetno);
         void DeleteAssetByAssetno(string assetno);
+
+         List<Asset> RetrieveAllAsset();
     }
 }
