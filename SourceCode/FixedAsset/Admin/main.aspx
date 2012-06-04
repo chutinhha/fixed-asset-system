@@ -78,7 +78,7 @@
                         <a href='javascript:void(0)'>清产</a></h1>
                     <div class='content' style="height: auto;">
                         <ul class='MM'>
-                            <li><a href='ProcurePlanList.aspx' target='aa'>B帐</a></li>
+                            <li><a href='B_Account.aspx' target='aa'>B帐</a></li>
                             <li><a href='ProcurePlanList.aspx' target='aa'>报废</a></li>
                         </ul>
                     </div>
