@@ -96,6 +96,24 @@ namespace FixedAsset.DataAccess
         }
         #endregion
 
+        #region UpdateFinancecategoryByAssetno
+        public Asset UpdateFinancecategoryByAssetno(Asset info)
+        {
+            try
+            {
+                this.Database.AddInParameter(":Assetno", info.Assetno);//DBType:VARCHAR2
+                this.Database.AddInParameter(":Financecategory", info.Financecategory);//DBType:NUMBER
+                string sqlCommand = @"UPDATE ""ASSET"" SET ""FINANCECATEGORY""=:Financecategory WHERE  ""ASSETNO""=:Assetno";
+                this.Database.ExecuteNonQuery(sqlCommand);
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+            return info;
+        }
+        #endregion
+
         #region DeleteAssetByAssetno
         public void DeleteAssetByAssetno(string Assetno)
         {
@@ -146,5 +164,12 @@ namespace FixedAsset.DataAccess
         }
         #endregion
 
+
+
+        public List<Asset> RetrieveAllAsset()
+        {
+            string sqlCommand = @"SELECT * FROM ASSET ";
+            return this.Database.ExecuteToList<Asset>(sqlCommand);
+        }
     }
 }
