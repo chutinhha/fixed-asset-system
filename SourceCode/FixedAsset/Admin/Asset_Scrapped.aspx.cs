@@ -102,8 +102,8 @@ namespace FixedAsset.Web.Admin
             }
 
             int recordCount = 0;
-            //var list = AssetscrappedService.RetrieveAssetscrappedsRecord(search, pageIndex, pcData.PageSize, out recordCount);
-            rptScrappedList.DataSource = null;
+            var list = AssetService.RetrieveAssetscrappedsRecord(search, pageIndex, pcData.PageSize, out recordCount);
+            rptScrappedList.DataSource = list;
             rptScrappedList.DataBind();
             pcData.RecordCount = recordCount;
             pcData.CurrentIndex = pageIndex;
@@ -142,7 +142,28 @@ namespace FixedAsset.Web.Admin
 
         protected void rptScrappedList_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                var litCategoryName = e.Item.FindControl("litCategoryName") as Literal;
+                var assetInfo = e.Item.DataItem as Asset;
+                var subCategory = AssetCategories.Where(p => p.Assetcategoryid == assetInfo.Assetcategoryid).FirstOrDefault();
+                if (subCategory == null)
+                {
+                    litCategoryName.Text = assetInfo.Assetcategoryid;
+                }
+                else
+                {
+                    var category = AssetCategories.Where(p => p.Assetcategoryid == subCategory.Assetparentcategoryid).
+                            FirstOrDefault();
+                    litCategoryName.Text = string.Format(@"{0}-{1}", category.Assetcategoryname, subCategory.Assetcategoryname);
+                }
 
+                var litSCRAPPEDDATE = e.Item.FindControl("litSCRAPPEDDATE") as Literal;
+                //litSCRAPPEDDATE.Text = ((DateTime)assetInfo.Scrappeddate).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat);
+
+                var litSCRAPPEDUSER = e.Item.FindControl("litSCRAPPEDUSER") as Literal;
+                litSCRAPPEDUSER.Text = assetInfo.Scrappeduser;
+            }
         }
 
         protected void pcData_PageIndexClick(object sender, KFSQ.Web.Controls.PageIndexClickEventArgs e)
