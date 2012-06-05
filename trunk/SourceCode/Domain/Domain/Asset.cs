@@ -146,5 +146,19 @@ namespace FixedAsset.Domain
         ///</summary>
         public string Contractdetailid { get; set; }
         #endregion
+
+        #region 报废日期
+        ///<summary>
+        ///ColumnName:报废日期;
+        ///</summary>
+        public DateTime? Scrappeddate { get; set; }
+        #endregion
+
+        #region 报废人
+        ///<summary>
+        ///ColumnName:报废人;Size:80;
+        ///</summary>
+        public string Scrappeduser { get; set; }
+        #endregion
     }
 }
