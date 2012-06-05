@@ -13,12 +13,21 @@ namespace FixedAsset.Web.Admin {
     public partial class Report_AssetCategory {
         
         /// <summary>
-        /// rptAssetsList control.
+        /// rptAssetsCategoryList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptAssetsList;
+        protected global::System.Web.UI.WebControls.Repeater rptAssetsCategoryList;
+        
+        /// <summary>
+        /// pcData control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::KFSQ.Web.Controls.PagingControl pcData;
     }
 }
