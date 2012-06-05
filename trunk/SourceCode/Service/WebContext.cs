@@ -86,39 +86,19 @@ namespace FixedAsset.Services
                 if (value != null)
                 {
                     this.UserMenuItems = null;
-                    //if (string.IsNullOrEmpty(value.LastLoginIpAddress)
-                    //    || (!string.IsNullOrEmpty(value.LastLoginIpAddress) && value.LastLoginIpAddress == UserHostAddress))
-                    //{
-                    //    //同一账户重复登录生成新的SessionId
+                    //同一账户重复登录生成新的SessionId
                     CurrentUserSessionId = Guid.NewGuid().ToString("N");//作为单点登录的SessionId
                     if (HttpContext.Current != null)
                     {
                         CurrentUserSessionId = HttpContext.Current.Session.SessionID;
                     }
                     this[CurrentUserSessionId] = value;
-                    //}
-                    //else
-                    //{
-                    //    CurrentUserSessionId = value.SessionId;
-                    //    this[CurrentUserSessionId] = value;
-                    //}
-                    //value.LastLoginIpAddress = UserHostAddress;
-                    //value.SessionId = CurrentUserSessionId;
-                    //value.IsOnline = true;
-                    //value.LastLoginTime = DateTime.Now;
-                    //UserService.UpdateUserInfoByUserId(value);
                 }
                 else
                 {
                     var user = this[CurrentUserSessionId] as Tuser;
                     if (user != null)
-                    {                                                       
-                        //////删除登录信息
-                        //user.IsOnline = false;
-                        //user.LastLoginTime = DateTime.Now;
-                        //user.LastLoginIpAddress = this.UserHostAddress;
-                        //user.SessionId = string.Empty;
-                        //UserService.UpdateUserInfoByUserId(user);//更新到DB 
+                    {
                         CurrentUserSessionId = string.Empty;
                         this[CurrentUserSessionId] = null;
                     }
@@ -200,12 +180,12 @@ namespace FixedAsset.Services
                 List<Menuitem> menuItems = null;
                 if (this[ConstUserMenuItems] == null)
                 {
-                    //this[ConstUserMenuItems] = UserService.RetrieveMenuItemsByUserId(CurrentUser.UserId);
+                    this[ConstUserMenuItems] = UserService.RetrieveMenuItemsByUserId(CurrentUser.Id);
                 }
                 menuItems = this[ConstUserMenuItems] as List<Menuitem>;
                 if (menuItems == null || menuItems.Count == 0)
                 {
-                    //menuItems = UserService.RetrieveMenuItemsByUserId(CurrentUser.UserId);
+                    menuItems = UserService.RetrieveMenuItemsByUserId(CurrentUser.Id);
                     this[ConstUserMenuItems] = menuItems;
                 }
                 if (menuItems == null) { menuItems = new List<Menuitem>(); }

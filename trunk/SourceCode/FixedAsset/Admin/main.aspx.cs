@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Text;
 using System.Web;
+using System.Linq;
+using FixedAsset.Domain;
 using FixedAsset.Services;
 
 namespace FixedAsset.Web.Admin
@@ -12,53 +15,39 @@ namespace FixedAsset.Web.Admin
             if (!this.IsPostBack)
             {
                 if (WebContext.Current.CurrentUser != null)
-                {
+                { 
+                    LoadUserMenuItems();
                     litUsername.Text = WebContext.Current.CurrentUser.Username;//用户姓名
+                    litUserRole.Text = WebContext.Current.CurrentUser.Rolename;//角色名
                 }
             }
         }
-        //protected void Page_Load(object sender, EventArgs e)
-        //{
-        //    if (!IsPostBack)
-        //    {
-        //        //加载当前Session信息
-        //        UsersAndRoleAndApproveAndWAIT enUser = new UsersAndRoleAndApproveAndWAIT();
-        //        enUser = (UsersAndRoleAndApproveAndWAIT)Session["Login_user"];
-        //        lb_userName.Text = enUser.Username;
-        //        lb_userRole.Text = enUser.UserRole.Count > 0 ? ((SRoleEntity)enUser.UserRole[0]).Rolename : "";
-        //        list_band(enUser);
-        //    }
-        //}
-        ////加载菜单
-        //protected void list_band(UsersAndRoleAndApproveAndWAIT enuser)
-        //{
-        //    string url = (string)Session["PreviousPageUrl"];
-        //    DataTable dt = new DataTable();
-        //    DataTable hdt = new DataTable();
-        //    dt = SRoleDA.GetAll(enuser.UserRoleRights, out hdt);
-        //    if (dt != null && dt.Rows.Count > 0)
-        //    {
-        //        StringBuilder htmlstr = new StringBuilder();
-        //        StringBuilder htmlstr2 = new StringBuilder();
-        //        for (int j = 0; j < hdt.Rows.Count; j++)
-        //        {
-        //            htmlstr.Append("<h1 class='type'><a href='javascript:void(0)'>" + hdt.Rows[j]["h"].ToString() + "</a></h1>");
-        //            htmlstr.Append("<div class='content'>");
-        //            htmlstr.Append("");
-        //            htmlstr.Append("");
-        //            htmlstr.Append("");
-        //            htmlstr.Append(" <ul class='MM'>");
-        //            DataRow[] pRow = dt.Select("h='" + hdt.Rows[j]["h"].ToString() + "'", "");
-        //            for (int i = 0; i < pRow.Length; i++)
-        //            {
-        //                htmlstr.Append("<li><a href='" + pRow[i]["functionurl"].ToString() + "' target='aa'>" + pRow[i]["modulename"].ToString() + "</a></li>");
-
-        //            }
-        //            htmlstr.Append("</ul></div>");
-        //        }
-        //        lb_menu.Text = htmlstr.ToString();
-        //    }
-        //}
+        protected void LoadUserMenuItems()
+        {
+            litMenuItems.Text = string.Empty;
+            var menuItems = WebContext.Current.UserMenuItems;
+            if(menuItems==null||menuItems.Count==0){return;}
+            var rootMenuItems = (from p in menuItems
+                                 orderby p.Menuid ascending
+                                 where p.Parentmenuid == Menuitem.DefaultParentCode
+                                 select p).ToList();
+            var content=new StringBuilder();
+            foreach (var rootMenuItem in rootMenuItems)
+            {
+                content.AppendLine("<h1 class='type'>");
+                content.AppendFormat("    <a href='javascript:void(0)'>{0}</a></h1>",rootMenuItem.Menuname).AppendLine();
+                content.AppendLine(@"<div class='content' style=""height: 50px"">");
+                content.AppendLine("    <ul class='MM'>");
+                var subMenuItems = menuItems.Where(p => p.Parentmenuid == rootMenuItem.Menuid).OrderBy(p=>p.Menuid).ToList();
+                foreach (var subMenuItem in subMenuItems)
+                {
+                    content.AppendFormat("        <li><a href='{0}' target='aa'>{1}</a></li>",ResolveUrl(subMenuItem.Menuaddress),subMenuItem.Menuname); 
+                }
+                content.AppendLine("    </ul>");
+                content.AppendLine("</div>");
+            }
+            litMenuItems.Text = content.ToString();
+        }  
         //退出系统
         protected void BtnLogout_Click(object sender, EventArgs e)
         {
