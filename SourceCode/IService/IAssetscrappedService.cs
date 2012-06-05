@@ -15,9 +15,10 @@ namespace FixedAsset.IServices
     public interface IAssetscrappedService
     {
         List<Assetscrapped> RetrieveAssetscrappedsPaging(AssetscrappedSearch info,int pageIndex, int pageSize,out int count);
+        List<Assetscrapped> RetrieveAssetscrappedsRecord(AssetSearch info, int pageIndex, int pageSize, out int count);
         Assetscrapped CreateAssetscrapped(Assetscrapped info);
         Assetscrapped UpdateAssetscrappedByAssetscrappedid(Assetscrapped info);
-        Assetscrapped RetrieveAssetscrappedByAssetscrappedid(string assetscrappedid);
+        Assetscrapped RetrieveAssetscrappedByAssetscrappedid(string assetscrappedid);      
         void DeleteAssetscrappedByAssetscrappedid(string assetscrappedid);
     }
 }
