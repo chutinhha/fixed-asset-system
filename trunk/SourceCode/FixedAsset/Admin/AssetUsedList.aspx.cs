@@ -78,29 +78,39 @@ namespace FixedAsset.Web
         protected void BtnApplicate_Click(object sender, EventArgs e)
         {
             var intCount = 0;
-            foreach (RepeaterItem item in rptUsedList.Items)
+
+            if (rptUsedList.Items.Count > 0)
             {
-                HtmlInputCheckBox check = (HtmlInputCheckBox)item.FindControl("ckbScrapped");
-                if (check.Checked == true)
+                foreach (RepeaterItem item in rptUsedList.Items)
                 {
-                    intCount++;
-                    Domain.Assetscrapped assetScrappedInfo = new Assetscrapped();
-                    assetScrappedInfo.Assetno = check.Value;
-                    assetScrappedInfo.Createddate = System.DateTime.Now;
-                    assetScrappedInfo.Creator = "";
-
-                    AssetscrappedService.CreateAssetscrapped(assetScrappedInfo);
-
-                    UIHelper.Alert(this, "报废申请成功，请等待审核");
-                }
-                else
-                {
-                    if (intCount == 0)
+                    HtmlInputCheckBox check = (HtmlInputCheckBox)item.FindControl("ckbScrapped");
+                    if (check.Checked == true)
                     {
-                        UIHelper.Alert(this, "请选择要申请报废的设备");
-                        return;
+                        intCount++;
+                        Domain.Assetscrapped assetScrappedInfo = new Assetscrapped();
+                        assetScrappedInfo.Assetscrappedid = Guid.NewGuid().ToString("N");
+                        assetScrappedInfo.Assetno = check.Value;
+                        assetScrappedInfo.Createddate = System.DateTime.Now;
+                        assetScrappedInfo.Creator = WebContext.Current.CurrentUser.Username;
+
+                        AssetscrappedService.CreateAssetscrapped(assetScrappedInfo);
+
+                        ClientScript.RegisterStartupScript(this.GetType(), "", "<script>CloseTopDialogFrame();</script>");
+                        //UIHelper.Alert(this, "报废申请成功，请等待审核");
+                    }
+                    else
+                    {
+                        if (intCount == 0)
+                        {
+                            UIHelper.Alert(this, "请选择要申请报废的设备");
+                            return;
+                        }
                     }
                 }
+            }
+            else {
+                UIHelper.Alert(this, "没有待申请报废的设备");
+                return;
             }
         }
     }

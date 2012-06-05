@@ -10,6 +10,7 @@
 <head runat="server">
     <title></title>
     <link rel="stylesheet" href="css/default.css" type="text/css" />
+    <script src="../Scripts/Dialog.js" type="text/javascript"></script>
     <script src="../Scripts/jquery-1.4.1-vsdoc.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {

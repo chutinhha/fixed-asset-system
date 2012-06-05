@@ -24,7 +24,7 @@ namespace FixedAsset.Web.Admin
         protected void BtnAccept_Click(object sender, EventArgs e)
         {
             Domain.Assetscrapped assetscrapped = new Domain.Assetscrapped();
-            assetscrapped.Approvedstate = 1;//enume
+            assetscrapped.Approvedstate = Domain.APPROVEDSTATE.Approved;
             AssetscrappedService.UpdateAssetscrappedByAssetscrappedid(assetscrapped);
             UIHelper.AlertMessageGoToURL(this, "审核通过!", ResolveUrl("~/Admin/Asset_Scrapped.aspx"));
         }
@@ -37,7 +37,7 @@ namespace FixedAsset.Web.Admin
                 return;
             }
             Domain.Assetscrapped assetscrapped = new Domain.Assetscrapped();
-            assetscrapped.Approvedstate = 2;//enume
+            assetscrapped.Approvedstate = Domain.APPROVEDSTATE.Rejected;
             AssetscrappedService.UpdateAssetscrappedByAssetscrappedid(assetscrapped);
             UIHelper.AlertMessageGoToURL(this, "审核拒绝!", ResolveUrl("~/Admin/Asset_Scrapped.aspx"));
         }

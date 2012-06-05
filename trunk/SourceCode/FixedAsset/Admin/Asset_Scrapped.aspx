@@ -1,4 +1,5 @@
-﻿<%@ Page Title=""  Language="C#" MasterPageFile="~/Admin/MasterPage.master" AutoEventWireup="true" CodeBehind="Asset_Scrapped.aspx.cs" Inherits="FixedAsset.Web.Admin.Asset_Scrapped" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/MasterPage.master" AutoEventWireup="true"
+    CodeBehind="Asset_Scrapped.aspx.cs" Inherits="FixedAsset.Web.Admin.Asset_Scrapped" %>
 
 <%@ Import Namespace="FixedAsset.Domain" %>
 <%@ Import Namespace="SeallNet.Utility" %>
@@ -41,7 +42,7 @@
                     <td>
                         <asp:TextBox ID="txtSrchAssetname" Width="150" CssClass="" runat="server"></asp:TextBox>
                     </td>
-                     <td>
+                    <td>
                         入账日期
                     </td>
                     <td>
@@ -49,7 +50,7 @@
                         ~<uc1:DatePicker ID="ucEndPurchasedate" runat="server" />
                     </td>
                 </tr>
-                <tr> 
+                <tr>
                     <td>
                         预计折旧日期
                     </td>
@@ -57,13 +58,15 @@
                         <uc1:DatePicker ID="ucStartExpireddate" runat="server" />
                         ~<uc1:DatePicker ID="ucEndExpireddate" runat="server" />
                     </td>
-                    <td colspan="2"><asp:Button ID="BtnSearch" runat="server" CssClass="button" Text="查询" 
-                            onclick="BtnSearch_Click" /></td>
+                    <td colspan="2">
+                        <asp:Button ID="BtnSearch" runat="server" CssClass="button" Text="查询" OnClick="BtnSearch_Click" />
+                    </td>
                 </tr>
                 <tr>
                     <td colspan="6" align="right">
-                            <input type="button" class="button" runat="server" id="btnApplicate" value="报废申请" onclick="ShowTopDialogFrame('报废申请', 'AssetUsedList.aspx',null,850,300);return false;" />
-                            <input type="button" class="button" runat="server" id="btnVerify" value="报废审核" onclick="ShowTopDialogFrame('报废审核', 'ScrappedApproved.aspx',null,550,300);return false;" />
+                        <input type="button" class="button" runat="server" id="btnApplicate" value="报废申请"
+                            onclick="ShowTopDialogFrame('报废申请', 'AssetUsedList.aspx',null,850,300);return false;" />
+                        <input type="button" class="button" runat="server" id="btnVerify" value="报废审核" onclick="ShowTopDialogFrame('报废审核', 'ScrappedApproved.aspx',null,550,300);return false;" />
                     </td>
                 </tr>
             </table>
@@ -122,19 +125,19 @@
                                 <%#Eval("Assetname")%>
                             </td>
                             <td>
+                                <%#Eval("STORAGE")%>
+                            </td>
+                            <td>
                                 <%#EnumUtil.RetrieveEnumDescript((AssetState)Eval("State"))%>
                             </td>
                             <td>
                                 <%#Eval("Depreciationyear")%>
                             </td>
                             <td>
-                                <asp:Literal ID="LitSupplierName" runat="server" />
+                                <asp:Literal ID="litSCRAPPEDDATE" runat="server" />
                             </td>
                             <td>
-                                <%#EnumUtil.RetrieveEnumDescript((FinanceCategory)Eval("Financecategory"))%>
-                            </td>
-                            <td>
-                                <%#EnumUtil.RetrieveEnumDescript((ManageMode)Eval("Managemode"))%>
+                                <asp:Literal ID="litSCRAPPEDUSER" runat="server" />
                             </td>
                             <td>
                                 <%#((DateTime)Eval("Purchasedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
@@ -159,19 +162,19 @@
                                 <%#Eval("Assetname")%>
                             </td>
                             <td>
+                                <%#Eval("Storage")%>
+                            </td>
+                            <td>
                                 <%#EnumUtil.RetrieveEnumDescript((AssetState)Eval("State"))%>
                             </td>
                             <td>
                                 <%#Eval("Depreciationyear")%>
                             </td>
                             <td>
-                                <asp:Literal ID="LitSupplierName" runat="server" />
+                                <asp:Literal ID="litSCRAPPEDDATE" runat="server" />
                             </td>
                             <td>
-                                <%#EnumUtil.RetrieveEnumDescript((FinanceCategory)Eval("Financecategory"))%>
-                            </td>
-                            <td>
-                                <%#EnumUtil.RetrieveEnumDescript((ManageMode)Eval("Managemode"))%>
+                                <asp:Literal ID="litSCRAPPEDUSER" runat="server" />
                             </td>
                             <td>
                                 <%#((DateTime)Eval("Purchasedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
@@ -197,5 +200,5 @@
                 $("input[type='checkbox']").attr("checked", this.checked);
             });
         });
-        </script>
+    </script>
 </asp:Content>
