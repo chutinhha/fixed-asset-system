@@ -100,7 +100,11 @@ namespace FixedAsset.Services
         {
             try
             {
+                var usermaproleinfoManagement=new UsermaproleinfoManagement(Management);
+                var rolepermissionManagement=new RolepermissionManagement(Management);
                 Management.BeginTransaction();
+                rolepermissionManagement.DeleteRolepermissionByRoleidMenuid(new List<string>(){roleid},new List<string>());
+                usermaproleinfoManagement.DeleteUsermaproleinfoByUseridRoleid(new List<string>(),new List<string>(){roleid});
                 Management.DeleteRoleinfoByRoleid(roleid);
                 Management.Commit();
             }
