@@ -160,5 +160,22 @@ namespace FixedAsset.DataAccess
         }
         #endregion
 
+        #region RetrieveMenuItemsByRoleId
+        public List<Menuitem> RetrieveMenuItemsByRoleId(string roleId)
+        {
+            try
+            {
+                var sqlCommand = new StringBuilder();
+                sqlCommand.Append(@"select B.*,a.ROLEID From ROLEPERMISSION A INNER JOIN MenuItem B on A.MenuId=B.MenuId where a.ROLEID=:Roleid");
+                this.Database.AddInParameter(":Roleid", roleId);//DBType:VARCHAR2
+                sqlCommand.AppendLine(@" ORDER BY B.MenuId DESC");
+                return this.Database.ExecuteToList<Menuitem>(sqlCommand.ToString());
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
+        #endregion
     }
 }

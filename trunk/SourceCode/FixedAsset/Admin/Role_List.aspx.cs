@@ -65,20 +65,10 @@ namespace FixedAsset.Web.Admin
             if (e.CommandName.Equals("EditDetail"))
             {
                 Response.Redirect(ResolveUrl(string.Format("~/Admin/Role_Add.aspx?roleId={0}", roleId)));
-                //var headInfo = ProcurementscheduleheadService.RetrieveProcurementscheduleheadByPsid(Psid);
-                //if (headInfo == null) { return; }
-                //if (headInfo.Approveresult == ApproveResult.Draft)
-                //{
-                //    Response.Redirect(ResolveUrl(string.Format("~/Admin/ProcurePlan_Add.aspx?Psid={0}", Psid)));
-                //}
-                //else if (headInfo.Approveresult == ApproveResult.Approving)
-                //{
-                //    Response.Redirect(ResolveUrl(string.Format("~/Admin/ProcurePlan_Approve.aspx?Psid={0}", Psid)));
-                //}
-                //else
-                //{
-                //    Response.Redirect(ResolveUrl(string.Format("~/Admin/ProcurePlan_View.aspx?Psid={0}", Psid)));
-                //}
+            }
+            if(e.CommandName.Equals("AddRight"))
+            {
+                Response.Redirect(ResolveUrl(string.Format("~/Admin/Role_AddRight.aspx?roleId={0}", roleId)));
             }
         }
         #endregion

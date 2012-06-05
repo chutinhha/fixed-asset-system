@@ -134,7 +134,19 @@ namespace FixedAsset.DataAccess
                 this.Database.ClearParameter();
             }
         }
-        #endregion
+        #endregion 
 
+        public List<Menuitem> RetrieveAllMenuitems()
+        {
+            try
+            {
+                string sqlCommand = @"SELECT * FROM MENUITEM ";
+                return this.Database.ExecuteToList<Menuitem>(sqlCommand);
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
     }
 }

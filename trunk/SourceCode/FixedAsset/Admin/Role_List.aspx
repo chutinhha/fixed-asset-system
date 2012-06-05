@@ -68,6 +68,8 @@
                                 <%#Eval("Lastmodifiedby")%>
                             </td>
                             <td align="right">
+                                <asp:ImageButton ID="BtnAddRight" runat="server" ImageUrl="~/images/Button/starttask.GIF"
+                                    AlternateText="分配权限" ToolTip="分配权限" CommandArgument='<%#Eval("Roleid")%>' CommandName="AddRight" />
                                 <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"
                                     Visible='<%#Eval("Allowedit")%>' AlternateText="编辑" ToolTip="编辑" CommandArgument='<%#Eval("Roleid")%>'
                                     CommandName="EditDetail" />
@@ -98,6 +100,8 @@
                                 <%#Eval("Lastmodifiedby")%>
                             </td>
                             <td align="right">
+                                <asp:ImageButton ID="BtnAddRight" runat="server" ImageUrl="~/images/Button/starttask.GIF"
+                                    AlternateText="分配权限" ToolTip="分配权限" CommandArgument='<%#Eval("Roleid")%>' CommandName="AddRight" />
                                 <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"
                                     Visible='<%#Eval("Allowedit")%>' AlternateText="编辑" ToolTip="编辑" CommandArgument='<%#Eval("Roleid")%>'
                                     CommandName="EditDetail" />

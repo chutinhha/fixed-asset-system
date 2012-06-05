@@ -18,6 +18,8 @@ namespace FixedAsset.Domain
     [Serializable]
     public partial class Menuitem
     {
+        public const string DefaultParentCode = @"000";
+
         #region 编号
         ///<summary>
         ///ColumnName:编号;Size:40;NOT NULL
@@ -67,7 +69,12 @@ namespace FixedAsset.Domain
         public string Buttonid{  get;set;}
         #endregion
 
+        #region 权限编码(以逗号的方式分割)
+        public string Roleid { get; set; }
+        ///<summary>
+        ///ColumnName:权限编码(以逗号的方式分割);Size:400;
+        ///</summary>
+        public string Rightcode { get; set; }
+        #endregion
     }
-
-
 }
