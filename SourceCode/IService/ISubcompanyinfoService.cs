@@ -19,5 +19,6 @@ namespace FixedAsset.IServices
         Subcompanyinfo UpdateSubcompanyinfoBySubcompanyid(Subcompanyinfo info);
         Subcompanyinfo RetrieveSubcompanyinfoBySubcompanyid(decimal subcompanyid);
         void DeleteSubcompanyinfoBySubcompanyid(decimal subcompanyid);
+        List<Subcompanyinfo> RetrieveAllSubCompanyinfo();
     }
 }
