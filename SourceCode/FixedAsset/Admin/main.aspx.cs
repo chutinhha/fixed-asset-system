@@ -36,7 +36,7 @@ namespace FixedAsset.Web.Admin
             {
                 content.AppendLine("<h1 class='type'>");
                 content.AppendFormat("    <a href='javascript:void(0)'>{0}</a></h1>",rootMenuItem.Menuname).AppendLine();
-                content.AppendLine(@"<div class='content' style=""height: 50px"">");
+                content.AppendLine(@"<div class='content' style=""height: auto;"">");
                 content.AppendLine("    <ul class='MM'>");
                 var subMenuItems = menuItems.Where(p => p.Parentmenuid == rootMenuItem.Menuid).OrderBy(p=>p.Menuid).ToList();
                 foreach (var subMenuItem in subMenuItems)
