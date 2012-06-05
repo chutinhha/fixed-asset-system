@@ -88,7 +88,7 @@
                                                     align="center">
                                                     <tr style="border-bottom-width: 1px;">
                                                         <td colspan="6" align="right">
-                                                            <%--<uc1:MultiSelectProcurePlans ID="ucMultiSelectProcurePlans" runat="server" OnSelectProcurePlanChange="ucMultiSelectProcurePlans_SelectProcurePlanChange" />--%>
+                                                           请选择采购计划单： <uc1:MultiSelectProcurePlans ID="ucMultiSelectProcurePlans" runat="server" OnSelectProcurePlanChange="ucMultiSelectProcurePlans_SelectProcurePlanChange" />
                                                             <input type="button" class="button" runat="server" id="Button1" value="新增" onclick="ShowTopDialogFrame('新增明细', 'ContactDetail_Add.aspx','RefreshDetail()',790,500);return false;" />
                                                         </td>
                                                     </tr>
