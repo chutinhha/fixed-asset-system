@@ -165,5 +165,21 @@ namespace FixedAsset.DataAccess
         }
         #endregion
 
+
+        #region RetrieveAllLbfgsxmt
+        public List<Lbfgsxmt> RetrieveAllLbfgsxmt()
+        {
+            try
+            {
+                string sqlCommand = @"SELECT * FROM lb_fgs_xmt ";
+                return this.Database.ExecuteToList<Lbfgsxmt>(sqlCommand);
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
+        #endregion
+
     }
 }

@@ -117,5 +117,20 @@ namespace FixedAsset.DataAccess
         }
         #endregion
 
+        #region RetrieveAllAssetsupplier
+        public List<Subcompanyinfo> RetrieveAllSubCompanyinfo()
+        {
+            try
+            {
+                string sqlCommand = @"SELECT * FROM subcompanyinfo ";
+                return this.Database.ExecuteToList<Subcompanyinfo>(sqlCommand);
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
+        #endregion
+
     }
 }
