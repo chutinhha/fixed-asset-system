@@ -43,12 +43,21 @@ namespace FixedAsset.Services
         {
             return Management.RetrieveAssetsPaging(info,pageIndex,pageSize,out count);
         }
+
+
         #endregion
 
         #region RetrieveAssetsUsed
         public List<Asset> RetrieveAssetsUsed(AssetSearch info, int pageIndex, int pageSize, out int count)
         {
             return Management.RetrieveAssetsUsed(info, pageIndex, pageSize, out count);
+        }
+        #endregion
+
+        #region RetrieveAssetscrappedsRecord
+        public List<Asset> RetrieveAssetscrappedsRecord(AssetSearch info, int pageIndex, int pageSize, out int count)
+        {
+            return Management.RetrieveAssetscrappedsRecord(info, pageIndex, pageSize, out count);
         }
         #endregion
 
