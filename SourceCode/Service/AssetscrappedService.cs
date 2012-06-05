@@ -44,7 +44,13 @@ namespace FixedAsset.Services
             return Management.RetrieveAssetscrappedsPaging(info,pageIndex,pageSize,out count);
         }
         #endregion
-
+        #region RetrieveAssetscrappedsRecord
+        public List<Assetscrapped> RetrieveAssetscrappedsRecord(AssetSearch info, int pageIndex, int pageSize, out int count)
+        {
+            return Management.RetrieveAssetscrappedsRecord(info,pageIndex,pageSize,out count);
+        }
+        #endregion
+        
         #region RetrieveAssetscrappedByAssetscrappedid
         public Assetscrapped RetrieveAssetscrappedByAssetscrappedid(string assetscrappedid)
         {
