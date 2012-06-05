@@ -16,7 +16,7 @@ using FixedAsset.DataAccess;
 using FixedAsset.IServices;
 namespace FixedAsset.Services
 {
-    public partial class RolepermissionService:BaseService,IRolepermissionService
+    public partial class RolepermissionService : BaseService, IRolepermissionService
     {
 
         #region Management
@@ -39,23 +39,23 @@ namespace FixedAsset.Services
         #endregion
 
         #region RetrieveRolepermissionsPaging
-        public List<Rolepermission> RetrieveRolepermissionsPaging(RolepermissionSearch info,int pageIndex, int pageSize,out int count)
+        public List<Rolepermission> RetrieveRolepermissionsPaging(RolepermissionSearch info, int pageIndex, int pageSize, out int count)
         {
-            return Management.RetrieveRolepermissionsPaging(info,pageIndex,pageSize,out count);
+            return Management.RetrieveRolepermissionsPaging(info, pageIndex, pageSize, out count);
         }
         #endregion
 
         #region RetrieveRolepermissionByRoleidMenuid
-        public Rolepermission RetrieveRolepermissionByRoleidMenuid(string roleid,string menuid)
+        public Rolepermission RetrieveRolepermissionByRoleidMenuid(string roleid, string menuid)
         {
-            return Management.RetrieveRolepermissionByRoleidMenuid(roleid,menuid);
+            return Management.RetrieveRolepermissionByRoleidMenuid(roleid, menuid);
         }
         #endregion
 
         #region RetrieveRolepermissionByRoleidMenuid
-        public List<Rolepermission> RetrieveRolepermissionByRoleidMenuid(List<string> roleids,List<string> menuids)
+        public List<Rolepermission> RetrieveRolepermissionByRoleidMenuid(List<string> roleids, List<string> menuids)
         {
-            return Management.RetrieveRolepermissionByRoleidMenuid(roleids,menuids);
+            return Management.RetrieveRolepermissionByRoleidMenuid(roleids, menuids);
         }
         #endregion
 
@@ -96,12 +96,12 @@ namespace FixedAsset.Services
         #endregion
 
         #region DeleteRolepermissionByRoleidMenuid
-        public void DeleteRolepermissionByRoleidMenuid(string roleid,string menuid)
+        public void DeleteRolepermissionByRoleidMenuid(string roleid, string menuid)
         {
             try
             {
                 Management.BeginTransaction();
-                Management.DeleteRolepermissionByRoleidMenuid(roleid,menuid);
+                Management.DeleteRolepermissionByRoleidMenuid(roleid, menuid);
                 Management.Commit();
             }
             catch
@@ -113,12 +113,12 @@ namespace FixedAsset.Services
         #endregion
 
         #region DeleteRolepermissionByRoleidMenuid
-        public void DeleteRolepermissionByRoleidMenuid(List<string> roleids,List<string> menuids)
+        public void DeleteRolepermissionByRoleidMenuid(List<string> roleids, List<string> menuids)
         {
             try
             {
                 Management.BeginTransaction();
-                Management.DeleteRolepermissionByRoleidMenuid(roleids,menuids);
+                Management.DeleteRolepermissionByRoleidMenuid(roleids, menuids);
                 Management.Commit();
             }
             catch
@@ -129,5 +129,14 @@ namespace FixedAsset.Services
         }
         #endregion
 
+        public List<Menuitem> RetrieveMenuItemsByRoleId(string roleId)
+        {
+            return Management.RetrieveMenuItemsByRoleId(roleId);
+        }
+        public List<Menuitem> RetrieveAllMenuitems()
+        {
+            var itemManagement = new MenuitemManagement(Management);
+            return itemManagement.RetrieveAllMenuitems();
+        }
     }
 }

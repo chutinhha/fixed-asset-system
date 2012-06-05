@@ -19,5 +19,8 @@ namespace FixedAsset.IServices
         Rolepermission UpdateRolepermissionByRoleidMenuid(Rolepermission info);
         Rolepermission RetrieveRolepermissionByRoleidMenuid(string roleid,string menuid);
         void DeleteRolepermissionByRoleidMenuid(string roleid,string menuid);
+        void DeleteRolepermissionByRoleidMenuid(List<string> roleids, List<string> menuids);
+        List<Menuitem> RetrieveMenuItemsByRoleId(string roleId);
+        List<Menuitem> RetrieveAllMenuitems();
     }
 }
