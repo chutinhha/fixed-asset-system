@@ -19,5 +19,6 @@ namespace FixedAsset.IServices
         Lbfgsxmt UpdateLbfgsxmtByXmtid(Lbfgsxmt info);
         Lbfgsxmt RetrieveLbfgsxmtByXmtid(decimal xmtid);
         void DeleteLbfgsxmtByXmtid(decimal xmtid);
+        List<Lbfgsxmt> RetrieveAllLbfgsxmt();
     }
 }
