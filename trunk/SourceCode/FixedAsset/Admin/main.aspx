@@ -79,7 +79,7 @@
                     <div class='content' style="height: auto;">
                         <ul class='MM'>
                             <li><a href='B_Account.aspx' target='aa'>B帐</a></li>
-                            <li><a href='ProcurePlanList.aspx' target='aa'>报废</a></li>
+                            <li><a href='Asset_Scrapped.aspx' target='aa'>报废</a></li>
                         </ul>
                     </div>
                     <h1 class='type'>
