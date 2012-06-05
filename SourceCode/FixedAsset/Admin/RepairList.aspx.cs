@@ -4,15 +4,23 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using FixedAsset.Domain;
+using FixedAsset.IServices;
+using FixedAsset.Services;
 
 namespace FixedAsset.Web.Admin
 {
     public partial class RepairList : BasePage
     {
-        protected void Page_Load(object sender, EventArgs e)
+        #region Properties
+        protected IAssetmaintainService AssetmaintainService
         {
-
+            get
+            {
+                return new AssetmaintainService();
+            }
         }
+        #endregion
 
         #region Events
         protected override void OnLoad(EventArgs e)
@@ -20,7 +28,7 @@ namespace FixedAsset.Web.Admin
             base.OnLoad(e);
             if (!IsPostBack)
             {
-                //LoadData(0);
+                LoadData(0);
             }
         }
         protected void BtnSearch_Click(object sender, EventArgs e)
@@ -36,57 +44,76 @@ namespace FixedAsset.Web.Admin
         #region  Methods
         protected void LoadData(int pageIndex)
         {
-
-            //DateTime startprocurementscheduledate = DateTime.MinValue;
-            //if (DateTime.TryParse(txtSrchStartProcurementscheduledate.Text, out startprocurementscheduledate))
+            AssetmaintainSearch search = new AssetmaintainSearch();
+            search.Assetmaintainid = txtSrchAssetmaintainid.Text;//维修单编号
+            //search.Assetcategoryid = txtSrchAssetcategoryid.Text;//(系统)设备大类
+            //search.Maintaintype = txtSrchMaintaintype.Text;//保修来源：(项目体、自检、月检）数据字典
+            if (ucSrchStartApplydate.DateValue.HasValue)
+            {
+                search.StartApplydate = ucSrchStartApplydate.DateValue.Value;//申请维修日期
+            }
+            if (ucSrchEndApplydate.DateValue.HasValue)
+            {
+                search.EndApplydate = ucSrchEndApplydate.DateValue.Value;//申请维修日期
+            }
+            //search.Applyuserid = txtSrchApplyuserid.Text;//申请人
+            //search.Applycontent = txtSrchApplycontent.Text;//申请内容
+            //search.Approveuser = txtSrchApproveuser.Text;//审核人
+            //if (ucSrchStartApprovedate.DateValue.HasValue)
             //{
-            //    search.StartProcurementscheduledate = startprocurementscheduledate;
+            //    search.StartApprovedate = ucSrchStartApprovedate.DateValue.Value;//审核日期
             //}
-            //DateTime endprocurementscheduledate = DateTime.MinValue;
-            //if (DateTime.TryParse(txtSrchEndProcurementscheduledate.Text, out endprocurementscheduledate))
+            //if (ucSrchEndApprovedate.DateValue.HasValue)
             //{
-            //    search.EndProcurementscheduledate = endprocurementscheduledate;
+            //    search.EndApprovedate = ucSrchEndApprovedate.DateValue.Value;//审核日期
             //}
-            //search.Reason = txtSrchReason.Text;
-            //search.Subcompany = txtSrchSubcompany.Text;
-            //search.Applyuser = txtSrchApplyuser.Text;
-            //DateTime startapplydate = DateTime.MinValue;
-            //if (DateTime.TryParse(txtSrchStartApplydate.Text, out startapplydate))
+            //search.Rejectreason = txtSrchRejectreason.Text;//拒绝理由
+            //if (ucSrchStartPlanmaintaindate.DateValue.HasValue)
             //{
-            //    search.StartApplydate = startapplydate;
+            //    search.StartPlanmaintaindate = ucSrchStartPlanmaintaindate.DateValue.Value;//计划维修日期
             //}
-            //DateTime endapplydate = DateTime.MinValue;
-            //if (DateTime.TryParse(txtSrchEndApplydate.Text, out endapplydate))
+            //if (ucSrchEndPlanmaintaindate.DateValue.HasValue)
             //{
-            //    search.EndApplydate = endapplydate;
+            //    search.EndPlanmaintaindate = ucSrchEndPlanmaintaindate.DateValue.Value;//计划维修日期
             //}
-            //search.Approveuser = txtSrchApproveuser.Text;
-            //DateTime startapprovedate = DateTime.MinValue;
-            //if (DateTime.TryParse(txtSrchStartApprovedate.Text, out startapprovedate))
+            //if (ucSrchStartActualmaintaindate.DateValue.HasValue)
             //{
-            //    search.StartApprovedate = startapprovedate;
+            //    search.StartActualmaintaindate = ucSrchStartActualmaintaindate.DateValue.Value;//实际维修日期
             //}
-            //DateTime endapprovedate = DateTime.MinValue;
-            //if (DateTime.TryParse(txtSrchEndApprovedate.Text, out endapprovedate))
+            //if (ucSrchEndActualmaintaindate.DateValue.HasValue)
             //{
-            //    search.EndApprovedate = endapprovedate;
+            //    search.EndActualmaintaindate = ucSrchEndActualmaintaindate.DateValue.Value;//实际维修日期
             //}
-            //search.Rejectreason = txtSrchRejectreason.Text;
-            //DateTime startcreateddate = DateTime.MinValue;
-            //if (DateTime.TryParse(txtSrchStartCreateddate.Text, out startcreateddate))
+            //if (ucSrchStartConfirmdate.DateValue.HasValue)
             //{
-            //    search.StartCreateddate = startcreateddate;
+            //    search.StartConfirmdate = ucSrchStartConfirmdate.DateValue.Value;//确认日期
             //}
-            //DateTime endcreateddate = DateTime.MinValue;
-            //if (DateTime.TryParse(txtSrchEndCreateddate.Text, out endcreateddate))
+            //if (ucSrchEndConfirmdate.DateValue.HasValue)
             //{
-            //    search.EndCreateddate = endcreateddate;
+            //    search.EndConfirmdate = ucSrchEndConfirmdate.DateValue.Value;//确认日期
             //}
-
+            //search.Confirmuser = txtSrchConfirmuser.Text;//确认人
+            //search.Maintaincontent = txtSrchMaintaincontent.Text;//已维修明细
+            //search.Storagetitle = txtSrchStoragetitle.Text;//区分字段：分公司或项目体
+            //search.Storageid = txtSrchStorageid.Text;//项目体ID或分公司ID
+            //search.Subcompany = txtSrchSubcompany.Text;//分公司
+            //search.Subcompanycontactorid = txtSrchSubcompanycontactorid.Text;//分公司联系人
+            //search.Contactphone = txtSrchContactphone.Text;//联系电话
+            //search.Projectcontactorid = txtSrchProjectcontactorid.Text;//项目体联系人
+            //search.Projectcontactorphone = txtSrchProjectcontactorphone.Text;//项目体联系电话
+            //search.Creator = txtSrchCreator.Text;//创建人
+            //if (ucSrchStartCreateddate.DateValue.HasValue)
+            //{
+            //    search.StartCreateddate = ucSrchStartCreateddate.DateValue.Value;//创建日期
+            //}
+            //if (ucSrchEndCreateddate.DateValue.HasValue)
+            //{
+            //    search.EndCreateddate = ucSrchEndCreateddate.DateValue.Value;//创建日期
+            //}
             int recordCount = 0;
-            //var list = ProcurementscheduleheadService.RetrieveProcurementscheduleheadsPaging(search, pageIndex, pcData.PageSize, out recordCount);
-            //rptProcureList.DataSource = list;
-            //rptProcureList.DataBind();
+            var list = this.AssetmaintainService.RetrieveAssetmaintainsPaging(search, pageIndex, pcData.PageSize, out recordCount);
+            rptRepairList.DataSource = list;
+            rptRepairList.DataBind();
             pcData.RecordCount = recordCount;
             pcData.CurrentIndex = pageIndex;
         }
