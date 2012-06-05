@@ -129,5 +129,10 @@ namespace FixedAsset.Services
         }
         #endregion
 
+        public List<Lbfgsxmt> RetrieveAllLbfgsxmt()
+        {
+            return Management.RetrieveAllLbfgsxmt();
+        }
+
     }
 }

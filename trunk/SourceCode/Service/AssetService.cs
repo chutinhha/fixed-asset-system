@@ -215,5 +215,7 @@ namespace FixedAsset.Services
 
             return Management.RetrieveAllAsset();
         }
+
+
     }
 }

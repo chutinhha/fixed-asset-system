@@ -129,5 +129,13 @@ namespace FixedAsset.Services
         }
         #endregion
 
+
+        #region RetrieveAllSubcompanyinfo
+        public List<Subcompanyinfo> RetrieveAllSubCompanyinfo()
+        {
+            return Management.RetrieveAllSubCompanyinfo();
+        }
+
+        #endregion
     }
 }
