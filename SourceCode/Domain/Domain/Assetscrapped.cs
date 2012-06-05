@@ -85,7 +85,7 @@ namespace FixedAsset.Domain
         ///<summary>
         ///ColumnName:ÉóºË×´Ì¬;
         ///</summary>
-        public decimal Approvedstate { get; set; }
+        public APPROVEDSTATE Approvedstate { get; set; }
         #endregion
     }
 }
