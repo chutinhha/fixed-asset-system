@@ -72,6 +72,19 @@ namespace FixedAsset.Domain
         [EnumDescript(Descript = "B帐")]
         BAccount = 1
     }
+
+    /// <summary>
+    /// 报废审核状态
+    /// </summary>
+    [EnumCatetory(EnumName = "报废审核状态")]
+    public enum APPROVEDSTATE : int
+    {
+        [EnumDescript(Descript = "同意")]
+        Approved = 1,
+        [EnumDescript(Descript = "拒绝")]
+        Rejected = 2
+    }
+    
     #endregion
 
     [EnumCatetory(EnumName = "设备安装状态")]
