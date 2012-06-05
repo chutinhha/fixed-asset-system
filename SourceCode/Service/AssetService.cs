@@ -43,8 +43,6 @@ namespace FixedAsset.Services
         {
             return Management.RetrieveAssetsPaging(info,pageIndex,pageSize,out count);
         }
-
-
         #endregion
 
         #region RetrieveAssetsUsed
