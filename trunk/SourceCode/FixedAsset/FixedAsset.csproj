@@ -97,18 +97,21 @@
     </Compile>
     <Compile Include="Admin\AssetUsedList.aspx.cs">
       <DependentUpon>AssetUsedList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\AssetUsedList.aspx.designer.cs">
       <DependentUpon>AssetUsedList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Asset_Scrapped.aspx.cs">
       <DependentUpon>Asset_Scrapped.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\Asset_Scrapped.aspx.designer.cs">
       <DependentUpon>Asset_Scrapped.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\B_Account.aspx.cs">
       <DependentUpon>B_Account.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\B_Account.aspx.designer.cs">
       <DependentUpon>B_Account.aspx</DependentUpon>
