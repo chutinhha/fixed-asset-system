@@ -67,7 +67,7 @@ namespace FixedAsset.Web.Admin
             RolepermissionService.DeleteRolepermissionByRoleidMenuid(new List<string>(){Roleid},new List<string>());
             for (int i = 0; i < tvMenuItems.CheckedNodes.Count; i++)
             {
-                var currentInfo = new Rolepermission(){Roleid = Roleid,Lastmodifieddate = DateTime.Now,Remark=string.Empty};
+                var currentInfo = new Rolepermission() { Roleid = Roleid, Lastmodifieddate = DateTime.Now, Remark = string.Empty };
                 if (WebContext.Current.CurrentUser != null)
                 {
                     currentInfo.Lastmodifiedby = WebContext.Current.CurrentUser.Username;

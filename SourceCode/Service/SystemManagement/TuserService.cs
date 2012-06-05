@@ -154,5 +154,25 @@ namespace FixedAsset.Services
                 }
             }
         }
+        public List<Menuitem> RetrieveMenuItemsByUserId(string userId)
+        {
+            var menuItems = new List<Menuitem>();
+            var usermaproleinfoManagement=new UsermaproleinfoManagement(Management);
+            var roleInfos = usermaproleinfoManagement.RetrieveUsermaproleinfoByUseridRoleid(new List<string>() {userId},
+                                                                                           new List<string>());
+            if(roleInfos.Count>0)
+            {
+                if(WebContext.Current.CurrentUser!=null)
+                {
+                    var roleinfoManagement = new RoleinfoManagement(Management);
+                    var currentRole = roleinfoManagement.RetrieveRoleinfoByRoleid(roleInfos[0].Roleid);
+                    WebContext.Current.CurrentUser.Rolename =currentRole == null ? string.Empty : currentRole.Rolename;
+                }
+                var rolepermissionManagement=new RolepermissionManagement(Management);
+                var list = rolepermissionManagement.RetrieveMenuItemsByRoleId(roleInfos[0].Roleid);
+                menuItems.AddRange(list);
+            }
+            return menuItems;
+        }
     }
 }

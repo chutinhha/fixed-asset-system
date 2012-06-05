@@ -95,6 +95,24 @@
       <DependentUpon>404.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Admin\AssetUsedList.aspx.cs">
+      <DependentUpon>AssetUsedList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AssetUsedList.aspx.designer.cs">
+      <DependentUpon>AssetUsedList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Asset_Scrapped.aspx.cs">
+      <DependentUpon>Asset_Scrapped.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Asset_Scrapped.aspx.designer.cs">
+      <DependentUpon>Asset_Scrapped.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\B_Account.aspx.cs">
+      <DependentUpon>B_Account.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\B_Account.aspx.designer.cs">
+      <DependentUpon>B_Account.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\ContactDetail_Add.aspx.cs">
       <DependentUpon>ContactDetail_Add.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -519,6 +537,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="404.aspx" />
+    <Content Include="Admin\AssetUsedList.aspx" />
+    <Content Include="Admin\Asset_Scrapped.aspx" />
+    <Content Include="Admin\B_Account.aspx" />
     <Content Include="Admin\ContactDetail_Add.aspx" />
     <Content Include="Admin\ContractList.aspx" />
     <Content Include="Admin\css\default.css" />

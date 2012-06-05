@@ -35,7 +35,8 @@
             <dt></dt>
             <dd>
                 <p class="title">
-                    <img src="../images/mc-cell-exca.gif" alt="待办" /><a href="main.aspx">待办</a>
+                    <img src="../images/mc-cell-exca.gif" alt="待办" />
+                    <%--<img src="../images/mc-cell-exca.gif" alt="待办" /><a href="main.aspx">待办</a>--%>
                 </p>
                 <p class="loginfor" height="37">
                     <asp:LinkButton ID="BtnLogout" class="but3" runat="server" OnClick="BtnLogout_Click">退出</asp:LinkButton>
@@ -46,7 +47,8 @@
         <div id="contents">
             <div class="left">
                 <div id="container">
-                    <h1 class='type'>
+                    <asp:Literal ID="litMenuItems" runat="server"/>
+                    <%--<h1 class='type'>
                         <a href='javascript:void(0)'>采购合同</a></h1>
                     <div class='content' style="height: 50px">
                         <ul class='MM'>
@@ -78,8 +80,8 @@
                         <a href='javascript:void(0)'>清产</a></h1>
                     <div class='content' style="height: auto;">
                         <ul class='MM'>
-                            <li><a href='B_Account.aspx' target='aa'>B帐</a></li>
-                            <li><a href='Asset_Scrapped.aspx' target='aa'>报废</a></li>
+                            <li><a href='ProcurePlanList.aspx' target='aa'>B帐</a></li>
+                            <li><a href='ProcurePlanList.aspx' target='aa'>报废</a></li>
                         </ul>
                     </div>
                     <h1 class='type'>
@@ -89,7 +91,7 @@
                             <li><a href='Role_List.aspx' target='aa'>角色管理</a></li>
                             <li><a href='user_list.aspx' target='aa'>用户角色分配</a></li>
                         </ul>
-                    </div>
+                    </div>--%>
                 </div>
             </div>
             <div class="right">
