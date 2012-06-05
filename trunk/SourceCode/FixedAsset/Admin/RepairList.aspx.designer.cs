@@ -13,13 +13,13 @@ namespace FixedAsset.Web.Admin {
     public partial class RepairList {
         
         /// <summary>
-        /// txtSrchPsid 控件。
+        /// txtSrchAssetmaintainid 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSrchPsid;
+        protected global::System.Web.UI.WebControls.TextBox txtSrchAssetmaintainid;
         
         /// <summary>
         /// ddlProjects 控件。
@@ -31,31 +31,22 @@ namespace FixedAsset.Web.Admin {
         protected global::System.Web.UI.WebControls.DropDownList ddlProjects;
         
         /// <summary>
-        /// ddlStatus 控件。
+        /// ucSrchStartApplydate 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlStatus;
+        protected global::FixedAsset.Web.Admin.UserControl.ucDatePicker ucSrchStartApplydate;
         
         /// <summary>
-        /// txtApplicationStartDate 控件。
+        /// ucSrchEndApplydate 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtApplicationStartDate;
-        
-        /// <summary>
-        /// txtApplicationEndDate 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtApplicationEndDate;
+        protected global::FixedAsset.Web.Admin.UserControl.ucDatePicker ucSrchEndApplydate;
         
         /// <summary>
         /// BtnSearch 控件。
@@ -76,13 +67,13 @@ namespace FixedAsset.Web.Admin {
         protected global::System.Web.UI.HtmlControls.HtmlInputButton btnAdd;
         
         /// <summary>
-        /// rptContactsList 控件。
+        /// rptRepairList 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptContactsList;
+        protected global::System.Web.UI.WebControls.Repeater rptRepairList;
         
         /// <summary>
         /// pcData 控件。

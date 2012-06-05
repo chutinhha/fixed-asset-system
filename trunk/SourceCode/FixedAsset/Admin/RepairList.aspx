@@ -1,8 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/MasterPage.master" AutoEventWireup="true" CodeBehind="RepairList.aspx.cs" Inherits="FixedAsset.Web.Admin.RepairList" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/MasterPage.master" AutoEventWireup="true"
+    CodeBehind="RepairList.aspx.cs" Inherits="FixedAsset.Web.Admin.RepairList" %>
+
 <%@ Import Namespace="FixedAsset.Domain" %>
 <%@ Import Namespace="SeallNet.Utility" %>
 <%@ Register Assembly="KFSQ.Web.Controls" Namespace="KFSQ.Web.Controls" TagPrefix="cc1" %>
 <%@ Register Assembly="iKC.Web" Namespace="iKC.Web.UI.WebControls" TagPrefix="asp" %>
+<%@ Register Src="~/Admin/UserControl/ucDatePicker.ascx" TagName="DatePicker" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
@@ -15,10 +18,10 @@
                 align="center">
                 <tr>
                     <td>
-                        设备编号
+                        维修单编号
                     </td>
                     <td>
-                        <asp:TextBox ID="txtSrchPsid" Width="150" CssClass="" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtSrchAssetmaintainid" Width="150" CssClass="" runat="server"></asp:TextBox>
                     </td>
                     <td>
                         项目体
@@ -27,64 +30,62 @@
                         <asp:DropDownList ID="ddlProjects" runat="server" Width="150">
                         </asp:DropDownList>
                     </td>
-
-                       <td>
+                    <%--<td>
                         状态
                     </td>
                     <td>
-                         <asp:DropDownList ID="ddlStatus" runat="server" Width="150px">
-                                            <asp:ListItem>待维修</asp:ListItem>
-                                            <asp:ListItem>已维修</asp:ListItem>
-                                        </asp:DropDownList>
-                    </td>
+                        <asp:DropDownList ID="ddlStatus" runat="server" Width="150px">
+                            <asp:ListItem>待维修</asp:ListItem>
+                            <asp:ListItem>已维修</asp:ListItem>
+                        </asp:DropDownList>
+                    </td>--%>
                 </tr>
                 <tr>
-                 <td>
+                    <td>
                         申请日期
                     </td>
-                    <td>
-                        <asp:TextBox ID="txtApplicationStartDate" Width="150" CssClass="" runat="server"></asp:TextBox>
-                    </td>
-                    <td>
-                        至
-                    </td>
                     <td colspan="3">
-                        <asp:TextBox ID="txtApplicationEndDate" Width="150" CssClass="" runat="server"></asp:TextBox>
-                    </td>  
-                  
+                        <uc1:DatePicker ID="ucSrchStartApplydate" runat="server" />
+                        ~
+                        <uc1:DatePicker ID="ucSrchEndApplydate" runat="server" />
+                    </td>
                 </tr>
                 <tr>
-                <td colspan="6" align="right">
-                  <asp:Button ID="BtnSearch" runat="server" CssClass="button" Text="查询" OnClick="BtnSearch_Click" />
-                <input type="button" class="button" runat="server" id="btnAdd" value="申请" onclick="javascript:window.location='NewEquipment.aspx'" />
-                </td>
+                    <td colspan="4" align="right">
+                        <asp:Button ID="BtnSearch" runat="server" CssClass="button" Text="查询" OnClick="BtnSearch_Click" />
+                        <input type="button" class="button" runat="server" id="btnAdd" value="申请" onclick="javascript:window.location='NewRepairing.aspx'" />
+                    </td>
                 </tr>
             </table>
-        
             <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
                 align="center">
-                <asp:Repeater ID="rptContactsList" runat="server">
+                <asp:Repeater ID="rptRepairList" runat="server">
                     <HeaderTemplate>
                         <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
-                            <td align="center">
-                               设备编号
+                            <td>
+                                维修单号
                             </td>
                             <td>
-                               设备数量
+                                系统
                             </td>
                             <td>
-                               设备名称
+                                分公司
                             </td>
                             <td>
-                               状态
+                                项目体
                             </td>
                             <td>
-                              申请人
+                                申请日期
                             </td>
                             <td>
-                               申请日期
+                                申请人
                             </td>
-                             
+                            <td>
+                                申请内容
+                            </td>
+                            <td>
+                                状态
+                            </td>
                             <td>
                                 操作
                             </td>
@@ -92,64 +93,73 @@
                     </HeaderTemplate>
                     <ItemTemplate>
                         <tr>
-                            <td align="center">
-                                <%#Eval("Psid")%>
+                            <td>
+                                <%#Eval("Assetmaintainid")%>
                             </td>
                             <td>
-                                <%#((DateTime)Eval("Procurementscheduledate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                <%#Eval("Assetcategoryid")%>
                             </td>
                             <td>
                                 <%#Eval("Subcompany")%>
                             </td>
                             <td>
-                                <%#Eval("Applyuser")%>
+                                <%#Eval("Storageid")%>
                             </td>
                             <td>
                                 <%#((DateTime)Eval("Applydate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
-                              <td align="center">
-                                <%#Eval("Psid")%>
+                            <td>
+                                <%#Eval("Applyuserid")%>
                             </td>
-                             
-                              
+                            <td>
+                                <%#Eval("Applycontent")%>
+                            </td>
+                            <td>
+                                <%#EnumUtil.RetrieveEnumDescript((SetupState)Eval("Approveresult"))%>
+                            </td>
                             <td align="right">
-                               <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/images/Button/edit.GIF"
-                                    AlternateText="编辑" ToolTip="编辑" />
-                                      <asp:ImageButton ID="ImageButton3" runat="server" ImageUrl="~/images/Button/edit.GIF"
-                                    AlternateText="回复" ToolTip="回复" />
-                                 <asp:ImageButton ID="ImageButton4" runat="server" ImageUrl="~/images/Button/edit.GIF"
-                                    AlternateText="确认" ToolTip="确认" />
+                                <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/images/Button/edit.GIF"
+                                    AlternateText="编辑" ToolTip="编辑" CommandArgument='<%#Eval("Assetmaintainid")%>' />
+                                <asp:ImageButton ID="ImageButton3" runat="server" ImageUrl="~/images/Button/edit.GIF"
+                                    AlternateText="回复" ToolTip="回复" CommandArgument='<%#Eval("Assetmaintainid")%>' />
+                                <asp:ImageButton ID="ImageButton4" runat="server" ImageUrl="~/images/Button/edit.GIF"
+                                    AlternateText="确认" ToolTip="确认" CommandArgument='<%#Eval("Assetmaintainid")%>' />
                             </td>
                         </tr>
                     </ItemTemplate>
                     <AlternatingItemTemplate>
                         <tr class="alt-row">
-                            <td align="center">
-                                <%#Eval("Psid")%>
+                            <td>
+                                <%#Eval("Assetmaintainid")%>
                             </td>
                             <td>
-                                <%#((DateTime)Eval("Procurementscheduledate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                <%#Eval("Assetcategoryid")%>
                             </td>
                             <td>
                                 <%#Eval("Subcompany")%>
                             </td>
                             <td>
-                                <%#Eval("Applyuser")%>
+                                <%#Eval("Storageid")%>
                             </td>
                             <td>
                                 <%#((DateTime)Eval("Applydate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
-                             <td align="center">
-                                <%#Eval("Psid")%>
+                            <td>
+                                <%#Eval("Applyuserid")%>
                             </td>
-                           
+                            <td>
+                                <%#Eval("Applycontent")%>
+                            </td>
+                            <td>
+                                <%#EnumUtil.RetrieveEnumDescript((SetupState)Eval("Approveresult"))%>
+                            </td>
                             <td align="right">
                                 <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/images/Button/edit.GIF"
-                                    AlternateText="编辑" ToolTip="编辑" />
-                                      <asp:ImageButton ID="ImageButton3" runat="server" ImageUrl="~/images/Button/edit.GIF"
-                                    AlternateText="回复" ToolTip="回复" />
-                                 <asp:ImageButton ID="ImageButton4" runat="server" ImageUrl="~/images/Button/edit.GIF"
-                                    AlternateText="确认" ToolTip="确认" />
+                                    AlternateText="编辑" ToolTip="编辑" CommandArgument='<%#Eval("Assetmaintainid")%>' />
+                                <asp:ImageButton ID="ImageButton3" runat="server" ImageUrl="~/images/Button/edit.GIF"
+                                    AlternateText="回复" ToolTip="回复" CommandArgument='<%#Eval("Assetmaintainid")%>' />
+                                <asp:ImageButton ID="ImageButton4" runat="server" ImageUrl="~/images/Button/edit.GIF"
+                                    AlternateText="确认" ToolTip="确认" CommandArgument='<%#Eval("Assetmaintainid")%>' />
                             </td>
                         </tr>
                     </AlternatingItemTemplate>
@@ -157,10 +167,8 @@
                 <tr>
                     <td>
                     </td>
-                    <td colspan="6" style="height: 30px; width: 98%;">
-                        <%-- <cc1:PageChangeControl ID="pageControl" PageSize="10" runat="server" OnPageIndexClick="pageControl_PageIndexClick" />--%>
-                        <cc1:pagingcontrol ID="pcData" runat="server" MaxNavigatePageCount="7" 
-                            OnPageIndexClick="pcData_PageIndexClick" />
+                    <td colspan="8" style="height: 30px; width: 98%;">
+                        <cc1:PagingControl ID="pcData" runat="server" MaxNavigatePageCount="7" OnPageIndexClick="pcData_PageIndexClick" />
                     </td>
                 </tr>
             </table>
