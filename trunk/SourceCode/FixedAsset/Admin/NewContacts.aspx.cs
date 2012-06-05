@@ -49,6 +49,11 @@ namespace FixedAsset.Web.Admin
         {
             get { return new AssetcategoryService(); }
         }
+        protected IProcurementscheduledetailService ProcurementscheduledetailService
+        {
+            get { return new ProcurementscheduledetailService(); }
+        }
+
         protected List<Assetcategory> AssetCategories
         {
             get
@@ -199,9 +204,40 @@ namespace FixedAsset.Web.Admin
             }
             UIHelper.AlertMessageGoToURL(this.UpdatePanel1, "提交成功!", ResolveUrl("~/Admin/ContractList.aspx"));
         }
+
          protected void BtmImortAssets_Click(object sender,EventArgs e)
          {
              Response.Redirect(ResolveUrl(string.Format(@"~/Admin/ImportAssetFromContract.aspx?Contractid={0}", Contractid)));
+         }
+
+
+         protected void ucMultiSelectProcurePlans_SelectProcurePlanChange(object sender, EventArgs e)
+         {
+             List<string> psids = ucMultiSelectProcurePlans.PsIds;
+             if (psids != null && psids.Count > 0)
+             {
+                 foreach (string s in psids)
+                 {
+                   
+
+                    List<Procurementscheduledetail> procurementscheduledetails=ProcurementscheduledetailService.RetrieveProcurementscheduledetailListByPsid(s);
+
+                    foreach (Procurementscheduledetail procurementscheduledetail in procurementscheduledetails)
+                    {
+                        Procurementcontractdetail contractitem = new Procurementcontractdetail();
+                        contractitem.Assetcategoryid = procurementscheduledetail.Assetcategoryid;
+                        contractitem.CategoryAllPathName = procurementscheduledetail.CategoryAllPathName;
+                        contractitem.Assetname = procurementscheduledetail.Assetname;
+                        contractitem.Assetspecification = procurementscheduledetail.Assetspecification;
+                        contractitem.Procurenumber = procurementscheduledetail.Plannumber;
+                        contractitem.Unitprice = procurementscheduledetail.Unitprice;
+                        contractitem.Contractid = litPsid.Text.Trim();
+                        contractitem.Contractdetailid = Guid.NewGuid().ToString("N");
+                        ProcurementContractDetail.Add(contractitem);
+                    }
+                 }
+             }
+             LoadDetailList();
          }
 
         #region 明细
@@ -276,6 +312,7 @@ namespace FixedAsset.Web.Admin
                 ucApplydate.DateValue = headInfo.Createddate;
             }
         }
+
         protected void WriteControlValueToEntity(Procurementcontract headInfo)
         {
             headInfo.Contractid = litPsid.Text;
