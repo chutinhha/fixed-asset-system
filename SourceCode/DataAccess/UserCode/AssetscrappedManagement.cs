@@ -149,5 +149,70 @@ namespace FixedAsset.DataAccess
             }
         }
         #endregion
+
+        #region RetrieveAssetscrappedsRecord
+        public List<Assetscrapped> RetrieveAssetscrappedsRecord(AssetSearch info, int pageIndex, int pageSize, out int count)
+        {
+            try
+            {
+                StringBuilder sqlCommand = new StringBuilder(@" SELECT ""ASSET_SCRAPPED"".""ASSET_SCRAPPED_ID"",""ASSET_SCRAPPED"".""SCRAPPEDDATE"",""ASSET_SCRAPPED"".""SCRAPPEDUSER"",""ASSET_SCRAPPED"".""ASSETNO"",""ASSET_SCRAPPED"".""APPROVEUSER"",
+                     ""ASSET_SCRAPPED"".""APPROVEDATE"",""ASSET_SCRAPPED"".""REJECTREASON"",""ASSET_SCRAPPED"".""CREATEDDATE"",""ASSET_SCRAPPED"".""CREATOR"",""ASSET_SCRAPPED"".""APPROVEDSTATE"",""ASSET"".""ASSETNO"",""ASSET"".""ASSETCATEGORYID"" AS ASSETCATEGORYID,""ASSET"".""ASSETNAME"",""ASSET"".""STATE"",
+                     ""ASSET"".""DEPRECIATIONYEAR"",""ASSET"".""MANAGEMODE"",""ASSET"".""FINANCECATEGORY"",""ASSET"".""SUPPLIERID"",""ASSET"".""STORAGEFLAG"",""ASSET"".""PURCHASEDATE"",""ASSET"".""EXPIREDDATE""
+                     FROM ""ASSET_SCRAPPED"",""ASSET"" 
+                     WHERE ""ASSET"".""ASSETNO""=""ASSET_SCRAPPED"".""ASSETNO""");
+
+                if (!string.IsNullOrEmpty(info.Assetno))
+                {
+                    this.Database.AddInParameter(":Assetno", DbType.AnsiString, "%" + info.Assetno + "%");
+                    sqlCommand.AppendLine(@" AND ""ASSET"".""ASSETNO"" LIKE :Assetno");
+                }
+                if (!string.IsNullOrEmpty(info.Assetname))
+                {
+                    this.Database.AddInParameter(":Assetname", "%" + info.Assetname + "%");
+                    sqlCommand.AppendLine(@" AND ""ASSET"".""ASSETNAME"" LIKE :Assetname");
+                }
+                #region 资产分类
+                if (!string.IsNullOrEmpty(info.FirstLevelCategoryId))
+                {
+                    this.Database.AddInParameter(":Assetparentcategoryid", DbType.AnsiString, info.FirstLevelCategoryId);
+                    sqlCommand.AppendLine(@" AND ""ASSETCATEGORY"".""ASSETPARENTCATEGORYID"" = :Assetparentcategoryid");
+                }
+                if (!string.IsNullOrEmpty(info.Assetcategoryid))
+                {
+                    this.Database.AddInParameter(":Assetcategoryid", DbType.AnsiString, info.Assetcategoryid);
+                    sqlCommand.AppendLine(@" AND ""ASSET"".""ASSETCATEGORYID"" = :Assetcategoryid");
+                }
+                #endregion
+
+                if (info.StartPurchasedate.HasValue)
+                {
+                    this.Database.AddInParameter(":StartPurchasedate", info.StartPurchasedate.Value.Date);
+                    sqlCommand.AppendLine(@" AND ""ASSET"".""PURCHASEDATE"" >= :StartPurchasedate");
+                }
+                if (info.EndPurchasedate.HasValue)
+                {
+                    this.Database.AddInParameter(":EndPurchasedate", info.EndPurchasedate.Value.Date.AddDays(1).AddSeconds(-1));
+                    sqlCommand.AppendLine(@" AND ""ASSET"".""PURCHASEDATE"" <= :EndPurchasedate");
+                }
+                if (info.StartExpireddate.HasValue)
+                {
+                    this.Database.AddInParameter(":StartExpireddate", info.StartExpireddate.Value.Date);
+                    sqlCommand.AppendLine(@" AND ""ASSET"".""EXPIREDDATE"" >= :StartExpireddate");
+                }
+                if (info.EndExpireddate.HasValue)
+                {
+                    this.Database.AddInParameter(":EndExpireddate", info.EndExpireddate.Value.Date.AddDays(1).AddSeconds(-1));
+                    sqlCommand.AppendLine(@" AND ""ASSET"".""EXPIREDDATE"" <= :EndExpireddate");
+                }           
+                //sqlCommand.AppendLine(@"  ORDER BY ""ASSET_SCRAPPED"".""ASSET_SCRAPPED_ID"" DESC");
+                sqlCommand.AppendLine(@"  ORDER BY ""ASSET"".""EXPIREDDATE"" DESC");
+                return this.ExecuteReaderPaging<Assetscrapped>(sqlCommand.ToString(), pageIndex, pageSize, out count);
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
+        #endregion
     }
 }
