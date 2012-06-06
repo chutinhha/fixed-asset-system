@@ -88,17 +88,17 @@ namespace FixedAsset.Web.Admin
             DateTime dateTime = DateTime.MinValue;
             if (!ucProcurementscheduledate.DateValue.HasValue)
             {
-                UIHelper.Alert(UpdatePanel1, "请选择计划采购日期!");
+                UIHelper.Alert(this, "请选择计划采购日期!");
                 return;
             }
             if (string.IsNullOrEmpty(ucSubCompany.SubcompanyId))
             {
-                UIHelper.Alert(UpdatePanel1, "请选择分公司!");
+                UIHelper.Alert(this, "请选择分公司!");
                 return;
             }
             if (!ucApplydate.DateValue.HasValue)
             {
-                UIHelper.Alert(UpdatePanel1, "请选择申请日期!");
+                UIHelper.Alert(this, "请选择申请日期!");
                 return;
             }
             Procurementschedulehead headInfo = null;
@@ -113,34 +113,34 @@ namespace FixedAsset.Web.Admin
             {
                 //edit
                 headInfo = ProcurementscheduleheadService.RetrieveProcurementscheduleheadByPsid(Psid);
-                if (headInfo == null) { UIHelper.Alert(this.UpdatePanel1, "对不起，计划已被删除,请重新录入！"); return; }
+                if (headInfo == null) { UIHelper.Alert(this, "对不起，计划已被删除,请重新录入！"); return; }
                 WriteControlValueToEntity(headInfo);
                 headInfo.Approveresult = ApproveResult.Draft;
                 ProcurementscheduleheadService.UpdateProcurementscheduleheadByPsid(headInfo, ProcureScheduleDetails);
             }
-            UIHelper.AlertMessageGoToURL(this.UpdatePanel1, "保存成功!", ResolveUrl("~/Admin/ProcurePlanList.aspx"));
+            UIHelper.AlertMessageGoToURL(this, "保存成功!", ResolveUrl("~/Admin/ProcurePlanList.aspx"));
         }
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             DateTime dateTime = DateTime.MinValue;
             if (!ucProcurementscheduledate.DateValue.HasValue)
             {
-                UIHelper.Alert(UpdatePanel1, "请选择计划采购日期!");
+                UIHelper.Alert(this, "请选择计划采购日期!");
                 return;
             }
             if (string.IsNullOrEmpty(ucSubCompany.SubcompanyId))
             {
-                UIHelper.Alert(UpdatePanel1, "请选择分公司!");
+                UIHelper.Alert(this, "请选择分公司!");
                 return;
             }
             if (!ucApplydate.DateValue.HasValue)
             {
-                UIHelper.Alert(UpdatePanel1, "请选择申请日期!");
+                UIHelper.Alert(this, "请选择申请日期!");
                 return;
             }
             if (ProcureScheduleDetails.Count == 0)
             {
-                UIHelper.Alert(this.UpdatePanel1, "请录入采购计划明细！"); return;
+                UIHelper.Alert(this, "请录入采购计划明细！"); return;
             }
             Procurementschedulehead headInfo = null;
             if (string.IsNullOrEmpty(Psid))
@@ -155,12 +155,12 @@ namespace FixedAsset.Web.Admin
             {
                 //edit
                 headInfo = ProcurementscheduleheadService.RetrieveProcurementscheduleheadByPsid(Psid);
-                if (headInfo == null) { UIHelper.Alert(this.UpdatePanel1, "对不起，计划已被删除,请重新录入！"); return; }
+                if (headInfo == null) { UIHelper.Alert(this, "对不起，计划已被删除,请重新录入！"); return; }
                 WriteControlValueToEntity(headInfo);
                 headInfo.Approveresult = ApproveResult.Approving;
                 ProcurementscheduleheadService.UpdateProcurementscheduleheadByPsid(headInfo, ProcureScheduleDetails);
             }
-            UIHelper.AlertMessageGoToURL(this.UpdatePanel1, "提交成功!", ResolveUrl("~/Admin/ProcurePlanList.aspx"));
+            UIHelper.AlertMessageGoToURL(this, "提交成功!", ResolveUrl("~/Admin/ProcurePlanList.aspx"));
         }
 
         #region 明细
