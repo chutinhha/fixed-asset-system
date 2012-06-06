@@ -59,9 +59,13 @@ namespace FixedAsset.Web.Admin
             }
             if (e.CommandName.Equals("EditDetail"))
             {
-                var headInfo = ProcurementcontractService.RetrieveProcurementcontractByContractid(Contactid);
-                if (headInfo == null) { return; }
+                //var headInfo = ProcurementcontractService.RetrieveProcurementcontractByContractid(Contactid);
+                //if (headInfo == null) { return; }
                 Response.Redirect(ResolveUrl(string.Format("~/Admin/NewContacts.aspx?Contractid={0}", Contactid)));
+            }
+            if (e.CommandName.Equals("ViewDetail"))
+            {
+                Response.Redirect(ResolveUrl(string.Format("~/Admin/NewContacts.aspx?Contractid={0}", Contactid))); 
             }
         }
         #endregion

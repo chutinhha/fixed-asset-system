@@ -62,6 +62,8 @@
                                     AlternateText="编辑" ToolTip="编辑" CommandName="EditDetail" CommandArgument='<%#Eval("Contractid") %>' />
                                 <asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="~/images/Button/delete.GIF"
                                     OnClientClick="return confirm('确认要删除吗？');" AlternateText="删除" ToolTip="删除" CommandName="DeleteDetail"  CommandArgument='<%#Eval("Contractid") %>' />
+                                    <asp:ImageButton ID="BtnDetail" runat="server" ImageUrl="~/images/Button/detail.GIF"
+                                    AlternateText="详细信息" ToolTip="详细信息" CommandArgument='<%#Eval("Contractid")%>' CommandName="ViewDetail" />
                             </td>
                         </tr>
                     </ItemTemplate>
@@ -82,11 +84,12 @@
                             </td>
                            
                             <td align="right">
-                                <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/images/Button/edit.GIF"
+                               <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/images/Button/edit.GIF"
                                     AlternateText="编辑" ToolTip="编辑" CommandName="EditDetail" CommandArgument='<%#Eval("Contractid") %>' />
                                 <asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="~/images/Button/delete.GIF"
                                     OnClientClick="return confirm('确认要删除吗？');" AlternateText="删除" ToolTip="删除" CommandName="DeleteDetail"  CommandArgument='<%#Eval("Contractid") %>' />
-                            </td>
+                                    <asp:ImageButton ID="BtnDetail" runat="server" ImageUrl="~/images/Button/detail.GIF"
+                                    AlternateText="详细信息" ToolTip="详细信息" CommandArgument='<%#Eval("Contractid")%>' CommandName="ViewDetail" /></td>
                         </tr>
                     </AlternatingItemTemplate>
                 </asp:Repeater>
