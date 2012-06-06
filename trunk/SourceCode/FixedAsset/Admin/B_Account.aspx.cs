@@ -13,7 +13,7 @@ using SeallNet.Utility;
 
 namespace FixedAsset.Web.Admin
 {
-    public partial class B_Account : System.Web.UI.Page
+    public partial class B_Account : BasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -36,6 +36,14 @@ namespace FixedAsset.Web.Admin
             get
             {
                 return new AssetService();
+            }
+        }
+
+        protected IBaccountService BaccountService
+        {
+            get
+            {
+                return new BaccountService();
             }
         }
         protected List<Assetcategory> AssetCategories
@@ -87,6 +95,15 @@ namespace FixedAsset.Web.Admin
             }
         }
 
+        protected void rptB_Account_ItemCommand(object sender, RepeaterCommandEventArgs e)
+        {
+            var AssetNo = e.CommandArgument.ToString();
+           
+            if (e.CommandName.Equals("ViewDetail"))
+            {
+                Response.Redirect(ResolveUrl(string.Format("~/Admin/B_AccountView.aspx?AssetNo={0}", AssetNo)));
+            }
+        }
         protected void pcData_PageIndexClick(object sender, KFSQ.Web.Controls.PageIndexClickEventArgs e)
         {
             LoadData(e.PageIndex);
@@ -210,6 +227,22 @@ namespace FixedAsset.Web.Admin
                         assetInfo.Financecategory = Domain.FinanceCategory.BAccount;
                         assetInfo.Assetno = check.Value;
                         AssetService.UpdateFinancecategoryByAssetno(assetInfo);
+                        Domain.Baccount baccount = new Baccount();
+                        baccount.Accounteddate = DateTime.Now;
+                        baccount.Accounteduser = WebContext.Current.CurrentUser.Username;
+                        baccount.Assetno = check.Value;
+                        baccount.Assetname = AssetService.RetrieveAllAsset().Where(p => p.Assetno.ToString().Equals(check.Value.ToString())).Select(o => o.Assetname).FirstOrDefault();
+                        baccount.Createddate = DateTime.Now;
+                        baccount.Createduser = WebContext.Current.CurrentUser.Username;
+                       Baccount baccountInfo=BaccountService.RetrieveBaccountByAssetno(baccount.Assetno);
+                       if (baccountInfo == null)
+                       {
+                           BaccountService.CreateBaccount(baccount);
+                       }
+                       else
+                       {
+                           BaccountService.UpdateBaccountByAssetno(baccount);
+                       }
                         UIHelper.Alert(this, "转入B账成功");
                     }
                     else

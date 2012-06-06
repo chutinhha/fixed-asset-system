@@ -52,7 +52,7 @@
                 </tr>
                 <tr>
                     <td>
-                        入账日期
+                        购入日期
                     </td>
                     <td>
                         <uc1:DatePicker ID="ucStartPurchasedate" runat="server" />
@@ -75,11 +75,12 @@
             </table>
             <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
                 align="center">
-                <asp:Repeater ID="rptB_Account" runat="server" OnItemDataBound="rptB_Account_ItemDataBound">
+                <asp:Repeater ID="rptB_Account" runat="server" OnItemDataBound="rptB_Account_ItemDataBound"
+                 OnItemCommand="rptB_Account_ItemCommand">
                     <HeaderTemplate>
                         <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
-                            <td style="width: 10%">
-                                <input type="checkbox" id="chkAll" />全选/反选
+                            <td style="width: 5%" align="center">
+                                <input type="checkbox" id="chkAll"  title="全选/反选"/>
                             </td>
                             <td align="center" style="width: 12%">
                                 设备编号
@@ -106,10 +107,13 @@
                                 管理模式
                             </td>
                             <td style="width: 8%">
-                                入账日期
+                                购入日期
                             </td>
                             <td style="width: 10%">
                                 预计折旧日期
+                            </td>
+                             <td align="center" style="width: 5%">
+                                操作
                             </td>
                         </tr>
                     </HeaderTemplate>
@@ -121,32 +125,40 @@
                             <td align="center">
                                 <%#Eval("Assetno")%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <asp:Literal ID="litCategoryName" runat="server" />
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#Eval("Assetname")%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#EnumUtil.RetrieveEnumDescript((AssetState)Eval("State"))%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#Eval("Depreciationyear")%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <asp:Literal ID="LitSupplierName" runat="server" />
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#EnumUtil.RetrieveEnumDescript((FinanceCategory)Eval("Financecategory"))%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#EnumUtil.RetrieveEnumDescript((ManageMode)Eval("Managemode"))%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#((DateTime)Eval("Purchasedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#((DateTime)Eval("Expireddate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                            </td>
+                             <td align="center">
+                                 <%-- <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/images/Button/edit.GIF"
+                                    AlternateText="编辑" ToolTip="编辑" CommandName="EditDetail" CommandArgument='<%#Eval("Contractid") %>' />
+                                <asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="~/images/Button/delete.GIF"
+                                    OnClientClick="return confirm('确认要删除吗？');" AlternateText="删除" ToolTip="删除" CommandName="DeleteDetail"  CommandArgument='<%#Eval("Contractid") %>' />--%>
+                                    <asp:ImageButton ID="BtnDetail" runat="server" ImageUrl="~/images/Button/detail.GIF"
+                                    AlternateText="详细信息" ToolTip="详细信息" CommandArgument='<%#Eval("Assetno")%>' CommandName="ViewDetail" />
                             </td>
                         </tr>
                     </ItemTemplate>
@@ -158,32 +170,40 @@
                             <td align="center">
                                 <%#Eval("Assetno")%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <asp:Literal ID="litCategoryName" runat="server" />
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#Eval("Assetname")%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#EnumUtil.RetrieveEnumDescript((AssetState)Eval("State"))%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#Eval("Depreciationyear")%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <asp:Literal ID="LitSupplierName" runat="server" />
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#EnumUtil.RetrieveEnumDescript((FinanceCategory)Eval("Financecategory"))%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#EnumUtil.RetrieveEnumDescript((ManageMode)Eval("Managemode"))%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#((DateTime)Eval("Purchasedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#((DateTime)Eval("Expireddate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                            </td>
+                             <td align="center">
+                                 <%-- <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/images/Button/edit.GIF"
+                                    AlternateText="编辑" ToolTip="编辑" CommandName="EditDetail" CommandArgument='<%#Eval("Contractid") %>' />
+                                <asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="~/images/Button/delete.GIF"
+                                    OnClientClick="return confirm('确认要删除吗？');" AlternateText="删除" ToolTip="删除" CommandName="DeleteDetail"  CommandArgument='<%#Eval("Contractid") %>' />--%>
+                                    <asp:ImageButton ID="BtnDetail" runat="server" ImageUrl="~/images/Button/detail.GIF"
+                                    AlternateText="详细信息" ToolTip="详细信息" CommandArgument='<%#Eval("Assetno")%>' CommandName="ViewDetail" />
                             </td>
                         </tr>
                     </AlternatingItemTemplate>
