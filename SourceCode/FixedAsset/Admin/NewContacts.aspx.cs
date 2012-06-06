@@ -136,12 +136,12 @@ namespace FixedAsset.Web.Admin
             DateTime dateTime = DateTime.MinValue;
             if (!ucContactscheduledate.DateValue.HasValue)
             {
-                UIHelper.Alert(this.UpdatePanel1, "请选择合同签订日期!");
+                UIHelper.Alert(this, "请选择合同签订日期!");
                 return;
             }
             if (!ucApplydate.DateValue.HasValue)
             {
-                UIHelper.Alert(this.UpdatePanel1, "请选择创建日期!");
+                UIHelper.Alert(this, "请选择创建日期!");
                 return;
             }
 
@@ -157,11 +157,11 @@ namespace FixedAsset.Web.Admin
             {
                 //edit
                 headInfo = ProcurementcontractService.RetrieveProcurementcontractByContractid(Contractid);
-                if (headInfo == null) { UIHelper.Alert(this.UpdatePanel1, "对不起，合同已被删除,请重新录入！"); return; }
+                if (headInfo == null) { UIHelper.Alert(this, "对不起，合同已被删除,请重新录入！"); return; }
                 WriteControlValueToEntity(headInfo);
                 ProcurementcontractService.UpdateProcurementcontractByContractid(headInfo, ProcurementContractDetail);
             }
-            UIHelper.AlertMessageGoToURL(this.UpdatePanel1, "保存成功!", ResolveUrl("~/Admin/ContractList.aspx"));
+            UIHelper.AlertMessageGoToURL(this, "保存成功!", ResolveUrl("~/Admin/ContractList.aspx"));
         }
 
         /// <summary>
@@ -174,17 +174,17 @@ namespace FixedAsset.Web.Admin
             DateTime dateTime = DateTime.MinValue;
             if (!ucContactscheduledate.DateValue.HasValue)
             {
-                UIHelper.Alert(this.UpdatePanel1, "请选择合同签订日期!");
+                UIHelper.Alert(this, "请选择合同签订日期!");
                 return;
             }
             if (!ucApplydate.DateValue.HasValue)
             {
-                UIHelper.Alert(this.UpdatePanel1, "请选择创建日期!");
+                UIHelper.Alert(this, "请选择创建日期!");
                 return;
             }
             if (ProcurementContractDetail.Count == 0)
             {
-                UIHelper.Alert(this.UpdatePanel1, "请录入合同明细！"); return;
+                UIHelper.Alert(this, "请录入合同明细！"); return;
             }
             Procurementcontract headInfo = null;
             if (string.IsNullOrEmpty(Contractid))
@@ -198,11 +198,11 @@ namespace FixedAsset.Web.Admin
             {
                 //edit
                 headInfo = ProcurementcontractService.RetrieveProcurementcontractByContractid(Contractid);
-                if (headInfo == null) { UIHelper.Alert(this.UpdatePanel1, "对不起，合同已被删除,请重新录入！"); return; }
+                if (headInfo == null) { UIHelper.Alert(this, "对不起，合同已被删除,请重新录入！"); return; }
                 WriteControlValueToEntity(headInfo);
                 ProcurementcontractService.UpdateProcurementcontractByContractid(headInfo, ProcurementContractDetail);
             }
-            UIHelper.AlertMessageGoToURL(this.UpdatePanel1, "提交成功!", ResolveUrl("~/Admin/ContractList.aspx"));
+            UIHelper.AlertMessageGoToURL(this, "提交成功!", ResolveUrl("~/Admin/ContractList.aspx"));
         }
 
          protected void BtmImortAssets_Click(object sender,EventArgs e)
@@ -218,10 +218,7 @@ namespace FixedAsset.Web.Admin
              {
                  foreach (string s in psids)
                  {
-                   
-
                     List<Procurementscheduledetail> procurementscheduledetails=ProcurementscheduledetailService.RetrieveProcurementscheduledetailListByPsid(s);
-
                     foreach (Procurementscheduledetail procurementscheduledetail in procurementscheduledetails)
                     {
                         Procurementcontractdetail contractitem = new Procurementcontractdetail();
