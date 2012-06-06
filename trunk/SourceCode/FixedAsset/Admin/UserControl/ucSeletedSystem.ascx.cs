@@ -57,6 +57,10 @@ namespace FixedAsset.Web.Admin.UserControl
             if (ddlSystemList.SelectedIndex >= 0)
             {
                 Assetcategoryid = ddlSystemList.SelectedValue;
+                if (SelectedAssetCategoryChange != null)
+                {
+                    SelectedAssetCategoryChange(this, new EventArgs());
+                }
             }
         }
         #endregion
