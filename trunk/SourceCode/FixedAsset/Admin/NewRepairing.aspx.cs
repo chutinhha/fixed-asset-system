@@ -49,6 +49,10 @@ namespace FixedAsset.Web.Admin
         {
             get { return new AssetcategoryService(); }
         }
+        protected IAssetService AssetService
+        {
+            get { return new AssetService(); }
+        }
         protected List<Assetcategory> AssetCategories
         {
             get
@@ -165,6 +169,14 @@ namespace FixedAsset.Web.Admin
         protected void ucSeletedSystem_SelectedAssetCategoryChange(object sender,EventArgs e)
         {
             ucSelectedMultiAssets.AssetCategoryId = ucSeletedSystem.Assetcategoryid;
+        }
+        protected void ucSelectedMultiAssets_SelectAssetChange(object sender,EventArgs e)
+        {
+            if(ucSelectedMultiAssets.AssetIds.Count>0)
+            {
+                var currentAssetInfos = AssetService.RetrieveAssetByAssetno(ucSelectedMultiAssets.AssetIds);
+                if(currentAssetInfos.Count>0){}
+            }
         }
         #region 明细
         protected void BtnRefreshDetail_Click(object sender, EventArgs e)
