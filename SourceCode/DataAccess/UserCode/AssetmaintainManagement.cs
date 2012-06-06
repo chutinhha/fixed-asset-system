@@ -74,13 +74,18 @@ namespace FixedAsset.DataAccess
         {
             try
             {
-                StringBuilder sqlCommand = new StringBuilder(@" SELECT ""ASSETMAINTAIN"".""ASSETMAINTAINID"",""ASSETMAINTAIN"".""ASSETCATEGORYID"",""ASSETMAINTAIN"".""MAINTAINTYPE"",""ASSETMAINTAIN"".""APPLYDATE"",""ASSETMAINTAIN"".""APPLYUSERID"",
-                     ""ASSETMAINTAIN"".""APPLYCONTENT"",""ASSETMAINTAIN"".""APPROVEUSER"",""ASSETMAINTAIN"".""APPROVEDATE"",""ASSETMAINTAIN"".""APPROVERESULT"",""ASSETMAINTAIN"".""REJECTREASON"",
-                     ""ASSETMAINTAIN"".""PLANMAINTAINDATE"",""ASSETMAINTAIN"".""ACTUALMAINTAINDATE"",""ASSETMAINTAIN"".""CONFIRMDATE"",""ASSETMAINTAIN"".""CONFIRMUSER"",""ASSETMAINTAIN"".""MAINTAINCONTENT"",
-                     ""ASSETMAINTAIN"".""STORAGETITLE"",""ASSETMAINTAIN"".""STORAGEID"",""ASSETMAINTAIN"".""SUBCOMPANY"",""ASSETMAINTAIN"".""SUBCOMPANYCONTACTORID"",""ASSETMAINTAIN"".""CONTACTPHONE"",
-                     ""ASSETMAINTAIN"".""PROJECTCONTACTORID"",""ASSETMAINTAIN"".""PROJECTCONTACTORPHONE"",""ASSETMAINTAIN"".""CREATOR"",""ASSETMAINTAIN"".""CREATEDDATE""
-                     FROM ""ASSETMAINTAIN"" 
+                StringBuilder sqlCommand = new StringBuilder(@" SELECT ""ASSETMAINTAIN"".""ASSETMAINTAINID"",""ASSETMAINTAIN"".""ASSETCATEGORYID"",""ASSETMAINTAIN"".""MAINTAINTYPE""
+                                                                      ,""ASSETMAINTAIN"".""APPLYDATE"",""ASSETMAINTAIN"".""APPLYUSERID"",""ASSETMAINTAIN"".""APPLYCONTENT"",""ASSETMAINTAIN"".""APPROVEUSER""
+                                                                      ,""ASSETMAINTAIN"".""APPROVEDATE"",""ASSETMAINTAIN"".""APPROVERESULT"",""ASSETMAINTAIN"".""REJECTREASON"",""ASSETMAINTAIN"".""PLANMAINTAINDATE""
+                                                                      ,""ASSETMAINTAIN"".""ACTUALMAINTAINDATE"",""ASSETMAINTAIN"".""CONFIRMDATE"",""ASSETMAINTAIN"".""CONFIRMUSER"",""ASSETMAINTAIN"".""MAINTAINCONTENT""
+                                                                      ,""ASSETMAINTAIN"".""STORAGETITLE"",""ASSETMAINTAIN"".""STORAGEID"",""ASSETMAINTAIN"".""SUBCOMPANY"",""ASSETMAINTAIN"".""SUBCOMPANYCONTACTORID""
+                                                                      ,""ASSETMAINTAIN"".""CONTACTPHONE"", ""ASSETMAINTAIN"".""PROJECTCONTACTORID"",""ASSETMAINTAIN"".""PROJECTCONTACTORPHONE""
+                                                                      ,""ASSETMAINTAIN"".""CREATOR"",""ASSETMAINTAIN"".""CREATEDDATE""
+                                                                      ,SYSTEM,c.StorageName,c.subcompanyname
+                     FROM ASSETMAINTAIN inner join assetsupplier ON ASSETMAINTAIN.ASSETCATEGORYID=assetsupplier.ASSETCATEGORYID
+                     Inner join  v_storage_address c on c.StorageTitle=ASSETMAINTAIN.STORAGETITLE and c.StorageId=ASSETMAINTAIN.STORAGEID
                      WHERE 1=1");
+
                 #region 维修单编号
                 if (!string.IsNullOrEmpty(info.Assetmaintainid))
                 {
@@ -117,6 +122,7 @@ namespace FixedAsset.DataAccess
                     sqlCommand.AppendLine(@" AND ""ASSETMAINTAIN"".""APPLYDATE"" <= :EndApplydate");
                 }
                 #endregion
+
                 #region 申请人
                 if (!string.IsNullOrEmpty(info.Applyuserid))
                 {
@@ -124,13 +130,15 @@ namespace FixedAsset.DataAccess
                     sqlCommand.AppendLine(@" AND ""ASSETMAINTAIN"".""APPLYUSERID"" LIKE :Applyuserid");
                 }
                 #endregion
+
                 #region 申请内容
                 if (!string.IsNullOrEmpty(info.Applycontent))
                 {
-                    this.Database.AddInParameter(":Applycontent", "%"+info.Applycontent+"%");
+                    this.Database.AddInParameter(":Applycontent", "%" + info.Applycontent + "%");
                     sqlCommand.AppendLine(@" AND ""ASSETMAINTAIN"".""APPLYCONTENT"" LIKE :Applycontent");
                 }
                 #endregion
+
                 #region 审核人
                 if (!string.IsNullOrEmpty(info.Approveuser))
                 {
@@ -138,6 +146,7 @@ namespace FixedAsset.DataAccess
                     sqlCommand.AppendLine(@" AND ""ASSETMAINTAIN"".""APPROVEUSER"" LIKE :Approveuser");
                 }
                 #endregion
+
                 #region 审核日期
                 if (info.StartApprovedate.HasValue)
                 {
@@ -150,6 +159,7 @@ namespace FixedAsset.DataAccess
                     sqlCommand.AppendLine(@" AND ""ASSETMAINTAIN"".""APPROVEDATE"" <= :EndApprovedate");
                 }
                 #endregion
+
                 #region 拒绝理由
                 if (!string.IsNullOrEmpty(info.Rejectreason))
                 {
@@ -157,6 +167,7 @@ namespace FixedAsset.DataAccess
                     sqlCommand.AppendLine(@" AND ""ASSETMAINTAIN"".""REJECTREASON"" LIKE :Rejectreason");
                 }
                 #endregion
+
                 #region 计划维修日期
                 if (info.StartPlanmaintaindate.HasValue)
                 {
@@ -169,6 +180,7 @@ namespace FixedAsset.DataAccess
                     sqlCommand.AppendLine(@" AND ""ASSETMAINTAIN"".""PLANMAINTAINDATE"" <= :EndPlanmaintaindate");
                 }
                 #endregion
+
                 #region 实际维修日期
                 if (info.StartActualmaintaindate.HasValue)
                 {
@@ -181,6 +193,7 @@ namespace FixedAsset.DataAccess
                     sqlCommand.AppendLine(@" AND ""ASSETMAINTAIN"".""ACTUALMAINTAINDATE"" <= :EndActualmaintaindate");
                 }
                 #endregion
+
                 #region 确认日期
                 if (info.StartConfirmdate.HasValue)
                 {
@@ -193,6 +206,7 @@ namespace FixedAsset.DataAccess
                     sqlCommand.AppendLine(@" AND ""ASSETMAINTAIN"".""CONFIRMDATE"" <= :EndConfirmdate");
                 }
                 #endregion
+
                 #region 确认人
                 if (!string.IsNullOrEmpty(info.Confirmuser))
                 {
@@ -200,27 +214,25 @@ namespace FixedAsset.DataAccess
                     sqlCommand.AppendLine(@" AND ""ASSETMAINTAIN"".""CONFIRMUSER"" LIKE :Confirmuser");
                 }
                 #endregion
+
                 #region 已维修明细
                 if (!string.IsNullOrEmpty(info.Maintaincontent))
                 {
                     this.Database.AddInParameter(":Maintaincontent", "%"+info.Maintaincontent+"%");
                     sqlCommand.AppendLine(@" AND ""ASSETMAINTAIN"".""MAINTAINCONTENT"" LIKE :Maintaincontent");
                 }
-                #endregion
-                #region 区分字段：分公司或项目体
-                if (!string.IsNullOrEmpty(info.Storagetitle))
-                {
-                    this.Database.AddInParameter(":Storagetitle",DbType.AnsiString,"%"+info.Storagetitle+"%");
-                    sqlCommand.AppendLine(@" AND ""ASSETMAINTAIN"".""STORAGETITLE"" LIKE :Storagetitle");
-                }
-                #endregion
+                #endregion  
+
                 #region 项目体ID或分公司ID
-                if (!string.IsNullOrEmpty(info.Storageid))
+                if (!string.IsNullOrEmpty(info.Storageid)&&!string.IsNullOrEmpty(info.Storagetitle))
                 {
-                    this.Database.AddInParameter(":Storageid",DbType.AnsiString,"%"+info.Storageid+"%");
-                    sqlCommand.AppendLine(@" AND ""ASSETMAINTAIN"".""STORAGEID"" LIKE :Storageid");
+                    this.Database.AddInParameter(":Storagetitle", DbType.AnsiString, info.Storagetitle);
+                    sqlCommand.AppendLine(@" AND ""ASSETMAINTAIN"".""STORAGETITLE"" = :Storagetitle");
+                    this.Database.AddInParameter(":Storageid",DbType.AnsiString,info.Storageid);
+                    sqlCommand.AppendLine(@" AND ""ASSETMAINTAIN"".""STORAGEID"" = :Storageid");
                 }
                 #endregion
+
                 #region 分公司
                 if (!string.IsNullOrEmpty(info.Subcompany))
                 {
@@ -228,6 +240,7 @@ namespace FixedAsset.DataAccess
                     sqlCommand.AppendLine(@" AND ""ASSETMAINTAIN"".""SUBCOMPANY"" LIKE :Subcompany");
                 }
                 #endregion
+
                 #region 分公司联系人
                 if (!string.IsNullOrEmpty(info.Subcompanycontactorid))
                 {
@@ -235,6 +248,7 @@ namespace FixedAsset.DataAccess
                     sqlCommand.AppendLine(@" AND ""ASSETMAINTAIN"".""SUBCOMPANYCONTACTORID"" LIKE :Subcompanycontactorid");
                 }
                 #endregion
+
                 #region 联系电话
                 if (!string.IsNullOrEmpty(info.Contactphone))
                 {
@@ -242,6 +256,7 @@ namespace FixedAsset.DataAccess
                     sqlCommand.AppendLine(@" AND ""ASSETMAINTAIN"".""CONTACTPHONE"" LIKE :Contactphone");
                 }
                 #endregion
+
                 #region 项目体联系人
                 if (!string.IsNullOrEmpty(info.Projectcontactorid))
                 {
@@ -249,6 +264,7 @@ namespace FixedAsset.DataAccess
                     sqlCommand.AppendLine(@" AND ""ASSETMAINTAIN"".""PROJECTCONTACTORID"" LIKE :Projectcontactorid");
                 }
                 #endregion
+
                 #region 项目体联系电话
                 if (!string.IsNullOrEmpty(info.Projectcontactorphone))
                 {
@@ -256,6 +272,7 @@ namespace FixedAsset.DataAccess
                     sqlCommand.AppendLine(@" AND ""ASSETMAINTAIN"".""PROJECTCONTACTORPHONE"" LIKE :Projectcontactorphone");
                 }
                 #endregion
+
                 #region 创建人
                 if (!string.IsNullOrEmpty(info.Creator))
                 {

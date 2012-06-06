@@ -6,6 +6,8 @@
 <%@ Register Assembly="KFSQ.Web.Controls" Namespace="KFSQ.Web.Controls" TagPrefix="cc1" %>
 <%@ Register Assembly="iKC.Web" Namespace="iKC.Web.UI.WebControls" TagPrefix="asp" %>
 <%@ Register Src="~/Admin/UserControl/ucDatePicker.ascx" TagName="DatePicker" TagPrefix="uc1" %>
+<%@ Register Src="~/Admin/UserControl/ucSelectProject.ascx" TagName="SelectProject"
+    TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
@@ -27,18 +29,8 @@
                         项目体
                     </td>
                     <td>
-                        <asp:DropDownList ID="ddlProjects" runat="server" Width="150">
-                        </asp:DropDownList>
+                        <uc1:SelectProject ID="ucSelectProject" runat="server" />
                     </td>
-                    <%--<td>
-                        状态
-                    </td>
-                    <td>
-                        <asp:DropDownList ID="ddlStatus" runat="server" Width="150px">
-                            <asp:ListItem>待维修</asp:ListItem>
-                            <asp:ListItem>已维修</asp:ListItem>
-                        </asp:DropDownList>
-                    </td>--%>
                 </tr>
                 <tr>
                     <td>
@@ -97,13 +89,13 @@
                                 <%#Eval("Assetmaintainid")%>
                             </td>
                             <td>
-                                <%#Eval("Assetcategoryid")%>
+                                <%#Eval("System")%>
                             </td>
                             <td>
-                                <%#Eval("Subcompany")%>
+                                <%#Eval("Subcompanyname")%>
                             </td>
                             <td>
-                                <%#Eval("Storageid")%>
+                                <%#Eval("Subcompanyname").ToString() == Eval("Storagename").ToString() ? string.Empty : Eval("Storagename").ToString()%>
                             </td>
                             <td>
                                 <%#((DateTime)Eval("Applydate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
@@ -133,13 +125,13 @@
                                 <%#Eval("Assetmaintainid")%>
                             </td>
                             <td>
-                                <%#Eval("Assetcategoryid")%>
+                                <%#Eval("System")%>
                             </td>
                             <td>
-                                <%#Eval("Subcompany")%>
+                                <%#Eval("Subcompanyname")%>
                             </td>
                             <td>
-                                <%#Eval("Storageid")%>
+                                <%#Eval("Subcompanyname").ToString() == Eval("Storagename").ToString() ? string.Empty : Eval("Storagename").ToString()%>
                             </td>
                             <td>
                                 <%#((DateTime)Eval("Applydate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>

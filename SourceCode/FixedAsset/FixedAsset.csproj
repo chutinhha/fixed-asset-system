@@ -319,6 +319,13 @@
     <Compile Include="Admin\Role_List.aspx.designer.cs">
       <DependentUpon>Role_List.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\ScrappedApproved.aspx.cs">
+      <DependentUpon>ScrappedApproved.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ScrappedApproved.aspx.designer.cs">
+      <DependentUpon>ScrappedApproved.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\SelectedMultiAssets.aspx.cs">
       <DependentUpon>SelectedMultiAssets.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -555,6 +562,7 @@
     <Content Include="Admin\Role_Add.aspx" />
     <Content Include="Admin\Role_AddRight.aspx" />
     <Content Include="Admin\Role_List.aspx" />
+    <Content Include="Admin\ScrappedApproved.aspx" />
     <Content Include="Admin\SelectedMultiAssets.aspx" />
     <Content Include="Admin\SelectSingleProject.aspx" />
     <Content Include="Admin\ShowAssetDetail.aspx" />

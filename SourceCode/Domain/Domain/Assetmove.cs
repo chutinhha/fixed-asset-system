@@ -30,6 +30,12 @@ namespace FixedAsset.Domain
         ///ColumnName:(系统)设备大类;Size:40;
         ///</summary>
         public string Assetcategoryid{  get;set;}
+        #region 对应系统
+        ///<summary>
+        ///ColumnName:对应系统;Size:80;
+        ///</summary>
+        public string System { get; set; }
+        #endregion
         #endregion
 
         #region 申请移机日期

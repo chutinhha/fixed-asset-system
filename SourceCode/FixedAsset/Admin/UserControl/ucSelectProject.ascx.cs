@@ -118,6 +118,28 @@ namespace FixedAsset.Web.Admin.UserControl
         {
             if (!string.IsNullOrEmpty(hfStorageAddress.Value))
             {
+                var list = PageUtility.SplitToStrings(hfStorageAddress.Value);
+                if (list.Count == 5)
+                {
+                    this.Storagetitle = list[0];
+                    this.Subcompanyid = list[1];
+                    this.Subcompanyname = list[2];
+                    this.StorageId = list[3];
+                    this.Storagename = list[4];
+                }
+                else if (list.Count == 3)
+                {
+                    this.Storagetitle = list[0];
+                    this.Subcompanyid = list[1];
+                    this.Subcompanyname = list[2];
+                    this.StorageId = list[1];
+                    this.Storagename = list[2];
+                }
+                //content.Append(ucSelectProjectForTree.Storagetitle).Append(",");
+                //content.Append(ucSelectProjectForTree.Subcompanyid).Append(",");
+                //content.Append(ucSelectProjectForTree.Subcompanyname).Append(",");
+                //content.Append(ucSelectProjectForTree.StorageId).Append(",");
+                //content.Append(ucSelectProjectForTree.Storagename);
                 LoadData();
             }
         }
