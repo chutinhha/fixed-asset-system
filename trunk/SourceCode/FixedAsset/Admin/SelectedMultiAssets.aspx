@@ -96,7 +96,7 @@
                 </asp:Repeater>
                 <tr>
                     <td colspan="4" style="height: 30px; width: 790px;">
-                        <cc1:PagingControl ID="pcData" runat="server" MaxNavigatePageCount="7" OnPageIndexClick="pcData_PageIndexClick" />
+                        <cc1:PagingControl ID="pcData" runat="server" MaxNavigatePageCount="7" OnPageIndexClick="pcData_PageIndexClick" PageSize="10" />
                     </td>
                 </tr>
             </table>

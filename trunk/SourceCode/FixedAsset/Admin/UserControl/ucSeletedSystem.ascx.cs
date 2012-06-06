@@ -11,13 +11,26 @@ namespace FixedAsset.Web.Admin.UserControl
         {
             get
             {
-                if (ViewState["Assetcategoryid"] == null)
+                if(ddlSystemList.SelectedIndex>=0)
                 {
-                    ViewState["Assetcategoryid"] = string.Empty;
+                    return ddlSystemList.SelectedValue;
                 }
-                return ViewState["Assetcategoryid"].ToString();
+                else
+                {
+                    return string.Empty;
+                }
             }
-            set { ViewState["Assetcategoryid"] = value; }
+            set
+            {
+                for (int i = 0; i < ddlSystemList.Items.Count; i++)
+                {
+                      if(ddlSystemList.Items[i].Value.Equals(value))
+                      {
+                          ddlSystemList.SelectedIndex = i;
+                          break;
+                      }
+                }
+            }
         }
         protected IAssetsupplierService AssetsupplierService
         {
@@ -33,7 +46,10 @@ namespace FixedAsset.Web.Admin.UserControl
             if (!IsPostBack)
             {
                 LoadData();
-                if(SelectedAssetCategoryChange!=null){SelectedAssetCategoryChange(this,new EventArgs());}
+                if(SelectedAssetCategoryChange!=null)
+                {
+                    SelectedAssetCategoryChange(this,new EventArgs());
+                }
             }
         }
         protected void ddlSystemList_SelectedIndexChanged(object sender, EventArgs e)
@@ -51,7 +67,8 @@ namespace FixedAsset.Web.Admin.UserControl
             ddlSystemList.DataSource = list;
             ddlSystemList.DataTextField = @"System";
             ddlSystemList.DataValueField = @"Assetcategoryid";
-            ddlSystemList.DataBind(); 
+            ddlSystemList.DataBind();
+            ddlSystemList.SelectedIndex = 0;
         }
     }
 }
