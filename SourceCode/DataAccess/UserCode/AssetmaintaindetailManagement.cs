@@ -186,8 +186,8 @@ namespace FixedAsset.DataAccess
                 #region …Ë±∏±‡∫≈
                 if (!string.IsNullOrEmpty(info.Assetno))
                 {
-                    this.Database.AddInParameter(":Assetno",DbType.AnsiString,"%"+info.Assetno+"%");
-                    sqlCommand.AppendLine(@" AND ""ASSETMAINTAINDETAIL"".""ASSETNO"" LIKE :Assetno");
+                    this.Database.AddInParameter(":Assetno", DbType.AnsiString, info.Assetno);
+                    sqlCommand.AppendLine(@" AND ""ASSETMAINTAINDETAIL"".""ASSETNO"" = :Assetno");
                 }
                 #endregion
 

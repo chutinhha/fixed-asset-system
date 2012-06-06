@@ -139,39 +139,39 @@ namespace FixedAsset.Web.Admin {
         protected global::System.Web.UI.WebControls.Literal litFinancecategory;
         
         /// <summary>
-        /// txtAblityExplanation 控件。
+        /// rptSetupList 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txtAblityExplanation;
+        protected global::System.Web.UI.WebControls.Repeater rptSetupList;
         
         /// <summary>
-        /// txtAblityIntroduce 控件。
+        /// rptRepairList 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txtAblityIntroduce;
+        protected global::System.Web.UI.WebControls.Repeater rptRepairList;
         
         /// <summary>
-        /// txtAbilityDemo 控件。
+        /// rptMoveList 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txtAbilityDemo;
+        protected global::System.Web.UI.WebControls.Repeater rptMoveList;
         
         /// <summary>
-        /// txtablity_REMARK 控件。
+        /// rptRemoveList 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txtablity_REMARK;
+        protected global::System.Web.UI.WebControls.Repeater rptRemoveList;
     }
 }
