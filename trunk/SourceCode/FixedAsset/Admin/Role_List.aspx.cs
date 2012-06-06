@@ -70,6 +70,10 @@ namespace FixedAsset.Web.Admin
             {
                 Response.Redirect(ResolveUrl(string.Format("~/Admin/Role_AddRight.aspx?roleId={0}", roleId)));
             }
+            if(e.CommandName.Equals("ViewDetail"))
+            {
+                Response.Redirect(ResolveUrl(string.Format("~/Admin/Role_View.aspx?roleId={0}", roleId)));
+            }
         }
         #endregion
 
@@ -77,28 +81,7 @@ namespace FixedAsset.Web.Admin
         protected void LoadData(int pageIndex)
         {
             RoleinfoSearch search = new RoleinfoSearch();
-            //search.Roleid = txtSrchRoleid.Text;//角色ID
             search.Rolename = txtSrchRolename.Text;//角色名
-            //search.Description = txtSrchDescription.Text;//角色描述
-            //if (ucSrchStartCreateddate.DateValue.HasValue)
-            //{
-            //    search.StartCreateddate = ucSrchStartCreateddate.DateValue.Value;//创建时间
-            //}
-            //if (ucSrchEndCreateddate.DateValue.HasValue)
-            //{
-            //    search.EndCreateddate = ucSrchEndCreateddate.DateValue.Value;//创建时间
-            //}
-            //search.Creator = txtSrchCreator.Text;//创建者
-            //if (ucSrchStartLastmodifieddate.DateValue.HasValue)
-            //{
-            //    search.StartLastmodifieddate = ucSrchStartLastmodifieddate.DateValue.Value;//最近修改时间
-            //}
-            //if (ucSrchEndLastmodifieddate.DateValue.HasValue)
-            //{
-            //    search.EndLastmodifieddate = ucSrchEndLastmodifieddate.DateValue.Value;//最近修改时间
-            //}
-            //search.Lstmofifiedby = txtSrchLstmofifiedby.Text;//最近修改者
-            
             int recordCount = 0;
             var list = this.RoleinfoService.RetrieveRoleinfosPaging(search, pageIndex, pcData.PageSize, out recordCount);
             rptRoleList.DataSource = list;
