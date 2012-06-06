@@ -149,16 +149,176 @@
                     </p>
                     <div id="tagContent">
                         <div id="dapi" style="display: block;">
-                            <asp:Label ID="txtAblityExplanation" runat="server" Text=""></asp:Label>
+                            <asp:Repeater ID="rptSetupList" runat="server">
+                                <HeaderTemplate>
+                                    <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
+                                        <td>
+                                            安装单号
+                                        </td>
+                                        <td>
+                                            计划安装日期
+                                        </td>
+                                        <td>
+                                            实际安装日期
+                                        </td>
+                                    </tr>
+                                </HeaderTemplate>
+                                <ItemTemplate>
+                                    <tr>
+                                        <td>
+                                            <%#Eval("Setupid")%>
+                                        </td>
+                                        <td>
+                                            <%# Eval("Plansetupdate") == null ? "" : ((DateTime)Eval("Plansetupdate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                        </td>
+                                        <td>
+                                            <%# Eval("Actualsetupdate") == null ? "" : ((DateTime)Eval("Actualsetupdate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                        </td>
+                                    </tr>
+                                </ItemTemplate>
+                                <AlternatingItemTemplate>
+                                    <tr class="alt-row">
+                                        <td>
+                                            <%#Eval("Setupid")%>
+                                        </td>
+                                        <td>
+                                            <%# Eval("Plansetupdate") == null ? "" : ((DateTime)Eval("Plansetupdate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                        </td>
+                                        <td>
+                                            <%# Eval("Actualsetupdate") == null ? "" : ((DateTime)Eval("Actualsetupdate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                        </td>
+                                    </tr>
+                                </AlternatingItemTemplate>
+                            </asp:Repeater>
                         </div>
                         <div id="dflow" style="display: none;">
-                            <asp:Label ID="txtAblityIntroduce" runat="server" Text=""></asp:Label>
+                            <asp:Repeater ID="rptRepairList" runat="server">
+                                <HeaderTemplate>
+                                    <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
+                                        <td>
+                                            设备维修编号
+                                        </td>
+                                        <td>
+                                            计划维修日期
+                                        </td>
+                                        <td>
+                                            实际维修日期
+                                        </td>
+                                    </tr>
+                                </HeaderTemplate>
+                                <ItemTemplate>
+                                    <tr>
+                                        <td>
+                                            <%#Eval("Assetmaintainid")%>
+                                        </td>
+                                        <td>
+                                            <%# Eval("Plandate") == null ? "" : ((DateTime)Eval("Plandate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                        </td>
+                                        <td>
+                                            <%# Eval("Actualdate") == null ? "" : ((DateTime)Eval("Actualdate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                        </td>
+                                    </tr>
+                                </ItemTemplate>
+                                <AlternatingItemTemplate>
+                                    <tr class="alt-row">
+                                        <td>
+                                            <%#Eval("Assetmaintainid")%>
+                                        </td>
+                                        <td>
+                                            <%# Eval("Plandate") == null ? "" : ((DateTime)Eval("Plandate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                        </td>
+                                        <td>
+                                            <%# Eval("Actualdate") == null ? "" : ((DateTime)Eval("Actualdate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                        </td>
+                                    </tr>
+                                </AlternatingItemTemplate>
+                            </asp:Repeater>
                         </div>
                         <div id="dquestion" style="display: none;">
-                            <asp:Label ID="txtAbilityDemo" runat="server" Text=""></asp:Label>
+                            <asp:Repeater ID="rptMoveList" runat="server">
+                                <HeaderTemplate>
+                                    <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
+                                        <td>
+                                            移机单号
+                                        </td>
+                                        <td>
+                                            计划移机日期
+                                        </td>
+                                        <td>
+                                            实际移机日期
+                                        </td>
+                                    </tr>
+                                </HeaderTemplate>
+                                <ItemTemplate>
+                                    <tr>
+                                        <td>
+                                            <%#Eval("Assetmoveid")%>
+                                        </td>
+                                        <td>
+                                            <%# Eval("Planmovedate") == null ? "" : ((DateTime)Eval("Planmovedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                        </td>
+                                        <td>
+                                            <%# Eval("Actualmovedate") == null ? "" : ((DateTime)Eval("Actualmovedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                        </td>
+                                    </tr>
+                                </ItemTemplate>
+                                <AlternatingItemTemplate>
+                                    <tr class="alt-row">
+                                        <td>
+                                            <%#Eval("Assetmoveid")%>
+                                        </td>
+                                        <td>
+                                            <%# Eval("Planmovedate") == null ? "" : ((DateTime)Eval("Planmovedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                        </td>
+                                        <td>
+                                            <%# Eval("Actualmovedate") == null ? "" : ((DateTime)Eval("Actualmovedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                        </td>
+                                    </tr>
+                                </AlternatingItemTemplate>
+                            </asp:Repeater>
                         </div>
                         <div id="dabilityRemark" style="display: none;">
-                            <asp:Label ID="txtablity_REMARK" runat="server" Text=""></asp:Label>
+                            <asp:Repeater ID="rptRemoveList" runat="server">
+                                <HeaderTemplate>
+                                    <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
+                                        <td>
+                                            拆机单号
+                                        </td>
+                                        <td>
+                                            计划拆机日期
+                                        </td>
+                                        <td>
+                                            实际拆机日期
+                                        </td>
+                                    </tr>
+                                </HeaderTemplate>
+                                <ItemTemplate>
+                                    <tr>
+                                        <td>
+                                            <%#Eval("Assetremoveid")%>
+                                        </td>
+                                        <td>
+                                            <%# Eval("Planremovedate") == null ? "" : ((DateTime)Eval("Planremovedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                        </td>
+                                        <td>
+                                            <%# Eval("Actualremovedate") == null ? "" : ((DateTime)Eval("Actualremovedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                        </td>
+                                    </tr>
+                                </ItemTemplate>
+                                <AlternatingItemTemplate>
+                                    <tr class="alt-row">
+                                        <td>
+                                            <%#Eval("Assetremoveid")%>
+                                        </td>
+                                        <td>
+                                            <%# Eval("Planremovedate") == null ? "" : ((DateTime)Eval("Planremovedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                        </td>
+                                        <td>
+                                            <%# Eval("Actualremovedate") == null ? "" : ((DateTime)Eval("Actualremovedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                        </td>
+                                    </tr>
+                                </AlternatingItemTemplate>
+                            </asp:Repeater>
                         </div>
                         <div id="MyFile" style="display: none;">
                         </div>

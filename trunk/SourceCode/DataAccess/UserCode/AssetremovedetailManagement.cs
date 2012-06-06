@@ -173,6 +173,7 @@ namespace FixedAsset.DataAccess
                     sqlCommand.AppendLine(@" AND ""ASSETREMOVEDETAIL"".""DETAILID"" LIKE :Detailid");
                 }
                 #endregion
+
                 #region 移机单号
                 if (!string.IsNullOrEmpty(info.Assetremoveid))
                 {
@@ -180,13 +181,15 @@ namespace FixedAsset.DataAccess
                     sqlCommand.AppendLine(@" AND ""ASSETREMOVEDETAIL"".""ASSETREMOVEID"" LIKE :Assetremoveid");
                 }
                 #endregion
+
                 #region 设备编号
                 if (!string.IsNullOrEmpty(info.Assetno))
                 {
-                    this.Database.AddInParameter(":Assetno",DbType.AnsiString,"%"+info.Assetno+"%");
-                    sqlCommand.AppendLine(@" AND ""ASSETREMOVEDETAIL"".""ASSETNO"" LIKE :Assetno");
+                    this.Database.AddInParameter(":Assetno", DbType.AnsiString, info.Assetno);
+                    sqlCommand.AppendLine(@" AND ""ASSETREMOVEDETAIL"".""ASSETNO"" = :Assetno");
                 }
                 #endregion
+
                 #region 计划拆机日期
                 if (info.StartPlanremovedate.HasValue)
                 {
@@ -199,6 +202,7 @@ namespace FixedAsset.DataAccess
                     sqlCommand.AppendLine(@" AND ""ASSETREMOVEDETAIL"".""PLANREMOVEDATE"" <= :EndPlanremovedate");
                 }
                 #endregion
+
                 #region 实际拆机日期
                 if (info.StartActualremovedate.HasValue)
                 {
@@ -211,6 +215,7 @@ namespace FixedAsset.DataAccess
                     sqlCommand.AppendLine(@" AND ""ASSETREMOVEDETAIL"".""ACTUALREMOVEDATE"" <= :EndActualremovedate");
                 }
                 #endregion
+
                 #region 移机说明
                 if (!string.IsNullOrEmpty(info.Removedcontent))
                 {

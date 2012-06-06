@@ -173,6 +173,7 @@ namespace FixedAsset.DataAccess
                     sqlCommand.AppendLine(@" AND ""ASSETMOVEDETAIL"".""DETAILID"" LIKE :Detailid");
                 }
                 #endregion
+
                 #region 移机单号
                 if (!string.IsNullOrEmpty(info.Assetmoveid))
                 {
@@ -180,13 +181,15 @@ namespace FixedAsset.DataAccess
                     sqlCommand.AppendLine(@" AND ""ASSETMOVEDETAIL"".""ASSETMOVEID"" LIKE :Assetmoveid");
                 }
                 #endregion
+
                 #region 设备编号
                 if (!string.IsNullOrEmpty(info.Assetno))
                 {
-                    this.Database.AddInParameter(":Assetno",DbType.AnsiString,"%"+info.Assetno+"%");
-                    sqlCommand.AppendLine(@" AND ""ASSETMOVEDETAIL"".""ASSETNO"" LIKE :Assetno");
+                    this.Database.AddInParameter(":Assetno", DbType.AnsiString, info.Assetno);
+                    sqlCommand.AppendLine(@" AND ""ASSETMOVEDETAIL"".""ASSETNO"" = :Assetno");
                 }
                 #endregion
+
                 #region 计划移机日期
                 if (info.StartPlanmovedate.HasValue)
                 {
@@ -199,6 +202,7 @@ namespace FixedAsset.DataAccess
                     sqlCommand.AppendLine(@" AND ""ASSETMOVEDETAIL"".""PLANMOVEDATE"" <= :EndPlanmovedate");
                 }
                 #endregion
+
                 #region 实际移机日期
                 if (info.StartActualmovedate.HasValue)
                 {
@@ -211,6 +215,7 @@ namespace FixedAsset.DataAccess
                     sqlCommand.AppendLine(@" AND ""ASSETMOVEDETAIL"".""ACTUALMOVEDATE"" <= :EndActualmovedate");
                 }
                 #endregion
+
                 #region 移机说明
                 if (!string.IsNullOrEmpty(info.Movedcontent))
                 {

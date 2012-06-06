@@ -162,7 +162,6 @@ namespace FixedAsset.DataAccess
             {
                 StringBuilder sqlCommand = new StringBuilder(@" SELECT ""ASSETSETUPDETAIL"".""DETAILID"",""ASSETSETUPDETAIL"".""SETUPID"",""ASSETSETUPDETAIL"".""ASSETNO"",""ASSETSETUPDETAIL"".""PLANSETUPDATE"",""ASSETSETUPDETAIL"".""ACTUALSETUPDATE"",
                      ""ASSETSETUPDETAIL"".""SETUPCONTENT""
-
                      FROM ""ASSETSETUPDETAIL"" 
                      INNER JOIN ""ASSETSETUPINFO"" ON ""ASSETSETUPDETAIL"".""SETUPID""=""ASSETSETUPINFO"".""SETUPID"" 
                      WHERE 1=1");
@@ -178,8 +177,10 @@ namespace FixedAsset.DataAccess
                 }
                 if (!string.IsNullOrEmpty(info.Assetno))
                 {
-                    this.Database.AddInParameter(":Assetno",DbType.AnsiString,"%"+info.Assetno+"%");
-                    sqlCommand.AppendLine(@" AND ""ASSETSETUPDETAIL"".""ASSETNO"" LIKE :Assetno");
+                    //this.Database.AddInParameter(":Assetno",DbType.AnsiString,"%"+info.Assetno+"%");
+                    //sqlCommand.AppendLine(@" AND ""ASSETSETUPDETAIL"".""ASSETNO"" LIKE :Assetno");
+                    this.Database.AddInParameter(":Assetno", DbType.AnsiString, info.Assetno );
+                    sqlCommand.AppendLine(@" AND ""ASSETSETUPDETAIL"".""ASSETNO"" = :Assetno");
                 }
                 if (!string.IsNullOrEmpty(info.Setupcontent))
                 {
