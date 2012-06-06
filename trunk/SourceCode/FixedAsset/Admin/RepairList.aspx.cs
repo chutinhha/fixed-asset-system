@@ -44,7 +44,7 @@ namespace FixedAsset.Web.Admin
         #region  Methods
         protected void LoadData(int pageIndex)
         {
-            AssetmaintainSearch search = new AssetmaintainSearch();
+            var search = new AssetmaintainSearch();
             search.Assetmaintainid = txtSrchAssetmaintainid.Text;//维修单编号
             //search.Assetcategoryid = txtSrchAssetcategoryid.Text;//(系统)设备大类
             //search.Maintaintype = txtSrchMaintaintype.Text;//保修来源：(项目体、自检、月检）数据字典
@@ -56,6 +56,12 @@ namespace FixedAsset.Web.Admin
             {
                 search.EndApplydate = ucSrchEndApplydate.DateValue.Value;//申请维修日期
             }
+            
+
+            search.Storagetitle = ucSelectProject.Storagetitle;//区分字段：分公司或项目体
+            search.Storageid = ucSelectProject.StorageId;//项目体ID或分公司ID
+            
+            #region deleted Code
             //search.Applyuserid = txtSrchApplyuserid.Text;//申请人
             //search.Applycontent = txtSrchApplycontent.Text;//申请内容
             //search.Approveuser = txtSrchApproveuser.Text;//审核人
@@ -94,8 +100,6 @@ namespace FixedAsset.Web.Admin
             //}
             //search.Confirmuser = txtSrchConfirmuser.Text;//确认人
             //search.Maintaincontent = txtSrchMaintaincontent.Text;//已维修明细
-            //search.Storagetitle = txtSrchStoragetitle.Text;//区分字段：分公司或项目体
-            //search.Storageid = txtSrchStorageid.Text;//项目体ID或分公司ID
             //search.Subcompany = txtSrchSubcompany.Text;//分公司
             //search.Subcompanycontactorid = txtSrchSubcompanycontactorid.Text;//分公司联系人
             //search.Contactphone = txtSrchContactphone.Text;//联系电话
@@ -110,6 +114,8 @@ namespace FixedAsset.Web.Admin
             //{
             //    search.EndCreateddate = ucSrchEndCreateddate.DateValue.Value;//创建日期
             //}
+            #endregion
+
             int recordCount = 0;
             var list = this.AssetmaintainService.RetrieveAssetmaintainsPaging(search, pageIndex, pcData.PageSize, out recordCount);
             rptRepairList.DataSource = list;

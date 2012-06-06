@@ -60,7 +60,8 @@ namespace FixedAsset.Domain
         #region 申请内容
         public string Applycontent
         {
-            get;set; 
+            get;
+            set;
         }
         #endregion
 
@@ -132,65 +133,73 @@ namespace FixedAsset.Domain
         #region 已维修明细
         public string Maintaincontent
         {
-            get;set; 
+            get;
+            set;
         }
         #endregion
 
         #region 区分字段：分公司或项目体
         public string Storagetitle
         {
-            get;set; 
+            get;
+            set;
         }
         #endregion
 
         #region 项目体ID或分公司ID
         public string Storageid
         {
-            get;set; 
+            get;
+            set;
         }
         #endregion
 
         #region 分公司
         public string Subcompany
         {
-            get;set; 
+            get;
+            set;
         }
         #endregion
 
         #region 分公司联系人
         public string Subcompanycontactorid
         {
-            get;set; 
+            get;
+            set;
         }
         #endregion
 
         #region 联系电话
         public string Contactphone
         {
-            get;set; 
+            get;
+            set;
         }
         #endregion
 
         #region 项目体联系人
         public string Projectcontactorid
         {
-            get;set; 
+            get;
+            set;
         }
         #endregion
 
         #region 项目体联系电话
         public string Projectcontactorphone
         {
-            get;set; 
+            get;
+            set;
         }
         #endregion
 
         #region 创建人
         public string Creator
         {
-            get;set; 
+            get;
+            set;
         }
         #endregion
-
     }
 }

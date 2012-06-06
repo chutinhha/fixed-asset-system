@@ -30,6 +30,13 @@ namespace FixedAsset.Domain
         ///ColumnName:(系统)设备大类;Size:40;
         ///</summary>
         public string Assetcategoryid{  get;set;}
+
+        #region 对应系统
+        ///<summary>
+        ///ColumnName:对应系统;Size:80;
+        ///</summary>
+        public string System { get; set; }
+        #endregion
         #endregion
 
         #region 保修来源：(项目体、自检、月检）数据字典
@@ -135,6 +142,22 @@ namespace FixedAsset.Domain
         ///ColumnName:项目体ID或分公司ID;Size:40;
         ///</summary>
         public string Storageid{  get;set;}
+
+        #region 存放地点名
+        ///<summary>
+        /// 存放地点名（冗余)
+        ///</summary>
+        public string Storagename { get; set; }
+
+        #region 分公司名称
+        ///<summary>
+        ///ColumnName:分公司名称;Size:100;（冗余)
+        ///</summary>
+        public string Subcompanyname { get; set; }
+        #endregion
+
+        #endregion
+
         #endregion
 
         #region 分公司
