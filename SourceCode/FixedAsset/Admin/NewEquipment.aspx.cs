@@ -126,27 +126,27 @@ namespace FixedAsset.Web.Admin
         {
             if (string.IsNullOrEmpty(txtAssetname.Text))
             {
-                UIHelper.Alert(this.UpdatePanel1, "请输入设备名称!");
+                UIHelper.Alert(this, "请输入设备名称!");
                 return;
             }
             if(string.IsNullOrEmpty(txtAssetspecification.Text))
             {
-                UIHelper.Alert(this.UpdatePanel1, "请输入设备规格!");
+                UIHelper.Alert(this, "请输入设备规格!");
                 return;
             }
             if(!ucPurchasedate.DateValue.HasValue)
             {
-                UIHelper.Alert(this.UpdatePanel1, "请选择购入日期!");
+                UIHelper.Alert(this, "请选择购入日期!");
                 return;
             }
             if (string.IsNullOrEmpty(ucSelectSubCompany.SubcompanyId))
             {
-                UIHelper.Alert(UpdatePanel1, "请选择分公司!");
+                UIHelper.Alert(this, "请选择分公司!");
                 return;
             }
             if (string.IsNullOrEmpty(ucSelectSupplier.Supplierid))
             {
-                UIHelper.Alert(UpdatePanel1, "请选择供应商!");
+                UIHelper.Alert(this, "请选择供应商!");
                 return;
             }
             Asset assetInfo = null;
@@ -162,7 +162,7 @@ namespace FixedAsset.Web.Admin
             WriteControlValueToEntity(assetInfo);
             assetInfo.State = AssetState.NoUse;
             AssetService.SaveAssetInfo(assetInfo);
-            UIHelper.AlertMessageGoToURL(this.UpdatePanel1, "保存成功!", ResolveUrl("~/Admin/EquipmentList.aspx"));
+            UIHelper.AlertMessageGoToURL(this, "保存成功!", ResolveUrl("~/Admin/EquipmentList.aspx"));
         }  
         #endregion
 
