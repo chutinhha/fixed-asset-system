@@ -18,6 +18,8 @@ namespace FixedAsset.Domain
     [Serializable]
     public partial class Assetsetupinfo
     {
+        public const string RuleCode = "安装";
+
         #region 申请单号
         ///<summary>
         ///ColumnName:申请单号;Size:40;NOT NULL

@@ -51,7 +51,7 @@
                 <tr>
                     <td colspan="6" align="right">
                         <asp:Button ID="BtnSearch" runat="server" CssClass="button" Text="查询" OnClick="BtnSearch_Click" />
-                        <input type="button" class="button" runat="server" id="btnAdd" value="申请" onclick="javascript:window.location='NewEquipment.aspx'" />
+                        <input type="button" class="button" runat="server" id="btnAdd" value="申请" onclick="javascript:window.location='NewInstall.aspx'" />
                     </td>
                 </tr>
             </table>
@@ -142,6 +142,10 @@
                             <td align="right">
                                 <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"
                                     AlternateText="编辑" ToolTip="编辑" CommandArgument='<%#Eval("Setupid")%>' CommandName="EditDetail" />
+                                <asp:ImageButton ID="btnReply" runat="server" ImageUrl="~/images/Button/edit.GIF"
+                                    AlternateText="回复" ToolTip="回复" CommandArgument='<%#Eval("Setupid")%>' CommandName="ReplyDetail" />
+                                <asp:ImageButton ID="BtnConfirm" runat="server" ImageUrl="~/images/Button/edit.GIF"
+                                    AlternateText="确认" ToolTip="确认" CommandArgument='<%#Eval("Setupid")%>' CommandName="ConfirmDetail" />
                                 <asp:ImageButton ID="BtnDeleted" runat="server" ImageUrl="~/images/Button/delete.GIF"
                                     CommandArgument='<%#Eval("Setupid")%>' CommandName="DeleteDetail" OnClientClick="return confirm('确认要删除吗？');"
                                     AlternateText="删除" ToolTip="删除" />
