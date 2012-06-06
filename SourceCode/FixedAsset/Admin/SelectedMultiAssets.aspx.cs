@@ -13,6 +13,18 @@ namespace FixedAsset.Web.Admin
     public partial class SelectedMultiAssets : System.Web.UI.Page
     {
         #region Properties
+        protected string AssetcategoryId
+        {
+            get
+            {
+                if (ViewState["Assetcategoryid"] == null)
+                {
+                    ViewState["Assetcategoryid"] = string.Empty;
+                }
+                return ViewState["Assetcategoryid"].ToString();
+            }
+            set { ViewState["Assetcategoryid"] = value; }
+        }
         protected IAssetcategoryService AssetcategoryService
         {
             get { return new AssetcategoryService(); }
@@ -54,9 +66,10 @@ namespace FixedAsset.Web.Admin
             base.OnLoad(e);
             if (!IsPostBack)
             {
-                this.ClearBrowserCache();
+                AssetcategoryId = PageUtility.GetQueryStringValue("Assetcategoryid");
+                ClearBrowserCache();
                 AssetCategories.Clear();
-                this.AssetIds.Clear();
+                AssetIds.Clear();
                 LoadAssetCategory();
                 LoadData(0);
             }
@@ -157,6 +170,7 @@ namespace FixedAsset.Web.Admin
             search.States.Add(AssetState.InUse);
             search.States.Add(AssetState.NoUse);
             search.Assetname = txtSrchAssetname.Text;
+            search.FirstLevelCategoryId = AssetcategoryId;
             int recordCount = 0;
             var list = AssetService.RetrieveAssetsPaging(search, pageIndex, pcData.PageSize, out recordCount);
             rptAssetsList.DataSource = list;
