@@ -99,7 +99,7 @@ namespace FixedAsset.Domain
         /// 已提交
         /// </summary>
         [EnumDescript(Descript = "已提交")]
-        Approving = 1,
+        Sumitted = 1,
         /// <summary>
         /// 已回复
         /// </summary>

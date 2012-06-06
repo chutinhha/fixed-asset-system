@@ -47,6 +47,7 @@ namespace FixedAsset.Web.Admin.UserControl
             if (!IsPostBack)
             {
                 AssetIds.Clear();
+                //btnSelectedMultiAssets_Click(null, null);
             }
         }
         protected void btnSelectedMultiAssets_Click(object sender, EventArgs e)
