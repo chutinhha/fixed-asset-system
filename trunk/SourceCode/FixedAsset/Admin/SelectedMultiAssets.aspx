@@ -47,7 +47,7 @@
                 <asp:Repeater ID="rptAssetsList" runat="server" OnItemDataBound="rptAssetsList_ItemDataBound">
                     <HeaderTemplate>
                         <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
-                            <td align="center" >
+                            <td align="center">
                                 设备编号<input id="ckbAllSelected" onclick="javascript:AllChooseOrNoChoose('tbAssetList',this);"
                                     type="checkbox" />
                                 <td align="center">
@@ -64,7 +64,7 @@
                     <ItemTemplate>
                         <tr>
                             <td align="left">
-                                <asp:CheckBox ID="ckbAssetno" Text='<%#Eval("Assetno")%>' runat="server" />
+                                <asp:CheckBox ID="ckbAssetno" Text='<%#Eval("Assetno")%>' runat="server" TextAlign="Right" />
                             </td>
                             <td align="left">
                                 <asp:Literal ID="litCategoryName" runat="server" />
@@ -96,7 +96,8 @@
                 </asp:Repeater>
                 <tr>
                     <td colspan="4" style="height: 30px; width: 790px;">
-                        <cc1:PagingControl ID="pcData" runat="server" MaxNavigatePageCount="7" OnPageIndexClick="pcData_PageIndexClick" PageSize="10" />
+                        <cc1:PagingControl ID="pcData" runat="server" MaxNavigatePageCount="7" OnPageIndexClick="pcData_PageIndexClick"
+                            PageSize="10" />
                     </td>
                 </tr>
             </table>
