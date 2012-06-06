@@ -85,6 +85,7 @@ namespace FixedAsset.DataAccess
                     this.Database.AddInParameter(":Assetno", DbType.AnsiString, "%" + info.Assetno + "%");
                     sqlCommand.AppendLine(@" AND ""ASSET"".""ASSETNO"" LIKE :Assetno");
                 }
+
                 #region 资产分类
                 if (!string.IsNullOrEmpty(info.FirstLevelCategoryId))
                 {

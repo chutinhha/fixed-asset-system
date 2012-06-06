@@ -462,8 +462,7 @@ a:active
 	margin: 0 12px;
 }
 form label, .column-right label
-{
-	display: block;
+{	
 	font-weight: bold;
 	padding: 0 0 10px;
 	width: 100px;
