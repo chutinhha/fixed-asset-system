@@ -127,7 +127,7 @@
                                                     align="center" class="table_grayTH eoddTable">
                                                     <tr style="border-bottom-width: 1px;">
                                                         <td colspan="6" align="right">
-                                                            <uc1:ucSelectedMultiAssets ID="ucSelectedMultiAssets" runat="server" />
+                                                            <uc1:ucSelectedMultiAssets ID="ucSelectedMultiAssets" runat="server" OnSelectAssetChange="ucSelectedMultiAssets_SelectAssetChange" />
                                                         </td>
                                                     </tr>
                                                     <asp:Repeater ID="rptRepairDetailList" runat="server">
