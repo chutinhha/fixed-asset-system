@@ -27,17 +27,17 @@
                             <td align="center">
                                合同编号
                             </td>
-                            <td>
+                            <td align="center">
                                 签订日期
                             </td>
-                            <td>
+                            <td align="center">
                                 供应商
                             </td>
                            
-                            <td>
+                            <td align="center">
                                 创建日期
                             </td>
-                            <td>
+                            <td align="center">
                                 操作
                             </td>
                         </tr>
@@ -47,17 +47,17 @@
                             <td align="center">
                                 <%#Eval("Contractid")%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#((DateTime)Eval("Contractdate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#Eval("Suppliername")%>
                             </td>
                            
-                            <td>
+                            <td align="center">
                                 <%#((DateTime)Eval("Createddate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
-                            <td align="right">
+                            <td align="center">
                                   <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/images/Button/edit.GIF"
                                     AlternateText="编辑" ToolTip="编辑" CommandName="EditDetail" CommandArgument='<%#Eval("Contractid") %>' />
                                 <asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="~/images/Button/delete.GIF"
@@ -72,18 +72,18 @@
                            <td align="center">
                                 <%#Eval("Contractid")%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#((DateTime)Eval("Contractdate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#Eval("Suppliername")%>
                             </td>
                            
-                            <td>
+                            <td align="center">
                                 <%#((DateTime)Eval("Createddate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
                            
-                            <td align="right">
+                            <td align="center">
                                <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/images/Button/edit.GIF"
                                     AlternateText="编辑" ToolTip="编辑" CommandName="EditDetail" CommandArgument='<%#Eval("Contractid") %>' />
                                 <asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="~/images/Button/delete.GIF"

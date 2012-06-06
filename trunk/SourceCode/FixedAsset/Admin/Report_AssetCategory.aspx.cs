@@ -56,8 +56,8 @@ namespace FixedAsset.Web.Admin
             int recordCount = 0;
             rptAssetsCategoryList.DataSource = dt;
             rptAssetsCategoryList.DataBind();
-            pcData.RecordCount = recordCount;
-            pcData.CurrentIndex = pageIndex;
+           // pcData.RecordCount = recordCount;
+           // pcData.CurrentIndex = pageIndex;
         }
 
         protected void pcData_PageIndexClick(object sender, KFSQ.Web.Controls.PageIndexClickEventArgs e)

@@ -52,14 +52,14 @@
                     </AlternatingItemTemplate>
                 </asp:Repeater>
 
-                  <tr>
+                <%--  <tr>
                     <td>
                     </td>
-                    <td  colspan="2" style="height: 30px; ">
+                  <td  colspan="2" style="height: 30px; ">
                         <cc1:pagingcontrol ID="pcData" runat="server" MaxNavigatePageCount="7" 
                             OnPageIndexClick="pcData_PageIndexClick" />
                     </td>
-                </tr>
+                </tr>--%>
             </table>
         </div>
     </div>

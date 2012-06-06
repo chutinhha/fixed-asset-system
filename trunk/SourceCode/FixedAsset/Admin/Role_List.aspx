@@ -24,50 +24,50 @@
                     OnItemCommand="rptRoleList_ItemCommand">
                     <HeaderTemplate>
                         <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
-                            <td>
+                            <td align="center">
                                 角色名
                             </td>
-                            <td>
+                            <td align="center">
                                 角色状态
                             </td>
-                            <td>
+                            <td align="center">
                                 创建时间
                             </td>
-                            <td>
+                            <td align="center">
                                 创建者
                             </td>
-                            <td>
+                            <td align="center">
                                 最近修改时间
                             </td>
-                            <td>
+                            <td align="center">
                                 最近修改者
                             </td>
-                            <td>
+                            <td align="center">
                                 操作
                             </td>
                         </tr>
                     </HeaderTemplate>
                     <ItemTemplate>
                         <tr>
-                            <td>
+                            <td align="center">
                                 <%#Eval("Rolename")%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#EnumUtil.RetrieveEnumDescript((RoleState)Eval("Rolestate"))%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#((DateTime)Eval("Createddate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#Eval("Creator")%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%# Eval("Lastmodifieddate") == null ? "" : ((DateTime)Eval("Lastmodifieddate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#Eval("Lastmodifiedby")%>
                             </td>
-                            <td align="right">
+                            <td align="center">
                                 <asp:ImageButton ID="BtnAddRight" runat="server" ImageUrl="~/images/Button/starttask.GIF"
                                     AlternateText="分配权限" ToolTip="分配权限" CommandArgument='<%#Eval("Roleid")%>' CommandName="AddRight" />
                                 <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"
@@ -83,25 +83,25 @@
                     </ItemTemplate>
                     <AlternatingItemTemplate>
                         <tr class="alt-row">
-                            <td>
+                            <td align="center">
                                 <%#Eval("Rolename")%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#EnumUtil.RetrieveEnumDescript((RoleState)Eval("Rolestate"))%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#((DateTime)Eval("Createddate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#Eval("Creator")%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%# Eval("Lastmodifieddate") == null ? "" : ((DateTime)Eval("Lastmodifieddate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#Eval("Lastmodifiedby")%>
                             </td>
-                            <td align="right">
+                            <td align="center">
                                 <asp:ImageButton ID="BtnAddRight" runat="server" ImageUrl="~/images/Button/starttask.GIF"
                                     AlternateText="分配权限" ToolTip="分配权限" CommandArgument='<%#Eval("Roleid")%>' CommandName="AddRight" />
                                 <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"
