@@ -17,7 +17,7 @@
             <div class="content-box">
                 <div class="content-box-header">
                     <h3 style="cursor: s-resize;">
-                        <asp:Literal runat="server" ID="litTitle" Text="新增合同" />
+                        <asp:Literal runat="server" ID="litTitle" Text="采购合同登记" />
                     </h3>
                 </div>
                 <div class="content-box-content">
@@ -38,9 +38,6 @@
                                     </td>
                                     <td>
                                         <uc1:DatePicker ID="ucContactscheduledate" runat="server" />
-                                        <%--<asp:TextBox ID="txtContactscheduledate" class="text_inp" runat="server" Width="300" onclick="new Calendar().show(this);"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="txtContactscheduledate"
-                                            Display="Dynamic" ErrorMessage="请选择合同签订日期！"></asp:RequiredFieldValidator>--%>
                                     </td>
                                 </tr>
                                 <tr>
@@ -65,17 +62,13 @@
                                     </td>
                                     <td>
                                         <uc1:DatePicker ID="ucApplydate" runat="server" />
-                                        <%-- <asp:TextBox ID="txtApplydate" class="text_inp" Width="150" onclick="new Calendar().show(this);"
-                                            ReadOnly="true" runat="server"></asp:TextBox><asp:RequiredFieldValidator ID="RequiredFieldValidator4"
-                                                runat="server" ControlToValidate="txtApplydate" Display="Dynamic" ErrorMessage="请选择创建日期！"></asp:RequiredFieldValidator>--%>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td colspan="2">
                                         <div id="tag" class="thin blue">
                                             <ul id="tags">
-                                                <li id="api" class="selectTag"><a href="#" >
-                                                    明细</a> </li>
+                                                <li id="api" class="selectTag"><a href="#">明细</a> </li>
                                             </ul>
                                             <p class="gap">
                                             </p>
@@ -88,7 +81,8 @@
                                                     align="center">
                                                     <tr style="border-bottom-width: 1px;">
                                                         <td colspan="6" align="right">
-                                                           请选择采购计划单： <uc1:MultiSelectProcurePlans ID="ucMultiSelectProcurePlans" runat="server" OnSelectProcurePlanChange="ucMultiSelectProcurePlans_SelectProcurePlanChange" />
+                                                            请选择采购计划单：
+                                                            <uc1:MultiSelectProcurePlans ID="ucMultiSelectProcurePlans" runat="server" OnSelectProcurePlanChange="ucMultiSelectProcurePlans_SelectProcurePlanChange" />
                                                             <input type="button" class="button" runat="server" id="Button1" value="新增" onclick="ShowTopDialogFrame('新增明细', 'ContactDetail_Add.aspx','RefreshDetail()',790,500);return false;" />
                                                         </td>
                                                     </tr>
@@ -184,7 +178,7 @@
                                         <asp:Button ID="BtnSave" runat="server" Text="保 存" CssClass="button" ValidationGroup="Vaild"
                                             OnClick="BtnSave_Click" />
                                         <asp:Button ID="btnSubmit" runat="server" Text="提 交" CssClass="button" ValidationGroup="Vaild"
-                                            OnClick="btnSubmit_Click" />
+                                            OnClick="btnSubmit_Click" Visible="false" />
                                         <asp:Button ID="BtmImortAssets" runat="server" Text="导入登记" Visible="false" CssClass="button"
                                             CausesValidation="false" OnClick="BtmImortAssets_Click" />
                                         <input type="button" class="button" runat="server" id="btnReset" value="重 置" onclick="javascript:window.location.href = 'NewContacts.aspx';" />
