@@ -83,28 +83,28 @@
                             <td align="center">
                                 设备编号
                             </td>
-                            <td>
+                            <td align="center">
                                 设备类别
                             </td>
-                            <td>
+                            <td align="center">
                                 设备名称
                             </td>
-                            <td>
+                            <td align="center">
                                 设备状态
                             </td>
-                            <td>
+                            <td align="center">
                                 购入日期
                             </td>
-                            <td>
+                            <td align="center">
                                 单价
                             </td>
-                            <td>
+                            <td align="center">
                                 品牌
                             </td>
-                            <td>
+                            <td align="center">
                                 账务类别
                             </td>
-                            <td>
+                            <td align="center">
                                 操作
                             </td>
                         </tr>
@@ -115,28 +115,28 @@
                                 <a href='javascript:ShowTopDialogFrame("设备明细", "ShowAssetDetail.aspx?Assetno=<%#Eval("Assetno")%>","",900,560);'>
                                     <%#Eval("Assetno")%></a>
                             </td>
-                            <td>
+                            <td align="center">
                                 <asp:Literal ID="litCategoryName" runat="server" />
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#Eval("Assetname")%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#EnumUtil.RetrieveEnumDescript((AssetState)Eval("State"))%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#((DateTime)Eval("Purchasedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#((decimal)Eval("Unitprice")).ToString(FixedAsset.Web.AppCode.UiConst.MoneyFormat)%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#Eval("Brand")%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#EnumUtil.RetrieveEnumDescript((FinanceCategory)Eval("Financecategory"))%>
                             </td>
-                            <td align="right">
+                            <td align="center">
                                 <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"
                                     AlternateText="编辑" ToolTip="编辑" CommandArgument='<%#Eval("Assetno")%>' CommandName="EditDetail" />
                                 <asp:ImageButton ID="BtnDeleted" runat="server" ImageUrl="~/images/Button/delete.GIF"
@@ -151,28 +151,28 @@
                                 <a href='javascript:ShowTopDialogFrame("设备明细", "ShowAssetDetail.aspx?Assetno=<%#Eval("Assetno")%>","",900,560);'>
                                     <%#Eval("Assetno")%></a>
                             </td>
-                            <td>
+                            <td align="center">
                                 <asp:Literal ID="litCategoryName" runat="server" />
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#Eval("Assetname")%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#EnumUtil.RetrieveEnumDescript((AssetState)Eval("State"))%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#((DateTime)Eval("Purchasedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#((decimal)Eval("Unitprice")).ToString(FixedAsset.Web.AppCode.UiConst.MoneyFormat)%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#Eval("Brand")%>
-                            </td>
-                            <td>
+                            </td >
+                            <td align="center">
                                 <%#EnumUtil.RetrieveEnumDescript((FinanceCategory)Eval("Financecategory"))%>
                             </td>
-                            <td align="right">
+                            <td align="center">
                                 <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"
                                     AlternateText="编辑" ToolTip="编辑" CommandArgument='<%#Eval("Assetno")%>' CommandName="EditDetail" />
                                 <asp:ImageButton ID="BtnDeleted" runat="server" ImageUrl="~/images/Button/delete.GIF"

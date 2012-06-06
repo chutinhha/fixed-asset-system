@@ -24,44 +24,44 @@
                     OnItemCommand="rptUserRoleList_ItemCommand">
                     <HeaderTemplate>
                         <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
-                            <td>
+                            <td align="center">
                                 用户姓名
                             </td>
-                            <td>
+                            <td align="center">
                                 登录账号
                             </td>
-                            <td>
+                            <td align="center">
                                 角色名
                             </td>
-                            <td>
+                            <td align="center">
                                 角色分配操作人
                             </td>
-                            <td>
+                            <td align="center">
                                 角色分配操作时间
                             </td>
-                            <td>
+                            <td align="center">
                                 操作
                             </td>
                         </tr>
                     </HeaderTemplate>
                     <ItemTemplate>
                         <tr>
-                            <td>
+                            <td align="center">
                                 <%#Eval("Username")%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#Eval("Loginid")%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#Eval("Rolename")%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#Eval("Lastmodifiedby")%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%# Eval("Lastmodifieddate") == null ? "" : ((DateTime)Eval("Lastmodifieddate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
-                            <td align="right">
+                            <td align="center">
                                 <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/user.GIF"
                                     AlternateText="分配角色" ToolTip="分配角色" CommandArgument='<%#Eval("Id")%>' CommandName="EditDetail" />
                                 <asp:ImageButton ID="BtnDeleted" runat="server" ImageUrl="~/images/Button/delete.GIF"
@@ -72,22 +72,22 @@
                     </ItemTemplate>
                     <AlternatingItemTemplate>
                         <tr class="alt-row">
-                            <td>
+                            <td align="center">
                                 <%#Eval("Username")%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#Eval("Loginid")%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#Eval("Rolename")%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#Eval("Lastmodifiedby")%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%# Eval("Lastmodifieddate") == null ? "" : ((DateTime)Eval("Lastmodifieddate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
-                            <td align="right">
+                            <td align="center">
                                 <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/user.GIF"
                                     AlternateText="分配角色" ToolTip="分配角色" CommandArgument='<%#Eval("Id")%>' CommandName="EditDetail" />
                                 <asp:ImageButton ID="BtnDeleted" runat="server" ImageUrl="~/images/Button/delete.GIF"

@@ -65,7 +65,7 @@ namespace FixedAsset.Web.Admin
             }
             if (e.CommandName.Equals("ViewDetail"))
             {
-                Response.Redirect(ResolveUrl(string.Format("~/Admin/NewContacts.aspx?Contractid={0}", Contactid))); 
+                Response.Redirect(ResolveUrl(string.Format("~/Admin/Contact_View.aspx?Contractid={0}", Contactid))); 
             }
         }
         #endregion
