@@ -9,7 +9,7 @@
     TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script language="javascript" type="text/javascript">
-        function tabChange(objId, id, dflow, dquestion, dabilityRemark, MyFile) {
+        function tabChange(objId, id, dflow, dquestion, dabilityRemark) {
             var obj = document.getElementById(objId);
             var arrayli = document.getElementById("tags").getElementsByTagName("li"); //获取ul数组
             for (i = 0; i < arrayli.length; i++) {
@@ -24,7 +24,6 @@
             document.getElementById(dflow).style.display = "none";
             document.getElementById(dquestion).style.display = "none";
             document.getElementById(dabilityRemark).style.display = "none";
-            document.getElementById(MyFile).style.display = "none";
         }
     </script>
 </asp:Content>
@@ -133,13 +132,13 @@
                 <td colspan="4">
                     <div id="tag" class="thin blue">
                         <ul id="tags">
-                            <li id="api" class="selectTag"><a href="javascript:tabChange('api','dapi','dflow','dquestion','dabilityRemark','MyFile')">
+                            <li id="api" class="selectTag"><a href="javascript:tabChange('api','dapi','dflow','dquestion','dabilityRemark')">
                                 安装</a> </li>
-                            <li id="flow"><a href="javascript:tabChange('flow','dflow','dquestion','dapi','dabilityRemark','MyFile')">
+                            <li id="flow"><a href="javascript:tabChange('flow','dflow','dquestion','dapi','dabilityRemark')">
                                 报修</a> </li>
-                            <li id="question"><a href="javascript:tabChange('question','dquestion','dapi','dflow','dabilityRemark','MyFile')">
+                            <li id="question"><a href="javascript:tabChange('question','dquestion','dapi','dflow','dabilityRemark')">
                                 移机</a></li>
-                            <li id="abilityRemark"><a href="javascript:tabChange('abilityRemark','dabilityRemark','dquestion','dapi','dflow','MyFile')">
+                            <li id="abilityRemark"><a href="javascript:tabChange('abilityRemark','dabilityRemark','dquestion','dapi','dflow')">
                                 拆机</a></li>
                         </ul>
                         <p class="gap">
@@ -319,9 +318,7 @@
                                     </tr>
                                 </AlternatingItemTemplate>
                             </asp:Repeater>
-                        </div>
-                        <div id="MyFile" style="display: none;">
-                        </div>
+                        </div>                        
                     </div>
                 </td>
             </tr>
