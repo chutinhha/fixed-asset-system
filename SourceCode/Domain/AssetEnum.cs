@@ -90,15 +90,25 @@ namespace FixedAsset.Domain
     [EnumCatetory(EnumName = "设备安装状态")]
     public enum SetupState : int
     {
+        /// <summary>
+        /// 草稿
+        /// </summary>
         [EnumDescript(Descript = "草稿")]
         Draft = 0,
+        /// <summary>
+        /// 已提交
+        /// </summary>
         [EnumDescript(Descript = "已提交")]
         Approving = 1,
-        [EnumDescript(Descript = "同意")]
-        Approved = 2,
-        [EnumDescript(Descript = "拒绝")]
-        Rejected = 3,
-        [EnumDescript(Descript = "已废除")]
-        Deleted = 4,
+        /// <summary>
+        /// 已回复
+        /// </summary>
+        [EnumDescript(Descript = "已回复")]
+        Replied = 2,
+        /// <summary>
+        /// 已确认
+        /// </summary>
+        [EnumDescript(Descript = "已确认")]
+        Confirmed = 3,
     }
 }
