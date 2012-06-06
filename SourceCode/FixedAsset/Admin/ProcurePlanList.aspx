@@ -22,7 +22,7 @@
             <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
                 align="center" class="table_grayTH eoddTable">
                 <asp:Repeater ID="rptProcureList" runat="server" OnItemDataBound="rptProcureList_ItemDataBound"
-                                                        OnItemCommand="rptProcureList_ItemCommand">
+                    OnItemCommand="rptProcureList_ItemCommand">
                     <HeaderTemplate>
                         <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
                             <td align="center">
@@ -87,11 +87,15 @@
                                 <%#((DateTime)Eval("Createddate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
                             <td align="right">
-                                <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"
+                                <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF" Visible="false"
                                     AlternateText="编辑" ToolTip="编辑" CommandArgument='<%#Eval("Psid")%>' CommandName="EditDetail" />
                                 <asp:ImageButton ID="BtnDeleted" runat="server" ImageUrl="~/images/Button/delete.GIF"
                                     CommandArgument='<%#Eval("Psid")%>' CommandName="DeleteDetail" OnClientClick="return confirm('确认要删除吗？');"
-                                    AlternateText="删除" ToolTip="删除" />
+                                    AlternateText="删除" ToolTip="删除" Visible="false" />
+                                <asp:ImageButton ID="BtnApprove" runat="server" ImageUrl="~/images/Button/approve.GIF" Visible="false"
+                                    AlternateText="审核" ToolTip="审核" CommandArgument='<%#Eval("Psid")%>' CommandName="ApproveDetail" />
+                                <asp:ImageButton ID="BtnDetail" runat="server" ImageUrl="~/images/Button/detail.GIF"
+                                    AlternateText="详细信息" ToolTip="详细信息" CommandArgument='<%#Eval("Psid")%>' CommandName="ViewDetail" />
                             </td>
                         </tr>
                     </ItemTemplate>
@@ -125,11 +129,15 @@
                                 <%#((DateTime)Eval("Createddate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
                             <td align="right">
-                                <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"
+                               <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF" Visible="false"
                                     AlternateText="编辑" ToolTip="编辑" CommandArgument='<%#Eval("Psid")%>' CommandName="EditDetail" />
                                 <asp:ImageButton ID="BtnDeleted" runat="server" ImageUrl="~/images/Button/delete.GIF"
                                     CommandArgument='<%#Eval("Psid")%>' CommandName="DeleteDetail" OnClientClick="return confirm('确认要删除吗？');"
-                                    AlternateText="删除" ToolTip="删除" />
+                                    AlternateText="删除" ToolTip="删除" Visible="false" />
+                                <asp:ImageButton ID="BtnApprove" runat="server" ImageUrl="~/images/Button/approve.GIF" Visible="false"
+                                    AlternateText="审核" ToolTip="审核" CommandArgument='<%#Eval("Psid")%>' CommandName="ApproveDetail" />
+                                <asp:ImageButton ID="BtnDetail" runat="server" ImageUrl="~/images/Button/detail.GIF"
+                                    AlternateText="详细信息" ToolTip="详细信息" CommandArgument='<%#Eval("Psid")%>' CommandName="ViewDetail" />
                             </td>
                         </tr>
                     </AlternatingItemTemplate>
