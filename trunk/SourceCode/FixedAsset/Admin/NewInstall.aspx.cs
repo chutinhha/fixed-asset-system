@@ -186,8 +186,7 @@ namespace FixedAsset.Web.Admin
             assetsetupinfo.Creator = WebContext.Current.CurrentUser.Id;//创建人
         }
 
-        #endregion
-
+        #endregion   
 
         #region 事件
         protected void ucSeletedSystem_SelectedAssetCategoryChange(object sender, EventArgs e)
@@ -252,26 +251,20 @@ namespace FixedAsset.Web.Admin
         {
             SetupInfo.Approveresult = SetupState.Draft;
             SaveData();
-            UIHelper.AlertMessageGoToURL(this.UpdatePanel1, "保存成功!", ResolveUrl("~/Admin/InstallList.aspx"));
+            UIHelper.AlertMessageGoToURL(this, "保存成功!", ResolveUrl("~/Admin/InstallList.aspx"));
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             SetupInfo.Approveresult = SetupState.Sumitted;
             SaveData();
-            UIHelper.AlertMessageGoToURL(this.UpdatePanel1, "提交成功!", ResolveUrl("~/Admin/InstallList.aspx"));
+            UIHelper.AlertMessageGoToURL(this, "提交成功!", ResolveUrl("~/Admin/InstallList.aspx"));
         }
 
         protected void btnReset_Click(object sender, EventArgs e)
         {
             Response.Redirect(ResolveUrl("~/Admin/InstallList.aspx"));
         }
-        #endregion
-
-
-
-
-
-
+        #endregion  
     }
 }

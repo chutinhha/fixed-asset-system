@@ -15,8 +15,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-        <ContentTemplate>
+<%--    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>--%>
             <div class="content-box">
                 <div class="content-box-header">
                     <h3 style="cursor: s-resize;">
@@ -198,15 +198,6 @@
                 </div>
             </div>
             <asp:HiddenField ID="hfdApplyUserId" runat="server" />
-        </ContentTemplate>
-    </asp:UpdatePanel>
-    <script type="text/javascript" language="javascript">
-        function AppIdSelect() {
-            var returnValue = getCookie("dialogReturn_key");
-            if (returnValue != null) {
-                //document.getElementById("<%=txtSubcompany.ClientID %>").value = returnValue;
-                setCookie("dialogReturn_key", null);
-            }
-        }
-    </script>
+<%--        </ContentTemplate>
+    </asp:UpdatePanel>--%>
 </asp:Content>
