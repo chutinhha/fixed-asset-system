@@ -100,7 +100,9 @@ namespace FixedAsset.Services
         {
             try
             {
+                var detailManagement = new AssetremovedetailManagement(Management);
                 Management.BeginTransaction();
+                detailManagement.DeleteAssetremovedetailsByAssetremoveid(new List<string>(){assetremoveid});
                 Management.DeleteAssetremoveByAssetremoveid(assetremoveid);
                 Management.Commit();
             }
@@ -111,23 +113,5 @@ namespace FixedAsset.Services
             }
         }
         #endregion
-
-        #region DeleteAssetremoveByAssetremoveid
-        public void DeleteAssetremoveByAssetremoveid(List<string> assetremoveids)
-        {
-            try
-            {
-                Management.BeginTransaction();
-                Management.DeleteAssetremoveByAssetremoveid(assetremoveids);
-                Management.Commit();
-            }
-            catch
-            {
-                Management.Rollback();
-                throw;
-            }
-        }
-        #endregion
-
     }
 }

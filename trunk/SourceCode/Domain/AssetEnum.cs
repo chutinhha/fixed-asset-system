@@ -135,8 +135,32 @@ namespace FixedAsset.Domain
         [EnumDescript(Descript = "已确认")]
         Confirmed = 3,
     }
-    [EnumCatetory(EnumName = "维修单状态")]
+    [EnumCatetory(EnumName = "移机单状态")]
     public enum AssetMoveState : int
+    {
+        /// <summary>
+        /// 草稿
+        /// </summary>
+        [EnumDescript(Descript = "草稿")]
+        Draft = 0,
+        /// <summary>
+        /// 已提交
+        /// </summary>
+        [EnumDescript(Descript = "已提交")]
+        Sumitted = 1,
+        /// <summary>
+        /// 已回复
+        /// </summary>
+        [EnumDescript(Descript = "已回复")]
+        Replied = 2,
+        /// <summary>
+        /// 已确认
+        /// </summary>
+        [EnumDescript(Descript = "已确认")]
+        Confirmed = 3,
+    }
+    [EnumCatetory(EnumName = "拆机单状态")]
+    public enum AssetRemoveState : int
     {
         /// <summary>
         /// 草稿
