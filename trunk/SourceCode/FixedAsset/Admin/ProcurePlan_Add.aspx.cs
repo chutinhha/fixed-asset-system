@@ -148,7 +148,7 @@ namespace FixedAsset.Web.Admin
                 //add
                 headInfo = new Procurementschedulehead();
                 WriteControlValueToEntity(headInfo);
-                headInfo.Approveresult = ApproveResult.Approving;
+                headInfo.Approveresult = ApproveResult.Sumitted;
                 this.ProcurementscheduleheadService.CreateProcurementschedulehead(headInfo, ProcureScheduleDetails);
             }
             else
@@ -157,7 +157,7 @@ namespace FixedAsset.Web.Admin
                 headInfo = ProcurementscheduleheadService.RetrieveProcurementscheduleheadByPsid(Psid);
                 if (headInfo == null) { UIHelper.Alert(this, "对不起，计划已被删除,请重新录入！"); return; }
                 WriteControlValueToEntity(headInfo);
-                headInfo.Approveresult = ApproveResult.Approving;
+                headInfo.Approveresult = ApproveResult.Sumitted;
                 ProcurementscheduleheadService.UpdateProcurementscheduleheadByPsid(headInfo, ProcureScheduleDetails);
             }
             UIHelper.AlertMessageGoToURL(this, "提交成功!", ResolveUrl("~/Admin/ProcurePlanList.aspx"));
