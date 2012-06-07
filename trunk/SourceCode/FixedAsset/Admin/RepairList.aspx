@@ -120,6 +120,9 @@
                                 <asp:ImageButton ID="BtnReply" runat="server" ImageUrl="~/images/Button/approve.GIF"
                                     Visible="false" AlternateText="回复" ToolTip="回复" CommandArgument='<%#Eval("Assetmaintainid")%>'
                                     CommandName="ReplyDetail" />
+                                <asp:ImageButton ID="BtnComfirm" runat="server" ImageUrl="~/images/Button/approve.GIF"
+                                    Visible="false" AlternateText="确认" ToolTip="确认" CommandArgument='<%#Eval("Assetmaintainid")%>'
+                                    CommandName="ComfirmDetail" />
                                 <asp:ImageButton ID="BtnDetail" runat="server" ImageUrl="~/images/Button/detail.GIF"
                                     AlternateText="详细信息" ToolTip="详细信息" CommandArgument='<%#Eval("Assetmaintainid")%>'
                                     CommandName="ViewDetail" />
@@ -162,6 +165,9 @@
                                 <asp:ImageButton ID="BtnReply" runat="server" ImageUrl="~/images/Button/approve.GIF"
                                     Visible="false" AlternateText="回复" ToolTip="回复" CommandArgument='<%#Eval("Assetmaintainid")%>'
                                     CommandName="ReplyDetail" />
+                                <asp:ImageButton ID="BtnComfirm" runat="server" ImageUrl="~/images/Button/approve.GIF"
+                                    Visible="false" AlternateText="确认" ToolTip="确认" CommandArgument='<%#Eval("Assetmaintainid")%>'
+                                    CommandName="ComfirmDetail" />
                                 <asp:ImageButton ID="BtnDetail" runat="server" ImageUrl="~/images/Button/detail.GIF"
                                     AlternateText="详细信息" ToolTip="详细信息" CommandArgument='<%#Eval("Assetmaintainid")%>'
                                     CommandName="ViewDetail" />

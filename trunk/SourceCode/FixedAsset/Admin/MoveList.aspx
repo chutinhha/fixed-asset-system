@@ -1,8 +1,13 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/MasterPage.master" AutoEventWireup="true" CodeBehind="MoveList.aspx.cs" Inherits="FixedAsset.Web.Admin.MoveList" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/MasterPage.master" AutoEventWireup="true"
+    CodeBehind="MoveList.aspx.cs" Inherits="FixedAsset.Web.Admin.MoveList" %>
+
 <%@ Import Namespace="FixedAsset.Domain" %>
 <%@ Import Namespace="SeallNet.Utility" %>
 <%@ Register Assembly="KFSQ.Web.Controls" Namespace="KFSQ.Web.Controls" TagPrefix="cc1" %>
 <%@ Register Assembly="iKC.Web" Namespace="iKC.Web.UI.WebControls" TagPrefix="asp" %>
+<%@ Register Src="~/Admin/UserControl/ucDatePicker.ascx" TagName="DatePicker" TagPrefix="uc1" %>
+<%@ Register Src="~/Admin/UserControl/ucSelectProject.ascx" TagName="SelectProject"
+    TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
@@ -12,138 +17,160 @@
     <div id="cnt">
         <div id="dTab1" class="Box text_box">
             <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
-                align="center">
+                align="left">
                 <tr>
-                    <td>
-                        设备编号
+                    <td style="width: 20%;">
+                        移机单号
                     </td>
                     <td>
-                        <asp:TextBox ID="txtSrchPsid" Width="150" CssClass="" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtSrchAssetmoveid" Width="150" CssClass="" runat="server"></asp:TextBox>
                     </td>
                     <td>
                         项目体
                     </td>
                     <td>
-                        <asp:DropDownList ID="ddlProjects" runat="server" Width="150">
-                        </asp:DropDownList>
-                    </td>
-
-                       <td>
-                        状态
-                    </td>
-                    <td>
-                         <asp:DropDownList ID="ddlStatus" runat="server" Width="150px">
-                                            <asp:ListItem>待移机</asp:ListItem>
-                                            <asp:ListItem>已移机</asp:ListItem>
-                                        </asp:DropDownList>
+                        <uc1:SelectProject ID="ucSelectProject" runat="server" />
                     </td>
                 </tr>
                 <tr>
-                 <td>
+                    <td>
                         申请日期
                     </td>
-                    <td>
-                        <asp:TextBox ID="txtApplicationStartDate" Width="150" CssClass="" runat="server"></asp:TextBox>
-                    </td>
-                    <td>
-                        至
-                    </td>
                     <td colspan="3">
-                        <asp:TextBox ID="txtApplicationEndDate" Width="150" CssClass="" runat="server"></asp:TextBox>
-                    </td>  
-                  
+                        <uc1:DatePicker ID="ucSrchStartApplydate" runat="server" />
+                        ~
+                        <uc1:DatePicker ID="ucSrchEndApplydate" runat="server" />
+                    </td>
                 </tr>
                 <tr>
-                <td colspan="6" align="right">
-                  <asp:Button ID="BtnSearch" runat="server" CssClass="button" Text="查询" OnClick="BtnSearch_Click" />
-                <input type="button" class="button" runat="server" id="btnAdd" value="申请" onclick="javascript:window.location='NewMoving.aspx'" />
-                </td>
+                    <td colspan="4" align="right">
+                        <asp:Button ID="BtnSearch" runat="server" CssClass="button" Text="查询" OnClick="BtnSearch_Click" />
+                        <input type="button" class="button" runat="server" id="btnAdd" value="申请" onclick="javascript:window.location='NewMoving.aspx'" />
+                    </td>
                 </tr>
             </table>
-        
-            <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
+            <table style="width: 100%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
                 align="center">
-                <asp:Repeater ID="rptContactsList" runat="server">
+                <asp:Repeater ID="rptMoveList" runat="server" OnItemDataBound="rptMoveList_ItemDataBound"
+                    OnItemCommand="rptMoveList_ItemCommand">
                     <HeaderTemplate>
                         <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
+                            <td style="width: 100px;" align="center">
+                                移机单号
+                            </td>
+                            <td align="center" style="width: 40px;">
+                                系统
+                            </td>
+                            <td align="center" style="width: 60px;">
+                                分公司
+                            </td>
+                            <td align="center" style="width: 60px;">
+                                项目体
+                            </td>
+                            <td align="center" style="width: 75px;">
+                                申请日期
+                            </td>
                             <td align="center">
-                               设备编号
+                                申请人
                             </td>
-                           
-                            <td>
-                               设备名称
+                            <td align="center">
+                                申请内容
                             </td>
-                            <td>
-                               设备状态
+                            <td align="center" style="width: 60px;">
+                                状态
                             </td>
-                            <td>
-                              申请人
-                            </td>
-                            <td>
-                               申请日期
-                            </td>
-                             
-                            <td>
+                            <td align="center">
                                 操作
                             </td>
                         </tr>
                     </HeaderTemplate>
                     <ItemTemplate>
                         <tr>
-                            <td align="center">
-                                <%#Eval("Psid")%>
-                            </td>
-                          
                             <td>
-                                <%#Eval("Subcompany")%>
+                                <%#Eval("Assetmoveid")%>
                             </td>
                             <td>
-                                <%#Eval("Applyuser")%>
+                                <%#Eval("System")%>
+                            </td>
+                            <td>
+                                <%#Eval("Subcompanyname")%>
+                            </td>
+                            <td>
+                                <%#Eval("Subcompanyname").ToString() == Eval("Storagename").ToString() ? string.Empty : Eval("Storagename").ToString()%>
                             </td>
                             <td>
                                 <%#((DateTime)Eval("Applydate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
-                              <td align="center">
-                                <%#Eval("Psid")%>
+                            <td>
+                                <%#Eval("Applyuserid")%>
                             </td>
-                             
-                              
+                            <td style="word-wrap: break-word; overflow: hidden; width: 200px;">
+                                <%#Eval("Applycontent")%>
+                            </td>
+                            <td>
+                                <%#EnumUtil.RetrieveEnumDescript((AssetMoveState)Eval("Approveresult"))%>
+                            </td>
                             <td align="right">
-                               <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/images/Button/edit.GIF"
-                                    AlternateText="编辑" ToolTip="编辑" />
-                                      <asp:ImageButton ID="ImageButton3" runat="server" ImageUrl="~/images/Button/edit.GIF"
-                                    AlternateText="回复" ToolTip="回复" />
-                                 <asp:ImageButton ID="ImageButton4" runat="server" ImageUrl="~/images/Button/edit.GIF"
-                                    AlternateText="确认" ToolTip="确认" />
+                                <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"
+                                    Visible="false" AlternateText="编辑" ToolTip="编辑" CommandArgument='<%#Eval("Assetmoveid")%>'
+                                    CommandName="EditDetail" />
+                                <asp:ImageButton ID="BtnDeleted" runat="server" ImageUrl="~/images/Button/delete.GIF"
+                                    CommandArgument='<%#Eval("Assetmoveid")%>' CommandName="DeleteDetail" OnClientClick="return confirm('确认要删除吗？');"
+                                    AlternateText="删除" ToolTip="删除" Visible="false" />
+                                <asp:ImageButton ID="BtnReply" runat="server" ImageUrl="~/images/Button/approve.GIF"
+                                    Visible="false" AlternateText="回复" ToolTip="回复" CommandArgument='<%#Eval("Assetmoveid")%>'
+                                    CommandName="ReplyDetail" />
+                                <asp:ImageButton ID="BtnComfirm" runat="server" ImageUrl="~/images/Button/approve.GIF"
+                                    Visible="false" AlternateText="确认" ToolTip="确认" CommandArgument='<%#Eval("Assetmoveid")%>'
+                                    CommandName="ComfirmDetail" />
+                                <asp:ImageButton ID="BtnDetail" runat="server" ImageUrl="~/images/Button/detail.GIF"
+                                    AlternateText="详细信息" ToolTip="详细信息" CommandArgument='<%#Eval("Assetmoveid")%>'
+                                    CommandName="ViewDetail" />
                             </td>
                         </tr>
                     </ItemTemplate>
                     <AlternatingItemTemplate>
                         <tr class="alt-row">
-                            <td align="center">
-                                <%#Eval("Psid")%>
-                            </td>
-                           
                             <td>
-                                <%#Eval("Subcompany")%>
+                                <%#Eval("Assetmoveid")%>
                             </td>
                             <td>
-                                <%#Eval("Applyuser")%>
+                                <%#Eval("System")%>
+                            </td>
+                            <td>
+                                <%#Eval("Subcompanyname")%>
+                            </td>
+                            <td>
+                                <%#Eval("Subcompanyname").ToString() == Eval("Storagename").ToString() ? string.Empty : Eval("Storagename").ToString()%>
                             </td>
                             <td>
                                 <%#((DateTime)Eval("Applydate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
-                             <td align="center">
-                                <%#Eval("Psid")%>
+                            <td>
+                                <%#Eval("Applyuserid")%>
                             </td>
-                           
+                            <td style="word-wrap: break-word; overflow: hidden; width: 200px;">
+                                <%#Eval("Applycontent")%>
+                            </td>
+                            <td>
+                                <%#EnumUtil.RetrieveEnumDescript((AssetMoveState)Eval("Approveresult"))%>
+                            </td>
                             <td align="right">
-                                <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/images/Button/edit.GIF"
-                                    AlternateText="编辑" ToolTip="编辑" />
-                                      <asp:ImageButton ID="ImageButton3" runat="server" ImageUrl="~/images/Button/edit.GIF"
-                                    AlternateText="回复" ToolTip="回复" />
-                                 <asp:ImageButton ID="ImageButton4" runat="server" ImageUrl="~/images/Button/edit.GIF"
-                                    AlternateText="确认" ToolTip="确认" />
+                                <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"
+                                    Visible="false" AlternateText="编辑" ToolTip="编辑" CommandArgument='<%#Eval("Assetmoveid")%>'
+                                    CommandName="EditDetail" />
+                                <asp:ImageButton ID="BtnDeleted" runat="server" ImageUrl="~/images/Button/delete.GIF"
+                                    CommandArgument='<%#Eval("Assetmoveid")%>' CommandName="DeleteDetail" OnClientClick="return confirm('确认要删除吗？');"
+                                    AlternateText="删除" ToolTip="删除" Visible="false" />
+                                <asp:ImageButton ID="BtnReply" runat="server" ImageUrl="~/images/Button/approve.GIF"
+                                    Visible="false" AlternateText="回复" ToolTip="回复" CommandArgument='<%#Eval("Assetmoveid")%>'
+                                    CommandName="ReplyDetail" />
+                                <asp:ImageButton ID="BtnComfirm" runat="server" ImageUrl="~/images/Button/approve.GIF"
+                                    Visible="false" AlternateText="确认" ToolTip="确认" CommandArgument='<%#Eval("Assetmoveid")%>'
+                                    CommandName="ComfirmDetail" />
+                                <asp:ImageButton ID="BtnDetail" runat="server" ImageUrl="~/images/Button/detail.GIF"
+                                    AlternateText="详细信息" ToolTip="详细信息" CommandArgument='<%#Eval("Assetmoveid")%>'
+                                    CommandName="ViewDetail" />
                             </td>
                         </tr>
                     </AlternatingItemTemplate>
@@ -151,10 +178,8 @@
                 <tr>
                     <td>
                     </td>
-                    <td colspan="6" style="height: 30px; width: 98%;">
-                        <%-- <cc1:PageChangeControl ID="pageControl" PageSize="10" runat="server" OnPageIndexClick="pageControl_PageIndexClick" />--%>
-                        <cc1:pagingcontrol ID="pcData" runat="server" MaxNavigatePageCount="7" 
-                            OnPageIndexClick="pcData_PageIndexClick" />
+                    <td colspan="8" style="height: 30px; width: 98%;">
+                        <cc1:PagingControl ID="pcData" runat="server" MaxNavigatePageCount="7" OnPageIndexClick="pcData_PageIndexClick" />
                     </td>
                 </tr>
             </table>

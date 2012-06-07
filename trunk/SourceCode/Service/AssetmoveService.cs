@@ -100,7 +100,9 @@ namespace FixedAsset.Services
         {
             try
             {
+                var detailManagement = new AssetmovedetailManagement(Management);
                 Management.BeginTransaction();
+                detailManagement.DeleteAssetmovedetailsByAssetmoveid(new List<string>() { assetmoveid });
                 Management.DeleteAssetmoveByAssetmoveid(assetmoveid);
                 Management.Commit();
             }
