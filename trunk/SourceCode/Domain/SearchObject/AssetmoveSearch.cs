@@ -157,5 +157,15 @@ namespace FixedAsset.Domain
         }
         #endregion
 
+        #region ÒÆ»úµ¥×´Ì¬
+        private readonly List<AssetMoveState> _assetMoveStates = new List<AssetMoveState>();
+        public List<AssetMoveState> AssetMoveStates
+        {
+            get
+            {
+                return _assetMoveStates;
+            }
+        }
+        #endregion
     }
 }

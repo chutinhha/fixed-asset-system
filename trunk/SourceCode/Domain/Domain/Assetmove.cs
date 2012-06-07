@@ -31,12 +31,10 @@ namespace FixedAsset.Domain
         ///</summary>
         public string Assetcategoryid { get; set; }
 
-        #region 对应系统
         ///<summary>
         ///ColumnName:对应系统;Size:80;
         ///</summary>
         public string System { get; set; }
-        #endregion
         #endregion
 
         #region 申请移机日期
@@ -123,33 +121,23 @@ namespace FixedAsset.Domain
         public string Movedcontent{  get;set;}
         #endregion
 
-        #region 区分字段：分公司或项目体
+        #region 分公司或项目体
         ///<summary>
         ///ColumnName:区分字段：分公司或项目体;Size:40;
         ///</summary>
         public string Storagetitle{  get;set;}
-        #endregion
-
-        #region 项目体ID或分公司ID
         ///<summary>
         ///ColumnName:项目体ID或分公司ID;Size:40;
         ///</summary>
         public string Storageid{  get;set;}
-
-        #region 存放地点名
         ///<summary>
         /// 存放地点名（冗余)
         ///</summary>
         public string Storagename { get; set; }
-
-        #region 分公司名称
         ///<summary>
         ///ColumnName:分公司名称;Size:100;（冗余)
         ///</summary>
         public string Subcompanyname { get; set; }
-        #endregion
-
-        #endregion
         #endregion
 
         #region 分公司

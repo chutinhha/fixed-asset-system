@@ -1,7 +1,7 @@
 /********************************************************************
 * File Name:AssetsetupdetailManagement
 * Copyright (C) 2012 Bruce.huang 
-* Creater & Date:Bruce.huang - 2012-05-25
+* Creater & Date:Bruce.huang - 2012-06-07
 * Create Explain:
 * Description:DataBase Access Class
 * Modify Explain:
@@ -16,13 +16,14 @@ using FixedAsset.Domain;
 
 namespace FixedAsset.DataAccess
 {
-    public partial class AssetsetupdetailManagement:BaseManagement
+    public partial class AssetsetupdetailManagement : BaseManagement
     {
         #region Construct
         private const int ColumnCount = 6;
         public AssetsetupdetailManagement()
         { }
-        public AssetsetupdetailManagement(BaseManagement baseManagement): base(baseManagement)
+        public AssetsetupdetailManagement(BaseManagement baseManagement)
+            : base(baseManagement)
         { }
         #endregion
 
@@ -92,22 +93,56 @@ namespace FixedAsset.DataAccess
         {
             try
             {
-                if(Detailids.Count==0){ return ;}
+                if (Detailids.Count == 0) { return; }
                 StringBuilder sqlCommand = new StringBuilder();
                 sqlCommand.AppendLine(@"DELETE FROM  ""ASSETSETUPDETAIL"" WHERE 1=1");
-                if(Detailids.Count==1)
+                if (Detailids.Count == 1)
                 {
-                    this.Database.AddInParameter(":Detailid"+0.ToString(),Detailids[0]);//DBType:VARCHAR2
+                    this.Database.AddInParameter(":Detailid" + 0.ToString(), Detailids[0]);//DBType:VARCHAR2
                     sqlCommand.AppendLine(@" AND ""DETAILID""=:Detailid0");
                 }
-                else if(Detailids.Count>1&&Detailids.Count<=2000)
+                else if (Detailids.Count > 1 && Detailids.Count <= 2000)
                 {
-                    this.Database.AddInParameter(":Detailid"+0.ToString(),Detailids[0]);//DBType:VARCHAR2
+                    this.Database.AddInParameter(":Detailid" + 0.ToString(), Detailids[0]);//DBType:VARCHAR2
                     sqlCommand.AppendLine(@" AND (""DETAILID""=:Detailid0");
                     for (int i = 1; i < Detailids.Count; i++)
                     {
-                    this.Database.AddInParameter(":Detailid"+i.ToString(),Detailids[i]);//DBType:VARCHAR2
-                    sqlCommand.AppendLine(@" OR ""DETAILID""=:Detailid"+i.ToString());
+                        this.Database.AddInParameter(":Detailid" + i.ToString(), Detailids[i]);//DBType:VARCHAR2
+                        sqlCommand.AppendLine(@" OR ""DETAILID""=:Detailid" + i.ToString());
+                    }
+                    sqlCommand.AppendLine(" )");
+                }
+
+                this.Database.ExecuteNonQuery(sqlCommand.ToString());
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
+        #endregion
+
+        #region DeleteAssetsetupdetailsBySetupid
+        public void DeleteAssetsetupdetailsBySetupid(List<string> Setupids)
+        {
+            try
+            {
+                if (Setupids.Count == 0) { return; }
+                StringBuilder sqlCommand = new StringBuilder();
+                sqlCommand.AppendLine(@"DELETE FROM  ""ASSETSETUPDETAIL"" WHERE 1=1");
+                if (Setupids.Count == 1)
+                {
+                    this.Database.AddInParameter(":Setupid" + 0.ToString(), Setupids[0]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" AND ""SETUPID""=:Setupid0");
+                }
+                else if (Setupids.Count > 1 && Setupids.Count <= 2000)
+                {
+                    this.Database.AddInParameter(":Setupid" + 0.ToString(), Setupids[0]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" AND (""SETUPID""=:Setupid0");
+                    for (int i = 1; i < Setupids.Count; i++)
+                    {
+                        this.Database.AddInParameter(":Setupid" + i.ToString(), Setupids[i]);//DBType:VARCHAR2
+                        sqlCommand.AppendLine(@" OR ""SETUPID""=:Setupid" + i.ToString());
                     }
                     sqlCommand.AppendLine(" )");
                 }

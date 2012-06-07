@@ -170,5 +170,16 @@ namespace FixedAsset.Domain
             get;set; 
         }
         #endregion 
+
+        #region ²ð»úµ¥×´Ì¬
+        private readonly List<AssetRemoveState> _assetMoveStates = new List<AssetRemoveState>();
+        public List<AssetRemoveState> AssetRemoveStates
+        {
+            get
+            {
+                return _assetMoveStates;
+            }
+        }
+        #endregion
     }
 }

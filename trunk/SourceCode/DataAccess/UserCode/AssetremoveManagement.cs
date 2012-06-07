@@ -254,6 +254,20 @@ namespace FixedAsset.DataAccess
                 }
                 #endregion 
 
+                #region ²ð»úµ¥×´Ì¬
+                if (info.AssetRemoveStates.Count > 0)
+                {
+                    this.Database.AddInParameter(":APPROVERESULT", info.AssetRemoveStates[0]);
+                    sqlCommand.AppendLine(@" AND (""ASSETREMOVE"".""APPROVERESULT""=:APPROVERESULT");
+                    for (int i = 1; i < info.AssetRemoveStates.Count; i++)
+                    {
+                        this.Database.AddInParameter(":APPROVERESULT" + i.ToString(), info.AssetRemoveStates[i]);
+                        sqlCommand.AppendLine(@" OR ""ASSETREMOVE"".""APPROVERESULT""=:APPROVERESULT" + i.ToString());
+                    }
+                    sqlCommand.AppendLine(@" )");
+                }
+                #endregion
+
                 sqlCommand.AppendLine(@"  ORDER BY ""ASSETREMOVE"".""ASSETREMOVEID"" DESC");
                 return this.ExecuteReaderPaging<Assetremove>(sqlCommand.ToString(), pageIndex, pageSize, out count);
             }
