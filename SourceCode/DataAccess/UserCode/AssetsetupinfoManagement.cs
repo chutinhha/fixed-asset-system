@@ -79,13 +79,117 @@ namespace FixedAsset.DataAccess
                      ""ASSETSETUPINFO"".""SUBCOMPANY"",""ASSETSETUPINFO"".""REJECTREASON"",""ASSETSETUPINFO"".""APPROVEUSER"",""ASSETSETUPINFO"".""APPROVEDATE"",""ASSETSETUPINFO"".""APPROVERESULT"",
                      ""ASSETSETUPINFO"".""CREATEDDATE"",""ASSETSETUPINFO"".""SUBCOMPANYCONTACTORID"",""ASSETSETUPINFO"".""CREATOR"",""ASSETSETUPINFO"".""ASSETCATEGORYID"",""ASSETSETUPINFO"".""SETUPCONTENT"",
                      ""ASSETSETUPINFO"".""CONFIRMDATE"",""ASSETSETUPINFO"".""CONFIRMUSER"",""ASSETSETUPINFO"".""STORAGETITLE"",""ASSETSETUPINFO"".""STORAGEID""
-                     FROM ""ASSETSETUPINFO"" 
+                     ,SYSTEM,c.StorageName,c.subcompanyname
+                     FROM ""ASSETSETUPINFO"" inner join assetsupplier ON ASSETSETUPINFO.ASSETCATEGORYID=assetsupplier.ASSETCATEGORYID
+                     Inner join  v_storage_address c on c.StorageTitle=ASSETSETUPINFO.STORAGETITLE and c.StorageId=ASSETSETUPINFO.STORAGEID
                      WHERE 1=1");
+
+                #region 申请单号
                 if (!string.IsNullOrEmpty(info.Setupid))
                 {
                     this.Database.AddInParameter(":Setupid", DbType.AnsiString, "%" + info.Setupid + "%");
                     sqlCommand.AppendLine(@" AND ""ASSETSETUPINFO"".""SETUPID"" LIKE :Setupid");
                 }
+                #endregion 
+
+                #region 项目体ID或分公司ID
+                if (!string.IsNullOrEmpty(info.Storageid) && !string.IsNullOrEmpty(info.Storagetitle))
+                {
+                    this.Database.AddInParameter(":Storagetitle", DbType.AnsiString, info.Storagetitle);
+                    sqlCommand.AppendLine(@" AND ""ASSETREMOVE"".""STORAGETITLE"" = :Storagetitle");
+                    this.Database.AddInParameter(":Storageid", DbType.AnsiString, info.Storageid);
+                    sqlCommand.AppendLine(@" AND ""ASSETREMOVE"".""STORAGEID"" = :Storageid");
+                }
+                #endregion
+
+                #region (系统)设备大类
+                if (!string.IsNullOrEmpty(info.Assetcategoryid))
+                {
+                    this.Database.AddInParameter(":Assetcategoryid", DbType.AnsiString, "%" + info.Assetcategoryid + "%");
+                    sqlCommand.AppendLine(@" AND ""ASSETSETUPINFO"".""ASSETCATEGORYID"" LIKE :Assetcategoryid");
+                }
+                #endregion
+
+                #region 申请日期
+                if (info.StartApplydate.HasValue)
+                {
+                    this.Database.AddInParameter(":StartApplydate", info.StartApplydate.Value.Date);
+                    sqlCommand.AppendLine(@" AND ""ASSETSETUPINFO"".""APPLYDATE"" >= :StartApplydate");
+                }
+                if (info.EndApplydate.HasValue)
+                {
+                    this.Database.AddInParameter(":EndApplydate", info.EndApplydate.Value.Date.AddDays(1).AddSeconds(-1));
+                    sqlCommand.AppendLine(@" AND ""ASSETSETUPINFO"".""APPLYDATE"" <= :EndApplydate");
+                }
+                #endregion
+
+                #region 申请人
+                if (!string.IsNullOrEmpty(info.Applyuserid))
+                {
+                    this.Database.AddInParameter(":Applyuserid", DbType.AnsiString, "%" + info.Applyuserid + "%");
+                    sqlCommand.AppendLine(@" AND ""ASSETSETUPINFO"".""APPLYUSERID"" LIKE :Applyuserid");
+                }
+                #endregion
+
+                #region 审核人
+                if (!string.IsNullOrEmpty(info.Approveuser))
+                {
+                    this.Database.AddInParameter(":Approveuser", "%" + info.Approveuser + "%");
+                    sqlCommand.AppendLine(@" AND ""ASSETSETUPINFO"".""APPROVEUSER"" LIKE :Approveuser");
+                }
+                #endregion
+
+                #region 审核日期
+                if (info.StartApprovedate.HasValue)
+                {
+                    this.Database.AddInParameter(":StartApprovedate", info.StartApprovedate.Value.Date);
+                    sqlCommand.AppendLine(@" AND ""ASSETSETUPINFO"".""APPROVEDATE"" >= :StartApprovedate");
+                }
+                if (info.EndApprovedate.HasValue)
+                {
+                    this.Database.AddInParameter(":EndApprovedate", info.EndApprovedate.Value.Date.AddDays(1).AddSeconds(-1));
+                    sqlCommand.AppendLine(@" AND ""ASSETSETUPINFO"".""APPROVEDATE"" <= :EndApprovedate");
+                }
+                #endregion 
+
+                #region 确认日期
+                if (info.StartConfirmdate.HasValue)
+                {
+                    this.Database.AddInParameter(":StartConfirmdate", info.StartConfirmdate.Value.Date);
+                    sqlCommand.AppendLine(@" AND ""ASSETSETUPINFO"".""CONFIRMDATE"" >= :StartConfirmdate");
+                }
+                if (info.EndConfirmdate.HasValue)
+                {
+                    this.Database.AddInParameter(":EndConfirmdate", info.EndConfirmdate.Value.Date.AddDays(1).AddSeconds(-1));
+                    sqlCommand.AppendLine(@" AND ""ASSETSETUPINFO"".""CONFIRMDATE"" <= :EndConfirmdate");
+                }
+                #endregion
+
+                #region 确认人
+                if (!string.IsNullOrEmpty(info.Confirmuser))
+                {
+                    this.Database.AddInParameter(":Confirmuser", DbType.AnsiString, "%" + info.Confirmuser + "%");
+                    sqlCommand.AppendLine(@" AND ""ASSETSETUPINFO"".""CONFIRMUSER"" LIKE :Confirmuser");
+                }
+                #endregion  
+
+                #region 分公司联系人
+                if (!string.IsNullOrEmpty(info.Subcompanycontactorid))
+                {
+                    this.Database.AddInParameter(":Subcompanycontactorid", DbType.AnsiString, "%" + info.Subcompanycontactorid + "%");
+                    sqlCommand.AppendLine(@" AND ""ASSETSETUPINFO"".""SUBCOMPANYCONTACTORID"" LIKE :Subcompanycontactorid");
+                }
+                #endregion 
+
+                #region 创建人
+                if (!string.IsNullOrEmpty(info.Creator))
+                {
+                    this.Database.AddInParameter(":Creator", DbType.AnsiString, "%" + info.Creator + "%");
+                    sqlCommand.AppendLine(@" AND ""ASSETSETUPINFO"".""CREATOR"" LIKE :Creator");
+                }
+                #endregion
+
+                #region 装机单状态
                 if (info.SetupStates.Count > 0)
                 {
                     this.Database.AddInParameter(":APPROVERESULT", info.SetupStates[0]);
@@ -97,88 +201,7 @@ namespace FixedAsset.DataAccess
                     }
                     sqlCommand.AppendLine(@" )");
                 }
-                if (info.StartApplydate.HasValue)
-                {
-                    this.Database.AddInParameter(":StartApplydate", info.StartApplydate.Value.Date);
-                    sqlCommand.AppendLine(@" AND ""ASSETSETUPINFO"".""APPLYDATE"" >= :StartApplydate");
-                }
-                if (info.EndApplydate.HasValue)
-                {
-                    this.Database.AddInParameter(":EndApplydate", info.EndApplydate.Value.Date.AddDays(1).AddSeconds(-1));
-                    sqlCommand.AppendLine(@" AND ""ASSETSETUPINFO"".""APPLYDATE"" <= :EndApplydate");
-                }
-                if (!string.IsNullOrEmpty(info.Applyuserid))
-                {
-                    this.Database.AddInParameter(":Applyuserid", DbType.AnsiString, "%" + info.Applyuserid + "%");
-                    sqlCommand.AppendLine(@" AND ""ASSETSETUPINFO"".""APPLYUSERID"" LIKE :Applyuserid");
-                }
-                
-                if (!string.IsNullOrEmpty(info.Subcompany))
-                {
-                    this.Database.AddInParameter(":Subcompany", "%" + info.Subcompany + "%");
-                    sqlCommand.AppendLine(@" AND ""ASSETSETUPINFO"".""SUBCOMPANY"" LIKE :Subcompany");
-                }
-                
-                if (!string.IsNullOrEmpty(info.Approveuser))
-                {
-                    this.Database.AddInParameter(":Approveuser", "%" + info.Approveuser + "%");
-                    sqlCommand.AppendLine(@" AND ""ASSETSETUPINFO"".""APPROVEUSER"" LIKE :Approveuser");
-                }
-                if (info.StartApprovedate.HasValue)
-                {
-                    this.Database.AddInParameter(":StartApprovedate", info.StartApprovedate.Value.Date);
-                    sqlCommand.AppendLine(@" AND ""ASSETSETUPINFO"".""APPROVEDATE"" >= :StartApprovedate");
-                }
-                if (info.EndApprovedate.HasValue)
-                {
-                    this.Database.AddInParameter(":EndApprovedate", info.EndApprovedate.Value.Date.AddDays(1).AddSeconds(-1));
-                    sqlCommand.AppendLine(@" AND ""ASSETSETUPINFO"".""APPROVEDATE"" <= :EndApprovedate");
-                }
-                if (!string.IsNullOrEmpty(info.Subcompanycontactorid))
-                {
-                    this.Database.AddInParameter(":Subcompanycontactorid", DbType.AnsiString, "%" + info.Subcompanycontactorid + "%");
-                    sqlCommand.AppendLine(@" AND ""ASSETSETUPINFO"".""SUBCOMPANYCONTACTORID"" LIKE :Subcompanycontactorid");
-                }
-                if (!string.IsNullOrEmpty(info.Creator))
-                {
-                    this.Database.AddInParameter(":Creator", DbType.AnsiString, "%" + info.Creator + "%");
-                    sqlCommand.AppendLine(@" AND ""ASSETSETUPINFO"".""CREATOR"" LIKE :Creator");
-                }
-                if (!string.IsNullOrEmpty(info.Assetcategoryid))
-                {
-                    this.Database.AddInParameter(":Assetcategoryid", DbType.AnsiString, "%" + info.Assetcategoryid + "%");
-                    sqlCommand.AppendLine(@" AND ""ASSETSETUPINFO"".""ASSETCATEGORYID"" LIKE :Assetcategoryid");
-                }
-                if (!string.IsNullOrEmpty(info.Setupcontent))
-                {
-                    this.Database.AddInParameter(":Setupcontent", "%" + info.Setupcontent + "%");
-                    sqlCommand.AppendLine(@" AND ""ASSETSETUPINFO"".""SETUPCONTENT"" LIKE :Setupcontent");
-                }
-                if (info.StartConfirmdate.HasValue)
-                {
-                    this.Database.AddInParameter(":StartConfirmdate", info.StartConfirmdate.Value.Date);
-                    sqlCommand.AppendLine(@" AND ""ASSETSETUPINFO"".""CONFIRMDATE"" >= :StartConfirmdate");
-                }
-                if (info.EndConfirmdate.HasValue)
-                {
-                    this.Database.AddInParameter(":EndConfirmdate", info.EndConfirmdate.Value.Date.AddDays(1).AddSeconds(-1));
-                    sqlCommand.AppendLine(@" AND ""ASSETSETUPINFO"".""CONFIRMDATE"" <= :EndConfirmdate");
-                }
-                if (!string.IsNullOrEmpty(info.Confirmuser))
-                {
-                    this.Database.AddInParameter(":Confirmuser", DbType.AnsiString, "%" + info.Confirmuser + "%");
-                    sqlCommand.AppendLine(@" AND ""ASSETSETUPINFO"".""CONFIRMUSER"" LIKE :Confirmuser");
-                }
-                if (!string.IsNullOrEmpty(info.Storagetitle))
-                {
-                    this.Database.AddInParameter(":Storagetitle", DbType.AnsiString, "%" + info.Storagetitle + "%");
-                    sqlCommand.AppendLine(@" AND ""ASSETSETUPINFO"".""STORAGETITLE"" LIKE :Storagetitle");
-                }
-                if (!string.IsNullOrEmpty(info.Storageid))
-                {
-                    this.Database.AddInParameter(":Storageid", DbType.AnsiString, "%" + info.Storageid + "%");
-                    sqlCommand.AppendLine(@" AND ""ASSETSETUPINFO"".""STORAGEID"" LIKE :Storageid");
-                }
+                #endregion
 
                 sqlCommand.AppendLine(@"  ORDER BY ""ASSETSETUPINFO"".""SETUPID"" DESC");
                 return this.ExecuteReaderPaging<Assetsetupinfo>(sqlCommand.ToString(), pageIndex, pageSize, out count);

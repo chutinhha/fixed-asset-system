@@ -45,15 +45,7 @@ namespace FixedAsset.Domain
             get;
             set;
         }
-        #endregion
-
-        #region 分公司
-        public string Subcompany
-        {
-            get;
-            set;
-        }
-        #endregion
+        #endregion 
 
         #region 审核人
         public string Approveuser

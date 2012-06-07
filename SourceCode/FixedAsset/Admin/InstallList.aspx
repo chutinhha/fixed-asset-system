@@ -6,6 +6,8 @@
 <%@ Register Assembly="KFSQ.Web.Controls" Namespace="KFSQ.Web.Controls" TagPrefix="cc1" %>
 <%@ Register Assembly="iKC.Web" Namespace="iKC.Web.UI.WebControls" TagPrefix="asp" %>
 <%@ Register Src="~/Admin/UserControl/ucDatePicker.ascx" TagName="DatePicker" TagPrefix="uc1" %>
+<%@ Register Src="~/Admin/UserControl/ucSelectProject.ascx" TagName="SelectProject"
+    TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
@@ -27,15 +29,7 @@
                         项目体
                     </td>
                     <td>
-                        <asp:DropDownList ID="ddlProjects" runat="server" Width="150">
-                        </asp:DropDownList>
-                    </td>
-                    <td>
-                        状态
-                    </td>
-                    <td>
-                        <asp:DropDownList ID="ddlSetupStates" runat="server" Width="150px">
-                        </asp:DropDownList>
+                        <uc1:SelectProject ID="ucSelectProject" runat="server" />
                     </td>
                 </tr>
                 <tr>
@@ -49,7 +43,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="6" align="right">
+                    <td colspan="4" align="right">
                         <asp:Button ID="BtnSearch" runat="server" CssClass="button" Text="查询" OnClick="BtnSearch_Click" />
                         <input type="button" class="button" runat="server" id="btnAdd" value="申请" onclick="javascript:window.location='NewInstall.aspx'" />
                     </td>
@@ -57,46 +51,35 @@
             </table>
             <table style="width: 100%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
                 align="center">
-                <asp:Repeater ID="rptAssetSetupList" runat="server">
+                <asp:Repeater ID="rptAssetSetupList" runat="server" OnItemDataBound="rptAssetSetupList_ItemDataBound"
+                    OnItemCommand="rptAssetSetupList_ItemCommand">
                     <HeaderTemplate>
                         <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
-                            <td>
+                            <td style="width: 100px;" align="center">
                                 申请单号
                             </td>
-                            <td>
-                                状态
+                            <td align="center" style="width: 40px;">
+                                系统
                             </td>
-                            <td>
-                                申请人
-                            </td>
-                            <td>
-                                申请日期
-                            </td>
-                            <td>
+                            <td align="center" style="width: 60px;">
                                 分公司
                             </td>
-                            <td>
+                            <td align="center" style="width: 60px;">
                                 项目体
                             </td>
-                            <%--<td>
-                                计划安装日期
+                            <td align="center" style="width: 75px;">
+                                申请日期
                             </td>
-                            <td>
-                                实际安装日期
-                            </td>--%>
-                            <td>
-                                审核人
+                            <td align="center">
+                                申请人
                             </td>
-                            <td>
-                                审核日期
+                            <td align="center">
+                                申请内容
                             </td>
-                            <td>
-                                确认人
+                            <td align="center" style="width: 60px;">
+                                状态
                             </td>
-                            <td>
-                                确认日期
-                            </td>
-                            <td>
+                            <td align="center">
                                 操作
                             </td>
                         </tr>
@@ -107,48 +90,41 @@
                                 <%#Eval("Setupid")%>
                             </td>
                             <td>
-                                <%#EnumUtil.RetrieveEnumDescript((SetupState)Eval("Approveresult"))%>
+                                <%#Eval("System")%>
                             </td>
                             <td>
-                                <%#Eval("Applyuserid")%>
+                                <%#Eval("Subcompanyname")%>
+                            </td>
+                            <td>
+                                <%#Eval("Subcompanyname").ToString() == Eval("Storagename").ToString() ? string.Empty : Eval("Storagename").ToString()%>
                             </td>
                             <td>
                                 <%#((DateTime)Eval("Applydate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
                             <td>
-                                分公司
+                                <%#Eval("Applyuserid")%>
+                            </td>
+                            <td style="word-wrap: break-word; overflow: hidden; width: 200px;">
+                                <%#Eval("Applycontent")%>
                             </td>
                             <td>
-                                项目体
-                            </td>
-                            <%--<td>
-                                <%# Eval("Plansetupdate") == null ? "" : ((DateTime)Eval("Plansetupdate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
-                            </td>
-                            <td>
-                                <%# Eval("Actualsetupdate") == null ? "" : ((DateTime)Eval("Actualsetupdate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
-                            </td>--%>
-                            <td>
-                                <%#Eval("Approveuser")%>
-                            </td>
-                            <td>
-                                <%# Eval("Approvedate") == null ? "" : ((DateTime)Eval("Approvedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
-                            </td>
-                            <td>
-                                <%#Eval("Confirmuser")%>
-                            </td>
-                            <td>
-                                <%# Eval("Confirmdate") == null ? "" : ((DateTime)Eval("Confirmdate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                <%#EnumUtil.RetrieveEnumDescript((AssetMoveState)Eval("Approveresult"))%>
                             </td>
                             <td align="right">
                                 <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"
-                                    AlternateText="编辑" ToolTip="编辑" CommandArgument='<%#Eval("Setupid")%>' CommandName="EditDetail" />
-                                <asp:ImageButton ID="btnReply" runat="server" ImageUrl="~/images/Button/edit.GIF"
-                                    AlternateText="回复" ToolTip="回复" CommandArgument='<%#Eval("Setupid")%>' CommandName="ReplyDetail" />
-                                <asp:ImageButton ID="BtnConfirm" runat="server" ImageUrl="~/images/Button/edit.GIF"
-                                    AlternateText="确认" ToolTip="确认" CommandArgument='<%#Eval("Setupid")%>' CommandName="ConfirmDetail" />
+                                    Visible="false" AlternateText="编辑" ToolTip="编辑" CommandArgument='<%#Eval("Setupid")%>'
+                                    CommandName="EditDetail" />
                                 <asp:ImageButton ID="BtnDeleted" runat="server" ImageUrl="~/images/Button/delete.GIF"
                                     CommandArgument='<%#Eval("Setupid")%>' CommandName="DeleteDetail" OnClientClick="return confirm('确认要删除吗？');"
-                                    AlternateText="删除" ToolTip="删除" />
+                                    AlternateText="删除" ToolTip="删除" Visible="false" />
+                                <asp:ImageButton ID="BtnReply" runat="server" ImageUrl="~/images/Button/approve.GIF"
+                                    Visible="false" AlternateText="回复" ToolTip="回复" CommandArgument='<%#Eval("Setupid")%>'
+                                    CommandName="ReplyDetail" />
+                                <asp:ImageButton ID="BtnComfirm" runat="server" ImageUrl="~/images/Button/approve.GIF"
+                                    Visible="false" AlternateText="确认" ToolTip="确认" CommandArgument='<%#Eval("Setupid")%>'
+                                    CommandName="ComfirmDetail" />
+                                <asp:ImageButton ID="BtnDetail" runat="server" ImageUrl="~/images/Button/detail.GIF"
+                                    AlternateText="详细信息" ToolTip="详细信息" CommandArgument='<%#Eval("Setupid")%>' CommandName="ViewDetail" />
                             </td>
                         </tr>
                     </ItemTemplate>
@@ -158,44 +134,41 @@
                                 <%#Eval("Setupid")%>
                             </td>
                             <td>
-                                <%#EnumUtil.RetrieveEnumDescript((SetupState)Eval("Approveresult"))%>
+                                <%#Eval("System")%>
                             </td>
                             <td>
-                                <%#Eval("Applyuserid")%>
+                                <%#Eval("Subcompanyname")%>
+                            </td>
+                            <td>
+                                <%#Eval("Subcompanyname").ToString() == Eval("Storagename").ToString() ? string.Empty : Eval("Storagename").ToString()%>
                             </td>
                             <td>
                                 <%#((DateTime)Eval("Applydate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
                             <td>
-                                分公司
+                                <%#Eval("Applyuserid")%>
+                            </td>
+                            <td style="word-wrap: break-word; overflow: hidden; width: 200px;">
+                                <%#Eval("Applycontent")%>
                             </td>
                             <td>
-                                项目体
-                            </td>
-                            <%--<td>
-                                <%# Eval("Plansetupdate") == null ? "" : ((DateTime)Eval("Plansetupdate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
-                            </td>
-                            <td>
-                                <%# Eval("Actualsetupdate") == null ? "" : ((DateTime)Eval("Actualsetupdate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
-                            </td>--%>
-                            <td>
-                                <%#Eval("Approveuser")%>
-                            </td>
-                            <td>
-                                <%# Eval("Approvedate") == null ? "" : ((DateTime)Eval("Approvedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
-                            </td>
-                            <td>
-                                <%#Eval("Confirmuser")%>
-                            </td>
-                            <td>
-                                <%# Eval("Confirmdate") == null ? "" : ((DateTime)Eval("Confirmdate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                <%#EnumUtil.RetrieveEnumDescript((AssetMoveState)Eval("Approveresult"))%>
                             </td>
                             <td align="right">
                                 <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"
-                                    AlternateText="编辑" ToolTip="编辑" CommandArgument='<%#Eval("Setupid")%>' CommandName="EditDetail" />
+                                    Visible="false" AlternateText="编辑" ToolTip="编辑" CommandArgument='<%#Eval("Setupid")%>'
+                                    CommandName="EditDetail" />
                                 <asp:ImageButton ID="BtnDeleted" runat="server" ImageUrl="~/images/Button/delete.GIF"
                                     CommandArgument='<%#Eval("Setupid")%>' CommandName="DeleteDetail" OnClientClick="return confirm('确认要删除吗？');"
-                                    AlternateText="删除" ToolTip="删除" />
+                                    AlternateText="删除" ToolTip="删除" Visible="false" />
+                                <asp:ImageButton ID="BtnReply" runat="server" ImageUrl="~/images/Button/approve.GIF"
+                                    Visible="false" AlternateText="回复" ToolTip="回复" CommandArgument='<%#Eval("Setupid")%>'
+                                    CommandName="ReplyDetail" />
+                                <asp:ImageButton ID="BtnComfirm" runat="server" ImageUrl="~/images/Button/approve.GIF"
+                                    Visible="false" AlternateText="确认" ToolTip="确认" CommandArgument='<%#Eval("Setupid")%>'
+                                    CommandName="ComfirmDetail" />
+                                <asp:ImageButton ID="BtnDetail" runat="server" ImageUrl="~/images/Button/detail.GIF"
+                                    AlternateText="详细信息" ToolTip="详细信息" CommandArgument='<%#Eval("Setupid")%>' CommandName="ViewDetail" />
                             </td>
                         </tr>
                     </AlternatingItemTemplate>

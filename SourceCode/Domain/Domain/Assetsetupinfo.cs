@@ -146,11 +146,16 @@ namespace FixedAsset.Domain
         public string Creator { get; set; }
         #endregion
 
-        #region (系统)设备大类
+        #region 对应系统
         ///<summary>
         ///ColumnName:(系统)设备大类;Size:40;
         ///</summary>
         public string Assetcategoryid { get; set; }
+
+        ///<summary>
+        ///ColumnName:对应系统;Size:80;
+        ///</summary>
+        public string System { get; set; }
         #endregion
 
         #region 已安装明细
@@ -174,18 +179,23 @@ namespace FixedAsset.Domain
         public string Confirmuser { get; set; }
         #endregion
 
-        #region 区分字段：分公司或项目体
+        #region 分公司或项目体
         ///<summary>
         ///ColumnName:区分字段：分公司或项目体;Size:40;
         ///</summary>
         public string Storagetitle { get; set; }
-        #endregion
-
-        #region 项目体ID或分公司ID
         ///<summary>
         ///ColumnName:项目体ID或分公司ID;Size:40;
         ///</summary>
         public string Storageid { get; set; }
-        #endregion 
+        ///<summary>
+        /// 存放地点名（冗余)
+        ///</summary>
+        public string Storagename { get; set; }
+        ///<summary>
+        ///ColumnName:分公司名称;Size:100;（冗余)
+        ///</summary>
+        public string Subcompanyname { get; set; }
+        #endregion
     }
 }

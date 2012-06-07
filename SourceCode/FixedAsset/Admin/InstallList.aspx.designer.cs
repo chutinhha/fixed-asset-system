@@ -22,22 +22,13 @@ namespace FixedAsset.Web.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtSrchSetupid;
         
         /// <summary>
-        /// ddlProjects 控件。
+        /// ucSelectProject 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlProjects;
-        
-        /// <summary>
-        /// ddlSetupStates 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSetupStates;
+        protected global::FixedAsset.Web.Admin.UserControl.ucSelectProject ucSelectProject;
         
         /// <summary>
         /// ucSrchStartApplydate 控件。

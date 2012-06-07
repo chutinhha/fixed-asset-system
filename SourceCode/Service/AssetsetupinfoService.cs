@@ -100,7 +100,9 @@ namespace FixedAsset.Services
         {
             try
             {
+                var detaiManagement = new AssetsetupdetailManagement(Management);
                 Management.BeginTransaction();
+                detaiManagement.DeleteAssetsetupdetailsBySetupid(new List<string>(){setupid});
                 Management.DeleteAssetsetupinfoBySetupid(setupid);
                 Management.Commit();
             }
@@ -111,23 +113,5 @@ namespace FixedAsset.Services
             }
         }
         #endregion
-
-        #region DeleteAssetsetupinfoBySetupid
-        public void DeleteAssetsetupinfoBySetupid(List<string> setupids)
-        {
-            try
-            {
-                Management.BeginTransaction();
-                Management.DeleteAssetsetupinfoBySetupid(setupids);
-                Management.Commit();
-            }
-            catch
-            {
-                Management.Rollback();
-                throw;
-            }
-        }
-        #endregion
-
     }
 }

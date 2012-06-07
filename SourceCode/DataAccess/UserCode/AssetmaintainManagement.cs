@@ -207,9 +207,7 @@ namespace FixedAsset.DataAccess
                     this.Database.AddInParameter(":Confirmuser",DbType.AnsiString,"%"+info.Confirmuser+"%");
                     sqlCommand.AppendLine(@" AND ""ASSETMAINTAIN"".""CONFIRMUSER"" LIKE :Confirmuser");
                 }
-                #endregion 
-
-                
+                #endregion   
 
                 #region 分公司联系人
                 if (!string.IsNullOrEmpty(info.Subcompanycontactorid))
