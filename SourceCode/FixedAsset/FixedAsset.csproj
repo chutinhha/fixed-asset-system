@@ -164,6 +164,27 @@
     <Compile Include="Admin\ContractList.aspx.designer.cs">
       <DependentUpon>ContractList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\DataConfig_Add.aspx.cs">
+      <DependentUpon>DataConfig_Add.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\DataConfig_Add.aspx.designer.cs">
+      <DependentUpon>DataConfig_Add.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\DataConfig_List.aspx.cs">
+      <DependentUpon>DataConfig_List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\DataConfig_List.aspx.designer.cs">
+      <DependentUpon>DataConfig_List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\DataConfig_View.aspx.cs">
+      <DependentUpon>DataConfig_View.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\DataConfig_View.aspx.designer.cs">
+      <DependentUpon>DataConfig_View.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\EquipmentList.aspx.cs">
       <DependentUpon>EquipmentList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -608,6 +629,9 @@
     <Content Include="Admin\ContactDetail_Add.aspx" />
     <Content Include="Admin\ContractList.aspx" />
     <Content Include="Admin\css\default.css" />
+    <Content Include="Admin\DataConfig_Add.aspx" />
+    <Content Include="Admin\DataConfig_List.aspx" />
+    <Content Include="Admin\DataConfig_View.aspx" />
     <Content Include="Admin\ImportAssetFromContract.aspx" />
     <Content Include="Admin\ImportContractDetail_Edit.aspx" />
     <Content Include="Admin\Login.aspx" />
