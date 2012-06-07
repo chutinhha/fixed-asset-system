@@ -48,7 +48,7 @@ namespace FixedAsset.Web.Admin
                         BtnDeleted.Visible = true;
                         BtnEdit.Visible = true;
                         break;
-                    case ApproveResult.Approving:
+                    case ApproveResult.Sumitted:
                         BtnApprove.Visible = true;
                         break;
                 }
