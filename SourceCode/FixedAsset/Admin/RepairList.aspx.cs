@@ -46,6 +46,8 @@ namespace FixedAsset.Web.Admin
                 var BtnEdit = e.Item.FindControl("BtnEdit") as ImageButton;
                 var BtnDeleted = e.Item.FindControl("BtnDeleted") as ImageButton;
                 var BtnReply = e.Item.FindControl("BtnApprove") as ImageButton;
+                var BtnComfirm = e.Item.FindControl("BtnComfirm") as ImageButton;
+                //
                 var headInfo = e.Item.DataItem as Assetmaintain;
                 BtnDeleted.Visible = false;
                 BtnEdit.Visible = false;
@@ -57,6 +59,9 @@ namespace FixedAsset.Web.Admin
                         break;
                     case AssetMaintainState.Sumitted:
                         BtnReply.Visible = true;
+                        break;
+                    case AssetMaintainState.Replied:
+                        BtnComfirm.Visible = true;
                         break;
                 }
             }
@@ -80,6 +85,10 @@ namespace FixedAsset.Web.Admin
             else if (e.CommandName.Equals("ReplyDetail"))
             {
                 Response.Redirect(ResolveUrl(string.Format("~/Admin/Repair_Reply.aspx?Assetmaintainid={0}", assetMaintainId)));
+            }
+            else if (e.CommandName.Equals("ComfirmDetail"))
+            {
+                Response.Redirect(ResolveUrl(string.Format("~/Admin/Repair_Reply.aspx?Assetmaintainid={0}", assetMaintainId)));//维修结束后确认
             }
             else
             {
