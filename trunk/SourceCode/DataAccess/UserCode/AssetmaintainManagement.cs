@@ -281,6 +281,21 @@ namespace FixedAsset.DataAccess
                 }
                 #endregion
 
+                #region ά�޵�״̬
+                if (info.AssetMaintainStates.Count > 0)
+                {
+                    this.Database.AddInParameter(":APPROVERESULT", info.AssetMaintainStates[0]);
+                    sqlCommand.AppendLine(@" AND (""ASSETMAINTAIN"".""APPROVERESULT""=:APPROVERESULT");
+                    for (int i = 1; i < info.AssetMaintainStates.Count; i++)
+                    {
+                        this.Database.AddInParameter(":APPROVERESULT" + i.ToString(), info.AssetMaintainStates[i]);
+                        sqlCommand.AppendLine(@" OR ""ASSETMAINTAIN"".""APPROVERESULT""=:APPROVERESULT" + i.ToString());
+                    }
+                    sqlCommand.AppendLine(@" )");
+                }
+
+                #endregion
+
                 sqlCommand.AppendLine(@"  ORDER BY ""ASSETMAINTAIN"".""ASSETMAINTAINID"" DESC");
                 return this.ExecuteReaderPaging<Assetmaintain>(sqlCommand.ToString(), pageIndex, pageSize, out count);
             }
