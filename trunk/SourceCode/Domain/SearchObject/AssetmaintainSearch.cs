@@ -57,14 +57,6 @@ namespace FixedAsset.Domain
         }
         #endregion
 
-        #region 申请内容
-        public string Applycontent
-        {
-            get;
-            set;
-        }
-        #endregion
-
         #region 审核人
         public string Approveuser
         {
@@ -81,14 +73,7 @@ namespace FixedAsset.Domain
         {
             get;set; 
         }
-        #endregion
-
-        #region 拒绝理由
-        public string Rejectreason
-        {
-            get;set; 
-        }
-        #endregion
+        #endregion 
 
         #region 计划维修日期
         public DateTime? StartPlanmaintaindate
@@ -128,15 +113,7 @@ namespace FixedAsset.Domain
         {
             get;set; 
         }
-        #endregion
-
-        #region 已维修明细
-        public string Maintaincontent
-        {
-            get;
-            set;
-        }
-        #endregion
+        #endregion 
 
         #region 区分字段：分公司或项目体
         public string Storagetitle
@@ -152,15 +129,7 @@ namespace FixedAsset.Domain
             get;
             set;
         }
-        #endregion
-
-        #region 分公司
-        public string Subcompany
-        {
-            get;
-            set;
-        }
-        #endregion
+        #endregion 
 
         #region 分公司联系人
         public string Subcompanycontactorid

@@ -48,14 +48,7 @@ namespace FixedAsset.Domain
         {
             get;set; 
         }
-        #endregion
-
-        #region 申请内容
-        public string Applycontent
-        {
-            get;set; 
-        }
-        #endregion
+        #endregion 
 
         #region 审核人
         public string Approveuser
@@ -73,14 +66,7 @@ namespace FixedAsset.Domain
         {
             get;set; 
         }
-        #endregion
-
-        #region 拒绝理由
-        public string Rejectreason
-        {
-            get;set; 
-        }
-        #endregion
+        #endregion 
 
         #region 计划移机日期
         public DateTime? StartPlanmovedate
@@ -120,14 +106,7 @@ namespace FixedAsset.Domain
         {
             get;set; 
         }
-        #endregion
-
-        #region 已移机明细
-        public string Movedcontent
-        {
-            get;set; 
-        }
-        #endregion
+        #endregion  
 
         #region 区分字段：分公司或项目体
         public string Storagetitle
@@ -138,13 +117,6 @@ namespace FixedAsset.Domain
 
         #region 项目体ID或分公司ID
         public string Storageid
-        {
-            get;set; 
-        }
-        #endregion
-
-        #region 分公司
-        public string Subcompany
         {
             get;set; 
         }

@@ -25,11 +25,12 @@ namespace FixedAsset.Domain
         public string Assetmoveid{  get;set;}
         #endregion
 
-        #region (系统)设备大类
+        #region 对应系统
         ///<summary>
         ///ColumnName:(系统)设备大类;Size:40;
         ///</summary>
-        public string Assetcategoryid{  get;set;}
+        public string Assetcategoryid { get; set; }
+
         #region 对应系统
         ///<summary>
         ///ColumnName:对应系统;Size:80;
@@ -134,6 +135,21 @@ namespace FixedAsset.Domain
         ///ColumnName:项目体ID或分公司ID;Size:40;
         ///</summary>
         public string Storageid{  get;set;}
+
+        #region 存放地点名
+        ///<summary>
+        /// 存放地点名（冗余)
+        ///</summary>
+        public string Storagename { get; set; }
+
+        #region 分公司名称
+        ///<summary>
+        ///ColumnName:分公司名称;Size:100;（冗余)
+        ///</summary>
+        public string Subcompanyname { get; set; }
+        #endregion
+
+        #endregion
         #endregion
 
         #region 分公司
