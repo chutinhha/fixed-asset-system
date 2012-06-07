@@ -59,7 +59,7 @@ namespace FixedAsset.Web.Admin
                 }
             }
         }
-        protected void rptMoveList_ItemCommand(object sender, RepeaterCommandEventArgs e)
+        protected void rptAssetSetupList_ItemCommand(object sender, RepeaterCommandEventArgs e)
         {
             var setupId = e.CommandArgument.ToString();
             if (e.CommandName.Equals("DeleteDetail"))
