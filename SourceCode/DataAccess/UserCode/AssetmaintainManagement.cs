@@ -94,6 +94,16 @@ namespace FixedAsset.DataAccess
                 }
                 #endregion
 
+                #region 项目体ID或分公司ID
+                if (!string.IsNullOrEmpty(info.Storageid) && !string.IsNullOrEmpty(info.Storagetitle))
+                {
+                    this.Database.AddInParameter(":Storagetitle", DbType.AnsiString, info.Storagetitle);
+                    sqlCommand.AppendLine(@" AND ""ASSETMAINTAIN"".""STORAGETITLE"" = :Storagetitle");
+                    this.Database.AddInParameter(":Storageid", DbType.AnsiString, info.Storageid);
+                    sqlCommand.AppendLine(@" AND ""ASSETMAINTAIN"".""STORAGEID"" = :Storageid");
+                }
+                #endregion
+
                 #region (系统)设备大类
                 if (!string.IsNullOrEmpty(info.Assetcategoryid))
                 {
@@ -131,14 +141,6 @@ namespace FixedAsset.DataAccess
                 }
                 #endregion
 
-                #region 申请内容
-                if (!string.IsNullOrEmpty(info.Applycontent))
-                {
-                    this.Database.AddInParameter(":Applycontent", "%" + info.Applycontent + "%");
-                    sqlCommand.AppendLine(@" AND ""ASSETMAINTAIN"".""APPLYCONTENT"" LIKE :Applycontent");
-                }
-                #endregion
-
                 #region 审核人
                 if (!string.IsNullOrEmpty(info.Approveuser))
                 {
@@ -158,15 +160,7 @@ namespace FixedAsset.DataAccess
                     this.Database.AddInParameter(":EndApprovedate",info.EndApprovedate.Value.Date.AddDays(1).AddSeconds(-1));
                     sqlCommand.AppendLine(@" AND ""ASSETMAINTAIN"".""APPROVEDATE"" <= :EndApprovedate");
                 }
-                #endregion
-
-                #region 拒绝理由
-                if (!string.IsNullOrEmpty(info.Rejectreason))
-                {
-                    this.Database.AddInParameter(":Rejectreason", "%"+info.Rejectreason+"%");
-                    sqlCommand.AppendLine(@" AND ""ASSETMAINTAIN"".""REJECTREASON"" LIKE :Rejectreason");
-                }
-                #endregion
+                #endregion  
 
                 #region 计划维修日期
                 if (info.StartPlanmaintaindate.HasValue)
@@ -213,33 +207,9 @@ namespace FixedAsset.DataAccess
                     this.Database.AddInParameter(":Confirmuser",DbType.AnsiString,"%"+info.Confirmuser+"%");
                     sqlCommand.AppendLine(@" AND ""ASSETMAINTAIN"".""CONFIRMUSER"" LIKE :Confirmuser");
                 }
-                #endregion
+                #endregion 
 
-                #region 已维修明细
-                if (!string.IsNullOrEmpty(info.Maintaincontent))
-                {
-                    this.Database.AddInParameter(":Maintaincontent", "%"+info.Maintaincontent+"%");
-                    sqlCommand.AppendLine(@" AND ""ASSETMAINTAIN"".""MAINTAINCONTENT"" LIKE :Maintaincontent");
-                }
-                #endregion  
-
-                #region 项目体ID或分公司ID
-                if (!string.IsNullOrEmpty(info.Storageid)&&!string.IsNullOrEmpty(info.Storagetitle))
-                {
-                    this.Database.AddInParameter(":Storagetitle", DbType.AnsiString, info.Storagetitle);
-                    sqlCommand.AppendLine(@" AND ""ASSETMAINTAIN"".""STORAGETITLE"" = :Storagetitle");
-                    this.Database.AddInParameter(":Storageid",DbType.AnsiString,info.Storageid);
-                    sqlCommand.AppendLine(@" AND ""ASSETMAINTAIN"".""STORAGEID"" = :Storageid");
-                }
-                #endregion
-
-                #region 分公司
-                if (!string.IsNullOrEmpty(info.Subcompany))
-                {
-                    this.Database.AddInParameter(":Subcompany", "%"+info.Subcompany+"%");
-                    sqlCommand.AppendLine(@" AND ""ASSETMAINTAIN"".""SUBCOMPANY"" LIKE :Subcompany");
-                }
-                #endregion
+                
 
                 #region 分公司联系人
                 if (!string.IsNullOrEmpty(info.Subcompanycontactorid))
@@ -304,7 +274,6 @@ namespace FixedAsset.DataAccess
                 this.Database.ClearParameter();
             }
         }
-        #endregion
-
+        #endregion 
     }
 }
