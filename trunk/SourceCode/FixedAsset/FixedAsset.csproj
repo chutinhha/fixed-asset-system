@@ -241,6 +241,13 @@
     <Compile Include="Admin\MoveList.aspx.designer.cs">
       <DependentUpon>MoveList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Move_View.aspx.cs">
+      <DependentUpon>Move_View.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Move_View.aspx.designer.cs">
+      <DependentUpon>Move_View.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\NewContacts.aspx.cs">
       <DependentUpon>NewContacts.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -325,12 +332,26 @@
     <Compile Include="Admin\RemoveList.aspx.designer.cs">
       <DependentUpon>RemoveList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Remove_View.aspx.cs">
+      <DependentUpon>Remove_View.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Remove_View.aspx.designer.cs">
+      <DependentUpon>Remove_View.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\RepairList.aspx.cs">
       <DependentUpon>RepairList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\RepairList.aspx.designer.cs">
       <DependentUpon>RepairList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Repair_View.aspx.cs">
+      <DependentUpon>Repair_View.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Repair_View.aspx.designer.cs">
+      <DependentUpon>Repair_View.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ReplyInstall.aspx.cs">
       <DependentUpon>ReplyInstall.aspx</DependentUpon>
@@ -635,6 +656,9 @@
     <Content Include="Admin\ImportAssetFromContract.aspx" />
     <Content Include="Admin\ImportContractDetail_Edit.aspx" />
     <Content Include="Admin\Login.aspx" />
+    <Content Include="Admin\Move_View.aspx" />
+    <Content Include="Admin\Remove_View.aspx" />
+    <Content Include="Admin\Repair_View.aspx" />
     <Content Include="Admin\ReplyInstall.aspx" />
     <Content Include="Admin\Report_AssetCategory.aspx" />
     <Content Include="Admin\Report_AssetState.aspx" />
