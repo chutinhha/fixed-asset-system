@@ -39,6 +39,53 @@ namespace FixedAsset.Web.Admin
         {
             LoadData(e.PageIndex);
         }
+        protected void rptRepairList_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                var BtnEdit = e.Item.FindControl("BtnEdit") as ImageButton;
+                var BtnDeleted = e.Item.FindControl("BtnDeleted") as ImageButton;
+                var BtnReply = e.Item.FindControl("BtnApprove") as ImageButton;
+                var headInfo = e.Item.DataItem as Assetmaintain;
+                BtnDeleted.Visible = false;
+                BtnEdit.Visible = false;
+                switch (headInfo.Approveresult)
+                {
+                    case AssetMaintainState.Draft:
+                        BtnDeleted.Visible = true;
+                        BtnEdit.Visible = true;
+                        break;
+                    case AssetMaintainState.Sumitted:
+                        BtnReply.Visible = true;
+                        break;
+                }
+            }
+        }
+        protected void rptRepairList_ItemCommand(object sender, RepeaterCommandEventArgs e)
+        {
+            var assetMaintainId = e.CommandArgument.ToString();
+            if (e.CommandName.Equals("DeleteDetail"))
+            {
+                if (!string.IsNullOrEmpty(assetMaintainId))
+                {
+                    AssetmaintainService.DeleteAssetmaintainByAssetmaintainid(assetMaintainId);
+                    UIHelper.Alert(this, "删除成功");
+                    LoadData(pcData.CurrentIndex);
+                }
+            }
+            if (e.CommandName.Equals("EditDetail"))
+            {
+                Response.Redirect(ResolveUrl(string.Format("~/Admin/NewRepairing.aspx?Assetmaintainid={0}", assetMaintainId)));
+            }
+            else if (e.CommandName.Equals("ReplyDetail"))
+            {
+                Response.Redirect(ResolveUrl(string.Format("~/Admin/Repair_Reply.aspx?Assetmaintainid={0}", assetMaintainId)));
+            }
+            else
+            {
+                Response.Redirect(ResolveUrl(string.Format("~/Admin/Repair_View.aspx?Assetmaintainid={0}", assetMaintainId)));
+            }
+        }
         #endregion
 
         #region  Methods

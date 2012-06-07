@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace FixedAsset.Web.Admin
 {
-    public partial class Repair_Replyaspx : System.Web.UI.Page
+    public partial class Repair_Reply : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

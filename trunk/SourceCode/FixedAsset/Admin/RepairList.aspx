@@ -17,9 +17,9 @@
     <div id="cnt">
         <div id="dTab1" class="Box text_box">
             <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
-                align="center">
+                align="left">
                 <tr>
-                    <td>
+                    <td style="width: 20%;">
                         维修单编号
                     </td>
                     <td>
@@ -49,36 +49,37 @@
                     </td>
                 </tr>
             </table>
-            <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
+            <table style="width: 100%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
                 align="center">
-                <asp:Repeater ID="rptRepairList" runat="server">
+                <asp:Repeater ID="rptRepairList" runat="server" OnItemDataBound="rptRepairList_ItemDataBound"
+                    OnItemCommand="rptRepairList_ItemCommand">
                     <HeaderTemplate>
                         <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
-                            <td>
+                            <td style="width: 100px;" align="center">
                                 维修单号
                             </td>
-                            <td>
+                            <td align="center" style="width: 40px;">
                                 系统
                             </td>
-                            <td>
+                            <td align="center" style="width: 60px;">
                                 分公司
                             </td>
-                            <td>
+                            <td align="center" style="width: 60px;">
                                 项目体
                             </td>
-                            <td>
+                            <td align="center" style="width: 75px;">
                                 申请日期
                             </td>
-                            <td>
+                            <td align="center">
                                 申请人
                             </td>
-                            <td>
+                            <td align="center">
                                 申请内容
                             </td>
-                            <td>
+                            <td align="center" style="width: 60px;">
                                 状态
                             </td>
-                            <td>
+                            <td align="center">
                                 操作
                             </td>
                         </tr>
@@ -103,19 +104,25 @@
                             <td>
                                 <%#Eval("Applyuserid")%>
                             </td>
-                            <td>
+                            <td style="word-wrap: break-word; overflow: hidden; width: 200px;">
                                 <%#Eval("Applycontent")%>
                             </td>
                             <td>
-                                <%#EnumUtil.RetrieveEnumDescript((SetupState)Eval("Approveresult"))%>
+                                <%#EnumUtil.RetrieveEnumDescript((AssetMaintainState)Eval("Approveresult"))%>
                             </td>
                             <td align="right">
-                                <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/images/Button/edit.GIF"
-                                    AlternateText="编辑" ToolTip="编辑" CommandArgument='<%#Eval("Assetmaintainid")%>' />
-                                <asp:ImageButton ID="ImageButton3" runat="server" ImageUrl="~/images/Button/edit.GIF"
-                                    AlternateText="回复" ToolTip="回复" CommandArgument='<%#Eval("Assetmaintainid")%>' />
-                                <asp:ImageButton ID="ImageButton4" runat="server" ImageUrl="~/images/Button/edit.GIF"
-                                    AlternateText="确认" ToolTip="确认" CommandArgument='<%#Eval("Assetmaintainid")%>' />
+                                <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"
+                                    Visible="false" AlternateText="编辑" ToolTip="编辑" CommandArgument='<%#Eval("Assetmaintainid")%>'
+                                    CommandName="EditDetail" />
+                                <asp:ImageButton ID="BtnDeleted" runat="server" ImageUrl="~/images/Button/delete.GIF"
+                                    CommandArgument='<%#Eval("Assetmaintainid")%>' CommandName="DeleteDetail" OnClientClick="return confirm('确认要删除吗？');"
+                                    AlternateText="删除" ToolTip="删除" Visible="false" />
+                                <asp:ImageButton ID="BtnReply" runat="server" ImageUrl="~/images/Button/approve.GIF"
+                                    Visible="false" AlternateText="回复" ToolTip="回复" CommandArgument='<%#Eval("Assetmaintainid")%>'
+                                    CommandName="ReplyDetail" />
+                                <asp:ImageButton ID="BtnDetail" runat="server" ImageUrl="~/images/Button/detail.GIF"
+                                    AlternateText="详细信息" ToolTip="详细信息" CommandArgument='<%#Eval("Assetmaintainid")%>'
+                                    CommandName="ViewDetail" />
                             </td>
                         </tr>
                     </ItemTemplate>
@@ -139,19 +146,25 @@
                             <td>
                                 <%#Eval("Applyuserid")%>
                             </td>
-                            <td>
+                            <td style="word-wrap: break-word; overflow: hidden; width: 200px;">
                                 <%#Eval("Applycontent")%>
                             </td>
                             <td>
-                                <%#EnumUtil.RetrieveEnumDescript((SetupState)Eval("Approveresult"))%>
+                                <%#EnumUtil.RetrieveEnumDescript((AssetMaintainState)Eval("Approveresult"))%>
                             </td>
                             <td align="right">
-                                <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/images/Button/edit.GIF"
-                                    AlternateText="编辑" ToolTip="编辑" CommandArgument='<%#Eval("Assetmaintainid")%>' />
-                                <asp:ImageButton ID="ImageButton3" runat="server" ImageUrl="~/images/Button/edit.GIF"
-                                    AlternateText="回复" ToolTip="回复" CommandArgument='<%#Eval("Assetmaintainid")%>' />
-                                <asp:ImageButton ID="ImageButton4" runat="server" ImageUrl="~/images/Button/edit.GIF"
-                                    AlternateText="确认" ToolTip="确认" CommandArgument='<%#Eval("Assetmaintainid")%>' />
+                                <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"
+                                    Visible="false" AlternateText="编辑" ToolTip="编辑" CommandArgument='<%#Eval("Assetmaintainid")%>'
+                                    CommandName="EditDetail" />
+                                <asp:ImageButton ID="BtnDeleted" runat="server" ImageUrl="~/images/Button/delete.GIF"
+                                    CommandArgument='<%#Eval("Assetmaintainid")%>' CommandName="DeleteDetail" OnClientClick="return confirm('确认要删除吗？');"
+                                    AlternateText="删除" ToolTip="删除" Visible="false" />
+                                <asp:ImageButton ID="BtnReply" runat="server" ImageUrl="~/images/Button/approve.GIF"
+                                    Visible="false" AlternateText="回复" ToolTip="回复" CommandArgument='<%#Eval("Assetmaintainid")%>'
+                                    CommandName="ReplyDetail" />
+                                <asp:ImageButton ID="BtnDetail" runat="server" ImageUrl="~/images/Button/detail.GIF"
+                                    AlternateText="详细信息" ToolTip="详细信息" CommandArgument='<%#Eval("Assetmaintainid")%>'
+                                    CommandName="ViewDetail" />
                             </td>
                         </tr>
                     </AlternatingItemTemplate>

@@ -360,12 +360,12 @@
     <Compile Include="Admin\RepairList.aspx.designer.cs">
       <DependentUpon>RepairList.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\Repair_Replyaspx.aspx.cs">
-      <DependentUpon>Repair_Replyaspx.aspx</DependentUpon>
+    <Compile Include="Admin\Repair_Reply.aspx.cs">
+      <DependentUpon>Repair_Reply.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\Repair_Replyaspx.aspx.designer.cs">
-      <DependentUpon>Repair_Replyaspx.aspx</DependentUpon>
+    <Compile Include="Admin\Repair_Reply.aspx.designer.cs">
+      <DependentUpon>Repair_Reply.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Repair_View.aspx.cs">
       <DependentUpon>Repair_View.aspx</DependentUpon>
@@ -681,7 +681,7 @@
     <Content Include="Admin\Move_View.aspx" />
     <Content Include="Admin\Remove_Reply.aspx" />
     <Content Include="Admin\Remove_View.aspx" />
-    <Content Include="Admin\Repair_Replyaspx.aspx" />
+    <Content Include="Admin\Repair_Reply.aspx" />
     <Content Include="Admin\Repair_View.aspx" />
     <Content Include="Admin\ReplyInstall.aspx" />
     <Content Include="Admin\Report_AssetCategory.aspx" />
