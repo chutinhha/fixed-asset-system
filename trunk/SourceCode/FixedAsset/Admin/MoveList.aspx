@@ -49,8 +49,8 @@
                     </td>
                 </tr>
             </table>
-            <table style="width: 100%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
-                align="center">
+            <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
+                align="center" class="table_grayTH eoddTable">
                 <asp:Repeater ID="rptMoveList" runat="server" OnItemDataBound="rptMoveList_ItemDataBound"
                     OnItemCommand="rptMoveList_ItemCommand">
                     <HeaderTemplate>

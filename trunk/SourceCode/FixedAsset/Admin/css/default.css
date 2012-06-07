@@ -416,7 +416,7 @@ a:active
 #cnt table td, #cnt table th
 {
 	line-height: 1.3em;
-	padding: 2px;
+	padding: 10px;
 }
 #cnt tbody
 {
@@ -462,7 +462,8 @@ a:active
 	margin: 0 12px;
 }
 form label, .column-right label
-{	
+{
+	display: block;
 	font-weight: bold;
 	padding: 0 0 10px;
 	width: 100px;
