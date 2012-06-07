@@ -80,7 +80,7 @@ namespace FixedAsset.DataAccess
                      ""ASSETREMOVE"".""STORAGEID"",""ASSETREMOVE"".""SUBCOMPANY"",""ASSETREMOVE"".""SUBCOMPANYCONTACTORID"",""ASSETREMOVE"".""CONTACTPHONE"",""ASSETREMOVE"".""PROJECTCONTACTORID"",
                      ""ASSETREMOVE"".""PROJECTCONTACTORPHONE"",""ASSETREMOVE"".""CREATOR"",""ASSETREMOVE"".""CREATEDDATE""
                      ,SYSTEM,c.StorageName,c.subcompanyname
-                     FROM ""ASSETREMOVE"" inner join assetsupplier ON ASSETREMOVE.ASSETCATEGORYID=assetsupplier.ASSETREMOVE
+                     FROM ""ASSETREMOVE"" inner join assetsupplier ON ASSETREMOVE.ASSETCATEGORYID=assetsupplier.ASSETCATEGORYID
                      Inner join  v_storage_address c on c.StorageTitle=ASSETREMOVE.STORAGETITLE and c.StorageId=ASSETREMOVE.STORAGEID
                      WHERE 1=1");
                 #region ²ð»úµ¥ºÅ
