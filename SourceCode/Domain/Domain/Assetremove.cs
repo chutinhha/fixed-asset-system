@@ -75,11 +75,11 @@ namespace FixedAsset.Domain
         public DateTime? Approvedate{  get;set;}
         #endregion
 
-        #region 审核结果(同意,拒绝)
+        #region 拆机单状态
         ///<summary>
-        ///ColumnName:审核结果(同意,拒绝);
+        /// 拆机单状态
         ///</summary>
-        public decimal Approveresult{  get;set;}
+        public AssetRemoveState Approveresult { get; set; }
         #endregion
 
         #region 计划拆机日期

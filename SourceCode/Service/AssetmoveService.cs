@@ -112,24 +112,6 @@ namespace FixedAsset.Services
                 throw;
             }
         }
-        #endregion
-
-        #region DeleteAssetmoveByAssetmoveid
-        public void DeleteAssetmoveByAssetmoveid(List<string> assetmoveids)
-        {
-            try
-            {
-                Management.BeginTransaction();
-                Management.DeleteAssetmoveByAssetmoveid(assetmoveids);
-                Management.Commit();
-            }
-            catch
-            {
-                Management.Rollback();
-                throw;
-            }
-        }
-        #endregion
-
+        #endregion 
     }
 }
