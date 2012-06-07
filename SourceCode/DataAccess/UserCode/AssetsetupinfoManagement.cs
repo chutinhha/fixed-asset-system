@@ -89,11 +89,11 @@ namespace FixedAsset.DataAccess
                 if (info.SetupStates.Count > 0)
                 {
                     this.Database.AddInParameter(":APPROVERESULT", info.SetupStates[0]);
-                    sqlCommand.AppendLine(@" AND (""ASSET"".""APPROVERESULT""=:APPROVERESULT");
+                    sqlCommand.AppendLine(@" AND (""ASSETSETUPINFO"".""APPROVERESULT""=:APPROVERESULT");
                     for (int i = 1; i < info.SetupStates.Count; i++)
                     {
                         this.Database.AddInParameter(":APPROVERESULT" + i.ToString(), info.SetupStates[i]);
-                        sqlCommand.AppendLine(@" OR ""ASSET"".""APPROVERESULT""=:APPROVERESULT" + i.ToString());
+                        sqlCommand.AppendLine(@" OR ""ASSETSETUPINFO"".""APPROVERESULT""=:APPROVERESULT" + i.ToString());
                     }
                     sqlCommand.AppendLine(@" )");
                 }

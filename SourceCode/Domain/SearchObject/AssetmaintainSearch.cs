@@ -201,5 +201,16 @@ namespace FixedAsset.Domain
             set;
         }
         #endregion
+
+        #region ά�޵�״̬
+        private readonly List<AssetMaintainState> _assetMaintainStates = new List<AssetMaintainState>();
+        public List<AssetMaintainState> AssetMaintainStates
+        {
+            get
+            {
+                return _assetMaintainStates;
+            }
+        }
+        #endregion
     }
 }
