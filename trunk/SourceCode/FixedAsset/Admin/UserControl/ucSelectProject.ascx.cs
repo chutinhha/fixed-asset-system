@@ -80,6 +80,11 @@ namespace FixedAsset.Web.Admin.UserControl
                 return new AssetService();
             }
         }
+        public bool IsShowName
+        {
+            get { return !btnSelectStorageAddress.Visible; }
+            set { btnSelectStorageAddress.Visible = !value; }
+        }
         #endregion
 
         #region Events
