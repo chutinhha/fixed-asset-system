@@ -274,12 +274,67 @@ namespace FixedAsset.Web.Admin
 
         protected void BtnSave_Click(object sender, EventArgs e)
         {
+            if (!ucApplySetupDate.DateValue.HasValue)
+            {
+                UIHelper.Alert(this, "请选择申请安装日期!");
+                return;
+            }
+            if (string.IsNullOrEmpty(ucSelectProject.StorageId))
+            {
+                UIHelper.Alert(this, "请选择项目体或分公司!");
+                return;
+            }
+            if (string.IsNullOrEmpty(ucProjectcontactorid.UserId))
+            {
+                UIHelper.Alert(this, "请选择项目体(分公司)联系人!");
+                return;
+            }
+            if (!ucApplyDate.DateValue.HasValue)
+            {
+                UIHelper.Alert(this, "请选择申请日期!");
+                return;
+            }
+            if (!string.IsNullOrEmpty(ucApplyuser.UserId))
+            {
+                UIHelper.Alert(this, "请选择申请人!");
+                return;
+            }
             SaveData(SetupState.Draft);
             UIHelper.AlertMessageGoToURL(this, "保存成功!", ResolveUrl("~/Admin/InstallList.aspx"));
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
-        { 
+        {
+            if (!ucApplySetupDate.DateValue.HasValue)
+            {
+                UIHelper.Alert(this, "请选择申请安装日期!");
+                return;
+            }
+            if (string.IsNullOrEmpty(ucSelectProject.StorageId))
+            {
+                UIHelper.Alert(this, "请选择项目体或分公司!");
+                return;
+            }
+            if (string.IsNullOrEmpty(ucProjectcontactorid.UserId))
+            {
+                UIHelper.Alert(this, "请选择项目体(分公司)联系人!");
+                return;
+            }
+            if (!ucApplyDate.DateValue.HasValue)
+            {
+                UIHelper.Alert(this, "请选择申请日期!");
+                return;
+            }
+            if (!string.IsNullOrEmpty(ucApplyuser.UserId))
+            {
+                UIHelper.Alert(this, "请选择申请人!");
+                return;
+            }
+            if(SetupDetail.Count==0)
+            {
+                UIHelper.Alert(this, "请选择设备!");
+                return;
+            }
             SaveData(SetupState.Sumitted);
             UIHelper.AlertMessageGoToURL(this, "提交成功!", ResolveUrl("~/Admin/InstallList.aspx"));
         }
