@@ -121,22 +121,58 @@ namespace FixedAsset.Web.Admin {
         protected global::System.Web.UI.WebControls.Literal litApprovedate;
         
         /// <summary>
-        /// ucApproveuser 控件。
+        /// litApproveuser 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FixedAsset.Web.Admin.UserControl.ucSelectUser ucApproveuser;
+        protected global::System.Web.UI.WebControls.Literal litApproveuser;
         
         /// <summary>
-        /// ucPlansetupdate 控件。
+        /// litPlansetupdate 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FixedAsset.Web.Admin.UserControl.ucDatePicker ucPlansetupdate;
+        protected global::System.Web.UI.WebControls.Literal litPlansetupdate;
+        
+        /// <summary>
+        /// ucActualsetupdate 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FixedAsset.Web.Admin.UserControl.ucDatePicker ucActualsetupdate;
+        
+        /// <summary>
+        /// txtSetupcontent 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSetupcontent;
+        
+        /// <summary>
+        /// litConfirmdate 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litConfirmdate;
+        
+        /// <summary>
+        /// ucConfirmuser 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FixedAsset.Web.Admin.UserControl.ucSelectUser ucConfirmuser;
         
         /// <summary>
         /// rptAssetsList 控件。

@@ -70,9 +70,9 @@ namespace FixedAsset.Web.Admin
                 ucSeletedSystem.Enabled = false;
                 ucSelectProject.IsShowName = true;
                 AssetCategories.Clear();
-                ucPlansetupdate.DateValue = DateTime.Today;
-                litApprovedate.Text = DateTime.Now.ToString(UiConst.DateTimeFormat);
-                ucApproveuser.UserId = WebContext.Current.CurrentUser.Id;
+                ucActualsetupdate.DateValue = DateTime.Today;
+                litConfirmdate.Text = DateTime.Now.ToString(UiConst.DateTimeFormat);
+                ucConfirmuser.UserId = WebContext.Current.CurrentUser.Id;
                 LoadAssetCategory();
                 Setupid = PageUtility.GetQueryStringValue("SetupId");
                 if (string.IsNullOrEmpty(Setupid))
@@ -110,12 +110,21 @@ namespace FixedAsset.Web.Admin
                 //litApplyDate.Text = SetupInfo.Applydate.Value.ToString(UiConst.DateFormat);  //申请日期
             }
             litApplycontent.Text = SetupInfo.Applycontent;//申请内容
-            ucApplyuser.UserId = SetupInfo.Applyuserid;
+            ucApplyuser.UserId = SetupInfo.Applyuserid;//申请人
             litContactphone.Text = SetupInfo.Contactphone; //联系电话
             ucSelectProject.StorageId = SetupInfo.Storageid;
             ucSelectProject.Storagetitle = SetupInfo.Storagetitle;
             ucProjectcontactorid.UserId = SetupInfo.Projectcontactorid; // 项目体(分公司)联系人
             litProjectcontactorphone.Text = SetupInfo.Projectcontactorphone; //项目体(分公司)联系电话
+            if (SetupInfo.Plansetupdate.HasValue)
+            {
+                litPlansetupdate.Text = SetupInfo.Plansetupdate.Value.ToString(UiConst.DateFormat); //计划安装日期
+            }
+            if (SetupInfo.Approvedate.HasValue)
+            {
+                litApprovedate.Text = SetupInfo.Approvedate.Value.ToString(UiConst.DateTimeFormat);//回复时间    
+            }
+            litApproveuser.Text = SetupInfo.Approveuser;//审核人
         }
 
         protected void BindDetails()
@@ -147,18 +156,40 @@ namespace FixedAsset.Web.Admin
         }
         protected void BtnSave_Click(object sender, EventArgs e)
         {
-            if (!ucPlansetupdate.DateValue.HasValue)
+            if (!ucActualsetupdate.DateValue.HasValue)
             {
-                UIHelper.Alert(this, "请选择计划安装日期!");
+                UIHelper.Alert(this, "请选择实际安装日期!");
                 return;
             }
             var setupInfo = AssetsetupinfoService.RetrieveAssetsetupinfoBySetupid(Setupid);
-            setupInfo.Plansetupdate = ucPlansetupdate.DateValue;//计划安装日期
-            setupInfo.Approveresult = SetupState.Replied;
-            setupInfo.Approvedate = DateTime.Parse(litApprovedate.Text);
-            setupInfo.Approveuser = ucApproveuser.Username;
+            setupInfo.Actualsetupdate = ucActualsetupdate.DateValue;//计划安装日期
+            setupInfo.Approveresult = SetupState.Confirmed;
+            setupInfo.Confirmdate = DateTime.Parse(litConfirmdate.Text);
+            setupInfo.Confirmuser = ucConfirmuser.Username;
             AssetsetupinfoService.UpdateAssetsetupinfoBySetupid(setupInfo);
-            UIHelper.AlertMessageGoToURL(this, "回复成功!", ResolveUrl("~/Admin/InstallList.aspx"));
+            //更新设备状态,存放地点
+            var detailInfos = AssetsetupdetailService.RetrieveAssetsetupdetailListBySetupid(setupInfo.Setupid);
+            if(detailInfos.Count>0)
+            {
+                foreach (var assetsetupdetail in detailInfos)
+                {
+                    assetsetupdetail.Actualsetupdate = setupInfo.Actualsetupdate;
+                    assetsetupdetail.Plansetupdate = setupInfo.Plansetupdate;
+                    AssetsetupdetailService.UpdateAssetsetupdetailByDetailid(assetsetupdetail);
+                }
+                var assetInfos = AssetService.RetrieveAssetByAssetno(detailInfos.Select(p => p.Assetno).ToList());
+                if(assetInfos.Count>0)
+                {
+                    foreach (var assetInfo in assetInfos)
+                    {
+                        assetInfo.State = AssetState.InUse;
+                        assetInfo.Storageflag = setupInfo.Storagetitle;
+                        assetInfo.Storage = setupInfo.Storageid;
+                        AssetService.UpdateAssetByAssetno(assetInfo);
+                    }
+                }
+            }
+            UIHelper.AlertMessageGoToURL(this, "确认成功!", ResolveUrl("~/Admin/InstallList.aspx"));
         }
 
         protected void btnReset_Click(object sender, EventArgs e)
