@@ -294,7 +294,7 @@ namespace FixedAsset.Web.Admin
                 UIHelper.Alert(this, "请选择申请日期!");
                 return;
             }
-            if (!string.IsNullOrEmpty(ucApplyuser.UserId))
+            if (string.IsNullOrEmpty(ucApplyuser.UserId))
             {
                 UIHelper.Alert(this, "请选择申请人!");
                 return;
@@ -325,7 +325,7 @@ namespace FixedAsset.Web.Admin
                 UIHelper.Alert(this, "请选择申请日期!");
                 return;
             }
-            if (!string.IsNullOrEmpty(ucApplyuser.UserId))
+            if (string.IsNullOrEmpty(ucApplyuser.UserId))
             {
                 UIHelper.Alert(this, "请选择申请人!");
                 return;
