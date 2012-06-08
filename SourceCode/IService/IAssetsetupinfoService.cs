@@ -18,6 +18,6 @@ namespace FixedAsset.IServices
         Assetsetupinfo CreateAssetsetupinfo(Assetsetupinfo info);
         Assetsetupinfo UpdateAssetsetupinfoBySetupid(Assetsetupinfo info);
         Assetsetupinfo RetrieveAssetsetupinfoBySetupid(string setupid);
-        void DeleteAssetsetupinfoBySetupid(string setupid);
+        void DeleteAssetsetupinfoBySetupid(string setupid); 
     }
 }

@@ -64,6 +64,7 @@ namespace FixedAsset.Services
         {
             try
             {
+                info.Setupid = new CoderuleManagement().GenerateCodeRule(Assetsetupinfo.RuleCode + DateTime.Today.ToString("yyyyMM"), false);
                 Management.BeginTransaction();
                 Management.CreateAssetsetupinfo(info);
                 Management.Commit();

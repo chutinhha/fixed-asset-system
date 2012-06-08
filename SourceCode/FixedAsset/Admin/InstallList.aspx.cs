@@ -39,7 +39,7 @@ namespace FixedAsset.Web.Admin
             {
                 var BtnEdit = e.Item.FindControl("BtnEdit") as ImageButton;
                 var BtnDeleted = e.Item.FindControl("BtnDeleted") as ImageButton;
-                var BtnReply = e.Item.FindControl("BtnApprove") as ImageButton;
+                var BtnReply = e.Item.FindControl("BtnReply") as ImageButton;
                 var BtnComfirm = e.Item.FindControl("BtnComfirm") as ImageButton;
                 var headInfo = e.Item.DataItem as Assetsetupinfo;
                 BtnDeleted.Visible = false;

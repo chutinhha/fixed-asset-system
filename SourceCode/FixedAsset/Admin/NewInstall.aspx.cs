@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using FixedAsset.DataAccess;
 using FixedAsset.Domain;
+using FixedAsset.IServices;
 using FixedAsset.Services;
 using FixedAsset.Web.Admin.UserControl;
 using SeallNet.Utility;
@@ -15,7 +16,7 @@ namespace FixedAsset.Web.Admin
     public partial class NewInstall : BasePage
     {
         #region 属性
-        protected string SetupId
+        protected string Setupid
         {
             get
             {
@@ -26,50 +27,39 @@ namespace FixedAsset.Web.Admin
                 return ViewState["SetupId"].ToString();
             }
             set { ViewState["SetupId"] = value; }
-        }
-
+        }  
         protected List<Assetcategory> AssetCategories
         {
             get
             {
-                if (Session["EquipmentListAssetCategories"] == null)
+                if (Session["NewInstallCategories"] == null)
                 {
-                    Session["EquipmentListAssetCategories"] = new List<Assetcategory>();
+                    Session["NewInstallCategories"] = new List<Assetcategory>();
                 }
-                return Session["EquipmentListAssetCategories"] as List<Assetcategory>;
+                return Session["NewInstallCategories"] as List<Assetcategory>;
             }
-        }
-
-        protected Assetsetupinfo SetupInfo
+        } 
+        protected IAssetsetupinfoService AssetsetupinfoService
         {
             get
             {
-                if (Session["AssetSetupInfo"] == null)
-                {
-                    Session["AssetSetupInfo"] = new Assetsetupinfo();
-                }
-                return Session["AssetSetupInfo"] as Assetsetupinfo;
+                return new AssetsetupinfoService();
             }
-
-            set { Session["AssetSetupInfo"] = value; }
-
         }
-
-        protected List<Asset> Assets
+        protected IAssetsetupdetailService AssetsetupdetailService
         {
             get
             {
-                if (Session["Asset"] == null)
-                {
-                    Session["Asset"] = new Asset();
-                }
-                return Session["Asset"] as List<Asset>;
+                return new AssetsetupdetailService();
             }
-
-            set { Session["Asset"] = value; }
-
         }
-
+        protected IAssetService AssetService
+        {
+            get
+            {
+                return new AssetService();
+            }
+        }
         protected List<Assetsetupdetail> SetupDetail
         {
             get
@@ -80,33 +70,32 @@ namespace FixedAsset.Web.Admin
                 }
                 return Session["AssetSetupDetail"] as List<Assetsetupdetail>;
             }
-
-            set { Session["AssetSetupDetail"] = value; }
         }
         #endregion
 
         #region 方法
-        protected void Page_Load(object sender, EventArgs e)
+        protected override void  OnLoad(EventArgs e)
         {
             if (!IsPostBack)
             {
+                SetupDetail.Clear();
+                AssetCategories.Clear();
+                ucApplyDate.DateValue = DateTime.Today;
+                ucApplySetupDate.DateValue = DateTime.Today;
+                ucApplyuser.UserId = WebContext.Current.CurrentUser.Id;
                 LoadAssetCategory();
-                SetupId = PageUtility.GetQueryStringValue("SetupId");
-                ////修改、回复、确认
-                if (!string.IsNullOrEmpty(SetupId))
+                Setupid = PageUtility.GetQueryStringValue("SetupId");
+                if (!string.IsNullOrEmpty(Setupid))
                 {
-                    var setupService = new AssetsetupinfoService();
-                    SetupInfo = setupService.RetrieveAssetsetupinfoBySetupid(SetupId);
-                    var setupdetailService = new AssetsetupdetailService();
-                    SetupDetail = setupdetailService.RetrieveAssetsetupdetailListBySetupid(SetupInfo.Setupid);
-                    var assetService = new AssetService();
-                    Assets = assetService.RetrieveAssetByAssetno(SetupDetail.Select(src => src.Assetno).ToList());
-                    BindData();
+                    var SetupInfo = AssetsetupinfoService.RetrieveAssetsetupinfoBySetupid(Setupid);
+                    SetupDetail.AddRange(AssetsetupdetailService.RetrieveAssetsetupdetailListBySetupid(SetupInfo.Setupid));
+                    BindData(SetupInfo);
+                    BindDetails();
                 }
                 else //新增
                 {
-                    SetupId = new CoderuleManagement().GenerateCodeRule(Assetsetupinfo.RuleCode + DateTime.Today.ToString("yyyyMM"), false);
-                    litSetupid.Text = SetupId;
+                    //Setupid = new CoderuleManagement().GenerateCodeRule(Assetsetupinfo.RuleCode + DateTime.Today.ToString("yyyyMM"), false);
+                    litSetupid.Text = Setupid;
                 }
             }
         }
@@ -121,67 +110,78 @@ namespace FixedAsset.Web.Admin
             }
         }
 
-        protected void BindData()
+        protected void BindData(Assetsetupinfo SetupInfo)
         {
             //bind setup
+            litSetupid.Text = SetupInfo.Setupid;//申请单号
             ucSeletedSystem.Assetcategoryid = SetupInfo.Assetcategoryid;
             ucApplySetupDate.DateValue = SetupInfo.Applysetupdate;
             ucApplyDate.DateValue = SetupInfo.Applydate;
-            txtApplycontent.Text = SetupInfo.Applycontent;
-            txtApplier.Text = WebContext.Current.CurrentUser.Username;
-            hfdApplyUserId.Value = WebContext.Current.CurrentUser.Id;//申请人
-            txtContactNum.Text = SetupInfo.Contactphone;
+            txtApplycontent.Text = SetupInfo.Applycontent;//申请内容
+            ucApplyuser.UserId = SetupInfo.Applyuserid;
+            txtContactphone.Text = SetupInfo.Contactphone; //联系电话
             ucSelectProject.StorageId = SetupInfo.Storageid;
             ucSelectProject.Storagetitle = SetupInfo.Storagetitle;
-            txtProjectContact.Text = SetupInfo.Projectcontactorid;
-            txtProjectContactNum.Text = SetupInfo.Projectcontactorphone;
-            BindAsset();
+            ucProjectcontactorid.UserId = SetupInfo.Projectcontactorid; // 项目体(分公司)联系人
+            txtProjectcontactorphone.Text = SetupInfo.Projectcontactorphone; //项目体(分公司)联系电话
         }
 
-        protected void BindAsset()
+        protected void BindDetails()
         {
-            rptAssetsList.DataSource = Assets;
+            rptAssetsList.DataSource = SetupDetail;
             rptAssetsList.DataBind();
         }
 
-        protected void SaveData()
+        protected void SaveData(SetupState setupState)
         {
-            ExtractData(SetupInfo);
-            var setupService = new AssetsetupinfoService();
-            var setupdetailService = new AssetsetupdetailService();
-            if (!string.IsNullOrEmpty(PageUtility.GetQueryStringValue("SetupId"))) //修改
+            Assetsetupinfo SetupInfo = null;
+            if (!string.IsNullOrEmpty(PageUtility.GetQueryStringValue("Setupid"))) //修改
             {
-                setupService.UpdateAssetsetupinfoBySetupid(SetupInfo);
+                SetupInfo = AssetsetupinfoService.RetrieveAssetsetupinfoBySetupid(Setupid);
+                if (SetupInfo==null){return;}
+                ExtractData(SetupInfo);
+                SetupInfo.Approveresult = setupState;
+                AssetsetupinfoService.UpdateAssetsetupinfoBySetupid(SetupInfo);
                 foreach (Assetsetupdetail assetsetupdetail in SetupDetail)
                 {
-                    if (setupdetailService.RetrieveAssetsetupdetailByDetailid(assetsetupdetail.Detailid) != null)
-                        setupdetailService.CreateAssetsetupdetail(assetsetupdetail);
-                    else setupdetailService.UpdateAssetsetupdetailByDetailid(assetsetupdetail);
+                    assetsetupdetail.Setupid = SetupInfo.Setupid;
+                    if (AssetsetupdetailService.RetrieveAssetsetupdetailByDetailid(assetsetupdetail.Detailid) == null)
+                    {
+                        AssetsetupdetailService.CreateAssetsetupdetail(assetsetupdetail);
+                    }
+                    else
+                    {
+                        AssetsetupdetailService.UpdateAssetsetupdetailByDetailid(assetsetupdetail);
+                    }
                 }
             }
             else //新增
             {
-                setupService.CreateAssetsetupinfo(SetupInfo);
+                SetupInfo=new Assetsetupinfo();
+                ExtractData(SetupInfo);
+                SetupInfo.Approveresult = setupState;
+                AssetsetupinfoService.CreateAssetsetupinfo(SetupInfo);
                 foreach (Assetsetupdetail assetsetupdetail in SetupDetail)
                 {
-                    setupdetailService.CreateAssetsetupdetail(assetsetupdetail);
+                    assetsetupdetail.Setupid = SetupInfo.Setupid;
+                    AssetsetupdetailService.CreateAssetsetupdetail(assetsetupdetail);
                 }
             }
         }
 
         protected void ExtractData(Assetsetupinfo assetsetupinfo)
         {
-            assetsetupinfo.Setupid = SetupId;//申请单号
+            assetsetupinfo.Setupid = Setupid;//申请单号
             assetsetupinfo.Assetcategoryid = ucSeletedSystem.Assetcategoryid;//(系统)设备大类
             assetsetupinfo.Applysetupdate = ucApplySetupDate.DateValue;//申请安装日期
             assetsetupinfo.Applycontent = txtApplycontent.Text;//申请内容
             assetsetupinfo.Applydate = ucApplyDate.DateValue;//申请日期
-            assetsetupinfo.Applyuserid = hfdApplyUserId.Value;//申请人                                   
+            assetsetupinfo.Applyuserid = ucApplyuser.UserId;//申请人                                   
             assetsetupinfo.Storagetitle = ucSelectProject.Storagetitle;//区分字段：分公司或项目体
             assetsetupinfo.Storageid = ucSelectProject.StorageId;//项目体ID或分公司ID            
-            assetsetupinfo.Contactphone = txtContactNum.Text;//联系电话
-            assetsetupinfo.Projectcontactorid = txtContactNum.Text;//项目体联系人
-            assetsetupinfo.Projectcontactorphone = txtProjectContact.Text;//项目体联系电话
+            assetsetupinfo.Contactphone = txtContactphone.Text;//联系电话
+            assetsetupinfo.Projectcontactorid = ucProjectcontactorid.UserId;//项目体联系人
+            assetsetupinfo.Projectcontactorphone = txtProjectcontactorphone.Text;//项目体联系电话
             assetsetupinfo.Createddate = DateTime.Now;//创建日期
             assetsetupinfo.Creator = WebContext.Current.CurrentUser.Id;//创建人
         }
@@ -192,34 +192,54 @@ namespace FixedAsset.Web.Admin
         protected void ucSeletedSystem_SelectedAssetCategoryChange(object sender, EventArgs e)
         {
             ucSelectedMultiAssets.AssetCategoryId = ucSeletedSystem.Assetcategoryid;
-        }
-
+        } 
         protected void ucSelectedMultiAssets_SelectAssetChange(object sender, EventArgs e)
         {
             if (ucSelectedMultiAssets.AssetIds.Count > 0)
             {
-                //更新设备列表
-                SetupDetail.RemoveAll(src => ucSelectedMultiAssets.AssetIds.Contains(src.Assetno));
-                SetupDetail.AddRange(ucSelectedMultiAssets.AssetIds.Select(src => new Assetsetupdetail()
+                //更新设备列表 
+                var assetNos = new List<string>();
+                foreach (var assetNo in ucSelectedMultiAssets.AssetIds)
                 {
-                    Detailid = Guid.NewGuid().ToString(),
-                    Assetno = src,
-                    Setupid = SetupId
-                }));
-                //
-                Assets.RemoveAll(src => ucSelectedMultiAssets.AssetIds.Contains(src.Assetno));
-                var assetnew = new AssetService().RetrieveAssetByAssetno(ucSelectedMultiAssets.AssetIds);
-                Assets.AddRange(assetnew);
-                BindAsset();
+                    if (SetupDetail.Where(p => p.Assetno == assetNo).Count() == 0) { assetNos.Add(assetNo); }
+                }
+                var assetInfos = AssetService.RetrieveAssetByAssetno(assetNos);
+                if(assetInfos.Count>0)
+                {
+                    foreach (var entity in assetInfos)
+                    {
+                        Assetsetupdetail data = new Assetsetupdetail();
+                        data.Detailid = Guid.NewGuid().ToString("N");
+                        data.Assetno = entity.Assetno;//设备编号
+                        data.Assetcategoryid = entity.Assetcategoryid;//设备类别
+                        data.Assetname = entity.Assetname;//设备名称
+                        //data.Storage = entity.Storage;//存放地点
+                        data.State = entity.State;//设备状态
+                        //data.Depreciationyear = entity.Depreciationyear;//折旧年限
+                        data.Unitprice = entity.Unitprice;//单价
+                        data.Brand = entity.Brand;//品牌
+                        //data.Managemode = entity.Managemode;//管理模式，托管:0自管:1
+                        data.Financecategory = entity.Financecategory;//财务类别(A帐:0B帐:1)
+                        //data.Supplierid = entity.Supplierid;//供应商
+                        data.Purchasedate = entity.Purchasedate;//购入日期
+                        //data.Expireddate = entity.Expireddate;//折旧到期日期
+                        //data.Assetspecification = entity.Assetspecification;//设备规格
+                        //data.Storageflag = entity.Storageflag;//存放地点标识来源
+                        //data.Subcompany = entity.Subcompany;//分公司
+                        //data.Contractid = entity.Contractid;//合同编号
+                        //data.Contractdetailid = entity.Contractdetailid;//合同明细编号
+                        SetupDetail.Add(data);
+                    }
+                    BindDetails();
+                }
             }
-        }
-
+        } 
         protected void rptAssetsList_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
                 var litCategoryName = e.Item.FindControl("litCategoryName") as Literal;
-                var assetInfo = e.Item.DataItem as Asset;
+                var assetInfo = e.Item.DataItem as Assetsetupdetail;
                 var subCategory = AssetCategories.Where(p => p.Assetcategoryid == assetInfo.Assetcategoryid).FirstOrDefault();
                 if (subCategory == null)
                 {
@@ -235,29 +255,32 @@ namespace FixedAsset.Web.Admin
         }
         protected void rptAssetsList_ItemCommand(object sender, RepeaterCommandEventArgs e)
         {
-            var assetno = e.CommandArgument.ToString();
+            var Detailid = e.CommandArgument.ToString();
             if (e.CommandName.Equals("DeleteDetail"))
             {
-                if (!string.IsNullOrEmpty(SetupId))
+                if (!string.IsNullOrEmpty(Setupid))
                 {
-                    Assets.RemoveAll(src => src.Assetno == assetno);
-                    SetupDetail.RemoveAll(src => src.Assetno == assetno);
+                    var existInfo = SetupDetail.Where(p => p.Detailid == Detailid).FirstOrDefault();
+                    if(existInfo!=null)
+                    {
+                        SetupDetail.Remove(existInfo);
+                        AssetsetupdetailService.DeleteAssetsetupdetailByDetailid(existInfo.Detailid);
+                    }
                     UIHelper.Alert(this, "删除成功");
+                    BindDetails();
                 }
             }
         }
 
         protected void BtnSave_Click(object sender, EventArgs e)
         {
-            SetupInfo.Approveresult = SetupState.Draft;
-            SaveData();
+            SaveData(SetupState.Draft);
             UIHelper.AlertMessageGoToURL(this, "保存成功!", ResolveUrl("~/Admin/InstallList.aspx"));
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
-        {
-            SetupInfo.Approveresult = SetupState.Sumitted;
-            SaveData();
+        { 
+            SaveData(SetupState.Sumitted);
             UIHelper.AlertMessageGoToURL(this, "提交成功!", ResolveUrl("~/Admin/InstallList.aspx"));
         }
 

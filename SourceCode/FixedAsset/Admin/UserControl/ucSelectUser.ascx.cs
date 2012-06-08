@@ -72,13 +72,13 @@ namespace FixedAsset.Web.Admin.UserControl
             base.OnLoad(e);
             if (!IsPostBack)
             {
-                RegisterRefreshMethod();
                 btnSelectSingleUser.Attributes.Add("onclick", string.Format("javascript:ShowTopDialogFrame('用户选择', '{0}','Select{1}SingleUser()',680,400);return false;", ResolveUrl("~/Admin/SelectSingleUsers.aspx"), this.ID));
                 if (!string.IsNullOrEmpty(UserId))
                 {
                     LoadData();
                 }
             }
+            RegisterRefreshMethod();
         }
         protected void RegisterRefreshMethod()
         {

@@ -74,10 +74,15 @@ namespace FixedAsset.DataAccess
         {
             try
             {
+                var sqlCommand = new StringBuilder();
+                sqlCommand.Append(@"SELECT ASSETMOVEDETAIL.*
+                                    ,ASSET.ASSETCATEGORYID,ASSET.ASSETNAME,ASSET.STATE,ASSET.PURCHASEDATE
+                                    ,ASSET.UNITPRICE,ASSET.BRAND,ASSET.FINANCECATEGORY
+                                    FROM ""ASSETMOVEDETAIL"",ASSET 
+                                    WHERE  ASSETMOVEDETAIL.ASSETNO=ASSET.ASSETNO AND ""ASSETMOVEID""=:Assetmoveid
+                                 ORDER BY ""DETAILID"" DESC");
                 this.Database.AddInParameter(":Assetmoveid", Assetmoveid);//DBType:VARCHAR2
-                string sqlCommand = @"SELECT * FROM ""ASSETMOVEDETAIL"" WHERE  ""ASSETMOVEID""=:Assetmoveid";
-                sqlCommand += @" ORDER BY ""DETAILID"" DESC";
-                return this.Database.ExecuteToList<Assetmovedetail>(sqlCommand);
+                return this.Database.ExecuteToList<Assetmovedetail>(sqlCommand.ToString());
             }
             finally
             {
@@ -92,8 +97,12 @@ namespace FixedAsset.DataAccess
             try
             {
                 if(Assetmoveids.Count==0){ return new List<Assetmovedetail>();}
-                StringBuilder sqlCommand = new StringBuilder();
-                sqlCommand.AppendLine(@"SELECT *  FROM  ""ASSETMOVEDETAIL"" WHERE 1=1");
+                var sqlCommand = new StringBuilder();
+                sqlCommand.Append(@"SELECT ASSETMOVEDETAIL.*
+                                    ,ASSET.ASSETCATEGORYID,ASSET.ASSETNAME,ASSET.STATE,ASSET.PURCHASEDATE
+                                    ,ASSET.UNITPRICE,ASSET.BRAND,ASSET.FINANCECATEGORY
+                                    FROM ""ASSETMOVEDETAIL""  ,ASSET
+                                    WHERE  ASSETMOVEDETAIL.ASSETNO=ASSET.ASSETNO ");
                 if(Assetmoveids.Count==1)
                 {
                     this.Database.AddInParameter(":Assetmoveid"+0.ToString(),Assetmoveids[0]);//DBType:VARCHAR2
@@ -166,6 +175,7 @@ namespace FixedAsset.DataAccess
                      FROM ""ASSETMOVEDETAIL"" 
                      INNER JOIN ""ASSETMOVE"" ON ""ASSETMOVEDETAIL"".""ASSETMOVEID""=""ASSETMOVE"".""ASSETMOVEID"" 
                      WHERE 1=1");
+
                 #region Ã÷Ï¸±àºÅ
                 if (!string.IsNullOrEmpty(info.Detailid))
                 {

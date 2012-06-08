@@ -74,10 +74,15 @@ namespace FixedAsset.DataAccess
         {
             try
             {
+                var sqlCommand = new StringBuilder();
+                sqlCommand.Append(@"SELECT ASSETREMOVEDETAIL.*
+                                    ,ASSET.ASSETCATEGORYID,ASSET.ASSETNAME,ASSET.STATE,ASSET.PURCHASEDATE
+                                    ,ASSET.UNITPRICE,ASSET.BRAND,ASSET.FINANCECATEGORY
+                                    FROM ""ASSETREMOVEDETAIL"" ,ASSET
+                                    WHERE  ASSETREMOVEDETAIL.ASSETNO=ASSET.ASSETNO AND ""ASSETREMOVEID""=:Assetremoveid
+                                 ORDER BY ""DETAILID"" DESC");
                 this.Database.AddInParameter(":Assetremoveid", Assetremoveid);//DBType:VARCHAR2
-                string sqlCommand = @"SELECT * FROM ""ASSETREMOVEDETAIL"" WHERE  ""ASSETREMOVEID""=:Assetremoveid";
-                sqlCommand += @" ORDER BY ""DETAILID"" DESC";
-                return this.Database.ExecuteToList<Assetremovedetail>(sqlCommand);
+                return this.Database.ExecuteToList<Assetremovedetail>(sqlCommand.ToString());
             }
             finally
             {
@@ -92,8 +97,12 @@ namespace FixedAsset.DataAccess
             try
             {
                 if(Assetremoveids.Count==0){ return new List<Assetremovedetail>();}
-                StringBuilder sqlCommand = new StringBuilder();
-                sqlCommand.AppendLine(@"SELECT *  FROM  ""ASSETREMOVEDETAIL"" WHERE 1=1");
+                var sqlCommand = new StringBuilder();
+                sqlCommand.Append(@"SELECT ASSETREMOVEDETAIL.*
+                                    ,ASSET.ASSETCATEGORYID,ASSET.ASSETNAME,ASSET.STATE,ASSET.PURCHASEDATE
+                                    ,ASSET.UNITPRICE,ASSET.BRAND,ASSET.FINANCECATEGORY
+                                    FROM ""ASSETREMOVEDETAIL"" ,ASSET
+                                    WHERE  ASSETREMOVEDETAIL.ASSETNO=ASSET.ASSETNO");
                 if(Assetremoveids.Count==1)
                 {
                     this.Database.AddInParameter(":Assetremoveid"+0.ToString(),Assetremoveids[0]);//DBType:VARCHAR2
@@ -166,6 +175,7 @@ namespace FixedAsset.DataAccess
                      FROM ""ASSETREMOVEDETAIL"" 
                      INNER JOIN ""ASSETREMOVE"" ON ""ASSETREMOVEDETAIL"".""ASSETREMOVEID""=""ASSETREMOVE"".""ASSETREMOVEID"" 
                      WHERE 1=1");
+
                 #region Ã÷Ï¸±àºÅ
                 if (!string.IsNullOrEmpty(info.Detailid))
                 {
