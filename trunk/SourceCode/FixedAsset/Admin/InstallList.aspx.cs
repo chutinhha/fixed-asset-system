@@ -77,15 +77,15 @@ namespace FixedAsset.Web.Admin
             }
             else if (e.CommandName.Equals("ReplyDetail"))
             {
-                Response.Redirect(ResolveUrl(string.Format("~/Admin/ReplyInstall.aspx?Setupid={0}", setupId)));
+                Response.Redirect(ResolveUrl(string.Format("~/Admin/Install_Reply.aspx?Setupid={0}", setupId)));
             }
             else if (e.CommandName.Equals("ComfirmDetail"))
             {
-                Response.Redirect(ResolveUrl(string.Format("~/Admin/ReplyInstall.aspx?Setupid={0}", setupId)));//安装结束后确认
+                Response.Redirect(ResolveUrl(string.Format("~/Admin/Install_Confirm.aspx?Setupid={0}", setupId)));//安装结束后确认
             }
             else
             {
-                Response.Redirect(ResolveUrl(string.Format("~/Admin/ViewInstall.aspx?Setupid={0}", setupId)));
+                Response.Redirect(ResolveUrl(string.Format("~/Admin/Install_View.aspx?Setupid={0}", setupId)));
             }
         }
         #endregion

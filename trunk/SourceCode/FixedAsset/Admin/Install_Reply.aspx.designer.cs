@@ -10,7 +10,7 @@
 namespace FixedAsset.Web.Admin {
     
     
-    public partial class ReplyInstall {
+    public partial class Install_Reply {
         
         /// <summary>
         /// litTitle 控件。

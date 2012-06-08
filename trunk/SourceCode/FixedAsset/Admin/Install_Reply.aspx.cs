@@ -13,7 +13,7 @@ using SeallNet.Utility;
 
 namespace FixedAsset.Web.Admin
 {
-    public partial class ReplyInstall : BasePage
+    public partial class Install_Reply : BasePage
     {
         #region 属性
         protected string Setupid
