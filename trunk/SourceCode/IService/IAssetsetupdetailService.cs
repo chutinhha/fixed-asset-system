@@ -14,7 +14,7 @@ namespace FixedAsset.IServices
 {
     public interface IAssetsetupdetailService
     {
-        List<AssetsetupdetailEx> RetrieveAssetsetupdetailsPaging(AssetsetupdetailSearch info,int pageIndex, int pageSize,out int count);
+        List<Assetsetupdetail> RetrieveAssetsetupdetailsPaging(AssetsetupdetailSearch info,int pageIndex, int pageSize,out int count);
         Assetsetupdetail CreateAssetsetupdetail(Assetsetupdetail info);
         Assetsetupdetail UpdateAssetsetupdetailByDetailid(Assetsetupdetail info);
         Assetsetupdetail RetrieveAssetsetupdetailByDetailid(string detailid);

@@ -75,9 +75,14 @@ namespace FixedAsset.DataAccess
             try
             {
                 this.Database.AddInParameter(":Setupid", Setupid);//DBType:VARCHAR2
-                string sqlCommand = @"SELECT * FROM ""ASSETSETUPDETAIL"" WHERE  ""SETUPID""=:Setupid";
-                sqlCommand += @" ORDER BY ""DETAILID"" DESC";
-                return this.Database.ExecuteToList<Assetsetupdetail>(sqlCommand);
+                var sqlCommand = new StringBuilder();
+                sqlCommand.Append(@"SELECT ASSETSETUPDETAIL.*
+                                    ,ASSET.ASSETCATEGORYID,ASSET.ASSETNAME,ASSET.STATE,ASSET.PURCHASEDATE
+                                    ,ASSET.UNITPRICE,ASSET.BRAND,ASSET.FINANCECATEGORY
+                                    FROM ""ASSETSETUPDETAIL"" ,ASSET
+                                    WHERE  ASSETSETUPDETAIL.ASSETNO=ASSET.ASSETNO AND ""SETUPID""=:Setupid
+                                 ORDER BY ""DETAILID"" DESC");
+                return this.Database.ExecuteToList<Assetsetupdetail>(sqlCommand.ToString());
             }
             finally
             {
@@ -92,8 +97,12 @@ namespace FixedAsset.DataAccess
             try
             {
                 if(Setupids.Count==0){ return new List<Assetsetupdetail>();}
-                StringBuilder sqlCommand = new StringBuilder();
-                sqlCommand.AppendLine(@"SELECT *  FROM  ""ASSETSETUPDETAIL"" WHERE 1=1");
+                var sqlCommand = new StringBuilder();
+                sqlCommand.Append(@"SELECT ASSETSETUPDETAIL.*
+                                    ,ASSET.ASSETCATEGORYID,ASSET.ASSETNAME,ASSET.STATE,ASSET.PURCHASEDATE
+                                    ,ASSET.UNITPRICE,ASSET.BRAND,ASSET.FINANCECATEGORY
+                                    FROM ""ASSETSETUPDETAIL"" ,ASSET
+                                    WHERE  ASSETSETUPDETAIL.ASSETNO=ASSET.ASSETNO ");
                 if(Setupids.Count==1)
                 {
                     this.Database.AddInParameter(":Setupid"+0.ToString(),Setupids[0]);//DBType:VARCHAR2
@@ -156,7 +165,7 @@ namespace FixedAsset.DataAccess
         #endregion
 
         #region RetrieveAssetsetupdetailsPaging
-        public List<AssetsetupdetailEx> RetrieveAssetsetupdetailsPaging(AssetsetupdetailSearch info,int pageIndex, int pageSize,out int count)
+        public List<Assetsetupdetail> RetrieveAssetsetupdetailsPaging(AssetsetupdetailSearch info,int pageIndex, int pageSize,out int count)
         {
             try
             {
@@ -189,7 +198,7 @@ namespace FixedAsset.DataAccess
                 }
 
                 sqlCommand.AppendLine(@"  ORDER BY ""ASSETSETUPDETAIL"".""DETAILID"" DESC");
-                return this.ExecuteReaderPaging<AssetsetupdetailEx>(sqlCommand.ToString(), pageIndex, pageSize, out count);
+                return this.ExecuteReaderPaging<Assetsetupdetail>(sqlCommand.ToString(), pageIndex, pageSize, out count);
             }
             finally
             {

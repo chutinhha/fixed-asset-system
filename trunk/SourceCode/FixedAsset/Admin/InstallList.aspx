@@ -108,7 +108,7 @@
                                 <%#Eval("Applycontent")%>
                             </td>
                             <td>
-                                <%#EnumUtil.RetrieveEnumDescript((AssetMoveState)Eval("Approveresult"))%>
+                                <%#EnumUtil.RetrieveEnumDescript((SetupState)Eval("Approveresult"))%>
                             </td>
                             <td align="right">
                                 <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"
@@ -152,7 +152,7 @@
                                 <%#Eval("Applycontent")%>
                             </td>
                             <td>
-                                <%#EnumUtil.RetrieveEnumDescript((AssetMoveState)Eval("Approveresult"))%>
+                                <%#EnumUtil.RetrieveEnumDescript((SetupState)Eval("Approveresult"))%>
                             </td>
                             <td align="right">
                                 <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"
