@@ -213,6 +213,20 @@
     <Compile Include="Admin\InstallList.aspx.designer.cs">
       <DependentUpon>InstallList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Install_Confirm.aspx.cs">
+      <DependentUpon>Install_Confirm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Install_Confirm.aspx.designer.cs">
+      <DependentUpon>Install_Confirm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Install_View.aspx.cs">
+      <DependentUpon>Install_View.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Install_View.aspx.designer.cs">
+      <DependentUpon>Install_View.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -240,6 +254,13 @@
     </Compile>
     <Compile Include="Admin\MoveList.aspx.designer.cs">
       <DependentUpon>MoveList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Move_Confirm.aspx.cs">
+      <DependentUpon>Move_Confirm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Move_Confirm.aspx.designer.cs">
+      <DependentUpon>Move_Confirm.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Move_Reply.aspx.cs">
       <DependentUpon>Move_Reply.aspx</DependentUpon>
@@ -339,6 +360,13 @@
     <Compile Include="Admin\RemoveList.aspx.designer.cs">
       <DependentUpon>RemoveList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Remove_Confirm.aspx.cs">
+      <DependentUpon>Remove_Confirm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Remove_Confirm.aspx.designer.cs">
+      <DependentUpon>Remove_Confirm.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Remove_Reply.aspx.cs">
       <DependentUpon>Remove_Reply.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -359,6 +387,13 @@
     </Compile>
     <Compile Include="Admin\RepairList.aspx.designer.cs">
       <DependentUpon>RepairList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Repair_Confirm.aspx.cs">
+      <DependentUpon>Repair_Confirm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Repair_Confirm.aspx.designer.cs">
+      <DependentUpon>Repair_Confirm.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Repair_Reply.aspx.cs">
       <DependentUpon>Repair_Reply.aspx</DependentUpon>
@@ -676,11 +711,16 @@
     <Content Include="Admin\DataConfig_View.aspx" />
     <Content Include="Admin\ImportAssetFromContract.aspx" />
     <Content Include="Admin\ImportContractDetail_Edit.aspx" />
+    <Content Include="Admin\Install_Confirm.aspx" />
+    <Content Include="Admin\Install_View.aspx" />
     <Content Include="Admin\Login.aspx" />
+    <Content Include="Admin\Move_Confirm.aspx" />
     <Content Include="Admin\Move_Reply.aspx" />
     <Content Include="Admin\Move_View.aspx" />
+    <Content Include="Admin\Remove_Confirm.aspx" />
     <Content Include="Admin\Remove_Reply.aspx" />
     <Content Include="Admin\Remove_View.aspx" />
+    <Content Include="Admin\Repair_Confirm.aspx" />
     <Content Include="Admin\Repair_Reply.aspx" />
     <Content Include="Admin\Repair_View.aspx" />
     <Content Include="Admin\ReplyInstall.aspx" />
