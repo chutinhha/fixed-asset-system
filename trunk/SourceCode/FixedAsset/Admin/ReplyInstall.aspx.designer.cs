@@ -13,15 +13,6 @@ namespace FixedAsset.Web.Admin {
     public partial class ReplyInstall {
         
         /// <summary>
-        /// UpdatePanel1 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
-        
-        /// <summary>
         /// litTitle 控件。
         /// </summary>
         /// <remarks>
@@ -31,49 +22,76 @@ namespace FixedAsset.Web.Admin {
         protected global::System.Web.UI.WebControls.Literal litTitle;
         
         /// <summary>
-        /// litPsid 控件。
+        /// ucSeletedSystem 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label litPsid;
+        protected global::FixedAsset.Web.Admin.UserControl.ucSeletedSystem ucSeletedSystem;
         
         /// <summary>
-        /// litProcurementscheduledate 控件。
+        /// litSetupid 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label litProcurementscheduledate;
+        protected global::System.Web.UI.WebControls.Literal litSetupid;
         
         /// <summary>
-        /// litReason 控件。
+        /// litApplycontent 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label litReason;
+        protected global::System.Web.UI.WebControls.Literal litApplycontent;
         
         /// <summary>
-        /// ucSubCompany 控件。
+        /// litApplysetupdate 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FixedAsset.Web.Admin.UserControl.ucSelectSubCompany ucSubCompany;
+        protected global::System.Web.UI.WebControls.Literal litApplysetupdate;
         
         /// <summary>
-        /// litApplyuser 控件。
+        /// ucSelectProject 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label litApplyuser;
+        protected global::FixedAsset.Web.Admin.UserControl.ucSelectProject ucSelectProject;
+        
+        /// <summary>
+        /// ucProjectcontactorid 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::FixedAsset.Web.Admin.UserControl.ucSelectUser ucProjectcontactorid;
+        
+        /// <summary>
+        /// litProjectcontactorphone 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litProjectcontactorphone;
+        
+        /// <summary>
+        /// litContactphone 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litContactphone;
         
         /// <summary>
         /// litApplydate 控件。
@@ -82,16 +100,16 @@ namespace FixedAsset.Web.Admin {
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label litApplydate;
+        protected global::System.Web.UI.WebControls.Literal litApplydate;
         
         /// <summary>
-        /// litApproveuser 控件。
+        /// ucApplyuser 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label litApproveuser;
+        protected global::FixedAsset.Web.Admin.UserControl.ucSelectUser ucApplyuser;
         
         /// <summary>
         /// litApprovedate 控件。
@@ -100,114 +118,51 @@ namespace FixedAsset.Web.Admin {
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label litApprovedate;
+        protected global::System.Web.UI.WebControls.Literal litApprovedate;
         
         /// <summary>
-        /// litApproveresult 控件。
+        /// ucApproveuser 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label litApproveresult;
+        protected global::FixedAsset.Web.Admin.UserControl.ucSelectUser ucApproveuser;
         
         /// <summary>
-        /// litRejectreason 控件。
+        /// ucPlansetupdate 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label litRejectreason;
+        protected global::FixedAsset.Web.Admin.UserControl.ucDatePicker ucPlansetupdate;
         
         /// <summary>
-        /// litCreateddate 控件。
+        /// rptAssetsList 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label litCreateddate;
+        protected global::System.Web.UI.WebControls.Repeater rptAssetsList;
         
         /// <summary>
-        /// rptProcureDetailList 控件。
+        /// BtnSave 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptProcureDetailList;
+        protected global::System.Web.UI.WebControls.Button BtnSave;
         
         /// <summary>
-        /// trPlanInstalldate 控件。
+        /// btnReset 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableRow trPlanInstalldate;
-        
-        /// <summary>
-        /// RequiredFieldValidator_ucPlanSetupDate 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator_ucPlanSetupDate;
-        
-        /// <summary>
-        /// ucActualSetupDate1 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::FixedAsset.Web.Admin.UserControl.ucDatePicker ucActualSetupDate1;
-        
-        /// <summary>
-        /// RequiredFieldValidator_ucActualSetupDate 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator_ucActualSetupDate;
-        
-        /// <summary>
-        /// txtInstallDetail 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtInstallDetail;
-        
-        /// <summary>
-        /// btnReplay 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnReplay;
-        
-        /// <summary>
-        /// btnConfirm 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnConfirm;
-        
-        /// <summary>
-        /// btnCancel 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancel;
+        protected global::System.Web.UI.WebControls.Button btnReset;
     }
 }

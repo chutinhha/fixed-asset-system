@@ -1,8 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/MasterPage.master" AutoEventWireup="true" CodeBehind="ViewInstall.aspx.cs" Inherits="FixedAsset.Web.Admin.ViewInstall" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/MasterPage.master" AutoEventWireup="true"
+    CodeBehind="ViewInstall.aspx.cs" Inherits="FixedAsset.Web.Admin.ViewInstall" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
-<asp:UpdatePanel ID="UpdatePanel1" runat="server">
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="content-box">
                 <div class="content-box-header">
@@ -24,18 +26,18 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        所属系统: 
+                                        所属系统:
                                     </td>
                                     <td>
-                                        <asp:Label ID="litAssetcategoryid"  class="text_inp" runat="server" />
+                                        <asp:Label ID="litAssetcategoryid" class="text_inp" runat="server" />
                                     </td>
-                                </tr>  
+                                </tr>
                                 <tr>
                                     <td>
                                         申请安装日期:
                                     </td>
                                     <td>
-                                        <asp:Label ID="litApplysetupdate"   class="text_inp" runat="server" />
+                                        <asp:Label ID="litApplysetupdate" class="text_inp" runat="server" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -43,9 +45,9 @@
                                         申请内容:
                                     </td>
                                     <td>
-                                        <asp:Label ID="litApplycontent"   class="text_inp" runat="server" />
+                                        <asp:Label ID="litApplycontent" class="text_inp" runat="server" />
                                     </td>
-                                </tr>                             
+                                </tr>
                                 <tr>
                                     <td>
                                         申请人:
@@ -78,7 +80,7 @@
                                         <asp:Label ID="litApprovedate" class="text_inp" runat="server" />
                                     </td>
                                 </tr>
-                                 <tr>
+                                <tr>
                                     <td>
                                         计划安装日期:
                                     </td>
