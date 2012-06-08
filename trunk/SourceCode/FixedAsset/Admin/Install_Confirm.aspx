@@ -115,18 +115,51 @@
                         </tr>
                         <tr>
                             <td style="width: 180px;">
-                                回复人: <span style="color: Red">*</span>
+                                回复人:
                             </td>
                             <td>
-                                <uc1:ucSelectUser ID="ucApproveuser" runat="server" IsShowUserName="true" />
+                                <asp:Literal ID="litApproveuser" runat="server" />
                             </td>
                         </tr>
                         <tr>
                             <td style="width: 180px;">
-                                计划安装日期: <span style="color: Red">*</span>
+                                计划安装日期:
                             </td>
                             <td>
-                                <uc1:ucDatePicker ID="ucPlansetupdate" runat="server" />
+                                <asp:Literal ID="litPlansetupdate" runat="server" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 180px;">
+                                实际安装日期: <span style="color: Red">*</span>
+                            </td>
+                            <td>
+                                <uc1:ucDatePicker ID="ucActualsetupdate" runat="server" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 180px;">
+                                已安装明细: <span style="color: Red">*</span>
+                            </td>
+                            <td>
+                                <asp:TextBox TextMode="MultiLine" Height="80px" ID="txtSetupcontent" runat="server" MaxLength="500"
+                                    Width="500" Rows="10" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 180px;">
+                                确认日期:
+                            </td>
+                            <td>
+                                <asp:Literal ID="litConfirmdate" runat="server" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 180px;">
+                                确认人: <span style="color: Red">*</span>
+                            </td>
+                            <td>
+                                <uc1:ucSelectUser ID="ucConfirmuser" runat="server" IsShowUserName="true" />
                             </td>
                         </tr>
                         <tr style="text-align: center">
@@ -239,10 +272,10 @@
                         </tr>
                         <tr style="text-align: center">
                             <td colspan="2">
-                                <asp:Button ID="BtnSave" runat="server" Text="回 复" CssClass="button" ValidationGroup="Vaild"
+                                <asp:Button ID="BtnSave" runat="server" Text="确 认" CssClass="button" ValidationGroup="Vaild"
                                     OnClick="BtnSave_Click" />
                                 <asp:Button ID="btnReset" runat="server" Text="取 消" CssClass="button" CausesValidation="false"
-                                    OnClientClick="javascript:window.location.href = 'InstallList.aspx';" OnClick="btnReset_Click" />
+                                    OnClick="btnReset_Click" />
                             </td>
                         </tr>
                     </table>
