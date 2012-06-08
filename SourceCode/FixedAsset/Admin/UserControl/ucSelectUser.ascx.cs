@@ -26,15 +26,12 @@ namespace FixedAsset.Web.Admin.UserControl
         }
         public bool IsShowUserName
         {
-            get
+            get { return txtUsername.Enabled; }
+            set
             {
-                if (ViewState["IsShowUserName"] == null)
-                {
-                    ViewState["IsShowUserName"] = false;
-                }
-                return bool.Parse(ViewState["IsShowUserName"].ToString());
+                txtUsername.Enabled = !value;
+                btnSelectSingleUser.Visible = !value;
             }
-            set { ViewState["IsShowUserName"] = value; }
         }
         public string UserId
         {

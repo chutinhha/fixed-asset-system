@@ -68,6 +68,8 @@ namespace FixedAsset.Web.Admin
             if (!IsPostBack)
             {
                 AssetCategories.Clear();
+                ucSeletedSystem.Enabled = false;
+                ucSelectProject.IsShowName = true;
                 ucPlansetupdate.DateValue = DateTime.Today;
                 litApprovedate.Text = DateTime.Now.ToString(UiConst.DateTimeFormat); 
                 ucApproveuser.UserId = WebContext.Current.CurrentUser.Id;

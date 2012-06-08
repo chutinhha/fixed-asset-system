@@ -7,6 +7,11 @@ namespace FixedAsset.Web.Admin.UserControl
     public partial class ucSeletedSystem : System.Web.UI.UserControl
     {
         #region Properties
+        public bool Enabled
+        {
+            get { return ddlSystemList.Enabled; }
+            set { ddlSystemList.Enabled = value; }
+        }
         public string Assetcategoryid
         {
             get
