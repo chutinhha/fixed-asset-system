@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/MasterPage.Master" AutoEventWireup="true"
-    CodeBehind="ReplyInstall.aspx.cs" Inherits="FixedAsset.Web.Admin.ReplyInstall" %>
+    CodeBehind="Install_Reply.aspx.cs" Inherits="FixedAsset.Web.Admin.Install_Reply" %>
 
 <%@ Import Namespace="SeallNet.Utility" %>
 <%@ Import Namespace="FixedAsset.Domain" %>

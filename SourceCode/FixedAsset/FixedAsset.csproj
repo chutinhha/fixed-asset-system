@@ -409,12 +409,12 @@
     <Compile Include="Admin\Repair_View.aspx.designer.cs">
       <DependentUpon>Repair_View.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\ReplyInstall.aspx.cs">
-      <DependentUpon>ReplyInstall.aspx</DependentUpon>
+    <Compile Include="Admin\Install_Reply.aspx.cs">
+      <DependentUpon>Install_Reply.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\ReplyInstall.aspx.designer.cs">
-      <DependentUpon>ReplyInstall.aspx</DependentUpon>
+    <Compile Include="Admin\Install_Reply.aspx.designer.cs">
+      <DependentUpon>Install_Reply.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Report_AssetCategory.aspx.cs">
       <DependentUpon>Report_AssetCategory.aspx</DependentUpon>
@@ -651,13 +651,6 @@
     <Compile Include="Admin\User_List.aspx.designer.cs">
       <DependentUpon>user_list.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\ViewInstall.aspx.cs">
-      <DependentUpon>ViewInstall.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\ViewInstall.aspx.designer.cs">
-      <DependentUpon>ViewInstall.aspx</DependentUpon>
-    </Compile>
     <Compile Include="AppCode\AdminBasePage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -723,7 +716,7 @@
     <Content Include="Admin\Repair_Confirm.aspx" />
     <Content Include="Admin\Repair_Reply.aspx" />
     <Content Include="Admin\Repair_View.aspx" />
-    <Content Include="Admin\ReplyInstall.aspx" />
+    <Content Include="Admin\Install_Reply.aspx" />
     <Content Include="Admin\Report_AssetCategory.aspx" />
     <Content Include="Admin\Report_AssetState.aspx" />
     <Content Include="Admin\Report_AssetStorageAddress.aspx" />
@@ -743,7 +736,6 @@
     <Content Include="Admin\UserControl\ucShowAssetDetail.ascx" />
     <Content Include="Admin\UserControl\ucShowStorageAddress.ascx" />
     <Content Include="Admin\User_AddRole.aspx" />
-    <Content Include="Admin\ViewInstall.aspx" />
     <Content Include="css\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="css\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="css\images\ui-bg_glass_55_fbf9ee_1x400.png" />
