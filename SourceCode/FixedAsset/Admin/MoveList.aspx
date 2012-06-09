@@ -17,7 +17,7 @@
     <div id="cnt">
         <div id="dTab1" class="Box text_box">
             <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
-                align="left">
+                align="center">
                 <tr>
                     <td style="width: 20%;">
                         移机单号
