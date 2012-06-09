@@ -16,7 +16,7 @@ namespace FixedAsset.Web.Admin.UserControl
         {
             get
             {
-                if(ddlSystemList.SelectedIndex>=0)
+                if (ddlSystemList.SelectedIndex >= 0)
                 {
                     return ddlSystemList.SelectedValue;
                 }
@@ -27,13 +27,17 @@ namespace FixedAsset.Web.Admin.UserControl
             }
             set
             {
+                if(ddlSystemList.Items.Count==0)
+                {
+                    LoadData();
+                }
                 for (int i = 0; i < ddlSystemList.Items.Count; i++)
                 {
-                      if(ddlSystemList.Items[i].Value.Equals(value))
-                      {
-                          ddlSystemList.SelectedIndex = i;
-                          break;
-                      }
+                    if (ddlSystemList.Items[i].Value.Equals(value))
+                    {
+                        ddlSystemList.SelectedIndex = i;
+                        break;
+                    }
                 }
             }
         }
@@ -76,8 +80,7 @@ namespace FixedAsset.Web.Admin.UserControl
             ddlSystemList.DataSource = list;
             ddlSystemList.DataTextField = @"System";
             ddlSystemList.DataValueField = @"Assetcategoryid";
-            ddlSystemList.DataBind();
-            ddlSystemList.SelectedIndex = 0;
+            ddlSystemList.DataBind(); 
         }
     }
 }
