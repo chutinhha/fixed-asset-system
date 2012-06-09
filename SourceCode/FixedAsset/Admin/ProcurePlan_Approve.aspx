@@ -6,7 +6,7 @@
     TagPrefix="uc1" %>
 <asp:Content ID="head" ContentPlaceHolderID="head" runat="Server">
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
-    <script src="../Scripts/calendar.js" type="text/javascript"></script>  
+    <script src="../Scripts/calendar.js" type="text/javascript"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="Server">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -69,13 +69,12 @@
                                         <asp:Label ID="litApplydate" class="text_inp" runat="server" />
                                     </td>
                                 </tr>
-                                 <tr>
+                                <tr>
                                     <td>
-                                        审批意见:
+                                        审核意见:
                                     </td>
                                     <td>
                                         <asp:TextBox ID="txtRejectreason" Width="300" runat="server" MaxLength="1000" TextMode="MultiLine"></asp:TextBox>
-                                        
                                     </td>
                                 </tr>
                                 <tr>
@@ -107,10 +106,10 @@
                                                                     设备规格
                                                                 </td>
                                                                 <td>
-                                                                    单价
+                                                                    计划采购数量
                                                                 </td>
                                                                 <td>
-                                                                    计划采购数量
+                                                                    单价
                                                                 </td>
                                                             </tr>
                                                         </HeaderTemplate>
@@ -126,10 +125,10 @@
                                                                     <%#Eval("Assetspecification")%>
                                                                 </td>
                                                                 <td>
-                                                                    <%#Eval("Unitprice")%>
-                                                                </td>
-                                                                <td>
                                                                     <%#Eval("Plannumber")%>
+                                                                </td>
+                                                                <td align="right">
+                                                                    <%#((decimal)Eval("Unitprice")).ToString(FixedAsset.Web.AppCode.UiConst.MoneyFormat)%>
                                                                 </td>
                                                             </tr>
                                                         </ItemTemplate>
@@ -145,10 +144,10 @@
                                                                     <%#Eval("Assetspecification")%>
                                                                 </td>
                                                                 <td>
-                                                                    <%#Eval("Unitprice")%>
-                                                                </td>
-                                                                <td>
                                                                     <%#Eval("Plannumber")%>
+                                                                </td>
+                                                                <td align="right">
+                                                                    <%#((decimal)Eval("Unitprice")).ToString(FixedAsset.Web.AppCode.UiConst.MoneyFormat)%>
                                                                 </td>
                                                             </tr>
                                                         </AlternatingItemTemplate>

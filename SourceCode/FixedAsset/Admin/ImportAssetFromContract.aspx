@@ -126,8 +126,8 @@
                                                                 <td>
                                                                     <%#Eval("ImportNumber")%>
                                                                 </td>
-                                                                <td>
-                                                                    <%#Eval("Unitprice")%>
+                                                                <td align="right">
+                                                                    <%#((decimal)Eval("Unitprice")).ToString(FixedAsset.Web.AppCode.UiConst.MoneyFormat)%>
                                                                 </td>
                                                                 <td align="right">
                                                                     <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"
@@ -156,8 +156,8 @@
                                                                 <td>
                                                                     <%#Eval("ImportNumber")%>
                                                                 </td>
-                                                                <td>
-                                                                    <%#Eval("Unitprice")%>
+                                                                <td align="right">
+                                                                    <%#((decimal)Eval("Unitprice")).ToString(FixedAsset.Web.AppCode.UiConst.MoneyFormat)%>
                                                                 </td>
                                                                 <td align="right">
                                                                     <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"

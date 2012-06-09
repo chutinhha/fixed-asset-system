@@ -42,12 +42,12 @@
                                 <asp:Label ID="litAssetmaintainid" class="text_inp" runat="server" />
                             </td>
                         </tr>
-                         <tr>
+                        <tr>
                             <td style="width: 180px;">
-                                状态: 
+                                状态:
                             </td>
                             <td>
-                                <asp:Literal ID="litApproveresult"  runat="server"/>
+                                <asp:Literal ID="litApproveresult" runat="server" />
                             </td>
                         </tr>
                         <tr>
@@ -140,10 +140,10 @@
                         </tr>
                         <tr>
                             <td style="width: 180px;">
-                                实际维修日期: 
+                                实际维修日期:
                             </td>
                             <td>
-                                <asp:Literal ID="litActualmaintaindate"  runat="server"/>
+                                <asp:Literal ID="litActualmaintaindate" runat="server" />
                             </td>
                         </tr>
                         <tr>
@@ -151,7 +151,7 @@
                                 已维修明细:
                             </td>
                             <td style="word-wrap: break-word; overflow: hidden; width: 680px;">
-                                <asp:Literal ID="litMaintaincontent"  runat="server"/>
+                                <asp:Literal ID="litMaintaincontent" runat="server" />
                             </td>
                         </tr>
                         <tr>
@@ -167,7 +167,7 @@
                                 确认人:
                             </td>
                             <td>
-                                <asp:Literal ID="litConfirmuser"  runat="server"/>
+                                <asp:Literal ID="litConfirmuser" runat="server" />
                             </td>
                         </tr>
                         <tr>
@@ -232,7 +232,7 @@
                                                         <td>
                                                             <%#((DateTime)Eval("Purchasedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                                                         </td>
-                                                        <td>
+                                                        <td align="right">
                                                             <%#((decimal)Eval("Unitprice")).ToString(FixedAsset.Web.AppCode.UiConst.MoneyFormat)%>
                                                         </td>
                                                         <td>
@@ -261,7 +261,7 @@
                                                         <td>
                                                             <%#((DateTime)Eval("Purchasedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                                                         </td>
-                                                        <td>
+                                                        <td align="right">
                                                             <%#((decimal)Eval("Unitprice")).ToString(FixedAsset.Web.AppCode.UiConst.MoneyFormat)%>
                                                         </td>
                                                         <td>
@@ -280,7 +280,6 @@
                         </tr>
                         <tr style="text-align: center">
                             <td colspan="2">
-                               
                                 <asp:Button ID="btnReset" runat="server" Text="返 回" CssClass="button" CausesValidation="false"
                                     OnClick="btnReset_Click" />
                             </td>

@@ -91,13 +91,13 @@ namespace FixedAsset.Web.Admin
             WriteControlValueToEntity(headInfo);
             headInfo.Approveresult = ApproveResult.Approved;
             ProcurementscheduleheadService.UpdateProcurementscheduleheadByPsid(headInfo, ProcureScheduleDetails);
-            UIHelper.AlertMessageGoToURL(this.UpdatePanel1, "审批通过!", ResolveUrl("~/Admin/ProcurePlanList.aspx"));
+            UIHelper.AlertMessageGoToURL(this.UpdatePanel1, "审核通过!", ResolveUrl("~/Admin/ProcurePlanList.aspx"));
         }
         protected void btnReject_Click(object sender, EventArgs e)
         {
             if(string.IsNullOrEmpty(txtRejectreason.Text))
             {
-                UIHelper.Alert(this.UpdatePanel1, "请输入审批意见！");
+                UIHelper.Alert(this.UpdatePanel1, "请输入审核意见！");
                 return;
             }
             Procurementschedulehead headInfo = null;
@@ -106,7 +106,7 @@ namespace FixedAsset.Web.Admin
             WriteControlValueToEntity(headInfo);
             headInfo.Approveresult = ApproveResult.Rejected;
             ProcurementscheduleheadService.UpdateProcurementscheduleheadByPsid(headInfo, ProcureScheduleDetails);
-            UIHelper.AlertMessageGoToURL(this.UpdatePanel1, "审批拒绝!", ResolveUrl("~/Admin/ProcurePlanList.aspx"));
+            UIHelper.AlertMessageGoToURL(this.UpdatePanel1, "审核拒绝!", ResolveUrl("~/Admin/ProcurePlanList.aspx"));
         }
 
         #region 明细

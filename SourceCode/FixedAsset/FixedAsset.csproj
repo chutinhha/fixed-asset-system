@@ -150,12 +150,26 @@
     <Compile Include="Admin\B_Account.aspx.designer.cs">
       <DependentUpon>B_Account.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\B_AccountView.aspx.cs">
+      <DependentUpon>B_AccountView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\B_AccountView.aspx.designer.cs">
+      <DependentUpon>B_AccountView.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\ContactDetail_Add.aspx.cs">
       <DependentUpon>ContactDetail_Add.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\ContactDetail_Add.aspx.designer.cs">
       <DependentUpon>ContactDetail_Add.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Contact_View.aspx.cs">
+      <DependentUpon>Contact_View.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Contact_View.aspx.designer.cs">
+      <DependentUpon>Contact_View.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ContractList.aspx.cs">
       <DependentUpon>ContractList.aspx</DependentUpon>
@@ -703,7 +717,9 @@
     <Content Include="Admin\AssetUsedList.aspx" />
     <Content Include="Admin\Asset_Scrapped.aspx" />
     <Content Include="Admin\B_Account.aspx" />
+    <Content Include="Admin\B_AccountView.aspx" />
     <Content Include="Admin\ContactDetail_Add.aspx" />
+    <Content Include="Admin\Contact_View.aspx" />
     <Content Include="Admin\ContractList.aspx" />
     <Content Include="Admin\css\default.css" />
     <Content Include="Admin\DataConfig_Add.aspx" />
