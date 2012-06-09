@@ -19,5 +19,6 @@ namespace FixedAsset.IServices
         Assetconfig UpdateAssetconfigByConfigid(Assetconfig info);
         Assetconfig RetrieveAssetconfigByConfigid(string configid);
         void DeleteAssetconfigByConfigid(string configid);
+        List<Assetconfig> RetrieveAssetconfigByCategoryId(string categoryId);
     }
 }

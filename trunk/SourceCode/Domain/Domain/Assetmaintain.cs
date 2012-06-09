@@ -19,6 +19,7 @@ namespace FixedAsset.Domain
     public partial class Assetmaintain
     {
         public const string RuleCode = "Î¬ÐÞ";
+        public const string C_MaintainType = "Maintaintype";
 
         #region Î¬ÐÞµ¥±àºÅ
         ///<summary>

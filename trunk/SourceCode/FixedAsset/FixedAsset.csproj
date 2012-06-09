@@ -537,6 +537,7 @@
     </Compile>
     <Compile Include="Admin\UserControl\ucMaintaintype.ascx.cs">
       <DependentUpon>ucMaintaintype.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\UserControl\ucMaintaintype.ascx.designer.cs">
       <DependentUpon>ucMaintaintype.ascx</DependentUpon>
