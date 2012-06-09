@@ -272,7 +272,7 @@
                         </tr>
                         <tr style="text-align: center">
                             <td colspan="2">
-                                <asp:Button ID="BtnSave" runat="server" Text="回 复" CssClass="button" ValidationGroup="Vaild"
+                                <asp:Button ID="BtnSave" runat="server" Text="确 认" CssClass="button" ValidationGroup="Vaild"
                                     OnClick="BtnSave_Click" />
                                 <asp:Button ID="btnReset" runat="server" Text="取 消" CssClass="button" CausesValidation="false"
                                     OnClick="btnReset_Click" />
