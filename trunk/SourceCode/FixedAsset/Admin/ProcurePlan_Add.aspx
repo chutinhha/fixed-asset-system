@@ -104,10 +104,10 @@
                                                             设备规格
                                                         </td>
                                                         <td>
-                                                            单价
+                                                            计划采购数量
                                                         </td>
                                                         <td>
-                                                            计划采购数量
+                                                            单价
                                                         </td>
                                                         <td>
                                                             操作
@@ -126,10 +126,10 @@
                                                             <%#Eval("Assetspecification")%>
                                                         </td>
                                                         <td>
-                                                            <%#Eval("Unitprice")%>
-                                                        </td>
-                                                        <td>
                                                             <%#Eval("Plannumber")%>
+                                                        </td>
+                                                        <td align="right">
+                                                            <%#((decimal)Eval("Unitprice")).ToString(FixedAsset.Web.AppCode.UiConst.MoneyFormat)%>
                                                         </td>
                                                         <td align="right">
                                                             <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"
@@ -153,10 +153,10 @@
                                                             <%#Eval("Assetspecification")%>
                                                         </td>
                                                         <td>
-                                                            <%#Eval("Unitprice")%>
-                                                        </td>
-                                                        <td>
                                                             <%#Eval("Plannumber")%>
+                                                        </td>
+                                                        <td align="right">
+                                                            <%#((decimal)Eval("Unitprice")).ToString(FixedAsset.Web.AppCode.UiConst.MoneyFormat)%>
                                                         </td>
                                                         <td align="right">
                                                             <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"

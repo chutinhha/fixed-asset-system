@@ -1,4 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/MasterPage.master" AutoEventWireup="true" CodeBehind="ContractList.aspx.cs" Inherits="FixedAsset.Web.Admin.ContractList" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/MasterPage.master" AutoEventWireup="true"
+    CodeBehind="ContractList.aspx.cs" Inherits="FixedAsset.Web.Admin.ContractList" %>
 
 <%@ Import Namespace="FixedAsset.Domain" %>
 <%@ Import Namespace="SeallNet.Utility" %>
@@ -20,12 +21,12 @@
             </p>
             <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
                 align="center">
-                <asp:Repeater ID="rptContactsList" runat="server"  OnItemDataBound="rptContactsList_ItemDataBound"
-                                                        OnItemCommand="rptContactsList_ItemCommand">
+                <asp:Repeater ID="rptContactsList" runat="server" OnItemDataBound="rptContactsList_ItemDataBound"
+                    OnItemCommand="rptContactsList_ItemCommand">
                     <HeaderTemplate>
                         <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
                             <td align="center">
-                               合同编号
+                                合同编号
                             </td>
                             <td align="center">
                                 签订日期
@@ -33,7 +34,6 @@
                             <td align="center">
                                 供应商
                             </td>
-                           
                             <td align="center">
                                 创建日期
                             </td>
@@ -53,23 +53,24 @@
                             <td align="center">
                                 <%#Eval("Suppliername")%>
                             </td>
-                           
                             <td align="center">
                                 <%#((DateTime)Eval("Createddate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
                             <td align="center">
-                                  <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/images/Button/edit.GIF"
+                                <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/images/Button/edit.GIF"
                                     AlternateText="编辑" ToolTip="编辑" CommandName="EditDetail" CommandArgument='<%#Eval("Contractid") %>' />
                                 <asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="~/images/Button/delete.GIF"
-                                    OnClientClick="return confirm('确认要删除吗？');" AlternateText="删除" ToolTip="删除" CommandName="DeleteDetail"  CommandArgument='<%#Eval("Contractid") %>' />
-                                    <asp:ImageButton ID="BtnDetail" runat="server" ImageUrl="~/images/Button/detail.GIF"
-                                    AlternateText="详细信息" ToolTip="详细信息" CommandArgument='<%#Eval("Contractid")%>' CommandName="ViewDetail" />
+                                    OnClientClick="return confirm('确认要删除吗？');" AlternateText="删除" ToolTip="删除" CommandName="DeleteDetail"
+                                    CommandArgument='<%#Eval("Contractid") %>' />
+                                <asp:ImageButton ID="BtnDetail" runat="server" ImageUrl="~/images/Button/detail.GIF"
+                                    AlternateText="详细信息" ToolTip="详细信息" CommandArgument='<%#Eval("Contractid")%>'
+                                    CommandName="ViewDetail" />
                             </td>
                         </tr>
                     </ItemTemplate>
                     <AlternatingItemTemplate>
                         <tr class="alt-row">
-                           <td align="center">
+                            <td align="center">
                                 <%#Eval("Contractid")%>
                             </td>
                             <td align="center">
@@ -78,29 +79,27 @@
                             <td align="center">
                                 <%#Eval("Suppliername")%>
                             </td>
-                           
                             <td align="center">
                                 <%#((DateTime)Eval("Createddate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
-                           
                             <td align="center">
-                               <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/images/Button/edit.GIF"
+                                <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/images/Button/edit.GIF"
                                     AlternateText="编辑" ToolTip="编辑" CommandName="EditDetail" CommandArgument='<%#Eval("Contractid") %>' />
                                 <asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="~/images/Button/delete.GIF"
-                                    OnClientClick="return confirm('确认要删除吗？');" AlternateText="删除" ToolTip="删除" CommandName="DeleteDetail"  CommandArgument='<%#Eval("Contractid") %>' />
-                                    <asp:ImageButton ID="BtnDetail" runat="server" ImageUrl="~/images/Button/detail.GIF"
-                                    AlternateText="详细信息" ToolTip="详细信息" CommandArgument='<%#Eval("Contractid")%>' CommandName="ViewDetail" /></td>
+                                    OnClientClick="return confirm('确认要删除吗？');" AlternateText="删除" ToolTip="删除" CommandName="DeleteDetail"
+                                    CommandArgument='<%#Eval("Contractid") %>' />
+                                <asp:ImageButton ID="BtnDetail" runat="server" ImageUrl="~/images/Button/detail.GIF"
+                                    AlternateText="详细信息" ToolTip="详细信息" CommandArgument='<%#Eval("Contractid")%>'
+                                    CommandName="ViewDetail" />
+                            </td>
                         </tr>
                     </AlternatingItemTemplate>
                 </asp:Repeater>
                 <tr>
-                    <td>
+                    <td colspan="5" style="height: 30px; width: 98%;" align="center">
+                        <cc1:PagingControl ID="pcData" runat="server" MaxNavigatePageCount="7" OnPageIndexClick="pcData_PageIndexClick" />
                     </td>
-                    <td colspan="5" style="height: 30px;width: 790px;">
-                       <%-- <cc1:PageChangeControl ID="pageControl" PageSize="10" runat="server" OnPageIndexClick="pageControl_PageIndexClick" />--%>
-                       <cc1:PagingControl ID="pcData" runat="server" MaxNavigatePageCount="7" OnPageIndexClick="pcData_PageIndexClick" />
-                    </td>
-                </tr>  
+                </tr>
             </table>
         </div>
     </div>

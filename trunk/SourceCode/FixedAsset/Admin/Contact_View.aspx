@@ -1,4 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/MasterPage.master" AutoEventWireup="true" CodeBehind="Contact_View.aspx.cs" Inherits="FixedAsset.Web.Admin.ContactDetail_View" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/MasterPage.master" AutoEventWireup="true"
+    CodeBehind="Contact_View.aspx.cs" Inherits="FixedAsset.Web.Admin.ContactDetail_View" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
@@ -25,34 +27,30 @@
                                 签订日期:
                             </td>
                             <td>
-                               
-                                  <asp:Label ID="litContactscheduledate" class="text_inp" runat="server" />
+                                <asp:Label ID="litContactscheduledate" class="text_inp" runat="server" />
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                分公司: 
+                                分公司:
                             </td>
                             <td>
-                               
-                                 <asp:Label ID="lblSubCompany" class="text_inp" runat="server" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                供应商: 
-                            </td>
-                            <td>
-                              
-                                 <asp:Label ID="lblSelectSupplier" class="text_inp" runat="server" />
+                                <asp:Label ID="lblSubCompany" class="text_inp" runat="server" />
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                创建日期: 
+                                供应商:
                             </td>
                             <td>
-                             
+                                <asp:Label ID="lblSelectSupplier" class="text_inp" runat="server" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                创建日期:
+                            </td>
+                            <td>
                                 <asp:Label ID="lblApplydate" class="text_inp" runat="server" />
                             </td>
                         </tr>
@@ -71,7 +69,6 @@
                                     <div id="MyFile" style="display: block;">
                                         <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
                                             align="center">
-                                          
                                             <asp:Repeater ID="rptContactDetailList" runat="server" OnItemDataBound="rptContactDetailList_ItemDataBound"
                                                 OnItemCommand="rptContactDetailList_ItemCommand">
                                                 <HeaderTemplate>
@@ -91,7 +88,6 @@
                                                         <td>
                                                             单价
                                                         </td>
-                                                        
                                                     </tr>
                                                 </HeaderTemplate>
                                                 <ItemTemplate>
@@ -108,10 +104,9 @@
                                                         <td>
                                                             <%#Eval("Procurenumber")%>
                                                         </td>
-                                                        <td>
-                                                            <%#Eval("Unitprice")%>
+                                                        <td align="right">
+                                                            <%#((decimal)Eval("Unitprice")).ToString(FixedAsset.Web.AppCode.UiConst.MoneyFormat)%>
                                                         </td>
-                                                       
                                                     </tr>
                                                 </ItemTemplate>
                                                 <AlternatingItemTemplate>
@@ -128,10 +123,9 @@
                                                         <td>
                                                             <%#Eval("Procurenumber")%>
                                                         </td>
-                                                        <td>
-                                                            <%#Eval("Unitprice")%>
+                                                        <td align="right">
+                                                            <%#((decimal)Eval("Unitprice")).ToString(FixedAsset.Web.AppCode.UiConst.MoneyFormat)%>
                                                         </td>
-                                                       
                                                     </tr>
                                                 </AlternatingItemTemplate>
                                             </asp:Repeater>
@@ -141,11 +135,11 @@
                             </td>
                         </tr>
                         <tr style="text-align: center">
-                           <tr style="text-align: center">
-                                    <td colspan="2">
-                                        <input type="button" class="button" runat="server" id="Button2" value="返 回" onclick="javascript:window.location.href = 'ContractList.aspx';" />
-                                    </td>
-                                </tr>
+                            <tr style="text-align: center">
+                                <td colspan="2">
+                                    <input type="button" class="button" runat="server" id="Button2" value="返 回" onclick="javascript:window.location.href = 'ContractList.aspx';" />
+                                </td>
+                            </tr>
                         </tr>
                     </table>
                 </fieldset>

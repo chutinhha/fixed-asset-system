@@ -224,9 +224,9 @@
                                                         <td>
                                                             <%#((DateTime)Eval("Purchasedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                                                         </td>
-                                                        <td>
-                                                            <%#((decimal)Eval("Unitprice")).ToString(FixedAsset.Web.AppCode.UiConst.MoneyFormat)%>
-                                                        </td>
+                                                        <td align="right">
+                                                                    <%#((decimal)Eval("Unitprice")).ToString(FixedAsset.Web.AppCode.UiConst.MoneyFormat)%>
+                                                                </td>
                                                         <td>
                                                             <%#Eval("Brand")%>
                                                         </td>
@@ -253,9 +253,9 @@
                                                         <td>
                                                             <%#((DateTime)Eval("Purchasedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                                                         </td>
-                                                        <td>
-                                                            <%#((decimal)Eval("Unitprice")).ToString(FixedAsset.Web.AppCode.UiConst.MoneyFormat)%>
-                                                        </td>
+                                                        <td align="right">
+                                                                    <%#((decimal)Eval("Unitprice")).ToString(FixedAsset.Web.AppCode.UiConst.MoneyFormat)%>
+                                                                </td>
                                                         <td>
                                                             <%#Eval("Brand")%>
                                                         </td>

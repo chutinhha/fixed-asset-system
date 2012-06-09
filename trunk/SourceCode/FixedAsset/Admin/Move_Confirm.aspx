@@ -225,7 +225,7 @@
                                                         <td>
                                                             <%#((DateTime)Eval("Purchasedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                                                         </td>
-                                                        <td>
+                                                          <td align="right">
                                                             <%#((decimal)Eval("Unitprice")).ToString(FixedAsset.Web.AppCode.UiConst.MoneyFormat)%>
                                                         </td>
                                                         <td>
@@ -254,7 +254,7 @@
                                                         <td>
                                                             <%#((DateTime)Eval("Purchasedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                                                         </td>
-                                                        <td>
+                                                          <td align="right">
                                                             <%#((decimal)Eval("Unitprice")).ToString(FixedAsset.Web.AppCode.UiConst.MoneyFormat)%>
                                                         </td>
                                                         <td>

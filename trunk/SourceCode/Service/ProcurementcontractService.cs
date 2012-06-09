@@ -101,7 +101,9 @@ namespace FixedAsset.Services
         {
             try
             {
+                var detailManagement=new ProcurementcontractdetailManagement(Management);
                 Management.BeginTransaction();
+                detailManagement.DeleteProcurementcontractdetailsByContractid(new List<string>(){contractid});
                 Management.DeleteProcurementcontractByContractid(contractid);
                 Management.Commit();
             }
@@ -112,25 +114,6 @@ namespace FixedAsset.Services
             }
         }
         #endregion
-
-        #region DeleteProcurementcontractByContractid
-        public void DeleteProcurementcontractByContractid(List<string> contractids)
-        {
-            try
-            {
-                Management.BeginTransaction();
-                Management.DeleteProcurementcontractByContractid(contractids);
-                Management.Commit();
-            }
-            catch
-            {
-                Management.Rollback();
-                throw;
-            }
-        }
-        #endregion
-
-
 
         public Procurementcontract CreateProcurementcontract(Procurementcontract info, List<Procurementcontractdetail> detailInfos)
         {

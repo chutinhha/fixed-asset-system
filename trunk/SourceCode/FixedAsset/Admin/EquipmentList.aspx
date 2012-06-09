@@ -127,7 +127,7 @@
                             <td align="center">
                                 <%#((DateTime)Eval("Purchasedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
-                            <td align="center">
+                            <td align="right">
                                 <%#((decimal)Eval("Unitprice")).ToString(FixedAsset.Web.AppCode.UiConst.MoneyFormat)%>
                             </td>
                             <td align="center">
@@ -163,7 +163,7 @@
                             <td align="center">
                                 <%#((DateTime)Eval("Purchasedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
-                            <td align="center">
+                            <td align="right">
                                 <%#((decimal)Eval("Unitprice")).ToString(FixedAsset.Web.AppCode.UiConst.MoneyFormat)%>
                             </td>
                             <td align="center">
@@ -182,7 +182,7 @@
                     </AlternatingItemTemplate>
                 </asp:Repeater>
                 <tr>
-                    <td colspan="9" style="height: 30px; width: 98%;">
+                    <td colspan="9" style="height: 30px; width: 98%;" align="center">
                         <cc1:PagingControl ID="pcData" runat="server" MaxNavigatePageCount="7" OnPageIndexClick="pcData_PageIndexClick" />
                     </td>
                 </tr>
