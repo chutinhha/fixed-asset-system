@@ -28,11 +28,11 @@ namespace FixedAsset.Web.Admin
         {
             get
             {
-                if (Session["NewInstallCategories"] == null)
+                if (Session["Move_ConfirmCategories"] == null)
                 {
-                    Session["NewInstallCategories"] = new List<Assetcategory>();
+                    Session["Move_ConfirmCategories"] = new List<Assetcategory>();
                 }
-                return Session["NewInstallCategories"] as List<Assetcategory>;
+                return Session["Move_ConfirmCategories"] as List<Assetcategory>;
             }
         }
         protected IAssetmoveService AssetmoveService
@@ -67,11 +67,11 @@ namespace FixedAsset.Web.Admin
         {
             get
             {
-                if (Session["Assetmaintaindetail"] == null)
+                if (Session["Assetmovedetail"] == null)
                 {
-                    Session["Assetmaintaindetail"] = new List<Assetmovedetail>();
+                    Session["Assetmovedetail"] = new List<Assetmovedetail>();
                 }
-                return Session["Assetmaintaindetail"] as List<Assetmovedetail>;
+                return Session["Assetmovedetail"] as List<Assetmovedetail>;
             }
         }
         #endregion
