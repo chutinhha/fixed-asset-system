@@ -18,6 +18,8 @@ namespace FixedAsset.Domain
     [Serializable]
     public partial class Assetmaintain
     {
+        public const string RuleCode = "Î¬ÐÞ";
+
         #region Î¬ÐÞµ¥±àºÅ
         ///<summary>
         ///ColumnName:Î¬ÐÞµ¥±àºÅ;Size:40;NOT NULL
