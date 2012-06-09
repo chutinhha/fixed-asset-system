@@ -64,7 +64,8 @@
                     <ItemTemplate>
                         <tr>
                             <td align="left">
-                                <asp:CheckBox ID="ckbAssetno" Text='<%#Eval("Assetno")%>' runat="server" TextAlign="Right" />
+                                <asp:CheckBox ID="ckbAssetno"  runat="server" TextAlign="Right" />
+                                <asp:Literal ID="litAssetno" runat="server" Text='<%#Eval("Assetno")%>' />
                             </td>
                             <td align="left">
                                 <asp:Literal ID="litCategoryName" runat="server" />
@@ -80,7 +81,8 @@
                     <AlternatingItemTemplate>
                         <tr class="alt-row">
                             <td align="left">
-                                <asp:CheckBox ID="ckbAssetno" Text='<%#Eval("Assetno")%>' runat="server" />
+                                <asp:CheckBox ID="ckbAssetno"  runat="server" TextAlign="Right" />
+                                <asp:Literal ID="litAssetno" runat="server" Text='<%#Eval("Assetno")%>' />
                             </td>
                             <td align="left">
                                 <asp:Literal ID="litCategoryName" runat="server" />
