@@ -64,6 +64,7 @@ namespace FixedAsset.Services
         {
             try
             {
+                info.Assetmoveid = new CoderuleManagement().GenerateCodeRule(Assetmove.RuleCode + DateTime.Today.ToString("yyyyMM"), false);
                 Management.BeginTransaction();
                 Management.CreateAssetmove(info);
                 Management.Commit();

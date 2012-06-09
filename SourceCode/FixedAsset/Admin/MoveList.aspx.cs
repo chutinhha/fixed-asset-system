@@ -87,7 +87,7 @@ namespace FixedAsset.Web.Admin
             }
             else if (e.CommandName.Equals("ComfirmDetail"))
             {
-                Response.Redirect(ResolveUrl(string.Format("~/Admin/Move_Reply.aspx?Assetmoveid={0}", assetMoveId)));//维修结束后确认
+                Response.Redirect(ResolveUrl(string.Format("~/Admin/Move_Confirm.aspx?Assetmoveid={0}", assetMoveId)));//维修结束后确认
             }
             else
             {

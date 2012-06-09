@@ -13,15 +13,6 @@ namespace FixedAsset.Web.Admin {
     public partial class NewMoving {
         
         /// <summary>
-        /// UpdatePanel1 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
-        
-        /// <summary>
         /// litTitle 控件。
         /// </summary>
         /// <remarks>
@@ -31,121 +22,103 @@ namespace FixedAsset.Web.Admin {
         protected global::System.Web.UI.WebControls.Literal litTitle;
         
         /// <summary>
-        /// litPsid 控件。
+        /// ucSeletedSystem 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label litPsid;
+        protected global::FixedAsset.Web.Admin.UserControl.ucSeletedSystem ucSeletedSystem;
         
         /// <summary>
-        /// txtEquipmentName 控件。
+        /// litAssetmoveid 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEquipmentName;
+        protected global::System.Web.UI.WebControls.Literal litAssetmoveid;
         
         /// <summary>
-        /// txtMovingDate 控件。
+        /// txtApplycontent 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMovingDate;
+        protected global::System.Web.UI.WebControls.TextBox txtApplycontent;
         
         /// <summary>
-        /// txtApplyDate 控件。
+        /// ucApplyuser 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtApplyDate;
+        protected global::FixedAsset.Web.Admin.UserControl.ucSelectUser ucApplyuser;
         
         /// <summary>
-        /// txtApplyer 控件。
+        /// ucApplyDate 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtApplyer;
+        protected global::FixedAsset.Web.Admin.UserControl.ucDatePicker ucApplyDate;
         
         /// <summary>
-        /// txtContactNum 控件。
+        /// ucSelectProject 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtContactNum;
+        protected global::FixedAsset.Web.Admin.UserControl.ucSelectProject ucSelectProject;
         
         /// <summary>
-        /// txtProject 控件。
+        /// ucProjectcontactorid 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtProject;
+        protected global::FixedAsset.Web.Admin.UserControl.ucSelectUser ucProjectcontactorid;
         
         /// <summary>
-        /// txtProjectContact 控件。
+        /// txtProjectcontactorphone 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtProjectContact;
+        protected global::System.Web.UI.WebControls.TextBox txtProjectcontactorphone;
         
         /// <summary>
-        /// txtProjectContactNum 控件。
+        /// txtContactphone 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtProjectContactNum;
+        protected global::System.Web.UI.WebControls.TextBox txtContactphone;
         
         /// <summary>
-        /// txtEquipmentMovedate 控件。
+        /// ucSelectedMultiAssets 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEquipmentMovedate;
+        protected global::FixedAsset.Web.Admin.UserControl.ucSelectedMultiAssets ucSelectedMultiAssets;
         
         /// <summary>
-        /// RequiredFieldValidator7 控件。
+        /// rptAssetsList 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator7;
-        
-        /// <summary>
-        /// txtActualMoveDate 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtActualMoveDate;
-        
-        /// <summary>
-        /// RequiredFieldValidator1 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        protected global::System.Web.UI.WebControls.Repeater rptAssetsList;
         
         /// <summary>
         /// BtnSave 控件。
@@ -166,12 +139,12 @@ namespace FixedAsset.Web.Admin {
         protected global::System.Web.UI.WebControls.Button btnSubmit;
         
         /// <summary>
-        /// btnReset 控件。
+        /// Button2 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnReset;
+        protected global::System.Web.UI.HtmlControls.HtmlInputButton Button2;
     }
 }
