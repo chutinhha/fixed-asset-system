@@ -139,7 +139,7 @@
                         </tr>
                         <tr>
                             <td style="width: 180px;">
-                                已维修明细: <span style="color: Red">*</span>
+                                已维修明细: 
                             </td>
                             <td>
                                 <asp:TextBox TextMode="MultiLine" Height="80px" ID="txtMaintaincontent" runat="server" MaxLength="500"

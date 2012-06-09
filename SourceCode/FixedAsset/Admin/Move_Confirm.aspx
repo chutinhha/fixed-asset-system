@@ -140,7 +140,7 @@
                         </tr>
                         <tr>
                             <td style="width: 180px;">
-                                已移机明细: <span style="color: Red">*</span>
+                                已移机明细: 
                             </td>
                             <td>
                                 <asp:TextBox TextMode="MultiLine" Height="80px" ID="txtMovedcontent" runat="server" MaxLength="500"
