@@ -18,6 +18,8 @@ namespace FixedAsset.Domain
     [Serializable]
     public partial class Assetmove
     {
+        public const string RuleCode = "移机";
+
         #region 移机单号
         ///<summary>
         ///ColumnName:移机单号;Size:40;NOT NULL
