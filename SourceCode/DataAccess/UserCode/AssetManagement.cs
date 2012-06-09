@@ -77,7 +77,7 @@ namespace FixedAsset.DataAccess
                 StringBuilder sqlCommand = new StringBuilder(@" SELECT ""ASSET"".""ASSETNO"",""ASSET"".""ASSETCATEGORYID"" AS ASSETCATEGORYID,""ASSET"".""ASSETNAME"",""ASSET"".""STORAGE"",""ASSET"".""STATE"",
                      ""ASSET"".""DEPRECIATIONYEAR"",""ASSET"".""UNITPRICE"",""ASSET"".""BRAND"",""ASSET"".""MANAGEMODE"",""ASSET"".""FINANCECATEGORY"",
                      ""ASSET"".""SUPPLIERID"",""ASSET"".""PURCHASEDATE"",""ASSET"".""EXPIREDDATE"",""ASSET"".""ASSETSPECIFICATION"",""ASSET"".""STORAGEFLAG"",
-                     ""ASSET"".""SUBCOMPANY""
+                     ""ASSET"".""SUBCOMPANY"",""ASSET"".""CONTRACTID""
                      FROM ""ASSET"" ,""ASSETCATEGORY"" 
                      WHERE ""ASSET"".""ASSETCATEGORYID""=""ASSETCATEGORY"".""ASSETCATEGORYID""");
                 if (!string.IsNullOrEmpty(info.Assetno))

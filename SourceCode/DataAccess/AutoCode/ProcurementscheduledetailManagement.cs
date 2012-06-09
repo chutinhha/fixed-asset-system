@@ -1,7 +1,7 @@
 /********************************************************************
 * File Name:ProcurementscheduledetailManagement
 * Copyright (C) 2012 Bruce.huang 
-* Creater & Date:Bruce.huang - 2012-05-25
+* Creater & Date:Bruce.huang - 2012-06-09
 * Create Explain:
 * Description:DataBase Access Class
 * Modify Explain:
@@ -16,13 +16,14 @@ using FixedAsset.Domain;
 
 namespace FixedAsset.DataAccess
 {
-    public partial class ProcurementscheduledetailManagement:BaseManagement
+    public partial class ProcurementscheduledetailManagement : BaseManagement
     {
         #region Construct
         private const int ColumnCount = 7;
         public ProcurementscheduledetailManagement()
         { }
-        public ProcurementscheduledetailManagement(BaseManagement baseManagement): base(baseManagement)
+        public ProcurementscheduledetailManagement(BaseManagement baseManagement)
+            : base(baseManagement)
         { }
         #endregion
 
@@ -94,22 +95,56 @@ namespace FixedAsset.DataAccess
         {
             try
             {
-                if(Detailids.Count==0){ return ;}
+                if (Detailids.Count == 0) { return; }
                 StringBuilder sqlCommand = new StringBuilder();
                 sqlCommand.AppendLine(@"DELETE FROM  ""PROCUREMENTSCHEDULEDETAIL"" WHERE 1=1");
-                if(Detailids.Count==1)
+                if (Detailids.Count == 1)
                 {
-                    this.Database.AddInParameter(":Detailid"+0.ToString(),Detailids[0]);//DBType:VARCHAR2
+                    this.Database.AddInParameter(":Detailid" + 0.ToString(), Detailids[0]);//DBType:VARCHAR2
                     sqlCommand.AppendLine(@" AND ""DETAILID""=:Detailid0");
                 }
-                else if(Detailids.Count>1&&Detailids.Count<=2000)
+                else if (Detailids.Count > 1 && Detailids.Count <= 2000)
                 {
-                    this.Database.AddInParameter(":Detailid"+0.ToString(),Detailids[0]);//DBType:VARCHAR2
+                    this.Database.AddInParameter(":Detailid" + 0.ToString(), Detailids[0]);//DBType:VARCHAR2
                     sqlCommand.AppendLine(@" AND (""DETAILID""=:Detailid0");
                     for (int i = 1; i < Detailids.Count; i++)
                     {
-                    this.Database.AddInParameter(":Detailid"+i.ToString(),Detailids[i]);//DBType:VARCHAR2
-                    sqlCommand.AppendLine(@" OR ""DETAILID""=:Detailid"+i.ToString());
+                        this.Database.AddInParameter(":Detailid" + i.ToString(), Detailids[i]);//DBType:VARCHAR2
+                        sqlCommand.AppendLine(@" OR ""DETAILID""=:Detailid" + i.ToString());
+                    }
+                    sqlCommand.AppendLine(" )");
+                }
+
+                this.Database.ExecuteNonQuery(sqlCommand.ToString());
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
+        #endregion
+
+        #region DeleteProcurementscheduledetailsByPsid
+        public void DeleteProcurementscheduledetailsByPsid(List<string> Psids)
+        {
+            try
+            {
+                if (Psids.Count == 0) { return; }
+                StringBuilder sqlCommand = new StringBuilder();
+                sqlCommand.AppendLine(@"DELETE FROM  ""PROCUREMENTSCHEDULEDETAIL"" WHERE 1=1");
+                if (Psids.Count == 1)
+                {
+                    this.Database.AddInParameter(":Psid" + 0.ToString(), Psids[0]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" AND ""PSID""=:Psid0");
+                }
+                else if (Psids.Count > 1 && Psids.Count <= 2000)
+                {
+                    this.Database.AddInParameter(":Psid" + 0.ToString(), Psids[0]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" AND (""PSID""=:Psid0");
+                    for (int i = 1; i < Psids.Count; i++)
+                    {
+                        this.Database.AddInParameter(":Psid" + i.ToString(), Psids[i]);//DBType:VARCHAR2
+                        sqlCommand.AppendLine(@" OR ""PSID""=:Psid" + i.ToString());
                     }
                     sqlCommand.AppendLine(" )");
                 }

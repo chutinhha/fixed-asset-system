@@ -132,11 +132,16 @@ namespace FixedAsset.Services
         {
             try
             {
-                var headInfo = Management.RetrieveProcurementscheduleheadByPsid(psid);
-                if(headInfo==null){return;}
-                headInfo.Approveresult = ApproveResult.Deleted;
+                //var headInfo = Management.RetrieveProcurementscheduleheadByPsid(psid);
+                //if(headInfo==null){return;}
+                //headInfo.Approveresult = ApproveResult.Deleted;
+                //Management.BeginTransaction();
+                //Management.UpdateProcurementscheduleheadByPsid(headInfo);
+                //Management.Commit(); 
+                var detailManagement=new ProcurementscheduledetailManagement(Management);
                 Management.BeginTransaction();
-                Management.UpdateProcurementscheduleheadByPsid(headInfo);
+                detailManagement.DeleteProcurementscheduledetailsByPsid(new List<string>(){psid});
+                Management.DeleteProcurementscheduleheadByPsid(psid);
                 Management.Commit();
             }
             catch
@@ -146,23 +151,5 @@ namespace FixedAsset.Services
             }
         }
         #endregion
-
-        #region DeleteProcurementscheduleheadByPsid
-        public void DeleteProcurementscheduleheadByPsid(List<string> psids)
-        {
-            try
-            {
-                Management.BeginTransaction();
-                Management.DeleteProcurementscheduleheadByPsid(psids);
-                Management.Commit();
-            }
-            catch
-            {
-                Management.Rollback();
-                throw;
-            }
-        }
-        #endregion
-
     }
 }

@@ -64,6 +64,7 @@ namespace FixedAsset.Web.Admin
                     ProcurementscheduleheadService.DeleteProcurementscheduleheadByPsid(psId);
                     UIHelper.Alert(this,"删除成功");
                     LoadData(pcData.CurrentIndex);
+                    return;
                 }
             }
             if (e.CommandName.Equals("EditDetail"))
