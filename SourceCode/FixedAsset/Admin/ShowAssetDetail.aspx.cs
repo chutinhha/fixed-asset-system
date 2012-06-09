@@ -106,7 +106,7 @@ namespace FixedAsset.Web.Admin
             litAssetname.Text = info.Assetname;//设备名称
             litState.Text = EnumUtil.RetrieveEnumDescript(info.State);//设备状态
             litDepreciationyear.Text = info.Depreciationyear.ToString();//折旧年限
-            litUnitprice.Text = info.Unitprice.ToString();//单价
+            litUnitprice.Text = info.Unitprice.ToString(UiConst.MoneyFormat);//单价
             litBrand.Text = info.Brand;//品牌
             litManagemode.Text = EnumUtil.RetrieveEnumDescript(info.Managemode);//管理模式，托管:0自管:1
             litFinancecategory.Text = EnumUtil.RetrieveEnumDescript(info.Financecategory); ;//财务类别(A帐:0B帐:1)
