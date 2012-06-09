@@ -26,7 +26,7 @@
                     <table>
                         <tr>
                             <td style="width: 180px;">
-                                所属系统: <span style="color: Red">*</span>
+                                所属系统: 
                             </td>
                             <td>
                                 <uc1:ucSeletedSystem ID="ucSeletedSystem" runat="server" />
@@ -34,7 +34,7 @@
                         </tr>
                         <tr>
                             <td style="width: 180px;">
-                                申请单号: <span style="color: Red">*</span>
+                                申请单号: 
                             </td>
                             <td>
                                 <asp:Literal ID="litRemoveId" runat="server" />
@@ -42,7 +42,7 @@
                         </tr>
                         <tr>
                             <td style="width: 180px;">
-                                申请内容: <span style="color: Red">*</span>
+                                申请内容: 
                             </td>
                             <td style="word-wrap: break-word; overflow: hidden; width: 680px;">
                                 <asp:Literal ID="litApplycontent" runat="server" />
@@ -74,7 +74,7 @@
                         </tr>
                         <tr>
                             <td>
-                                项目体(分公司)联系电话: <span style="color: Red">*</span>
+                                项目体(分公司)联系电话:
                             </td>
                             <td>
                                 <asp:Literal ID="litProjectcontactorphone" runat="server" />
@@ -114,7 +114,7 @@
                         </tr>
                         <tr>
                             <td style="width: 180px;">
-                                回复人: <span style="color: Red">*</span>
+                                回复人: 
                             </td>
                             <td>
                                 <uc1:ucSelectUser ID="ucApproveuser" runat="server" IsShowUserName="true" />
@@ -122,7 +122,7 @@
                         </tr>
                         <tr>
                             <td style="width: 180px;">
-                                计划拆机日期: <span style="color: Red">*</span>
+                                计划拆机日期: 
                             </td>
                             <td>
                                 <uc1:ucDatePicker ID="ucPlansetupdate" runat="server" />

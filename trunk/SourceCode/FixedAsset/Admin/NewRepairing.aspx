@@ -93,7 +93,7 @@
                         </tr>
                         <tr>
                             <td>
-                                项目体(分公司)联系电话: <span style="color: Red">*</span>
+                                项目体(分公司)联系电话: 
                             </td>
                             <td>
                                 <asp:TextBox ID="txtProjectcontactorphone" class="text_inp" runat="server" Width="300"></asp:TextBox>

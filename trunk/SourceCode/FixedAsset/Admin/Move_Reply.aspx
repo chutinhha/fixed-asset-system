@@ -40,15 +40,7 @@
                             <td>
                                 <asp:Label ID="litAssetmoveid" class="text_inp" runat="server" />
                             </td>
-                        </tr>
-                       <%-- <tr>
-                            <td>
-                                保修来源:
-                            </td>
-                            <td>
-                                <uc1:ucMaintaintype ID="ucMaintaintype" runat="server" />
-                            </td>
-                        </tr>--%>
+                        </tr>                       
                         <tr>
                             <td>
                                 申请内容:
@@ -115,7 +107,7 @@
                         </tr>
                         <tr>
                             <td style="width: 180px;">
-                                回复人: <span style="color: Red">*</span>
+                                回复人: 
                             </td>
                             <td>
                                 <uc1:ucSelectUser ID="ucApproveuser" runat="server" IsShowUserName="true" />

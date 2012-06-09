@@ -35,7 +35,7 @@
                         </tr>
                         <tr>
                             <td style="width: 180px;">
-                                申请单号: <span style="color: Red">*</span>
+                                申请单号:
                             </td>
                             <td>
                                 <asp:Literal ID="litSetupid" runat="server" />
@@ -43,7 +43,7 @@
                         </tr>
                         <tr>
                             <td style="width: 180px;">
-                                申请内容: <span style="color: Red">*</span>
+                                申请内容:
                             </td>
                             <td>
                                 <asp:TextBox TextMode="MultiLine" Height="80px" ID="txtApplycontent" runat="server"
@@ -76,7 +76,7 @@
                         </tr>
                         <tr>
                             <td>
-                                项目体(分公司)联系电话: <span style="color: Red">*</span>
+                                项目体(分公司)联系电话:
                             </td>
                             <td>
                                 <asp:TextBox ID="txtProjectcontactorphone" class="text_inp" runat="server" Width="300"></asp:TextBox>
@@ -177,7 +177,7 @@
                                                         <td>
                                                             <%#((DateTime)Eval("Purchasedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                                                         </td>
-                                                          <td align="right">
+                                                        <td align="right">
                                                             <%#((decimal)Eval("Unitprice")).ToString(FixedAsset.Web.AppCode.UiConst.MoneyFormat)%>
                                                         </td>
                                                         <td>
@@ -211,7 +211,7 @@
                                                         <td>
                                                             <%#((DateTime)Eval("Purchasedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                                                         </td>
-                                                          <td align="right">
+                                                        <td align="right">
                                                             <%#((decimal)Eval("Unitprice")).ToString(FixedAsset.Web.AppCode.UiConst.MoneyFormat)%>
                                                         </td>
                                                         <td>
