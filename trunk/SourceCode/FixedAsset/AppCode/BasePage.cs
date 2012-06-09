@@ -112,12 +112,12 @@ namespace FixedAsset.Web
         protected override void OnError(EventArgs e)
         {
             base.OnError(e);
-            Exception exception = Server.GetLastError();
-            Log.Error(exception.Message, exception);
-            if (exception is System.Data.OracleClient.OracleException)
-            {
-                exception = new Exception("系统出错了，请联系系统管理员！");
-            }
+            //Exception exception = Server.GetLastError();
+            //Log.Error(exception.Message, exception);
+            //if (exception is System.Data.OracleClient.OracleException)
+            //{
+            //    exception = new Exception("系统出错了，请联系系统管理员！");
+            //}
             //Session[SeallNet.Utility.UiConst.CurrentException] = exception;
             //Server.ClearError();
             //if (IsPoupPage)
@@ -137,7 +137,7 @@ namespace FixedAsset.Web
             //{
             //    Response.Redirect(ResolveUrl("~/Error.aspx"));
             //}
-            throw exception;
+            //throw exception;
         }
         #endregion
 

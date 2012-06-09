@@ -101,6 +101,9 @@
       <HintPath>..\Dependencies\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="SeallNet.Data">
+      <HintPath>..\Dependencies\SeallNet.Data.dll</HintPath>
+    </Reference>
     <Reference Include="SeallNet.Utility">
       <HintPath>..\Dependencies\SeallNet.Utility.dll</HintPath>
     </Reference>
@@ -672,9 +675,7 @@
     <Compile Include="Admin\User_List.aspx.designer.cs">
       <DependentUpon>user_list.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AppCode\AdminBasePage.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
+    <Compile Include="AppCode\AdminBasePage.cs" />
     <Compile Include="AppCode\BasePage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -733,6 +734,7 @@
     <Content Include="Admin\Move_Confirm.aspx" />
     <Content Include="Admin\Move_Reply.aspx" />
     <Content Include="Admin\Move_View.aspx" />
+    <Content Include="Admin\NewRemoving.aspx" />
     <Content Include="Admin\Remove_Confirm.aspx" />
     <Content Include="Admin\Remove_Reply.aspx" />
     <Content Include="Admin\Remove_View.aspx" />
@@ -930,7 +932,6 @@
     <Content Include="Admin\NewEquipment.aspx" />
     <Content Include="Admin\NewInstall.aspx" />
     <Content Include="Admin\NewMoving.aspx" />
-    <Content Include="Admin\NewRemoving.aspx" />
     <Content Include="Admin\NewRepairing.aspx" />
     <Content Include="Admin\ProcurePlanDetail_Add.aspx" />
     <Content Include="Admin\ProcurePlanList.aspx" />
@@ -1275,24 +1276,6 @@
     <Content Include="Styles\tag.css" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
-      <Project>{5B92AB03-61B5-43D8-9F55-08F8F1559A0D}</Project>
-      <Name>DataAccess</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Domain\Domain.csproj">
-      <Project>{F5DD7FAD-9D4D-41DA-B40D-447ED6F6B8EC}</Project>
-      <Name>Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\IService\IService.csproj">
-      <Project>{35DA92BA-E437-4573-9506-937E014C3EB0}</Project>
-      <Name>IService</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Service\Service.csproj">
-      <Project>{1701AC38-1432-4E79-8E92-89CB37B35974}</Project>
-      <Name>Service</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1312,6 +1295,24 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="log4net.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
+      <Project>{5B92AB03-61B5-43D8-9F55-08F8F1559A0D}</Project>
+      <Name>DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{F5DD7FAD-9D4D-41DA-B40D-447ED6F6B8EC}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IService\IService.csproj">
+      <Project>{35DA92BA-E437-4573-9506-937E014C3EB0}</Project>
+      <Name>IService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Service\Service.csproj">
+      <Project>{1701AC38-1432-4E79-8E92-89CB37B35974}</Project>
+      <Name>Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
