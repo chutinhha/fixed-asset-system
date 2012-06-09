@@ -10,123 +10,96 @@
 namespace FixedAsset.Web.Admin {
     
     
-    public partial class Asset_Scrapped {
+    public partial class AssetScrapped_View {
         
         /// <summary>
-        /// txtSrchAssetno 控件。
+        /// litTitle 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSrchAssetno;
+        protected global::System.Web.UI.WebControls.Literal litTitle;
         
         /// <summary>
-        /// ddlAssetCategory 控件。
+        /// litAssetscrappedid 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlAssetCategory;
+        protected global::System.Web.UI.WebControls.Literal litAssetscrappedid;
         
         /// <summary>
-        /// ddlSubAssetCategory 控件。
+        /// litApprovedstate 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSubAssetCategory;
+        protected global::System.Web.UI.WebControls.Literal litApprovedstate;
         
         /// <summary>
-        /// txtSrchAssetname 控件。
+        /// litAssetno 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSrchAssetname;
+        protected global::System.Web.UI.WebControls.Literal litAssetno;
         
         /// <summary>
-        /// ucStartPurchasedate 控件。
+        /// litScrappeduser 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FixedAsset.Web.Admin.UserControl.ucDatePicker ucStartPurchasedate;
+        protected global::System.Web.UI.WebControls.Literal litScrappeduser;
         
         /// <summary>
-        /// ucEndPurchasedate 控件。
+        /// litScrappeddate 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FixedAsset.Web.Admin.UserControl.ucDatePicker ucEndPurchasedate;
+        protected global::System.Web.UI.WebControls.Literal litScrappeddate;
         
         /// <summary>
-        /// ucStartExpireddate 控件。
+        /// litApproveuser 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FixedAsset.Web.Admin.UserControl.ucDatePicker ucStartExpireddate;
+        protected global::System.Web.UI.WebControls.Literal litApproveuser;
         
         /// <summary>
-        /// ucEndExpireddate 控件。
+        /// litApprovedate 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FixedAsset.Web.Admin.UserControl.ucDatePicker ucEndExpireddate;
+        protected global::System.Web.UI.WebControls.Literal litApprovedate;
         
         /// <summary>
-        /// BtnSearch 控件。
+        /// litRejectreason 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnSearch;
+        protected global::System.Web.UI.WebControls.Literal litRejectreason;
         
         /// <summary>
-        /// BtnBatchApply 控件。
+        /// btnReset 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnBatchApply;
-        
-        /// <summary>
-        /// Button2 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
-        
-        /// <summary>
-        /// rptScrappedList 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptScrappedList;
-        
-        /// <summary>
-        /// pcData 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::KFSQ.Web.Controls.PagingControl pcData;
+        protected global::System.Web.UI.WebControls.Button btnReset;
     }
 }

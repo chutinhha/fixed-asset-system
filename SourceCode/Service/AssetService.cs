@@ -55,7 +55,7 @@ namespace FixedAsset.Services
         #endregion
 
         #region RetrieveAssetscrappedsRecord
-        public List<Asset> RetrieveAssetscrappedsRecord(AssetSearch info, int pageIndex, int pageSize, out int count)
+        public List<Assetscrapped> RetrieveAssetscrappedsRecord(AssetSearch info, int pageIndex, int pageSize, out int count)
         {
             return Management.RetrieveAssetscrappedsRecord(info, pageIndex, pageSize, out count);
         }

@@ -44,6 +44,7 @@ namespace FixedAsset.Services
             return Management.RetrieveAssetscrappedsPaging(info,pageIndex,pageSize,out count);
         }
         #endregion
+
         #region RetrieveAssetscrappedsRecord
         public List<Assetscrapped> RetrieveAssetscrappedsRecord(AssetSearch info, int pageIndex, int pageSize, out int count)
         {
@@ -70,6 +71,8 @@ namespace FixedAsset.Services
         {
             try
             {
+                var coderuleManagement = new CoderuleManagement(Management);
+                info.Assetscrappedid = coderuleManagement.GenerateCodeRule(Assetscrapped.RuleCode + DateTime.Today.ToString("yyyyMM"), false);
                 Management.BeginTransaction();
                 Management.CreateAssetscrapped(info);
                 Management.Commit();

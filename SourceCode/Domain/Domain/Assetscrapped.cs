@@ -16,8 +16,15 @@ namespace FixedAsset.Domain
     ///±¨·ÏÐÅÏ¢±í
     ///</summary>
     [Serializable]
-    public partial class Assetscrapped
+    public partial class Assetscrapped:Asset
     {
+        public const string RuleCode = "±¨·Ï";
+
+        public Assetscrapped():base()
+        {
+            Approvedstate = AssetScrappedState.None;
+        }
+
         #region ±àºÅ
         ///<summary>
         ///ColumnName:±àºÅ;Size:40;NOT NULL
@@ -85,7 +92,7 @@ namespace FixedAsset.Domain
         ///<summary>
         ///ColumnName:ÉóºË×´Ì¬;
         ///</summary>
-        public APPROVEDSTATE Approvedstate { get; set; }
+        public AssetScrappedState Approvedstate { get; set; }
         #endregion
     }
 }

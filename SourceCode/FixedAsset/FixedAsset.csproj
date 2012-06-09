@@ -132,6 +132,13 @@
       <DependentUpon>404.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Admin\AssetScrapped_View.aspx.cs">
+      <DependentUpon>AssetScrapped_View.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AssetScrapped_View.aspx.designer.cs">
+      <DependentUpon>AssetScrapped_View.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\AssetUsedList.aspx.cs">
       <DependentUpon>AssetUsedList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -482,12 +489,12 @@
     <Compile Include="Admin\Role_View.aspx.designer.cs">
       <DependentUpon>Role_View.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\ScrappedApproved.aspx.cs">
-      <DependentUpon>ScrappedApproved.aspx</DependentUpon>
+    <Compile Include="Admin\AssetScrapped_Approved.aspx.cs">
+      <DependentUpon>AssetScrapped_Approved.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\ScrappedApproved.aspx.designer.cs">
-      <DependentUpon>ScrappedApproved.aspx</DependentUpon>
+    <Compile Include="Admin\AssetScrapped_Approved.aspx.designer.cs">
+      <DependentUpon>AssetScrapped_Approved.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\SelectedMultiAssets.aspx.cs">
       <DependentUpon>SelectedMultiAssets.aspx</DependentUpon>
@@ -715,6 +722,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="404.aspx" />
+    <Content Include="Admin\AssetScrapped_View.aspx" />
     <Content Include="Admin\AssetUsedList.aspx" />
     <Content Include="Admin\Asset_Scrapped.aspx" />
     <Content Include="Admin\B_Account.aspx" />
@@ -749,7 +757,7 @@
     <Content Include="Admin\Role_AddRight.aspx" />
     <Content Include="Admin\Role_List.aspx" />
     <Content Include="Admin\Role_View.aspx" />
-    <Content Include="Admin\ScrappedApproved.aspx" />
+    <Content Include="Admin\AssetScrapped_Approved.aspx" />
     <Content Include="Admin\SelectedMultiAssets.aspx" />
     <Content Include="Admin\SelectSingleProject.aspx" />
     <Content Include="Admin\ShowAssetDetail.aspx" />
