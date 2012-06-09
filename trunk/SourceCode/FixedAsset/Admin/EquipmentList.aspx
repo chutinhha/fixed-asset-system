@@ -99,7 +99,7 @@
                                 单价
                             </td>
                             <td align="center">
-                                品牌
+                                采购合同编号
                             </td>
                             <td align="center">
                                 账务类别
@@ -131,7 +131,7 @@
                                 <%#((decimal)Eval("Unitprice")).ToString(FixedAsset.Web.AppCode.UiConst.MoneyFormat)%>
                             </td>
                             <td align="center">
-                                <%#Eval("Brand")%>
+                                <%#Eval("Contractid")%>
                             </td>
                             <td align="center">
                                 <%#EnumUtil.RetrieveEnumDescript((FinanceCategory)Eval("Financecategory"))%>
@@ -167,7 +167,7 @@
                                 <%#((decimal)Eval("Unitprice")).ToString(FixedAsset.Web.AppCode.UiConst.MoneyFormat)%>
                             </td>
                             <td align="center">
-                                <%#Eval("Brand")%>
+                                <%#Eval("Contractid")%>
                             </td >
                             <td align="center">
                                 <%#EnumUtil.RetrieveEnumDescript((FinanceCategory)Eval("Financecategory"))%>
