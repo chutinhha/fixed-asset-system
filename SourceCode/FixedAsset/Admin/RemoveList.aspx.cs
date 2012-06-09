@@ -75,6 +75,7 @@ namespace FixedAsset.Web.Admin
                     AssetremoveService.DeleteAssetremoveByAssetremoveid(assetRemoveId);
                     UIHelper.Alert(this, "删除成功");
                     LoadData(pcData.CurrentIndex);
+                    return;
                 }
             }
             if (e.CommandName.Equals("EditDetail"))

@@ -69,6 +69,7 @@ namespace FixedAsset.Web.Admin
                     AssetSetupinfoService.DeleteAssetsetupinfoBySetupid(setupId);
                     UIHelper.Alert(this, "删除成功");
                     LoadData(pcData.CurrentIndex);
+                    return;
                 }
             }
             if (e.CommandName.Equals("EditDetail"))
