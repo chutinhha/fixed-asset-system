@@ -26,11 +26,12 @@ namespace FixedAsset.Web.Admin.UserControl
         }
         public bool IsShowUserName
         {
-            get { return txtUsername.Enabled; }
+            get { return txtUsername.Visible; }
             set
             {
-                txtUsername.Enabled = !value;
+                txtUsername.Visible = !value;
                 btnSelectSingleUser.Visible = !value;
+                litUserName.Visible = value;
             }
         }
         public string UserId
@@ -124,6 +125,12 @@ namespace FixedAsset.Web.Admin.UserControl
             if(currentInfo!=null)
             {
                 txtUsername.Text = currentInfo.Username;
+                litUserName.Text = currentInfo.Username;
+            }
+            else
+            {
+                txtUsername.Text = string.Empty;
+                litUserName.Text = string.Empty;
             }
         }
     }

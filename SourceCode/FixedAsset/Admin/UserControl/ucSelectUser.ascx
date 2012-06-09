@@ -2,6 +2,7 @@
     Inherits="FixedAsset.Web.Admin.UserControl.ucSelectUser" %>
 <asp:TextBox ID="txtUsername" MaxLength="100" CssClass="text_inp" runat="server"
     Width="300" />
+<asp:Literal ID="litUserName" runat="server" Visible="false"/>
 <asp:ImageButton ID="btnSelectSingleUser" ImageUrl="../../images/Button/PickUp.GIF"
     runat="server" CausesValidation="false" />
 <div style="display: none">
