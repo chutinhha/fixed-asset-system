@@ -274,7 +274,7 @@
                             <td colspan="2">
                                 <asp:Button ID="BtnSave" runat="server" Text="确 认" CssClass="button" ValidationGroup="Vaild"
                                     OnClick="BtnSave_Click" />
-                                <asp:Button ID="btnReset" runat="server" Text="取 消" CssClass="button" CausesValidation="false"
+                                <asp:Button ID="btnReset" runat="server" Text="返 回" CssClass="button" CausesValidation="false"
                                     OnClick="btnReset_Click" />
                             </td>
                         </tr>
