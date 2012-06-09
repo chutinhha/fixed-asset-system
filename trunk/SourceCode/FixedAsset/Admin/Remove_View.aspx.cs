@@ -12,7 +12,7 @@ using UiConst = FixedAsset.Web.AppCode.UiConst;
 
 namespace FixedAsset.Web.Admin
 {
-    public partial class Remove_View : System.Web.UI.Page
+    public partial class Remove_View :BasePage
     {
         #region 属性
         protected string RemoveId

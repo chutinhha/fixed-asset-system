@@ -11,7 +11,7 @@ using FixedAsset.Web.AppCode;
 
 namespace FixedAsset.Web.Admin
 {
-    public partial class Remove_Reply : System.Web.UI.Page
+    public partial class Remove_Reply : BasePage
     {
         #region 属性
         protected string RemoveId
