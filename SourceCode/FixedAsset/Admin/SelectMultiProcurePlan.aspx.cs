@@ -65,8 +65,9 @@ namespace FixedAsset.Web.Admin
             {
                 if (PsIds.Count > 0)
                 {
+                    var litPsId = e.Item.FindControl("litPsId") as Literal;
                     var ckbPsId = e.Item.FindControl("ckbPsId") as CheckBox;
-                    if (PsIds.Contains(ckbPsId.Text.Trim()))
+                    if (PsIds.Contains(litPsId.Text.Trim()))
                     {
                         ckbPsId.Checked = true;
                     }
@@ -94,22 +95,23 @@ namespace FixedAsset.Web.Admin
                 for (int i = 0; i < rptProcureList.Items.Count; i++)
                 {
                     var ckbPsId = rptProcureList.Items[i].FindControl("ckbPsId") as CheckBox;
+                    var litPsId = rptProcureList.Items[i].FindControl("litPsId") as Literal;
                     if (ckbPsId != null)
                     {
                         if (ckbPsId.Checked)
                         {
                             //选中，加到viewstate中来
-                            if (!PsIds.Contains(ckbPsId.Text.Trim()))
+                            if (!PsIds.Contains(litPsId.Text.Trim()))
                             {
-                                PsIds.Add(ckbPsId.Text.Trim());
+                                PsIds.Add(litPsId.Text.Trim());
                             }
                         }
                         else
                         {
                             //取消选择，需要从viewstate里删除
-                            if (PsIds.Contains(ckbPsId.Text.Trim()))
+                            if (PsIds.Contains(litPsId.Text.Trim()))
                             {
-                                PsIds.Remove(ckbPsId.Text.Trim());
+                                PsIds.Remove(litPsId.Text.Trim());
                             }
                         }
                     }
