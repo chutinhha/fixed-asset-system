@@ -126,7 +126,7 @@ namespace FixedAsset.Web.Admin
                 return;
             }
             SaveData(AssetMoveState.Draft);
-            UIHelper.AlertMessageGoToURL(this, "保存成功!", ResolveUrl("~/Admin/RepairList.aspx"));
+            UIHelper.AlertMessageGoToURL(this, "保存成功!", ResolveUrl("~/Admin/MoveList.aspx"));
         }
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
@@ -161,7 +161,7 @@ namespace FixedAsset.Web.Admin
                 return;
             }
             SaveData(AssetMoveState.Sumitted);
-            UIHelper.AlertMessageGoToURL(this, "提交成功!", ResolveUrl("~/Admin/RepairList.aspx"));
+            UIHelper.AlertMessageGoToURL(this, "提交成功!", ResolveUrl("~/Admin/MoveList.aspx"));
         }
         protected void ucSeletedSystem_SelectedAssetCategoryChange(object sender, EventArgs e)
         {
@@ -213,7 +213,7 @@ namespace FixedAsset.Web.Admin
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
                 var litCategoryName = e.Item.FindControl("litCategoryName") as Literal;
-                var assetInfo = e.Item.DataItem as Assetmaintaindetail;
+                var assetInfo = e.Item.DataItem as Assetmovedetail;
                 var subCategory = AssetCategories.Where(p => p.Assetcategoryid == assetInfo.Assetcategoryid).FirstOrDefault();
                 if (subCategory == null)
                 {
