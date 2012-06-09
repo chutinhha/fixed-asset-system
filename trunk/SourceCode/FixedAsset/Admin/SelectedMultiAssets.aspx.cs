@@ -81,6 +81,7 @@ namespace FixedAsset.Web.Admin
         }
         protected void pcData_PageIndexClick(object sender, KFSQ.Web.Controls.PageIndexClickEventArgs e)
         {
+            CheckSelectedAssetId();
             LoadData(e.PageIndex);
         }
         protected void rptAssetsList_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -103,7 +104,8 @@ namespace FixedAsset.Web.Admin
                 if (AssetIds.Count > 0)
                 {
                     var ckbAssetno = e.Item.FindControl("ckbAssetno") as CheckBox;
-                    if (AssetIds.Contains(ckbAssetno.Text.Trim()))
+                    var litAssetno = e.Item.FindControl("litAssetno") as Literal;
+                    if (AssetIds.Contains(litAssetno.Text.Trim()))
                     {
                         ckbAssetno.Checked = true;
                     }
@@ -131,22 +133,23 @@ namespace FixedAsset.Web.Admin
                 for (int i = 0; i < rptAssetsList.Items.Count; i++)
                 {
                     var ckbAssetno = rptAssetsList.Items[i].FindControl("ckbAssetno") as CheckBox;
+                    var litAssetno = rptAssetsList.Items[i].FindControl("litAssetno") as Literal;
                     if (ckbAssetno != null)
                     {
                         if (ckbAssetno.Checked)
                         {
                             //选中，加到viewstate中来
-                            if (!AssetIds.Contains(ckbAssetno.Text.Trim()))
+                            if (!AssetIds.Contains(litAssetno.Text.Trim()))
                             {
-                                AssetIds.Add(ckbAssetno.Text.Trim());
+                                AssetIds.Add(litAssetno.Text.Trim());
                             }
                         }
                         else
                         {
                             //取消选择，需要从viewstate里删除
-                            if (AssetIds.Contains(ckbAssetno.Text.Trim()))
+                            if (AssetIds.Contains(litAssetno.Text.Trim()))
                             {
-                                AssetIds.Remove(ckbAssetno.Text.Trim());
+                                AssetIds.Remove(litAssetno.Text.Trim());
                             }
                         }
                     }
