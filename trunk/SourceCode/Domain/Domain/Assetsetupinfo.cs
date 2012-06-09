@@ -46,6 +46,7 @@ namespace FixedAsset.Domain
         ///ColumnName:申请人;Size:40;
         ///</summary>
         public string Applyuserid { get; set; }
+        public string Applyusername { get; set; }
         #endregion
 
         #region 联系电话

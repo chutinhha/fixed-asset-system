@@ -79,9 +79,10 @@ namespace FixedAsset.DataAccess
                      ""ASSETSETUPINFO"".""SUBCOMPANY"",""ASSETSETUPINFO"".""REJECTREASON"",""ASSETSETUPINFO"".""APPROVEUSER"",""ASSETSETUPINFO"".""APPROVEDATE"",""ASSETSETUPINFO"".""APPROVERESULT"",
                      ""ASSETSETUPINFO"".""CREATEDDATE"",""ASSETSETUPINFO"".""SUBCOMPANYCONTACTORID"",""ASSETSETUPINFO"".""CREATOR"",""ASSETSETUPINFO"".""ASSETCATEGORYID"",""ASSETSETUPINFO"".""SETUPCONTENT"",
                      ""ASSETSETUPINFO"".""CONFIRMDATE"",""ASSETSETUPINFO"".""CONFIRMUSER"",""ASSETSETUPINFO"".""STORAGETITLE"",""ASSETSETUPINFO"".""STORAGEID""
-                     ,SYSTEM,c.StorageName,c.subcompanyname
+                     ,SYSTEM,c.StorageName,c.subcompanyname,TU.USERNAME AS Applyusername
                      FROM ""ASSETSETUPINFO"" inner join assetsupplier ON ASSETSETUPINFO.ASSETCATEGORYID=assetsupplier.ASSETCATEGORYID
                      Inner join  v_storage_address c on c.StorageTitle=ASSETSETUPINFO.STORAGETITLE and c.StorageId=ASSETSETUPINFO.STORAGEID
+                     INNER JOIN T_USER TU ON TU.ID=ASSETSETUPINFO.APPLYUSERID
                      WHERE 1=1");
 
                 #region …Í«Îµ•∫≈

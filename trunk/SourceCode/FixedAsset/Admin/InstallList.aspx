@@ -102,7 +102,7 @@
                                 <%#((DateTime)Eval("Applydate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
                             <td>
-                                <%#Eval("Applyuserid")%>
+                                <%#Eval("Applyusername")%>
                             </td>
                             <td style="word-wrap: break-word; overflow: hidden; width: 200px;">
                                 <%#Eval("Applycontent")%>
@@ -146,7 +146,7 @@
                                 <%#((DateTime)Eval("Applydate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
                             <td>
-                                <%#Eval("Applyuserid")%>
+                                <%#Eval("Applyusername")%>
                             </td>
                             <td style="word-wrap: break-word; overflow: hidden; width: 200px;">
                                 <%#Eval("Applycontent")%>

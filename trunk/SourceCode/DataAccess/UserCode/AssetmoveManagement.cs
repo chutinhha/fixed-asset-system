@@ -79,9 +79,10 @@ namespace FixedAsset.DataAccess
                      ""ASSETMOVE"".""ACTUALMOVEDATE"",""ASSETMOVE"".""CONFIRMDATE"",""ASSETMOVE"".""CONFIRMUSER"",""ASSETMOVE"".""MOVEDCONTENT"",""ASSETMOVE"".""STORAGETITLE"",
                      ""ASSETMOVE"".""STORAGEID"",""ASSETMOVE"".""SUBCOMPANY"",""ASSETMOVE"".""SUBCOMPANYCONTACTORID"",""ASSETMOVE"".""CONTACTPHONE"",""ASSETMOVE"".""PROJECTCONTACTORID"",
                      ""ASSETMOVE"".""PROJECTCONTACTORPHONE"",""ASSETMOVE"".""CREATOR"",""ASSETMOVE"".""CREATEDDATE""
-                     ,SYSTEM,c.StorageName,c.subcompanyname
+                     ,SYSTEM,c.StorageName,c.subcompanyname,TU.USERNAME AS Applyusername
                      FROM ""ASSETMOVE"" inner join assetsupplier ON ASSETMOVE.ASSETCATEGORYID=assetsupplier.ASSETCATEGORYID
                      Inner join  v_storage_address c on c.StorageTitle=ASSETMOVE.STORAGETITLE and c.StorageId=ASSETMOVE.STORAGEID
+                     INNER JOIN T_USER TU ON TU.ID=ASSETMOVE.APPLYUSERID
                      WHERE 1=1");
                 #region ÒÆ»úµ¥ºÅ
                 if (!string.IsNullOrEmpty(info.Assetmoveid))

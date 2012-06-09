@@ -79,9 +79,10 @@ namespace FixedAsset.DataAccess
                      ""ASSETREMOVE"".""REJECTREASON"",""ASSETREMOVE"".""CONFIRMDATE"",""ASSETREMOVE"".""CONFIRMUSER"",""ASSETREMOVE"".""REMOVEDCONTENT"",""ASSETREMOVE"".""STORAGETITLE"",
                      ""ASSETREMOVE"".""STORAGEID"",""ASSETREMOVE"".""SUBCOMPANY"",""ASSETREMOVE"".""SUBCOMPANYCONTACTORID"",""ASSETREMOVE"".""CONTACTPHONE"",""ASSETREMOVE"".""PROJECTCONTACTORID"",
                      ""ASSETREMOVE"".""PROJECTCONTACTORPHONE"",""ASSETREMOVE"".""CREATOR"",""ASSETREMOVE"".""CREATEDDATE""
-                     ,SYSTEM,c.StorageName,c.subcompanyname
+                     ,SYSTEM,c.StorageName,c.subcompanyname,TU.USERNAME AS Applyusername
                      FROM ""ASSETREMOVE"" inner join assetsupplier ON ASSETREMOVE.ASSETCATEGORYID=assetsupplier.ASSETCATEGORYID
                      Inner join  v_storage_address c on c.StorageTitle=ASSETREMOVE.STORAGETITLE and c.StorageId=ASSETREMOVE.STORAGEID
+                     INNER JOIN T_USER TU ON TU.ID=ASSETREMOVE.APPLYUSERID
                      WHERE 1=1");
                 #region ²ð»úµ¥ºÅ
                 if (!string.IsNullOrEmpty(info.Assetremoveid))
