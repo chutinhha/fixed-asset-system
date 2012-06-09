@@ -1,5 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SelectSingleUsers.aspx.cs"
-    Inherits="FixedAsset.Web.Admin.SelectSingleUsers" %> 
+    Inherits="FixedAsset.Web.Admin.SelectSingleUsers" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@ Register Assembly="iKC.Web" Namespace="iKC.Web.UI.WebControls" TagPrefix="asp" %>
 <%@ Register Assembly="KFSQ.Web.Controls" Namespace="KFSQ.Web.Controls" TagPrefix="cc1" %>
@@ -33,8 +34,10 @@
                                 AutoPostBack="true" GroupName="templateGroup" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:BoundField DataField="Username" HeaderText="用户姓名" ControlStyle-Width="50" ItemStyle-CssClass="center" />
-                    <asp:BoundField DataField="Loginid" HeaderText="登录账号" ControlStyle-Width="50" ItemStyle-CssClass="center" />
+                    <asp:BoundField DataField="Username" HeaderText="用户姓名" ControlStyle-Width="50" ItemStyle-CssClass="center"
+                        ItemStyle-HorizontalAlign="Left" />
+                    <asp:BoundField DataField="Loginid" HeaderText="登录账号" ControlStyle-Width="50" ItemStyle-CssClass="center"
+                        ItemStyle-HorizontalAlign="Left" />
                 </Columns>
                 <AlternatingRowStyle CssClass="alt-row"></AlternatingRowStyle>
                 <RowStyle HorizontalAlign="Center" />

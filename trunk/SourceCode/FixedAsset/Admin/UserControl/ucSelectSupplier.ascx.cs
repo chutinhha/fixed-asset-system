@@ -48,7 +48,7 @@ namespace FixedAsset.Web.Admin.UserControl
             base.OnLoad(e);
             if (!IsPostBack)
             {
-                btnSelectSingleSupplier.Attributes.Add("onclick", string.Format("javascript:ShowTopDialogFrame('供应商选择', '{0}','SelectSingleSupplier()',790,500);return false;", ResolveUrl("~/Admin/SelectSingleSupplier.aspx")));
+                btnSelectSingleSupplier.Attributes.Add("onclick", string.Format("javascript:ShowTopDialogFrame('供应商选择', '{0}','SelectSingleSupplier()',560,330);return false;", ResolveUrl("~/Admin/SelectSingleSupplier.aspx")));
                 btnSelectSingleSupplier.Visible = !IsShowSupplierName;
                 if (!string.IsNullOrEmpty(Supplierid))
                 {

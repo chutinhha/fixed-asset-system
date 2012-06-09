@@ -39,7 +39,7 @@ namespace FixedAsset.Web.Admin.UserControl
             base.OnLoad(e);
             if(!IsPostBack)
             {
-                btnSelectSingleSubCompany.Attributes.Add("onclick", string.Format("javascript:ShowTopDialogFrame('分公司选择', '{0}','SelectSingleSubCompany()',790,500);return false;", ResolveUrl("~/Admin/SelectSingleSubCompany.aspx")));
+                btnSelectSingleSubCompany.Attributes.Add("onclick", string.Format("javascript:ShowTopDialogFrame('分公司选择', '{0}','SelectSingleSubCompany()',560,330);return false;", ResolveUrl("~/Admin/SelectSingleSubCompany.aspx")));
                 btnSelectSingleSubCompany.Visible = !IsShowSubCompanyName;
                 if (!string.IsNullOrEmpty(SubcompanyId))
                 {

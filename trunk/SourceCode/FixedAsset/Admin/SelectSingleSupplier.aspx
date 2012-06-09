@@ -1,4 +1,6 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SelectSingleSupplier.aspx.cs" Inherits="FixedAsset.Web.Admin.SelectSingleSupplier" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SelectSingleSupplier.aspx.cs"
+    Inherits="FixedAsset.Web.Admin.SelectSingleSupplier" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@ Register Assembly="iKC.Web" Namespace="iKC.Web.UI.WebControls" TagPrefix="asp" %>
 <%@ Register Assembly="KFSQ.Web.Controls" Namespace="KFSQ.Web.Controls" TagPrefix="cc1" %>
@@ -20,7 +22,7 @@
             <asp:TextBox class="text-input small-input" ID="txtSrchSuppliername" runat="server"></asp:TextBox>
             <asp:Button ID="btnSearch" class="button" runat="server" Text="查询" OnClick="btnSearch_Click" />
             <asp:SGridView ID="gvSuppliers" GridLines="None" border="0" CssClass="table_grayTH eoddTable"
-                runat="server" Width="100%" ShowActionToolBar="false" PageSize="2" AutoGenerateColumns="false"
+                runat="server" Width="40%" ShowActionToolBar="false" PageSize="2" AutoGenerateColumns="false"
                 AllowCascade="false" DataKeyNames="Supplierid">
                 <Columns>
                     <asp:TemplateField>
@@ -30,7 +32,8 @@
                                 AutoPostBack="true" GroupName="templateGroup" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:BoundField DataField="Suppliername" HeaderText="供应商" ControlStyle-Width="50" ItemStyle-CssClass="center" />
+                    <asp:BoundField DataField="Suppliername" HeaderText="供应商" ControlStyle-Width="50"
+                        ItemStyle-CssClass="center" ItemStyle-HorizontalAlign="Left" />
                 </Columns>
                 <AlternatingRowStyle CssClass="alt-row"></AlternatingRowStyle>
                 <RowStyle HorizontalAlign="Center" />
@@ -43,4 +46,3 @@
     </form>
 </body>
 </html>
-

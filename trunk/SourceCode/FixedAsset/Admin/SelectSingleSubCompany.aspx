@@ -32,7 +32,7 @@
                                 AutoPostBack="true" GroupName="templateGroup" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:BoundField DataField="Subcompanyname" HeaderText="分公司名称" ControlStyle-Width="50" ItemStyle-CssClass="left" />
+                    <asp:BoundField DataField="Subcompanyname" HeaderText="分公司名称" ControlStyle-Width="50" ItemStyle-CssClass="left" ItemStyle-HorizontalAlign="Left" />
                 </Columns>
                 <AlternatingRowStyle CssClass="alt-row"></AlternatingRowStyle>
                 <RowStyle HorizontalAlign="Center" />
