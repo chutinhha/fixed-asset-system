@@ -54,7 +54,7 @@
                     </HeaderTemplate>
                     <ItemTemplate>
                         <tr>
-                            <td align="center">
+                            <td align="left">
                                 <asp:CheckBox ID="ckbPsId" runat="server" />
                                 <asp:Literal ID="litPsId" runat="server" Text='<%#Eval("Psid")%>' />
                             </td>
@@ -80,7 +80,7 @@
                     </ItemTemplate>
                     <AlternatingItemTemplate>
                         <tr class="alt-row">
-                            <td align="center">
+                            <td align="left">
                                 <asp:CheckBox ID="ckbPsId" runat="server" />
                                 <asp:Literal ID="litPsId" runat="server" Text='<%#Eval("Psid")%>' />
                             </td>

@@ -225,22 +225,24 @@ namespace FixedAsset.Web.Admin
              List<string> psids = ucMultiSelectProcurePlans.PsIds;
              if (psids != null && psids.Count > 0)
              {
-                 foreach (string s in psids)
+                 List<Procurementscheduledetail> procurementscheduledetails = ProcurementscheduledetailService.RetrieveProcurementscheduledetailListByPsid(psids);
+                 foreach (Procurementscheduledetail procurementscheduledetail in procurementscheduledetails)
                  {
-                    List<Procurementscheduledetail> procurementscheduledetails=ProcurementscheduledetailService.RetrieveProcurementscheduledetailListByPsid(s);
-                    foreach (Procurementscheduledetail procurementscheduledetail in procurementscheduledetails)
-                    {
-                        Procurementcontractdetail contractitem = new Procurementcontractdetail();
-                        contractitem.Assetcategoryid = procurementscheduledetail.Assetcategoryid;
-                        contractitem.CategoryAllPathName = procurementscheduledetail.CategoryAllPathName;
-                        contractitem.Assetname = procurementscheduledetail.Assetname;
-                        contractitem.Assetspecification = procurementscheduledetail.Assetspecification;
-                        contractitem.Procurenumber = procurementscheduledetail.Plannumber;
-                        contractitem.Unitprice = procurementscheduledetail.Unitprice;
-                        contractitem.Contractid = litPsid.Text.Trim();
-                        contractitem.Contractdetailid = Guid.NewGuid().ToString("N");
-                        ProcurementContractDetail.Add(contractitem);
-                    }
+                     if (ProcurementContractDetail.Where(p => p.Psdetailid == procurementscheduledetail.Detailid).Count() == 0)
+                     {
+                         var contractitem = new Procurementcontractdetail();
+                         contractitem.Assetcategoryid = procurementscheduledetail.Assetcategoryid;
+                         contractitem.CategoryAllPathName = procurementscheduledetail.CategoryAllPathName;
+                         contractitem.Assetname = procurementscheduledetail.Assetname;
+                         contractitem.Assetspecification = procurementscheduledetail.Assetspecification;
+                         contractitem.Procurenumber = procurementscheduledetail.Plannumber;
+                         contractitem.Unitprice = procurementscheduledetail.Unitprice;
+                         contractitem.Contractid = litPsid.Text.Trim();
+                         contractitem.Contractdetailid = Guid.NewGuid().ToString("N");
+                         contractitem.Psdetailid = procurementscheduledetail.Detailid;
+                         contractitem.Psid = procurementscheduledetail.Psid;
+                         ProcurementContractDetail.Add(contractitem);
+                     }
                  }
              }
              LoadDetailList();
