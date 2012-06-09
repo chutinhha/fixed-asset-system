@@ -3,3 +3,4 @@
 <asp:DropDownList ID="ddlSystemList" class="text_inp" runat="server" AutoPostBack="true"
     OnSelectedIndexChanged="ddlSystemList_SelectedIndexChanged">
 </asp:DropDownList>
+<asp:Literal ID="litSystemName" runat="server" Visible="false"/>

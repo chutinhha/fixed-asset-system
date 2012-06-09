@@ -9,8 +9,10 @@ namespace FixedAsset.Web.Admin.UserControl
         #region Properties
         public bool Enabled
         {
-            get { return ddlConfig.Enabled; }
-            set { ddlConfig.Enabled = value; }
+            get { return ddlConfig.Visible; }
+            set { ddlConfig.Visible = value;
+                litConfigName.Visible = !value;
+            }
         }
         public string CategoryId
         {
@@ -48,6 +50,7 @@ namespace FixedAsset.Web.Admin.UserControl
                     if (ddlConfig.Items[i].Value.Equals(value))
                     {
                         ddlConfig.SelectedIndex = i;
+                        litConfigName.Text = ddlConfig.SelectedItem.Text;
                         break;
                     }
                 }

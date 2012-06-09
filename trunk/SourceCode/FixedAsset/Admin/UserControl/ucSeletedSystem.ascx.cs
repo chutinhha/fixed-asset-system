@@ -9,8 +9,12 @@ namespace FixedAsset.Web.Admin.UserControl
         #region Properties
         public bool Enabled
         {
-            get { return ddlSystemList.Enabled; }
-            set { ddlSystemList.Enabled = value; }
+            get { return ddlSystemList.Visible; }
+            set
+            {
+                ddlSystemList.Visible = value;
+                litSystemName.Visible = !value;
+            }
         }
         public string Assetcategoryid
         {
@@ -36,6 +40,7 @@ namespace FixedAsset.Web.Admin.UserControl
                     if (ddlSystemList.Items[i].Value.Equals(value))
                     {
                         ddlSystemList.SelectedIndex = i;
+                        litSystemName.Text = ddlSystemList.SelectedItem.Text;
                         break;
                     }
                 }
