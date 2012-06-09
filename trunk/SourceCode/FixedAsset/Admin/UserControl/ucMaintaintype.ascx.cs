@@ -39,6 +39,10 @@ namespace FixedAsset.Web.Admin.UserControl
             }
             set
             {
+                if (ddlConfig.Items.Count==0)
+                {
+                    LoadData();
+                }
                 for (int i = 0; i < ddlConfig.Items.Count; i++)
                 {
                     if (ddlConfig.Items[i].Value.Equals(value))
@@ -77,8 +81,7 @@ namespace FixedAsset.Web.Admin.UserControl
             ddlConfig.DataSource = list;
             ddlConfig.DataTextField = @"Configname";
             ddlConfig.DataValueField = @"Configid";
-            ddlConfig.DataBind();
-            ddlConfig.SelectedIndex = 0;
+            ddlConfig.DataBind(); 
         }
     }
 }
