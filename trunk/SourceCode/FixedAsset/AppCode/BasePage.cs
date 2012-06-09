@@ -62,8 +62,10 @@ namespace FixedAsset.Web
                 && Request.CurrentExecutionFilePath.ToString().ToLower().LastIndexOf("Error.aspx".ToLower()) < 0)
             {
                 //判断用户Session是否过期
-                //if (WebContext.Current.CurrentUser == null)
-                //{
+                if (WebContext.Current.CurrentUser == null)
+                {
+                    Response.Redirect(ResolveUrl(@"~/admin/Login.aspx"));
+                }
                 //    if (IsPoupPage)
                 //    {
                 //        var script = new StringBuilder();
@@ -112,12 +114,12 @@ namespace FixedAsset.Web
         protected override void OnError(EventArgs e)
         {
             base.OnError(e);
-            //Exception exception = Server.GetLastError();
-            //Log.Error(exception.Message, exception);
-            //if (exception is System.Data.OracleClient.OracleException)
-            //{
-            //    exception = new Exception("系统出错了，请联系系统管理员！");
-            //}
+            Exception exception = Server.GetLastError();
+            Log.Error(exception.Message, exception);
+            if (exception is System.Data.OracleClient.OracleException)
+            {
+                exception = new Exception("系统出错了，请联系系统管理员！");
+            }
             //Session[SeallNet.Utility.UiConst.CurrentException] = exception;
             //Server.ClearError();
             //if (IsPoupPage)
@@ -135,7 +137,7 @@ namespace FixedAsset.Web
             //}
             //else
             //{
-            //    Response.Redirect(ResolveUrl("~/Error.aspx"));
+            Response.Redirect(ResolveUrl("~/Error.aspx"));
             //}
             //throw exception;
         }

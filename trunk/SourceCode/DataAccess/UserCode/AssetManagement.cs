@@ -154,6 +154,7 @@ namespace FixedAsset.DataAccess
                     this.Database.AddInParameter(":Subcompany", DbType.AnsiString, "%" + info.Subcompany + "%");
                     sqlCommand.AppendLine(@" AND ""ASSET"".""SUBCOMPANY"" LIKE :Subcompany");
                 }
+                #region 设备状态
                 if (info.States.Count > 0)
                 {
                     this.Database.AddInParameter(":State", info.States[0]);
@@ -165,6 +166,8 @@ namespace FixedAsset.DataAccess
                     }
                     sqlCommand.AppendLine(@" )");
                 }
+                #endregion
+
                 if (info.FinanceCategories.Count > 0)
                 {
                     this.Database.AddInParameter(":FINANCECATEGORY", info.FinanceCategories[0]);
@@ -202,20 +205,27 @@ namespace FixedAsset.DataAccess
         {
             try
             {
-                StringBuilder sqlCommand = new StringBuilder(@" SELECT ""ASSET"".""ASSETNO"",""ASSET"".""ASSETCATEGORYID"" AS ASSETCATEGORYID,""ASSET"".""ASSETNAME"",""ASSET"".""STATE"",
+                var sqlCommand = new StringBuilder(@" SELECT ""ASSET"".""ASSETNO"",""ASSET"".""ASSETCATEGORYID"" AS ASSETCATEGORYID,""ASSET"".""ASSETNAME"",""ASSET"".""STATE"",
                      ""ASSET"".""DEPRECIATIONYEAR"",""ASSET"".""MANAGEMODE"",""ASSET"".""FINANCECATEGORY"",""ASSET"".""SUPPLIERID"",""ASSET"".""STORAGEFLAG"",""ASSET"".""PURCHASEDATE"",""ASSET"".""EXPIREDDATE""
                      FROM ""ASSET"" ,""ASSETCATEGORY"" 
-                     WHERE ""ASSET"".""ASSETCATEGORYID""=""ASSETCATEGORY"".""ASSETCATEGORYID"" AND (""ASSET"".""STATE""= 1 OR ""ASSET"".""STATE""= 2) AND ""ASSET"".""EXPIREDDATE""<= Sysdate ");
-                if (!string.IsNullOrEmpty(info.Assetno))
+                     WHERE ""ASSET"".""ASSETCATEGORYID""=""ASSETCATEGORY"".""ASSETCATEGORYID"" AND ""ASSET"".""EXPIREDDATE""<= Sysdate ");
+                #region 设备状态
+                //WHERE ""ASSET"".""ASSETCATEGORYID""=""ASSETCATEGORY"".""ASSETCATEGORYID"" AND (""ASSET"".""STATE""= 1 OR ""ASSET"".""STATE""= 2) AND ""ASSET"".""EXPIREDDATE""<= Sysdate ");
+                info.States.Add(AssetState.InUse);
+                info.States.Add(AssetState.NoUse);
+                if (info.States.Count > 0)
                 {
-                    this.Database.AddInParameter(":Assetno", DbType.AnsiString, "%" + info.Assetno + "%");
-                    sqlCommand.AppendLine(@" AND ""ASSET"".""ASSETNO"" LIKE :Assetno");
+                    this.Database.AddInParameter(":State", info.States[0]);
+                    sqlCommand.AppendLine(@" AND (""ASSET"".""STATE""=:State");
+                    for (int i = 1; i < info.States.Count; i++)
+                    {
+                        this.Database.AddInParameter(":State" + i.ToString(), info.States[i]);
+                        sqlCommand.AppendLine(@" OR ""ASSET"".""STATE""=:State" + i.ToString());
+                    }
+                    sqlCommand.AppendLine(@" )");
                 }
-                if (!string.IsNullOrEmpty(info.Assetname))
-                {
-                    this.Database.AddInParameter(":Assetname", "%" + info.Assetname + "%");
-                    sqlCommand.AppendLine(@" AND ""ASSET"".""ASSETNAME"" LIKE :Assetname");
-                }
+                #endregion
+
                 #region 资产分类
                 if (!string.IsNullOrEmpty(info.FirstLevelCategoryId))
                 {
@@ -227,7 +237,20 @@ namespace FixedAsset.DataAccess
                     this.Database.AddInParameter(":Assetcategoryid", DbType.AnsiString, info.Assetcategoryid);
                     sqlCommand.AppendLine(@" AND ""ASSET"".""ASSETCATEGORYID"" = :Assetcategoryid");
                 }
-                #endregion
+                #endregion  
+
+                if (!string.IsNullOrEmpty(info.Assetno))
+                {
+                    this.Database.AddInParameter(":Assetno", DbType.AnsiString, "%" + info.Assetno + "%");
+                    sqlCommand.AppendLine(@" AND ""ASSET"".""ASSETNO"" LIKE :Assetno");
+                }
+                if (!string.IsNullOrEmpty(info.Assetname))
+                {
+                    this.Database.AddInParameter(":Assetname", "%" + info.Assetname + "%");
+                    sqlCommand.AppendLine(@" AND ""ASSET"".""ASSETNAME"" LIKE :Assetname");
+                }
+                
+
                 if (info.FinanceCategories.Count > 0)
                 {
                     this.Database.AddInParameter(":FINANCECATEGORY", info.FinanceCategories[0]);
@@ -270,26 +293,29 @@ namespace FixedAsset.DataAccess
         #endregion 
 
         #region RetrieveAssetscrappedsRecord
-        public List<Asset> RetrieveAssetscrappedsRecord(AssetSearch info, int pageIndex, int pageSize, out int count)
+        public List<Assetscrapped> RetrieveAssetscrappedsRecord(AssetSearch info, int pageIndex, int pageSize, out int count)
         {
             try
             {
-                StringBuilder sqlCommand = new StringBuilder(@" SELECT ""ASSET_SCRAPPED"".""ASSET_SCRAPPED_ID"",""ASSET_SCRAPPED"".""SCRAPPEDDATE"",""ASSET_SCRAPPED"".""SCRAPPEDUSER"",""ASSET_SCRAPPED"".""APPROVEUSER"",
+                var sqlCommand = new StringBuilder(@" SELECT ""ASSET_SCRAPPED"".""ASSET_SCRAPPED_ID"",""ASSET_SCRAPPED"".""SCRAPPEDDATE"",""ASSET_SCRAPPED"".""SCRAPPEDUSER"",""ASSET_SCRAPPED"".""APPROVEUSER"",
                      ""ASSET_SCRAPPED"".""APPROVEDATE"",""ASSET_SCRAPPED"".""REJECTREASON"",""ASSET_SCRAPPED"".""CREATEDDATE"",""ASSET_SCRAPPED"".""CREATOR"",""ASSET_SCRAPPED"".""APPROVEDSTATE"",""ASSET"".""ASSETNO"",""ASSET"".""ASSETCATEGORYID"" AS ASSETCATEGORYID,""ASSET"".""ASSETNAME"",""ASSET"".""STATE"",
                      ""ASSET"".""DEPRECIATIONYEAR"",""ASSET"".""MANAGEMODE"",""ASSET"".""FINANCECATEGORY"",""ASSET"".""SUPPLIERID"",""ASSET"".""STORAGEFLAG"",""ASSET"".""PURCHASEDATE"",""ASSET"".""EXPIREDDATE""
-                     FROM ""ASSET_SCRAPPED"",""ASSET"" 
-                     WHERE ""ASSET"".""ASSETNO""=""ASSET_SCRAPPED"".""ASSETNO""");
+                     FROM  ""ASSET"" LEFT JOIN ""ASSET_SCRAPPED"" ON ""ASSET"".""ASSETNO""=""ASSET_SCRAPPED"".""ASSETNO""
+                     WHERE 1=1");
+                #region 设备状态
+                if (info.States.Count > 0)
+                {
+                    this.Database.AddInParameter(":State", info.States[0]);
+                    sqlCommand.AppendLine(@" AND (""ASSET"".""STATE""=:State");
+                    for (int i = 1; i < info.States.Count; i++)
+                    {
+                        this.Database.AddInParameter(":State" + i.ToString(), info.States[i]);
+                        sqlCommand.AppendLine(@" OR ""ASSET"".""STATE""=:State" + i.ToString());
+                    }
+                    sqlCommand.AppendLine(@" )");
+                }
+                #endregion
 
-                if (!string.IsNullOrEmpty(info.Assetno))
-                {
-                    this.Database.AddInParameter(":Assetno", DbType.AnsiString, "%" + info.Assetno + "%");
-                    sqlCommand.AppendLine(@" AND ""ASSET"".""ASSETNO"" LIKE :Assetno");
-                }
-                if (!string.IsNullOrEmpty(info.Assetname))
-                {
-                    this.Database.AddInParameter(":Assetname", "%" + info.Assetname + "%");
-                    sqlCommand.AppendLine(@" AND ""ASSET"".""ASSETNAME"" LIKE :Assetname");
-                }
                 #region 资产分类
                 if (!string.IsNullOrEmpty(info.FirstLevelCategoryId))
                 {
@@ -302,6 +328,17 @@ namespace FixedAsset.DataAccess
                     sqlCommand.AppendLine(@" AND ""ASSET"".""ASSETCATEGORYID"" = :Assetcategoryid");
                 }
                 #endregion
+
+                if (!string.IsNullOrEmpty(info.Assetno))
+                {
+                    this.Database.AddInParameter(":Assetno", DbType.AnsiString, "%" + info.Assetno + "%");
+                    sqlCommand.AppendLine(@" AND ""ASSET"".""ASSETNO"" LIKE :Assetno");
+                }
+                if (!string.IsNullOrEmpty(info.Assetname))
+                {
+                    this.Database.AddInParameter(":Assetname", "%" + info.Assetname + "%");
+                    sqlCommand.AppendLine(@" AND ""ASSET"".""ASSETNAME"" LIKE :Assetname");
+                }
 
                 if (info.StartPurchasedate.HasValue)
                 {
@@ -324,7 +361,7 @@ namespace FixedAsset.DataAccess
                     sqlCommand.AppendLine(@" AND ""ASSET"".""EXPIREDDATE"" <= :EndExpireddate");
                 }
                 sqlCommand.AppendLine(@"  ORDER BY ""ASSET"".""EXPIREDDATE"" DESC");
-                return this.ExecuteReaderPaging<Asset>(sqlCommand.ToString(), pageIndex, pageSize, out count);
+                return this.ExecuteReaderPaging<Assetscrapped>(sqlCommand.ToString(), pageIndex, pageSize, out count);
             }
             finally
             {

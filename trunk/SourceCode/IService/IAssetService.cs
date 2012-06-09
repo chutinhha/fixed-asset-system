@@ -18,7 +18,7 @@ namespace FixedAsset.IServices
         Vstorageaddress RetrieveVstorageaddressByStorageId(string Storagetitle, string StorageId);
         List<Asset> RetrieveAssetsPaging(AssetSearch info, int pageIndex, int pageSize, out int count);
         List<Asset> RetrieveAssetsUsed(AssetSearch info, int pageIndex, int pageSize, out int count);
-        List<Asset> RetrieveAssetscrappedsRecord(AssetSearch info, int pageIndex, int pageSize, out int count);
+        List<Assetscrapped> RetrieveAssetscrappedsRecord(AssetSearch info, int pageIndex, int pageSize, out int count);
         void SaveAssetInfo(Asset info);
         Asset UpdateAssetByAssetno(Asset info);
         Asset UpdateFinancecategoryByAssetno(Asset info);

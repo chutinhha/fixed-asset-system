@@ -10,19 +10,8 @@ using FixedAsset.Services;
 
 namespace FixedAsset.Web.Admin
 {
-    public partial class Asset_Scrapped : System.Web.UI.Page
+    public partial class Asset_Scrapped : BasePage
     {
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            if (!IsPostBack)
-            {
-                AssetCategories.Clear();
-                LoadAssetCategory();
-                LoadSubAssetCategory();
-                LoadData(0);
-            }
-        }
-
         #region Properties
         protected IAssetcategoryService AssetcategoryService
         {
@@ -46,15 +35,37 @@ namespace FixedAsset.Web.Admin
         {
             get
             {
-                if (Session["EquipmentListAssetCategories"] == null)
+                if (Session["Asset_ScrappedAssetCategories"] == null)
                 {
-                    Session["EquipmentListAssetCategories"] = new List<Assetcategory>();
+                    Session["Asset_ScrappedAssetCategories"] = new List<Assetcategory>();
                 }
-                return Session["EquipmentListAssetCategories"] as List<Assetcategory>;
+                return Session["Asset_ScrappedAssetCategories"] as List<Assetcategory>;
+            }
+        }
+        public List<string> AssetIds
+        {
+            get
+            {
+                if (ViewState["AssetIds"] == null)
+                {
+                    ViewState["AssetIds"] = new List<string>();
+                }
+                return ViewState["AssetIds"] as List<string>;
             }
         }
         #endregion
 
+        #region Events
+        protected override void OnLoad(EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                AssetCategories.Clear();
+                LoadAssetCategory();
+                LoadSubAssetCategory();
+                LoadData(0);
+            }
+        }
         protected void ddlAssetCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ddlAssetCategory.SelectedIndex > 0)
@@ -66,7 +77,116 @@ namespace FixedAsset.Web.Admin
                 ddlSubAssetCategory.Items.Clear();
             }
         }
+        protected void rptScrappedList_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                var litCategoryName = e.Item.FindControl("litCategoryName") as Literal;
+                var currentInfo = e.Item.DataItem as Assetscrapped;
+                var subCategory = AssetCategories.Where(p => p.Assetcategoryid == currentInfo.Assetcategoryid).FirstOrDefault();
+                if (subCategory == null)
+                {
+                    litCategoryName.Text = currentInfo.Assetcategoryid;
+                }
+                else
+                {
+                    var category = AssetCategories.Where(p => p.Assetcategoryid == subCategory.Assetparentcategoryid).
+                            FirstOrDefault();
+                    litCategoryName.Text = string.Format(@"{0}-{1}", category.Assetcategoryname, subCategory.Assetcategoryname);
+                }
+                var BtnApprove = e.Item.FindControl("BtnApprove") as ImageButton;
+                var BtnDetail = e.Item.FindControl("BtnDetail") as ImageButton;
+                if(currentInfo.Approvedstate!=AssetScrappedState.None)
+                {
+                    BtnDetail.Visible = true;
+                }
+                if(currentInfo.Approvedstate==AssetScrappedState.Submitted)
+                {
+                    BtnApprove.Visible = true;
+                }
+            }
+        }
+        protected void rptScrappedList_ItemCommand(object sender, RepeaterCommandEventArgs e)
+        {
+            var Assetscrappedid = e.CommandArgument.ToString();
+            if (e.CommandName.Equals("ApproveDetail"))
+            {
+                Response.Redirect(ResolveUrl(string.Format("~/Admin/AssetScrapped_Approved.aspx?Assetscrappedid={0}", Assetscrappedid)));
+            }
+            else if (e.CommandName.Equals("ViewDetail"))
+            {
+                Response.Redirect(ResolveUrl(string.Format("~/Admin/AssetScrapped_View.aspx?Assetscrappedid={0}", Assetscrappedid)));
+            }
+        }
+        protected void pcData_PageIndexClick(object sender, KFSQ.Web.Controls.PageIndexClickEventArgs e)
+        {
+            CheckSelectedAssetId();
+            LoadData(e.PageIndex);
+        }  
+        protected void BtnSearch_Click(object sender, EventArgs e)
+        {
+            LoadData(0);
+        }
+        protected void BtnBatchApply_Click(object sender,EventArgs e)
+        {
+            CheckSelectedAssetId();
+            if(AssetIds.Count==0)
+            {
+                UIHelper.Alert(this, "请选择要申请报废的设备");
+                return;
+            }
+            foreach (var assetId in AssetIds)
+            {
+                var assetScrappedInfo = new Assetscrapped();
+                assetScrappedInfo.Assetscrappedid = string.Empty;
+                assetScrappedInfo.Assetno = assetId;
+                assetScrappedInfo.Scrappeddate = DateTime.Today;
+                assetScrappedInfo.Scrappeduser = WebContext.Current.CurrentUser.Username;
+                assetScrappedInfo.Createddate = DateTime.Now;
+                assetScrappedInfo.Approvedstate = AssetScrappedState.Submitted;
+                assetScrappedInfo.Creator = WebContext.Current.CurrentUser.Username;
+                AssetscrappedService.CreateAssetscrapped(assetScrappedInfo);  
+            }
+            UIHelper.Alert(this, "申请成功！");
+            LoadData(pcData.CurrentIndex);
+        }
+        #endregion
 
+        #region Methods
+        protected void CheckSelectedAssetId()
+        {
+            if (rptScrappedList.Items.Count > 0)
+            {
+                for (int i = 0; i < rptScrappedList.Items.Count; i++)
+                {
+                    var ckbAssetno = rptScrappedList.Items[i].FindControl("ckbAssetno") as CheckBox;
+                    var litAssetno = rptScrappedList.Items[i].FindControl("litAssetno") as Literal;
+                    if (ckbAssetno != null)
+                    {
+                        if (ckbAssetno.Checked)
+                        {
+                            //选中，加到viewstate中来
+                            if (!AssetIds.Contains(litAssetno.Text.Trim()))
+                            {
+                                AssetIds.Add(litAssetno.Text.Trim());
+                            }
+                        }
+                        else
+                        {
+                            //取消选择，需要从viewstate里删除
+                            if (AssetIds.Contains(litAssetno.Text.Trim()))
+                            {
+                                AssetIds.Remove(litAssetno.Text.Trim());
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                AssetIds.Clear();
+            }
+        }
         protected void LoadData(int pageIndex)
         {
             var search = new AssetSearch();
@@ -107,8 +227,7 @@ namespace FixedAsset.Web.Admin
             rptScrappedList.DataBind();
             pcData.RecordCount = recordCount;
             pcData.CurrentIndex = pageIndex;
-        }
-
+        }   
         protected void LoadAssetCategory()
         {
             if (!IsPostBack)
@@ -139,42 +258,6 @@ namespace FixedAsset.Web.Admin
                 ddlSubAssetCategory.DataBind();
             }
         }
-
-        protected void rptScrappedList_ItemDataBound(object sender, RepeaterItemEventArgs e)
-        {
-            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
-            {
-                var litCategoryName = e.Item.FindControl("litCategoryName") as Literal;
-                var assetInfo = e.Item.DataItem as Asset;
-                var subCategory = AssetCategories.Where(p => p.Assetcategoryid == assetInfo.Assetcategoryid).FirstOrDefault();
-                if (subCategory == null)
-                {
-                    litCategoryName.Text = assetInfo.Assetcategoryid;
-                }
-                else
-                {
-                    var category = AssetCategories.Where(p => p.Assetcategoryid == subCategory.Assetparentcategoryid).
-                            FirstOrDefault();
-                    litCategoryName.Text = string.Format(@"{0}-{1}", category.Assetcategoryname, subCategory.Assetcategoryname);
-                }
-
-                var litSCRAPPEDDATE = e.Item.FindControl("litSCRAPPEDDATE") as Literal;
-                //litSCRAPPEDDATE.Text = ((DateTime)assetInfo.Scrappeddate).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat);
-
-                var litSCRAPPEDUSER = e.Item.FindControl("litSCRAPPEDUSER") as Literal;
-                litSCRAPPEDUSER.Text = assetInfo.Scrappeduser;
-            }
-        }
-
-        protected void pcData_PageIndexClick(object sender, KFSQ.Web.Controls.PageIndexClickEventArgs e)
-        {
-            LoadData(e.PageIndex);
-        }
-
-        protected void BtnSearch_Click(object sender, EventArgs e)
-        {
-            LoadData(0);
-        }
-
+        #endregion 
     }
 }

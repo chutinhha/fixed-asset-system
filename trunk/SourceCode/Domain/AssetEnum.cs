@@ -40,8 +40,14 @@ namespace FixedAsset.Domain
     [EnumCatetory(EnumName = "设备状态")]
     public enum AssetState : int
     {
+        /// <summary>
+        /// 在用  1
+        /// </summary>
         [EnumDescript(Descript = "在用")]
         InUse = 1,
+        /// <summary>
+        ///  未用 2
+        /// </summary>
         [EnumDescript(Descript = "未用")]
         NoUse = 2,
         [EnumDescript(Descript = "报废")]
@@ -77,12 +83,16 @@ namespace FixedAsset.Domain
     /// 报废审核状态
     /// </summary>
     [EnumCatetory(EnumName = "报废审核状态")]
-    public enum APPROVEDSTATE : int
+    public enum AssetScrappedState : int
     {
+        [EnumDescript(Descript = "未提交")]
+        None = 0,
+        [EnumDescript(Descript = "已提交")]
+        Submitted = 1,
         [EnumDescript(Descript = "同意")]
-        Approved = 1,
+        Approved = 2,
         [EnumDescript(Descript = "拒绝")]
-        Rejected = 2
+        Rejected = 3
     }
     
     #endregion
