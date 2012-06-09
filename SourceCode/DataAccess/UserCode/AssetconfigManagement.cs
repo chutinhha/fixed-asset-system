@@ -34,6 +34,22 @@ namespace FixedAsset.DataAccess
         }
         #endregion
 
+        #region RetrieveAssetconfigByCategoryId
+        public List<Assetconfig> RetrieveAssetconfigByCategoryId(string categoryId)
+        {
+            try
+            {
+                this.Database.AddInParameter(":CATEGORYID", categoryId);
+                string sqlCommand = @"SELECT * FROM ASSET_CONFIG WHERE  CATEGORYID=:CATEGORYID";
+                return this.Database.ExecuteToList<Assetconfig>(sqlCommand);
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
+        #endregion
+
         #region RetrieveAssetconfigByConfigid
         public List<Assetconfig> RetrieveAssetconfigByConfigid(List<string> Configids)
         {

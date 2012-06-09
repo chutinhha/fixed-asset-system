@@ -8,7 +8,7 @@
 <%@ Register Src="~/Admin/UserControl/ucDatePicker.ascx" TagName="DatePicker" TagPrefix="uc1" %>
 <%@ Register Src="~/Admin/UserControl/ucSelectProject.ascx" TagName="SelectProject"
     TagPrefix="uc1" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">   
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
     <ul id="TabPage1">
@@ -16,9 +16,8 @@
     </ul>
     <div id="cnt">
         <div id="dTab1" class="Box text_box">
-            <p>
-                <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
-                    align="left">
+            <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
+                align="center">
                     <tr>
                         <td style="width: 20%;">
                             维修单编号
@@ -50,7 +49,6 @@
                         </td>
                     </tr>
                 </table>
-            </p>
             <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
                 align="center" class="table_grayTH eoddTable">
                 <asp:Repeater ID="rptRepairList" runat="server" OnItemDataBound="rptRepairList_ItemDataBound"
@@ -178,9 +176,7 @@
                     </AlternatingItemTemplate>
                 </asp:Repeater>
                 <tr>
-                    <td>
-                    </td>
-                    <td colspan="8" style="height: 30px; width: 98%;">
+                    <td colspan="9" style="height: 30px; width: 98%;" align="center">
                         <cc1:PagingControl ID="pcData" runat="server" MaxNavigatePageCount="7" OnPageIndexClick="pcData_PageIndexClick" />
                     </td>
                 </tr>

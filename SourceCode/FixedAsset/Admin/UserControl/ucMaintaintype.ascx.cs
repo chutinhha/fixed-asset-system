@@ -1,17 +1,84 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+using FixedAsset.IServices;
+using FixedAsset.Services;
 
 namespace FixedAsset.Web.Admin.UserControl
 {
     public partial class ucMaintaintype : System.Web.UI.UserControl
     {
-        protected void Page_Load(object sender, EventArgs e)
+        #region Properties
+        public bool Enabled
         {
+            get { return ddlConfig.Enabled; }
+            set { ddlConfig.Enabled = value; }
+        }
+        public string CategoryId
+        {
+            get
+            {
+                if (ViewState["CategoryId"] == null)
+                {
+                    ViewState["CategoryId"] = string.Empty;
+                }
+                return ViewState["CategoryId"].ToString();
+            }
+            set { ViewState["CategoryId"] = value; }
+        }
+        public string Configid
+        {
+            get
+            {
+                if (ddlConfig.SelectedIndex >= 0)
+                {
+                    return ddlConfig.SelectedValue;
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+            set
+            {
+                for (int i = 0; i < ddlConfig.Items.Count; i++)
+                {
+                    if (ddlConfig.Items[i].Value.Equals(value))
+                    {
+                        ddlConfig.SelectedIndex = i;
+                        break;
+                    }
+                }
+            }
+        }
+        protected IAssetconfigService AssetconfigService
+        {
+            get
+            {
+                return new AssetconfigService();
+            }
+        }
+        #endregion
 
+        #region Events
+        
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            if (!IsPostBack)
+            {
+                LoadData(); 
+            }
+        }
+        
+        #endregion
+
+        protected void LoadData()
+        {
+            var list = AssetconfigService.RetrieveAssetconfigByCategoryId(CategoryId);
+            ddlConfig.DataSource = list;
+            ddlConfig.DataTextField = @"Configname";
+            ddlConfig.DataValueField = @"Configid";
+            ddlConfig.DataBind();
+            ddlConfig.SelectedIndex = 0;
         }
     }
 }

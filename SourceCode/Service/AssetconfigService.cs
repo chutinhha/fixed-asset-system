@@ -59,6 +59,11 @@ namespace FixedAsset.Services
         }
         #endregion
 
+        public List<Assetconfig> RetrieveAssetconfigByCategoryId(string categoryId)
+        {
+            return Management.RetrieveAssetconfigByCategoryId(categoryId);
+        }
+
         #region CreateAssetconfig
         public Assetconfig CreateAssetconfig(Assetconfig info)
         {

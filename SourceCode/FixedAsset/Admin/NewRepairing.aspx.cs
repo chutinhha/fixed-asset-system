@@ -262,12 +262,13 @@ namespace FixedAsset.Web.Admin
                 var list = AssetcategoryService.RetrieveAllAssetcategory();
                 AssetCategories.AddRange(list);
             }
+            ucMaintaintype.CategoryId = Assetmaintain.C_MaintainType;
         }
         protected void ReadEntityToControl(Assetmaintain headInfo)
         {
             litAssetmaintainid.Text = headInfo.Assetmaintainid;//维修单编号
             ucSeletedSystem.Assetcategoryid = headInfo.Assetcategoryid;//(系统)设备大类
-            //txtMaintaintype.Text = headInfo.Maintaintype;//保修来源：(项目体、自检、月检）数据字典
+            ucMaintaintype.Configid = headInfo.Maintaintype; //保修来源：(项目体、自检、月检）数据字典
             ucApplyDate.DateValue = headInfo.Applydate;//申请维修日期
             ucApplyuser.UserId = headInfo.Applyuserid;//申请人
             txtApplycontent.Text = headInfo.Applycontent;//申请内容 
@@ -281,7 +282,7 @@ namespace FixedAsset.Web.Admin
         {
             assetmaintain.Assetmaintainid = Assetmaintainid;//维修单编号
             assetmaintain.Assetcategoryid = ucSeletedSystem.Assetcategoryid;//(系统)设备大类
-            //assetmaintain.Maintaintype = txtMaintaintype.Text;//保修来源：(项目体、自检、月检）数据字典
+            assetmaintain.Maintaintype = ucMaintaintype.Configid;//保修来源：(项目体、自检、月检）数据字典
             assetmaintain.Applycontent = txtApplycontent.Text;//申请内容
             assetmaintain.Applydate = ucApplyDate.DateValue;//申请日期
             assetmaintain.Applyuserid = ucApplyuser.UserId;//申请人                                   
@@ -308,7 +309,7 @@ namespace FixedAsset.Web.Admin
             {
                 headInfo = AssetmaintainService.RetrieveAssetmaintainByAssetmaintainid(Assetmaintainid);
                 if (headInfo == null) { return; }
-                ReadEntityToControl(headInfo);
+                WriteControlValueToEntity(headInfo);
                 headInfo.Approveresult = maintainState;
                 AssetmaintainService.UpdateAssetmaintainByAssetmaintainid(headInfo);
                 foreach (var detail in Details)
@@ -327,7 +328,7 @@ namespace FixedAsset.Web.Admin
             else //新增
             {
                 headInfo = new Assetmaintain();
-                ReadEntityToControl(headInfo);
+                WriteControlValueToEntity(headInfo);
                 headInfo.Approveresult = maintainState;
                 AssetmaintainService.CreateAssetmaintain(headInfo);
                 foreach (var detail in Details)
