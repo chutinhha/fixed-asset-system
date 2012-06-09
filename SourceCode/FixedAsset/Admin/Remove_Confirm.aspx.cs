@@ -11,7 +11,7 @@ using FixedAsset.Web.AppCode;
 
 namespace FixedAsset.Web.Admin
 {
-    public partial class Remove_Confirm : System.Web.UI.Page
+    public partial class Remove_Confirm : BasePage
     {
 
         #region 属性

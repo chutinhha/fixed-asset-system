@@ -10,7 +10,7 @@ using FixedAsset.Services;
 
 namespace FixedAsset.Web.Admin
 {
-    public partial class NewRemoving : System.Web.UI.Page
+    public partial class NewRemoving : BasePage
     {
         #region 属性
         protected string Removeid
