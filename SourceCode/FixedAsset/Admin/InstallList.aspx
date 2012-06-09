@@ -49,8 +49,8 @@
                     </td>
                 </tr>
             </table>
-            <table style="width: 100%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
-                align="center">
+            <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
+                align="center" class="table_grayTH eoddTable">
                 <asp:Repeater ID="rptAssetSetupList" runat="server" OnItemDataBound="rptAssetSetupList_ItemDataBound"
                     OnItemCommand="rptAssetSetupList_ItemCommand">
                     <HeaderTemplate>
@@ -174,7 +174,7 @@
                     </AlternatingItemTemplate>
                 </asp:Repeater>
                 <tr>
-                    <td colspan="12" style="height: 30px; width: 98%;" align="center">
+                    <td colspan="9" style="height: 30px; width: 98%;" align="center">
                         <cc1:PagingControl ID="pcData" runat="server" MaxNavigatePageCount="7" OnPageIndexClick="pcData_PageIndexClick" />
                     </td>
                 </tr>
