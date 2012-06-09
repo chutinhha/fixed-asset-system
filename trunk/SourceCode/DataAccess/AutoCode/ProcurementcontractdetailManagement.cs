@@ -1,7 +1,7 @@
 /********************************************************************
 * File Name:ProcurementcontractdetailManagement
 * Copyright (C) 2012 Bruce.huang 
-* Creater & Date:Bruce.huang - 2012-05-31
+* Creater & Date:Bruce.huang - 2012-06-09
 * Create Explain:
 * Description:DataBase Access Class
 * Modify Explain:
@@ -19,7 +19,7 @@ namespace FixedAsset.DataAccess
     public partial class ProcurementcontractdetailManagement : BaseManagement
     {
         #region Construct
-        private const int ColumnCount = 8;
+        private const int ColumnCount = 10;
         public ProcurementcontractdetailManagement()
         { }
         public ProcurementcontractdetailManagement(BaseManagement baseManagement)
@@ -32,7 +32,7 @@ namespace FixedAsset.DataAccess
         {
             try
             {
-                string sqlCommand = @"INSERT INTO ""PROCUREMENTCONTRACTDETAIL"" (""CONTRACTDETAILID"",""CONTRACTID"",""ASSETCATEGORYID"",""ASSETNAME"",""ASSETSPECIFICATION"",""UNITPRICE"",""PROCURENUMBER"",""INPUTNUMBER"") VALUES (:Contractdetailid,:Contractid,:Assetcategoryid,:Assetname,:Assetspecification,:Unitprice,:Procurenumber,:Inputnumber)";
+                string sqlCommand = @"INSERT INTO ""PROCUREMENTCONTRACTDETAIL"" (""CONTRACTDETAILID"",""CONTRACTID"",""ASSETCATEGORYID"",""ASSETNAME"",""ASSETSPECIFICATION"",""UNITPRICE"",""PROCURENUMBER"",""INPUTNUMBER"",""PSDETAILID"",""PSID"") VALUES (:Contractdetailid,:Contractid,:Assetcategoryid,:Assetname,:Assetspecification,:Unitprice,:Procurenumber,:Inputnumber,:Psdetailid,:Psid)";
                 this.Database.AddInParameter(":Contractdetailid", info.Contractdetailid);//DBType:VARCHAR2
                 this.Database.AddInParameter(":Contractid", info.Contractid);//DBType:VARCHAR2
                 this.Database.AddInParameter(":Assetcategoryid", info.Assetcategoryid);//DBType:VARCHAR2
@@ -41,6 +41,8 @@ namespace FixedAsset.DataAccess
                 this.Database.AddInParameter(":Unitprice", info.Unitprice);//DBType:NUMBER
                 this.Database.AddInParameter(":Procurenumber", info.Procurenumber);//DBType:NUMBER
                 this.Database.AddInParameter(":Inputnumber", info.Inputnumber);//DBType:NUMBER
+                this.Database.AddInParameter(":Psdetailid", info.Psdetailid);//DBType:VARCHAR2
+                this.Database.AddInParameter(":Psid", info.Psid);//DBType:VARCHAR2
                 this.Database.ExecuteNonQuery(sqlCommand);
 
             }
@@ -65,7 +67,9 @@ namespace FixedAsset.DataAccess
                 this.Database.AddInParameter(":Unitprice", info.Unitprice);//DBType:NUMBER
                 this.Database.AddInParameter(":Procurenumber", info.Procurenumber);//DBType:NUMBER
                 this.Database.AddInParameter(":Inputnumber", info.Inputnumber);//DBType:NUMBER
-                string sqlCommand = @"UPDATE ""PROCUREMENTCONTRACTDETAIL"" SET  ""CONTRACTID""=:Contractid , ""ASSETCATEGORYID""=:Assetcategoryid , ""ASSETNAME""=:Assetname , ""ASSETSPECIFICATION""=:Assetspecification , ""UNITPRICE""=:Unitprice , ""PROCURENUMBER""=:Procurenumber , ""INPUTNUMBER""=:Inputnumber WHERE  ""CONTRACTDETAILID""=:Contractdetailid";
+                this.Database.AddInParameter(":Psdetailid", info.Psdetailid);//DBType:VARCHAR2
+                this.Database.AddInParameter(":Psid", info.Psid);//DBType:VARCHAR2
+                string sqlCommand = @"UPDATE ""PROCUREMENTCONTRACTDETAIL"" SET  ""CONTRACTID""=:Contractid , ""ASSETCATEGORYID""=:Assetcategoryid , ""ASSETNAME""=:Assetname , ""ASSETSPECIFICATION""=:Assetspecification , ""UNITPRICE""=:Unitprice , ""PROCURENUMBER""=:Procurenumber , ""INPUTNUMBER""=:Inputnumber , ""PSDETAILID""=:Psdetailid , ""PSID""=:Psid WHERE  ""CONTRACTDETAILID""=:Contractdetailid";
                 this.Database.ExecuteNonQuery(sqlCommand);
             }
             finally

@@ -76,10 +76,19 @@ namespace FixedAsset.Domain
 
         public string CategoryAllPathName { get; set; }
 
-    }
+        #region 计划采购单明细编号
+        ///<summary>
+        ///ColumnName:计划采购单明细编号;Size:50;
+        ///</summary>
+        public string Psdetailid { get; set; }
+        #endregion
 
-    [Serializable]
-    public partial class ProcurementcontractdetailEx:Procurementcontractdetail
-    {
+        #region 计划采购单号
+        ///<summary>
+        ///ColumnName:计划采购单号;Size:50;
+        ///</summary>
+        public string Psid { get; set; }
+        #endregion
+
     }
 }

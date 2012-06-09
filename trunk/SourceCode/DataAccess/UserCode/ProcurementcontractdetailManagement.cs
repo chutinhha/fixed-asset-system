@@ -156,13 +156,13 @@ namespace FixedAsset.DataAccess
         #endregion
 
         #region RetrieveProcurementcontractdetailsPaging
-        public List<ProcurementcontractdetailEx> RetrieveProcurementcontractdetailsPaging(ProcurementcontractdetailSearch info,int pageIndex, int pageSize,out int count)
+        public List<Procurementcontractdetail> RetrieveProcurementcontractdetailsPaging(ProcurementcontractdetailSearch info,int pageIndex, int pageSize,out int count)
         {
             try
             {
                 StringBuilder sqlCommand = new StringBuilder(@" SELECT ""PROCUREMENTCONTRACTDETAIL"".""CONTRACTDETAILID"",""PROCUREMENTCONTRACTDETAIL"".""CONTRACTID"",""PROCUREMENTCONTRACTDETAIL"".""ASSETCATEGORYID"",""PROCUREMENTCONTRACTDETAIL"".""ASSETNAME"",""PROCUREMENTCONTRACTDETAIL"".""ASSETSPECIFICATION"",
                      ""PROCUREMENTCONTRACTDETAIL"".""UNITPRICE"",""PROCUREMENTCONTRACTDETAIL"".""PROCURENUMBER""
-
+                     ,""PROCUREMENTCONTRACTDETAIL"".""PSDETAILID"",""PROCUREMENTCONTRACTDETAIL"".""PSID""
                      FROM ""PROCUREMENTCONTRACTDETAIL"" 
                      INNER JOIN ""PROCUREMENTCONTRACT"" ON ""PROCUREMENTCONTRACTDETAIL"".""CONTRACTID""=""PROCUREMENTCONTRACT"".""CONTRACTID"" 
                      WHERE 1=1");
@@ -193,7 +193,7 @@ namespace FixedAsset.DataAccess
                 }
 
                 sqlCommand.AppendLine(@"  ORDER BY ""PROCUREMENTCONTRACTDETAIL"".""CONTRACTDETAILID"" DESC");
-                return this.ExecuteReaderPaging<ProcurementcontractdetailEx>(sqlCommand.ToString(), pageIndex, pageSize, out count);
+                return this.ExecuteReaderPaging<Procurementcontractdetail>(sqlCommand.ToString(), pageIndex, pageSize, out count);
             }
             finally
             {

@@ -20,5 +20,6 @@ namespace FixedAsset.IServices
         Procurementscheduledetail RetrieveProcurementscheduledetailByDetailid(string detailid);
         void DeleteProcurementscheduledetailByDetailid(string detailid);
         List<Procurementscheduledetail> RetrieveProcurementscheduledetailListByPsid(string psid);
+        List<Procurementscheduledetail> RetrieveProcurementscheduledetailListByPsid(List<string> psids);
     }
 }
