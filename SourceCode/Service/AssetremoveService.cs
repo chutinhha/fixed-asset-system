@@ -64,6 +64,7 @@ namespace FixedAsset.Services
         {
             try
             {
+                info.Assetremoveid = new CoderuleManagement().GenerateCodeRule(Assetremove.RuleCode + DateTime.Today.ToString("yyyyMM"), false);
                 Management.BeginTransaction();
                 Management.CreateAssetremove(info);
                 Management.Commit();

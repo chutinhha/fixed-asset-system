@@ -18,6 +18,8 @@ namespace FixedAsset.Domain
     [Serializable]
     public partial class Assetremove
     {
+        public const string RuleCode = "拆机";
+
         #region 拆机单号
         ///<summary>
         ///ColumnName:拆机单号;Size:40;NOT NULL

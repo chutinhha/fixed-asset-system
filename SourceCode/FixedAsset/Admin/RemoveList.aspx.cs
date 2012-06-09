@@ -75,10 +75,10 @@ namespace FixedAsset.Web.Admin
                     AssetremoveService.DeleteAssetremoveByAssetremoveid(assetRemoveId);
                     UIHelper.Alert(this, "删除成功");
                     LoadData(pcData.CurrentIndex);
-                    return;
+
                 }
             }
-            if (e.CommandName.Equals("EditDetail"))
+            else if (e.CommandName.Equals("EditDetail"))
             {
                 Response.Redirect(ResolveUrl(string.Format("~/Admin/NewRemoving.aspx?Assetremoveid={0}", assetRemoveId)));
             }
@@ -88,10 +88,11 @@ namespace FixedAsset.Web.Admin
             }
             else if (e.CommandName.Equals("ComfirmDetail"))
             {
-                Response.Redirect(ResolveUrl(string.Format("~/Admin/Remove_Reply.aspx?Assetremoveid={0}", assetRemoveId)));//拆机结束后确认
+                Response.Redirect(ResolveUrl(string.Format("~/Admin/Remove_Confirm.aspx?Assetremoveid={0}", assetRemoveId)));//拆机结束后确认
             }
             else
             {
+               
                 Response.Redirect(ResolveUrl(string.Format("~/Admin/Remove_View.aspx?Assetremoveid={0}", assetRemoveId)));
             }
         }
