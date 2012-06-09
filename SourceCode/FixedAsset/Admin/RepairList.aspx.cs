@@ -88,8 +88,8 @@ namespace FixedAsset.Web.Admin
             }
             else if (e.CommandName.Equals("ComfirmDetail"))
             {
-                Response.Redirect(ResolveUrl(string.Format("~/Admin/Repair_Reply.aspx?Assetmaintainid={0}", assetMaintainId)));//维修结束后确认
-            }
+                Response.Redirect(ResolveUrl(string.Format("~/Admin/Repair_Confirm.aspx?Assetmaintainid={0}", assetMaintainId)));//维修结束后确认
+            }                                                                         
             else
             {
                 Response.Redirect(ResolveUrl(string.Format("~/Admin/Repair_View.aspx?Assetmaintainid={0}", assetMaintainId)));

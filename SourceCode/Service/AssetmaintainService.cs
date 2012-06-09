@@ -64,6 +64,7 @@ namespace FixedAsset.Services
         {
             try
             {
+                info.Assetmaintainid = new CoderuleManagement().GenerateCodeRule(Assetmaintain.RuleCode + DateTime.Today.ToString("yyyyMM"), false);
                 Management.BeginTransaction();
                 Management.CreateAssetmaintain(info);
                 Management.Commit();
