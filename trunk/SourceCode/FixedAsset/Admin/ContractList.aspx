@@ -32,6 +32,9 @@
                                 签订日期
                             </td>
                             <td align="center">
+                                分公司
+                            </td>
+                            <td align="center">
                                 供应商
                             </td>
                             <td align="center">
@@ -49,6 +52,9 @@
                             </td>
                             <td align="center">
                                 <%#((DateTime)Eval("Contractdate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                            </td>
+                            <td align="center">
+                                <%#Eval("Subcompanyname")%>
                             </td>
                             <td align="center">
                                 <%#Eval("Suppliername")%>
@@ -77,6 +83,9 @@
                                 <%#((DateTime)Eval("Contractdate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
                             <td align="center">
+                                <%#Eval("Subcompanyname")%>
+                            </td>
+                            <td align="center">
                                 <%#Eval("Suppliername")%>
                             </td>
                             <td align="center">
@@ -96,7 +105,7 @@
                     </AlternatingItemTemplate>
                 </asp:Repeater>
                 <tr>
-                    <td colspan="5" style="height: 30px; width: 98%;" align="center">
+                    <td colspan="6" style="height: 30px; width: 98%;" align="center">
                         <cc1:PagingControl ID="pcData" runat="server" MaxNavigatePageCount="7" OnPageIndexClick="pcData_PageIndexClick" />
                     </td>
                 </tr>

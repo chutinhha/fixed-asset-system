@@ -68,6 +68,7 @@ namespace FixedAsset.Domain
         ///ColumnName:分公司;Size:50;
         ///</summary>
         public string Subcompany{  get;set;}
+        public string Subcompanyname { get; set; }
         #endregion
 
         #region 创建人

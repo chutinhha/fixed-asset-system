@@ -133,10 +133,19 @@ namespace FixedAsset.Web.Admin
         /// <param name="e"></param>
         protected void BtnSave_Click(object sender, EventArgs e)
         {
-            DateTime dateTime = DateTime.MinValue;
             if (!ucContactscheduledate.DateValue.HasValue)
             {
                 UIHelper.Alert(this, "请选择合同签订日期!");
+                return;
+            }
+            if (string.IsNullOrEmpty(ucSubCompany.SubcompanyId))
+            {
+                UIHelper.Alert(this, "请选择分公司!");
+                return;
+            }
+            if (string.IsNullOrEmpty(ucSelectSupplier.Supplierid))
+            {
+                UIHelper.Alert(this, "请选择供应商!");
                 return;
             }
             if (!ucApplydate.DateValue.HasValue)
