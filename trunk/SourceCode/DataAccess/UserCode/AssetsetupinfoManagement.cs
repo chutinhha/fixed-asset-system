@@ -81,7 +81,7 @@ namespace FixedAsset.DataAccess
                      ""ASSETSETUPINFO"".""CONFIRMDATE"",""ASSETSETUPINFO"".""CONFIRMUSER"",""ASSETSETUPINFO"".""STORAGETITLE"",""ASSETSETUPINFO"".""STORAGEID""
                      ,SYSTEM,c.StorageName,c.subcompanyname,TU.USERNAME AS Applyusername
                      FROM ""ASSETSETUPINFO"" inner join assetsupplier ON ASSETSETUPINFO.ASSETCATEGORYID=assetsupplier.ASSETCATEGORYID
-                     Inner join  v_storage_address c on c.StorageTitle=ASSETSETUPINFO.STORAGETITLE and c.StorageId=ASSETSETUPINFO.STORAGEID
+                     INNER JOIN  v_storage_address c on c.StorageTitle=ASSETSETUPINFO.STORAGETITLE and c.StorageId=ASSETSETUPINFO.STORAGEID
                      INNER JOIN T_USER TU ON TU.ID=ASSETSETUPINFO.APPLYUSERID
                      WHERE 1=1");
 
@@ -97,9 +97,9 @@ namespace FixedAsset.DataAccess
                 if (!string.IsNullOrEmpty(info.Storageid) && !string.IsNullOrEmpty(info.Storagetitle))
                 {
                     this.Database.AddInParameter(":Storagetitle", DbType.AnsiString, info.Storagetitle);
-                    sqlCommand.AppendLine(@" AND ""ASSETREMOVE"".""STORAGETITLE"" = :Storagetitle");
+                    sqlCommand.AppendLine(@" AND ""ASSETSETUPINFO"".""STORAGETITLE"" = :Storagetitle");
                     this.Database.AddInParameter(":Storageid", DbType.AnsiString, info.Storageid);
-                    sqlCommand.AppendLine(@" AND ""ASSETREMOVE"".""STORAGEID"" = :Storageid");
+                    sqlCommand.AppendLine(@" AND ""ASSETSETUPINFO"".""STORAGEID"" = :Storageid");
                 }
                 #endregion
 
