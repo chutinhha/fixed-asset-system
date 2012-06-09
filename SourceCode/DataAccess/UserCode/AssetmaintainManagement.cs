@@ -80,10 +80,11 @@ namespace FixedAsset.DataAccess
                                                                       ,""ASSETMAINTAIN"".""ACTUALMAINTAINDATE"",""ASSETMAINTAIN"".""CONFIRMDATE"",""ASSETMAINTAIN"".""CONFIRMUSER"",""ASSETMAINTAIN"".""MAINTAINCONTENT""
                                                                       ,""ASSETMAINTAIN"".""STORAGETITLE"",""ASSETMAINTAIN"".""STORAGEID"",""ASSETMAINTAIN"".""SUBCOMPANY"",""ASSETMAINTAIN"".""SUBCOMPANYCONTACTORID""
                                                                       ,""ASSETMAINTAIN"".""CONTACTPHONE"", ""ASSETMAINTAIN"".""PROJECTCONTACTORID"",""ASSETMAINTAIN"".""PROJECTCONTACTORPHONE""
-                                                                      ,""ASSETMAINTAIN"".""CREATOR"",""ASSETMAINTAIN"".""CREATEDDATE""
+                                                                      ,""ASSETMAINTAIN"".""CREATOR"",""ASSETMAINTAIN"".""CREATEDDATE"",TU.USERNAME AS Applyusername
                                                                       ,SYSTEM,c.StorageName,c.subcompanyname
                      FROM ASSETMAINTAIN inner join assetsupplier ON ASSETMAINTAIN.ASSETCATEGORYID=assetsupplier.ASSETCATEGORYID
                      Inner join  v_storage_address c on c.StorageTitle=ASSETMAINTAIN.STORAGETITLE and c.StorageId=ASSETMAINTAIN.STORAGEID
+                     INNER JOIN T_USER TU ON TU.ID=ASSETMAINTAIN.APPLYUSERID
                      WHERE 1=1");
 
                 #region Î¬ÐÞµ¥±àºÅ

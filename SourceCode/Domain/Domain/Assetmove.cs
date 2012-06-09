@@ -51,6 +51,7 @@ namespace FixedAsset.Domain
         ///ColumnName:ÉêÇëÈË;Size:40;
         ///</summary>
         public string Applyuserid{  get;set;}
+        public string Applyusername { get; set; }
         #endregion
 
         #region ÉêÇëÄÚÈİ
