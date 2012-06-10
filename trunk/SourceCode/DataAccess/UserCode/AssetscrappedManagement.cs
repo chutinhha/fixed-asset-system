@@ -214,5 +214,40 @@ namespace FixedAsset.DataAccess
             }
         }
         #endregion
+
+        #region RetrieveAssetscrappedByAssetNo
+        public List<Assetscrapped> RetrieveAssetscrappedByAssetNo(List<string> AssetNos)
+        {
+            try
+            {
+                if (AssetNos.Count == 0) { return new List<Assetscrapped>(); }
+                StringBuilder sqlCommand = new StringBuilder();
+                sqlCommand.AppendLine(@"SELECT *  FROM  ""ASSET_SCRAPPED"" WHERE 1=1");
+                if (AssetNos.Count == 1)
+                {
+                    this.Database.AddInParameter(":ASSETNO" + 0.ToString(), AssetNos[0]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" AND ""ASSETNO""=:ASSETNO0");
+                }
+                else if (AssetNos.Count > 1 && AssetNos.Count <= 2000)
+                {
+                    this.Database.AddInParameter(":ASSETNO" + 0.ToString(), AssetNos[0]);//DBType:VARCHAR2
+                    sqlCommand.AppendLine(@" AND (""ASSETNO""=:ASSETNO0");
+                    for (int i = 1; i < AssetNos.Count; i++)
+                    {
+                        this.Database.AddInParameter(":ASSETNO" + i.ToString(), AssetNos[i]);//DBType:VARCHAR2
+                        sqlCommand.AppendLine(@" OR ""ASSETNO""=:ASSETNO" + i.ToString());
+                    }
+                    sqlCommand.AppendLine(" )");
+                }
+
+                sqlCommand.AppendLine(@" ORDER BY ""ASSET_SCRAPPED_ID"" DESC");
+                return this.Database.ExecuteToList<Assetscrapped>(sqlCommand.ToString());
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
+        #endregion
     }
 }

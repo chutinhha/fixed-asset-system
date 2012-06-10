@@ -138,6 +138,12 @@ namespace FixedAsset.Web.Admin
                 UIHelper.Alert(this, "请选择要申请报废的设备");
                 return;
             }
+            var currentAssetScrappedInfos = AssetscrappedService.RetrieveAssetscrappedByAssetNo(AssetIds);
+            if(currentAssetScrappedInfos.Where(p=>p.Approvedstate==AssetScrappedState.None||p.Approvedstate==AssetScrappedState.Rejected).Count()==0)
+            {
+                UIHelper.Alert(this, "对不起，您选择申请报废设备正在报废审核中或已报废！请重新选择！");
+                return;
+            }
             foreach (var assetId in AssetIds)
             {
                 var assetScrappedInfo = new Assetscrapped();

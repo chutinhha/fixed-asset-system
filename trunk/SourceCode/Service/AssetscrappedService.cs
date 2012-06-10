@@ -138,5 +138,9 @@ namespace FixedAsset.Services
         }
         #endregion
 
+        public List<Assetscrapped> RetrieveAssetscrappedByAssetNo(List<string> AssetNos)
+        {
+            return Management.RetrieveAssetscrappedByAssetNo(AssetNos);
+        }
     }
 }
