@@ -104,6 +104,9 @@ namespace FixedAsset.Web.Admin
                 {
                     BtnApprove.Visible = true;
                 }
+                var ckbAssetno = e.Item.FindControl("ckbAssetno") as CheckBox;
+                var litAssetno = e.Item.FindControl("litAssetno") as Literal;
+                ckbAssetno.Checked = AssetIds.Contains(litAssetno.Text.Trim());
             }
         }
         protected void rptScrappedList_ItemCommand(object sender, RepeaterCommandEventArgs e)

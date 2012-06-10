@@ -15,17 +15,6 @@ namespace FixedAsset.Web.Admin
 {
     public partial class B_Account : BasePage
     {
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            if (!IsPostBack)
-            {
-                AssetCategories.Clear();
-                LoadAssetCategory();
-                LoadSubAssetCategory();
-                InitFinanceCategory(ddlAccountingType, true);
-                LoadData(0);
-            }
-        }
         #region Properties
         protected IAssetcategoryService AssetcategoryService
         {
@@ -38,7 +27,6 @@ namespace FixedAsset.Web.Admin
                 return new AssetService();
             }
         }
-
         protected IBaccountService BaccountService
         {
             get
@@ -57,8 +45,32 @@ namespace FixedAsset.Web.Admin
                 return Session["EquipmentListAssetCategories"] as List<Assetcategory>;
             }
         }
+        public List<string> AssetIds
+        {
+            get
+            {
+                if (ViewState["AssetIds"] == null)
+                {
+                    ViewState["AssetIds"] = new List<string>();
+                }
+                return ViewState["AssetIds"] as List<string>;
+            }
+        }
         #endregion
 
+        #region Events
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            if (!IsPostBack)
+            {
+                AssetCategories.Clear();
+                LoadAssetCategory();
+                LoadSubAssetCategory();
+                InitFinanceCategory(ddlAccountingType, true);
+                LoadData(0);
+            }
+        }
         protected void ddlAssetCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ddlAssetCategory.SelectedIndex > 0)
@@ -91,14 +103,16 @@ namespace FixedAsset.Web.Admin
                 var litSupplierName = e.Item.FindControl("LitSupplierName") as Literal;
                 var assetsupplier = new AssetsupplierService().RetrieveAssetsupplierBySupplierid(assetInfo.Supplierid.ToString());
                 litSupplierName.Text = assetsupplier.Suppliername;
-
+                var ckbAssetno = e.Item.FindControl("ckbAssetno") as CheckBox;
+                var litAssetno = e.Item.FindControl("litAssetno") as Literal;
+                ckbAssetno.Checked = AssetIds.Contains(litAssetno.Text.Trim());
+                var BtnDetail = e.Item.FindControl("BtnDetail") as ImageButton;
+                BtnDetail.Visible = assetInfo.Financecategory == FinanceCategory.BAccount;
             }
-        }
-
+        } 
         protected void rptB_Account_ItemCommand(object sender, RepeaterCommandEventArgs e)
         {
             var AssetNo = e.CommandArgument.ToString();
-           
             if (e.CommandName.Equals("ViewDetail"))
             {
                 Response.Redirect(ResolveUrl(string.Format("~/Admin/B_AccountView.aspx?AssetNo={0}", AssetNo)));
@@ -106,9 +120,91 @@ namespace FixedAsset.Web.Admin
         }
         protected void pcData_PageIndexClick(object sender, KFSQ.Web.Controls.PageIndexClickEventArgs e)
         {
+            CheckSelectedAssetId();
             LoadData(e.PageIndex);
         }
+        /// <summary>
+        /// 查询
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void BtnSearch_Click(object sender, EventArgs e)
+        {
+            LoadData(0);
+        } 
+        /// <summary>
+        /// 进入B账
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btnB_Account_Click(object sender, EventArgs e)
+        {
+            CheckSelectedAssetId();
+            if(AssetIds.Count==0)
+            {
+                UIHelper.Alert(this, "请选择要转入B账的设备!");
+                return;
+            }
+            var assetInfos = AssetService.RetrieveAssetByAssetno(AssetIds);
+            var noBAccountAssetInfos = assetInfos.Where(p => p.Financecategory != FinanceCategory.BAccount).ToList();
+            if (noBAccountAssetInfos.Count == 0)
+            {
+                UIHelper.Alert(this, "对不起,您选择的设备已进入B账!");
+                return;
+            }
+            foreach (var noBAccountAssetInfo in noBAccountAssetInfos)
+            {
+                var bAccount = new Baccount();
+                bAccount.Assetno = noBAccountAssetInfo.Assetno;//设备编号
+                bAccount.Assetname = noBAccountAssetInfo.Assetname;//设备名称（冗余字段）
+                bAccount.Accounteddate = DateTime.Now;//入账日期
+                bAccount.Accounteduser = WebContext.Current.CurrentUser.Username; //入账人
+                bAccount.Createddate = DateTime.Now;//操作时间
+                bAccount.Createduser = WebContext.Current.CurrentUser.Username; ;//操作人
+                BaccountService.CreateBaccount(bAccount);
+                noBAccountAssetInfo.Financecategory = FinanceCategory.BAccount;
+                AssetService.UpdateAssetByAssetno(noBAccountAssetInfo);
+            }
+            UIHelper.Alert(this, "转入B账成功");
+            LoadData(pcData.CurrentIndex);
+        }
+        #endregion
 
+        #region Methods
+        protected void CheckSelectedAssetId()
+        {
+            if (rptB_Account.Items.Count > 0)
+            {
+                for (int i = 0; i < rptB_Account.Items.Count; i++)
+                {
+                    var ckbAssetno = rptB_Account.Items[i].FindControl("ckbAssetno") as CheckBox;
+                    var litAssetno = rptB_Account.Items[i].FindControl("litAssetno") as Literal;
+                    if (ckbAssetno != null)
+                    {
+                        if (ckbAssetno.Checked)
+                        {
+                            //选中，加到viewstate中来
+                            if (!AssetIds.Contains(litAssetno.Text.Trim()))
+                            {
+                                AssetIds.Add(litAssetno.Text.Trim());
+                            }
+                        }
+                        else
+                        {
+                            //取消选择，需要从viewstate里删除
+                            if (AssetIds.Contains(litAssetno.Text.Trim()))
+                            {
+                                AssetIds.Remove(litAssetno.Text.Trim());
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                AssetIds.Clear();
+            }
+        }
         protected void LoadData(int pageIndex)
         {
             var search = new AssetSearch();
@@ -196,72 +292,6 @@ namespace FixedAsset.Web.Admin
                 dropDownList.Items.Add(new ListItem(valuePair.Value, valuePair.Key.ToString()));
             }
         }
-
-        /// <summary>
-        /// 查询
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        protected void BtnSearch_Click(object sender, EventArgs e)
-        {
-            LoadData(0);
-        }
-
-        /// <summary>
-        /// 进入B账
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        protected void btnB_Account_Click(object sender, EventArgs e)
-        {
-            var intCount = 0;
-            if (rptB_Account.Items.Count > 0)
-            {
-                foreach (RepeaterItem item in rptB_Account.Items)
-                {
-                    HtmlInputCheckBox check = (HtmlInputCheckBox)item.FindControl("ckbB_Account");
-                    if (check.Checked == true)
-                    {
-                        intCount++;
-                        Domain.Asset assetInfo = new Asset();
-                        assetInfo.Financecategory = Domain.FinanceCategory.BAccount;
-                        assetInfo.Assetno = check.Value;
-                        AssetService.UpdateFinancecategoryByAssetno(assetInfo);
-                        Domain.Baccount baccount = new Baccount();
-                        baccount.Accounteddate = DateTime.Now;
-                        baccount.Accounteduser = WebContext.Current.CurrentUser.Username;
-                        baccount.Assetno = check.Value;
-                        baccount.Assetname = AssetService.RetrieveAllAsset().Where(p => p.Assetno.ToString().Equals(check.Value.ToString())).Select(o => o.Assetname).FirstOrDefault();
-                        baccount.Createddate = DateTime.Now;
-                        baccount.Createduser = WebContext.Current.CurrentUser.Username;
-                       Baccount baccountInfo=BaccountService.RetrieveBaccountByAssetno(baccount.Assetno);
-                       if (baccountInfo == null)
-                       {
-                           BaccountService.CreateBaccount(baccount);
-                       }
-                       else
-                       {
-                           BaccountService.UpdateBaccountByAssetno(baccount);
-                       }
-                        UIHelper.Alert(this, "转入B账成功");
-                    }
-                    else
-                    {
-                        if (intCount == 0)
-                        {
-                            UIHelper.Alert(this, "请选择要转入B账的设备");
-                            return;
-                        }
-                    }
-                }
-                LoadData(pcData.CurrentIndex);
-            }
-            else
-            {
-                UIHelper.Alert(this, "没有待转入B账的设备");
-                return;
-            }
-        }
-
+        #endregion
     }
 }

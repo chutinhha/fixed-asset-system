@@ -209,6 +209,7 @@ namespace FixedAsset.DataAccess
                      ""ASSET"".""DEPRECIATIONYEAR"",""ASSET"".""MANAGEMODE"",""ASSET"".""FINANCECATEGORY"",""ASSET"".""SUPPLIERID"",""ASSET"".""STORAGEFLAG"",""ASSET"".""PURCHASEDATE"",""ASSET"".""EXPIREDDATE""
                      FROM ""ASSET"" ,""ASSETCATEGORY"" 
                      WHERE ""ASSET"".""ASSETCATEGORYID""=""ASSETCATEGORY"".""ASSETCATEGORYID"" AND ""ASSET"".""EXPIREDDATE""<= Sysdate ");
+
                 #region �豸״̬
                 //WHERE ""ASSET"".""ASSETCATEGORYID""=""ASSETCATEGORY"".""ASSETCATEGORYID"" AND (""ASSET"".""STATE""= 1 OR ""ASSET"".""STATE""= 2) AND ""ASSET"".""EXPIREDDATE""<= Sysdate ");
                 info.States.Add(AssetState.InUse);
