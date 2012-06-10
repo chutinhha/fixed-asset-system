@@ -20,5 +20,6 @@ namespace FixedAsset.IServices
         Assetscrapped UpdateAssetscrappedByAssetscrappedid(Assetscrapped info);
         Assetscrapped RetrieveAssetscrappedByAssetscrappedid(string assetscrappedid);      
         void DeleteAssetscrappedByAssetscrappedid(string assetscrappedid);
+        List<Assetscrapped> RetrieveAssetscrappedByAssetNo(List<string> AssetNos);
     }
 }
