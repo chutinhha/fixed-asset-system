@@ -65,16 +65,13 @@
                 <tr>
                     <td colspan="6" align="right">
                         <asp:Button ID="BtnBatchApply" runat="server" CssClass="button" Text="批量申请报废" OnClick="BtnBatchApply_Click" />
-                        <asp:Button ID="Button2" runat="server" CssClass="button" Text="查询" OnClick="BtnSearch_Click" />
-                        <%--<input type="button" class="button" runat="server" id="btnApplicate" value="报废申请"
-                            onclick="ShowTopDialogFrame('报废申请', 'AssetUsedList.aspx',null,850,300);return false;" />
-                        <input type="button" class="button" runat="server" id="btnVerify" value="报废审核" onclick="ShowTopDialogFrame('报废审核', 'ScrappedApproved.aspx',null,550,300);return false;" />--%>
                     </td>
                 </tr>
             </table>
             <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
                 align="center">
-                <asp:Repeater ID="rptScrappedList" runat="server" OnItemDataBound="rptScrappedList_ItemDataBound" OnItemCommand="rptScrappedList_ItemCommand">
+                <asp:Repeater ID="rptScrappedList" runat="server" OnItemDataBound="rptScrappedList_ItemDataBound"
+                    OnItemCommand="rptScrappedList_ItemCommand">
                     <HeaderTemplate>
                         <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
                             <td style="width: 10%">
@@ -119,7 +116,8 @@
                         <tr>
                             <td align="center">
                                 <asp:CheckBox ID="ckbAssetno" runat="server" TextAlign="Right" />
-                                <asp:Literal ID="litAssetno" runat="server" Text='<%#Eval("Assetno")%>' />
+                                <a href='javascript:ShowTopDialogFrame("设备明细", "ShowAssetDetail.aspx?Assetno=<%#Eval("Assetno")%>","",900,560);'>
+                                    <asp:Literal ID="litAssetno" runat="server" Text='<%#Eval("Assetno")%>' /></a>
                             </td>
                             <td>
                                 <asp:Literal ID="litCategoryName" runat="server" />
@@ -165,7 +163,8 @@
                         <tr class="alt-row">
                             <td align="center">
                                 <asp:CheckBox ID="ckbAssetno" runat="server" TextAlign="Right" />
-                                <asp:Literal ID="litAssetno" runat="server" Text='<%#Eval("Assetno")%>' />
+                                <a href='javascript:ShowTopDialogFrame("设备明细", "ShowAssetDetail.aspx?Assetno=<%#Eval("Assetno")%>","",900,560);'>
+                                    <asp:Literal ID="litAssetno" runat="server" Text='<%#Eval("Assetno")%>' /></a>
                             </td>
                             <td>
                                 <asp:Literal ID="litCategoryName" runat="server" />
@@ -209,7 +208,7 @@
                     </AlternatingItemTemplate>
                 </asp:Repeater>
                 <tr>
-                   <td colspan="12" style="height: 30px; width: 98%;" align="center">
+                    <td colspan="12" style="height: 30px; width: 98%;" align="center">
                         <cc1:PagingControl ID="pcData" runat="server" MaxNavigatePageCount="7" OnPageIndexClick="pcData_PageIndexClick" />
                     </td>
                 </tr>

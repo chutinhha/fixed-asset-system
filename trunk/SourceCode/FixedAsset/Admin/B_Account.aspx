@@ -42,7 +42,7 @@
                     <td>
                         <asp:TextBox ID="txtSrchAssetname" Width="150" CssClass="" runat="server"></asp:TextBox>
                     </td>
-                     <td>
+                    <td>
                         账务类别
                     </td>
                     <td>
@@ -76,14 +76,11 @@
             <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
                 align="center">
                 <asp:Repeater ID="rptB_Account" runat="server" OnItemDataBound="rptB_Account_ItemDataBound"
-                 OnItemCommand="rptB_Account_ItemCommand">
+                    OnItemCommand="rptB_Account_ItemCommand">
                     <HeaderTemplate>
                         <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
-                            <td style="width: 5%" align="center">
-                                <input type="checkbox" id="chkAll"  title="全选/反选"/>
-                            </td>
-                            <td align="center" style="width: 12%">
-                                设备编号
+                            <td style="width: 10%">
+                                <input type="checkbox" id="chkAll" />设备编号
                             </td>
                             <td style="width: 8%">
                                 设备类别
@@ -112,7 +109,7 @@
                             <td style="width: 10%">
                                 预计折旧日期
                             </td>
-                             <td align="center" style="width: 5%">
+                            <td align="center" style="width: 5%">
                                 操作
                             </td>
                         </tr>
@@ -120,10 +117,9 @@
                     <ItemTemplate>
                         <tr>
                             <td align="center">
-                                <input type="checkbox" runat="server" id="ckbB_Account" value='<%#Eval("Assetno")%>' />
-                            </td>
-                            <td align="center">
-                                <%#Eval("Assetno")%>
+                                <asp:CheckBox ID="ckbAssetno" runat="server" TextAlign="Right" />
+                                <a href='javascript:ShowTopDialogFrame("设备明细", "ShowAssetDetail.aspx?Assetno=<%#Eval("Assetno")%>","",900,560);'>
+                                    <asp:Literal ID="litAssetno" runat="server" Text='<%#Eval("Assetno")%>' /></a>
                             </td>
                             <td align="center">
                                 <asp:Literal ID="litCategoryName" runat="server" />
@@ -152,23 +148,19 @@
                             <td align="center">
                                 <%#((DateTime)Eval("Expireddate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
-                             <td align="center">
-                                 <%-- <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/images/Button/edit.GIF"
-                                    AlternateText="编辑" ToolTip="编辑" CommandName="EditDetail" CommandArgument='<%#Eval("Contractid") %>' />
-                                <asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="~/images/Button/delete.GIF"
-                                    OnClientClick="return confirm('确认要删除吗？');" AlternateText="删除" ToolTip="删除" CommandName="DeleteDetail"  CommandArgument='<%#Eval("Contractid") %>' />--%>
-                                    <asp:ImageButton ID="BtnDetail" runat="server" ImageUrl="~/images/Button/detail.GIF"
-                                    AlternateText="详细信息" ToolTip="详细信息" CommandArgument='<%#Eval("Assetno")%>' CommandName="ViewDetail" />
+                            <td align="center">
+                                <asp:ImageButton ID="BtnDetail" runat="server" ImageUrl="~/images/Button/detail.GIF"
+                                    Visible="false" AlternateText="详细信息" ToolTip="详细信息" CommandArgument='<%#Eval("Assetno")%>'
+                                    CommandName="ViewDetail" />
                             </td>
                         </tr>
                     </ItemTemplate>
                     <AlternatingItemTemplate>
                         <tr class="alt-row">
                             <td align="center">
-                                <input type="checkbox" runat="server" id="ckbB_Account" value='<%#Eval("Assetno")%>' />
-                            </td>
-                            <td align="center">
-                                <%#Eval("Assetno")%>
+                                <asp:CheckBox ID="ckbAssetno" runat="server" TextAlign="Right" />
+                                <a href='javascript:ShowTopDialogFrame("设备明细", "ShowAssetDetail.aspx?Assetno=<%#Eval("Assetno")%>","",900,560);'>
+                                    <asp:Literal ID="litAssetno" runat="server" Text='<%#Eval("Assetno")%>' /></a>
                             </td>
                             <td align="center">
                                 <asp:Literal ID="litCategoryName" runat="server" />
@@ -197,13 +189,10 @@
                             <td align="center">
                                 <%#((DateTime)Eval("Expireddate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
-                             <td align="center">
-                                 <%-- <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/images/Button/edit.GIF"
-                                    AlternateText="编辑" ToolTip="编辑" CommandName="EditDetail" CommandArgument='<%#Eval("Contractid") %>' />
-                                <asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="~/images/Button/delete.GIF"
-                                    OnClientClick="return confirm('确认要删除吗？');" AlternateText="删除" ToolTip="删除" CommandName="DeleteDetail"  CommandArgument='<%#Eval("Contractid") %>' />--%>
-                                    <asp:ImageButton ID="BtnDetail" runat="server" ImageUrl="~/images/Button/detail.GIF"
-                                    AlternateText="详细信息" ToolTip="详细信息" CommandArgument='<%#Eval("Assetno")%>' CommandName="ViewDetail" />
+                            <td align="center">
+                                <asp:ImageButton ID="BtnDetail" runat="server" ImageUrl="~/images/Button/detail.GIF"
+                                    Visible="false" AlternateText="详细信息" ToolTip="详细信息" CommandArgument='<%#Eval("Assetno")%>'
+                                    CommandName="ViewDetail" />
                             </td>
                         </tr>
                     </AlternatingItemTemplate>
@@ -222,14 +211,6 @@
             $("#chkAll").click(function () {
                 $("input[type='checkbox']").attr("checked", this.checked);
             });
-            //var chk = $("input[type='checkbox']").get(0);
-            //chk.click(function () {
-                //                var chkallcheck = $("input[type=checkbox]:checked");
-                //                var chkall = $("input[type=checkbox]");
-                //                var hasChecked = chkallcheck.length == chkall.length - 1;
-                //                $("#chkAll").attr("checked", hasChecked);
-
-            //});
         });
-        </script>
+    </script>
 </asp:Content>

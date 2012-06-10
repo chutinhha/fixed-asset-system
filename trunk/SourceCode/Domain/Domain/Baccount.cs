@@ -14,9 +14,9 @@ namespace FixedAsset.Domain
 {
     /// <summary>
     ///BACCOUNT
-    /// <summary>
+    /// </summary>
     [Serializable]
-    public partial class Baccount
+    public partial class Baccount:Asset
     {
         #region 设备编号
         ///<summary>
@@ -58,9 +58,6 @@ namespace FixedAsset.Domain
         ///ColumnName:操作人;Size:40;
         ///</summary>
         public string Createduser{  get;set;}
-        #endregion
-
+        #endregion 
     }
-
-
 }
