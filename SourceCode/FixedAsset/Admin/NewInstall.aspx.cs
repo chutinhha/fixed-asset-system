@@ -28,17 +28,7 @@ namespace FixedAsset.Web.Admin
             }
             set { ViewState["SetupId"] = value; }
         }  
-        protected List<Assetcategory> AssetCategories
-        {
-            get
-            {
-                if (Session["NewInstallCategories"] == null)
-                {
-                    Session["NewInstallCategories"] = new List<Assetcategory>();
-                }
-                return Session["NewInstallCategories"] as List<Assetcategory>;
-            }
-        } 
+        
         protected IAssetsetupinfoService AssetsetupinfoService
         {
             get
@@ -60,6 +50,17 @@ namespace FixedAsset.Web.Admin
                 return new AssetService();
             }
         }
+        protected List<Assetcategory> AssetCategories
+        {
+            get
+            {
+                if (Session["NewInstallCategories"] == null)
+                {
+                    Session["NewInstallCategories"] = new List<Assetcategory>();
+                }
+                return Session["NewInstallCategories"] as List<Assetcategory>;
+            }
+        } 
         protected List<Assetsetupdetail> SetupDetail
         {
             get

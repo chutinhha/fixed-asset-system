@@ -124,7 +124,7 @@
                                             align="center" class="table_grayTH eoddTable">
                                             <tr style="border-bottom-width: 1px;">
                                                 <td colspan="6" align="right">
-                                                    设备选择<uc1:SelectedMultiAssets ID="ucSelectedMultiAssets" runat="server" OnSelectAssetChange="ucSelectedMultiAssets_SelectAssetChange" />
+                                                    设备选择<uc1:SelectedMultiAssets ID="ucSelectedMultiAssets" BillCategory="RepairBill" runat="server" OnSelectAssetChange="ucSelectedMultiAssets_SelectAssetChange" />
                                                 </td>
                                             </tr>
                                             <asp:Repeater ID="rptAssetsList" runat="server" OnItemDataBound="rptAssetsList_ItemDataBound"
