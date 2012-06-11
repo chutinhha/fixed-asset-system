@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using FixedAsset.Domain;
 using FixedAsset.IServices;
 using FixedAsset.Services;
+using FixedAsset.Web.Admin.UserControl;
 
 namespace FixedAsset.Web.Admin
 {
@@ -170,8 +171,25 @@ namespace FixedAsset.Web.Admin
         {
             var search = new AssetSearch();
             search.Assetno = txtSrchAssetno.Text.Trim();
-            search.States.Add(AssetState.InUse);
-            search.States.Add(AssetState.NoUse);
+            var BillCategory =
+                (BillCategory) Enum.Parse(typeof (BillCategory), PageUtility.GetQueryStringValue("BillCategory"));
+            switch (BillCategory)
+            {
+                case   BillCategory.SetupBill:
+                    search.States.Add(AssetState.NoUse);
+                    break;
+                case BillCategory.RepairBill:
+                    search.States.Add(AssetState.InUse);
+                    search.States.Add(AssetState.NoUse);
+                    break;
+                case BillCategory.RemoveBill:
+                    search.States.Add(AssetState.InUse);
+                    break;
+                case BillCategory.MoveBill:
+                    search.States.Add(AssetState.InUse);
+                    break;
+            }
+            
             search.Assetname = txtSrchAssetname.Text;
             search.FirstLevelCategoryId = AssetcategoryId;
             int recordCount = 0;

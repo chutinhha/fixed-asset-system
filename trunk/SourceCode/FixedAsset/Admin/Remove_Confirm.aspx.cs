@@ -30,11 +30,22 @@ namespace FixedAsset.Web.Admin
         {
             get
             {
-                if (Session["NewRemoveCategories"] == null)
+                if (Session["NewRemovingCategories"] == null)
                 {
-                    Session["NewRemoveCategories"] = new List<Assetcategory>();
+                    Session["NewRemovingCategories"] = new List<Assetcategory>();
                 }
-                return Session["NewRemoveCategories"] as List<Assetcategory>;
+                return Session["NewRemovingCategories"] as List<Assetcategory>;
+            }
+        }
+        protected List<Assetremovedetail> RemoveDetail
+        {
+            get
+            {
+                if (Session["Assetremovedetail"] == null)
+                {
+                    Session["Assetremovedetail"] = new List<Assetremovedetail>();
+                }
+                return Session["Assetremovedetail"] as List<Assetremovedetail>;
             }
         }
         protected IAssetremoveService AssetremoveService

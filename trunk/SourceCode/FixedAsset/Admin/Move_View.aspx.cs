@@ -29,13 +29,25 @@ namespace FixedAsset.Web.Admin
         {
             get
             {
-                if (Session["NewInstallCategories"] == null)
+                if (Session["NewMovingCategories"] == null)
                 {
-                    Session["NewInstallCategories"] = new List<Assetcategory>();
+                    Session["NewMovingCategories"] = new List<Assetcategory>();
                 }
-                return Session["NewInstallCategories"] as List<Assetcategory>;
+                return Session["NewMovingCategories"] as List<Assetcategory>;
             }
         }
+        protected List<Assetmovedetail> Details
+        {
+            get
+            {
+                if (Session["AssetMovingdetail"] == null)
+                {
+                    Session["AssetMovingdetail"] = new List<Assetmovedetail>();
+                }
+                return Session["AssetMovingdetail"] as List<Assetmovedetail>;
+            }
+        }
+
         protected IAssetmoveService AssetmoveService
         {
             get
@@ -64,17 +76,7 @@ namespace FixedAsset.Web.Admin
                 return new AssetcategoryService();
             }
         }
-        protected List<Assetmovedetail> Details
-        {
-            get
-            {
-                if (Session["Assetmovedetail"] == null)
-                {
-                    Session["Assetmovedetail"] = new List<Assetmovedetail>();
-                }
-                return Session["Assetmovedetail"] as List<Assetmovedetail>;
-            }
-        }
+       
         #endregion
 
         #region Events

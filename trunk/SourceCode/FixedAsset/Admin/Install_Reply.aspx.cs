@@ -39,6 +39,17 @@ namespace FixedAsset.Web.Admin
                 return Session["NewInstallCategories"] as List<Assetcategory>;
             }
         }
+        protected List<Assetsetupdetail> SetupDetail
+        {
+            get
+            {
+                if (Session["AssetSetupDetail"] == null)
+                {
+                    Session["AssetSetupDetail"] = new List<Assetsetupdetail>();
+                }
+                return Session["AssetSetupDetail"] as List<Assetsetupdetail>;
+            }
+        }
         protected IAssetsetupinfoService AssetsetupinfoService
         {
             get
