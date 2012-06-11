@@ -3,6 +3,7 @@
 
 <%@ Register Assembly="KFSQ.Web.Controls" Namespace="KFSQ.Web.Controls" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link href="css/mail.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
     <div class="content-box">
@@ -15,19 +16,19 @@
             <div class="tab-content default-tab">
                 <fieldset>
                     <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
-                        align="center">
+                        align="center"  class="gridtable">
                         <asp:Repeater ID="rptAssetsCategoryList" runat="server">
                             <HeaderTemplate>
-                                <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
-                                    <td align="left">
+                                <tr class="thbg" style="padding:0 0 0 0">
+                                    <th align="left">
                                         资产大类
-                                    </td>
-                                    <td align="left">
+                                    </th>
+                                    <th align="left">
                                         资产小类
-                                    </td>
-                                    <td align="center">
+                                    </th>
+                                    <th align="center">
                                         资产数量
-                                    </td>
+                                    </th>
                                 </tr>
                             </HeaderTemplate>
                             <ItemTemplate>
@@ -44,7 +45,7 @@
                                 </tr>
                             </ItemTemplate>
                             <AlternatingItemTemplate>
-                                <tr class="alt-row">
+                                <tr class="even">
                                     <td align="left">
                                         <%#Eval("AssetCategory")%>
                                     </td>
