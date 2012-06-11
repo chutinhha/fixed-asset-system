@@ -11,7 +11,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
     <ul id="TabPage1">
-        <li id="Tab1" title="设备管理">B账</li>
+        <li id="Tab1" title="B账">B账</li>
     </ul>
     <div id="cnt">
         <div id="dTab1" class="Box text_box">
@@ -198,7 +198,7 @@
                     </AlternatingItemTemplate>
                 </asp:Repeater>
                 <tr>
-                    <td colspan="9" style="height: 30px; width: 98%;">
+                    <td colspan="11" style="height: 30px; width: 98%;" align="center">
                         <cc1:PagingControl ID="pcData" runat="server" MaxNavigatePageCount="7" OnPageIndexClick="pcData_PageIndexClick" />
                     </td>
                 </tr>

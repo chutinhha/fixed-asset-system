@@ -93,7 +93,7 @@
                                 申请日期:
                             </td>
                             <td>
-                                <asp:Literal ID="litApplydate" runat="server" />
+                                <asp:Literal ID="litApplyDate" runat="server" />
                             </td>
                         </tr>
                         <tr>

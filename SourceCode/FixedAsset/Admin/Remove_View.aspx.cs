@@ -104,7 +104,7 @@ namespace FixedAsset.Web.Admin
             }
             if (remove.Applydate.HasValue)
             {
-                //litApplyDate.Text = SetupInfo.Applydate.Value.ToString(UiConst.DateFormat);  //申请日期
+                litApplyDate.Text = remove.Applydate.Value.ToString(UiConst.DateFormat);  //申请日期
             }
             litApplycontent.Text = remove.Applycontent;//申请内容
             ucApplyuser.UserId = remove.Applyuserid;//申请人
