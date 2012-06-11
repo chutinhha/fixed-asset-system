@@ -77,8 +77,8 @@ namespace FixedAsset.Web.Admin
                     Response.Redirect(ResolveUrl("~/Admin/RemoveList.aspx"));
                     return;
                 }
-                var SetupInfo = AssetremoveService.RetrieveAssetremoveByAssetremoveid(RemoveId);
-                BindData(SetupInfo);
+                var headInfo = AssetremoveService.RetrieveAssetremoveByAssetremoveid(RemoveId);
+                BindData(headInfo);
                 BindDetails();
             }
         }
@@ -91,8 +91,7 @@ namespace FixedAsset.Web.Admin
                 var list = service.RetrieveAllAssetcategory();
                 AssetCategories.AddRange(list);
             }
-        }
-
+        } 
         protected void BindData(Assetremove remove)
         {
             //bind setup
@@ -100,7 +99,7 @@ namespace FixedAsset.Web.Admin
             ucSeletedSystem.Assetcategoryid = remove.Assetcategoryid; //所属系统
             if (remove.Applydate.HasValue)
             {
-                litApplysetupdate.Text = remove.Applydate.Value.ToString(UiConst.DateFormat); //申请安装日期
+                litApplysetupdate.Text = remove.Applydate.Value.ToString(UiConst.DateFormat); //申请拆机日期
             }
             if (remove.Applydate.HasValue)
             {
@@ -115,7 +114,7 @@ namespace FixedAsset.Web.Admin
             litProjectcontactorphone.Text = remove.Projectcontactorphone; //项目体(分公司)联系电话
             if (remove.Planremovedate.HasValue)
             {
-                litPlansetupdate.Text = remove.Planremovedate.Value.ToString(UiConst.DateFormat); //计划安装日期
+                litPlansetupdate.Text = remove.Planremovedate.Value.ToString(UiConst.DateFormat); //计划拆机日期
             }
             if (remove.Approvedate.HasValue)
             {
@@ -126,8 +125,12 @@ namespace FixedAsset.Web.Admin
             {
                 litConfirmdate.Text = remove.Confirmdate.Value.ToString(UiConst.DateTimeFormat);//确认日期 
             }
+            if(remove.Actualremovedate.HasValue)
+            {
+                litActualsetupdate.Text = remove.Actualremovedate.Value.ToString(UiConst.DateFormat); //实际拆机日期
+            }
             litConfirmuser.Text = remove.Confirmuser;//确认人
-            litSetupcontent.Text = remove.Removedcontent;//已安装明细
+            litSetupcontent.Text = remove.Removedcontent;//已拆机明细
             litApproveresult.Text = EnumUtil.RetrieveEnumDescript(remove.Approveresult);//状态
         }
 
