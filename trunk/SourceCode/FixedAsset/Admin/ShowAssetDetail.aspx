@@ -132,13 +132,13 @@
                 <td colspan="4">
                     <div id="tag" class="thin blue">
                         <ul id="tags">
-                            <li id="api" class="selectTag"><a href="javascript:tabChange('api','dapi','dflow','dquestion','dabilityRemark')">
+                            <li id="setupBill" class="selectTag"><a href="#" onclick="javascript:tabChange('setupBill','setupBillContent','repairBillContent','moveBillContent','removeBillContent')">
                                 安装</a> </li>
-                            <li id="flow"><a href="javascript:tabChange('flow','dflow','dquestion','dapi','dabilityRemark')">
+                            <li id="repairBill"><a href="javascript:tabChange('repairBill','repairBillContent','setupBillContent','moveBillContent','removeBillContent')">
                                 报修</a> </li>
-                            <li id="question"><a href="javascript:tabChange('question','dquestion','dapi','dflow','dabilityRemark')">
+                            <li id="moveBill"><a href="javascript:tabChange('moveBill','moveBillContent','setupBillContent','repairBillContent','removeBillContent')">
                                 移机</a></li>
-                            <li id="abilityRemark"><a href="javascript:tabChange('abilityRemark','dabilityRemark','dquestion','dapi','dflow')">
+                            <li id="removeBill"><a href="javascript:tabChange('removeBill','removeBillContent','setupBillContent','repairBillContent','moveBillContent')">
                                 拆机</a></li>
                         </ul>
                         <p class="gap">
@@ -147,7 +147,7 @@
                     <p class="c">
                     </p>
                     <div id="tagContent">
-                        <div id="dapi" style="display: block;">
+                        <div id="setupBillContent" style="display: block;">
                             <asp:Repeater ID="rptSetupList" runat="server">
                                 <HeaderTemplate>
                                     <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
@@ -190,7 +190,7 @@
                                 </AlternatingItemTemplate>
                             </asp:Repeater>
                         </div>
-                        <div id="dflow" style="display: none;">
+                        <div id="repairBillContent" style="display: none;">
                             <asp:Repeater ID="rptRepairList" runat="server">
                                 <HeaderTemplate>
                                     <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
@@ -233,7 +233,7 @@
                                 </AlternatingItemTemplate>
                             </asp:Repeater>
                         </div>
-                        <div id="dquestion" style="display: none;">
+                        <div id="moveBillContent" style="display: none;">
                             <asp:Repeater ID="rptMoveList" runat="server">
                                 <HeaderTemplate>
                                     <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
@@ -276,7 +276,7 @@
                                 </AlternatingItemTemplate>
                             </asp:Repeater>
                         </div>
-                        <div id="dabilityRemark" style="display: none;">
+                        <div id="removeBillContent" style="display: none;">
                             <asp:Repeater ID="rptRemoveList" runat="server">
                                 <HeaderTemplate>
                                     <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">

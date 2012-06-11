@@ -1,7 +1,7 @@
 /********************************************************************
 * File Name:AssetcategoryManagement
 * Copyright (C) 2012 Bruce.huang 
-* Creater & Date:Bruce.huang - 2012-05-25
+* Creater & Date:Bruce.huang - 2012-06-11
 * Create Explain:
 * Description:DataBase Access Class
 * Modify Explain:
@@ -16,13 +16,14 @@ using FixedAsset.Domain;
 
 namespace FixedAsset.DataAccess
 {
-    public partial class AssetcategoryManagement:BaseManagement
+    public partial class AssetcategoryManagement : BaseManagement
     {
         #region Construct
-        private const int ColumnCount = 6;
+        private const int ColumnCount = 8;
         public AssetcategoryManagement()
         { }
-        public AssetcategoryManagement(BaseManagement baseManagement): base(baseManagement)
+        public AssetcategoryManagement(BaseManagement baseManagement)
+            : base(baseManagement)
         { }
         #endregion
 
@@ -31,13 +32,15 @@ namespace FixedAsset.DataAccess
         {
             try
             {
-                string sqlCommand = @"INSERT INTO ""ASSETCATEGORY"" (""ASSETCATEGORYID"",""ASSETPARENTCATEGORYID"",""ASSETCATEGORYNAME"",""REMARK"",""CREATEDATE"",""CREATOR"") VALUES (:Assetcategoryid,:Assetparentcategoryid,:Assetcategoryname,:Remark,:Createdate,:Creator)";
+                string sqlCommand = @"INSERT INTO ""ASSETCATEGORY"" (""ASSETCATEGORYID"",""ASSETPARENTCATEGORYID"",""ASSETCATEGORYNAME"",""REMARK"",""CREATEDATE"",""CREATOR"",""CATEGORYVALUE"",""SYSTEM"") VALUES (:Assetcategoryid,:Assetparentcategoryid,:Assetcategoryname,:Remark,:Createdate,:Creator,:Categoryvalue,:System)";
                 this.Database.AddInParameter(":Assetcategoryid", info.Assetcategoryid);//DBType:VARCHAR2
                 this.Database.AddInParameter(":Assetparentcategoryid", info.Assetparentcategoryid);//DBType:VARCHAR2
                 this.Database.AddInParameter(":Assetcategoryname", info.Assetcategoryname);//DBType:NVARCHAR2
                 this.Database.AddInParameter(":Remark", info.Remark);//DBType:NVARCHAR2
                 this.Database.AddInParameter(":Createdate", info.Createdate);//DBType:DATE
                 this.Database.AddInParameter(":Creator", info.Creator);//DBType:VARCHAR2
+                this.Database.AddInParameter(":Categoryvalue", info.Categoryvalue);//DBType:VARCHAR2
+                this.Database.AddInParameter(":System", info.System);//DBType:NVARCHAR2
                 this.Database.ExecuteNonQuery(sqlCommand);
 
             }
@@ -60,7 +63,9 @@ namespace FixedAsset.DataAccess
                 this.Database.AddInParameter(":Remark", info.Remark);//DBType:NVARCHAR2
                 this.Database.AddInParameter(":Createdate", info.Createdate);//DBType:DATE
                 this.Database.AddInParameter(":Creator", info.Creator);//DBType:VARCHAR2
-                string sqlCommand = @"UPDATE ""ASSETCATEGORY"" SET  ""ASSETPARENTCATEGORYID""=:Assetparentcategoryid , ""ASSETCATEGORYNAME""=:Assetcategoryname , ""REMARK""=:Remark , ""CREATEDATE""=:Createdate , ""CREATOR""=:Creator WHERE  ""ASSETCATEGORYID""=:Assetcategoryid";
+                this.Database.AddInParameter(":Categoryvalue", info.Categoryvalue);//DBType:VARCHAR2
+                this.Database.AddInParameter(":System", info.System);//DBType:NVARCHAR2
+                string sqlCommand = @"UPDATE ""ASSETCATEGORY"" SET  ""ASSETPARENTCATEGORYID""=:Assetparentcategoryid , ""ASSETCATEGORYNAME""=:Assetcategoryname , ""REMARK""=:Remark , ""CREATEDATE""=:Createdate , ""CREATOR""=:Creator , ""CATEGORYVALUE""=:Categoryvalue , ""SYSTEM""=:System WHERE  ""ASSETCATEGORYID""=:Assetcategoryid";
                 this.Database.ExecuteNonQuery(sqlCommand);
             }
             finally
@@ -92,22 +97,22 @@ namespace FixedAsset.DataAccess
         {
             try
             {
-                if(Assetcategoryids.Count==0){ return ;}
+                if (Assetcategoryids.Count == 0) { return; }
                 StringBuilder sqlCommand = new StringBuilder();
                 sqlCommand.AppendLine(@"DELETE FROM  ""ASSETCATEGORY"" WHERE 1=1");
-                if(Assetcategoryids.Count==1)
+                if (Assetcategoryids.Count == 1)
                 {
-                    this.Database.AddInParameter(":Assetcategoryid"+0.ToString(),Assetcategoryids[0]);//DBType:VARCHAR2
+                    this.Database.AddInParameter(":Assetcategoryid" + 0.ToString(), Assetcategoryids[0]);//DBType:VARCHAR2
                     sqlCommand.AppendLine(@" AND ""ASSETCATEGORYID""=:Assetcategoryid0");
                 }
-                else if(Assetcategoryids.Count>1&&Assetcategoryids.Count<=2000)
+                else if (Assetcategoryids.Count > 1 && Assetcategoryids.Count <= 2000)
                 {
-                    this.Database.AddInParameter(":Assetcategoryid"+0.ToString(),Assetcategoryids[0]);//DBType:VARCHAR2
+                    this.Database.AddInParameter(":Assetcategoryid" + 0.ToString(), Assetcategoryids[0]);//DBType:VARCHAR2
                     sqlCommand.AppendLine(@" AND (""ASSETCATEGORYID""=:Assetcategoryid0");
                     for (int i = 1; i < Assetcategoryids.Count; i++)
                     {
-                    this.Database.AddInParameter(":Assetcategoryid"+i.ToString(),Assetcategoryids[i]);//DBType:VARCHAR2
-                    sqlCommand.AppendLine(@" OR ""ASSETCATEGORYID""=:Assetcategoryid"+i.ToString());
+                        this.Database.AddInParameter(":Assetcategoryid" + i.ToString(), Assetcategoryids[i]);//DBType:VARCHAR2
+                        sqlCommand.AppendLine(@" OR ""ASSETCATEGORYID""=:Assetcategoryid" + i.ToString());
                     }
                     sqlCommand.AppendLine(" )");
                 }
@@ -119,7 +124,6 @@ namespace FixedAsset.DataAccess
                 this.Database.ClearParameter();
             }
         }
-        #endregion
-
+        #endregion 
     }
 }

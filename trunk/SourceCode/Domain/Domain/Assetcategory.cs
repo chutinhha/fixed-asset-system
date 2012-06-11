@@ -18,46 +18,60 @@ namespace FixedAsset.Domain
     [Serializable]
     public partial class Assetcategory
     {
-        #region ASSETCATEGORYID
+        #region 分类编号(父编号+自编号)
         ///<summary>
-        ///ColumnName:ASSETCATEGORYID;Size:40;NOT NULL
+        ///分类编号(父编号+自编号),ASSETCATEGORYID;Size:40;NOT NULL
         ///</summary>
-        public string Assetcategoryid{  get;set;}
+        public string Assetcategoryid { get; set; }
         #endregion
 
-        #region ASSETPARENTCATEGORYID
+        #region 父编号
         ///<summary>
-        ///ColumnName:ASSETPARENTCATEGORYID;Size:40;
+        ///父编号,ASSETPARENTCATEGORYID;Size:40;
         ///</summary>
-        public string Assetparentcategoryid{  get;set;}
+        public string Assetparentcategoryid { get; set; }
         #endregion
 
-        #region ASSETCATEGORYNAME
+        #region 分类名
         ///<summary>
-        ///ColumnName:ASSETCATEGORYNAME;Size:200;
+        ///分类名,ASSETCATEGORYNAME;Size:200;
         ///</summary>
-        public string Assetcategoryname{  get;set;}
+        public string Assetcategoryname { get; set; }
         #endregion
 
-        #region REMARK
+        #region 备注
         ///<summary>
-        ///ColumnName:REMARK;Size:200;
+        ///备注,REMARK;Size:200;
         ///</summary>
-        public string Remark{  get;set;}
+        public string Remark { get; set; }
         #endregion
 
-        #region CREATEDATE
+        #region 创建时间
         ///<summary>
-        ///ColumnName:CREATEDATE;
+        ///创建时间,CREATEDATE;
         ///</summary>
-        public DateTime? Createdate{  get;set;}
+        public DateTime? Createdate { get; set; }
         #endregion
 
-        #region CREATOR
+        #region 创建人
         ///<summary>
-        ///ColumnName:CREATOR;Size:50;
+        ///创建人,CREATOR;Size:50;
         ///</summary>
-        public string Creator{  get;set;}
+        public string Creator { get; set; }
+        #endregion
+
+        #region CATEGORYVALUE
+        ///<summary>
+        ///,CATEGORYVALUE;Size:50;
+        ///</summary>
+        public string Categoryvalue { get; set; }
+        #endregion
+
+        #region 对应的系统
+        ///<summary>
+        ///对应的系统,SYSTEM;Size:80;
+        ///</summary>
+        public string System { get; set; }
         #endregion
 
         public string CategoryAllPathName { get; set; }
