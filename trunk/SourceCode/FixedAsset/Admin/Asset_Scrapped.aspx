@@ -74,10 +74,10 @@
                     OnItemCommand="rptScrappedList_ItemCommand">
                     <HeaderTemplate>
                         <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
-                            <td style="width: 10%">
+                            <td style="width: 11%">
                                 <input type="checkbox" id="chkAll" />设备编号
                             </td>
-                            <td style="width: 8%">
+                            <td style="width: 7%">
                                 设备类别
                             </td>
                             <td style="width: 9%">
@@ -86,13 +86,13 @@
                             <td style="width: 6%">
                                 设备状态
                             </td>
-                            <td style="width: 5%">
+                            <td style="width: 6%">
                                 折旧年限
                             </td>
                             <td style="width: 8%">
                                 入账日期
                             </td>
-                            <td style="width: 10%">
+                            <td style="width: 8%">
                                 预计折旧日期
                             </td>
                             <td style="width: 9%">
