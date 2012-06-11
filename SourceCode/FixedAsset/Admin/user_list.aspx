@@ -65,8 +65,8 @@
                                 <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/user.GIF"
                                     AlternateText="分配角色" ToolTip="分配角色" CommandArgument='<%#Eval("Id")%>' CommandName="EditDetail" />
                                 <asp:ImageButton ID="BtnDeleted" runat="server" ImageUrl="~/images/Button/delete.GIF"
-                                     CommandArgument='<%#Eval("Id")%>' CommandName="DeleteDetail" OnClientClick="return confirm('确认要删除吗？');"
-                                    AlternateText="删除" ToolTip="删除" />
+                                     CommandArgument='<%#Eval("Id")%>' CommandName="DeleteDetail" OnClientClick="return confirm('确认要取消角色吗？');"
+                                    AlternateText="取消角色" ToolTip="取消角色" />
                             </td>
                         </tr>
                     </ItemTemplate>
@@ -91,8 +91,8 @@
                                 <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/user.GIF"
                                     AlternateText="分配角色" ToolTip="分配角色" CommandArgument='<%#Eval("Id")%>' CommandName="EditDetail" />
                                 <asp:ImageButton ID="BtnDeleted" runat="server" ImageUrl="~/images/Button/delete.GIF"
-                                    CommandArgument='<%#Eval("Id")%>' CommandName="DeleteDetail" OnClientClick="return confirm('确认要删除吗？');"
-                                    AlternateText="删除" ToolTip="删除" />
+                                     CommandArgument='<%#Eval("Id")%>' CommandName="DeleteDetail" OnClientClick="return confirm('确认要取消角色吗？');"
+                                    AlternateText="取消角色" ToolTip="取消角色" />
                             </td>
                         </tr>
                     </AlternatingItemTemplate>
