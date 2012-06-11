@@ -9,6 +9,7 @@
 <%@ Register Src="~/Admin/UserControl/ucSelectProject.ascx" TagName="SelectProject"
     TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link href="css/mail.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
     <ul id="TabPage1">
@@ -50,67 +51,67 @@
                 </tr>
             </table>
             <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
-                align="center" class="table_grayTH eoddTable">
+                align="center" class="gridtable">
                 <asp:Repeater ID="rptAssetSetupList" runat="server" OnItemDataBound="rptAssetSetupList_ItemDataBound"
                     OnItemCommand="rptAssetSetupList_ItemCommand">
                     <HeaderTemplate>
-                        <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
-                            <td style="width: 100px;" align="center">
+                        <tr class="thbg" style="padding:0 0 0 0">
+                            <th style="width: 100px;" align="center">
                                 申请单号
-                            </td>
-                            <td align="center" style="width: 40px;">
+                            </th>
+                            <th align="center" style="width: 40px;">
                                 系统
-                            </td>
-                            <td align="center" style="width: 60px;">
+                            </th>
+                            <th align="center" style="width: 60px;">
                                 分公司
-                            </td>
-                            <td align="center" style="width: 60px;">
+                            </th>
+                            <th align="center" style="width: 60px;">
                                 项目体
-                            </td>
-                            <td align="center" style="width: 75px;">
+                            </th>
+                            <th align="center" style="width: 75px;">
                                 申请日期
-                            </td>
-                            <td align="center">
+                            </th>
+                            <th align="center">
                                 申请人
-                            </td>
-                            <td align="center">
+                            </th>
+                            <th align="center">
                                 申请内容
-                            </td>
-                            <td align="center" style="width: 60px;">
+                            </th>
+                            <th align="center" style="width: 60px;">
                                 状态
-                            </td>
-                            <td align="center">
+                            </th>
+                            <th align="center">
                                 操作
-                            </td>
+                            </th>
                         </tr>
                     </HeaderTemplate>
                     <ItemTemplate>
                         <tr>
-                            <td>
+                            <td align="center" style="width: 100px;" >
                                 <%#Eval("Setupid")%>
                             </td>
-                            <td>
+                            <td align="center" style="width: 40px;">
                                 <%#Eval("System")%>
                             </td>
-                            <td>
+                            <td align="center" style="width: 60px;">
                                 <%#Eval("Subcompanyname")%>
                             </td>
-                            <td>
+                            <td align="center"  style="width: 60px;">
                                 <%#Eval("Subcompanyname").ToString() == Eval("Storagename").ToString() ? string.Empty : Eval("Storagename").ToString()%>
                             </td>
-                            <td>
+                            <td align="center" style="width: 75px;">
                                 <%#((DateTime)Eval("Applydate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#Eval("Applyusername")%>
                             </td>
-                            <td style="word-wrap: break-word; overflow: hidden; width: 200px;">
+                            <td style="word-wrap: break-word; text-align:center; overflow: hidden; width: 200px;">
                                 <%#Eval("Applycontent")%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#EnumUtil.RetrieveEnumDescript((SetupState)Eval("Approveresult"))%>
                             </td>
-                            <td align="right">
+                            <td align="center">
                                 <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"
                                     Visible="false" AlternateText="编辑" ToolTip="编辑" CommandArgument='<%#Eval("Setupid")%>'
                                     CommandName="EditDetail" />
@@ -129,32 +130,32 @@
                         </tr>
                     </ItemTemplate>
                     <AlternatingItemTemplate>
-                        <tr class="alt-row">
-                            <td>
+                        <tr class="even">
+                            <td align="center" style="width: 100px;">
                                 <%#Eval("Setupid")%>
                             </td>
-                            <td>
+                            <td align="center" style="width: 40px;">
                                 <%#Eval("System")%>
                             </td>
-                            <td>
+                            <td align="center" style="width: 60px;">
                                 <%#Eval("Subcompanyname")%>
                             </td>
-                            <td>
+                            <td align="center"  style="width: 60px;">
                                 <%#Eval("Subcompanyname").ToString() == Eval("Storagename").ToString() ? string.Empty : Eval("Storagename").ToString()%>
                             </td>
-                            <td>
+                            <td  align="center" style="width: 75px;">
                                 <%#((DateTime)Eval("Applydate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#Eval("Applyusername")%>
                             </td>
-                            <td style="word-wrap: break-word; overflow: hidden; width: 200px;">
+                            <td style="word-wrap: break-word; text-align:center; overflow: hidden; width: 200px;">
                                 <%#Eval("Applycontent")%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#EnumUtil.RetrieveEnumDescript((SetupState)Eval("Approveresult"))%>
                             </td>
-                            <td align="right">
+                            <td align="center">
                                 <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"
                                     Visible="false" AlternateText="编辑" ToolTip="编辑" CommandArgument='<%#Eval("Setupid")%>'
                                     CommandName="EditDetail" />
@@ -173,9 +174,11 @@
                         </tr>
                     </AlternatingItemTemplate>
                 </asp:Repeater>
-                <tr>
-                    <td colspan="9" style="height: 30px; width: 98%;" align="center">
+                <tr style="height:28px">
+                    <td colspan="9" style="height: 28px; width: 98%;" align="center">
+                    <div style="height:28px; padding-top:3px; padding-bottom:3px">
                         <cc1:PagingControl ID="pcData" runat="server" MaxNavigatePageCount="7" OnPageIndexClick="pcData_PageIndexClick" />
+                        </div>
                     </td>
                 </tr>
             </table>
