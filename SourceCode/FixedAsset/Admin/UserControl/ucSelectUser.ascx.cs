@@ -126,11 +126,13 @@ namespace FixedAsset.Web.Admin.UserControl
             {
                 txtUsername.Text = currentInfo.Username;
                 litUserName.Text = currentInfo.Username;
+                UserId = hfId.Value;
             }
             else
             {
                 txtUsername.Text = string.Empty;
                 litUserName.Text = string.Empty;
+                UserId = hfId.Value;
             }
         }
     }

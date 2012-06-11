@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using FixedAsset.Domain;
 using FixedAsset.IServices;
 using FixedAsset.Services;
 
@@ -7,6 +9,7 @@ namespace FixedAsset.Web.Admin.UserControl
     public partial class ucSeletedSystem : System.Web.UI.UserControl
     {
         #region Properties
+
         public bool Enabled
         {
             get { return ddlSystemList.Visible; }
@@ -46,10 +49,14 @@ namespace FixedAsset.Web.Admin.UserControl
                 }
             }
         }
-        protected IAssetsupplierService AssetsupplierService
+        protected IAssetcategoryService AssetcategoryService
         {
-            get { return new AssetsupplierService(); }
+            get { return new AssetcategoryService(); }
         }
+        //protected IAssetsupplierService AssetsupplierService
+        //{
+        //    get { return new AssetsupplierService(); }
+        //}
         #endregion
 
         #region Events
@@ -81,8 +88,19 @@ namespace FixedAsset.Web.Admin.UserControl
 
         protected void LoadData()
         {
-            var list = AssetsupplierService.RetrieveAllAssetsupplier();
-            ddlSystemList.DataSource = list;
+            //var list = AssetsupplierService.RetrieveAllAssetsupplier();
+            //if (AssetCategories.Count == 0)
+            //{
+            var list = AssetcategoryService.RetrieveAllAssetcategory();
+            //    AssetCategories.AddRange(list);
+            //}
+            var categories = list.Where(p => string.IsNullOrEmpty(p.Assetparentcategoryid)).ToList();
+            //categories.Insert(0, new Assetcategory() { Assetcategoryid = string.Empty, Assetcategoryname = "全部" });
+            //ddlAssetCategory.DataTextField = "Assetcategoryname";
+            //ddlAssetCategory.DataValueField = "Assetcategoryid";
+            //ddlAssetCategory.DataSource = categories;
+            //ddlAssetCategory.DataBind();
+            ddlSystemList.DataSource = categories;
             ddlSystemList.DataTextField = @"System";
             ddlSystemList.DataValueField = @"Assetcategoryid";
             ddlSystemList.DataBind(); 

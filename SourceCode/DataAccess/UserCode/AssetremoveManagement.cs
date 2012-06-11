@@ -80,7 +80,7 @@ namespace FixedAsset.DataAccess
                      ""ASSETREMOVE"".""STORAGEID"",""ASSETREMOVE"".""SUBCOMPANY"",""ASSETREMOVE"".""SUBCOMPANYCONTACTORID"",""ASSETREMOVE"".""CONTACTPHONE"",""ASSETREMOVE"".""PROJECTCONTACTORID"",
                      ""ASSETREMOVE"".""PROJECTCONTACTORPHONE"",""ASSETREMOVE"".""CREATOR"",""ASSETREMOVE"".""CREATEDDATE""
                      ,SYSTEM,c.StorageName,c.subcompanyname,TU.USERNAME AS Applyusername
-                     FROM ""ASSETREMOVE"" inner join assetsupplier ON ASSETREMOVE.ASSETCATEGORYID=assetsupplier.ASSETCATEGORYID
+                     FROM ""ASSETREMOVE"" inner join ASSETCATEGORY ON ASSETREMOVE.ASSETCATEGORYID=ASSETCATEGORY.ASSETCATEGORYID
                      Inner join  v_storage_address c on c.StorageTitle=ASSETREMOVE.STORAGETITLE and c.StorageId=ASSETREMOVE.STORAGEID
                      INNER JOIN T_USER TU ON TU.ID=ASSETREMOVE.APPLYUSERID
                      WHERE 1=1");
