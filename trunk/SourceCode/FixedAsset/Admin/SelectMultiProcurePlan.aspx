@@ -11,6 +11,7 @@
     <title></title>
     <link rel="stylesheet" href="css/default.css" type="text/css" />
     <link href="../App_Themes/Control_Theme/Dialog.css" rel="stylesheet" type="text/css" />
+    <link href="css/mail.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <script language="javascript" type="text/javascript" src="../Scripts/Extjs/ext-base.js"></script>
@@ -24,32 +25,32 @@
             <asp:TextBox class="text-input small-input" ID="txtSrchPsid" runat="server"></asp:TextBox>
             <asp:Button ID="btnSearch" class="button" runat="server" Text="查询" OnClick="btnSearch_Click" />
             <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
-                align="center" class="table_grayTH eoddTable" id="tbProcureList">
+                align="center" class="gridtable" id="tbProcureList">
                 <asp:Repeater ID="rptProcureList" runat="server" OnItemDataBound="rptProcureList_ItemDataBound">
                     <HeaderTemplate>
-                        <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
-                            <td align="center">
+                        <tr class="thbg" style="padding:0 0 0 0">
+                            <th align="center">
                                 单号<input id="ckbAllSelected" onclick="javascript:AllChooseOrNoChoose('tbProcureList',this);"
                                     type="checkbox" />
-                            </td>
-                            <td>
+                            </th>
+                            <th>
                                 计划采购日期
-                            </td>
-                            <td>
+                            </th>
+                            <th>
                                 分公司
-                            </td>
-                            <td>
+                            </th>
+                            <th>
                                 申请人
-                            </td>
-                            <td>
+                            </th>
+                            <th>
                                 申请日期
-                            </td>
-                            <td>
+                            </th>
+                            <th>
                                 审核人
-                            </td>
-                            <td>
+                            </th>
+                            <th>
                                 审核日期
-                            </td>
+                            </th>
                         </tr>
                     </HeaderTemplate>
                     <ItemTemplate>
@@ -79,8 +80,8 @@
                         </tr>
                     </ItemTemplate>
                     <AlternatingItemTemplate>
-                        <tr class="alt-row">
-                            <td align="left">
+                        <tr class="even">
+                            <td >
                                 <asp:CheckBox ID="ckbPsId" runat="server" />
                                 <asp:Literal ID="litPsId" runat="server" Text='<%#Eval("Psid")%>' />
                             </td>

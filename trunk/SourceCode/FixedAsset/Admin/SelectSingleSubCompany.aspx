@@ -9,6 +9,7 @@
     <title></title>
     <link rel="stylesheet" href="css/default.css" type="text/css" />
     <link href="../App_Themes/Control_Theme/Dialog.css" rel="stylesheet" type="text/css" />
+    <link href="css/mail.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <script language="javascript" type="text/javascript" src="../Scripts/Extjs/ext-base.js"></script>
@@ -17,13 +18,13 @@
     <script language="javascript" type="text/javascript" src="../Scripts/Ajax.js"></script>
     <form id="form1" runat="server">
     <div id="contents">
-        <div id="dTab1" class="Box text_box">
+        <div id="dTab1" class="Box text_box" style="text-align:left">
             分公司名称
             <asp:TextBox class="text-input small-input" ID="txtSrchSubcompanyname" runat="server"></asp:TextBox>
             <asp:Button ID="btnSearch" class="button" runat="server" Text="查询" OnClick="btnSearch_Click" />
-            <asp:SGridView ID="gvSubCompanies" GridLines="None" border="0" CssClass="table_grayTH eoddTable"
+            <asp:SGridView ID="gvSubCompanies" GridLines="None" border="0" CssClass="gridtable"
                 runat="server" Width="40%" ShowActionToolBar="false" AutoGenerateColumns="false"
-                AllowCascade="false" DataKeyNames="Subcompanyid">
+                AllowCascade="false" DataKeyNames="Subcompanyid" HeaderStyle-CssClass="thbg">
                 <Columns>
                     <asp:TemplateField>
                         <ItemTemplate>
@@ -34,7 +35,7 @@
                     </asp:TemplateField>
                     <asp:BoundField DataField="Subcompanyname" HeaderText="分公司名称" ControlStyle-Width="50" ItemStyle-CssClass="left" ItemStyle-HorizontalAlign="Left" />
                 </Columns>
-                <AlternatingRowStyle CssClass="alt-row"></AlternatingRowStyle>
+                <AlternatingRowStyle CssClass="even"></AlternatingRowStyle>
                 <RowStyle HorizontalAlign="Center" />
             </asp:SGridView>
             <cc1:PagingControl ID="pcData" runat="server" MaxNavigatePageCount="7" OnPageIndexClick="pcData_PageIndexClick" />

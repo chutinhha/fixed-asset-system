@@ -11,6 +11,7 @@
     <title></title>
     <link rel="stylesheet" href="css/default.css" type="text/css" />
     <link href="../App_Themes/Control_Theme/Dialog.css" rel="stylesheet" type="text/css" />
+    <link href="css/mail.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <script language="javascript" type="text/javascript" src="../Scripts/Extjs/ext-base.js"></script>
@@ -43,22 +44,22 @@
                 </tr>
             </table>
             <table style="width: 100%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
-                align="center" class="table_grayTH eoddTable" id="tbAssetList">
+                align="center" class="gridtable" id="tbAssetList">
                 <asp:Repeater ID="rptAssetsList" runat="server" OnItemDataBound="rptAssetsList_ItemDataBound">
                     <HeaderTemplate>
-                        <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
-                            <td align="center">
+                        <tr class="thbg" style="padding:0 0 0 0">
+                            <th align="center">
                                 设备编号<input id="ckbAllSelected" onclick="javascript:AllChooseOrNoChoose('tbAssetList',this);"
                                     type="checkbox" />
-                                <td align="center">
+                                <th align="center">
                                     设备类别
-                                </td>
-                                <td align="center">
+                                </th>
+                                <th align="center">
                                     设备名称
-                                </td>
-                                <td align="center">
+                                </th>
+                                <th align="center">
                                     设备状态
-                                </td>
+                                </th>
                         </tr>
                     </HeaderTemplate>
                     <ItemTemplate>
@@ -79,7 +80,7 @@
                         </tr>
                     </ItemTemplate>
                     <AlternatingItemTemplate>
-                        <tr class="alt-row">
+                        <tr class="even">
                             <td align="left">
                                 <asp:CheckBox ID="ckbAssetno"  runat="server" TextAlign="Right" />
                                 <asp:Literal ID="litAssetno" runat="server" Text='<%#Eval("Assetno")%>' />
