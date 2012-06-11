@@ -130,6 +130,7 @@ namespace FixedAsset.Web.Admin
         /// <param name="e"></param>
         protected void BtnSearch_Click(object sender, EventArgs e)
         {
+            AssetIds.Clear();
             LoadData(0);
         } 
         /// <summary>

@@ -76,7 +76,7 @@ namespace FixedAsset.Web.Admin
         }
         protected void BtnSearch_Click(object sender, EventArgs e)
         {
-            this.AssetIds.Clear();
+            AssetIds.Clear();
             LoadData(0);
         }
         protected void pcData_PageIndexClick(object sender, KFSQ.Web.Controls.PageIndexClickEventArgs e)

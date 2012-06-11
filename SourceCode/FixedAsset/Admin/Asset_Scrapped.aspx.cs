@@ -128,6 +128,7 @@ namespace FixedAsset.Web.Admin
         }  
         protected void BtnSearch_Click(object sender, EventArgs e)
         {
+            AssetIds.Clear();
             LoadData(0);
         }
         protected void BtnBatchApply_Click(object sender,EventArgs e)
@@ -139,10 +140,15 @@ namespace FixedAsset.Web.Admin
                 return;
             }
             var currentAssetScrappedInfos = AssetscrappedService.RetrieveAssetscrappedByAssetNo(AssetIds);
-            if(currentAssetScrappedInfos.Where(p=>p.Approvedstate==AssetScrappedState.None||p.Approvedstate==AssetScrappedState.Rejected).Count()==0)
+            if (currentAssetScrappedInfos.Count > 0)
             {
-                UIHelper.Alert(this, "对不起，您选择申请报废设备正在报废审核中或已报废！请重新选择！");
-                return;
+                if (currentAssetScrappedInfos.Where(p =>
+                        p.Approvedstate == AssetScrappedState.None || p.Approvedstate == AssetScrappedState.Rejected).
+                        Count() == 0)
+                {
+                    UIHelper.Alert(this, "对不起，您选择申请报废设备正在报废审核中或已报废！请重新选择！");
+                    return;
+                }
             }
             foreach (var assetId in AssetIds)
             {
