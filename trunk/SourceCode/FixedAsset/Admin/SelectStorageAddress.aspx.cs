@@ -73,6 +73,7 @@ namespace FixedAsset.Web.Admin
             content.Append(ucSelectStorageAddress.Subcompanyname).Append(",");
             content.Append(ucSelectStorageAddress.StorageId).Append(",");
             content.Append(ucSelectStorageAddress.Storagename);
+
             ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "SelectStorageAddress", "setCookie('dialogReturn_key','" + content.ToString() + "',1);CloseTopDialogFrame();", true);
         }
         #endregion

@@ -236,7 +236,8 @@ namespace FixedAsset.DataAccess
                 if (!string.IsNullOrEmpty(info.Assetcategoryid))
                 {
                     this.Database.AddInParameter(":Assetcategoryid", DbType.AnsiString, info.Assetcategoryid);
-                    sqlCommand.AppendLine(@" AND ""ASSET"".""ASSETCATEGORYID"" = :Assetcategoryid");
+                    sqlCommand.AppendLine(@" AND (""ASSET"".""ASSETCATEGORYID"" = :Assetcategoryid");
+                    sqlCommand.AppendLine(@" OR ""ASSETCATEGORY"".""ASSETPARENTCATEGORYID"" = :Assetcategoryid ) ");
                 }
                 #endregion  
 

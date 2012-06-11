@@ -159,6 +159,13 @@ namespace FixedAsset.Web.Admin
                 UIHelper.Alert(this, "请选择实际安装日期!");
                 return;
             }
+
+            if (string.IsNullOrEmpty(SelectStorageAddress.StorageId))
+            {
+                UIHelper.Alert(this, "请选择实际安装日期!");
+                return;
+            }
+            
             var remove = AssetremoveService.RetrieveAssetremoveByAssetremoveid(RemoveId);
             remove.Actualremovedate = ucActualsetupdate.DateValue;//计划安装日期
             remove.Approveresult = AssetRemoveState.Confirmed;
@@ -180,9 +187,9 @@ namespace FixedAsset.Web.Admin
                 {
                     foreach (var assetInfo in assetInfos)
                     {
-                        assetInfo.State = AssetState.InUse;
+                        assetInfo.State = AssetState.NoUse;//改为未用
                         assetInfo.Storageflag = remove.Storagetitle;
-                        assetInfo.Storage = remove.Storageid;
+                        assetInfo.Storage = SelectStorageAddress.StorageId;//改为新的存放地点
                         AssetService.UpdateAssetByAssetno(assetInfo);
                     }
                 }
