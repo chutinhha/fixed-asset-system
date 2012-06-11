@@ -6,6 +6,7 @@
 <%@ Register Assembly="KFSQ.Web.Controls" Namespace="KFSQ.Web.Controls" TagPrefix="cc1" %>
 <%@ Register Assembly="iKC.Web" Namespace="iKC.Web.UI.WebControls" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link href="css/mail.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
     <ul id="TabPage1">
@@ -20,41 +21,41 @@
                 <input type="button" class="button" runat="server" id="btnAdd" value="新增" onclick="javascript:window.location='ProcurePlan_Add.aspx'" />
             </p>
             <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
-                align="center" class="table_grayTH eoddTable">
+                align="center" class="gridtable">
                 <asp:Repeater ID="rptProcureList" runat="server" OnItemDataBound="rptProcureList_ItemDataBound"
                     OnItemCommand="rptProcureList_ItemCommand">
                     <HeaderTemplate>
-                        <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
-                            <td align="center">
+                        <tr class="thbg" style="padding:0 0 0 0">
+                            <th align="center">
                                 单号
-                            </td>
-                            <td align="center">
+                            </th>
+                            <th align="center">
                                 计划采购日期
-                            </td>
-                            <td align="center">
+                            </th>
+                            <th align="center">
                                 分公司
-                            </td>
-                            <td align="center">
+                            </th>
+                            <th align="center">
                                 申请人
-                            </td>
-                            <td align="center">
+                            </th>
+                            <th align="center">
                                 申请日期
-                            </td>
-                            <td align="center">
+                            </th>
+                            <th align="center">
                                 审核人
-                            </td>
-                            <td align="center">
+                            </th>
+                            <th align="center">
                                 审核日期
-                            </td>
-                            <td align="center">
+                            </th>
+                            <th align="center">
                                 状态
-                            </td>
-                            <td align="center">
+                            </th>
+                            <th align="center">
                                 创建日期
-                            </td>
-                            <td align="center">
+                            </th>
+                            <th align="center">
                                 操作
-                            </td>
+                            </th>
                         </tr>
                     </HeaderTemplate>
                     <ItemTemplate>
@@ -100,7 +101,7 @@
                         </tr>
                     </ItemTemplate>
                     <AlternatingItemTemplate>
-                        <tr class="alt-row">
+                        <tr class="even">
                             <td align="center">
                                 <%#Eval("Psid")%>
                             </td>
@@ -140,11 +141,15 @@
                                     AlternateText="详细信息" ToolTip="详细信息" CommandArgument='<%#Eval("Psid")%>' CommandName="ViewDetail" />
                             </td>
                         </tr>
+                       
                     </AlternatingItemTemplate>
+                    
                 </asp:Repeater>
-                <tr>
-                    <td colspan="10" style="height: 30px; width: 98%;" align="center">
+                <tr style="height:28px">
+                    <td colspan="10" style="height: 28px; width: 98%;" align="center">
+                    <div style="height:28px; padding-top:3px; padding-bottom:3px">
                         <cc1:PagingControl ID="pcData" runat="server" MaxNavigatePageCount="7" OnPageIndexClick="pcData_PageIndexClick" />
+                        </div>
                     </td>
                 </tr>
             </table>
