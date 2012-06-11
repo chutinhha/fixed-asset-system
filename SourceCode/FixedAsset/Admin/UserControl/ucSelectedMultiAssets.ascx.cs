@@ -10,11 +10,42 @@ using FixedAsset.Services;
 
 namespace FixedAsset.Web.Admin.UserControl
 {
+    public enum BillCategory
+    {
+        /// <summary>
+        /// 安装申请单
+        /// </summary>
+        SetupBill=1,
+        /// <summary>
+        /// 维修申请单
+        /// </summary>
+        RepairBill=2,
+        /// <summary>
+        /// 拆机申请单
+        /// </summary>
+        RemoveBill=3,
+        /// <summary>
+        /// 移机申请单
+        /// </summary>
+        MoveBill=4
+    }
     /// <summary>
     /// 查询同1大类的资产
     /// </summary>
     public partial class ucSelectedMultiAssets : System.Web.UI.UserControl
     {
+        public BillCategory BillCategory
+        {
+            get
+            {
+                if (ViewState["BillCategory"] == null)
+                {
+                    ViewState["BillCategory"] = BillCategory.SetupBill;
+                }
+                return (BillCategory)Enum.Parse(typeof(UserControl.BillCategory), ViewState["BillCategory"].ToString());
+            }
+            set { ViewState["BillCategory"] = value; }
+        }
         public string AssetCategoryId
         {
             get
@@ -47,7 +78,6 @@ namespace FixedAsset.Web.Admin.UserControl
             if (!IsPostBack)
             {
                 AssetIds.Clear();
-                //btnSelectedMultiAssets_Click(null, null);
             }
         }
         protected void btnSelectedMultiAssets_Click(object sender, EventArgs e)
@@ -63,7 +93,6 @@ namespace FixedAsset.Web.Admin.UserControl
             }
             if (string.IsNullOrEmpty(AssetCategoryId))
             {
-                //throw new NullReferenceException("请选择所属系统!");
                 if (updatePanel == null)
                 {
                     UIHelper.AlertMessage(this.Page, "请选择所属系统！");
@@ -77,7 +106,7 @@ namespace FixedAsset.Web.Admin.UserControl
             {
 
                 var script = new StringBuilder();  //return false;
-                script.AppendFormat(@"ShowTopDialogFrame('资产选择', '{0}?AssetCategoryId={1}','SelectedMultiAssets()',790,360);", ResolveUrl("~/Admin/SelectedMultiAssets.aspx"), AssetCategoryId);
+                script.AppendFormat(@"ShowTopDialogFrame('资产选择', '{0}?AssetCategoryId={1}&BillCategory={2}','SelectedMultiAssets()',790,360);", ResolveUrl("~/Admin/SelectedMultiAssets.aspx"), AssetCategoryId,BillCategory);
                 if (updatePanel == null)
                 {
                     ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "SelectedMultiAssets",
