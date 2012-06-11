@@ -111,9 +111,9 @@ namespace FixedAsset.Web.Admin
                 UIHelper.Alert(this, "请选择项目体或分公司!");
                 return;
             }
-            if (string.IsNullOrEmpty(ucProjectcontactorid.UserId))
+            if (string.IsNullOrEmpty(txtProjectcontactorid.Text.Trim()))
             {
-                UIHelper.Alert(this, "请选择项目体(分公司)联系人!");
+                UIHelper.Alert(this, "请输入项目体(分公司)联系人!");
                 return;
             }
             if (!ucApplyDate.DateValue.HasValue)
@@ -131,19 +131,14 @@ namespace FixedAsset.Web.Admin
         }
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            //if (!ucApplySetupDate.DateValue.HasValue)
-            //{
-            //    UIHelper.Alert(this, "请选择申请安装日期!");
-            //    return;
-            //}
             if (string.IsNullOrEmpty(ucSelectProject.StorageId))
             {
                 UIHelper.Alert(this, "请选择项目体或分公司!");
                 return;
             }
-            if (string.IsNullOrEmpty(ucProjectcontactorid.UserId))
+            if (string.IsNullOrEmpty(txtProjectcontactorid.Text.Trim()))
             {
-                UIHelper.Alert(this, "请选择项目体(分公司)联系人!");
+                UIHelper.Alert(this, "请输入项目体(分公司)联系人!");
                 return;
             }
             if (!ucApplyDate.DateValue.HasValue)
@@ -276,7 +271,7 @@ namespace FixedAsset.Web.Admin
             ucSelectProject.StorageId = headInfo.Storageid; //区分字段：分公司或项目体
             ucSelectProject.Storagetitle = headInfo.Storagetitle; //项目体ID或分公司ID
             txtContactphone.Text = headInfo.Contactphone;//联系电话
-            ucProjectcontactorid.UserId = headInfo.Projectcontactorid; // 项目体(分公司)联系人
+            txtProjectcontactorid.Text = headInfo.Projectcontactorid.Trim(); // 项目体(分公司)联系人
             txtProjectcontactorphone.Text = headInfo.Projectcontactorphone; //项目体(分公司)联系电话
         }
         protected void WriteControlValueToEntity(Assetmaintain assetmaintain)
@@ -290,7 +285,7 @@ namespace FixedAsset.Web.Admin
             assetmaintain.Storagetitle = ucSelectProject.Storagetitle;//区分字段：分公司或项目体
             assetmaintain.Storageid = ucSelectProject.StorageId;//项目体ID或分公司ID            
             assetmaintain.Contactphone = txtContactphone.Text;//联系电话
-            assetmaintain.Projectcontactorid = ucProjectcontactorid.UserId;//项目体联系人
+            assetmaintain.Projectcontactorid = txtProjectcontactorid.Text.Trim();//项目体联系人
             assetmaintain.Projectcontactorphone = txtProjectcontactorphone.Text;//项目体联系电话
             if (string.IsNullOrEmpty(assetmaintain.Assetmaintainid))
             {

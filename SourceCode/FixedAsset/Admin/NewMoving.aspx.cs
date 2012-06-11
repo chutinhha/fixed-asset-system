@@ -110,9 +110,9 @@ namespace FixedAsset.Web.Admin
                 UIHelper.Alert(this, "请选择项目体或分公司!");
                 return;
             }
-            if (string.IsNullOrEmpty(ucProjectcontactorid.UserId))
+            if (string.IsNullOrEmpty(txtProjectcontactorid.Text.Trim()))
             {
-                UIHelper.Alert(this, "请选择项目体(分公司)联系人!");
+                UIHelper.Alert(this, "请输入项目体(分公司)联系人!");
                 return;
             }
             if (!ucApplyDate.DateValue.HasValue)
@@ -140,9 +140,9 @@ namespace FixedAsset.Web.Admin
                 UIHelper.Alert(this, "请选择项目体或分公司!");
                 return;
             }
-            if (string.IsNullOrEmpty(ucProjectcontactorid.UserId))
+            if (string.IsNullOrEmpty(txtProjectcontactorid.Text.Trim()))
             {
-                UIHelper.Alert(this, "请选择项目体(分公司)联系人!");
+                UIHelper.Alert(this, "请输入项目体(分公司)联系人!");
                 return;
             }
             if (!ucApplyDate.DateValue.HasValue)
@@ -273,7 +273,7 @@ namespace FixedAsset.Web.Admin
             ucSelectProject.StorageId = headInfo.Storageid; //区分字段：分公司或项目体
             ucSelectProject.Storagetitle = headInfo.Storagetitle; //项目体ID或分公司ID
             txtContactphone.Text = headInfo.Contactphone;//联系电话
-            ucProjectcontactorid.UserId = headInfo.Projectcontactorid; // 项目体(分公司)联系人
+            txtProjectcontactorid.Text = headInfo.Projectcontactorid; // 项目体(分公司)联系人
             txtProjectcontactorphone.Text = headInfo.Projectcontactorphone; //项目体(分公司)联系电话
         }
         protected void WriteControlValueToEntity(Assetmove headInfo)
@@ -286,7 +286,7 @@ namespace FixedAsset.Web.Admin
             headInfo.Storagetitle = ucSelectProject.Storagetitle;//区分字段：分公司或项目体
             headInfo.Storageid = ucSelectProject.StorageId;//项目体ID或分公司ID            
             headInfo.Contactphone = txtContactphone.Text;//联系电话
-            headInfo.Projectcontactorid = ucProjectcontactorid.UserId;//项目体联系人
+            headInfo.Projectcontactorid = txtProjectcontactorid.Text;//项目体联系人
             headInfo.Projectcontactorphone = txtProjectcontactorphone.Text;//项目体联系电话
             if (string.IsNullOrEmpty(headInfo.Assetmoveid))
             {

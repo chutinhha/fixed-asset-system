@@ -71,7 +71,9 @@
                                 项目体(分公司)联系人: <span style="color: Red">*</span>
                             </td>
                             <td>
-                                <uc1:ucSelectUser ID="ucProjectcontactorid" runat="server" />
+                               
+                               <asp:TextBox ID="txtProjectcontactorid" MaxLength="100" CssClass="text_inp" runat="server"
+    Width="300" />
                             </td>
                         </tr>
                         <tr>

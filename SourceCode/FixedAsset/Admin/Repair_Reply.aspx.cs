@@ -170,7 +170,7 @@ namespace FixedAsset.Web.Admin
             ucSelectProject.StorageId = headInfo.Storageid; //区分字段：分公司或项目体
             ucSelectProject.Storagetitle = headInfo.Storagetitle; //项目体ID或分公司ID
             litContactphone.Text = headInfo.Contactphone;//联系电话
-            ucProjectcontactorid.UserId = headInfo.Projectcontactorid; // 项目体(分公司)联系人
+            litProjectcontactorid.Text = headInfo.Projectcontactorid; // 项目体(分公司)联系人
             litProjectcontactorphone.Text = headInfo.Projectcontactorphone; //项目体(分公司)联系电话
         } 
         protected void LoadDetailList()

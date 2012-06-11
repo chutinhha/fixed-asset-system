@@ -123,7 +123,7 @@ namespace FixedAsset.Web.Admin
             litContactphone.Text = remove.Contactphone; //联系电话
             ucSelectProject.StorageId = remove.Storageid;
             ucSelectProject.Storagetitle = remove.Storagetitle;
-            ucProjectcontactorid.UserId = remove.Projectcontactorid; // 项目体(分公司)联系人
+            litProjectcontactorid.Text = remove.Projectcontactorid; // 项目体(分公司)联系人
             litProjectcontactorphone.Text = remove.Projectcontactorphone; //项目体(分公司)联系电话
             if (remove.Planremovedate.HasValue)
             {

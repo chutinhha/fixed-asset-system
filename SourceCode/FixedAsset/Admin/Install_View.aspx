@@ -78,7 +78,7 @@
                                 项目体(分公司)联系人:
                             </td>
                             <td>
-                                <uc1:ucSelectUser ID="ucProjectcontactorid" IsShowUserName="true" runat="server" />
+                                <asp:Literal ID="litProjectcontactorid" runat="server"/>
                             </td>
                         </tr>
                         <tr>
