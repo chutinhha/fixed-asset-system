@@ -116,8 +116,6 @@ namespace FixedAsset.DataAccess
                 this.Database.ClearParameter();
             }
         }
-        #endregion
-
-       
+        #endregion 
     }
 }
