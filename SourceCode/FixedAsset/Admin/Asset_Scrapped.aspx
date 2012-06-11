@@ -149,7 +149,7 @@
                             <td>
                                 <%#EnumUtil.RetrieveEnumDescript((AssetScrappedState)Eval("Approvedstate"))%>
                             </td>
-                            <td align="right">
+                            <td align="center">
                                 <asp:ImageButton ID="BtnApprove" runat="server" ImageUrl="~/images/Button/approve.GIF"
                                     Visible="false" AlternateText="审核" ToolTip="审核" CommandArgument='<%#Eval("Assetscrappedid")%>'
                                     CommandName="ApproveDetail" />
@@ -196,7 +196,7 @@
                             <td>
                                 <%#EnumUtil.RetrieveEnumDescript((AssetScrappedState)Eval("Approvedstate"))%>
                             </td>
-                            <td align="right">
+                            <td align="center">
                                 <asp:ImageButton ID="BtnApprove" runat="server" ImageUrl="~/images/Button/approve.GIF"
                                     Visible="false" AlternateText="审核" ToolTip="审核" CommandArgument='<%#Eval("Assetscrappedid")%>'
                                     CommandName="ApproveDetail" />

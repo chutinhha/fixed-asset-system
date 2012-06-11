@@ -110,7 +110,7 @@
                             <td>
                                 <%#EnumUtil.RetrieveEnumDescript((AssetMoveState)Eval("Approveresult"))%>
                             </td>
-                            <td align="right">
+                            <td align="center">
                                 <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"
                                     Visible="false" AlternateText="编辑" ToolTip="编辑" CommandArgument='<%#Eval("Assetremoveid")%>'
                                     CommandName="EditDetail" />
@@ -155,7 +155,7 @@
                             <td>
                                 <%#EnumUtil.RetrieveEnumDescript((AssetMoveState)Eval("Approveresult"))%>
                             </td>
-                            <td align="right">
+                            <td align="center">
                                 <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"
                                     Visible="false" AlternateText="编辑" ToolTip="编辑" CommandArgument='<%#Eval("Assetremoveid")%>'
                                     CommandName="EditDetail" />
