@@ -9,6 +9,7 @@
     <title></title>
     <link rel="stylesheet" href="css/default.css" type="text/css" />
     <link href="../App_Themes/Control_Theme/Dialog.css" rel="stylesheet" type="text/css" />
+    <link href="css/mail.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <script language="javascript" type="text/javascript" src="../Scripts/Extjs/ext-base.js"></script>
@@ -17,13 +18,13 @@
     <script language="javascript" type="text/javascript" src="../Scripts/Ajax.js"></script>
     <form id="form1" runat="server">
     <div id="contents">
-        <div id="dTab1" class="Box text_box">
+        <div id="dTab1" class="Box text_box" style="text-align:left">
             供应商
             <asp:TextBox class="text-input small-input" ID="txtSrchSuppliername" runat="server"></asp:TextBox>
             <asp:Button ID="btnSearch" class="button" runat="server" Text="查询" OnClick="btnSearch_Click" />
-            <asp:SGridView ID="gvSuppliers" GridLines="None" border="0" CssClass="table_grayTH eoddTable"
+            <asp:SGridView ID="gvSuppliers" GridLines="None" border="0" CssClass="gridtable"
                 runat="server" Width="40%" ShowActionToolBar="false" PageSize="2" AutoGenerateColumns="false"
-                AllowCascade="false" DataKeyNames="Supplierid">
+                AllowCascade="false" DataKeyNames="Supplierid" HeaderStyle-CssClass="thbg" >
                 <Columns>
                     <asp:TemplateField>
                         <ItemTemplate>
@@ -35,7 +36,7 @@
                     <asp:BoundField DataField="Suppliername" HeaderText="供应商" ControlStyle-Width="50"
                         ItemStyle-CssClass="center" ItemStyle-HorizontalAlign="Left" />
                 </Columns>
-                <AlternatingRowStyle CssClass="alt-row"></AlternatingRowStyle>
+                <AlternatingRowStyle CssClass="even"></AlternatingRowStyle>
                 <RowStyle HorizontalAlign="Center" />
             </asp:SGridView>
             <cc1:PagingControl ID="pcData" runat="server" MaxNavigatePageCount="7" OnPageIndexClick="pcData_PageIndexClick" />
