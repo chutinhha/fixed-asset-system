@@ -118,6 +118,9 @@ namespace FixedAsset.Web.Admin.UserControl
         {
             if (!string.IsNullOrEmpty(hfStorageAddress.Value))
             {
+                var values = hfStorageAddress.Value.Split(new char[] { ',' });
+                Storagetitle = values[0];
+                StorageId = values[3];
                 LoadData();
             }
         }
@@ -126,7 +129,7 @@ namespace FixedAsset.Web.Admin.UserControl
         #region Methods
         protected void LoadData()
         {
-            if(!string.IsNullOrEmpty(this.StorageId))
+            if (!string.IsNullOrEmpty(this.StorageId))
             {
                 var currentInfo = AssetService.RetrieveVstorageaddressByStorageId(Storagetitle, StorageId);
                 if (currentInfo == null)

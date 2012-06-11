@@ -145,12 +145,20 @@
                                     Width="500" Rows="10" />
                             </td>
                         </tr>
+                         <tr>
+                            <td style="width: 180px;">
+                                存放地点:
+                            </td>
+                            <td>
+                                <uc1:SelectStorageAddress2 ID="SelectStorageAddress"  runat="server" />
+                            </td>
+                        </tr>
                         <tr>
                             <td style="width: 180px;">
                                 确认日期:
                             </td>
-                            <td>
-                                <asp:Literal ID="litConfirmdate" runat="server" />
+                            <td>                                
+                                 <asp:Literal ID="litConfirmdate" runat="server" />
                             </td>
                         </tr>
                         <tr>
