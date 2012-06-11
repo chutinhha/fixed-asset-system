@@ -6,6 +6,7 @@
 <%@ Register Assembly="KFSQ.Web.Controls" Namespace="KFSQ.Web.Controls" TagPrefix="cc1" %>
 <%@ Register Assembly="iKC.Web" Namespace="iKC.Web.UI.WebControls" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link href="css/mail.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
     <ul id="TabPage1">
@@ -19,29 +20,29 @@
                 <asp:Button ID="BtnSearch" runat="server" CssClass="button" Text="查询" OnClick="BtnSearch_Click" />
             </p>
             <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
-                align="center" class="table_grayTH eoddTable">
+                align="center" class="gridtable">
                 <asp:Repeater ID="rptUserRoleList" runat="server" OnItemDataBound="rptUserRoleList_ItemDataBound"
                     OnItemCommand="rptUserRoleList_ItemCommand">
                     <HeaderTemplate>
-                        <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
-                            <td align="center">
+                        <tr class="thbg" style="padding:0 0 0 0">
+                            <th align="center">
                                 用户姓名
-                            </td>
-                            <td align="center">
+                            </th>
+                            <th align="center">
                                 登录账号
-                            </td>
-                            <td align="center">
+                            </th>
+                            <th align="center">
                                 角色名
-                            </td>
-                            <td align="center">
+                            </th>
+                            <th align="center">
                                 角色分配操作人
-                            </td>
-                            <td align="center">
+                            </th>
+                            <th align="center">
                                 角色分配操作时间
-                            </td>
-                            <td align="center">
+                            </th>
+                            <th align="center">
                                 操作
-                            </td>
+                            </th>
                         </tr>
                     </HeaderTemplate>
                     <ItemTemplate>
@@ -71,7 +72,7 @@
                         </tr>
                     </ItemTemplate>
                     <AlternatingItemTemplate>
-                        <tr class="alt-row">
+                        <tr class="even">
                             <td align="center">
                                 <%#Eval("Username")%>
                             </td>
@@ -97,9 +98,11 @@
                         </tr>
                     </AlternatingItemTemplate>
                 </asp:Repeater>
-                <tr>
-                     <td colspan="6" style="height: 30px; width: 98%;" align="center">
+                 <tr style="height:28px">
+                    <td colspan="6" style="height: 28px; width: 98%;" align="center">
+                    <div style="height:28px; padding-top:3px; padding-bottom:3px">
                         <cc1:PagingControl ID="pcData" runat="server" MaxNavigatePageCount="7" OnPageIndexClick="pcData_PageIndexClick" />
+                        </div>
                     </td>
                 </tr>
             </table>
