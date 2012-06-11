@@ -9,6 +9,7 @@
 <%@ Register Src="~/Admin/UserControl/ucSelectProject.ascx" TagName="SelectProject"
     TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">   
+    <link href="css/mail.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
     <ul id="TabPage1">
@@ -50,38 +51,38 @@
                     </tr>
                 </table>
             <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
-                align="center" class="table_grayTH eoddTable">
+                align="center" class="gridtable">
                 <asp:Repeater ID="rptRepairList" runat="server" OnItemDataBound="rptRepairList_ItemDataBound"
                     OnItemCommand="rptRepairList_ItemCommand">
                     <HeaderTemplate>
-                        <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
-                            <td>
+                        <tr class="thbg" style="padding:0 0 0 0">
+                            <th>
                                 维修单号
-                            </td>
-                            <td>
+                            </th>
+                            <th>
                                 系统
-                            </td>
-                            <td>
+                            </th>
+                            <th>
                                 分公司
-                            </td>
-                            <td>
+                            </th>
+                            <th>
                                 项目体
-                            </td>
-                            <td>
+                            </th>
+                            <th>
                                 申请日期
-                            </td>
-                            <td>
+                            </th>
+                            <th>
                                 申请人
-                            </td>
-                            <td>
+                            </th>
+                            <th>
                                 申请内容
-                            </td>
-                            <td>
+                            </th>
+                            <th>
                                 状态
-                            </td>
-                            <td>
+                            </th>
+                            <th>
                                 操作
-                            </td>
+                            </th>
                         </tr>
                     </HeaderTemplate>
                     <ItemTemplate>
@@ -130,7 +131,7 @@
                         </tr>
                     </ItemTemplate>
                     <AlternatingItemTemplate>
-                        <tr class="alt-row">
+                        <tr class="even">
                             <td>
                                 <%#Eval("Assetmaintainid")%>
                             </td>
