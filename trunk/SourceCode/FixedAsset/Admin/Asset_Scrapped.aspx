@@ -8,6 +8,7 @@
 <%@ Register Src="~/Admin/UserControl/ucDatePicker.ascx" TagName="DatePicker" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script src="../Scripts/jquery-1.4.1-vsdoc.js" type="text/javascript"></script>
+    <link href="css/mail.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
     <ul id="TabPage1">
@@ -69,47 +70,47 @@
                 </tr>
             </table>
             <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
-                align="center">
+                align="center" class="gridtable">
                 <asp:Repeater ID="rptScrappedList" runat="server" OnItemDataBound="rptScrappedList_ItemDataBound"
                     OnItemCommand="rptScrappedList_ItemCommand">
                     <HeaderTemplate>
-                        <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
-                            <td style="width: 11%">
+                        <tr class="thbg" style="padding:0 0 0 0">
+                            <th style="width: 11%">
                                 <input type="checkbox" id="chkAll" />设备编号
-                            </td>
-                            <td style="width: 7%">
+                            </th>
+                            <th style="width: 7%">
                                 设备类别
-                            </td>
-                            <td style="width: 9%">
+                            </th>
+                            <th style="width: 9%">
                                 设备名称
-                            </td>
-                            <td style="width: 6%">
+                            </th>
+                            <th style="width: 6%">
                                 设备状态
-                            </td>
-                            <td style="width: 6%">
+                            </th>
+                            <th style="width: 6%">
                                 折旧年限
-                            </td>
-                            <td style="width: 8%">
+                            </th>
+                            <th style="width: 8%">
                                 入账日期
-                            </td>
-                            <td style="width: 8%">
+                            </th>
+                            <th style="width: 8%">
                                 预计折旧日期
-                            </td>
-                            <td style="width: 9%">
+                            </th>
+                            <th style="width: 9%">
                                 报废申请单号
-                            </td>
-                            <td style="width: 7%">
+                            </th>
+                            <th style="width: 7%">
                                 报废日期
-                            </td>
-                            <td style="width: 7%">
+                            </th>
+                            <th style="width: 7%">
                                 报废人
-                            </td>
-                            <td style="width: 6%">
+                            </th>
+                            <th style="width: 6%">
                                 报废状态
-                            </td>
-                            <td style="width: 6%">
+                            </th>
+                            <th style="width: 6%">
                                 操作
-                            </td>
+                            </th>
                         </tr>
                     </HeaderTemplate>
                     <ItemTemplate>
@@ -160,7 +161,7 @@
                         </tr>
                     </ItemTemplate>
                     <AlternatingItemTemplate>
-                        <tr class="alt-row">
+                        <tr  class="even">
                             <td align="center">
                                 <asp:CheckBox ID="ckbAssetno" runat="server" TextAlign="Right" />
                                 <a href='javascript:ShowTopDialogFrame("设备明细", "ShowAssetDetail.aspx?Assetno=<%#Eval("Assetno")%>","",900,560);'>
