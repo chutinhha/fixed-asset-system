@@ -124,8 +124,8 @@ namespace FixedAsset.Web.Admin
             ucApplyuser.UserId = SetupInfo.Applyuserid;//申请人
             litContactphone.Text = SetupInfo.Contactphone; //联系电话
             ucSelectProject.StorageId = SetupInfo.Storageid;
-            ucSelectProject.Storagetitle = SetupInfo.Storagetitle;
-            ucProjectcontactorid.UserId = SetupInfo.Projectcontactorid; // 项目体(分公司)联系人
+            ucSelectProject.Storagetitle = SetupInfo.Storagetitle;   
+            litProjectcontactorid .Text= SetupInfo.Projectcontactorid; // 项目体分公司)联系人
             litProjectcontactorphone.Text = SetupInfo.Projectcontactorphone; //项目体(分公司)联系电话
             if (SetupInfo.Plansetupdate.HasValue)
             {

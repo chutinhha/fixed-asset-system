@@ -123,7 +123,7 @@ namespace FixedAsset.Web.Admin
             litContactphone.Text = SetupInfo.Contactphone; //联系电话
             ucSelectProject.StorageId = SetupInfo.Storageid;
             ucSelectProject.Storagetitle = SetupInfo.Storagetitle;
-            ucProjectcontactorid.UserId = SetupInfo.Projectcontactorid; // 项目体(分公司)联系人
+            litProjectcontactorid.Text = SetupInfo.Projectcontactorid; // 项目体(分公司)联系人
             litProjectcontactorphone.Text = SetupInfo.Projectcontactorphone; //项目体(分公司)联系电话
             if (SetupInfo.Plansetupdate.HasValue)
             {

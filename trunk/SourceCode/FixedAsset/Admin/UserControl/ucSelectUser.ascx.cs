@@ -26,12 +26,12 @@ namespace FixedAsset.Web.Admin.UserControl
         }
         public bool IsShowUserName
         {
-            get { return txtUsername.Visible; }
+            get { return btnSelectSingleUser.Visible; }
             set
             {
-                txtUsername.Visible = !value;
+                //txtUsername.Visible = !value;
                 btnSelectSingleUser.Visible = !value;
-                litUserName.Visible = value;
+                //litUserName.Visible = value;
             }
         }
         public string UserId
@@ -46,17 +46,18 @@ namespace FixedAsset.Web.Admin.UserControl
             }
             set { ViewState["Id"] = value; }
         }
-        public string  Username
+        public string Username
         {
-            get
-            {
-                if(txtUsername.Text.Trim()!=UserId)
-                {
-                    UserId = string.Empty;
-                }
-                return txtUsername.Text.Trim();
-            }
-            set { txtUsername.Text = value; }
+            get { return litUserName.Text.Trim(); }
+            //get
+            //{
+            //    if (txtUsername.Text.Trim() != UserId)
+            //    {
+            //        UserId = string.Empty;
+            //    }
+            //    return txtUsername.Text.Trim();
+            //}
+            //set { txtUsername.Text = value; }
         }
         protected ITuserService TuserService
         {
@@ -73,6 +74,7 @@ namespace FixedAsset.Web.Admin.UserControl
                 btnSelectSingleUser.Attributes.Add("onclick", string.Format("javascript:ShowTopDialogFrame('用户选择', '{0}','Select{1}SingleUser()',680,400);return false;", ResolveUrl("~/Admin/SelectSingleUsers.aspx"), this.ID));
                 if (!string.IsNullOrEmpty(UserId))
                 {
+                    hfId.Value = UserId;
                     LoadData();
                 }
             }
@@ -124,13 +126,13 @@ namespace FixedAsset.Web.Admin.UserControl
             var currentInfo = TuserService.RetrieveTuserById(UserId);
             if(currentInfo!=null)
             {
-                txtUsername.Text = currentInfo.Username;
+                //txtUsername.Text = currentInfo.Username;
                 litUserName.Text = currentInfo.Username;
                 UserId = hfId.Value;
             }
             else
             {
-                txtUsername.Text = string.Empty;
+                //txtUsername.Text = string.Empty;
                 litUserName.Text = string.Empty;
                 UserId = hfId.Value;
             }

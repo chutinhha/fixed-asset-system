@@ -27,8 +27,7 @@ namespace FixedAsset.Web.Admin
                 return ViewState["SetupId"].ToString();
             }
             set { ViewState["SetupId"] = value; }
-        }  
-        
+        }   
         protected IAssetsetupinfoService AssetsetupinfoService
         {
             get
@@ -123,7 +122,7 @@ namespace FixedAsset.Web.Admin
             txtContactphone.Text = SetupInfo.Contactphone; //联系电话
             ucSelectProject.StorageId = SetupInfo.Storageid;
             ucSelectProject.Storagetitle = SetupInfo.Storagetitle;
-            ucProjectcontactorid.UserId = SetupInfo.Projectcontactorid; // 项目体(分公司)联系人
+            txtProjectcontactorid.Text = SetupInfo.Projectcontactorid; // 项目体(分公司)联系人
             txtProjectcontactorphone.Text = SetupInfo.Projectcontactorphone; //项目体(分公司)联系电话
         }
 
@@ -181,7 +180,7 @@ namespace FixedAsset.Web.Admin
             assetsetupinfo.Storagetitle = ucSelectProject.Storagetitle;//区分字段：分公司或项目体
             assetsetupinfo.Storageid = ucSelectProject.StorageId;//项目体ID或分公司ID            
             assetsetupinfo.Contactphone = txtContactphone.Text;//联系电话
-            assetsetupinfo.Projectcontactorid = ucProjectcontactorid.UserId;//项目体联系人
+            assetsetupinfo.Projectcontactorid = txtProjectcontactorid.Text.Trim();//项目体联系人
             assetsetupinfo.Projectcontactorphone = txtProjectcontactorphone.Text;//项目体联系电话
             assetsetupinfo.Createddate = DateTime.Now;//创建日期
             assetsetupinfo.Creator = WebContext.Current.CurrentUser.Id;//创建人
@@ -285,9 +284,9 @@ namespace FixedAsset.Web.Admin
                 UIHelper.Alert(this, "请选择项目体或分公司!");
                 return;
             }
-            if (string.IsNullOrEmpty(ucProjectcontactorid.UserId))
+            if (string.IsNullOrEmpty(txtProjectcontactorid.Text.Trim()))
             {
-                UIHelper.Alert(this, "请选择项目体(分公司)联系人!");
+                UIHelper.Alert(this, "请输入项目体(分公司)联系人!");
                 return;
             }
             if (!ucApplyDate.DateValue.HasValue)
@@ -316,9 +315,9 @@ namespace FixedAsset.Web.Admin
                 UIHelper.Alert(this, "请选择项目体或分公司!");
                 return;
             }
-            if (string.IsNullOrEmpty(ucProjectcontactorid.UserId))
+            if (string.IsNullOrEmpty(txtProjectcontactorid.Text.Trim()))
             {
-                UIHelper.Alert(this, "请选择项目体(分公司)联系人!");
+                UIHelper.Alert(this, "请输入项目体(分公司)联系人!");
                 return;
             }
             if (!ucApplyDate.DateValue.HasValue)

@@ -236,7 +236,7 @@ namespace FixedAsset.Web.Admin
             txtReason.Text = headInfo.Reason;
             ucSubCompany.SubcompanyId = headInfo.Subcompany;
             //txtApplyuser.Text = headInfo.Applyuser;
-            ucApplyuser.Username = headInfo.Applyuser;
+            //ucApplyuser.Username = headInfo.Applyuser;
             if (headInfo.Applydate.HasValue)
             {
                 ucApplydate.DateValue = headInfo.Applydate;

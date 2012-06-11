@@ -76,13 +76,13 @@ namespace FixedAsset.Web.Admin {
         protected global::FixedAsset.Web.Admin.UserControl.ucSelectProject ucSelectProject;
         
         /// <summary>
-        /// ucProjectcontactorid 控件。
+        /// txtProjectcontactorid 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::FixedAsset.Web.Admin.UserControl.ucSelectUser ucProjectcontactorid;
+        protected global::System.Web.UI.WebControls.TextBox txtProjectcontactorid;
         
         /// <summary>
         /// txtProjectcontactorphone 控件。
