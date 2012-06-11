@@ -28,31 +28,31 @@
                             <td align="center">
                                 单号
                             </td>
-                            <td>
+                            <td align="center">
                                 计划采购日期
                             </td>
-                            <td>
+                            <td align="center">
                                 分公司
                             </td>
-                            <td>
+                            <td align="center">
                                 申请人
                             </td>
-                            <td>
+                            <td align="center">
                                 申请日期
                             </td>
-                            <td>
+                            <td align="center">
                                 审核人
                             </td>
-                            <td>
+                            <td align="center">
                                 审核日期
                             </td>
-                            <td>
+                            <td align="center">
                                 状态
                             </td>
-                            <td>
+                            <td align="center">
                                 创建日期
                             </td>
-                            <td>
+                            <td align="center">
                                 操作
                             </td>
                         </tr>
@@ -62,31 +62,31 @@
                             <td align="center">
                                 <%#Eval("Psid")%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#((DateTime)Eval("Procurementscheduledate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#Eval("Subcompanyname")%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#Eval("Applyuser")%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#((DateTime)Eval("Applydate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#Eval("Approveuser")%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%# Eval("Approvedate")==null?"":((DateTime)Eval("Approvedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#EnumUtil.RetrieveEnumDescript((ApproveResult)Eval("Approveresult"))%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#((DateTime)Eval("Createddate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
-                            <td align="right">
+                            <td align="center">
                                 <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF" Visible="false"
                                     AlternateText="编辑" ToolTip="编辑" CommandArgument='<%#Eval("Psid")%>' CommandName="EditDetail" />
                                 <asp:ImageButton ID="BtnDeleted" runat="server" ImageUrl="~/images/Button/delete.GIF"
@@ -104,31 +104,31 @@
                             <td align="center">
                                 <%#Eval("Psid")%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#((DateTime)Eval("Procurementscheduledate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#Eval("Subcompanyname")%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#Eval("Applyuser")%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#((DateTime)Eval("Applydate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#Eval("Approveuser")%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%# Eval("Approvedate")==null?"":((DateTime)Eval("Approvedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#EnumUtil.RetrieveEnumDescript((ApproveResult)Eval("Approveresult"))%>
                             </td>
-                            <td>
+                            <td align="center">
                                 <%#((DateTime)Eval("Createddate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
-                            <td align="right">
+                            <td align="center">
                                <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF" Visible="false"
                                     AlternateText="编辑" ToolTip="编辑" CommandArgument='<%#Eval("Psid")%>' CommandName="EditDetail" />
                                 <asp:ImageButton ID="BtnDeleted" runat="server" ImageUrl="~/images/Button/delete.GIF"

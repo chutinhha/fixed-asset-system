@@ -32,7 +32,7 @@
                         <HeaderTemplate>
                             <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
                                 <td style="width: 10%">
-                                    <input type="checkbox" id="chkAll" />全选/反选
+                                    <input type="checkbox" id="chkAll"  title="全选/反选"/>
                                 </td>
                                 <td align="center" style="width: 12%">
                                     设备编号
