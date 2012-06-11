@@ -125,8 +125,8 @@ namespace FixedAsset.Web.Admin
                     foreach (var assetInfo in assetInfos)
                     {
                         assetInfo.State = AssetState.InUse;
-                        assetInfo.Storageflag = headInfo.Storagetitle;
-                        assetInfo.Storage = headInfo.Storageid;
+                        //assetInfo.Storageflag = headInfo.Storagetitle;
+                        //assetInfo.Storage = headInfo.Storageid;
                         AssetService.UpdateAssetByAssetno(assetInfo);
                     }
                 }
