@@ -76,7 +76,7 @@
                                 <asp:ImageButton ID="BtnDeleted" runat="server" ImageUrl="~/images/Button/delete.GIF"
                                     Visible='<%#Eval("Allowedit")%>' CommandArgument='<%#Eval("Roleid")%>' CommandName="DeleteDetail"
                                     OnClientClick="return confirm('确认要删除吗？');" AlternateText="删除" ToolTip="删除" />
-                                    <asp:ImageButton ID="BtnDetail" runat="server" ImageUrl="~/images/Button/detail.GIF"
+                                <asp:ImageButton ID="BtnDetail" runat="server" ImageUrl="~/images/Button/detail.GIF"
                                     AlternateText="详细信息" ToolTip="详细信息" CommandArgument='<%#Eval("Roleid")%>' CommandName="ViewDetail" />
                             </td>
                         </tr>
@@ -110,14 +110,14 @@
                                 <asp:ImageButton ID="BtnDeleted" runat="server" ImageUrl="~/images/Button/delete.GIF"
                                     Visible='<%#Eval("Allowedit")%>' CommandArgument='<%#Eval("Roleid")%>' CommandName="DeleteDetail"
                                     OnClientClick="return confirm('确认要删除吗？');" AlternateText="删除" ToolTip="删除" />
-                                     <asp:ImageButton ID="BtnDetail" runat="server" ImageUrl="~/images/Button/detail.GIF"
+                                <asp:ImageButton ID="BtnDetail" runat="server" ImageUrl="~/images/Button/detail.GIF"
                                     AlternateText="详细信息" ToolTip="详细信息" CommandArgument='<%#Eval("Roleid")%>' CommandName="ViewDetail" />
                             </td>
                         </tr>
                     </AlternatingItemTemplate>
                 </asp:Repeater>
                 <tr>
-                    <td colspan="6" style="height: 30px; width: auto;">
+                    <td colspan="7" style="height: 30px; width: 98%;" align="center">
                         <cc1:PagingControl ID="pcData" runat="server" MaxNavigatePageCount="7" OnPageIndexClick="pcData_PageIndexClick" />
                     </td>
                 </tr>
