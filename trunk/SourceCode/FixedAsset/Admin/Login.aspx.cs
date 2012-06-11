@@ -65,8 +65,8 @@ namespace FixedAsset.Web.Admin
                 }
                 else
                 {
-                    txtLoginid.Text = "wll";
-                    txtUserpassword.Text = "wll";
+                    //txtLoginid.Text = "admin";
+                    //txtUserpassword.Text = "admin";
                 }
             }
         }
