@@ -9,6 +9,7 @@
 <%@ Register Src="~/Admin/UserControl/ucSelectProject.ascx" TagName="SelectProject"
     TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link href="css/mail.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
     <ul id="TabPage1">
@@ -50,38 +51,38 @@
                 </tr>
             </table>
             <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
-                align="center" class="table_grayTH eoddTable">
+                align="center" class="gridtable">
                 <asp:Repeater ID="rptMoveList" runat="server" OnItemDataBound="rptMoveList_ItemDataBound"
                     OnItemCommand="rptMoveList_ItemCommand">
                     <HeaderTemplate>
-                        <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
-                            <td style="width: 100px;" align="center">
+                        <tr class="thbg" style="padding:0 0 0 0">
+                            <th style="width: 100px;" align="center">
                                 移机单号
-                            </td>
-                            <td align="center" style="width: 40px;">
+                            </th>
+                            <th align="center" style="width: 40px;">
                                 系统
-                            </td>
-                            <td align="center" style="width: 60px;">
+                            </th>
+                            <th align="center" style="width: 60px;">
                                 分公司
-                            </td>
-                            <td align="center" style="width: 60px;">
+                            </th>
+                            <th align="center" style="width: 60px;">
                                 项目体
-                            </td>
-                            <td align="center" style="width: 75px;">
+                            </th>
+                            <th align="center" style="width: 75px;">
                                 申请日期
-                            </td>
-                            <td align="center">
+                            </th>
+                            <th align="center">
                                 申请人
-                            </td>
-                            <td align="center">
+                            </th>
+                            <th align="center">
                                 申请内容
-                            </td>
-                            <td align="center" style="width: 60px;">
+                            </th>
+                            <th align="center" style="width: 60px;">
                                 状态
-                            </td>
-                            <td align="center">
+                            </th>
+                            <th align="center">
                                 操作
-                            </td>
+                            </th>
                         </tr>
                     </HeaderTemplate>
                     <ItemTemplate>
@@ -130,7 +131,7 @@
                         </tr>
                     </ItemTemplate>
                     <AlternatingItemTemplate>
-                        <tr class="alt-row">
+                        <tr class="even">
                             <td>
                                 <%#Eval("Assetmoveid")%>
                             </td>
