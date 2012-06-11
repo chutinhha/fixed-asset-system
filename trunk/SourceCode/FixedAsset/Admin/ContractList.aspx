@@ -6,6 +6,7 @@
 <%@ Register Assembly="KFSQ.Web.Controls" Namespace="KFSQ.Web.Controls" TagPrefix="cc1" %>
 <%@ Register Assembly="iKC.Web" Namespace="iKC.Web.UI.WebControls" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link href="css/mail.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
     <ul id="TabPage1">
@@ -20,29 +21,29 @@
                 <input type="button" class="button" runat="server" id="btnAdd" value="新增" onclick="javascript:window.location='NewContacts.aspx'" />
             </p>
             <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
-                align="center">
+                align="center" class="gridtable">
                 <asp:Repeater ID="rptContactsList" runat="server" OnItemDataBound="rptContactsList_ItemDataBound"
                     OnItemCommand="rptContactsList_ItemCommand">
                     <HeaderTemplate>
-                        <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
-                            <td align="center">
+                        <tr  class="thbg" style="padding:0 0 0 0">
+                            <th align="center">
                                 合同编号
-                            </td>
-                            <td align="center">
+                            </th>
+                            <th align="center">
                                 签订日期
-                            </td>
-                            <td align="center">
+                            </th>
+                            <th align="center">
                                 分公司
-                            </td>
-                            <td align="center">
+                            </th>
+                            <th align="center">
                                 供应商
-                            </td>
-                            <td align="center">
+                            </th>
+                            <th align="center">
                                 创建日期
-                            </td>
-                            <td align="center">
+                            </th>
+                            <th align="center">
                                 操作
-                            </td>
+                            </th>
                         </tr>
                     </HeaderTemplate>
                     <ItemTemplate>
@@ -75,7 +76,7 @@
                         </tr>
                     </ItemTemplate>
                     <AlternatingItemTemplate>
-                        <tr class="alt-row">
+                        <tr class="even">
                             <td align="center">
                                 <%#Eval("Contractid")%>
                             </td>
