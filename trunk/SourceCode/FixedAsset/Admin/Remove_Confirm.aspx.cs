@@ -12,8 +12,7 @@ using FixedAsset.Web.AppCode;
 namespace FixedAsset.Web.Admin
 {
     public partial class Remove_Confirm : BasePage
-    {
-
+    { 
         #region 属性
         protected string RemoveId
         {
@@ -106,7 +105,7 @@ namespace FixedAsset.Web.Admin
             }
             if (remove.Applydate.HasValue)
             {
-                //litApplyDate.Text = remove.Applydate.Value.ToString(UiConst.DateFormat);  //申请日期
+                litApplyDate.Text = remove.Applydate.Value.ToString(UiConst.DateFormat);  //申请日期
             }
             litApplycontent.Text = remove.Applycontent;//申请内容
             ucApplyuser.UserId = remove.Applyuserid;//申请人
