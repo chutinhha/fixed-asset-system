@@ -6,7 +6,7 @@
     TagPrefix="uc1" %>
 <asp:Content ID="head" ContentPlaceHolderID="head" runat="Server">
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
-    <script src="../Scripts/calendar.js" type="text/javascript"></script>
+    <link href="css/mail.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="Server">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -20,7 +20,7 @@
                 <div class="content-box-content">
                     <div class="tab-content default-tab">
                         <fieldset>
-                            <table style="width: 80%;">
+                             <table>
                                 <tr>
                                     <td style="width: 180px;">
                                         单号:
@@ -91,26 +91,26 @@
                                         <div id="tagContent">
                                             <div id="MyFile" style="display: block;">
                                                 <table style="width: 100%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
-                                                    align="center" class="table_grayTH eoddTable">
+                                                    align="center" class="gridtable">
                                                     <asp:Repeater ID="rptProcureDetailList" OnItemDataBound="rptProcureDetailList_ItemDataBound"
                                                         OnItemCommand="rptProcureDetailList_ItemCommand" runat="server">
                                                         <HeaderTemplate>
-                                                            <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
-                                                                <td>
+                                                            <tr class="thbg" style="padding: 0 0 0 0">
+                                                        <th style="width: 100px;" align="center">
                                                                     设备类别
-                                                                </td>
-                                                                <td>
+                                                                </th>
+                                                                <th>
                                                                     设备名称
-                                                                </td>
-                                                                <td>
+                                                                </th>
+                                                                <th>
                                                                     设备规格
-                                                                </td>
-                                                                <td>
+                                                                </th>
+                                                                <th>
                                                                     计划采购数量
-                                                                </td>
-                                                                <td>
+                                                                </th>
+                                                                <th>
                                                                     单价
-                                                                </td>
+                                                                </th>
                                                             </tr>
                                                         </HeaderTemplate>
                                                         <ItemTemplate>
@@ -133,7 +133,7 @@
                                                             </tr>
                                                         </ItemTemplate>
                                                         <AlternatingItemTemplate>
-                                                            <tr class="alt-row">
+                                                            <tr class="even">
                                                                 <td>
                                                                     <%#Eval("CategoryAllPathName")%>
                                                                 </td>

@@ -13,6 +13,7 @@
 <%@ Register TagPrefix="uc1" TagName="SelectProject" Src="~/Admin/UserControl/ucSelectProject.ascx" %>
 <asp:Content ID="head" ContentPlaceHolderID="head" runat="Server">
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <link href="css/mail.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="Server">
     <div class="content-box">
@@ -24,7 +25,7 @@
         <div class="content-box-content">
             <div class="tab-content default-tab">
                 <fieldset>
-                    <table style="width: 80%;">
+                     <table>
                         <tr>
                             <td>
                                 所属系统:
@@ -177,34 +178,34 @@
                                 <div id="tagContent">
                                     <div id="MyFile" style="display: block;">
                                         <table style="width: 100%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
-                                            align="center" class="table_grayTH eoddTable">
+                                            align="center" class="gridtable">
                                             <asp:Repeater ID="rptAssetsList" runat="server" OnItemDataBound="rptAssetsList_ItemDataBound">
                                                 <HeaderTemplate>
-                                                    <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
-                                                        <td align="center">
+                                                   <tr class="thbg" style="padding: 0 0 0 0">
+                                                        <th style="width: 100px;" align="center">
                                                             设备编号
-                                                        </td>
-                                                        <td>
+                                                        </th>
+                                                        <th>
                                                             设备类别
-                                                        </td>
-                                                        <td>
+                                                        </th>
+                                                        <th>
                                                             设备名称
-                                                        </td>
-                                                        <td>
+                                                        </th>
+                                                        <th>
                                                             设备状态
-                                                        </td>
-                                                        <td>
+                                                        </th>
+                                                        <th>
                                                             购入日期
-                                                        </td>
-                                                        <td>
+                                                        </th>
+                                                        <th>
                                                             单价
-                                                        </td>
-                                                        <td>
+                                                        </th>
+                                                        <th>
                                                             品牌
-                                                        </td>
-                                                        <td>
+                                                        </th>
+                                                        <th>
                                                             账务类别
-                                                        </td>
+                                                        </th>
                                                     </tr>
                                                 </HeaderTemplate>
                                                 <ItemTemplate>
@@ -237,7 +238,7 @@
                                                     </tr>
                                                 </ItemTemplate>
                                                 <AlternatingItemTemplate>
-                                                    <tr class="alt-row">
+                                                    <tr class="even">
                                                         <td align="center">
                                                             <a href='javascript:ShowTopDialogFrame("设备明细", "ShowAssetDetail.aspx?Assetno=<%#Eval("Assetno")%>","",900,560);'>
                                                                 <%#Eval("Assetno")%></a>

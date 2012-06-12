@@ -108,6 +108,7 @@ namespace FixedAsset.Web.Admin
             headInfo.Approveresult = AssetMoveState.Confirmed;
             headInfo.Confirmdate = DateTime.Parse(litConfirmdate.Text);
             headInfo.Confirmuser = ucConfirmuser.Username;
+            headInfo.Movedcontent = txtMovedcontent.Text;//已移机明细
             AssetmoveService.UpdateAssetmoveByAssetmoveid(headInfo);
             //更新设备状态,存放地点
             var detailInfos = AssetmovedetailService.RetrieveAssetmovedetailListByAssetmoveid(Assetmoveid);

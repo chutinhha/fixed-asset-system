@@ -153,16 +153,16 @@
                         align="center" class="gridtable">
                         <asp:Repeater ID="rptSetupList" runat="server">
                             <HeaderTemplate>
-                                <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
-                                    <td>
+                                <tr class="thbg" style="padding: 0 0 0 0">
+                                    <th style="width: 120px;" align="center">
                                         安装单号
-                                    </td>
-                                    <td>
+                                    </th>
+                                    <th>
                                         计划安装日期
-                                    </td>
-                                    <td>
+                                    </th>
+                                    <th>
                                         实际安装日期
-                                    </td>
+                                    </th>
                                 </tr>
                             </HeaderTemplate>
                             <ItemTemplate>
@@ -179,7 +179,7 @@
                                 </tr>
                             </ItemTemplate>
                             <AlternatingItemTemplate>
-                                <tr class="alt-row">
+                                <tr class="even">
                                     <td>
                                         <%#Eval("Setupid")%>
                                     </td>
@@ -199,16 +199,16 @@
                         align="center" class="gridtable">
                         <asp:Repeater ID="rptRepairList" runat="server">
                             <HeaderTemplate>
-                                <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
-                                    <td>
+                                <tr class="thbg" style="padding: 0 0 0 0">
+                                    <th style="width: 120px;" align="center">
                                         维修单号
-                                    </td>
-                                    <td>
+                                    </th>
+                                    <th>
                                         计划维修日期
-                                    </td>
-                                    <td>
+                                    </th>
+                                    <th>
                                         实际维修日期
-                                    </td>
+                                    </th>
                                 </tr>
                             </HeaderTemplate>
                             <ItemTemplate>
@@ -225,7 +225,7 @@
                                 </tr>
                             </ItemTemplate>
                             <AlternatingItemTemplate>
-                                <tr class="alt-row">
+                                <tr class="even">
                                     <td>
                                         <%#Eval("Assetmaintainid")%>
                                     </td>
@@ -245,16 +245,16 @@
                         align="center" class="gridtable">
                         <asp:Repeater ID="rptMoveList" runat="server">
                             <HeaderTemplate>
-                                <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
-                                    <td>
+                                <tr class="thbg" style="padding: 0 0 0 0">
+                                    <th style="width: 120px;" align="center">
                                         移机单号
-                                    </td>
-                                    <td>
+                                    </th>
+                                    <th>
                                         计划移机日期
-                                    </td>
-                                    <td>
+                                    </th>
+                                    <th>
                                         实际移机日期
-                                    </td>
+                                    </th>
                                 </tr>
                             </HeaderTemplate>
                             <ItemTemplate>
@@ -271,7 +271,7 @@
                                 </tr>
                             </ItemTemplate>
                             <AlternatingItemTemplate>
-                                <tr class="alt-row">
+                                <tr class="even">
                                     <td>
                                         <%#Eval("Assetmoveid")%>
                                     </td>
@@ -291,16 +291,16 @@
                         align="center" class="gridtable">
                         <asp:Repeater ID="rptRemoveList" runat="server">
                             <HeaderTemplate>
-                                <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
-                                    <td>
+                                <tr class="thbg" style="padding: 0 0 0 0">
+                                    <th style="width: 120px;" align="center">
                                         拆机单号
-                                    </td>
-                                    <td>
+                                    </th>
+                                    <th>
                                         计划拆机日期
-                                    </td>
-                                    <td>
+                                    </th>
+                                    <th>
                                         实际拆机日期
-                                    </td>
+                                    </th>
                                 </tr>
                             </HeaderTemplate>
                             <ItemTemplate>
@@ -317,7 +317,7 @@
                                 </tr>
                             </ItemTemplate>
                             <AlternatingItemTemplate>
-                                <tr class="alt-row">
+                                <tr class="even">
                                     <td>
                                         <%#Eval("Assetremoveid")%>
                                     </td>

@@ -21,7 +21,7 @@
         <div class="content-box-content">
             <div class="tab-content default-tab">
                 <fieldset>
-                    <table style="width: 80%;">
+                     <table>
                         <tr>
                             <td style="width: 120px;">
                                 合同编号:
@@ -136,7 +136,7 @@
                                                     </tr>
                                                 </ItemTemplate>
                                                 <AlternatingItemTemplate>
-                                                    <tr class="alt-row">
+                                                    <tr class="even">
                                                         <td>
                                                             <%#Eval("CategoryAllPathName")%>
                                                         </td>

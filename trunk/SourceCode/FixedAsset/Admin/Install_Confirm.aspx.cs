@@ -177,6 +177,7 @@ namespace FixedAsset.Web.Admin
             setupInfo.Approveresult = SetupState.Confirmed;
             setupInfo.Confirmdate = DateTime.Parse(litConfirmdate.Text);
             setupInfo.Confirmuser = ucConfirmuser.Username;
+            setupInfo.Setupcontent = txtSetupcontent.Text;//已安装明细
             AssetsetupinfoService.UpdateAssetsetupinfoBySetupid(setupInfo);
             //更新设备状态,存放地点
             var detailInfos = AssetsetupdetailService.RetrieveAssetsetupdetailListBySetupid(setupInfo.Setupid);

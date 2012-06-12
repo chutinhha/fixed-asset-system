@@ -33,7 +33,7 @@
             <dt></dt>
             <dd>
                 <p class="title">
-                    <img src="../images/mc-cell-exca.gif" /><a href="main.aspx">待办</a>
+                    <%--<img src="../images/mc-cell-exca.gif" /><a href="main.aspx">待办</a>--%>
                 </p>
                 <p class="loginfor" height="37">
                     <asp:LinkButton ID="BtnLogout" class="but3" runat="server" OnClick="BtnLogout_Click">退出</asp:LinkButton>
