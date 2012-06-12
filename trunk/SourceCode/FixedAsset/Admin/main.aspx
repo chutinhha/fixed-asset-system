@@ -2,7 +2,7 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<head id="Head1" runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
     <script src="js/menu.js" type="text/javascript"></script>
@@ -24,8 +24,6 @@
             <asp:ScriptReference Path="~/Scripts/Extjs/ext-all.js" />
             <asp:ScriptReference Path="~/Scripts/Dialog.js" />
             <asp:ScriptReference Path="~/Scripts/Ajax.js" />
-            <asp:ScriptReference Path="~/Scripts/Main.js" />
-            <asp:ScriptReference Path="~/Scripts/jquery-1.4.1.min.js" />
         </Scripts>
     </asp:ScriptManager>
     <div class="wrap">
@@ -35,7 +33,7 @@
             <dt></dt>
             <dd>
                 <p class="title">
-                    <img src="../images/mc-cell-exca.gif" />
+                    <img src="../images/mc-cell-exca.gif" /><a href="main.aspx">待办</a>
                 </p>
                 <p class="loginfor" height="37">
                     <asp:LinkButton ID="BtnLogout" class="but3" runat="server" OnClick="BtnLogout_Click">退出</asp:LinkButton>
@@ -48,6 +46,7 @@
                 <div id="container">
                     <asp:Literal ID="litMenuItems" runat="server" />
                 </div>
+                <asp:HiddenField ID="HiddenField1" runat="server" Value="0" />
             </div>
             <div class="right">
                 <iframe id="aa" name='aa' src="../index.aspx" width="100%" scrolling="no" frameborder="0"
@@ -73,7 +72,6 @@
                 var bHeight = iframe.contentWindow.document.body.scrollHeight;
                 var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
                 var height = Math.min(bHeight, dHeight);
-                alert(height);
                 iframe.height = height;
             } catch (ex) { }
         }
@@ -81,7 +79,9 @@
     <script type="text/javascript">
         var contents = document.getElementsByClassName('content');
         var toggles = document.getElementsByClassName('type');
-        var myAccordion = new fx.Accordion(toggles, contents, { opacity: true, duration: 400 });
+        var myAccordion = new fx.Accordion(
+					toggles, contents, { opacity: true, duration: 400 }
+				);
         myAccordion.showThisHideOpen(contents[0]);
     </script>
     </form>
