@@ -731,6 +731,8 @@
     <Content Include="Admin\Contact_View.aspx" />
     <Content Include="Admin\ContractList.aspx" />
     <Content Include="Admin\css\default.css" />
+    <Content Include="Admin\css\images\thbg_19.jpg" />
+    <Content Include="Admin\css\mail.css" />
     <Content Include="Admin\DataConfig_Add.aspx" />
     <Content Include="Admin\DataConfig_List.aspx" />
     <Content Include="Admin\DataConfig_View.aspx" />

@@ -61,7 +61,7 @@ namespace FixedAsset.Web.Admin
         {
             if (string.IsNullOrEmpty(ucSelectProjectForTree.StorageId))
             {
-                UIHelper.AlertMessage(UpdatePanel1, "选中分公司或项目体!");
+                UIHelper.AlertMessage(this, "选中分公司或项目体!");
                 return;
             }
             var content = new StringBuilder();
@@ -70,7 +70,8 @@ namespace FixedAsset.Web.Admin
             content.Append(ucSelectProjectForTree.Subcompanyname).Append(",");
             content.Append(ucSelectProjectForTree.StorageId).Append(",");
             content.Append(ucSelectProjectForTree.Storagename);
-            ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "SelectSingleProject", "setCookie('dialogReturn_key','" + content.ToString() + "',1);CloseTopDialogFrame();", true);
+            ClientScript.RegisterStartupScript(this.GetType(), "SelectSingleProject", "<script>setCookie('dialogReturn_key','" + content.ToString() + "',1);CloseTopDialogFrame();</script>");
+            //ScriptManager.RegisterStartupScript(UpdatePanel1, UpdatePanel1.GetType(), "SelectSingleProject", "setCookie('dialogReturn_key','" + content.ToString() + "',1);CloseTopDialogFrame();", true);
         }
         #endregion
 

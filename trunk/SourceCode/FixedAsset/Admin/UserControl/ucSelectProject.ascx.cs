@@ -108,7 +108,7 @@ namespace FixedAsset.Web.Admin.UserControl
                 }
             }
             var script = new StringBuilder();
-            script.AppendFormat(@"ShowTopDialogFrame('选择分公司或项目体', '{0}','SelectStorageAddress()',790,500);", ResolveUrl("~/Admin/SelectSingleProject.aspx"));
+            script.AppendFormat(@"ShowTopDialogFrame('选择分公司或项目体', '{0}','SelectStorageAddress()',790,367);", ResolveUrl("~/Admin/SelectSingleProject.aspx"));
             if (updatePanel == null)
             {
                 ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "ucSelectProject",

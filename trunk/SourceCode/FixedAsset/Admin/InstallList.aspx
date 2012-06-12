@@ -65,13 +65,13 @@
                             <th align="center" style="width: 60px;">
                                 分公司
                             </th>
-                            <th align="center" style="width: 60px;">
+                            <th align="center" style="width: 150px;">
                                 项目体
                             </th>
                             <th align="center" style="width: 75px;">
                                 申请日期
                             </th>
-                            <th align="center">
+                            <th align="center" style="width: 50px;">
                                 申请人
                             </th>
                             <th align="center">
@@ -80,7 +80,7 @@
                             <th align="center" style="width: 60px;">
                                 状态
                             </th>
-                            <th align="center">
+                            <th align="center" style="width: 65px;">
                                 操作
                             </th>
                         </tr>

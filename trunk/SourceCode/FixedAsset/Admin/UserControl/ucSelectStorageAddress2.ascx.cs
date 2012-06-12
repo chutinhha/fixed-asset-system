@@ -103,7 +103,7 @@ namespace FixedAsset.Web.Admin.UserControl
                 }
             }
             var script = new StringBuilder();
-            script.AppendFormat(@"ShowTopDialogFrame('存放地点选择', '{0}','SelectStorageAddress()',790,500);", ResolveUrl("~/Admin/SelectStorageAddress.aspx"));
+            script.AppendFormat(@"ShowTopDialogFrame('存放地点选择', '{0}','SelectStorageAddress()',790,367);", ResolveUrl("~/Admin/SelectStorageAddress.aspx"));
             if (updatePanel == null)
             {
                 ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "ucSelectStorageAddress2",
