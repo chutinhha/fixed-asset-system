@@ -8,7 +8,7 @@
 <%@ Register Src="~/Admin/UserControl/ucDatePicker.ascx" TagName="DatePicker" TagPrefix="uc1" %>
 <%@ Register Src="~/Admin/UserControl/ucSelectProject.ascx" TagName="SelectProject"
     TagPrefix="uc1" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">   
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="css/mail.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
@@ -19,68 +19,68 @@
         <div id="dTab1" class="Box text_box">
             <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
                 align="center">
-                    <tr>
-                        <td style="width: 20%;">
-                            维修单编号
-                        </td>
-                        <td>
-                            <asp:TextBox ID="txtSrchAssetmaintainid" Width="150" CssClass="" runat="server"></asp:TextBox>
-                        </td>
-                        <td>
-                            项目体
-                        </td>
-                        <td>
-                            <uc1:SelectProject ID="ucSelectProject" runat="server" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            申请日期
-                        </td>
-                        <td colspan="3">
-                            <uc1:DatePicker ID="ucSrchStartApplydate" runat="server" />
-                            ~
-                            <uc1:DatePicker ID="ucSrchEndApplydate" runat="server" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" align="right">
-                            <asp:Button ID="BtnSearch" runat="server" CssClass="button" Text="查询" OnClick="BtnSearch_Click" />
-                            <input type="button" class="button" runat="server" id="btnAdd" value="申请" onclick="javascript:window.location='NewRepairing.aspx'" />
-                        </td>
-                    </tr>
-                </table>
+                <tr>
+                    <td style="width: 20%;">
+                        维修单编号
+                    </td>
+                    <td>
+                        <asp:TextBox ID="txtSrchAssetmaintainid" Width="150" CssClass="" runat="server"></asp:TextBox>
+                    </td>
+                    <td>
+                        项目体
+                    </td>
+                    <td>
+                        <uc1:SelectProject ID="ucSelectProject" runat="server" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        申请日期
+                    </td>
+                    <td colspan="3">
+                        <uc1:DatePicker ID="ucSrchStartApplydate" runat="server" />
+                        ~
+                        <uc1:DatePicker ID="ucSrchEndApplydate" runat="server" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" align="right">
+                        <asp:Button ID="BtnSearch" runat="server" CssClass="button" Text="查询" OnClick="BtnSearch_Click" />
+                        <input type="button" class="button" runat="server" id="btnAdd" value="申请" onclick="javascript:window.location='NewRepairing.aspx'" />
+                    </td>
+                </tr>
+            </table>
             <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
                 align="center" class="gridtable">
                 <asp:Repeater ID="rptRepairList" runat="server" OnItemDataBound="rptRepairList_ItemDataBound"
                     OnItemCommand="rptRepairList_ItemCommand">
                     <HeaderTemplate>
-                        <tr class="thbg" style="padding:0 0 0 0">
-                            <th>
+                        <tr class="thbg" style="padding: 0 0 0 0">
+                            <th style="width: 100px;" align="center">
                                 维修单号
                             </th>
-                            <th>
+                            <th align="center" style="width: 40px;">
                                 系统
                             </th>
-                            <th>
+                            <th align="center" style="width: 60px;">
                                 分公司
                             </th>
-                            <th>
+                            <th align="center" style="width: 150px;">
                                 项目体
                             </th>
-                            <th>
+                            <th align="center" style="width: 75px;">
                                 申请日期
                             </th>
-                            <th>
+                            <th align="center" style="width: 50px;">
                                 申请人
                             </th>
-                            <th>
+                            <th align="center">
                                 申请内容
                             </th>
-                            <th>
+                            <th align="center" style="width: 60px;">
                                 状态
                             </th>
-                            <th>
+                            <th align="center" style="width: 65px;">
                                 操作
                             </th>
                         </tr>

@@ -23,7 +23,7 @@
         </div>
         <div class="content-box-content">
             <div class="tab-content default-tab">
-                <div class="column-left">
+                <div class="column-left" style="height:300px; overflow-y:scroll;">
                     <b>选中存放地点：</b>
                     <div class="listbox">
                         <uc1:SelectStorageAddress ID="ucSelectStorageAddress" runat="server" OnSelectedStorageNodeChange="ucSelectStorageAddress_SelectedStorageNodeChange" />

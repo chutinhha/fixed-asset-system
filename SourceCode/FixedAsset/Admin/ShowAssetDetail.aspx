@@ -26,6 +26,7 @@
             document.getElementById(dabilityRemark).style.display = "none";
         }
     </script>
+    <link href="css/mail.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
     <div class="content-box-content">
@@ -149,7 +150,7 @@
             <div id="tagContent">
                 <div id="setupBillContent" style="display: block;">
                     <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
-                        align="center">
+                        align="center" class="gridtable">
                         <asp:Repeater ID="rptSetupList" runat="server">
                             <HeaderTemplate>
                                 <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
@@ -195,7 +196,7 @@
                 </div>
                 <div id="repairBillContent" style="display: none;">
                     <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
-                        align="center">
+                        align="center" class="gridtable">
                         <asp:Repeater ID="rptRepairList" runat="server">
                             <HeaderTemplate>
                                 <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
@@ -241,7 +242,7 @@
                 </div>
                 <div id="moveBillContent" style="display: none;">
                     <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
-                        align="center">
+                        align="center" class="gridtable">
                         <asp:Repeater ID="rptMoveList" runat="server">
                             <HeaderTemplate>
                                 <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
@@ -287,7 +288,7 @@
                 </div>
                 <div id="removeBillContent" style="display: none;">
                     <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
-                        align="center">
+                        align="center" class="gridtable">
                         <asp:Repeater ID="rptRemoveList" runat="server">
                             <HeaderTemplate>
                                 <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
