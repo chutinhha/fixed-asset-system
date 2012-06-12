@@ -26,7 +26,7 @@
         <div class="content-box-content">
             <div class="tab-content default-tab">
                 <fieldset>
-                    <table style="width: 80%;">
+                     <table>
                         <tr>
                             <td style="width: auto;">
                                 申请单号:

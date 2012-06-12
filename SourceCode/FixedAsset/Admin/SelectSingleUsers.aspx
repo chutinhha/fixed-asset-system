@@ -23,7 +23,7 @@
             登录账号<asp:TextBox ID="txtSrchLoginid" Width="150" CssClass="text-input small-input"
                 runat="server" />
             <asp:Button ID="btnSearch" class="button" runat="server" Text="查询" OnClick="btnSearch_Click" />
-            <asp:SGridView ID="gvSuppliers" GridLines="None" border="0" CssClass="table_grayTH eoddTable"
+            <asp:SGridView ID="gvSuppliers" GridLines="None" border="0" CssClass="gridtable"
                 runat="server" Width="100%" ShowActionToolBar="false" PageSize="2" AutoGenerateColumns="false"
                 AllowCascade="false" DataKeyNames="Id">
                 <Columns>

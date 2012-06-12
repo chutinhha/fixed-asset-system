@@ -26,7 +26,7 @@
         <div class="content-box-content">
             <div class="tab-content default-tab">
                 <fieldset>
-                    <table style="width: 80%;">
+                     <table>
                         <tr>
                             <td>
                                 所属系统:

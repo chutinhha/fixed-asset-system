@@ -13,6 +13,7 @@
 <%@ Register TagPrefix="uc1" TagName="SelectProject" Src="~/Admin/UserControl/ucSelectProject.ascx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <link href="css/mail.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
     <div class="content-box">
@@ -27,7 +28,7 @@
                     <table>
                         <tr>
                             <td style="width: 180px;">
-                                所属系统: 
+                                所属系统:
                             </td>
                             <td>
                                 <uc1:ucSeletedSystem ID="ucSeletedSystem" runat="server" />
@@ -35,7 +36,7 @@
                         </tr>
                         <tr>
                             <td style="width: 180px;">
-                                申请单号: 
+                                申请单号:
                             </td>
                             <td>
                                 <asp:Literal ID="litSetupid" runat="server" />
@@ -43,7 +44,7 @@
                         </tr>
                         <tr>
                             <td style="width: 180px;">
-                                申请内容: 
+                                申请内容:
                             </td>
                             <td style="word-wrap: break-word; overflow: hidden; width: 680px;">
                                 <asp:Literal ID="litApplycontent" runat="server" />
@@ -70,8 +71,7 @@
                                 项目体(分公司)联系人:
                             </td>
                             <td>
-                                <asp:Literal ID="litProjectcontactorid" runat="server"/>
-                                
+                                <asp:Literal ID="litProjectcontactorid" runat="server" />
                             </td>
                         </tr>
                         <tr>
@@ -140,11 +140,11 @@
                         </tr>
                         <tr>
                             <td style="width: 180px;">
-                                已安装明细: 
+                                已安装明细:
                             </td>
                             <td>
-                                <asp:TextBox TextMode="MultiLine" Height="80px" ID="txtSetupcontent" runat="server" MaxLength="500"
-                                    Width="500" Rows="10" />
+                                <asp:TextBox TextMode="MultiLine" Height="80px" ID="txtSetupcontent" runat="server"
+                                    MaxLength="500" Width="500" Rows="10" />
                             </td>
                         </tr>
                         <tr>
@@ -157,7 +157,7 @@
                         </tr>
                         <tr>
                             <td style="width: 180px;">
-                                确认人: 
+                                确认人:
                             </td>
                             <td>
                                 <uc1:ucSelectUser ID="ucConfirmuser" runat="server" IsShowUserName="true" />
@@ -177,34 +177,34 @@
                                 <div id="tagContent">
                                     <div id="MyFile" style="display: block;">
                                         <table style="width: 100%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
-                                            align="center" class="table_grayTH eoddTable">
+                                            align="center" class="gridtable">
                                             <asp:Repeater ID="rptAssetsList" runat="server" OnItemDataBound="rptAssetsList_ItemDataBound">
                                                 <HeaderTemplate>
-                                                    <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
-                                                        <td align="center">
+                                                    <tr class="thbg" style="padding: 0 0 0 0">
+                                                        <th style="width: 100px;" align="center">
                                                             设备编号
-                                                        </td>
-                                                        <td>
+                                                        </th>
+                                                        <th>
                                                             设备类别
-                                                        </td>
-                                                        <td>
+                                                        </th>
+                                                        <th>
                                                             设备名称
-                                                        </td>
-                                                        <td>
+                                                        </th>
+                                                        <th>
                                                             设备状态
-                                                        </td>
-                                                        <td>
+                                                        </th>
+                                                        <th>
                                                             购入日期
-                                                        </td>
-                                                        <td>
+                                                        </th>
+                                                        <th>
                                                             单价
-                                                        </td>
-                                                        <td>
+                                                        </th>
+                                                        <th>
                                                             品牌
-                                                        </td>
-                                                        <td>
+                                                        </th>
+                                                        <th>
                                                             账务类别
-                                                        </td>
+                                                        </th>
                                                     </tr>
                                                 </HeaderTemplate>
                                                 <ItemTemplate>
@@ -226,8 +226,8 @@
                                                             <%#((DateTime)Eval("Purchasedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                                                         </td>
                                                         <td align="right">
-                                                                    <%#((decimal)Eval("Unitprice")).ToString(FixedAsset.Web.AppCode.UiConst.MoneyFormat)%>
-                                                                </td>
+                                                            <%#((decimal)Eval("Unitprice")).ToString(FixedAsset.Web.AppCode.UiConst.MoneyFormat)%>
+                                                        </td>
                                                         <td>
                                                             <%#Eval("Brand")%>
                                                         </td>
@@ -237,7 +237,7 @@
                                                     </tr>
                                                 </ItemTemplate>
                                                 <AlternatingItemTemplate>
-                                                    <tr class="alt-row">
+                                                    <tr class="even">
                                                         <td align="center">
                                                             <a href='javascript:ShowTopDialogFrame("设备明细", "ShowAssetDetail.aspx?Assetno=<%#Eval("Assetno")%>","",900,560);'>
                                                                 <%#Eval("Assetno")%></a>
@@ -255,8 +255,8 @@
                                                             <%#((DateTime)Eval("Purchasedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                                                         </td>
                                                         <td align="right">
-                                                                    <%#((decimal)Eval("Unitprice")).ToString(FixedAsset.Web.AppCode.UiConst.MoneyFormat)%>
-                                                                </td>
+                                                            <%#((decimal)Eval("Unitprice")).ToString(FixedAsset.Web.AppCode.UiConst.MoneyFormat)%>
+                                                        </td>
                                                         <td>
                                                             <%#Eval("Brand")%>
                                                         </td>

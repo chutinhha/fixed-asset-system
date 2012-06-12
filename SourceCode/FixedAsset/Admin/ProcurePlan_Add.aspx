@@ -18,7 +18,7 @@
         <div class="content-box-content">
             <div class="tab-content default-tab">
                 <fieldset>
-                    <table style="width: 80%;">
+                     <table>
                         <tr>
                             <td style="width: 120px;">
                                 单号:
@@ -84,7 +84,7 @@
                                 <div id="tagContent">
                                     <div id="MyFile" style="display: block;">
                                         <table style="width: 100%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
-                                            align="center" class="table_grayTH eoddTable">
+                                            align="center" class="gridtable">
                                             <tr style="border-bottom-width: 1px;">
                                                 <td colspan="6" align="right">
                                                     <input type="button" class="button" runat="server" id="Button1" value="新增" onclick="ShowTopDialogFrame('新增明细', 'ProcurePlanDetail_Add.aspx','RefreshDetail()',790,500);return false;" />
@@ -93,25 +93,25 @@
                                             <asp:Repeater ID="rptProcureDetailList" OnItemDataBound="rptProcureDetailList_ItemDataBound"
                                                 OnItemCommand="rptProcureDetailList_ItemCommand" runat="server">
                                                 <HeaderTemplate>
-                                                    <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
-                                                        <td>
+                                                    <tr class="thbg" style="padding: 0 0 0 0">
+                                                        <th style="width: 100px;" align="center">
                                                             设备类别
-                                                        </td>
-                                                        <td>
+                                                        </th>
+                                                        <th>
                                                             设备名称
-                                                        </td>
-                                                        <td>
+                                                        </th>
+                                                        <th>
                                                             设备规格
-                                                        </td>
-                                                        <td>
+                                                        </th>
+                                                        <th>
                                                             计划采购数量
-                                                        </td>
-                                                        <td>
+                                                        </th>
+                                                        <th>
                                                             单价
-                                                        </td>
-                                                        <td>
+                                                        </th>
+                                                        <th>
                                                             操作
-                                                        </td>
+                                                        </th>
                                                     </tr>
                                                 </HeaderTemplate>
                                                 <ItemTemplate>
@@ -142,7 +142,7 @@
                                                     </tr>
                                                 </ItemTemplate>
                                                 <AlternatingItemTemplate>
-                                                    <tr class="alt-row">
+                                                    <tr class="even">
                                                         <td>
                                                             <%#Eval("CategoryAllPathName")%>
                                                         </td>

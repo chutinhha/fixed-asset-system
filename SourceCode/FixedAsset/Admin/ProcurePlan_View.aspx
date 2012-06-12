@@ -19,7 +19,7 @@
                 <div class="content-box-content">
                     <div class="tab-content default-tab">
                         <fieldset>
-                            <table style="width: 80%;">
+                             <table>
                                 <tr>
                                     <td style="width: 180px;">
                                         单号:
@@ -122,7 +122,7 @@
                                         <div id="tagContent">
                                             <div id="MyFile" style="display: block;">
                                                 <table style="width: 100%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
-                                                    align="center" class="table_grayTH eoddTable">
+                                                    align="center" class="gridtable">
                                                     <asp:Repeater ID="rptProcureDetailList" OnItemDataBound="rptProcureDetailList_ItemDataBound"
                                                         OnItemCommand="rptProcureDetailList_ItemCommand" runat="server">
                                                         <HeaderTemplate>
@@ -164,7 +164,7 @@
                                                             </tr>
                                                         </ItemTemplate>
                                                         <AlternatingItemTemplate>
-                                                            <tr class="alt-row">
+                                                            <tr class="even">
                                                                 <td>
                                                                     <%#Eval("CategoryAllPathName")%>
                                                                 </td>

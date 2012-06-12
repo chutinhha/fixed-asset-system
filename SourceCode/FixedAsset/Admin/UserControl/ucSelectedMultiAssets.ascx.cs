@@ -106,7 +106,7 @@ namespace FixedAsset.Web.Admin.UserControl
             {
 
                 var script = new StringBuilder();  //return false;
-                script.AppendFormat(@"ShowTopDialogFrame('资产选择', '{0}?AssetCategoryId={1}&BillCategory={2}','SelectedMultiAssets()',790,360);", ResolveUrl("~/Admin/SelectedMultiAssets.aspx"), AssetCategoryId,BillCategory);
+                script.AppendFormat(@"ShowTopDialogFrame('资产选择', '{0}?AssetCategoryId={1}&BillCategory={2}','SelectedMultiAssets()',790,420);", ResolveUrl("~/Admin/SelectedMultiAssets.aspx"), AssetCategoryId,BillCategory);
                 if (updatePanel == null)
                 {
                     ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "SelectedMultiAssets",

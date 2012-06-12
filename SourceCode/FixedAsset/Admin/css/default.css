@@ -266,7 +266,7 @@ a:active
 #contents
 {
 	clear: both;
-	height: 92%;
+	height: 88%;
 	width: auto;
 	margin: 5px 5px 0 0px;
 }
@@ -276,17 +276,13 @@ a:active
 	width: 180px;
 	height: 87%;
 }
-
-
 /* 内容右层 */
 #contents .right
 {
 	float: none;
 	height: 93%;
 	margin: 0 0 0 190px;
-	text-align: left;
-	
-	
+	text-align: left;	
 }
 #contents .right #contents { margin-top:-20px; }
 #contents .right2

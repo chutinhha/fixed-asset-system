@@ -108,6 +108,7 @@ namespace FixedAsset.Web.Admin
             headInfo.Approveresult = AssetMaintainState.Confirmed;
             headInfo.Confirmdate = DateTime.Parse(litConfirmdate.Text);
             headInfo.Confirmuser = ucConfirmuser.Username;
+            headInfo.Maintaincontent = txtMaintaincontent.Text;//已维修明细
             AssetmaintainService.UpdateAssetmaintainByAssetmaintainid(headInfo);
             //更新设备状态,存放地点
             var detailInfos = AssetmaintaindetailService.RetrieveAssetmaintaindetailListByAssetmaintainid(Assetmaintainid);

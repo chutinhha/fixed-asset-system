@@ -182,6 +182,7 @@ namespace FixedAsset.Web.Admin
             remove.Approveresult = AssetRemoveState.Confirmed;
             remove.Confirmdate = DateTime.Parse(litConfirmdate.Text);
             remove.Confirmuser = ucConfirmuser.Username;
+            remove.Removedcontent = txtSetupcontent.Text;//已拆机明细
             AssetremoveService.UpdateAssetremoveByAssetremoveid(remove);
             //更新设备状态,存放地点
             var detailInfos = AssetremovedetailService.RetrieveAssetremovedetailListByAssetremoveid(remove.Assetremoveid);

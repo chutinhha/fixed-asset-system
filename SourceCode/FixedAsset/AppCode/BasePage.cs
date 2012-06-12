@@ -66,6 +66,7 @@ namespace FixedAsset.Web
                 {
                     Response.Redirect(ResolveUrl(@"~/admin/Login.aspx"));
                 }
+                #region ScrappedCode
                 //    if (IsPoupPage)
                 //    {
                 //        var script = new StringBuilder();
@@ -104,10 +105,7 @@ namespace FixedAsset.Web
                 //        }
                 //    }
                 //}
-            }
-            if (!IsPostBack)
-            {
-               
+                #endregion
             }
             base.OnLoad(e);
         }

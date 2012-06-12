@@ -92,7 +92,7 @@
                             </tr>
                         </ItemTemplate>
                         <AlternatingItemTemplate>
-                            <tr class="alt-row">
+                            <tr class="even">
                                 <td align="center">
                                     <input type="checkbox" runat="server" id="ckbScrapped" value='<%#Eval("Assetno")%>' />
                                 </td>
