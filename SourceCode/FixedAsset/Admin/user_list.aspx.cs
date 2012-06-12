@@ -20,6 +20,13 @@ namespace FixedAsset.Web.Admin
                 return new TuserService();
             }
         }
+        protected IUsermaproleinfoService UsermaproleinfoService
+        {
+            get
+            {
+                return new UsermaproleinfoService();
+            }
+        }
         #endregion
 
         #region Events
@@ -64,28 +71,14 @@ namespace FixedAsset.Web.Admin
             {
                 if (!string.IsNullOrEmpty(userId))
                 {
-                    //RoleinfoService.DeleteRoleinfoByRoleid(roleId);
-                    //UIHelper.Alert(this, "删除成功");
-                    //LoadData(pcData.CurrentIndex);
+                    UsermaproleinfoService.DeleteUsermaproleinfoByUseridRoleid(new List<string>(){userId},new List<string>());
+                    UIHelper.Alert(this, "删除成功");
+                    LoadData(pcData.CurrentIndex);
                 }
             }
             if (e.CommandName.Equals("EditDetail"))
             {
-                Response.Redirect(ResolveUrl(string.Format("~/Admin/User_AddRole.aspx?UserId={0}", userId)));
-                //var headInfo = ProcurementscheduleheadService.RetrieveProcurementscheduleheadByPsid(Psid);
-                //if (headInfo == null) { return; }
-                //if (headInfo.Approveresult == ApproveResult.Draft)
-                //{
-                //    Response.Redirect(ResolveUrl(string.Format("~/Admin/ProcurePlan_Add.aspx?Psid={0}", Psid)));
-                //}
-                //else if (headInfo.Approveresult == ApproveResult.Approving)
-                //{
-                //    Response.Redirect(ResolveUrl(string.Format("~/Admin/ProcurePlan_Approve.aspx?Psid={0}", Psid)));
-                //}
-                //else
-                //{
-                //    Response.Redirect(ResolveUrl(string.Format("~/Admin/ProcurePlan_View.aspx?Psid={0}", Psid)));
-                //}
+                Response.Redirect(ResolveUrl(string.Format("~/Admin/User_AddRole.aspx?UserId={0}", userId))); 
             }
         }
         #endregion

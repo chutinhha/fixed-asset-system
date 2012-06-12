@@ -15,6 +15,13 @@ namespace FixedAsset.Web.Admin
         {
             get { return new RoleinfoService(); }
         }
+        protected IUsermaproleinfoService UsermaproleinfoService
+        {
+            get
+            {
+                return new UsermaproleinfoService();
+            }
+        }
         #endregion
 
         #region Events
@@ -39,15 +46,6 @@ namespace FixedAsset.Web.Admin
                 var BtnEdit = e.Item.FindControl("BtnEdit") as ImageButton;
                 var BtnDeleted = e.Item.FindControl("BtnDeleted") as ImageButton;
                 var headInfo = e.Item.DataItem as Roleinfo;
-                //BtnEdit.AlternateText = EnumUtil.RetrieveEnumDescript(headInfo.Approveresult);
-                //if (headInfo.Approveresult == ApproveResult.Draft)
-                //{
-                //    BtnDeleted.Visible = true;
-                //}
-                //else
-                //{
-                //    BtnDeleted.Visible = false;
-                //}
             }
         }
         protected void rptRoleList_ItemCommand(object sender, RepeaterCommandEventArgs e)
@@ -57,6 +55,13 @@ namespace FixedAsset.Web.Admin
             {
                 if (!string.IsNullOrEmpty(roleId))
                 {
+                    var list = UsermaproleinfoService.RetrieveUsermaproleinfoByUseridRoleid(new List<string>(),
+                                                                                            new List<string>() {roleId});
+                    if(list.Count>0)
+                    {
+                        UIHelper.Alert(this, "已有用户分配了该角色，不能删除!");
+                        return;
+                    }
                     RoleinfoService.DeleteRoleinfoByRoleid(roleId);
                     UIHelper.Alert(this, "删除成功");
                     LoadData(pcData.CurrentIndex);
