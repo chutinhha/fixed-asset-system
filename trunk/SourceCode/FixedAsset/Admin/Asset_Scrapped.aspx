@@ -99,11 +99,12 @@
                             <th style="width: 9%">
                                 报废申请单号
                             </th>
-                            <th style="width: 7%">
-                                报废日期
-                            </th>
+                            
                             <th style="width: 7%">
                                 报废人
+                            </th>
+                            <th style="width: 7%">
+                                报废日期
                             </th>
                             <th style="width: 6%">
                                 报废状态
@@ -141,11 +142,12 @@
                             <td align="center">
                                 <%#Eval("Assetscrappedid")%>
                             </td>
-                            <td>
-                                <%# Eval("Scrappeddate") == null ? "" : ((DateTime)Eval("Scrappeddate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
-                            </td>
+                            
                             <td>
                                 <%#Eval("Scrappeduser")%>
+                            </td>
+                            <td>
+                                <%# Eval("Scrappeddate") == null ? "" : ((DateTime)Eval("Scrappeddate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
                             <td>
                                 <%#EnumUtil.RetrieveEnumDescript((AssetScrappedState)Eval("Approvedstate"))%>
@@ -187,12 +189,12 @@
                             </td>
                             <td align="center">
                                 <%#Eval("Assetscrappedid")%>
+                            </td>                   
+                            <td>
+                                <%#Eval("Scrappeduser")%>
                             </td>
                             <td>
                                 <%# Eval("Scrappeddate") == null ? "" : ((DateTime)Eval("Scrappeddate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
-                            </td>
-                            <td>
-                                <%#Eval("Scrappeduser")%>
                             </td>
                             <td>
                                 <%#EnumUtil.RetrieveEnumDescript((AssetScrappedState)Eval("Approvedstate"))%>
