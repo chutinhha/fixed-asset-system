@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using FixedAsset.Domain;
 using FixedAsset.IServices;
 using FixedAsset.Services;
@@ -61,6 +62,13 @@ namespace FixedAsset.Web.Admin
                 return new AssetremovedetailService();
             }
         }
+        protected IAssetscrappedService AssetscrappedService
+        {
+            get
+            {
+                return new AssetscrappedService();
+            }
+        }
         #endregion
 
         #region Events
@@ -79,6 +87,7 @@ namespace FixedAsset.Web.Admin
                     LoadRepairData();
                     LoadMoveData();
                     LoadRemoveData();
+                    LoadScrappedData();
                 }
             }
         }
@@ -156,6 +165,12 @@ namespace FixedAsset.Web.Admin
             var list = AssetremovedetailService.RetrieveAssetremovedetailsPaging(search, 0, 100, out recordCount);
             rptRemoveList.DataSource = list;
             rptRemoveList.DataBind();
+        }
+        protected void LoadScrappedData()
+        {
+            var list = AssetscrappedService.RetrieveAssetscrappedByAssetNo(new List<string>() {Assetno});
+            rptScrappedAsset.DataSource = list;
+            rptScrappedAsset.DataBind();
         }
         #endregion
     }
