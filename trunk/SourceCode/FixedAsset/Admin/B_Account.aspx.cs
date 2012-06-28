@@ -147,26 +147,44 @@ namespace FixedAsset.Web.Admin
                 return;
             }
             var assetInfos = AssetService.RetrieveAssetByAssetno(AssetIds);
-            var noBAccountAssetInfos = assetInfos.Where(p => p.Financecategory != FinanceCategory.BAccount).ToList();
-            if (noBAccountAssetInfos.Count == 0)
+            //var noBAccountAssetInfos = assetInfos.Where(p => p.Financecategory != FinanceCategory.BAccount).ToList();
+            var bAccountInfos = BaccountService.RetrieveBaccountByAssetno(AssetIds);
+            bool isAllB = true;
+            foreach (var assetInfo in assetInfos)
+            {
+                var existInfo = bAccountInfos.Where(p => p.Assetno == assetInfo.Assetno).FirstOrDefault();
+                if(existInfo==null)
+                {
+                    isAllB = false;
+                    var bAccount = new Baccount();
+                    bAccount.Assetno = assetInfo.Assetno;//设备编号
+                    bAccount.Assetname = assetInfo.Assetname;//设备名称（冗余字段）
+                    bAccount.Accounteddate = DateTime.Now;//入账日期
+                    bAccount.Accounteduser = WebContext.Current.CurrentUser.Username; //入账人
+                    bAccount.Createddate = DateTime.Now;//操作时间
+                    bAccount.Createduser = WebContext.Current.CurrentUser.Username; ;//操作人
+                    assetInfo.Financecategory = FinanceCategory.BAccount;
+                    AssetService.UpdateAssetByAssetno(assetInfo);
+                    BaccountService.CreateBaccount(bAccount);
+                }
+                else
+                {
+                    if (assetInfo.Financecategory == FinanceCategory.AAccount)
+                    {
+                        assetInfo.Financecategory = FinanceCategory.BAccount;
+                        AssetService.UpdateAssetByAssetno(assetInfo);
+                    }
+                }
+            }
+            if (isAllB)
             {
                 UIHelper.Alert(this, "对不起,您选择的设备已进入B账!");
                 return;
             }
-            foreach (var noBAccountAssetInfo in noBAccountAssetInfos)
+            else
             {
-                var bAccount = new Baccount();
-                bAccount.Assetno = noBAccountAssetInfo.Assetno;//设备编号
-                bAccount.Assetname = noBAccountAssetInfo.Assetname;//设备名称（冗余字段）
-                bAccount.Accounteddate = DateTime.Now;//入账日期
-                bAccount.Accounteduser = WebContext.Current.CurrentUser.Username; //入账人
-                bAccount.Createddate = DateTime.Now;//操作时间
-                bAccount.Createduser = WebContext.Current.CurrentUser.Username; ;//操作人
-                BaccountService.CreateBaccount(bAccount);
-                noBAccountAssetInfo.Financecategory = FinanceCategory.BAccount;
-                AssetService.UpdateAssetByAssetno(noBAccountAssetInfo);
-            }
-            UIHelper.Alert(this, "转入B账成功");
+                UIHelper.Alert(this, "转入B账成功");
+            } 
             LoadData(pcData.CurrentIndex);
         }
         #endregion

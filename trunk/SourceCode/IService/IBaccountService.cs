@@ -18,6 +18,7 @@ namespace FixedAsset.IServices
         Baccount CreateBaccount(Baccount info);
         Baccount UpdateBaccountByAssetno(Baccount info);
         Baccount RetrieveBaccountByAssetno(string assetno);
+        List<Baccount> RetrieveBaccountByAssetno(List<string> assetnos);
         void DeleteBaccountByAssetno(string assetno);
     }
 }
