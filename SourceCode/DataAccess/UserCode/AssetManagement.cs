@@ -26,6 +26,11 @@ namespace FixedAsset.DataAccess
                 this.Database.AddInParameter(":ASSETNO", assetno);
                 string sqlCommand = @"SELECT * FROM ASSET WHERE  ASSETNO=:ASSETNO";
                 return this.Database.ExecuteToSingle<Asset>(sqlCommand);
+
+                //this.Database.AddInParameter("p_Assetno", assetno);
+                ////string sqlCommand = @"SELECT * FROM ASSET WHERE  ASSETNO=:ASSETNO";
+                //this.Database.AddOutParameter("cur_OUT",)
+                //return this.Database.ExecuteToSingle<Asset>("QueryPackage.Proc_RetrieveASSETByAssetno", CommandType.StoredProcedure);
             }
             finally
             {
