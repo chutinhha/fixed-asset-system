@@ -22,14 +22,14 @@ namespace FixedAsset.Web
             if (HttpContext.Current != null)
             {
                 //Classic Application Pool TempImages
-                //if (!string.IsNullOrEmpty(HttpContext.Current.Request.PhysicalApplicationPath))
-                //{
-                //    string logFile = HttpContext.Current.Request.PhysicalApplicationPath + "log4net.config";
-                //    if (File.Exists(logFile))
-                //    {
-                //        XmlConfigurator.Configure(new System.IO.FileInfo(logFile));
-                //    }
-                //}
+                if (!string.IsNullOrEmpty(HttpContext.Current.Request.PhysicalApplicationPath))
+                {
+                    string logFile = HttpContext.Current.Request.PhysicalApplicationPath + "log4net.config";
+                    if (File.Exists(logFile))
+                    {
+                        XmlConfigurator.Configure(new System.IO.FileInfo(logFile));
+                    }
+                }
             }
         }
         protected void Application_Start(object sender, EventArgs e)
