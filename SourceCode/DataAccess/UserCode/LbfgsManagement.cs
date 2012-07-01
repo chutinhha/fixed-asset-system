@@ -74,42 +74,42 @@ namespace FixedAsset.DataAccess
         {
             try
             {
-                StringBuilder sqlCommand = new StringBuilder(@" SELECT ""LB_FGS"".""FGSID"",""LB_FGS"".""FGS"",""LB_FGS"".""FGSSORTID"",""LB_FGS"".""FGLD"",""LB_FGS"".""FGLDLXDH"",
-                     ""LB_FGS"".""WLLZGY"",""LB_FGS"".""WLLZGYLXDH""
-                     FROM ""LB_FGS"" 
+                StringBuilder sqlCommand = new StringBuilder(@" SELECT ""FGSID"",""FGS"",""FGSSORTID"",""FGLD"",""FGLDLXDH"",
+                     ""WLLZGY"",""WLLZGYLXDH""
+                     FROM LABOR.""LB_FGS"" 
                      WHERE 1=1");
                 if (!string.IsNullOrEmpty(info.Fgs))
                 {
                     this.Database.AddInParameter(":Fgs",DbType.AnsiString,"%"+info.Fgs+"%");
-                    sqlCommand.AppendLine(@" AND ""LB_FGS"".""FGS"" LIKE :Fgs");
+                    sqlCommand.AppendLine(@" AND ""FGS"" LIKE :Fgs");
                 }
                 if (!string.IsNullOrEmpty(info.Fgssortid))
                 {
                     this.Database.AddInParameter(":Fgssortid",DbType.AnsiString,"%"+info.Fgssortid+"%");
-                    sqlCommand.AppendLine(@" AND ""LB_FGS"".""FGSSORTID"" LIKE :Fgssortid");
+                    sqlCommand.AppendLine(@" AND ""FGSSORTID"" LIKE :Fgssortid");
                 }
                 if (!string.IsNullOrEmpty(info.Fgld))
                 {
                     this.Database.AddInParameter(":Fgld",DbType.AnsiString,"%"+info.Fgld+"%");
-                    sqlCommand.AppendLine(@" AND ""LB_FGS"".""FGLD"" LIKE :Fgld");
+                    sqlCommand.AppendLine(@" AND ""FGLD"" LIKE :Fgld");
                 }
                 if (!string.IsNullOrEmpty(info.Fgldlxdh))
                 {
                     this.Database.AddInParameter(":Fgldlxdh",DbType.AnsiString,"%"+info.Fgldlxdh+"%");
-                    sqlCommand.AppendLine(@" AND ""LB_FGS"".""FGLDLXDH"" LIKE :Fgldlxdh");
+                    sqlCommand.AppendLine(@" AND ""FGLDLXDH"" LIKE :Fgldlxdh");
                 }
                 if (!string.IsNullOrEmpty(info.Wllzgy))
                 {
                     this.Database.AddInParameter(":Wllzgy",DbType.AnsiString,"%"+info.Wllzgy+"%");
-                    sqlCommand.AppendLine(@" AND ""LB_FGS"".""WLLZGY"" LIKE :Wllzgy");
+                    sqlCommand.AppendLine(@" AND ""WLLZGY"" LIKE :Wllzgy");
                 }
                 if (!string.IsNullOrEmpty(info.Wllzgylxdh))
                 {
                     this.Database.AddInParameter(":Wllzgylxdh",DbType.AnsiString,"%"+info.Wllzgylxdh+"%");
-                    sqlCommand.AppendLine(@" AND ""LB_FGS"".""WLLZGYLXDH"" LIKE :Wllzgylxdh");
+                    sqlCommand.AppendLine(@" AND ""WLLZGYLXDH"" LIKE :Wllzgylxdh");
                 }
 
-                sqlCommand.AppendLine(@"  ORDER BY ""LB_FGS"".""FGSID"" DESC");
+                sqlCommand.AppendLine(@"  ORDER BY ""FGSID"" DESC");
                 return this.ExecuteReaderPaging<Lbfgs>(sqlCommand.ToString(), pageIndex, pageSize, out count);
             }
             finally
