@@ -1,0 +1,5 @@
+关于解决建库后不同用户间访问的问题：
+1、给用户授权
+GRANT   SELECT,INSERT,UPDATE,DELETE   ON   lb_fgs_xmt   TO   asset; 
+2、建立同义词
+CREATE     PUBLIC   SYNONYM  LB_FGS   FOR   labor.LB_FGS; 
