@@ -2,4 +2,7 @@
 1、给用户授权
 GRANT   SELECT,INSERT,UPDATE,DELETE   ON   lb_fgs_xmt   TO   asset; 
 2、建立同义词
-CREATE     PUBLIC   SYNONYM  LB_FGS   FOR   labor.LB_FGS; 
+create or replace public synonym LB_FGS
+  for LABOR.LB_FGS;
+create or replace public synonym LB_FGS_XMT
+  for LABOR.LB_FGS_XMT;
