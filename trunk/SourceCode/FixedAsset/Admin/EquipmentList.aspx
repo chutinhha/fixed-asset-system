@@ -184,9 +184,9 @@
                 </asp:Repeater>
                 <tr style="height:28px">
                     <td colspan="9" style="height: 28px; width: 98%;" align="center">
-                    <div style="height:28px; padding-top:3px; padding-bottom:3px">
+                    
                         <cc1:PagingControl ID="pcData" runat="server" MaxNavigatePageCount="7" OnPageIndexClick="pcData_PageIndexClick" />
-                        </div>
+                        
                     </td>
                 </tr>
             </table>
