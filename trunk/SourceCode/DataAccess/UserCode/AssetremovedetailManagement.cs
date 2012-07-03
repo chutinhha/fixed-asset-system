@@ -78,8 +78,8 @@ namespace FixedAsset.DataAccess
                 sqlCommand.Append(@"SELECT ASSETREMOVEDETAIL.*
                                     ,ASSET.ASSETCATEGORYID,ASSET.ASSETNAME,ASSET.STATE,ASSET.PURCHASEDATE
                                     ,ASSET.UNITPRICE,ASSET.BRAND,ASSET.FINANCECATEGORY
-                                    FROM ""ASSETREMOVEDETAIL"" ,ASSET
-                                    WHERE  ASSETREMOVEDETAIL.ASSETNO=ASSET.ASSETNO AND ""ASSETREMOVEID""=:Assetremoveid
+                                    FROM ""ASSETREMOVEDETAIL"" INNER JOIN ASSET
+                                    ON  ASSETREMOVEDETAIL.ASSETNO=ASSET.ASSETNO WHERE ""ASSETREMOVEID""=:Assetremoveid
                                  ORDER BY ""DETAILID"" DESC");
                 this.Database.AddInParameter(":Assetremoveid", Assetremoveid);//DBType:VARCHAR2
                 return this.Database.ExecuteToList<Assetremovedetail>(sqlCommand.ToString());
@@ -101,8 +101,8 @@ namespace FixedAsset.DataAccess
                 sqlCommand.Append(@"SELECT ASSETREMOVEDETAIL.*
                                     ,ASSET.ASSETCATEGORYID,ASSET.ASSETNAME,ASSET.STATE,ASSET.PURCHASEDATE
                                     ,ASSET.UNITPRICE,ASSET.BRAND,ASSET.FINANCECATEGORY
-                                    FROM ""ASSETREMOVEDETAIL"" ,ASSET
-                                    WHERE  ASSETREMOVEDETAIL.ASSETNO=ASSET.ASSETNO");
+                                    FROM ""ASSETREMOVEDETAIL"" INNER JOIN ASSET
+                                    ON  ASSETREMOVEDETAIL.ASSETNO=ASSET.ASSETNO WHERE 1=1");
                 if(Assetremoveids.Count==1)
                 {
                     this.Database.AddInParameter(":Assetremoveid"+0.ToString(),Assetremoveids[0]);//DBType:VARCHAR2
@@ -170,8 +170,7 @@ namespace FixedAsset.DataAccess
             try
             {
                 StringBuilder sqlCommand = new StringBuilder(@" SELECT ""ASSETREMOVEDETAIL"".""DETAILID"",""ASSETREMOVEDETAIL"".""ASSETREMOVEID"",""ASSETREMOVEDETAIL"".""ASSETNO"",""ASSETREMOVEDETAIL"".""PLANREMOVEDATE"",""ASSETREMOVEDETAIL"".""ACTUALREMOVEDATE"",
-                     ""ASSETREMOVEDETAIL"".""REMOVEDCONTENT""
-
+                     ""ASSETREMOVEDETAIL"".""REMOVEDCONTENT"" 
                      FROM ""ASSETREMOVEDETAIL"" 
                      INNER JOIN ""ASSETREMOVE"" ON ""ASSETREMOVEDETAIL"".""ASSETREMOVEID""=""ASSETREMOVE"".""ASSETREMOVEID"" 
                      WHERE 1=1");

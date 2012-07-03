@@ -79,8 +79,8 @@ namespace FixedAsset.DataAccess
                 sqlCommand.Append(@"SELECT ASSETSETUPDETAIL.*
                                     ,ASSET.ASSETCATEGORYID,ASSET.ASSETNAME,ASSET.STATE,ASSET.PURCHASEDATE
                                     ,ASSET.UNITPRICE,ASSET.BRAND,ASSET.FINANCECATEGORY
-                                    FROM ""ASSETSETUPDETAIL"" ,ASSET
-                                    WHERE  ASSETSETUPDETAIL.ASSETNO=ASSET.ASSETNO AND ""SETUPID""=:Setupid
+                                    FROM ""ASSETSETUPDETAIL"" INNER JOIN ASSET
+                                    ON  ASSETSETUPDETAIL.ASSETNO=ASSET.ASSETNO WHERE ""SETUPID""=:Setupid
                                  ORDER BY ""DETAILID"" DESC");
                 return this.Database.ExecuteToList<Assetsetupdetail>(sqlCommand.ToString());
             }
@@ -101,8 +101,8 @@ namespace FixedAsset.DataAccess
                 sqlCommand.Append(@"SELECT ASSETSETUPDETAIL.*
                                     ,ASSET.ASSETCATEGORYID,ASSET.ASSETNAME,ASSET.STATE,ASSET.PURCHASEDATE
                                     ,ASSET.UNITPRICE,ASSET.BRAND,ASSET.FINANCECATEGORY
-                                    FROM ""ASSETSETUPDETAIL"" ,ASSET
-                                    WHERE  ASSETSETUPDETAIL.ASSETNO=ASSET.ASSETNO ");
+                                    FROM ""ASSETSETUPDETAIL"" INNER JOIN ASSET
+                                    ON  ASSETSETUPDETAIL.ASSETNO=ASSET.ASSETNO WHERE 1=1");
                 if(Setupids.Count==1)
                 {
                     this.Database.AddInParameter(":Setupid"+0.ToString(),Setupids[0]);//DBType:VARCHAR2
