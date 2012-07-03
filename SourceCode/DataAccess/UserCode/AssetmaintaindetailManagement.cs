@@ -79,8 +79,8 @@ namespace FixedAsset.DataAccess
                 sqlCommand.Append(@"SELECT ASSETMAINTAINDETAIL.*
                                     ,ASSET.ASSETCATEGORYID,ASSET.ASSETNAME,ASSET.STATE,ASSET.PURCHASEDATE
                                     ,ASSET.UNITPRICE,ASSET.BRAND,ASSET.FINANCECATEGORY
-                                    FROM ""ASSETMAINTAINDETAIL"" ,ASSET
-                                    WHERE  ASSETMAINTAINDETAIL.ASSETNO=ASSET.ASSETNO AND ""ASSETMAINTAINID""=:Assetmaintainid
+                                    FROM ""ASSETMAINTAINDETAIL"" INNER JOIN ASSET
+                                    ON  ASSETMAINTAINDETAIL.ASSETNO=ASSET.ASSETNO WHERE ""ASSETMAINTAINID""=:Assetmaintainid
                                  ORDER BY ""DETAILID"" DESC");
                 return this.Database.ExecuteToList<Assetmaintaindetail>(sqlCommand.ToString());
             }
@@ -101,8 +101,8 @@ namespace FixedAsset.DataAccess
                 sqlCommand.Append(@"SELECT ASSETMAINTAINDETAIL.*
                                     ,ASSET.ASSETCATEGORYID,ASSET.ASSETNAME,ASSET.STATE,ASSET.PURCHASEDATE
                                     ,ASSET.UNITPRICE,ASSET.BRAND,ASSET.FINANCECATEGORY
-                                    FROM ""ASSETMAINTAINDETAIL"" ,ASSET
-                                    WHERE  ASSETMAINTAINDETAIL.ASSETNO=ASSET.ASSETNO 
+                                    FROM ""ASSETMAINTAINDETAIL"" INNER JOIN ASSET
+                                    ON  ASSETMAINTAINDETAIL.ASSETNO=ASSET.ASSETNO WHERE 1=1
                                  ");
                 if(Assetmaintainids.Count==1)
                 {

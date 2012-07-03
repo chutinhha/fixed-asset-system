@@ -78,8 +78,8 @@ namespace FixedAsset.DataAccess
                 sqlCommand.Append(@"SELECT ASSETMOVEDETAIL.*
                                     ,ASSET.ASSETCATEGORYID,ASSET.ASSETNAME,ASSET.STATE,ASSET.PURCHASEDATE
                                     ,ASSET.UNITPRICE,ASSET.BRAND,ASSET.FINANCECATEGORY
-                                    FROM ""ASSETMOVEDETAIL"",ASSET 
-                                    WHERE  ASSETMOVEDETAIL.ASSETNO=ASSET.ASSETNO AND ""ASSETMOVEID""=:Assetmoveid
+                                    FROM ""ASSETMOVEDETAIL"" INNER JOIN ASSET 
+                                    ON  ASSETMOVEDETAIL.ASSETNO=ASSET.ASSETNO WHERE ""ASSETMOVEID""=:Assetmoveid
                                  ORDER BY ""DETAILID"" DESC");
                 this.Database.AddInParameter(":Assetmoveid", Assetmoveid);//DBType:VARCHAR2
                 return this.Database.ExecuteToList<Assetmovedetail>(sqlCommand.ToString());
@@ -101,8 +101,8 @@ namespace FixedAsset.DataAccess
                 sqlCommand.Append(@"SELECT ASSETMOVEDETAIL.*
                                     ,ASSET.ASSETCATEGORYID,ASSET.ASSETNAME,ASSET.STATE,ASSET.PURCHASEDATE
                                     ,ASSET.UNITPRICE,ASSET.BRAND,ASSET.FINANCECATEGORY
-                                    FROM ""ASSETMOVEDETAIL""  ,ASSET
-                                    WHERE  ASSETMOVEDETAIL.ASSETNO=ASSET.ASSETNO ");
+                                    FROM ""ASSETMOVEDETAIL""  INNER JOIN ASSET
+                                    ON  ASSETMOVEDETAIL.ASSETNO=ASSET.ASSETNO WHERE 1=1");
                 if(Assetmoveids.Count==1)
                 {
                     this.Database.AddInParameter(":Assetmoveid"+0.ToString(),Assetmoveids[0]);//DBType:VARCHAR2
