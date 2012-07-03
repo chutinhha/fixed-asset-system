@@ -18,22 +18,24 @@
     <script language="javascript" type="text/javascript" src="../Scripts/Ajax.js"></script>
     <form id="form1" runat="server">
     <div id="contents">
-        <div id="dTab1" class="Box text_box" style="text-align:left">
+        <div id="dTab1" class="Box text_box" style="text-align: left">
             分公司名称
             <asp:TextBox class="text-input small-input" ID="txtSrchSubcompanyname" runat="server"></asp:TextBox>
             <asp:Button ID="btnSearch" class="button" runat="server" Text="查询" OnClick="btnSearch_Click" />
             <asp:SGridView ID="gvSubCompanies" GridLines="None" border="0" CssClass="gridtable"
-                runat="server" Width="40%" ShowActionToolBar="false" AutoGenerateColumns="false"
+                runat="server" Width="60%" ShowActionToolBar="false" PageSize="2" AutoGenerateColumns="false"
                 AllowCascade="false" DataKeyNames="Subcompanyid" HeaderStyle-CssClass="thbg">
                 <Columns>
                     <asp:TemplateField>
                         <ItemTemplate>
-                            <asp:Label ID="lblSubCompanyId" runat="server" Text='<%#Eval("Subcompanyid") %>' Visible="false"></asp:Label>
+                            <asp:Label ID="lblSubCompanyId" runat="server" Text='<%#Eval("Subcompanyid") %>'
+                                Visible="false"></asp:Label>
                             <asp:RadioButton runat="server" ID="radioSelected" OnCheckedChanged="radioSelected_CheckedChanged"
                                 AutoPostBack="true" GroupName="templateGroup" />
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:BoundField DataField="Subcompanyname" HeaderText="分公司名称" ControlStyle-Width="50" ItemStyle-CssClass="left" ItemStyle-HorizontalAlign="Left" />
+                    <asp:BoundField DataField="Subcompanyname" HeaderText="分公司名称" ControlStyle-Width="50"
+                        ItemStyle-CssClass="center" ItemStyle-HorizontalAlign="Left" />
                 </Columns>
                 <AlternatingRowStyle CssClass="even"></AlternatingRowStyle>
                 <RowStyle HorizontalAlign="Center" />

@@ -55,7 +55,7 @@
                 <asp:Repeater ID="rptAssetSetupList" runat="server" OnItemDataBound="rptAssetSetupList_ItemDataBound"
                     OnItemCommand="rptAssetSetupList_ItemCommand">
                     <HeaderTemplate>
-                        <tr class="thbg" style="padding:0 0 0 0">
+                        <tr class="thbg" style="padding: 0 0 0 0">
                             <th style="width: 100px;" align="center">
                                 申请单号
                             </th>
@@ -87,7 +87,7 @@
                     </HeaderTemplate>
                     <ItemTemplate>
                         <tr>
-                            <td align="center" style="width: 100px;" >
+                            <td align="center" style="width: 100px;">
                                 <%#Eval("Setupid")%>
                             </td>
                             <td align="center" style="width: 40px;">
@@ -96,7 +96,7 @@
                             <td align="center" style="width: 60px;">
                                 <%#Eval("Subcompanyname")%>
                             </td>
-                            <td align="center"  style="width: 60px;">
+                            <td align="center" style="width: 60px;">
                                 <%#Eval("Subcompanyname").ToString() == Eval("Storagename").ToString() ? string.Empty : Eval("Storagename").ToString()%>
                             </td>
                             <td align="center" style="width: 75px;">
@@ -105,7 +105,7 @@
                             <td align="center">
                                 <%#Eval("Applyusername")%>
                             </td>
-                            <td style="word-wrap: break-word; text-align:center; overflow: hidden; width: 200px;">
+                            <td style="word-wrap: break-word; text-align: center; overflow: hidden; width: 200px;">
                                 <%#Eval("Applycontent")%>
                             </td>
                             <td align="center">
@@ -140,16 +140,16 @@
                             <td align="center" style="width: 60px;">
                                 <%#Eval("Subcompanyname")%>
                             </td>
-                            <td align="center"  style="width: 60px;">
+                            <td align="center" style="width: 60px;">
                                 <%#Eval("Subcompanyname").ToString() == Eval("Storagename").ToString() ? string.Empty : Eval("Storagename").ToString()%>
                             </td>
-                            <td  align="center" style="width: 75px;">
+                            <td align="center" style="width: 75px;">
                                 <%#((DateTime)Eval("Applydate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
                             <td align="center">
                                 <%#Eval("Applyusername")%>
                             </td>
-                            <td style="word-wrap: break-word; text-align:center; overflow: hidden; width: 200px;">
+                            <td style="word-wrap: break-word; text-align: center; overflow: hidden; width: 200px;">
                                 <%#Eval("Applycontent")%>
                             </td>
                             <td align="center">
@@ -174,11 +174,9 @@
                         </tr>
                     </AlternatingItemTemplate>
                 </asp:Repeater>
-                <tr style="height:28px">
+                <tr style="height: 28px">
                     <td colspan="9" style="height: 28px; width: 98%;" align="center">
-                    <div style="height:28px; padding-top:3px; padding-bottom:3px">
                         <cc1:PagingControl ID="pcData" runat="server" MaxNavigatePageCount="7" OnPageIndexClick="pcData_PageIndexClick" />
-                        </div>
                     </td>
                 </tr>
             </table>
