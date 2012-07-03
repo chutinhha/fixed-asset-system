@@ -169,20 +169,40 @@ namespace FixedAsset.Services
             if (string.IsNullOrEmpty(info.Assetno))
             {
                 //固定字符（2位）+分公司/公司（3位）+设备大类（2位）+设备小类（2位）+序号（4位）
-                var codePrefix = new StringBuilder(Asset.RuleCode);
-                //codePrefix.Append(info.Subcompany);
-                var subCompanyInfo =new SubcompanyinfoManagement().RetrieveSubcompanyinfoBySubcompanyid(decimal.Parse(info.Subcompany));
-                if(subCompanyInfo!=null)
+                var codePrefix=new StringBuilder();
+                codePrefix.Append(Asset.RuleCode);
+                //codePrefix.Append(info.Subcompany)
+                //var codePrefix = new StringBuilder(Asset.RuleCode);
+                ////codePrefix.Append(info.Subcompany);
+                var subCompanyInfo = new SubcompanyinfoManagement().RetrieveSubcompanyinfoBySubcompanyid(decimal.Parse(info.Subcompany));
+                if (subCompanyInfo != null)
                 {
-                    codePrefix.Append(string.IsNullOrEmpty(subCompanyInfo.Subcompanycode)?"900":subCompanyInfo.Subcompanycode);
+                    codePrefix.Append(string.IsNullOrEmpty(subCompanyInfo.Subcompanycode) ? "900" : subCompanyInfo.Subcompanycode);
                 }
                 else
                 {
                     codePrefix.Append(900);
                 }
-                codePrefix.Append(info.Assetcategoryid);
-                var ruleManagement = new CoderuleManagement(Management);
-                info.Assetno = ruleManagement.GenerateCodeRule(codePrefix.ToString(),false);
+                codePrefix.Append(info.Assetcategoryid); //设备分类
+                //var ruleManagement = new CoderuleManagement(Management);
+                //info.Assetno = ruleManagement.GenerateCodeRule(codePrefix.ToString(),false);
+                var priorInfo = Management.RetrieveTopAssetByAssetnoPrefix(codePrefix.ToString());
+                if(priorInfo==null)
+                {
+                    info.Assetno = codePrefix.Append("0001").ToString();
+                }
+                else
+                {
+                    var currentNo = int.Parse(priorInfo.Assetno.Substring(codePrefix.Length));
+                    var content = new StringBuilder();
+                    content.Append(codePrefix.ToString());
+                    for (int ii = 0; ii < 4 - currentNo.ToString().Length; ii++)
+                    {
+                        content.Append("0");
+                    }
+                    content.Append(currentNo+1);
+                    info.Assetno = content.ToString();
+                }
             }
             try
             {
