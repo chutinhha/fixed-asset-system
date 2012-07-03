@@ -6,3 +6,4 @@ create or replace public synonym LB_FGS
   for LABOR.LB_FGS;
 create or replace public synonym LB_FGS_XMT
   for LABOR.LB_FGS_XMT;
+苏州职称评价中心

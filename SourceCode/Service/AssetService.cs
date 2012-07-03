@@ -171,8 +171,7 @@ namespace FixedAsset.Services
                 //固定字符（2位）+分公司/公司（3位）+设备大类（2位）+设备小类（2位）+序号（4位）
                 var codePrefix = new StringBuilder(Asset.RuleCode);
                 //codePrefix.Append(info.Subcompany);
-                var subCompanyInfo =
-                    new SubcompanyinfoManagement().RetrieveSubcompanyinfoBySubcompanyid(decimal.Parse(info.Subcompany));
+                var subCompanyInfo =new SubcompanyinfoManagement().RetrieveSubcompanyinfoBySubcompanyid(decimal.Parse(info.Subcompany));
                 if(subCompanyInfo!=null)
                 {
                     codePrefix.Append(string.IsNullOrEmpty(subCompanyInfo.Subcompanycode)?"900":subCompanyInfo.Subcompanycode);
@@ -215,14 +214,9 @@ namespace FixedAsset.Services
             var addressManagement = new VstorageaddressManagement(Management);
             return addressManagement.RetrieveVstorageaddressByStorageId(Storagetitle, StorageId);
         }
-
-
         public List<Asset> RetrieveAllAsset()
         {
-
             return Management.RetrieveAllAsset();
         }
-
-
     }
 }
