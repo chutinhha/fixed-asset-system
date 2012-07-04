@@ -7,3 +7,6 @@ create or replace public synonym LB_FGS
 create or replace public synonym LB_FGS_XMT
   for LABOR.LB_FGS_XMT;
 苏州职称评价中心
+刚问了下他们那边开发的，现在也不确定他们用那个日期
+你先用  htwcrq， 是现在的合同完成日期
+有可能会修改
