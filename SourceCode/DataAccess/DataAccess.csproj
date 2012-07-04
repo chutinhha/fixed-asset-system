@@ -111,6 +111,8 @@
     <Compile Include="AutoCode\AssetsupplierManagement.cs" />
     <Compile Include="AutoCode\BaccountManagement.cs" />
     <Compile Include="AutoCode\CoderuleManagement.cs" />
+    <Compile Include="AutoCode\HcontractdetailManagement.cs" />
+    <Compile Include="AutoCode\HcontractManagement.cs" />
     <Compile Include="AutoCode\LbfgsManagement.cs" />
     <Compile Include="AutoCode\LbfgsxmtManagement.cs" />
     <Compile Include="AutoCode\MenuitemManagement.cs" />
@@ -140,6 +142,8 @@
     <Compile Include="UserCode\AssetsupplierManagement.cs" />
     <Compile Include="UserCode\BaccountManagement.cs" />
     <Compile Include="UserCode\CoderuleManagement.cs" />
+    <Compile Include="UserCode\HcontractdetailManagement.cs" />
+    <Compile Include="UserCode\HcontractManagement.cs" />
     <Compile Include="UserCode\LbfgsManagement.cs" />
     <Compile Include="UserCode\LbfgsxmtManagement.cs" />
     <Compile Include="UserCode\MenuitemManagement.cs" />

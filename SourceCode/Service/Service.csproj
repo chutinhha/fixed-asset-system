@@ -107,6 +107,8 @@
     <Compile Include="AssetsupplierService.cs" />
     <Compile Include="BaccountService.cs" />
     <Compile Include="BaseService.cs" />
+    <Compile Include="HcontractdetailService.cs" />
+    <Compile Include="HcontractService.cs" />
     <Compile Include="LbfgsService.cs" />
     <Compile Include="LbfgsxmtService.cs" />
     <Compile Include="SubcompanyinfoService.cs" />

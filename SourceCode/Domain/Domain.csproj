@@ -111,6 +111,8 @@
     <Compile Include="Domain\Assetsupplier.cs" />
     <Compile Include="Domain\Baccount.cs" />
     <Compile Include="Domain\Coderule.cs" />
+    <Compile Include="Domain\Hcontract.cs" />
+    <Compile Include="Domain\Hcontractdetail.cs" />
     <Compile Include="Domain\Lbfgs.cs" />
     <Compile Include="Domain\Lbfgsxmt.cs" />
     <Compile Include="Domain\Menuitem.cs" />
@@ -139,6 +141,8 @@
     <Compile Include="SearchObject\AssetsetupinfoSearch.cs" />
     <Compile Include="SearchObject\AssetsupplierSearch.cs" />
     <Compile Include="SearchObject\BaccountSearch.cs" />
+    <Compile Include="SearchObject\HcontractdetailSearch.cs" />
+    <Compile Include="SearchObject\HcontractSearch.cs" />
     <Compile Include="SearchObject\LbfgsSearch.cs" />
     <Compile Include="SearchObject\LbfgsxmtSearch.cs" />
     <Compile Include="SearchObject\MenuitemSearch.cs" />
