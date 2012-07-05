@@ -342,6 +342,27 @@
     <Compile Include="Admin\NewRepairing.aspx.designer.cs">
       <DependentUpon>NewRepairing.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\New_Contract_List.aspx.cs">
+      <DependentUpon>New_Contract_List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\New_Contract_List.aspx.designer.cs">
+      <DependentUpon>New_Contract_List.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\New_ImportAssetFromContract.aspx.cs">
+      <DependentUpon>New_ImportAssetFromContract.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\New_ImportAssetFromContract.aspx.designer.cs">
+      <DependentUpon>New_ImportAssetFromContract.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\New_ImportContractDetail_Edit.aspx.cs">
+      <DependentUpon>New_ImportContractDetail_Edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\New_ImportContractDetail_Edit.aspx.designer.cs">
+      <DependentUpon>New_ImportContractDetail_Edit.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\ProcurePlanDetail_Add.aspx.cs">
       <DependentUpon>ProcurePlanDetail_Add.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -745,6 +766,9 @@
     <Content Include="Admin\Move_Reply.aspx" />
     <Content Include="Admin\Move_View.aspx" />
     <Content Include="Admin\NewRemoving.aspx" />
+    <Content Include="Admin\New_Contract_List.aspx" />
+    <Content Include="Admin\New_ImportAssetFromContract.aspx" />
+    <Content Include="Admin\New_ImportContractDetail_Edit.aspx" />
     <Content Include="Admin\Remove_Confirm.aspx" />
     <Content Include="Admin\Remove_Reply.aspx" />
     <Content Include="Admin\Remove_View.aspx" />
