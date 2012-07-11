@@ -102,7 +102,10 @@ namespace FixedAsset.Web.Admin
 
                 var litSupplierName = e.Item.FindControl("LitSupplierName") as Literal;
                 var assetsupplier = new AssetsupplierService().RetrieveAssetsupplierBySupplierid(assetInfo.Supplierid.ToString());
-                litSupplierName.Text = assetsupplier.Suppliername;
+                if (assetsupplier != null)
+                {
+                    litSupplierName.Text = assetsupplier.Suppliername;
+                }
                 var ckbAssetno = e.Item.FindControl("ckbAssetno") as CheckBox;
                 var litAssetno = e.Item.FindControl("litAssetno") as Literal;
                 ckbAssetno.Checked = AssetIds.Contains(litAssetno.Text.Trim());
