@@ -15,10 +15,7 @@ namespace FixedAsset.IServices
     public interface IAssetsupplierService
     {
         List<Assetsupplier> RetrieveAssetsuppliersPaging(AssetsupplierSearch info,int pageIndex, int pageSize,out int count);
-        Assetsupplier CreateAssetsupplier(Assetsupplier info);
-        Assetsupplier UpdateAssetsupplierBySupplierid(Assetsupplier info);
         Assetsupplier RetrieveAssetsupplierBySupplierid(string supplierid);
-        void DeleteAssetsupplierBySupplierid(string supplierid);
         List<Assetsupplier> RetrieveAllAssetsupplier();
     }
 }

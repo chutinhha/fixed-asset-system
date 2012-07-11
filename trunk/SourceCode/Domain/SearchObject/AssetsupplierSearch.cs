@@ -32,12 +32,11 @@ namespace FixedAsset.Domain
         }
         #endregion
 
-        #region ±¸×¢
-        public string Remark
-        {
-            get;set; 
-        }
-        #endregion
-
+        //#region ±¸×¢
+        //public string Remark
+        //{
+        //    get;set; 
+        //}
+        //#endregion 
     }
 }

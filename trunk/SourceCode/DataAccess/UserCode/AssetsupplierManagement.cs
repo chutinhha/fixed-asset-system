@@ -74,7 +74,7 @@ namespace FixedAsset.DataAccess
         {
             try
             {
-                StringBuilder sqlCommand = new StringBuilder(@" SELECT ""ASSETSUPPLIER"".""SUPPLIERID"",""ASSETSUPPLIER"".""SUPPLIERNAME"",""ASSETSUPPLIER"".""REMARK""
+                StringBuilder sqlCommand = new StringBuilder(@" SELECT ""ASSETSUPPLIER"".""SUPPLIERID"",""ASSETSUPPLIER"".""SUPPLIERNAME""
                      FROM ""ASSETSUPPLIER"" 
                      WHERE 1=1");
                 if (!string.IsNullOrEmpty(info.Supplierid))
@@ -87,12 +87,6 @@ namespace FixedAsset.DataAccess
                     this.Database.AddInParameter(":Suppliername", "%"+info.Suppliername+"%");
                     sqlCommand.AppendLine(@" AND ""ASSETSUPPLIER"".""SUPPLIERNAME"" LIKE :Suppliername");
                 }
-                if (!string.IsNullOrEmpty(info.Remark))
-                {
-                    this.Database.AddInParameter(":Remark", "%"+info.Remark+"%");
-                    sqlCommand.AppendLine(@" AND ""ASSETSUPPLIER"".""REMARK"" LIKE :Remark");
-                }
-
                 sqlCommand.AppendLine(@"  ORDER BY ""ASSETSUPPLIER"".""SUPPLIERID"" DESC");
                 return this.ExecuteReaderPaging<Assetsupplier>(sqlCommand.ToString(), pageIndex, pageSize, out count);
             }

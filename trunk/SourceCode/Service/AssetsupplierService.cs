@@ -57,77 +57,7 @@ namespace FixedAsset.Services
         {
             return Management.RetrieveAssetsupplierBySupplierid(supplierids);
         }
-        #endregion
-
-        #region CreateAssetsupplier
-        public Assetsupplier CreateAssetsupplier(Assetsupplier info)
-        {
-            try
-            {
-                Management.BeginTransaction();
-                Management.CreateAssetsupplier(info);
-                Management.Commit();
-            }
-            catch
-            {
-                Management.Rollback();
-                throw;
-            }
-            return info;
-        }
-        #endregion
-
-        #region UpdateAssetsupplierBySupplierid
-        public Assetsupplier UpdateAssetsupplierBySupplierid(Assetsupplier info)
-        {
-            try
-            {
-                Management.BeginTransaction();
-                Management.UpdateAssetsupplierBySupplierid(info);
-                Management.Commit();
-            }
-            catch
-            {
-                Management.Rollback();
-                throw;
-            }
-            return info;
-        }
-        #endregion
-
-        #region DeleteAssetsupplierBySupplierid
-        public void DeleteAssetsupplierBySupplierid(string supplierid)
-        {
-            try
-            {
-                Management.BeginTransaction();
-                Management.DeleteAssetsupplierBySupplierid(supplierid);
-                Management.Commit();
-            }
-            catch
-            {
-                Management.Rollback();
-                throw;
-            }
-        }
-        #endregion
-
-        #region DeleteAssetsupplierBySupplierid
-        public void DeleteAssetsupplierBySupplierid(List<string> supplierids)
-        {
-            try
-            {
-                Management.BeginTransaction();
-                Management.DeleteAssetsupplierBySupplierid(supplierids);
-                Management.Commit();
-            }
-            catch
-            {
-                Management.Rollback();
-                throw;
-            }
-        }
-        #endregion
+        #endregion  
 
         #region RetrieveAllAssetsupplier
         public List<Assetsupplier> RetrieveAllAssetsupplier()
