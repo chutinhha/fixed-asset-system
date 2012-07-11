@@ -15,6 +15,7 @@ namespace FixedAsset.IServices
     public interface IHcontractService
     {
         List<Hcontract> RetrieveHcontractsPaging(HcontractSearch info,int pageIndex, int pageSize,out int count);
-        Hcontract CreateHcontract(Hcontract info);
+        Hcontract UpdateHcontractByInstanceid(Hcontract info);
+        Hcontract RetrieveHcontractByInstanceid(long Instanceid);
     }
 }
