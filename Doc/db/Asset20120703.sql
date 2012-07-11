@@ -42,4 +42,7 @@ where supplierid=02;
 update asset 
 set supplierid=999990003
 where supplierid=03;
+UPDATE menuitem
+SET menuaddress='~/admin/New_Contract_List.aspx',menuname='设备导入',parentmenuid='002'
+WHERE MENUID='001002'
 commit;

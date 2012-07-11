@@ -41,7 +41,7 @@ namespace FixedAsset.Domain
 
         #region XMMC
         ///<summary>
-        ///,XMMC;Size:500;
+        ///合同名字
         ///</summary>
         public string Xmmc{  get;set;}
         #endregion
@@ -184,6 +184,7 @@ namespace FixedAsset.Domain
         ///分公司ID,DEPARTID;
         ///</summary>
         public long Departid{  get;set;}
+        public string Subcompanyname { get; set; }
         #endregion
 
         #region FAINSTANCEID
@@ -405,11 +406,9 @@ namespace FixedAsset.Domain
 
         #region ISIMPORT
         ///<summary>
-        ///,ISIMPORT;
+        ///是否已导入到固定设备表
         ///</summary>
-        public int Isimport{  get;set;}
+        public bool Isimport{  get;set;}
         #endregion
-
     }
-
 }

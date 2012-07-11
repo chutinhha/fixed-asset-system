@@ -18,7 +18,6 @@ namespace FixedAsset.Services
 {
     public partial class HcontractService:BaseService,IHcontractService
     {
-
         #region Management
 
         private HcontractManagement m_Management;
@@ -43,25 +42,15 @@ namespace FixedAsset.Services
         {
             return Management.RetrieveHcontractsPaging(info,pageIndex,pageSize,out count);
         }
-        #endregion
+        #endregion  
 
-        #region CreateHcontract
-        public Hcontract CreateHcontract(Hcontract info)
+        public Hcontract RetrieveHcontractByInstanceid(long Instanceid)
         {
-            try
-            {
-                Management.BeginTransaction();
-                Management.CreateHcontract(info);
-                Management.Commit();
-            }
-            catch
-            {
-                Management.Rollback();
-                throw;
-            }
-            return info;
+            return Management.RetrieveHcontractByInstanceid(Instanceid);
         }
-        #endregion
-
+        public Hcontract UpdateHcontractByInstanceid(Hcontract info)
+        {
+            return Management.UpdateHcontractByInstanceid(info);
+        }
     }
 }
