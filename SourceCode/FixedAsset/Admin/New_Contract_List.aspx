@@ -66,7 +66,7 @@
                                 <%#Eval("Cbf")%>
                             </td>
                             <td align="center">
-                                <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/images/Button/edit.GIF"
+                                <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/images/Button/edit.GIF" Visible='<%# !bool.Parse(Eval("Isimport").ToString())%>'
                                     AlternateText="导入设备" ToolTip="导入设备" CommandName="EditDetail" CommandArgument='<%#Eval("Instanceid") %>' />
                             </td>
                         </tr>
@@ -89,7 +89,7 @@
                                 <%#Eval("Cbf")%>
                             </td>
                             <td align="center">
-                                <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/images/Button/edit.GIF"
+                                <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/images/Button/edit.GIF" Visible='<%# !bool.Parse(Eval("Isimport").ToString())%>'
                                     AlternateText="导入设备" ToolTip="导入设备" CommandName="EditDetail" CommandArgument='<%#Eval("Instanceid") %>' />
                             </td>
                         </tr>
