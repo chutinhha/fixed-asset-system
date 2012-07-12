@@ -39,7 +39,7 @@ namespace FixedAsset.Web.Admin
         {
             List<Assetcategory> assetcategory = AssetCategoryService.RetrieveAllAssetcategory();
             var categories = assetcategory.Where(p => !string.IsNullOrEmpty(p.Assetparentcategoryid)).ToList();
-            var parentcategories = assetcategory.Where(p => string.IsNullOrEmpty(p.Assetparentcategoryid)).ToList();
+            var parentcategories = assetcategory.Where(p => string.IsNullOrEmpty(p.Assetparentcategoryid) || p.Assetparentcategoryid == Assetcategory.FixedAssetCategory).ToList();
             List<Asset> list = AssetService.RetrieveAllAsset();
             System.Data.DataTable dt = new System.Data.DataTable();
             dt.Columns.Add("AssetCategory");
