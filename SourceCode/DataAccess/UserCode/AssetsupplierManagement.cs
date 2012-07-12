@@ -34,6 +34,22 @@ namespace FixedAsset.DataAccess
         }
         #endregion
 
+        #region RetrieveAssetsupplierBySupplierName
+        public Assetsupplier RetrieveAssetsupplierBySupplierName(string supplierName)
+        {
+            try
+            {
+                this.Database.AddInParameter(":supplierName", supplierName);
+                string sqlCommand = @"SELECT * FROM ASSETSUPPLIER WHERE  SUPPLIERNAME=:supplierName";
+                return this.Database.ExecuteToSingle<Assetsupplier>(sqlCommand);
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
+        #endregion
+
         #region RetrieveAssetsupplierBySupplierid
         public List<Assetsupplier> RetrieveAssetsupplierBySupplierid(List<string> Supplierids)
         {

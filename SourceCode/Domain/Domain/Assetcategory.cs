@@ -12,30 +12,30 @@ using System.Collections.Generic;
 
 namespace FixedAsset.Domain
 {
-    /// <summary>
-    ///ASSETCATEGORY
-    /// <summary>
+    ///<summary>
+    ///资产分类
+    ///</summary>
     [Serializable]
     public partial class Assetcategory
     {
         public const string FixedAssetCategory = "22";
         #region 分类编号(父编号+自编号)
         ///<summary>
-        ///分类编号(父编号+自编号),ASSETCATEGORYID;Size:40;NOT NULL
+        ///分类编号(父编号+自编号)
         ///</summary>
         public string Assetcategoryid { get; set; }
         #endregion
 
         #region 父编号
         ///<summary>
-        ///父编号,ASSETPARENTCATEGORYID;Size:40;
+        ///父编号
         ///</summary>
         public string Assetparentcategoryid { get; set; }
         #endregion
 
         #region 分类名
         ///<summary>
-        ///分类名,ASSETCATEGORYNAME;Size:200;
+        ///分类名
         ///</summary>
         public string Assetcategoryname { get; set; }
         #endregion

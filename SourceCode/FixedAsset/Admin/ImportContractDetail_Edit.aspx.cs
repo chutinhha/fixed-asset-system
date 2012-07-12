@@ -155,7 +155,7 @@ namespace FixedAsset.Web.Admin
         {
             if (ddlSubAssetCategory.SelectedIndex < 0)
             {
-                UIHelper.Alert(this.UpdatePanel1, "请添加设备分类信息！");
+                UIHelper.Alert(this, "请添加设备分类信息！");
                 return;
             }
             var detailInfo = ImportAssetContractdetailContractDetail.Where(p => p.Contractdetailid == Detailid).FirstOrDefault();
@@ -167,17 +167,17 @@ namespace FixedAsset.Web.Admin
             WriteControlValueToEntity(detailInfo);
             if (detailInfo.Unitprice <= 0)
             {
-                UIHelper.Alert(this.UpdatePanel1, "单价不能小于等于0！");
+                UIHelper.Alert(this, "单价不能小于等于0！");
                 return;
             }
             if (detailInfo.ImportNumber <= 0)
             {
-                UIHelper.Alert(this.UpdatePanel1, "导入数量不能小于等于0！");
+                UIHelper.Alert(this, "导入数量不能小于等于0！");
                 return;
             }
             if (detailInfo.ImportNumber>(detailInfo.Procurenumber-detailInfo.Inputnumber))
             {
-                UIHelper.Alert(this.UpdatePanel1, "可导入数量不能大于（采购数量-已验证登记数量）！");
+                UIHelper.Alert(this, "可导入数量不能大于（采购数量-已验证登记数量）！");
                 return;
             }
             ScriptManager.RegisterStartupScript(this, this.GetType(), "ImportContractDetail_Edit", "setCookie('dialogReturn_key','1',1);CloseTopDialogFrame();", true);

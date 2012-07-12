@@ -16,6 +16,7 @@ namespace FixedAsset.IServices
     {
         List<Assetsupplier> RetrieveAssetsuppliersPaging(AssetsupplierSearch info,int pageIndex, int pageSize,out int count);
         Assetsupplier RetrieveAssetsupplierBySupplierid(string supplierid);
+        Assetsupplier RetrieveAssetsupplierBySupplierName(string supplierName);
         List<Assetsupplier> RetrieveAllAssetsupplier();
     }
 }

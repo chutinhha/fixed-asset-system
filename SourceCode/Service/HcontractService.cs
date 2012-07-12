@@ -52,5 +52,10 @@ namespace FixedAsset.Services
         {
             return Management.UpdateHcontractByInstanceid(info);
         }
+        public List<Hcontractdetail> RetrieveHcontractdetailListByFainstanceid(long fainstanceid)
+        {
+            var detailManagement = new HcontractdetailManagement(Management);
+            return detailManagement.RetrieveHcontractdetailListByFainstanceid(fainstanceid);
+        }
     }
 }

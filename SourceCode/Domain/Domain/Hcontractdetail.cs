@@ -72,7 +72,6 @@ namespace FixedAsset.Domain
         ///…Ë±∏∆∑≈∆,PP;Size:100;
         ///</summary>
         public string Pp{  get;set;}
-        #endregion
-
+        #endregion 
     }
 }
