@@ -39,10 +39,10 @@ namespace FixedAsset.Services
         #endregion
 
         #region RetrieveAssetcategorysPaging
-        public List<Assetcategory> RetrieveAssetcategorysPaging(AssetcategorySearch info,int pageIndex, int pageSize,out int count)
-        {
-            return Management.RetrieveAssetcategorysPaging(info,pageIndex,pageSize,out count);
-        }
+        //public List<Assetcategory> RetrieveAssetcategorysPaging(AssetcategorySearch info,int pageIndex, int pageSize,out int count)
+        //{
+        //    return Management.RetrieveAssetcategorysPaging(info,pageIndex,pageSize,out count);
+        //}
         #endregion
 
         #region RetrieveAssetcategoryByAssetcategoryid
