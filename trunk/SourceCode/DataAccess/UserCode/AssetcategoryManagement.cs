@@ -109,48 +109,48 @@ namespace FixedAsset.DataAccess
         #endregion
 
         #region RetrieveAssetcategorysPaging
-        public List<Assetcategory> RetrieveAssetcategorysPaging(AssetcategorySearch info,int pageIndex, int pageSize,out int count)
-        {
-            try
-            {
-                StringBuilder sqlCommand = new StringBuilder(@" SELECT ""ASSETCATEGORY"".""ASSETCATEGORYID"",""ASSETCATEGORY"".""ASSETPARENTCATEGORYID"",""ASSETCATEGORY"".""ASSETCATEGORYNAME"",""ASSETCATEGORY"".""REMARK"",""ASSETCATEGORY"".""CREATEDATE"",
-                     ""ASSETCATEGORY"".""CREATOR""
-                     FROM ""ASSETCATEGORY"" 
-                     WHERE 1=1");
-                if (!string.IsNullOrEmpty(info.Assetcategoryid))
-                {
-                    this.Database.AddInParameter(":Assetcategoryid",DbType.AnsiString,"%"+info.Assetcategoryid+"%");
-                    sqlCommand.AppendLine(@" AND ""ASSETCATEGORY"".""ASSETCATEGORYID"" LIKE :Assetcategoryid");
-                }
-                if (!string.IsNullOrEmpty(info.Assetparentcategoryid))
-                {
-                    this.Database.AddInParameter(":Assetparentcategoryid",DbType.AnsiString,"%"+info.Assetparentcategoryid+"%");
-                    sqlCommand.AppendLine(@" AND ""ASSETCATEGORY"".""ASSETPARENTCATEGORYID"" LIKE :Assetparentcategoryid");
-                }
-                if (!string.IsNullOrEmpty(info.Assetcategoryname))
-                {
-                    this.Database.AddInParameter(":Assetcategoryname", "%"+info.Assetcategoryname+"%");
-                    sqlCommand.AppendLine(@" AND ""ASSETCATEGORY"".""ASSETCATEGORYNAME"" LIKE :Assetcategoryname");
-                }
-                if (!string.IsNullOrEmpty(info.Remark))
-                {
-                    this.Database.AddInParameter(":Remark", "%"+info.Remark+"%");
-                    sqlCommand.AppendLine(@" AND ""ASSETCATEGORY"".""REMARK"" LIKE :Remark");
-                }
-                if (!string.IsNullOrEmpty(info.Creator))
-                {
-                    this.Database.AddInParameter(":Creator",DbType.AnsiString,"%"+info.Creator+"%");
-                    sqlCommand.AppendLine(@" AND ""ASSETCATEGORY"".""CREATOR"" LIKE :Creator");
-                }
+//        public List<Assetcategory> RetrieveAssetcategorysPaging(AssetcategorySearch info,int pageIndex, int pageSize,out int count)
+//        {
+//            try
+//            {
+//                StringBuilder sqlCommand = new StringBuilder(@" SELECT ""ASSETCATEGORY"".""ASSETCATEGORYID"",""ASSETCATEGORY"".""ASSETPARENTCATEGORYID"",""ASSETCATEGORY"".""ASSETCATEGORYNAME"",""ASSETCATEGORY"".""REMARK"",""ASSETCATEGORY"".""CREATEDATE"",
+//                     ""ASSETCATEGORY"".""CREATOR""
+//                     FROM ""ASSETCATEGORY"" 
+//                     WHERE 1=1");
+//                if (!string.IsNullOrEmpty(info.Assetcategoryid))
+//                {
+//                    this.Database.AddInParameter(":Assetcategoryid",DbType.AnsiString,"%"+info.Assetcategoryid+"%");
+//                    sqlCommand.AppendLine(@" AND ""ASSETCATEGORY"".""ASSETCATEGORYID"" LIKE :Assetcategoryid");
+//                }
+//                if (!string.IsNullOrEmpty(info.Assetparentcategoryid))
+//                {
+//                    this.Database.AddInParameter(":Assetparentcategoryid",DbType.AnsiString,"%"+info.Assetparentcategoryid+"%");
+//                    sqlCommand.AppendLine(@" AND ""ASSETCATEGORY"".""ASSETPARENTCATEGORYID"" LIKE :Assetparentcategoryid");
+//                }
+//                if (!string.IsNullOrEmpty(info.Assetcategoryname))
+//                {
+//                    this.Database.AddInParameter(":Assetcategoryname", "%"+info.Assetcategoryname+"%");
+//                    sqlCommand.AppendLine(@" AND ""ASSETCATEGORY"".""ASSETCATEGORYNAME"" LIKE :Assetcategoryname");
+//                }
+//                if (!string.IsNullOrEmpty(info.Remark))
+//                {
+//                    this.Database.AddInParameter(":Remark", "%"+info.Remark+"%");
+//                    sqlCommand.AppendLine(@" AND ""ASSETCATEGORY"".""REMARK"" LIKE :Remark");
+//                }
+//                if (!string.IsNullOrEmpty(info.Creator))
+//                {
+//                    this.Database.AddInParameter(":Creator",DbType.AnsiString,"%"+info.Creator+"%");
+//                    sqlCommand.AppendLine(@" AND ""ASSETCATEGORY"".""CREATOR"" LIKE :Creator");
+//                }
 
-                sqlCommand.AppendLine(@"  ORDER BY ""ASSETCATEGORY"".""ASSETCATEGORYID"" DESC");
-                return this.ExecuteReaderPaging<Assetcategory>(sqlCommand.ToString(), pageIndex, pageSize, out count);
-            }
-            finally
-            {
-                this.Database.ClearParameter();
-            }
-        }
+//                sqlCommand.AppendLine(@"  ORDER BY ""ASSETCATEGORY"".""ASSETCATEGORYID"" DESC");
+//                return this.ExecuteReaderPaging<Assetcategory>(sqlCommand.ToString(), pageIndex, pageSize, out count);
+//            }
+//            finally
+//            {
+//                this.Database.ClearParameter();
+//            }
+//        }
         #endregion
     }
 }
