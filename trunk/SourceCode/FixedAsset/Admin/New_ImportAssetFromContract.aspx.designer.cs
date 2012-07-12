@@ -13,31 +13,22 @@ namespace FixedAsset.Web.Admin {
     public partial class New_ImportAssetFromContract {
         
         /// <summary>
-        /// UpdatePanel1 控件。
+        /// litInstanceid 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        protected global::System.Web.UI.WebControls.Literal litInstanceid;
         
         /// <summary>
-        /// litContractid 控件。
+        /// litXmmc 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litContractid;
-        
-        /// <summary>
-        /// litContractdate 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litContractdate;
+        protected global::System.Web.UI.WebControls.Literal litXmmc;
         
         /// <summary>
         /// ucSubCompany 控件。
@@ -56,24 +47,6 @@ namespace FixedAsset.Web.Admin {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::FixedAsset.Web.Admin.UserControl.ucSelectSupplier ucSelectSupplier;
-        
-        /// <summary>
-        /// litCreateddate 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litCreateddate;
-        
-        /// <summary>
-        /// litCreator 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litCreator;
         
         /// <summary>
         /// rptContactDetailList 控件。

@@ -50,6 +50,10 @@ namespace FixedAsset.Services
         {
             return Management.RetrieveAssetsupplierBySupplierid(supplierid);
         }
+        public Assetsupplier RetrieveAssetsupplierBySupplierName(string supplierName)
+        {
+            return Management.RetrieveAssetsupplierBySupplierName(supplierName);
+        }
         #endregion
 
         #region RetrieveAssetsupplierBySupplierid

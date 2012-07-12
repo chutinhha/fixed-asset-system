@@ -102,7 +102,6 @@
     <Compile Include="IAssetsetupinfoService.cs" />
     <Compile Include="IAssetsupplierService.cs" />
     <Compile Include="IBaccountService.cs" />
-    <Compile Include="IHcontractdetailService.cs" />
     <Compile Include="IHcontractService.cs" />
     <Compile Include="ILbfgsService.cs" />
     <Compile Include="ILbfgsxmtService.cs" />

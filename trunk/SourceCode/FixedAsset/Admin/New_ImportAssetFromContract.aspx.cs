@@ -14,25 +14,33 @@ namespace FixedAsset.Web.Admin
     public partial class New_ImportAssetFromContract : BasePage
     {
         #region Properties
-        protected string Contractid
+        protected long Instanceid
         {
             get
             {
-                if (ViewState["Contractid"] == null)
+                if (ViewState["Instanceid"] == null)
                 {
-                    ViewState["Contractid"] = string.Empty;
+                    ViewState["Instanceid"] = 0;
                 }
-                return ViewState["Contractid"].ToString();
+                return long.Parse(ViewState["Instanceid"].ToString());
             }
-            set { ViewState["Contractid"] = value; }
+            set { ViewState["Instanceid"] = value; }
         }
-        protected IProcurementcontractService ProcurementcontractService
+        protected IHcontractService HcontractService
         {
-            get { return new ProcurementcontractService(); }
+            get { return new HcontractService(); }
         }
-        protected IProcurementcontractdetailService ProcurementcontractdetailService
+        protected IAssetcategoryService AssetcategoryService
         {
-            get { return new ProcurementcontractdetailService(); }
+            get { return new AssetcategoryService(); }
+        }
+        protected IAssetService AssetService
+        {
+            get { return new AssetService(); }
+        }
+        protected IAssetsupplierService AssetsupplierService
+        {
+            get { return new AssetsupplierService(); }
         }
         protected List<ImportAssetContractdetail> ImportAssetContractdetailContractDetail
         {
@@ -44,11 +52,7 @@ namespace FixedAsset.Web.Admin
                 }
                 return Session["ImportAssetFromContract_Procurementcontractdetail"] as List<ImportAssetContractdetail>;
             }
-        }
-        protected IAssetcategoryService AssetcategoryService
-        {
-            get { return new AssetcategoryService(); }
-        }
+        } 
         protected List<Assetcategory> AssetCategories
         {
             get
@@ -60,14 +64,6 @@ namespace FixedAsset.Web.Admin
                 return Session["AssetCategories"] as List<Assetcategory>;
             }
         }
-        protected IAssetService AssetService
-        {
-            get { return new AssetService(); }
-        }
-        protected IProcurementcontractdetailService ContractDetailService
-        {
-            get { return new ProcurementcontractdetailService(); }
-        }
         #endregion
 
         #region Events
@@ -77,31 +73,28 @@ namespace FixedAsset.Web.Admin
             if (!IsPostBack)
             {
                 InitData();
-                Contractid = PageUtility.GetQueryStringValue("Contractid");
-                if (!string.IsNullOrEmpty(Contractid))
+                Instanceid = PageUtility.GetQueryInt64Value("Instanceid",0);
+                if (Instanceid!=0)
                 {
-                    var headInfo = ProcurementcontractService.RetrieveProcurementcontractByContractid(Contractid);
+                    var headInfo = HcontractService.RetrieveHcontractByInstanceid(Instanceid);
                     if (headInfo != null)
                     {
                         ReadEntityToControl(headInfo);
-                        var list = ProcurementcontractdetailService.RetrieveProcurementcontractdetailListByContractid(Contractid);
+                        var list = HcontractService.RetrieveHcontractdetailListByFainstanceid(Instanceid);
                         foreach (var contractDetail in list)
                         {
-                            if (contractDetail.Procurenumber > contractDetail.Inputnumber)
-                            {
-                                var data = new ImportAssetContractdetail();
-                                data.Contractdetailid = contractDetail.Contractdetailid;
-                                data.Contractid = contractDetail.Contractid;
-                                data.Assetcategoryid = contractDetail.Assetcategoryid;
-                                data.Assetname = contractDetail.Assetname;
-                                data.Assetspecification = contractDetail.Assetspecification;
-                                data.Unitprice = contractDetail.Unitprice;
-                                data.Procurenumber = contractDetail.Procurenumber;
-                                data.ImportNumber = contractDetail.Procurenumber - contractDetail.Inputnumber;//剩下多少可以继续导入设备表
-                                data.Inputnumber = contractDetail.Inputnumber;
-                                data.Purchasedate = headInfo.Contractdate;//默认合同签订日
-                                ImportAssetContractdetailContractDetail.Add(data);
-                            }
+                            var data = new ImportAssetContractdetail();
+                            data.Contractdetailid = contractDetail.Instanceid.ToString();//合同明细表
+                            data.Contractid = contractDetail.Fainstanceid.ToString();//合同主表
+                            data.Assetcategoryid = contractDetail.Type.ToString();//设备类别
+                            data.Assetname = contractDetail.Detailname; //设备名称
+                            data.Assetspecification = contractDetail.Modal;//设备型号
+                            data.Unitprice = contractDetail.Dj; //单价
+                            data.Procurenumber = contractDetail.Sl;//数量
+                            data.ImportNumber = contractDetail.Sl;//数量
+                            data.Inputnumber = contractDetail.Sl;//数量
+                            data.Purchasedate = headInfo.Htwcrq;//默认合同签订日
+                            ImportAssetContractdetailContractDetail.Add(data);
                         }
                     }
                 }
@@ -122,7 +115,7 @@ namespace FixedAsset.Web.Admin
                 }
                 else
                 {
-                    BtnEdit.Attributes.Add("onclick", string.Format("ShowTopDialogFrame('修改导入明细', 'ImportContractDetail_Edit.aspx?Contractdetailid={0}','RefreshDetail()',950,500);return false;", detailInfo.Contractdetailid));
+                    BtnEdit.Attributes.Add("onclick", string.Format("ShowTopDialogFrame('修改导入明细', 'New_ImportContractDetail_Edit.aspx?Contractdetailid={0}','RefreshDetail()',950,500);return false;", detailInfo.Contractdetailid));
                 }
             }
         }
@@ -149,28 +142,25 @@ namespace FixedAsset.Web.Admin
         {
             if (ImportAssetContractdetailContractDetail.Count == 0)
             {
-                UIHelper.AlertMessageGoToURL(this.UpdatePanel1, "对不起，该合同已没设备可再导入了!", ResolveUrl("~/Admin/EquipmentList.aspx"));
+                UIHelper.AlertMessageGoToURL(this, "对不起，该合同已没设备可再导入了!", ResolveUrl("~/Admin/EquipmentList.aspx"));
                 return;
             }
             foreach (var importAssetContractdetail in ImportAssetContractdetailContractDetail)
             {
                 if (string.IsNullOrEmpty(importAssetContractdetail.Storage))
                 {
-                    UIHelper.Alert(this.UpdatePanel1, string.Format(@"请修改列表中设备{0}-{1}的存放地点!", importAssetContractdetail.CategoryAllPathName, importAssetContractdetail.Assetname));
+                    UIHelper.Alert(this, string.Format(@"请修改列表中设备{0}-{1}的存放地点!", importAssetContractdetail.CategoryAllPathName, importAssetContractdetail.Assetname));
                     return;
                 }
             }
-            var contractDetails = ContractDetailService.RetrieveProcurementcontractdetailByContractdetailid(
-                    ImportAssetContractdetailContractDetail.Select(p => p.Contractdetailid).ToList());
+            //var contractDetails = ContractDetailService.RetrieveProcurementcontractdetailByContractdetailid(ImportAssetContractdetailContractDetail.Select(p => p.Contractdetailid).ToList());
             foreach (var importAssetContractdetail in ImportAssetContractdetailContractDetail)
             {
-                var currentDetails =
-                    contractDetails.Where(p => p.Contractdetailid == importAssetContractdetail.Contractdetailid).
-                        FirstOrDefault();
-                if (currentDetails != null)
-                {
-                    currentDetails.Inputnumber = importAssetContractdetail.ImportNumber;
-                }
+                //var currentDetails =contractDetails.Where(p => p.Contractdetailid == importAssetContractdetail.Contractdetailid).FirstOrDefault();
+                //if (currentDetails != null)
+                //{
+                //    currentDetails.Inputnumber = importAssetContractdetail.ImportNumber;
+                //}
                 for (decimal i = 0; i < importAssetContractdetail.ImportNumber; i++)
                 {
                     Asset data = new Asset();
@@ -195,11 +185,11 @@ namespace FixedAsset.Web.Admin
                     AssetService.SaveAssetInfo(data);
                 }
             }
-            foreach (var contractDetail in contractDetails)
-            {
-                ContractDetailService.UpdateProcurementcontractdetailByContractdetailid(contractDetail);
-            }
-            UIHelper.AlertMessageGoToURL(this.UpdatePanel1, "保存成功!", ResolveUrl("~/Admin/EquipmentList.aspx"));
+            var contract=new Hcontract();
+            contract.Isimport = true;
+            contract.Instanceid = Instanceid;
+            HcontractService.UpdateHcontractByInstanceid(contract);
+            UIHelper.AlertMessageGoToURL(this, "保存成功!", ResolveUrl("~/Admin/EquipmentList.aspx"));
         }
 
         #region 导入设备明细
@@ -232,7 +222,7 @@ namespace FixedAsset.Web.Admin
             {
                 if (!string.IsNullOrEmpty(detailId))
                 {
-                    if (!string.IsNullOrEmpty(Contractid)) { ProcurementcontractService.DeleteProcurementcontractByContractid(detailId); }
+                    //if (!string.IsNullOrEmpty(Contractid)) { ProcurementcontractService.DeleteProcurementcontractByContractid(detailId); }
                     var detailInfo = ImportAssetContractdetailContractDetail.Where(p => p.Contractdetailid == detailId).FirstOrDefault();
                     ImportAssetContractdetailContractDetail.Remove(detailInfo);
                     LoadDetailList();
@@ -258,41 +248,33 @@ namespace FixedAsset.Web.Admin
                 AssetCategories.AddRange(list);
             }
         }
-        protected void ReadEntityToControl(Procurementcontract headInfo)
+        protected void ReadEntityToControl(Hcontract headInfo)
         {
-            litContractid.Text = headInfo.Contractid;//合同编号
-            //litContent.Text = headInfo.Content;//主要内容
-            if (headInfo.Createddate.HasValue)
+            litInstanceid.Text = headInfo.Instanceid.ToString();//合同编号
+            litXmmc.Text = headInfo.Xmmc;//合同名
+            var supplierInfo=AssetsupplierService.RetrieveAssetsupplierBySupplierName(headInfo.Cbf);
+            if(supplierInfo!=null)
             {
-                litCreateddate.Text = headInfo.Createddate.Value.ToString(UiConst.DateFormat);//创建日期
+                ucSelectSupplier.Supplierid = supplierInfo.Supplierid;//供应商 
             }
-            if (headInfo.Contractdate.HasValue)
-            {
-                litContractdate.Text = headInfo.Contractdate.Value.ToString(UiConst.DateFormat); ;//签订日期
-            }
-            ucSelectSupplier.Supplierid = headInfo.Supplier;//供应商
-            //litOperator.Text = headInfo.Operator;//合同负责人
-            ucSubCompany.SubcompanyId = headInfo.Subcompany; //分公司
-            litCreator.Text = headInfo.Creator;//创建人
+            ucSubCompany.SubcompanyId = headInfo.Departid.ToString(); //分公司
+            //litCreator.Text = headInfo.Creator;//创建人
         }
         protected void LoadDetailList()
         {
             foreach (var detail in ImportAssetContractdetailContractDetail)
             {
-                var subCategory =
-                    AssetCategories.Where(p => p.Assetcategoryid == detail.Assetcategoryid).FirstOrDefault();
+                var subCategory =AssetCategories.Where(p => p.Assetcategoryid == detail.Assetcategoryid).FirstOrDefault();
                 if (subCategory == null)
                 {
                     detail.CategoryAllPathName = detail.Assetcategoryid;
                 }
                 else
                 {
-                    var category = AssetCategories.Where(p => p.Assetcategoryid == subCategory.Assetparentcategoryid).
-                            FirstOrDefault();
+                    var category = AssetCategories.Where(p => p.Assetcategoryid == subCategory.Assetparentcategoryid).FirstOrDefault();
                     detail.CategoryAllPathName = string.Format(@"{0}-{1}", category.Assetcategoryname, subCategory.Assetcategoryname);
                 }
             }
-
             rptContactDetailList.DataSource = ImportAssetContractdetailContractDetail;
             rptContactDetailList.DataBind();
         }
