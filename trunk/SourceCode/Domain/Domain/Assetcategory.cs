@@ -18,6 +18,7 @@ namespace FixedAsset.Domain
     [Serializable]
     public partial class Assetcategory
     {
+        public const string FixedAssetCategory = "22";
         #region 分类编号(父编号+自编号)
         ///<summary>
         ///分类编号(父编号+自编号),ASSETCATEGORYID;Size:40;NOT NULL
@@ -39,26 +40,26 @@ namespace FixedAsset.Domain
         public string Assetcategoryname { get; set; }
         #endregion
 
-        #region 备注
-        ///<summary>
-        ///备注,REMARK;Size:200;
-        ///</summary>
-        public string Remark { get; set; }
-        #endregion
+        //#region 备注
+        /////<summary>
+        /////备注,REMARK;Size:200;
+        /////</summary>
+        //public string Remark { get; set; }
+        //#endregion
 
-        #region 创建时间
-        ///<summary>
-        ///创建时间,CREATEDATE;
-        ///</summary>
-        public DateTime? Createdate { get; set; }
-        #endregion
+        //#region 创建时间
+        /////<summary>
+        /////创建时间,CREATEDATE;
+        /////</summary>
+        //public DateTime? Createdate { get; set; }
+        //#endregion
 
-        #region 创建人
-        ///<summary>
-        ///创建人,CREATOR;Size:50;
-        ///</summary>
-        public string Creator { get; set; }
-        #endregion
+        //#region 创建人
+        /////<summary>
+        /////创建人,CREATOR;Size:50;
+        /////</summary>
+        //public string Creator { get; set; }
+        //#endregion
 
         #region CATEGORYVALUE
         ///<summary>
