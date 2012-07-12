@@ -19,6 +19,7 @@ for IDEAL_OA.H_LISTINFO;
 create or replace public synonym H_LISTITEM
 for IDEAL_OA.H_LISTITEM;
 drop table assetsupplier;
+drop table assetcategory;
 create or replace view assetsupplier as
 select to_char(INSTANCEID) as supplierid,CBS as suppliername
 from h_cbs
@@ -33,6 +34,13 @@ union
 select 'Project' StorageTitle ,to_char(xmtid) as StorageId,to_char(xmt) as StorageName,to_char(subcompanyid) as SubCompanyId,to_char(subcompanyname) as subcompanyname
 from lb_fgs_xmt,subcompanyinfo
 where fgsid=subcompanyid and ISUSE=1;
+
+create or replace view assetcategory as
+select to_char(sub.itemId) as assetcategoryid,to_char(sub.typeId) as assetparentcategoryid,sub.itemname as assetcategoryname,sub.itemcode as categoryvalue,sub.system
+from h_listitem sub
+inner join h_listitem root on sub.typeid=root.itemid and  sub.topid=22
+order by sub.typeid asc,sub.itemid asc
+
 update asset 
 set supplierid=999990001
 where supplierid=01;
@@ -44,5 +52,7 @@ set supplierid=999990003
 where supplierid=03;
 UPDATE menuitem
 SET menuaddress='~/admin/New_Contract_List.aspx',menuname='设备导入',parentmenuid='002'
-WHERE MENUID='001002'
+WHERE MENUID='001002';
+update asset
+set assetcategoryid=220101;
 commit;

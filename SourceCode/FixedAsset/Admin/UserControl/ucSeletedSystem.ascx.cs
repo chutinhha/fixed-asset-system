@@ -88,18 +88,8 @@ namespace FixedAsset.Web.Admin.UserControl
 
         protected void LoadData()
         {
-            //var list = AssetsupplierService.RetrieveAllAssetsupplier();
-            //if (AssetCategories.Count == 0)
-            //{
-            var list = AssetcategoryService.RetrieveAllAssetcategory();
-            //    AssetCategories.AddRange(list);
-            //}
-            var categories = list.Where(p => string.IsNullOrEmpty(p.Assetparentcategoryid)).ToList();
-            //categories.Insert(0, new Assetcategory() { Assetcategoryid = string.Empty, Assetcategoryname = "全部" });
-            //ddlAssetCategory.DataTextField = "Assetcategoryname";
-            //ddlAssetCategory.DataValueField = "Assetcategoryid";
-            //ddlAssetCategory.DataSource = categories;
-            //ddlAssetCategory.DataBind();
+            var list = AssetcategoryService.RetrieveAllAssetcategory(); 
+            var categories = list.Where(p => string.IsNullOrEmpty(p.Assetparentcategoryid)||p.Assetparentcategoryid==Assetcategory.FixedAssetCategory).ToList();
             ddlSystemList.DataSource = categories;
             ddlSystemList.DataTextField = @"System";
             ddlSystemList.DataValueField = @"Assetcategoryid";

@@ -59,75 +59,75 @@ namespace FixedAsset.Services
         }
         #endregion
 
-        #region CreateAssetcategory
-        public Assetcategory CreateAssetcategory(Assetcategory info)
-        {
-            try
-            {
-                Management.BeginTransaction();
-                Management.CreateAssetcategory(info);
-                Management.Commit();
-            }
-            catch
-            {
-                Management.Rollback();
-                throw;
-            }
-            return info;
-        }
-        #endregion
+        //#region CreateAssetcategory
+        //public Assetcategory CreateAssetcategory(Assetcategory info)
+        //{
+        //    try
+        //    {
+        //        Management.BeginTransaction();
+        //        Management.CreateAssetcategory(info);
+        //        Management.Commit();
+        //    }
+        //    catch
+        //    {
+        //        Management.Rollback();
+        //        throw;
+        //    }
+        //    return info;
+        //}
+        //#endregion
 
-        #region UpdateAssetcategoryByAssetcategoryid
-        public Assetcategory UpdateAssetcategoryByAssetcategoryid(Assetcategory info)
-        {
-            try
-            {
-                Management.BeginTransaction();
-                Management.UpdateAssetcategoryByAssetcategoryid(info);
-                Management.Commit();
-            }
-            catch
-            {
-                Management.Rollback();
-                throw;
-            }
-            return info;
-        }
-        #endregion
+        //#region UpdateAssetcategoryByAssetcategoryid
+        //public Assetcategory UpdateAssetcategoryByAssetcategoryid(Assetcategory info)
+        //{
+        //    try
+        //    {
+        //        Management.BeginTransaction();
+        //        Management.UpdateAssetcategoryByAssetcategoryid(info);
+        //        Management.Commit();
+        //    }
+        //    catch
+        //    {
+        //        Management.Rollback();
+        //        throw;
+        //    }
+        //    return info;
+        //}
+        //#endregion
 
-        #region DeleteAssetcategoryByAssetcategoryid
-        public void DeleteAssetcategoryByAssetcategoryid(string assetcategoryid)
-        {
-            try
-            {
-                Management.BeginTransaction();
-                Management.DeleteAssetcategoryByAssetcategoryid(assetcategoryid);
-                Management.Commit();
-            }
-            catch
-            {
-                Management.Rollback();
-                throw;
-            }
-        }
-        #endregion
+        //#region DeleteAssetcategoryByAssetcategoryid
+        //public void DeleteAssetcategoryByAssetcategoryid(string assetcategoryid)
+        //{
+        //    try
+        //    {
+        //        Management.BeginTransaction();
+        //        Management.DeleteAssetcategoryByAssetcategoryid(assetcategoryid);
+        //        Management.Commit();
+        //    }
+        //    catch
+        //    {
+        //        Management.Rollback();
+        //        throw;
+        //    }
+        //}
+        //#endregion
 
-        #region DeleteAssetcategoryByAssetcategoryid
-        public void DeleteAssetcategoryByAssetcategoryid(List<string> assetcategoryids)
-        {
-            try
-            {
-                Management.BeginTransaction();
-                Management.DeleteAssetcategoryByAssetcategoryid(assetcategoryids);
-                Management.Commit();
-            }
-            catch
-            {
-                Management.Rollback();
-                throw;
-            }
-        }
-        #endregion
+        //#region DeleteAssetcategoryByAssetcategoryid
+        //public void DeleteAssetcategoryByAssetcategoryid(List<string> assetcategoryids)
+        //{
+        //    try
+        //    {
+        //        Management.BeginTransaction();
+        //        Management.DeleteAssetcategoryByAssetcategoryid(assetcategoryids);
+        //        Management.Commit();
+        //    }
+        //    catch
+        //    {
+        //        Management.Rollback();
+        //        throw;
+        //    }
+        //}
+        //#endregion
 
 
 
