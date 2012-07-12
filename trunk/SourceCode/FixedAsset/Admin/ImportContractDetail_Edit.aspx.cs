@@ -201,7 +201,7 @@ namespace FixedAsset.Web.Admin
                     var list = AssetcategoryService.RetrieveAllAssetcategory();
                     AssetCategories.AddRange(list);
                 }
-                var categories = AssetCategories.Where(p => string.IsNullOrEmpty(p.Assetparentcategoryid)).ToList();
+                var categories = AssetCategories.Where(p => string.IsNullOrEmpty(p.Assetparentcategoryid) || p.Assetparentcategoryid == Assetcategory.FixedAssetCategory).ToList();
                 ddlAssetCategory.DataTextField = "Assetcategoryname";
                 ddlAssetCategory.DataValueField = "Assetcategoryid";
                 ddlAssetCategory.DataSource = categories;

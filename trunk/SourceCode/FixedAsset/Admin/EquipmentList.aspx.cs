@@ -206,7 +206,7 @@ namespace FixedAsset.Web.Admin
                     var list = AssetcategoryService.RetrieveAllAssetcategory();
                     AssetCategories.AddRange(list);
                 }
-                var categories = AssetCategories.Where(p => string.IsNullOrEmpty(p.Assetparentcategoryid)).ToList();
+                var categories = AssetCategories.Where(p => string.IsNullOrEmpty(p.Assetparentcategoryid) || p.Assetparentcategoryid == Assetcategory.FixedAssetCategory).ToList();
                 categories.Insert(0, new Assetcategory() { Assetcategoryid = string.Empty, Assetcategoryname = "全部" });
                 ddlAssetCategory.DataTextField = "Assetcategoryname";
                 ddlAssetCategory.DataValueField = "Assetcategoryid";
