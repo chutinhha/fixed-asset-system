@@ -68,9 +68,8 @@ namespace FixedAsset.Web
             catch
             {
                 throw;
-
             }
-            return null;
+            //return null;
         }
 
         #endregion 把字节反序列化成相应的对象

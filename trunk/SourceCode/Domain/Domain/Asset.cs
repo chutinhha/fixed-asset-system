@@ -160,5 +160,12 @@ namespace FixedAsset.Domain
         /////</summary>
         //public string Scrappeduser { get; set; }
         //#endregion
+
+        #region 分类值（用于生成设备编号）冗余
+        ///<summary>
+        ///分类值(大分类值+小分类值) 冗余
+        ///</summary>
+        public string Categoryvalue { get; set; }
+        #endregion
     }
 }

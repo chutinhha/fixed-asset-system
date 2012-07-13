@@ -25,9 +25,9 @@ namespace FixedAsset.Web
                     }
                 }
             }
-            catch (Exception exception)
+            catch
             {
-               
+                Response.End();
             }
         }
     }

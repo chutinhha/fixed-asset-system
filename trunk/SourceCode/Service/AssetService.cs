@@ -183,9 +183,7 @@ namespace FixedAsset.Services
                 {
                     codePrefix.Append(900);
                 }
-                codePrefix.Append(info.Assetcategoryid); //设备分类
-                //var ruleManagement = new CoderuleManagement(Management);
-                //info.Assetno = ruleManagement.GenerateCodeRule(codePrefix.ToString(),false);
+                codePrefix.Append(info.Categoryvalue); //设备分类
                 var priorInfo = Management.RetrieveTopAssetByAssetnoPrefix(codePrefix.ToString());
                 if(priorInfo==null)
                 {
