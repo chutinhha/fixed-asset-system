@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using FixedAsset.Domain;
 using FixedAsset.IServices;
 using FixedAsset.Services;
@@ -96,11 +93,7 @@ namespace FixedAsset.Web.Admin
         }
         protected void ucSelectStorageAddress_SelectedStorageNodeChange(object sender, EventArgs e)
         {
-            //litStorage.Text = ucSelectStorageAddress.Storagename;
-            var currentInfo =
-                VStorageAddress.Where(
-                    p =>
-                    p.Storagetitle == ucSelectStorageAddress.Storagetitle &&
+            var currentInfo =VStorageAddress.Where(p =>p.Storagetitle == ucSelectStorageAddress.Storagetitle &&
                     p.Storageid == ucSelectStorageAddress.StorageId).FirstOrDefault();
             if (currentInfo == null)
             {
@@ -156,8 +149,7 @@ namespace FixedAsset.Web.Admin
             }
             else
             {
-                assetInfo = AssetService.RetrieveAssetByAssetno(Assetno);
-                if(assetInfo==null){assetInfo=new Asset();}
+                assetInfo = AssetService.RetrieveAssetByAssetno(Assetno) ?? new Asset();
             }
             WriteControlValueToEntity(assetInfo);
             assetInfo.State = AssetState.NoUse;
@@ -187,8 +179,7 @@ namespace FixedAsset.Web.Admin
         {
             if (ddlAssetCategory.SelectedIndex >= 0)
             {
-                var subAssetCategories =
-                    AssetCategories.Where(p => p.Assetparentcategoryid == ddlAssetCategory.SelectedValue).ToList();
+                var subAssetCategories =AssetCategories.Where(p => p.Assetparentcategoryid == ddlAssetCategory.SelectedValue).ToList();
                 ddlSubAssetCategory.DataTextField = "Assetcategoryname";
                 ddlSubAssetCategory.DataValueField = "Assetcategoryid";
                 ddlSubAssetCategory.DataSource = subAssetCategories;
@@ -210,14 +201,9 @@ namespace FixedAsset.Web.Admin
                 LoadSubAssetCategory();
             }
             txtAssetname.Text = asset.Assetname;
-            //txtStorageflag.Text = asset.Storageflag;
-            //txtStorage.Text = asset.Storage;  //存放地点要做特殊处理
+            //存放地点要做特殊处理
             ucSelectStorageAddress.Storagetitle = asset.Storageflag;
             ucSelectStorageAddress.StorageId = asset.Storage; //存放地点
-
-            //SelectStorageAddress1.Storagetitle = asset.Storageflag;
-            //SelectStorageAddress1.StorageId = asset.Storage; //存放地点
-
             litState.Text = EnumUtil.RetrieveEnumDescript(asset.State);//设备状态
             txtDepreciationyear.Text = asset.Depreciationyear.ToString(); //设备年限
             txtUnitprice.Text = asset.Unitprice.ToString();
@@ -234,6 +220,13 @@ namespace FixedAsset.Web.Admin
             asset.Assetno = litAssetno.Text;
             asset.Subcompany = ucSelectSubCompany.SubcompanyId;
             asset.Assetcategoryid = ddlSubAssetCategory.SelectedValue;
+            //当前选择小分类值
+            var currentSelectedCategory =
+                AssetCategories.Where(p => p.Assetcategoryid == asset.Assetcategoryid).FirstOrDefault();
+            if (currentSelectedCategory != null)
+            {
+                asset.Categoryvalue = currentSelectedCategory.Categoryvalue;
+            }
             asset.Assetname = txtAssetname.Text;
             
             decimal depreciationyear = 0;

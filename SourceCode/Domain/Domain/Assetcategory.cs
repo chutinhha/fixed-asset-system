@@ -40,37 +40,16 @@ namespace FixedAsset.Domain
         public string Assetcategoryname { get; set; }
         #endregion
 
-        //#region 备注
-        /////<summary>
-        /////备注,REMARK;Size:200;
-        /////</summary>
-        //public string Remark { get; set; }
-        //#endregion
-
-        //#region 创建时间
-        /////<summary>
-        /////创建时间,CREATEDATE;
-        /////</summary>
-        //public DateTime? Createdate { get; set; }
-        //#endregion
-
-        //#region 创建人
-        /////<summary>
-        /////创建人,CREATOR;Size:50;
-        /////</summary>
-        //public string Creator { get; set; }
-        //#endregion
-
-        #region CATEGORYVALUE
+        #region 分类值（用于生成设备编号）
         ///<summary>
-        ///,CATEGORYVALUE;Size:50;
+        ///分类值(大分类值+小分类值)
         ///</summary>
         public string Categoryvalue { get; set; }
         #endregion
 
-        #region 对应的系统
+        #region 大分类对应的系统
         ///<summary>
-        ///对应的系统,SYSTEM;Size:80;
+        ///大分类对应的系统
         ///</summary>
         public string System { get; set; }
         #endregion

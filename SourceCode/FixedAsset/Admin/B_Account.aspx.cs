@@ -302,18 +302,18 @@ namespace FixedAsset.Web.Admin
                 ddlSubAssetCategory.DataBind();
             }
         }
-        protected void InitFinanceCategory(DropDownList dropDownList, bool isLoadAll)
-        {
-            if (isLoadAll)
-            {
-                dropDownList.Items.Add(new ListItem("全部", ""));
-            }
-            var dic = EnumUtil.RetrieveEnumDictionary(typeof(FinanceCategory));
-            foreach (KeyValuePair<Enum, string> valuePair in dic)
-            {
-                dropDownList.Items.Add(new ListItem(valuePair.Value, valuePair.Key.ToString()));
-            }
-        }
+        //protected void InitFinanceCategory(DropDownList dropDownList, bool isLoadAll)
+        //{
+        //    if (isLoadAll)
+        //    {
+        //        dropDownList.Items.Add(new ListItem("全部", ""));
+        //    }
+        //    var dic = EnumUtil.RetrieveEnumDictionary(typeof(FinanceCategory));
+        //    foreach (KeyValuePair<Enum, string> valuePair in dic)
+        //    {
+        //        dropDownList.Items.Add(new ListItem(valuePair.Value, valuePair.Key.ToString()));
+        //    }
+        //}
         #endregion
     }
 }

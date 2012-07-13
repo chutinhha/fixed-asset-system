@@ -53,7 +53,7 @@ namespace FixedAsset.Web.Admin
                 dr["AssetCount"] = list.Where(p => p.Assetcategoryid.ToLower().Equals(category.Assetcategoryid.ToLower())).ToList().Count;
                 dt.Rows.Add(dr);
             }
-            int recordCount = 0;
+            //int recordCount = 0;
             rptAssetsCategoryList.DataSource = dt;
             rptAssetsCategoryList.DataBind();
            // pcData.RecordCount = recordCount;

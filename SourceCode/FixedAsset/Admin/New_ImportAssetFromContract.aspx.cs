@@ -164,8 +164,13 @@ namespace FixedAsset.Web.Admin
                 for (decimal i = 0; i < importAssetContractdetail.ImportNumber; i++)
                 {
                     Asset data = new Asset();
-                    //data.Assetno = importAssetContractdetail.Assetno;//设备编号
                     data.Assetcategoryid = importAssetContractdetail.Assetcategoryid;//设备类别
+                    //当前选择小分类值
+                    var currentSelectedCategory =AssetCategories.Where(p => p.Assetcategoryid == data.Assetcategoryid).FirstOrDefault();
+                    if (currentSelectedCategory != null)
+                    {
+                        data.Categoryvalue = currentSelectedCategory.Categoryvalue;
+                    }
                     data.Assetname = importAssetContractdetail.Assetname;//设备名称
                     data.Storage = importAssetContractdetail.Storage;//存放地点
                     data.State = AssetState.NoUse;//设备状态
@@ -222,7 +227,6 @@ namespace FixedAsset.Web.Admin
             {
                 if (!string.IsNullOrEmpty(detailId))
                 {
-                    //if (!string.IsNullOrEmpty(Contractid)) { ProcurementcontractService.DeleteProcurementcontractByContractid(detailId); }
                     var detailInfo = ImportAssetContractdetailContractDetail.Where(p => p.Contractdetailid == detailId).FirstOrDefault();
                     ImportAssetContractdetailContractDetail.Remove(detailInfo);
                     LoadDetailList();
@@ -258,7 +262,6 @@ namespace FixedAsset.Web.Admin
                 ucSelectSupplier.Supplierid = supplierInfo.Supplierid;//供应商 
             }
             ucSubCompany.SubcompanyId = headInfo.Departid.ToString(); //分公司
-            //litCreator.Text = headInfo.Creator;//创建人
         }
         protected void LoadDetailList()
         {
