@@ -194,11 +194,12 @@ namespace FixedAsset.Services
                     var currentNo = int.Parse(priorInfo.Assetno.Substring(codePrefix.Length));
                     var content = new StringBuilder();
                     content.Append(codePrefix.ToString());
+                    currentNo = currentNo + 1;
                     for (int ii = 0; ii < 4 - currentNo.ToString().Length; ii++)
                     {
                         content.Append("0");
                     }
-                    content.Append(currentNo+1);
+                    content.Append(currentNo);
                     info.Assetno = content.ToString();
                 }
             }
