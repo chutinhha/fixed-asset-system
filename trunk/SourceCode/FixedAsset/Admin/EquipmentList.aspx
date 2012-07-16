@@ -80,7 +80,7 @@
                 <asp:Repeater ID="rptAssetsList" runat="server" OnItemDataBound="rptAssetsList_ItemDataBound"
                     OnItemCommand="rptAssetsList_ItemCommand">
                     <HeaderTemplate>
-                        <tr class="thbg" style="padding:0 0 0 0">
+                        <tr class="thbg" style="padding: 0 0 0 0">
                             <th align="center">
                                 设备编号
                             </th>
@@ -126,7 +126,7 @@
                                 <%#EnumUtil.RetrieveEnumDescript((AssetState)Eval("State"))%>
                             </td>
                             <td align="center">
-                                <%#((DateTime)Eval("Purchasedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                <%# Eval("Purchasedate") == null ? "" : ((DateTime)Eval("Purchasedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
                             <td align="right">
                                 <%#((decimal)Eval("Unitprice")).ToString(FixedAsset.Web.AppCode.UiConst.MoneyFormat)%>
@@ -162,14 +162,14 @@
                                 <%#EnumUtil.RetrieveEnumDescript((AssetState)Eval("State"))%>
                             </td>
                             <td align="center">
-                                <%#((DateTime)Eval("Purchasedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                <%# Eval("Purchasedate") == null ? "" : ((DateTime)Eval("Purchasedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
                             <td align="right">
                                 <%#((decimal)Eval("Unitprice")).ToString(FixedAsset.Web.AppCode.UiConst.MoneyFormat)%>
                             </td>
                             <td align="center">
                                 <%#Eval("Contractid")%>
-                            </td >
+                            </td>
                             <td align="center">
                                 <%#EnumUtil.RetrieveEnumDescript((FinanceCategory)Eval("Financecategory"))%>
                             </td>
@@ -182,11 +182,9 @@
                         </tr>
                     </AlternatingItemTemplate>
                 </asp:Repeater>
-                <tr style="height:28px">
+                <tr style="height: 28px">
                     <td colspan="9" style="height: 28px; width: 98%;" align="center">
-                    
                         <cc1:PagingControl ID="pcData" runat="server" MaxNavigatePageCount="7" OnPageIndexClick="pcData_PageIndexClick" />
-                        
                     </td>
                 </tr>
             </table>
