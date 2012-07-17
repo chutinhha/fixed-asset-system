@@ -18,6 +18,8 @@ namespace FixedAsset.Domain
     [Serializable]
     public partial class Hcontract
     {
+        public const long AssetContract = 1175188;
+
         #region 主键
         ///<summary>
         ///主键,INSTANCEID;NOT NULL
@@ -194,9 +196,9 @@ namespace FixedAsset.Domain
         public long Fainstanceid{  get;set;}
         #endregion
 
-        #region FLOWID
+        #region 可导入设备信息
         ///<summary>
-        ///,FLOWID;
+        ///FLOWID=1175188 可导入设备信息
         ///</summary>
         public long Flowid{  get;set;}
         #endregion

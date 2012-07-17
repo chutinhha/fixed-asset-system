@@ -88,7 +88,8 @@ namespace FixedAsset.DataAccess
                      ""H_CONTRACT"".""ISIMPORT""
                      ,""SUBCOMPANYNAME""
                      FROM ""H_CONTRACT"" INNER JOIN SUBCOMPANYINFO ON   SUBCOMPANYINFO.SUBCOMPANYID=""H_CONTRACT"".DEPARTID
-                     WHERE 1=1");
+                     WHERE ""FLOWID"" = :Flowid");
+                this.Database.AddInParameter(":Flowid", Hcontract.AssetContract);
                 //if (!string.IsNullOrEmpty(info.Szdw))
                 //{
                 //    this.Database.AddInParameter(":Szdw",DbType.AnsiString,"%"+info.Szdw+"%");
