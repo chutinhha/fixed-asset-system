@@ -19,8 +19,7 @@
                 <asp:TextBox ID="txtSrchXmmc" Width="150" CssClass="" runat="server"></asp:TextBox>
                 供应商
                 <asp:TextBox ID="txtSrchCbf" Width="150" CssClass="" runat="server"></asp:TextBox><asp:Button
-                    ID="BtnSearch" runat="server" CssClass="button" Text="查询" OnClick="BtnSearch_Click" />
-                <input type="button" class="button" runat="server" id="btnAdd" value="新增" onclick="javascript:window.location='NewContacts.aspx'" />
+                    ID="BtnSearch" runat="server" CssClass="button" Text="查询" OnClick="BtnSearch_Click" />                
             </p>
             <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
                 align="center" class="gridtable">
