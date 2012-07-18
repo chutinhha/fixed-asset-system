@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using FixedAsset.Domain;
 using FixedAsset.IServices;
 using FixedAsset.Services;
-using System.Data;
 
 namespace FixedAsset.Web.Admin
 {
@@ -88,20 +84,13 @@ namespace FixedAsset.Web.Admin
                     dt.Rows.Add(drproject);
                 }
             }
-
-            //int recordCount = 0;
             rptAssetsStorageCategoryList.DataSource = dt;
             rptAssetsStorageCategoryList.DataBind();
-            //pcData.RecordCount = dt.Rows.Count;
-            //pcData.CurrentIndex = pageIndex;
         }
 
         protected void pcData_PageIndexClick(object sender, KFSQ.Web.Controls.PageIndexClickEventArgs e)
         {
             LoadData(e.PageIndex);
         }
-     
-
-
     }
 }
