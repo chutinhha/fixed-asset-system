@@ -24,7 +24,7 @@
                 <asp:Repeater ID="rptUserRoleList" runat="server" OnItemDataBound="rptUserRoleList_ItemDataBound"
                     OnItemCommand="rptUserRoleList_ItemCommand">
                     <HeaderTemplate>
-                        <tr class="thbg" style="padding:0 0 0 0">
+                        <tr class="thbg" style="padding: 0 0 0 0">
                             <th align="center">
                                 用户姓名
                             </th>
@@ -66,7 +66,7 @@
                                 <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/user.GIF"
                                     AlternateText="分配角色" ToolTip="分配角色" CommandArgument='<%#Eval("Id")%>' CommandName="EditDetail" />
                                 <asp:ImageButton ID="BtnDeleted" runat="server" ImageUrl="~/images/Button/delete.GIF"
-                                     CommandArgument='<%#Eval("Id")%>' CommandName="DeleteDetail" OnClientClick="return confirm('确认要取消角色吗？');"
+                                    CommandArgument='<%#Eval("Id")%>' CommandName="DeleteDetail" OnClientClick="return confirm('确认要取消角色吗？');"
                                     AlternateText="取消角色" ToolTip="取消角色" />
                             </td>
                         </tr>
@@ -92,17 +92,15 @@
                                 <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/user.GIF"
                                     AlternateText="分配角色" ToolTip="分配角色" CommandArgument='<%#Eval("Id")%>' CommandName="EditDetail" />
                                 <asp:ImageButton ID="BtnDeleted" runat="server" ImageUrl="~/images/Button/delete.GIF"
-                                     CommandArgument='<%#Eval("Id")%>' CommandName="DeleteDetail" OnClientClick="return confirm('确认要取消角色吗？');"
+                                    CommandArgument='<%#Eval("Id")%>' CommandName="DeleteDetail" OnClientClick="return confirm('确认要取消角色吗？');"
                                     AlternateText="取消角色" ToolTip="取消角色" />
                             </td>
                         </tr>
                     </AlternatingItemTemplate>
                 </asp:Repeater>
-                 <tr style="height:28px">
-                    <td colspan="6" style="height: 28px; width: 98%;" align="center">
-                    <div style="height:28px; padding-top:3px; padding-bottom:3px">
+                <tr>
+                    <td colspan="6" style="height: 30px; width: 98%;" align="center">
                         <cc1:PagingControl ID="pcData" runat="server" MaxNavigatePageCount="7" OnPageIndexClick="pcData_PageIndexClick" />
-                        </div>
                     </td>
                 </tr>
             </table>
