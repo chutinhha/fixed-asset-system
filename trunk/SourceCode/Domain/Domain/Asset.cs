@@ -42,6 +42,13 @@ namespace FixedAsset.Domain
         public string Assetname{  get;set;}
         #endregion
 
+        #region 存放地点标识来源
+        ///<summary>
+        ///ColumnName:存放地点标识来源;Size:80;
+        ///</summary>
+        public string Storageflag { get; set; }
+        #endregion
+
         #region 存放地点
         ///<summary>
         ///ColumnName:存放地点;Size:80;
@@ -119,12 +126,7 @@ namespace FixedAsset.Domain
         public string Assetspecification{  get;set;}
         #endregion
 
-        #region 存放地点标识来源
-        ///<summary>
-        ///ColumnName:存放地点标识来源;Size:80;
-        ///</summary>
-        public string Storageflag{  get;set;}
-        #endregion
+        
 
         #region 分公司
         ///<summary>
