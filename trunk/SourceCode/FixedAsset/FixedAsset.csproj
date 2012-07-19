@@ -468,6 +468,41 @@
     <Compile Include="Admin\Report_AssetCategory.aspx.designer.cs">
       <DependentUpon>Report_AssetCategory.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Report_AssetIntall.aspx.cs">
+      <DependentUpon>Report_AssetIntall.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Report_AssetIntall.aspx.designer.cs">
+      <DependentUpon>Report_AssetIntall.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Report_AssetMove.aspx.cs">
+      <DependentUpon>Report_AssetMove.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Report_AssetMove.aspx.designer.cs">
+      <DependentUpon>Report_AssetMove.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Report_AssetRegister.aspx.cs">
+      <DependentUpon>Report_AssetRegister.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Report_AssetRegister.aspx.designer.cs">
+      <DependentUpon>Report_AssetRegister.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Report_AssetRemove.aspx.cs">
+      <DependentUpon>Report_AssetRemove.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Report_AssetRemove.aspx.designer.cs">
+      <DependentUpon>Report_AssetRemove.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Report_AssetRepair.aspx.cs">
+      <DependentUpon>Report_AssetRepair.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Report_AssetRepair.aspx.designer.cs">
+      <DependentUpon>Report_AssetRepair.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Report_AssetState.aspx.cs">
       <DependentUpon>Report_AssetState.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -481,6 +516,13 @@
     </Compile>
     <Compile Include="Admin\Report_AssetStorageAddress.aspx.designer.cs">
       <DependentUpon>Report_AssetStorageAddress.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Report_ShowCurrentAssets.aspx.cs">
+      <DependentUpon>Report_ShowCurrentAssets.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Report_ShowCurrentAssets.aspx.designer.cs">
+      <DependentUpon>Report_ShowCurrentAssets.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Role_Add.aspx.cs">
       <DependentUpon>Role_Add.aspx</DependentUpon>
@@ -777,8 +819,14 @@
     <Content Include="Admin\Repair_View.aspx" />
     <Content Include="Admin\Install_Reply.aspx" />
     <Content Include="Admin\Report_AssetCategory.aspx" />
+    <Content Include="Admin\Report_AssetIntall.aspx" />
+    <Content Include="Admin\Report_AssetMove.aspx" />
+    <Content Include="Admin\Report_AssetRegister.aspx" />
+    <Content Include="Admin\Report_AssetRemove.aspx" />
+    <Content Include="Admin\Report_AssetRepair.aspx" />
     <Content Include="Admin\Report_AssetState.aspx" />
     <Content Include="Admin\Report_AssetStorageAddress.aspx" />
+    <Content Include="Admin\Report_ShowCurrentAssets.aspx" />
     <Content Include="Admin\Role_Add.aspx" />
     <Content Include="Admin\Role_AddRight.aspx" />
     <Content Include="Admin\Role_List.aspx" />
