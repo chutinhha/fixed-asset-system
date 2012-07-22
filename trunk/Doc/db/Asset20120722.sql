@@ -12,4 +12,16 @@ insert into MENUITEM (MENUID, MENUNAME, PARENTMENUID, MENUADDRESS, ORDERBY, FUNC
 values ('001004', '拆机单台账', '001', '~/admin/Report_AssetRemove.aspx', 3, '001004', null);
 insert into MENUITEM (MENUID, MENUNAME, PARENTMENUID, MENUADDRESS, ORDERBY, FUNCTIONID, BUTTONID)
 values ('001005', '维修单台账', '001', '~/admin/Report_AssetRepair.aspx', 3, '001005', null);
+insert into ROLEPERMISSION (ROLEID, MENUID, REMARK, LASTMODIFIEDDATE, LASTMODIFIEDBY, RIGHTCODE)
+values ('adminRole', '001', null, to_date('22-07-2012 23:08:55', 'dd-mm-yyyy hh24:mi:ss'), '管理员', null);
+insert into ROLEPERMISSION (ROLEID, MENUID, REMARK, LASTMODIFIEDDATE, LASTMODIFIEDBY, RIGHTCODE)
+values ('adminRole', '001001', null, to_date('22-07-2012 23:08:55', 'dd-mm-yyyy hh24:mi:ss'), '管理员', null);
+insert into ROLEPERMISSION (ROLEID, MENUID, REMARK, LASTMODIFIEDDATE, LASTMODIFIEDBY, RIGHTCODE)
+values ('adminRole', '001002', null, to_date('22-07-2012 23:08:55', 'dd-mm-yyyy hh24:mi:ss'), '管理员', null);
+insert into ROLEPERMISSION (ROLEID, MENUID, REMARK, LASTMODIFIEDDATE, LASTMODIFIEDBY, RIGHTCODE)
+values ('adminRole', '001003', null, to_date('22-07-2012 23:08:55', 'dd-mm-yyyy hh24:mi:ss'), '管理员', null);
+insert into ROLEPERMISSION (ROLEID, MENUID, REMARK, LASTMODIFIEDDATE, LASTMODIFIEDBY, RIGHTCODE)
+values ('adminRole', '001004', null, to_date('22-07-2012 23:08:55', 'dd-mm-yyyy hh24:mi:ss'), '管理员', null);
+insert into ROLEPERMISSION (ROLEID, MENUID, REMARK, LASTMODIFIEDDATE, LASTMODIFIEDBY, RIGHTCODE)
+values ('adminRole', '001005', null, to_date('22-07-2012 23:08:55', 'dd-mm-yyyy hh24:mi:ss'), '管理员', null);
 commit;
