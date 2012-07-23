@@ -31,22 +31,22 @@ namespace FixedAsset.Web.Admin {
         protected global::FixedAsset.Web.Admin.UserControl.ucSelectProjectForTree ucSelectStorageAddress;
         
         /// <summary>
-        /// txtSrchUsername 控件。
+        /// ucStartDate 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSrchUsername;
+        protected global::FixedAsset.Web.Admin.UserControl.ucDatePicker ucStartDate;
         
         /// <summary>
-        /// txtSrchLoginid 控件。
+        /// ucEndDate 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSrchLoginid;
+        protected global::FixedAsset.Web.Admin.UserControl.ucDatePicker ucEndDate;
         
         /// <summary>
         /// BtnSearch 控件。

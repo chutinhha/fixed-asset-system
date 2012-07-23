@@ -43,6 +43,10 @@ namespace FixedAsset.Services
         {
             return Management.RetrieveAssetsetupinfosPaging(info,pageIndex,pageSize,out count);
         }
+        public List<AssetRunTimeReport> RetrieveAssetRunTimeReport(AssetRunTimeSearch info)
+        {
+            return Management.RetrieveAssetRunTimeReport(info);
+        }
         #endregion
 
         #region RetrieveAssetsetupinfoBySetupid

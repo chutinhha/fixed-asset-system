@@ -14,11 +14,11 @@ namespace FixedAsset.Web.Admin
     public partial class Report_AssetIntall :BasePage
     {
         #region Properties
-        protected IAssetService AssetService
+        protected IAssetsetupinfoService AssetsetupinfoService
         {
             get
             {
-                return new AssetService();
+                return new AssetsetupinfoService();
             }
         }
         protected List<Vstorageaddress> VStorageAddress
@@ -37,16 +37,34 @@ namespace FixedAsset.Web.Admin
         #region Events
         protected void ucSelectStorageAddress_SelectedStorageNodeChange(object sender, EventArgs e)
         {
-            //ucSelectStorageAddress.StorageId
-            //ucSelectStorageAddress.Storagetitle
             LoadCurrentData();
+        }
+        protected void BtnSearch_Click(object sender, EventArgs e)
+        {
+            
         }
         #endregion
 
         #region Methods  
         protected void LoadCurrentData()
         {
-
+            var search = new AssetRunTimeSearch();
+            search.Storagetitle = ucSelectStorageAddress.Storagetitle;
+            search.Storageid = ucSelectStorageAddress.StorageId;
+            if(search.Storagetitle==Vstorageaddress.Subcompany)
+            {
+                var currentProjects = VStorageAddress.Where(p => p.Subcompanyid == ucSelectStorageAddress.StorageId).ToList();
+                search.ProjectIds.AddRange(currentProjects.Select(p=>p.Storageid));
+            }
+            if (ucStartDate.DateValue.HasValue)
+            {
+                search.StartActualDate = ucStartDate.DateValue.Value;
+            }
+            if (ucEndDate.DateValue.HasValue)
+            {
+                search.EndActualDate = ucEndDate.DateValue.Value;
+            }
+            var currentReportData = AssetsetupinfoService.RetrieveAssetRunTimeReport(search);
         }
         #endregion
     }

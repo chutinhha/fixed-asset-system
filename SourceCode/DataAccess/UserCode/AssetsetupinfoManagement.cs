@@ -213,5 +213,71 @@ namespace FixedAsset.DataAccess
             }
         }
         #endregion
+
+        #region RetrieveAssetRunTimeReport
+        public List<AssetRunTimeReport> RetrieveAssetRunTimeReport(AssetRunTimeSearch info)
+        {
+            try
+            {
+                var sqlCommand = new StringBuilder(@" select b.storagetitle,b.storageid, c.assetcategoryid,count(c.assetno) as Currentcount
+                                                        from assetsetupdetail a
+                                                        inner join assetsetupinfo b on a.setupid=b.setupid
+                                                        inner join asset c on a.assetno=c.assetno");
+                
+                #region 项目体ID或分公司ID)
+                if (info.Storagetitle==Vstorageaddress.Project)
+                {
+                    sqlCommand.AppendLine(@" where b.storagetitle = :Storagetitle AND b.storageid = :Storageid");
+                    this.Database.AddInParameter(":Storagetitle", DbType.AnsiString, Vstorageaddress.Project);
+                    this.Database.AddInParameter(":Storageid", DbType.AnsiString, info.Storageid);
+                }
+                else if(info.Storagetitle==Vstorageaddress.Subcompany)
+                {
+                    this.Database.AddInParameter(":Storagetitle", DbType.AnsiString, Vstorageaddress.Subcompany); 
+                    this.Database.AddInParameter(":Storageid", DbType.AnsiString, info.Storageid);
+                    sqlCommand.AppendLine(@" where ((b.storagetitle = :Storagetitle AND b.storageid = :Storageid )");
+                    if(info.ProjectIds.Count>0)
+                    {
+                        this.Database.AddInParameter(":Storagetitle0", DbType.AnsiString, Vstorageaddress.Project);
+                        this.Database.AddInParameter(":Storageid0", DbType.AnsiString, info.ProjectIds[0]);
+                        sqlCommand.AppendLine(@" OR (b.storagetitle = :Storagetitle0  AND (b.storageid = :Storageid0 ");
+                        for (int i = 1; i < info.ProjectIds.Count; i++)
+                        {
+                            this.Database.AddInParameter(":Storageid" + i.ToString(), info.ProjectIds[i]);
+                            sqlCommand.AppendLine(@" OR b.storageid=:Storageid" + i.ToString());
+                        }
+                        sqlCommand.Append(")");
+                        sqlCommand.Append(")");
+                    }
+                    sqlCommand.Append(")");
+                }
+                else
+                {
+                    return new List<AssetRunTimeReport>();
+                }
+                #endregion  
+
+                #region 实际完成日期
+                if (info.StartActualDate.HasValue)
+                {
+                    this.Database.AddInParameter(":StartActualDate", info.StartActualDate.Value.Date);
+                    sqlCommand.AppendLine(@" AND b.ACTUALSETUPDATE >= :StartActualDate");
+                }
+                if (info.EndActualDate.HasValue)
+                {
+                    this.Database.AddInParameter(":EndActualDate", info.EndActualDate.Value.Date.AddDays(1).AddSeconds(-1));
+                    sqlCommand.AppendLine(@" AND b.ACTUALSETUPDATE <= :EndActualDate");
+                }
+                #endregion 
+
+                sqlCommand.AppendLine(@"  group by b.storagetitle,b.storageid, c.assetcategoryid");
+                return this.Database.ExecuteToList<AssetRunTimeReport>(sqlCommand.ToString());
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
+        #endregion
     }
 }
