@@ -32,10 +32,10 @@
                     <table style="width: 100%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
                         align="center" class="gridtable">
                         <tr class="thbg" style="padding: 0 0 0 0">
-                            <th rowspan="2">
+                            <th rowspan="2" class="thbg">
                                 序号
                             </th>
-                            <th rowspan="2">
+                            <th rowspan="2" class="thbg">
                                 分公司/项目体
                             </th>
                             <th colspan="4">
