@@ -31,7 +31,8 @@
                         <uc1:DatePicker ID="ucEndDate" runat="server" />
                         <asp:Button ID="BtnSearch" runat="server" CssClass="button" Text="查询" OnClick="BtnSearch_Click"  />
                     </p>
-                    <table style="width: 100%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
+                    <asp:Literal ID="litContent" runat="server"></asp:Literal>
+                    <%--<table style="width: 100%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
                         align="center" class="gridtable">
                         <tr class="thbg" style="padding: 0 0 0 0">
                             <th rowspan="2" class="thbg">
@@ -194,7 +195,7 @@
                                 控制器
                             </td>
                         </tr>
-                    </table>
+                    </table>--%>
                     <div class="clear">
                     </div>
                 </div>
