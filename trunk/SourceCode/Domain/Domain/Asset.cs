@@ -124,9 +124,7 @@ namespace FixedAsset.Domain
         ///ColumnName:设备规格;Size:200;
         ///</summary>
         public string Assetspecification{  get;set;}
-        #endregion
-
-        
+        #endregion  
 
         #region 分公司
         ///<summary>

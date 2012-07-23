@@ -4,6 +4,7 @@
 <%@ Import Namespace="FixedAsset.Domain" %>
 <%@ Register Src="~/Admin/UserControl/ucSelectProjectForTree.ascx" TagName="SelectStorageAddress"
     TagPrefix="uc1" %>
+    <%@ Register Src="~/Admin/UserControl/ucDatePicker.ascx" TagName="DatePicker" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
     <link href="css/mail.css" rel="stylesheet" type="text/css" />
@@ -24,10 +25,11 @@
                     </div>
                 </div>
                 <div class="column-right" style="width: 70%;">
-                    <p>
-                        用户姓名<asp:TextBox ID="txtSrchUsername" Width="150" CssClass="" runat="server" />
-                        登录账号<asp:TextBox ID="txtSrchLoginid" Width="150" CssClass="" runat="server" />
-                        <asp:Button ID="BtnSearch" runat="server" CssClass="button" Text="查询" />
+                    <p> 时间完成日期
+                        <uc1:DatePicker ID="ucStartDate" runat="server" />
+                        ~
+                        <uc1:DatePicker ID="ucEndDate" runat="server" />
+                        <asp:Button ID="BtnSearch" runat="server" CssClass="button" Text="查询" OnClick="BtnSearch_Click"  />
                     </p>
                     <table style="width: 100%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
                         align="center" class="gridtable">
