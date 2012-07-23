@@ -65,7 +65,8 @@ namespace FixedAsset.Web.Admin
                 System.Data.DataRow dr = dt.NewRow();
                 dr["AssetStorageCategory"] = supplier.Suppliername;
                 dr["AssetSubStorageCategory"] = "";
-                dr["AssetCount"] = list.Where(p => p.Storageflag.ToLower().Equals("supplier") && p.Supplierid.ToLower().Equals(supplier.Supplierid.ToLower())).Count();
+                //dr["AssetCount"] = list.Where(p => p.Storageflag.ToLower().Equals("supplier") && p.Supplierid.ToLower().Equals(supplier.Supplierid.ToLower())).Count();
+                dr["AssetCount"] = list.Where(p=>p.Storageflag==Vstorageaddress.Supplier&&p.Storage==supplier.Supplierid).Count();
                 dt.Rows.Add(dr);
             }
             foreach (Subcompanyinfo subcom in subcompanyinfos)
@@ -73,14 +74,17 @@ namespace FixedAsset.Web.Admin
                 System.Data.DataRow dr = dt.NewRow();
                 dr["AssetStorageCategory"] = subcom.Subcompanyname;
                 dr["AssetSubStorageCategory"] = "";
-                dr["AssetCount"] = list.Where(o =>o.Storageflag.ToLower().Equals("subcompany") &&o.Subcompany.ToLower().Equals(subcom.Subcompanyid.ToString().ToLower())).Count();
+                dr["AssetCount"] = list.Where(p => p.Storageflag == Vstorageaddress.Subcompany && p.Storage == subcom.Subcompanyid.ToString()).Count(); 
+                    //list.Where(o =>o.Storageflag.ToLower().Equals("subcompany") &&o.Subcompany.ToLower().Equals(subcom.Subcompanyid.ToString().ToLower())).Count();
                 dt.Rows.Add(dr);
-                foreach (Lbfgsxmt lbfgsxmt in Project.Where(o => o.Fgsid.ToString().ToLower().Equals(subcom.Subcompanyid.ToString().ToLower())).ToList())
+                var currentProjects = Project.Where(p => p.Fgsid == subcom.Subcompanyid).ToList();
+                foreach (var currentProject in currentProjects)
                 {
                     System.Data.DataRow drproject = dt.NewRow();
                     drproject["AssetStorageCategory"] = subcom.Subcompanyname;
-                    drproject["AssetSubStorageCategory"] = lbfgsxmt.Xmt;
-                    drproject["AssetCount"] = list.Where(p => p.Storageflag.ToLower().Equals("project") && p.Storage.ToLower().Equals(lbfgsxmt.Xmtid.ToString().ToLower())).Count();
+                    drproject["AssetSubStorageCategory"] = currentProject.Xmt;
+                    drproject["AssetCount"] = list.Where(p => p.Storageflag == Vstorageaddress.Project && p.Storage == currentProject.Xmtid.ToString()).Count(); 
+                    //drproject["AssetCount"] = list.Where(p => p.Storageflag.ToLower().Equals("project") && p.Storage.ToLower().Equals(lbfgsxmt.Xmtid.ToString().ToLower())).Count();
                     dt.Rows.Add(drproject);
                 }
             }

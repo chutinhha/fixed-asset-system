@@ -1,3 +1,9 @@
+create or replace view assetcategory as
+select to_char(sub.itemId) as assetcategoryid,to_char(sub.typeId) as assetparentcategoryid,sub.itemname as assetcategoryname,sub.itemcode as categoryvalue,sub.system
+from h_listitem sub
+where sub.topid=22
+/*left join h_listitem root on sub.typeid=root.itemid and  sub.topid=22*/
+order by sub.typeid asc,sub.itemid asc;
 delete from menuitem where menuid='001';
 delete from menuitem where menuid='001001';
 insert into MENUITEM (MENUID, MENUNAME, PARENTMENUID, MENUADDRESS, ORDERBY, FUNCTIONID, BUTTONID)

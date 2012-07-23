@@ -73,7 +73,7 @@ namespace FixedAsset.Web.Admin
                 {
                     var category =AssetCategories.Where(p => p.Assetcategoryid == subCategory.Assetparentcategoryid).
                             FirstOrDefault();
-                    litCategoryName.Text = string.Format(@"{0}-{1}", category.Assetcategoryname, subCategory.Assetcategoryname);
+                    if (category != null) { litCategoryName.Text = string.Format(@"{0}-{1}", category.Assetcategoryname, subCategory.Assetcategoryname); }
                 }
                 //var BtnEdit = e.Item.FindControl("BtnEdit") as ImageButton;
                 //var BtnDeleted = e.Item.FindControl("BtnDeleted") as ImageButton;

@@ -171,7 +171,7 @@ namespace FixedAsset.DataAccess
         {
             try
             {
-                string sqlCommand = @"SELECT * FROM lb_fgs_xmt ";
+                string sqlCommand = @"SELECT * FROM lb_fgs_xmt where ISUSE=1 ";
                 return this.Database.ExecuteToList<Lbfgsxmt>(sqlCommand);
             }
             finally
