@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -38,10 +39,10 @@ namespace FixedAsset.Web.Admin
         protected void LoadData(int pageIndex)
         {
             List<Assetcategory> assetcategory = AssetCategoryService.RetrieveAllAssetcategory();
-            var categories = assetcategory.Where(p => !string.IsNullOrEmpty(p.Assetparentcategoryid)).ToList();
+            var categories = assetcategory.Where(p => !string.IsNullOrEmpty(p.Assetparentcategoryid)&&p.Assetparentcategoryid!=Assetcategory.FixedAssetCategory).ToList();
             var parentcategories = assetcategory.Where(p => string.IsNullOrEmpty(p.Assetparentcategoryid) || p.Assetparentcategoryid == Assetcategory.FixedAssetCategory).ToList();
             List<Asset> list = AssetService.RetrieveAllAsset();
-            System.Data.DataTable dt = new System.Data.DataTable();
+            DataTable dt = new System.Data.DataTable();
             dt.Columns.Add("AssetCategory");
             dt.Columns.Add("AssetSubCategory");
             dt.Columns.Add("AssetCount");
@@ -53,11 +54,8 @@ namespace FixedAsset.Web.Admin
                 dr["AssetCount"] = list.Where(p => p.Assetcategoryid.ToLower().Equals(category.Assetcategoryid.ToLower())).ToList().Count;
                 dt.Rows.Add(dr);
             }
-            //int recordCount = 0;
             rptAssetsCategoryList.DataSource = dt;
             rptAssetsCategoryList.DataBind();
-           // pcData.RecordCount = recordCount;
-           // pcData.CurrentIndex = pageIndex;
         }
 
         protected void pcData_PageIndexClick(object sender, KFSQ.Web.Controls.PageIndexClickEventArgs e)
