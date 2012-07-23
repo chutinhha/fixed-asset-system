@@ -20,7 +20,7 @@
                     width: 28%;">
                     <b>分公司或项目体：</b>
                     <div class="listbox">
-                        <uc1:SelectStorageAddress ID="ucSelectStorageAddress" runat="server" />
+                        <uc1:SelectStorageAddress ID="ucSelectStorageAddress" runat="server" OnSelectedStorageNodeChange="ucSelectStorageAddress_SelectedStorageNodeChange" />
                     </div>
                 </div>
                 <div class="column-right" style="width: 70%;">
