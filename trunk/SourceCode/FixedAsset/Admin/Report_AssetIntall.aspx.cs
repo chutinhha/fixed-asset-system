@@ -78,7 +78,7 @@ namespace FixedAsset.Web.Admin
         }
         #endregion
 
-        #region Methods 
+        #region Methods
         protected void LoadAssetCategory()
         {
             if (!IsPostBack)
