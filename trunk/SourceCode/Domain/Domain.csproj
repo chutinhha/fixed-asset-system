@@ -103,6 +103,7 @@
     <Compile Include="Domain\Assetmaintaindetail.cs" />
     <Compile Include="Domain\Assetmove.cs" />
     <Compile Include="Domain\Assetmovedetail.cs" />
+    <Compile Include="Domain\AssetRegisterSearch.cs" />
     <Compile Include="Domain\Assetremove.cs" />
     <Compile Include="Domain\Assetremovedetail.cs" />
     <Compile Include="Domain\AssetRunTimeReport.cs" />
