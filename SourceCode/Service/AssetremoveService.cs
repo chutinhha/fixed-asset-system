@@ -43,6 +43,16 @@ namespace FixedAsset.Services
         {
             return Management.RetrieveAssetremovesPaging(info,pageIndex,pageSize,out count);
         }
+
+        public List<AssetReportDetailInfo> RetrieveAssetReportDetailInfoPaging(AssetRunTimeSearch info, int pageIndex, int pageSize, out int count)
+        {
+            return Management.RetrieveAssetReportDetailInfoPaging(info, pageIndex, pageSize, out count);
+        }
+        public List<AssetRunTimeReport> RetrieveAssetRemoveReport(AssetRunTimeSearch info)
+        {
+            return Management.RetrieveAssetRemoveReport(info);
+        }
+
         #endregion
 
         #region RetrieveAssetremoveByAssetremoveid
@@ -114,5 +124,8 @@ namespace FixedAsset.Services
             }
         }
         #endregion
+
+
+
     }
 }
