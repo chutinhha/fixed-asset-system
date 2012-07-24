@@ -475,6 +475,13 @@
     <Compile Include="Admin\Report_AssetIntall.aspx.designer.cs">
       <DependentUpon>Report_AssetIntall.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Report_AssetIntall_Detail.aspx.cs">
+      <DependentUpon>Report_AssetIntall_Detail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Report_AssetIntall_Detail.aspx.designer.cs">
+      <DependentUpon>Report_AssetIntall_Detail.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Report_AssetMove.aspx.cs">
       <DependentUpon>Report_AssetMove.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -820,6 +827,7 @@
     <Content Include="Admin\Install_Reply.aspx" />
     <Content Include="Admin\Report_AssetCategory.aspx" />
     <Content Include="Admin\Report_AssetIntall.aspx" />
+    <Content Include="Admin\Report_AssetIntall_Detail.aspx" />
     <Content Include="Admin\Report_AssetMove.aspx" />
     <Content Include="Admin\Report_AssetRegister.aspx" />
     <Content Include="Admin\Report_AssetRemove.aspx" />
