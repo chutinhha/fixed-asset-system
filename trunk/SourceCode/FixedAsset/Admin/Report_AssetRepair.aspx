@@ -17,7 +17,7 @@
         </div>
         <div class="content-box-content">
             <div class="tab-content default-tab">
-                <div class="column-left" style="height: 300px; overflow-y: scroll; overflow-x: scroll;
+                <div class="column-left" style="height: 350px; overflow-y: scroll; overflow-x: scroll;
                     width: 28%;">
                     <b>分公司或项目体：</b>
                     <div class="listbox">
