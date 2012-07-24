@@ -43,7 +43,10 @@ namespace FixedAsset.Services
         {
             return Management.RetrieveAssetsPaging(info,pageIndex,pageSize,out count);
         }
-
+        public List<AssetRegisterReport> RetrieveAssetRegisterReport(AssetRegisterSearch info)
+        {
+            return Management.RetrieveAssetRegisterReport(info);
+        }
 
         #endregion
 
