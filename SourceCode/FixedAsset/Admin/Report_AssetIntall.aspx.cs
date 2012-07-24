@@ -97,7 +97,7 @@ namespace FixedAsset.Web.Admin
             search.Storageid = ucSelectStorageAddress.StorageId;
             if(search.Storagetitle==Vstorageaddress.Subcompany)
             {
-                var currentProjects = VStorageAddress.Where(p => p.Subcompanyid == ucSelectStorageAddress.StorageId).ToList();
+                var currentProjects = VStorageAddress.Where(p => p.Subcompanyid == ucSelectStorageAddress.StorageId && p.Storagetitle == Vstorageaddress.Project).ToList();
                 search.ProjectIds.AddRange(currentProjects.Select(p=>p.Storageid));
             }
             if (ucStartDate.DateValue.HasValue)
@@ -181,7 +181,7 @@ namespace FixedAsset.Web.Admin
                 content.AppendLine("</tr>");
                 #endregion
 
-                var currentProjects = VStorageAddress.Where(p => p.Subcompanyid == ucSelectStorageAddress.StorageId).ToList();
+                var currentProjects = VStorageAddress.Where(p => p.Subcompanyid == ucSelectStorageAddress.StorageId&&p.Storagetitle==Vstorageaddress.Project).ToList();
                 for (int i = 0; i < currentProjects.Count; i++)
                 {
                     var currentProject = currentProjects[i];
