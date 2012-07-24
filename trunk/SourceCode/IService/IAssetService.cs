@@ -26,5 +26,12 @@ namespace FixedAsset.IServices
         List<Asset> RetrieveAssetByAssetno(List<string> assetnos);
         void DeleteAssetByAssetno(string assetno); 
         List<Asset> RetrieveAllAsset();
+
+        /// <summary>
+        /// 资产登记台账
+        /// </summary>
+        /// <param name="info"></param>
+        /// <returns></returns>
+        List<AssetRegisterReport> RetrieveAssetRegisterReport(AssetRegisterSearch info);
     }
 }
