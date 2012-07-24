@@ -18,13 +18,13 @@
         <div class="content-box-content">
             <div class="tab-content default-tab">
                 <div class="column-left" style="height: 350px; overflow-y: scroll; overflow-x: scroll;
-                    width: 28%;">
+                    width: 20%;">
                     <b>分公司或项目体：</b>
                     <div class="listbox">
                         <uc1:SelectStorageAddress ID="ucSelectStorageAddress" runat="server" OnSelectedStorageNodeChange="ucSelectStorageAddress_SelectedStorageNodeChange" />
                     </div>
                 </div>
-                <div class="column-right" style="width: 70%;">
+                <div class="column-right" style="width: 79%;">
                     <p>
                         实际完成日期
                         <uc1:DatePicker ID="ucStartDate" runat="server" />
