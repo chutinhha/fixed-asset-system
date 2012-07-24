@@ -20,5 +20,12 @@ namespace FixedAsset.IServices
         Assetmaintain RetrieveAssetmaintainByAssetmaintainid(string assetmaintainid);
         List<Assetmaintain> RetrieveAssetmaintainByAssetmaintainid(List<string> assetmaintainid);
         void DeleteAssetmaintainByAssetmaintainid(string assetmaintainid);
+
+        /// <summary>
+        /// Œ¨–ﬁÃ®’À
+        /// </summary>
+        /// <param name="info"></param>
+        /// <returns></returns>
+        List<AssetRunTimeReport> RetrieveAssetRunTimeReport(AssetRunTimeSearch info);
     }
 }
