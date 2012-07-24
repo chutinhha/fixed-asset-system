@@ -278,5 +278,112 @@ namespace FixedAsset.DataAccess
             }
         }
         #endregion 
+
+        #region RetrieveAssetRemoveReport
+        public List<AssetRunTimeReport> RetrieveAssetRemoveReport(AssetRunTimeSearch info)
+        {
+            try
+            {
+                var sqlCommand = new StringBuilder(@" select b.storagetitle,b.storageid, c.assetcategoryid,count(c.assetno) as Currentcount
+                                                        from ASSETREMOVEDETAIL a
+                                                        inner join ASSETREMOVE b on a.ASSETREMOVEID=b.ASSETREMOVEID
+                                                        inner join asset c on a.assetno=c.assetno");
+
+                #region 项目体ID或分公司ID)
+                if (info.Storagetitle == Vstorageaddress.Project)
+                {
+                    sqlCommand.AppendLine(@" where b.storagetitle = :Storagetitle AND b.storageid = :Storageid");
+                    this.Database.AddInParameter(":Storagetitle", DbType.AnsiString, Vstorageaddress.Project);
+                    this.Database.AddInParameter(":Storageid", DbType.AnsiString, info.Storageid);
+                }
+                else if (info.Storagetitle == Vstorageaddress.Subcompany)
+                {
+                    this.Database.AddInParameter(":Storagetitle", DbType.AnsiString, Vstorageaddress.Subcompany);
+                    this.Database.AddInParameter(":Storageid", DbType.AnsiString, info.Storageid);
+                    sqlCommand.AppendLine(@" where ((b.storagetitle = :Storagetitle AND b.storageid = :Storageid )");
+                    if (info.ProjectIds.Count > 0)
+                    {
+                        this.Database.AddInParameter(":Storagetitle0", DbType.AnsiString, Vstorageaddress.Project);
+                        this.Database.AddInParameter(":Storageid0", DbType.AnsiString, info.ProjectIds[0]);
+                        sqlCommand.AppendLine(@" OR (b.storagetitle = :Storagetitle0  AND (b.storageid = :Storageid0 ");
+                        for (int i = 1; i < info.ProjectIds.Count; i++)
+                        {
+                            this.Database.AddInParameter(":Storageid" + i.ToString(), info.ProjectIds[i]);
+                            sqlCommand.AppendLine(@" OR b.storageid=:Storageid" + i.ToString());
+                        }
+                        sqlCommand.Append(")");
+                        sqlCommand.Append(")");
+                    }
+                    sqlCommand.Append(")");
+                }
+                else
+                {
+                    return new List<AssetRunTimeReport>();
+                }
+                #endregion
+
+                #region 实际完成日期
+                if (info.StartActualDate.HasValue)
+                {
+                    this.Database.AddInParameter(":StartActualDate", info.StartActualDate.Value.Date);
+                    sqlCommand.AppendLine(@" AND b.ACTUALDATE >= :StartActualDate");
+                }
+                if (info.EndActualDate.HasValue)
+                {
+                    this.Database.AddInParameter(":EndActualDate", info.EndActualDate.Value.Date.AddDays(1).AddSeconds(-1));
+                    sqlCommand.AppendLine(@" AND b.ACTUALDATE <= :EndActualDate");
+                }
+                #endregion
+
+                sqlCommand.AppendLine(@"  group by b.storagetitle,b.storageid, c.assetcategoryid");
+                return this.Database.ExecuteToList<AssetRunTimeReport>(sqlCommand.ToString());
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
+        #endregion
+
+        #region RetrieveAssetReportDetailInfoPaging
+        public List<AssetReportDetailInfo> RetrieveAssetReportDetailInfoPaging(AssetRunTimeSearch info, int pageIndex, int pageSize, out int count)
+        {
+            try
+            {
+                var sqlCommand = new StringBuilder(@"   select a.ASSETREMOVEID AS Billid,a.assetno
+                                                        from ASSETREMOVEDETAIL a
+                                                        inner join ASSETREMOVE b on a.ASSETREMOVEID=b.ASSETREMOVEID
+                                                        inner join asset c on a.assetno=c.assetno");
+                #region (系统)设备大类
+                count = 0;
+                if (string.IsNullOrEmpty(info.Assetcategoryid)) { return new List<AssetReportDetailInfo>(); }
+                sqlCommand.AppendLine(@" where c.ASSETCATEGORYID = :Assetcategoryid and b.storagetitle = :Storagetitle AND b.storageid = :Storageid");
+                this.Database.AddInParameter(":Assetcategoryid", DbType.AnsiString, info.Assetcategoryid);
+                this.Database.AddInParameter(":Storagetitle", DbType.AnsiString, info.Storagetitle);
+                this.Database.AddInParameter(":Storageid", DbType.AnsiString, info.Storageid);
+                #endregion
+
+                #region 实际完成日期
+                if (info.StartActualDate.HasValue)
+                {
+                    this.Database.AddInParameter(":StartActualDate", info.StartActualDate.Value.Date);
+                    sqlCommand.AppendLine(@" AND b.ACTUALDATE >= :StartActualDate");
+                }
+                if (info.EndActualDate.HasValue)
+                {
+                    this.Database.AddInParameter(":EndActualDate", info.EndActualDate.Value.Date.AddDays(1).AddSeconds(-1));
+                    sqlCommand.AppendLine(@" AND b.ACTUALDATE <= :EndActualDate");
+                }
+                #endregion
+                sqlCommand.AppendLine(@"  ORDER BY Billid DESC");
+                return this.ExecuteReaderPaging<AssetReportDetailInfo>(sqlCommand.ToString(), pageIndex, pageSize, out count);
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
+        #endregion
+
     }
 }
