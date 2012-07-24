@@ -44,10 +44,18 @@
                 </tr>
             </AlternatingItemTemplate>
         </asp:Repeater>
-        <tr>
-            <td colspan="9" style="height: 30px; width: 98%;" align="center">
-                <cc1:PagingControl ID="pcData" runat="server" MaxNavigatePageCount="7" OnPageIndexClick="pcData_PageIndexClick" />
+       
+    </table>
+    <table  style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px">
+    <tr>
+            <td colspan="2" style="height: 30px; width: 98%;" align="center">
+              <cc1:PagingControl ID="pcData" runat="server" MaxNavigatePageCount="7" OnPageIndexClick="pcData_PageIndexClick" />
             </td>
+        </tr>
+        <tr>
+        <td colspan="2" align="center">
+         <input type="button" value="关闭" class="button" onclick="javascript:CloseTopDialogFrame();" />
+        </td>
         </tr>
     </table>
 </asp:Content>
