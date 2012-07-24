@@ -167,7 +167,7 @@ namespace FixedAsset.Web.Admin
                         }
                         else
                         {
-                            content.AppendFormat(@"<td><a href=""javascript:ShowTopDialogFrame('明细', 'Report_AssetRemove_Detail.aspx?Assetcategoryid={0}&Storagetitle={1}&Storageid={2}&StartActualDate={3}&EndActualDate={4}','',900,350);"">{5}</a></td>",
+                            content.AppendFormat(@"<td><a href=""javascript:ShowTopDialogFrame('明细', 'Report_AssetRemove_Detail.aspx?Assetcategoryid={0}&Storagetitle={1}&Storageid={2}&StartActualDate={3}&EndActualDate={4}','',900,450);"">{5}</a></td>",
                                 currentInfo.Assetcategoryid,
                                 Server.UrlEncode(currentInfo.Storagetitle),
                                 Server.UrlEncode(currentInfo.Storageid),
@@ -202,7 +202,7 @@ namespace FixedAsset.Web.Admin
                             }
                             else
                             {
-                                content.AppendFormat(@"<td><a href=""javascript:ShowTopDialogFrame('明细', 'Report_AssetRemove_Detail.aspx?Assetcategoryid={0}&Storagetitle={1}&Storageid={2}&StartActualDate={3}&EndActualDate={4}','',900,350);"">{5}</a></td>",
+                                content.AppendFormat(@"<td><a href=""javascript:ShowTopDialogFrame('明细', 'Report_AssetRemove_Detail.aspx?Assetcategoryid={0}&Storagetitle={1}&Storageid={2}&StartActualDate={3}&EndActualDate={4}','',900,450);"">{5}</a></td>",
                                     currentInfo.Assetcategoryid,
                                     Server.UrlEncode(currentInfo.Storagetitle),
                                     Server.UrlEncode(currentInfo.Storageid),
@@ -233,7 +233,7 @@ namespace FixedAsset.Web.Admin
                         }
                         else
                         {
-                            content.AppendFormat(@"<td><a href=""javascript:ShowTopDialogFrame('明细', 'Report_AssetRemove_Detail.aspx?Assetcategoryid={0}&Storagetitle={1}&Storageid={2}&StartActualDate={3}&EndActualDate={4}','',900,350);"">{5}</a></td>",
+                            content.AppendFormat(@"<td><a href=""javascript:ShowTopDialogFrame('明细', 'Report_AssetRemove_Detail.aspx?Assetcategoryid={0}&Storagetitle={1}&Storageid={2}&StartActualDate={3}&EndActualDate={4}','',900,450);"">{5}</a></td>",
                                 currentInfo.Assetcategoryid,
                                 Server.UrlEncode(currentInfo.Storagetitle),
                                 Server.UrlEncode(currentInfo.Storageid),
