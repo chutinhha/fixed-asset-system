@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 using FixedAsset.Domain;
 using FixedAsset.IServices;
 using FixedAsset.Services;
+using FixedAsset.Web.AppCode;
 
 namespace FixedAsset.Web.Admin
 {
@@ -161,7 +162,20 @@ namespace FixedAsset.Web.Admin
                         var currentInfo = currentReportData.Where(p => p.Assetcategoryid == subCategory.Assetcategoryid 
                                                                 && p.Storagetitle == Vstorageaddress.Subcompany
                                                                 &&p.Storageid==search.Storageid).FirstOrDefault();
-                        content.AppendFormat("<td>{0}</td>", currentInfo == null ? 0 : currentInfo.Currentcount).AppendLine();
+                        if (currentInfo == null)
+                        {
+                            content.AppendFormat("<td>{0}</td>", 0);
+                        }
+                        else
+                        {
+                            content.AppendFormat(@"<td><a href=""javascript:ShowTopDialogFrame('明细', 'Report_AssetIntall_Detail.aspx?Assetcategoryid={0}&Storagetitle={1}&Storageid={2}&StartActualDate={3}&EndActualDate={4}','',900,350);"">{5}</a></td>",
+                                currentInfo.Assetcategoryid,
+                                Server.UrlEncode(currentInfo.Storagetitle),
+                                Server.UrlEncode(currentInfo.Storageid),
+                                search.StartActualDate.HasValue ? Server.UrlEncode(search.StartActualDate.Value.ToString(UiConst.DateFormat)) : string.Empty,
+                                search.EndActualDate.HasValue ? Server.UrlEncode(search.EndActualDate.Value.ToString(UiConst.DateFormat)) : string.Empty,
+                                currentInfo.Currentcount).AppendLine();  
+                        }
                     }
                 }
                 content.AppendLine("</tr>");
@@ -183,7 +197,20 @@ namespace FixedAsset.Web.Admin
                             var currentInfo = currentReportData.Where(p => p.Assetcategoryid == subCategory.Assetcategoryid 
                                                                     && p.Storagetitle == Vstorageaddress.Project 
                                                                     && p.Storageid == currentProject.Storageid).FirstOrDefault();
-                            content.AppendFormat("<td>{0}</td>", currentInfo == null ? 0 : currentInfo.Currentcount).AppendLine();
+                            if (currentInfo == null)
+                            {
+                                content.AppendFormat("<td>{0}</td>", 0);
+                            }
+                            else
+                            {
+                                content.AppendFormat(@"<td><a href=""javascript:ShowTopDialogFrame('明细', 'Report_AssetIntall_Detail.aspx?Assetcategoryid={0}&Storagetitle={1}&Storageid={2}&StartActualDate={3}&EndActualDate={4}','',900,350);"">{5}</a></td>",
+                                    currentInfo.Assetcategoryid,
+                                    Server.UrlEncode(currentInfo.Storagetitle),
+                                    Server.UrlEncode(currentInfo.Storageid),
+                                    search.StartActualDate.HasValue ? Server.UrlEncode(search.StartActualDate.Value.ToString(UiConst.DateFormat)) : string.Empty,
+                                    search.EndActualDate.HasValue ? Server.UrlEncode(search.EndActualDate.Value.ToString(UiConst.DateFormat)) : string.Empty,
+                                    currentInfo.Currentcount).AppendLine();
+                            }
                         }
                     }
                     content.AppendLine("</tr>");
@@ -201,7 +228,20 @@ namespace FixedAsset.Web.Admin
                     {
                         var currentInfo =currentReportData.Where(p => p.Assetcategoryid == subCategory.Assetcategoryid).
                                 FirstOrDefault();
-                        content.AppendFormat("<td>{0}</td>", currentInfo == null ? 0 : currentInfo.Currentcount).AppendLine();
+                        if (currentInfo == null)
+                        {
+                            content.AppendFormat("<td>{0}</td>", 0);
+                        }
+                        else
+                        {
+                            content.AppendFormat(@"<td><a href=""javascript:ShowTopDialogFrame('明细', 'Report_AssetIntall_Detail.aspx?Assetcategoryid={0}&Storagetitle={1}&Storageid={2}&StartActualDate={3}&EndActualDate={4}','',900,350);"">{5}</a></td>",
+                                currentInfo.Assetcategoryid,
+                                Server.UrlEncode(currentInfo.Storagetitle),
+                                Server.UrlEncode(currentInfo.Storageid),
+                                search.StartActualDate.HasValue ? Server.UrlEncode(search.StartActualDate.Value.ToString(UiConst.DateFormat)) : string.Empty,
+                                search.EndActualDate.HasValue ? Server.UrlEncode(search.EndActualDate.Value.ToString(UiConst.DateFormat)) : string.Empty,
+                                currentInfo.Currentcount).AppendLine();
+                        }
                     }
                 }
                 content.AppendLine("</tr>");

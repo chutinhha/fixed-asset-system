@@ -25,7 +25,7 @@
                     </div>
                 </div>
                 <div class="column-right" style="width: 70%;">
-                    <p> 时间完成日期
+                    <p> 实际完成日期
                         <uc1:DatePicker ID="ucStartDate" runat="server" />
                         ~
                         <uc1:DatePicker ID="ucEndDate" runat="server" />

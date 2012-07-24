@@ -30,6 +30,13 @@ namespace FixedAsset.Domain
             set;
         }
         #endregion
+
+        #region 设备类别
+        ///<summary>
+        ///ColumnName:设备类别;Size:40;
+        ///</summary>
+        public string Assetcategoryid { get; set; }
+        #endregion
     }
     public class AssetRunTimeReport
     {
@@ -52,5 +59,22 @@ namespace FixedAsset.Domain
         #endregion
 
         public int Currentcount { get; set; }
+    }
+
+    public class AssetReportDetailInfo
+    {
+        #region 设备编号
+        ///<summary>
+        ///ColumnName:设备编号;Size:20;NOT NULL
+        ///</summary>
+        public string Assetno { get; set; }
+        #endregion
+
+        #region 业务单号
+        ///<summary>
+        ///业务单号
+        ///</summary>
+        public string Billid { get; set; }
+        #endregion
     }
 }
