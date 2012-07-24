@@ -20,5 +20,20 @@ namespace FixedAsset.IServices
         Assetmove RetrieveAssetmoveByAssetmoveid(string assetmoveid);
         List<Assetmove> RetrieveAssetmoveByAssetmoveid(List<string> assetmoveid);
         void DeleteAssetmoveByAssetmoveid(string assetmoveid);
+        /// <summary>
+        /// 移机台账
+        /// </summary>
+        /// <param name="info"></param>
+        /// <returns></returns>
+        List<AssetRunTimeReport> RetrieveAssetRunTimeReport(AssetRunTimeSearch info);
+        /// <summary>
+        /// 弹出页面
+        /// </summary>
+        /// <param name="info"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        List<AssetReportDetailInfo> RetrieveAssetReportDetailInfoPaging(AssetRunTimeSearch info, int pageIndex,int pageSize, out int count);
     }
 }
