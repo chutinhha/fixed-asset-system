@@ -39,6 +39,7 @@ namespace FixedAsset.Web.Admin
                 return new LbfgsxmtService();
             }
         }
+
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
