@@ -384,5 +384,122 @@ namespace FixedAsset.DataAccess
             }
         }
         #endregion
+
+        public List<Asset> RetrieveAllAsset()
+        {
+            string sqlCommand = @"SELECT * FROM ASSET ";
+            return this.Database.ExecuteToList<Asset>(sqlCommand);
+        }
+
+        #region RetrieveAssetRegisterReport
+        public List<AssetRegisterReport> RetrieveAssetRegisterReport(AssetRegisterSearch info)
+        {
+            try
+            {
+                var sqlCommand = new StringBuilder(@" select c.STORAGEFLAG as Storagetitle,c.STORAGE as Storageid, c.assetcategoryid as Assetcategoryid,
+                                                  count(c.assetno) as Currentcount
+                                                       from asset
+                                                       c ");
+
+                #region 项目体ID或分公司ID)
+                if (info.Storagetitle == Vstorageaddress.Project)
+                {
+                    sqlCommand.AppendLine(@" where c.STORAGEFLAG = :Storagetitle AND c.STORAGE = :Storageid");
+                    this.Database.AddInParameter(":Storagetitle", DbType.AnsiString, Vstorageaddress.Project);
+                    this.Database.AddInParameter(":Storageid", DbType.AnsiString, info.Storageid);
+                }
+                else if (info.Storagetitle == Vstorageaddress.Subcompany)
+                {
+                    this.Database.AddInParameter(":Storagetitle", DbType.AnsiString, Vstorageaddress.Subcompany);
+                    this.Database.AddInParameter(":Storageid", DbType.AnsiString, info.Storageid);
+                    sqlCommand.AppendLine(@" where ((c.STORAGEFLAG= :Storagetitle AND c.STORAGE = :Storageid )");
+                    if (info.ProjectIds.Count > 0)
+                    {
+                        this.Database.AddInParameter(":Storagetitle0", DbType.AnsiString, Vstorageaddress.Project);
+                        this.Database.AddInParameter(":Storageid0", DbType.AnsiString, info.ProjectIds[0]);
+                        sqlCommand.AppendLine(@" OR (c.STORAGEFLAG = :Storagetitle0  AND (c.STORAGE = :Storageid0 ");
+                        for (int i = 1; i < info.ProjectIds.Count; i++)
+                        {
+                            this.Database.AddInParameter(":Storageid" + i.ToString(), info.ProjectIds[i]);
+                            sqlCommand.AppendLine(@" OR c.STORAGE=:Storageid" + i.ToString());
+                        }
+                        sqlCommand.Append(")");
+                        sqlCommand.Append(")");
+                    }
+                    sqlCommand.Append(")");
+                }
+                else if (info.Storagetitle == Vstorageaddress.Supplier)
+                {
+                    sqlCommand.AppendLine(@" where c.STORAGEFLAG = :Storagetitle AND c.STORAGE = :Storageid");
+                    this.Database.AddInParameter(":Storagetitle", DbType.AnsiString, Vstorageaddress.Supplier);
+                    this.Database.AddInParameter(":Storageid", DbType.AnsiString, info.Storageid);
+                }
+                else
+                {
+                    return new List<AssetRegisterReport>();
+                }
+                #endregion
+
+                #region 购入日期
+                //if (info.StartRegisterDate.HasValue)
+                //{
+                //    this.Database.AddInParameter(":StartRegisterDate", info.StartRegisterDate.Value.Date);
+                //    sqlCommand.AppendLine(@" AND c.PURCHASEDATE >= :StartRegisterDate");
+                //}
+                //if (info.EndRegisterDate.HasValue)
+                //{
+                //    this.Database.AddInParameter(":EndRegisterDate", info.EndRegisterDate.Value.Date.AddDays(1).AddSeconds(-1));
+                //    sqlCommand.AppendLine(@" AND c.PURCHASEDATE <= :EndRegisterDate");
+                //}
+                #endregion
+
+                sqlCommand.AppendLine(@"  group by c.STORAGEFLAG,c.STORAGE , c.assetcategoryid");
+                return this.Database.ExecuteToList<AssetRegisterReport>(sqlCommand.ToString());
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
+        #endregion
+
+        #region RetrieveAssetRegisterReportDetailInfoPaging
+        public List<Asset> RetrieveAssetRegisterReportDetailInfoPaging(AssetRunTimeSearch info, int pageIndex, int pageSize, out int count)
+        {
+            try
+            {
+                var sqlCommand = new StringBuilder(@"   select c.*  from asset c");
+
+                #region (系统)设备大类
+                count = 0;
+                if (string.IsNullOrEmpty(info.Assetcategoryid)) { return new List<Asset>(); }
+                sqlCommand.AppendLine(@" where c.ASSETCATEGORYID = :Assetcategoryid and c.STORAGEFLAG = :Storagetitle AND c.STORAGE = :Storageid");
+                this.Database.AddInParameter(":Assetcategoryid", DbType.AnsiString, info.Assetcategoryid);
+                this.Database.AddInParameter(":Storagetitle", DbType.AnsiString, info.Storagetitle);
+                this.Database.AddInParameter(":Storageid", DbType.AnsiString, info.Storageid);
+                #endregion
+
+                //#region 实际完成日期
+                //if (info.StartActualDate.HasValue)
+                //{
+                //    this.Database.AddInParameter(":StartActualDate", info.StartActualDate.Value.Date);
+                //    sqlCommand.AppendLine(@" AND b.ACTUALMOVEDATE >= :StartActualDate");
+                //}
+                //if (info.EndActualDate.HasValue)
+                //{
+                //    this.Database.AddInParameter(":EndActualDate", info.EndActualDate.Value.Date.AddDays(1).AddSeconds(-1));
+                //    sqlCommand.AppendLine(@" AND b.ACTUALMOVEDATE <= :EndActualDate");
+                //}
+                //#endregion
+
+                sqlCommand.AppendLine(@"  ORDER BY assetno DESC");
+                return this.ExecuteReaderPaging<Asset>(sqlCommand.ToString(), pageIndex, pageSize, out count);
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
+        #endregion
     }
 }

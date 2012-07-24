@@ -157,13 +157,13 @@ namespace FixedAsset.Web.Admin
                         }
                         else
                         {
-                            //content.AppendFormat(@"<td><a href=""javascript:ShowTopDialogFrame('明细', 'Report_ShowCurrentAssets.aspx?Assetcategoryid={0}&Storagetitle={1}&Storageid={2}&StartActualDate={3}&EndActualDate={4}','',900,350);"">{5}</a></td>",
-                            //    currentInfo.Assetcategoryid,
-                            //    Server.UrlEncode(currentInfo.Storagetitle),
-                            //    Server.UrlEncode(currentInfo.Storageid),
-                            //    search.StartActualDate.HasValue ? Server.UrlEncode(search.StartActualDate.Value.ToString(UiConst.DateFormat)) : string.Empty,
-                            //    search.EndActualDate.HasValue ? Server.UrlEncode(search.EndActualDate.Value.ToString(UiConst.DateFormat)) : string.Empty,
-                            //    currentInfo.Currentcount).AppendLine();
+                            content.AppendFormat(@"<td><a href=""javascript:ShowTopDialogFrame('明细', 'Report_ShowCurrentAssets.aspx?Assetcategoryid={0}&Storagetitle={1}&Storageid={2}&StartActualDate={3}&EndActualDate={4}','',900,350);"">{5}</a></td>",
+                                        currentInfo.Assetcategoryid,
+                                        Server.UrlEncode(currentInfo.Storagetitle),
+                                        Server.UrlEncode(currentInfo.Storageid),
+                                        string.Empty,
+                                        string.Empty,
+                                        currentInfo.Currentcount).AppendLine();
                         }
                     }
                 }

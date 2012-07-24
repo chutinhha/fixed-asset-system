@@ -33,5 +33,6 @@ namespace FixedAsset.IServices
         /// <param name="info"></param>
         /// <returns></returns>
         List<AssetRegisterReport> RetrieveAssetRegisterReport(AssetRegisterSearch info);
+        List<Asset> RetrieveAssetRegisterReportDetailInfoPaging(AssetRunTimeSearch info, int pageIndex, int pageSize,out int count);
     }
 }
