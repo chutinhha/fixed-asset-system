@@ -489,6 +489,13 @@
     <Compile Include="Admin\Report_AssetMove.aspx.designer.cs">
       <DependentUpon>Report_AssetMove.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Report_AssetMove_Detail.aspx.cs">
+      <DependentUpon>Report_AssetMove_Detail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Report_AssetMove_Detail.aspx.designer.cs">
+      <DependentUpon>Report_AssetMove_Detail.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Report_AssetRegister.aspx.cs">
       <DependentUpon>Report_AssetRegister.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -502,6 +509,13 @@
     </Compile>
     <Compile Include="Admin\Report_AssetRemove.aspx.designer.cs">
       <DependentUpon>Report_AssetRemove.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Report_AssetRemove_Detail.aspx.cs">
+      <DependentUpon>Report_AssetRemove_Detail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Report_AssetRemove_Detail.aspx.designer.cs">
+      <DependentUpon>Report_AssetRemove_Detail.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Report_AssetRepair.aspx.cs">
       <DependentUpon>Report_AssetRepair.aspx</DependentUpon>
@@ -836,8 +850,10 @@
     <Content Include="Admin\Report_AssetIntall.aspx" />
     <Content Include="Admin\Report_AssetIntall_Detail.aspx" />
     <Content Include="Admin\Report_AssetMove.aspx" />
+    <Content Include="Admin\Report_AssetMove_Detail.aspx" />
     <Content Include="Admin\Report_AssetRegister.aspx" />
     <Content Include="Admin\Report_AssetRemove.aspx" />
+    <Content Include="Admin\Report_AssetRemove_Detail.aspx" />
     <Content Include="Admin\Report_AssetRepair.aspx" />
     <Content Include="Admin\Report_AssetRepair_Detail.aspx" />
     <Content Include="Admin\Report_AssetState.aspx" />
