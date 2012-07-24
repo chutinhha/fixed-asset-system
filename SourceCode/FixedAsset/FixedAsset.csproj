@@ -510,6 +510,13 @@
     <Compile Include="Admin\Report_AssetRepair.aspx.designer.cs">
       <DependentUpon>Report_AssetRepair.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Report_AssetRepair_Detail.aspx.cs">
+      <DependentUpon>Report_AssetRepair_Detail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Report_AssetRepair_Detail.aspx.designer.cs">
+      <DependentUpon>Report_AssetRepair_Detail.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Report_AssetState.aspx.cs">
       <DependentUpon>Report_AssetState.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -832,6 +839,7 @@
     <Content Include="Admin\Report_AssetRegister.aspx" />
     <Content Include="Admin\Report_AssetRemove.aspx" />
     <Content Include="Admin\Report_AssetRepair.aspx" />
+    <Content Include="Admin\Report_AssetRepair_Detail.aspx" />
     <Content Include="Admin\Report_AssetState.aspx" />
     <Content Include="Admin\Report_AssetStorageAddress.aspx" />
     <Content Include="Admin\Report_ShowCurrentAssets.aspx" />

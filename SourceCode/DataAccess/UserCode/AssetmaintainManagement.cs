@@ -340,5 +340,45 @@ namespace FixedAsset.DataAccess
             }
         }
         #endregion
+
+        #region RetrieveAssetReportDetailInfoPaging
+        public List<AssetReportDetailInfo> RetrieveAssetReportDetailInfoPaging(AssetRunTimeSearch info, int pageIndex, int pageSize, out int count)
+        {
+            try
+            {
+                var sqlCommand = new StringBuilder(@"   select a.ASSETMAINTAINID AS Billid,a.assetno
+                                                        from ASSETMAINTAINDETAIL a
+                                                        inner join ASSETMAINTAIN b on a.ASSETMAINTAINID=b.ASSETMAINTAINID
+                                                        inner join asset c on a.assetno=c.assetno");
+                #region (系统)设备大类
+                count = 0;
+                if (string.IsNullOrEmpty(info.Assetcategoryid)) { return new List<AssetReportDetailInfo>(); }
+                sqlCommand.AppendLine(@" where c.ASSETCATEGORYID = :Assetcategoryid and b.storagetitle = :Storagetitle AND b.storageid = :Storageid");
+                this.Database.AddInParameter(":Assetcategoryid", DbType.AnsiString, info.Assetcategoryid);
+                this.Database.AddInParameter(":Storagetitle", DbType.AnsiString, info.Storagetitle);
+                this.Database.AddInParameter(":Storageid", DbType.AnsiString, info.Storageid);
+                #endregion
+
+                #region 实际完成日期
+                if (info.StartActualDate.HasValue)
+                {
+                    this.Database.AddInParameter(":StartActualDate", info.StartActualDate.Value.Date);
+                    sqlCommand.AppendLine(@" AND b.ACTUALDATE >= :StartActualDate");
+                }
+                if (info.EndActualDate.HasValue)
+                {
+                    this.Database.AddInParameter(":EndActualDate", info.EndActualDate.Value.Date.AddDays(1).AddSeconds(-1));
+                    sqlCommand.AppendLine(@" AND b.ACTUALDATE <= :EndActualDate");
+                }
+                #endregion
+                sqlCommand.AppendLine(@"  ORDER BY Billid DESC");
+                return this.ExecuteReaderPaging<AssetReportDetailInfo>(sqlCommand.ToString(), pageIndex, pageSize, out count);
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
+        #endregion
     }
 }

@@ -43,6 +43,10 @@ namespace FixedAsset.Services
         {
             return Management.RetrieveAssetmaintainsPaging(info,pageIndex,pageSize,out count);
         }
+        public List<AssetReportDetailInfo> RetrieveAssetReportDetailInfoPaging(AssetRunTimeSearch info, int pageIndex, int pageSize, out int count)
+        {
+            return Management.RetrieveAssetReportDetailInfoPaging(info, pageIndex, pageSize, out count);
+        }
         public List<AssetRunTimeReport> RetrieveAssetRunTimeReport(AssetRunTimeSearch info)
         {
             return Management.RetrieveAssetRunTimeReport(info);
