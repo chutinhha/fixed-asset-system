@@ -116,16 +116,16 @@ namespace FixedAsset.Web.Admin
 
             #region RowHead1
             content.AppendLine(@"<tr class=""thbg"" style=""padding: 0 0 0 0"">");
-            content.AppendLine(@"<th rowspan=""2"" class=""thbg"">");
+            content.AppendLine(@"<th rowspan=""2""  class=""thbg2""  style=""border-left:1px solid #AFD2E8; border-right:1px solid #AFD2E8;height:52px; background:url(images/thbg2.jpg) 0 0  repeat-x; backgroud-color:#BADFF9; color:#2370B0; font-weight:bold; text-align:center;  padding:0 0 0 0;"">");
             content.AppendLine(" 序号");
             content.AppendLine("</th>");
-            content.AppendLine(@"<th rowspan=""2"" class=""thbg"">");
+            content.AppendLine(@"<th rowspan=""2""  class=""thbg2""   style=""border-left:1px solid #AFD2E8; width:200px; border-right:1px solid #AFD2E8;background:url(images/thbg2.jpg) 0 0  repeat-x;"">");
             content.AppendLine("分公司/项目体");
             content.AppendLine("</th>");
             var categories = AssetCategories.Where(p => string.IsNullOrEmpty(p.Assetparentcategoryid) || p.Assetparentcategoryid == Assetcategory.FixedAssetCategory).ToList();
             foreach (var assetcategory in categories)
             {
-                content.AppendFormat(@"<th colspan=""{0}"">", AssetCategories.Where(p=>p.Assetparentcategoryid==assetcategory.Assetcategoryid).Count());
+                content.AppendFormat(@"<th colspan=""{0}"" style=""border-left:1px solid #AFD2E8; border-right:1px solid #AFD2E8;"">", AssetCategories.Where(p => p.Assetparentcategoryid == assetcategory.Assetcategoryid).Count());
                 content.Append(assetcategory.Assetcategoryname);
                 content.AppendLine(" </th>");
             }
