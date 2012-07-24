@@ -4,7 +4,9 @@
 .gridtable{ border:1px solid #AFD2E8; border-collapse:collapse}
 .gridtable .thbg th{ height:26px; background:url(images/thbg_19.jpg) 0 0  repeat-x; color:#2370B0; font-weight:bold; text-align:center;  padding:0 0 0 0;}
 .gridtable .thbg th .thline{ display:block; height:26px; background:url(images/thline_03.jpg) right center no-repeat; line-height:26px; padding-right:5px }
+.gridtable .thbg2 th{ height:52px; background:#BADFF9; color:#2370B0; font-weight:bold; text-align:center;  padding:0 0 0 0;}
+.gridtable .thbg2 th .thline{ display:block; height:26px; background:url(images/thline_03.jpg) right center no-repeat; line-height:26px; padding-right:5px }
 .gridtable td{ height:24px; text-align:center;}
-.gridtable  td,.gridtable  th{ padding:0 5px; border-top:1px solid #AFD2E8; border-bottom:1px solid #AFD2E8}
+.gridtable  td,.gridtable  th{ padding:0 5px; border-top:1px solid #AFD2E8; border-bottom:1px solid #AFD2E8;border-left:1px solid #AFD2E8; border-right:1px solid #AFD2E8;}
 .gridtable .even td{ background:#F1F8FC; text-align:center; }
 .gridtable .odd td{ background:#FFF; }
