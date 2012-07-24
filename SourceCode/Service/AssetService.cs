@@ -17,7 +17,7 @@ using FixedAsset.DataAccess;
 using FixedAsset.IServices;
 namespace FixedAsset.Services
 {
-    public partial class AssetService:BaseService,IAssetService
+    public partial class AssetService : BaseService, IAssetService
     {
         #region Management
 
@@ -39,15 +39,18 @@ namespace FixedAsset.Services
         #endregion
 
         #region RetrieveAssetsPaging
-        public List<Asset> RetrieveAssetsPaging(AssetSearch info,int pageIndex, int pageSize,out int count)
+        public List<Asset> RetrieveAssetsPaging(AssetSearch info, int pageIndex, int pageSize, out int count)
         {
-            return Management.RetrieveAssetsPaging(info,pageIndex,pageSize,out count);
+            return Management.RetrieveAssetsPaging(info, pageIndex, pageSize, out count);
         }
         public List<AssetRegisterReport> RetrieveAssetRegisterReport(AssetRegisterSearch info)
         {
             return Management.RetrieveAssetRegisterReport(info);
         }
-
+        public List<Asset> RetrieveAssetRegisterReportDetailInfoPaging(AssetRunTimeSearch info, int pageIndex, int pageSize, out int count)
+        {
+            return Management.RetrieveAssetRegisterReportDetailInfoPaging(info, pageIndex, pageSize, out count);
+        }
         #endregion
 
         #region RetrieveAssetsUsed
@@ -172,7 +175,7 @@ namespace FixedAsset.Services
             if (string.IsNullOrEmpty(info.Assetno))
             {
                 //固定字符（2位）+分公司/公司（3位）+设备大类（2位）+设备小类（2位）+序号（4位）
-                var codePrefix=new StringBuilder();
+                var codePrefix = new StringBuilder();
                 codePrefix.Append(Asset.RuleCode);
                 //codePrefix.Append(info.Subcompany)
                 //var codePrefix = new StringBuilder(Asset.RuleCode);
@@ -188,7 +191,7 @@ namespace FixedAsset.Services
                 }
                 codePrefix.Append(info.Categoryvalue); //设备分类
                 var priorInfo = Management.RetrieveTopAssetByAssetnoPrefix(codePrefix.ToString());
-                if(priorInfo==null)
+                if (priorInfo == null)
                 {
                     info.Assetno = codePrefix.Append("0001").ToString();
                 }
@@ -228,7 +231,7 @@ namespace FixedAsset.Services
 
         public List<Vstorageaddress> RetrieveAllVstorageaddress()
         {
-            var addressManagement= new VstorageaddressManagement(Management);
+            var addressManagement = new VstorageaddressManagement(Management);
             return addressManagement.RetrieveAllVstorageaddress();
         }
         public Vstorageaddress RetrieveVstorageaddressByStorageId(string Storagetitle, string StorageId)
