@@ -322,12 +322,12 @@ namespace FixedAsset.DataAccess
                 if (info.StartActualDate.HasValue)
                 {
                     this.Database.AddInParameter(":StartActualDate", info.StartActualDate.Value.Date);
-                    sqlCommand.AppendLine(@" AND b.ACTUALDATE >= :StartActualDate");
+                    sqlCommand.AppendLine(@" AND b.ACTUALMAINTAINDATE >= :StartActualDate");
                 }
                 if (info.EndActualDate.HasValue)
                 {
                     this.Database.AddInParameter(":EndActualDate", info.EndActualDate.Value.Date.AddDays(1).AddSeconds(-1));
-                    sqlCommand.AppendLine(@" AND b.ACTUALDATE <= :EndActualDate");
+                    sqlCommand.AppendLine(@" AND b.ACTUALMAINTAINDATE <= :EndActualDate");
                 }
                 #endregion
 
@@ -363,12 +363,12 @@ namespace FixedAsset.DataAccess
                 if (info.StartActualDate.HasValue)
                 {
                     this.Database.AddInParameter(":StartActualDate", info.StartActualDate.Value.Date);
-                    sqlCommand.AppendLine(@" AND b.ACTUALDATE >= :StartActualDate");
+                    sqlCommand.AppendLine(@" AND b.ACTUALMAINTAINDATE >= :StartActualDate");
                 }
                 if (info.EndActualDate.HasValue)
                 {
                     this.Database.AddInParameter(":EndActualDate", info.EndActualDate.Value.Date.AddDays(1).AddSeconds(-1));
-                    sqlCommand.AppendLine(@" AND b.ACTUALDATE <= :EndActualDate");
+                    sqlCommand.AppendLine(@" AND b.ACTUALMAINTAINDATE <= :EndActualDate");
                 }
                 #endregion
                 sqlCommand.AppendLine(@"  ORDER BY Billid DESC");
