@@ -220,7 +220,14 @@ namespace FixedAsset.Web.Admin
                     {
                         var currentInfo = currentReportData.Where(p => p.Assetcategoryid == subCategory.Assetcategoryid).
                                 FirstOrDefault();
-                        content.AppendFormat("<td>{0}</td>", currentInfo == null ? 0 : currentInfo.Currentcount).AppendLine();
+                        //content.AppendFormat("<td>{0}</td>", currentInfo == null ? 0 : currentInfo.Currentcount).AppendLine();
+                        content.AppendFormat(@"<td><a href=""javascript:ShowTopDialogFrame('明细', 'Report_ShowCurrentAssets.aspx?Assetcategoryid={0}&Storagetitle={1}&Storageid={2}&StartActualDate={3}&EndActualDate={4}','',900,450);"">{5}</a></td>",
+                                        currentInfo.Assetcategoryid,
+                                        Server.UrlEncode(currentInfo.Storagetitle),
+                                        Server.UrlEncode(currentInfo.Storageid),
+                                        string.Empty,
+                                        string.Empty,
+                                        currentInfo.Currentcount).AppendLine();
                     }
                 }
                 content.AppendLine("</tr>");
@@ -259,13 +266,13 @@ namespace FixedAsset.Web.Admin
 
             #endregion
             content.AppendLine(" </table>");
-          
+
             literAssetRegister.Text = content.ToString();
         }
         #endregion
 
         protected void LoadData(int pageIndex)
-        { 
+        {
             #region MyRegion
             //System.Data.DataTable dt = new System.Data.DataTable();
             //dt.Columns.Add("AssetStorageCategory");
@@ -303,6 +310,6 @@ namespace FixedAsset.Web.Admin
             //rptAssetsStorageCategoryList.DataSource = dt;
             //rptAssetsStorageCategoryList.DataBind(); 
             #endregion
-        } 
+        }
     }
 }
