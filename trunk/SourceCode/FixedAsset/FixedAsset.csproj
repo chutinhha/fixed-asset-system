@@ -146,6 +146,13 @@
     <Compile Include="Admin\AssetUsedList.aspx.designer.cs">
       <DependentUpon>AssetUsedList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\AssetUsedPlan.aspx.cs">
+      <DependentUpon>AssetUsedPlan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AssetUsedPlan.aspx.designer.cs">
+      <DependentUpon>AssetUsedPlan.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Asset_Scrapped.aspx.cs">
       <DependentUpon>Asset_Scrapped.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -822,6 +829,7 @@
     <Content Include="404.aspx" />
     <Content Include="Admin\AssetScrapped_View.aspx" />
     <Content Include="Admin\AssetUsedList.aspx" />
+    <Content Include="Admin\AssetUsedPlan.aspx" />
     <Content Include="Admin\Asset_Scrapped.aspx" />
     <Content Include="Admin\B_Account.aspx" />
     <Content Include="Admin\B_AccountView.aspx" />
