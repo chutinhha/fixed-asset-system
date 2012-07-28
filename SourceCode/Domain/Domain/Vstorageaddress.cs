@@ -7,6 +7,7 @@ namespace FixedAsset.Domain
 {
     public class Vstorageaddress
     {
+        public const string RootCompany = "RootCompany";//上海建工七建集团有限公司
         public const string Project = "Project";
         public const string Subcompany = @"Subcompany"; //分公司
         public const string Supplier = @"Supplier";  //供应商

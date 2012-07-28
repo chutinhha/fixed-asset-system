@@ -692,6 +692,13 @@
     <Compile Include="Admin\UserControl\ucSelectProjectForTree.ascx.designer.cs">
       <DependentUpon>ucSelectProjectForTree.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\UserControl\ucSelectProjectForTree2.ascx.cs">
+      <DependentUpon>ucSelectProjectForTree2.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\UserControl\ucSelectProjectForTree2.ascx.designer.cs">
+      <DependentUpon>ucSelectProjectForTree2.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\UserControl\ucSelectStorageAddress.ascx.cs">
       <DependentUpon>ucSelectStorageAddress.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -871,6 +878,7 @@
     <Content Include="Admin\UserControl\ucSelectedMultiAssets.ascx" />
     <Content Include="Admin\UserControl\ucSelectProject.ascx" />
     <Content Include="Admin\UserControl\ucSelectProjectForTree.ascx" />
+    <Content Include="Admin\UserControl\ucSelectProjectForTree2.ascx" />
     <Content Include="Admin\UserControl\ucSelectStorageAddress2.ascx" />
     <Content Include="Admin\UserControl\ucSeletedSystem.ascx" />
     <Content Include="Admin\UserControl\ucShowAssetDetail.ascx" />
