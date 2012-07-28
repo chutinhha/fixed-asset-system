@@ -12,9 +12,9 @@ using System.Collections.Generic;
 
 namespace FixedAsset.Domain
 {
-    /// <summary>
+    ///<summary>
     ///ASSET_CONFIG
-    /// <summary>
+    ///</summary>
     [Serializable]
     public partial class Assetconfig
     {
@@ -66,8 +66,5 @@ namespace FixedAsset.Domain
         ///</summary>
         public string Creator{  get;set;}
         #endregion
-
-    }
-
-
+    } 
 }

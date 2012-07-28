@@ -64,48 +64,13 @@ namespace FixedAsset.Web
                 //判断用户Session是否过期
                 if (WebContext.Current.CurrentUser == null)
                 {
-                    Response.Redirect(ResolveUrl(@"~/admin/Login.aspx"));
+                    //Response.Redirect(ResolveUrl(@"~/admin/Login.aspx"));
+                    var script = new StringBuilder();
+                    script.Append(@"<script type=""text/javascript"">");
+                    script.AppendFormat("window.top.location.href='{0}'", ResolveUrl(@"~/admin/Login.aspx"));
+                    script.Append("</script>");
+                    Response.Write(script.ToString());
                 }
-                #region ScrappedCode
-                //    if (IsPoupPage)
-                //    {
-                //        var script = new StringBuilder();
-                //        script.Append(@"<script type=""text/javascript"">");
-                //        script.Append("window.");
-                //        for (int i = 1; i <= PoupPageLevel; i++)
-                //        {
-                //            script.Append("parent.");
-                //        }
-                //        if (string.IsNullOrEmpty(PrePageUrl))
-                //        {
-                //            script.AppendFormat(@"location.href='{0}'", ResolveUrl("~/Login.aspx"));
-                //        }
-                //        else
-                //        {
-                //            script.AppendFormat(@"location.href='{0}?PrePageUrl={1}'", ResolveUrl("~/Login.aspx"),
-                //                                Server.UrlEncode(PrePageUrl));
-                //        }
-                //        script.Append("</script>");
-                //        Response.Write(script.ToString());
-                //    }
-                //    else
-                //    {
-                //        Response.Redirect(ResolveUrl(string.Format(@"~/Login.aspx?PrePageUrl={0}", Server.UrlEncode(Request.RawUrl))));
-                //    }
-                //}
-                //else
-                //{
-                //    if (!IsPostBack && IsPoupPage && Request.UrlReferrer != null
-                //        && !string.IsNullOrEmpty(Request.UrlReferrer.PathAndQuery))
-                //    {
-                //        PrePageUrl = Request.UrlReferrer.PathAndQuery;//如果包括Querystring的东东就暂时不记录前页面痕迹
-                //        if (PrePageUrl.Contains("?"))
-                //        {
-                //            PrePageUrl = string.Empty;
-                //        }
-                //    }
-                //}
-                #endregion
             }
             base.OnLoad(e);
         }
@@ -118,26 +83,7 @@ namespace FixedAsset.Web
             {
                 exception = new Exception("系统出错了，请联系系统管理员！");
             }
-            //Session[SeallNet.Utility.UiConst.CurrentException] = exception;
-            //Server.ClearError();
-            //if (IsPoupPage)
-            //{
-            //    var script = new StringBuilder();
-            //    script.Append(@"<script type=""text/javascript"">");
-            //    script.Append("window.");
-            //    for (int i = 1; i <= PoupPageLevel; i++)
-            //    {
-            //        script.Append("parent.");
-            //    }
-            //    script.AppendFormat(@"location.href='{0}'", ResolveUrl("~/Error.aspx"));
-            //    script.Append("</script>");
-            //    Response.Write(script.ToString());
-            //}
-            //else
-            //{
             Response.Redirect(ResolveUrl("~/Error.aspx"));
-            //}
-            //throw exception;
         }
         #endregion
 
