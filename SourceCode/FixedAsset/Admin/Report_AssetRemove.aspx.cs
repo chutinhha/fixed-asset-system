@@ -146,7 +146,48 @@ namespace FixedAsset.Web.Admin
 
             #region RowBody
             bool isEven = true;
-            if (search.Storagetitle == Vstorageaddress.Subcompany)
+            if (search.Storagetitle == Vstorageaddress.RootCompany)
+            {
+                var currentSubCompanies = VStorageAddress.Where(p => p.Storagetitle == Vstorageaddress.Subcompany).ToList();
+                for (int i = 0; i < currentSubCompanies.Count; i++)
+                {
+                    var currentSubCompany = currentSubCompanies[i];
+                    if (currentSubCompany.Storagename.Contains("总"))
+                    {
+                        continue;
+                    }
+                    content.AppendFormat(@"<tr {0} style=""padding: 0 0 0 0"">", isEven ? @"class=""even""" : string.Empty).AppendLine();
+                    isEven = !isEven;
+                    content.AppendFormat("<td>{0}</td>", i + 2);//序号
+                    content.AppendFormat("<td>{0}</td>", currentSubCompany.Storagename);//分公司
+                    foreach (var assetcategory in categories)
+                    {
+                        var subCategories = AssetCategories.Where(p => p.Assetparentcategoryid == assetcategory.Assetcategoryid).ToList();
+                        foreach (var subCategory in subCategories)
+                        {
+                            var currentInfo = currentReportData.Where(p => p.Assetcategoryid == subCategory.Assetcategoryid
+                                                                    && p.Storagetitle == Vstorageaddress.Subcompany
+                                                                    && p.Storageid == currentSubCompany.Storageid).FirstOrDefault();
+                            if (currentInfo == null)
+                            {
+                                content.AppendFormat("<td>{0}</td>", 0);
+                            }
+                            else
+                            {
+                                content.AppendFormat(@"<td><a href=""javascript:ShowTopDialogFrame('明细', 'Report_AssetIntall_Detail.aspx?Assetcategoryid={0}&Storagetitle={1}&Storageid={2}&StartActualDate={3}&EndActualDate={4}','',900,450);"">{5}</a></td>",
+                                    currentInfo.Assetcategoryid,
+                                    Server.UrlEncode(currentInfo.Storagetitle),
+                                    Server.UrlEncode(currentInfo.Storageid),
+                                    search.StartActualDate.HasValue ? Server.UrlEncode(search.StartActualDate.Value.ToString(UiConst.DateFormat)) : string.Empty,
+                                    search.EndActualDate.HasValue ? Server.UrlEncode(search.EndActualDate.Value.ToString(UiConst.DateFormat)) : string.Empty,
+                                    currentInfo.Currentcount).AppendLine();
+                            }
+                        }
+                    }
+                    content.AppendLine("</tr>");
+                }
+            }
+            else if (search.Storagetitle == Vstorageaddress.Subcompany)
             {
                 #region 分公司
                 content.AppendFormat(@"<tr {0} style=""padding: 0 0 0 0"">", isEven ? @"class=""even""" : string.Empty).AppendLine();

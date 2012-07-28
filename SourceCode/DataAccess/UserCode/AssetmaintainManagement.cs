@@ -286,7 +286,12 @@ namespace FixedAsset.DataAccess
                                                         inner join asset c on a.assetno=c.assetno");
 
                 #region 项目体ID或分公司ID)
-                if (info.Storagetitle == Vstorageaddress.Project)
+                if (info.Storagetitle == Vstorageaddress.RootCompany)
+                {
+                    sqlCommand.AppendLine(@" where b.storagetitle = :Storagetitle ");
+                    this.Database.AddInParameter(":Storagetitle", DbType.AnsiString, Vstorageaddress.Subcompany);
+                }
+                else if (info.Storagetitle == Vstorageaddress.Project)
                 {
                     sqlCommand.AppendLine(@" where b.storagetitle = :Storagetitle AND b.storageid = :Storageid");
                     this.Database.AddInParameter(":Storagetitle", DbType.AnsiString, Vstorageaddress.Project);

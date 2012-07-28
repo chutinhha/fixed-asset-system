@@ -114,33 +114,48 @@ namespace FixedAsset.Web.Admin.UserControl
         }
         protected void tvStorageAddress_SelectedNodeChanged(object sender, EventArgs e)
         {
-            if (tvStorageAddress.SelectedNode == null) { return; }
-            else if (tvStorageAddress.SelectedNode.Value.Contains(Vstorageaddress.Subcompany))
-            {
-                Storagetitle = Vstorageaddress.Subcompany;
-            }
-            else if (tvStorageAddress.SelectedNode.Value.Contains(Vstorageaddress.Project))
-            {
-                Storagetitle = Vstorageaddress.Project;
-            }
-            else
+            if (tvStorageAddress.SelectedNode == null)
             {
                 return;
             }
-            var currentInfo = VStorageAddress.Where(p => p.Storagetitle == this.Storagetitle && p.Storageid == tvStorageAddress.SelectedNode.Value.Substring(Storagetitle.Length)).FirstOrDefault();
-            if (currentInfo == null) { return; }
-            if (currentInfo.Storagetitle == Vstorageaddress.Supplier || currentInfo.Storagetitle == Vstorageaddress.Subcompany)
+            if (tvStorageAddress.SelectedNode.Value.Contains(Vstorageaddress.RootCompany))
             {
-                this.StorageId = currentInfo.Storageid;
-                this.Storagename = currentInfo.Storagename;
+                Storagetitle = Vstorageaddress.RootCompany;
+                StorageId = Vstorageaddress.RootCompany;
             }
-            else if (currentInfo.Storagetitle == Vstorageaddress.Project)
+            else
             {
-                StorageId = currentInfo.Storageid;
-                Storagename = currentInfo.Storagename;
-                Subcompanyid = currentInfo.Subcompanyid;
-                Subcompanyname = currentInfo.Subcompanyname;
+                 if (tvStorageAddress.SelectedNode.Value.Contains(Vstorageaddress.Subcompany))
+                 {
+                     Storagetitle = Vstorageaddress.Subcompany;
+                 }
+                 else if (tvStorageAddress.SelectedNode.Value.Contains(Vstorageaddress.Project))
+                 {
+                     Storagetitle = Vstorageaddress.Project;
+                 }
+                 else
+                 {
+                     return;
+                 }
+                 var currentInfo = VStorageAddress.Where(p => p.Storagetitle == this.Storagetitle && p.Storageid == tvStorageAddress.SelectedNode.Value.Substring(Storagetitle.Length)).FirstOrDefault();
+                 if (currentInfo == null)
+                 {
+                     return;
+                 }
+                 if (currentInfo.Storagetitle == Vstorageaddress.Supplier || currentInfo.Storagetitle == Vstorageaddress.Subcompany)
+                 {
+                     this.StorageId = currentInfo.Storageid;
+                     this.Storagename = currentInfo.Storagename;
+                 }
+                 else if (currentInfo.Storagetitle == Vstorageaddress.Project)
+                 {
+                     StorageId = currentInfo.Storageid;
+                     Storagename = currentInfo.Storagename;
+                     Subcompanyid = currentInfo.Subcompanyid;
+                     Subcompanyname = currentInfo.Subcompanyname;
+                 }
             }
+
             if (SelectedStorageNodeChange != null)
             {
                 SelectedStorageNodeChange(this, new EventArgs());
@@ -157,6 +172,7 @@ namespace FixedAsset.Web.Admin.UserControl
         }
         protected void LoadTreeView()
         {
+            var rootCompanyNode = new TreeNode("上海建工七建集团有限公司", string.Format(@"{0}{0}", Vstorageaddress.RootCompany));
             //分公司项目体
             var infos = VStorageAddress.Where(p => p.Storagetitle == Vstorageaddress.Project).OrderBy(p => p.Subcompanyname);
             var subCompanies = infos.Select(p => p.Subcompanyid).Distinct();
@@ -170,8 +186,9 @@ namespace FixedAsset.Web.Admin.UserControl
                     currentSubCompanyNode.ChildNodes.Add(new TreeNode(currentProject.Storagename, string.Format(@"{0}{1}", Vstorageaddress.Project, currentProject.Storageid)));
                 }
                 currentSubCompanyNode.Expanded = false;
-                tvStorageAddress.Nodes.Add(currentSubCompanyNode);
+                rootCompanyNode.ChildNodes.Add(currentSubCompanyNode);
             }
+            tvStorageAddress.Nodes.Add(rootCompanyNode);
             tvStorageAddress.ShowExpandCollapse = true;
         }
         #endregion

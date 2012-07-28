@@ -402,7 +402,12 @@ namespace FixedAsset.DataAccess
                                                        c ");
 
                 #region 项目体ID或分公司ID)
-                if (info.Storagetitle == Vstorageaddress.Project)
+                if (info.Storagetitle == Vstorageaddress.RootCompany)
+                {
+                    sqlCommand.AppendLine(@" where c.STORAGEFLAG = :Storagetitle ");
+                    this.Database.AddInParameter(":Storagetitle", DbType.AnsiString, Vstorageaddress.Subcompany);
+                }
+                else if (info.Storagetitle == Vstorageaddress.Project)
                 {
                     sqlCommand.AppendLine(@" where c.STORAGEFLAG = :Storagetitle AND c.STORAGE = :Storageid");
                     this.Database.AddInParameter(":Storagetitle", DbType.AnsiString, Vstorageaddress.Project);

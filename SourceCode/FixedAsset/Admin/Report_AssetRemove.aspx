@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/MasterPage.master" AutoEventWireup="true" CodeBehind="Report_AssetRemove.aspx.cs" Inherits="FixedAsset.Web.Admin.Report_AssetRemove" %>
 <%@ Import Namespace="FixedAsset.Domain" %>
-<%@ Register Src="~/Admin/UserControl/ucSelectProjectForTree.ascx" TagName="SelectStorageAddress"
+<%@ Register Src="~/Admin/UserControl/ucSelectProjectForTree2.ascx" TagName="SelectStorageAddress"
     TagPrefix="uc1" %>
 <%@ Register Src="~/Admin/UserControl/ucDatePicker.ascx" TagName="DatePicker" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
