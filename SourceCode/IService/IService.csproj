@@ -96,6 +96,7 @@
     <Compile Include="IAssetmoveService.cs" />
     <Compile Include="IAssetremovedetailService.cs" />
     <Compile Include="IAssetremoveService.cs" />
+    <Compile Include="IAssetrunplanService.cs" />
     <Compile Include="IAssetscrappedService.cs" />
     <Compile Include="IAssetService.cs" />
     <Compile Include="IAssetsetupdetailService.cs" />
