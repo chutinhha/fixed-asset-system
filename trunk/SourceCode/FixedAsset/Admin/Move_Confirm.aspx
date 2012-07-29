@@ -1,5 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/MasterPage.master" AutoEventWireup="true" CodeBehind="Move_Confirm.aspx.cs" Inherits="FixedAsset.Web.Admin.Move_Confirm" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/MasterPage.master" AutoEventWireup="true"
+    CodeBehind="Move_Confirm.aspx.cs" Inherits="FixedAsset.Web.Admin.Move_Confirm" %>
 
 <%@ Import Namespace="SeallNet.Utility" %>
 <%@ Import Namespace="FixedAsset.Domain" %>
@@ -26,7 +26,7 @@
         <div class="content-box-content">
             <div class="tab-content default-tab">
                 <fieldset>
-                     <table>
+                    <table>
                         <tr>
                             <td>
                                 所属系统:
@@ -88,7 +88,7 @@
                                 项目体(分公司)联系人:
                             </td>
                             <td>
-                                <asp:Literal ID="litProjectcontactorid" runat="server"/>
+                                <asp:Literal ID="litProjectcontactorid" runat="server" />
                             </td>
                         </tr>
                         <tr>
@@ -125,13 +125,13 @@
                         </tr>
                         <tr>
                             <td style="width: 180px;">
-                                计划移机日期: 
+                                计划移机日期:
                             </td>
                             <td>
                                 <asp:Literal ID="litPlanmovedate" runat="server" />
                             </td>
                         </tr>
-                         <tr>
+                        <tr>
                             <td style="width: 180px;">
                                 实际移机日期: <span style="color: Red">*</span>
                             </td>
@@ -141,11 +141,11 @@
                         </tr>
                         <tr>
                             <td style="width: 180px;">
-                                已移机明细: 
+                                已移机明细:
                             </td>
                             <td>
-                                <asp:TextBox TextMode="MultiLine" Height="80px" ID="txtMovedcontent" runat="server" MaxLength="500"
-                                    Width="500" Rows="10" />
+                                <asp:TextBox TextMode="MultiLine" Height="80px" ID="txtMovedcontent" runat="server"
+                                    MaxLength="500" Width="500" Rows="10" />
                             </td>
                         </tr>
                         <tr>
@@ -158,7 +158,7 @@
                         </tr>
                         <tr>
                             <td style="width: 180px;">
-                                确认人: 
+                                确认人:
                             </td>
                             <td>
                                 <uc1:ucSelectUser ID="ucConfirmuser" runat="server" IsShowUserName="true" />
@@ -181,7 +181,7 @@
                                             align="center" class="gridtable">
                                             <asp:Repeater ID="rptAssetsList" runat="server" OnItemDataBound="rptAssetsList_ItemDataBound">
                                                 <HeaderTemplate>
-                                                    <tr class="thbg" style="padding:0 0 0 0">
+                                                    <tr class="thbg" style="padding: 0 0 0 0">
                                                         <th align="center">
                                                             设备编号
                                                         </th>
@@ -224,9 +224,9 @@
                                                             <%#EnumUtil.RetrieveEnumDescript((AssetState)Eval("State"))%>
                                                         </td>
                                                         <td>
-                                                            <%#((DateTime)Eval("Purchasedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                                            <%# Eval("Purchasedate") == null ? "" : ((DateTime)Eval("Purchasedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                                                         </td>
-                                                          <td align="right">
+                                                        <td align="right">
                                                             <%#((decimal)Eval("Unitprice")).ToString(FixedAsset.Web.AppCode.UiConst.MoneyFormat)%>
                                                         </td>
                                                         <td>
@@ -253,9 +253,9 @@
                                                             <%#EnumUtil.RetrieveEnumDescript((AssetState)Eval("State"))%>
                                                         </td>
                                                         <td>
-                                                            <%#((DateTime)Eval("Purchasedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                                            <%# Eval("Purchasedate") == null ? "" : ((DateTime)Eval("Purchasedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                                                         </td>
-                                                          <td align="right">
+                                                        <td align="right">
                                                             <%#((decimal)Eval("Unitprice")).ToString(FixedAsset.Web.AppCode.UiConst.MoneyFormat)%>
                                                         </td>
                                                         <td>
@@ -285,4 +285,4 @@
             </div>
         </div>
     </div>
-</asp:Content> 
+</asp:Content>

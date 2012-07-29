@@ -63,7 +63,7 @@
                                 项目体(分公司): <span style="color: Red">*</span>
                             </td>
                             <td>
-                                <uc1:SelectProject ID="ucSelectProject" runat="server" />
+                                <uc1:SelectProject ID="ucSelectProject" runat="server" OnSelectedSubCompanyOrProjectChange="ucSelectProject_SelectedSubCompanyOrProjectChange"/>
                             </td>
                         </tr>
                         <tr>
@@ -176,7 +176,7 @@
                                                             <%#EnumUtil.RetrieveEnumDescript((AssetState)Eval("State"))%>
                                                         </td>
                                                         <td>
-                                                            <%#((DateTime)Eval("Purchasedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                                            <%# Eval("Purchasedate") == null ? "" : ((DateTime)Eval("Purchasedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                                                         </td>
                                                         <td>
                                                             <%#((decimal)Eval("Unitprice")).ToString(FixedAsset.Web.AppCode.UiConst.MoneyFormat)%>
@@ -210,7 +210,7 @@
                                                             <%#EnumUtil.RetrieveEnumDescript((AssetState)Eval("State"))%>
                                                         </td>
                                                         <td>
-                                                            <%#((DateTime)Eval("Purchasedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                                            <%# Eval("Purchasedate") == null ? "" : ((DateTime)Eval("Purchasedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                                                         </td>
                                                         <td>
                                                             <%#((decimal)Eval("Unitprice")).ToString(FixedAsset.Web.AppCode.UiConst.MoneyFormat)%>

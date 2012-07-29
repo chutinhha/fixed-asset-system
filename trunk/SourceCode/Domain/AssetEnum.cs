@@ -7,7 +7,7 @@ using SeallNet.Utility;
 namespace FixedAsset.Domain
 {
     [EnumCatetory(EnumName = "编码模式")]
-    public enum CodeMode:int 
+    public enum CodeMode : int
     {
         [EnumDescript(Descript = "默认")]
         DefaultMode = 0,
@@ -19,7 +19,7 @@ namespace FixedAsset.Domain
         Day = 30,
     }
     [EnumCatetory(EnumName = "采购计划状态")]
-    public enum ApproveResult:int
+    public enum ApproveResult : int
     {
         [EnumDescript(Descript = "草稿")]
         Draft = 0,
@@ -32,7 +32,7 @@ namespace FixedAsset.Domain
         [EnumDescript(Descript = "已废除")]
         Deleted = 4,
     }
-    
+
     #region 设备部分
     /// <summary>
     /// 在用，未用，报废
@@ -94,7 +94,7 @@ namespace FixedAsset.Domain
         [EnumDescript(Descript = "拒绝")]
         Rejected = 3
     }
-    
+
     #endregion
 
     [EnumCatetory(EnumName = "设备安装状态")]
@@ -192,5 +192,29 @@ namespace FixedAsset.Domain
         /// </summary>
         [EnumDescript(Descript = "已确认")]
         Confirmed = 3,
+    }
+    [EnumCatetory(EnumName = "安装运行单分类")]
+    public enum BillCategory
+    {
+        /// <summary>
+        /// 安装申请单
+        /// </summary>
+        [EnumDescript(Descript = "安装单")]
+        SetupBill = 1,
+        /// <summary>
+        /// 维修申请单
+        /// </summary>
+        [EnumDescript(Descript = "维修单")]
+        RepairBill = 2,
+        /// <summary>
+        /// 拆机申请单
+        /// </summary>
+        [EnumDescript(Descript = "拆机单")]
+        RemoveBill = 3,
+        /// <summary>
+        /// 移机申请单
+        /// </summary>
+        [EnumDescript(Descript = "移机单")]
+        MoveBill = 4
     }
 }

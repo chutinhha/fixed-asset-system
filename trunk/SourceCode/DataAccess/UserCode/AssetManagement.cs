@@ -254,6 +254,7 @@ namespace FixedAsset.DataAccess
                 }
                 #endregion  
 
+                #region 资产编号
                 if (!string.IsNullOrEmpty(info.Assetno))
                 {
                     this.Database.AddInParameter(":Assetno", DbType.AnsiString, "%" + info.Assetno + "%");
@@ -264,7 +265,16 @@ namespace FixedAsset.DataAccess
                     this.Database.AddInParameter(":Assetname", "%" + info.Assetname + "%");
                     sqlCommand.AppendLine(@" AND ""ASSET"".""ASSETNAME"" LIKE :Assetname");
                 }
-                
+                #endregion
+
+                #region 资产存放地点
+                if (!string.IsNullOrEmpty(info.Storageflag))
+                {
+                    sqlCommand.AppendLine(@" AND ASSET.STORAGEFLAG = :Storagetitle AND c.STORAGE = :Storageid");
+                    this.Database.AddInParameter(":Storagetitle", DbType.AnsiString, info.Storageflag);
+                    this.Database.AddInParameter(":Storageid", DbType.AnsiString, info.Storage);
+                }
+                #endregion
 
                 if (info.FinanceCategories.Count > 0)
                 {
@@ -277,6 +287,8 @@ namespace FixedAsset.DataAccess
                     }
                     sqlCommand.AppendLine(@" )");
                 }
+
+                #region 购入日
                 if (info.StartPurchasedate.HasValue)
                 {
                     this.Database.AddInParameter(":StartPurchasedate", info.StartPurchasedate.Value.Date);
@@ -287,6 +299,9 @@ namespace FixedAsset.DataAccess
                     this.Database.AddInParameter(":EndPurchasedate", info.EndPurchasedate.Value.Date.AddDays(1).AddSeconds(-1));
                     sqlCommand.AppendLine(@" AND ""ASSET"".""PURCHASEDATE"" <= :EndPurchasedate");
                 }
+                #endregion
+
+                #region 过期日期
                 if (info.StartExpireddate.HasValue)
                 {
                     this.Database.AddInParameter(":StartExpireddate", info.StartExpireddate.Value.Date);
@@ -297,6 +312,8 @@ namespace FixedAsset.DataAccess
                     this.Database.AddInParameter(":EndExpireddate", info.EndExpireddate.Value.Date.AddDays(1).AddSeconds(-1));
                     sqlCommand.AppendLine(@" AND ""ASSET"".""EXPIREDDATE"" <= :EndExpireddate");
                 }
+                #endregion
+
                 sqlCommand.AppendLine(@"  ORDER BY ""ASSET"".""EXPIREDDATE"" DESC");
                 return this.ExecuteReaderPaging<Asset>(sqlCommand.ToString(), pageIndex, pageSize, out count);
             }

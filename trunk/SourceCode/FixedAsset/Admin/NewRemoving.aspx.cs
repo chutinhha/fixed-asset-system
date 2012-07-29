@@ -192,6 +192,11 @@ namespace FixedAsset.Web.Admin
         {
             ucSelectedMultiAssets.AssetCategoryId = ucSeletedSystem.Assetcategoryid;
         }
+        protected void ucSelectProject_SelectedSubCompanyOrProjectChange(object sender, EventArgs e)
+        {
+            ucSelectedMultiAssets.Storagetitle = ucSelectProject.Storagetitle;
+            ucSelectedMultiAssets.StorageId = ucSelectProject.StorageId;
+        }
         protected void ucSelectedMultiAssets_SelectAssetChange(object sender, EventArgs e)
         {
             if (ucSelectedMultiAssets.AssetIds.Count > 0)

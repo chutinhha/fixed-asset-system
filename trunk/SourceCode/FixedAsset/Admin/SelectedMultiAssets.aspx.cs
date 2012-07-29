@@ -14,6 +14,18 @@ namespace FixedAsset.Web.Admin
     public partial class SelectedMultiAssets : System.Web.UI.Page
     {
         #region Properties
+        protected BillCategory BillCategory
+        {
+            get
+            {
+                if (ViewState["BillCategory"] == null)
+                {
+                    ViewState["BillCategory"] = BillCategory.SetupBill;
+                }
+                return (BillCategory)Enum.Parse(typeof(BillCategory), ViewState["BillCategory"].ToString());
+            }
+            set { ViewState["BillCategory"] = value; }
+        }
         protected string AssetcategoryId
         {
             get
@@ -171,8 +183,7 @@ namespace FixedAsset.Web.Admin
         {
             var search = new AssetSearch();
             search.Assetno = txtSrchAssetno.Text.Trim();
-            var BillCategory =
-                (BillCategory) Enum.Parse(typeof (BillCategory), PageUtility.GetQueryStringValue("BillCategory"));
+            var BillCategory =(BillCategory) Enum.Parse(typeof (BillCategory), PageUtility.GetQueryStringValue("BillCategory"));
             switch (BillCategory)
             {
                 case   BillCategory.SetupBill:
@@ -189,7 +200,8 @@ namespace FixedAsset.Web.Admin
                     search.States.Add(AssetState.InUse);
                     break;
             }
-            
+            search.Storageflag = PageUtility.GetQueryStringValue("Storagetitle");
+            search.Storage = PageUtility.GetQueryStringValue("StorageId");
             search.Assetname = txtSrchAssetname.Text;
             search.FirstLevelCategoryId = AssetcategoryId;
             int recordCount = 0;

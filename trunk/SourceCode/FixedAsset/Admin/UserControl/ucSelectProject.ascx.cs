@@ -88,6 +88,7 @@ namespace FixedAsset.Web.Admin.UserControl
         #endregion
 
         #region Events
+        public event EventHandler SelectedSubCompanyOrProjectChange;
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
@@ -140,11 +141,6 @@ namespace FixedAsset.Web.Admin.UserControl
                     this.StorageId = list[1];
                     this.Storagename = list[2];
                 }
-                //content.Append(ucSelectProjectForTree.Storagetitle).Append(",");
-                //content.Append(ucSelectProjectForTree.Subcompanyid).Append(",");
-                //content.Append(ucSelectProjectForTree.Subcompanyname).Append(",");
-                //content.Append(ucSelectProjectForTree.StorageId).Append(",");
-                //content.Append(ucSelectProjectForTree.Storagename);
                 LoadData();
             }
         }
@@ -174,6 +170,10 @@ namespace FixedAsset.Web.Admin.UserControl
                     {
                         litStorage.Text = currentInfo.Storagename;
                     }
+                }
+                if(SelectedSubCompanyOrProjectChange!=null)
+                {
+                    SelectedSubCompanyOrProjectChange(this,new EventArgs());
                 }
             }
         }

@@ -204,6 +204,11 @@ namespace FixedAsset.Web.Admin
                 }
             }
         }
+        protected void ucSelectProject_SelectedSubCompanyOrProjectChange(object sender, EventArgs e)
+        {
+            ucSelectedMultiAssets.Storagetitle = ucSelectProject.Storagetitle;
+            ucSelectedMultiAssets.StorageId = ucSelectProject.StorageId;
+        }
         protected void rptAssetsList_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)

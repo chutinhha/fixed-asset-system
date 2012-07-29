@@ -179,7 +179,7 @@
                                                             <%#EnumUtil.RetrieveEnumDescript((AssetState)Eval("State"))%>
                                                         </td>
                                                         <td>
-                                                            <%#((DateTime)Eval("Purchasedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                                            <%# Eval("Purchasedate") == null ? "" : ((DateTime)Eval("Purchasedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                                                         </td>
                                                         <td align="right">
                                                             <%#((decimal)Eval("Unitprice")).ToString(FixedAsset.Web.AppCode.UiConst.MoneyFormat)%>
@@ -213,7 +213,7 @@
                                                             <%#EnumUtil.RetrieveEnumDescript((AssetState)Eval("State"))%>
                                                         </td>
                                                         <td>
-                                                            <%#((DateTime)Eval("Purchasedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                                            <%# Eval("Purchasedate") == null ? "" : ((DateTime)Eval("Purchasedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                                                         </td>
                                                         <td align="right">
                                                             <%#((decimal)Eval("Unitprice")).ToString(FixedAsset.Web.AppCode.UiConst.MoneyFormat)%>
