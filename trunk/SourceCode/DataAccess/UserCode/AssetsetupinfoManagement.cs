@@ -297,10 +297,14 @@ namespace FixedAsset.DataAccess
                 #region (系统)设备大类
                 count = 0;
                 if(string.IsNullOrEmpty(info.Assetcategoryid)){return new List<AssetReportDetailInfo>();}
-                sqlCommand.AppendLine(@" where c.ASSETCATEGORYID = :Assetcategoryid and b.storagetitle = :Storagetitle AND b.storageid = :Storageid");
+                sqlCommand.AppendLine(@" where c.ASSETCATEGORYID = :Assetcategoryid ");
                 this.Database.AddInParameter(":Assetcategoryid", DbType.AnsiString, info.Assetcategoryid);
+                //if(!string.IsNullOrEmpty(info.Storagetitle))
+                //{
+                sqlCommand.AppendLine(" and b.storagetitle = :Storagetitle AND b.storageid = :Storageid");
                 this.Database.AddInParameter(":Storagetitle", DbType.AnsiString, info.Storagetitle);
                 this.Database.AddInParameter(":Storageid", DbType.AnsiString, info.Storageid);
+                //} 
                 #endregion
 
                 #region 实际完成日期

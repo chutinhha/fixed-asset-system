@@ -251,7 +251,8 @@ namespace FixedAsset.Web.Admin
             }
             else if (search.Storagetitle == Vstorageaddress.Project)
             {
-                content.AppendLine(@"<tr class=""even"" style=""padding: 0 0 0 0"">");
+                content.AppendFormat(@"<tr {0} style=""padding: 0 0 0 0"">", isEven ? @"class=""even""" : string.Empty).AppendLine();
+                isEven = !isEven;
                 content.Append("<td>1</td>");//序号
                 content.AppendFormat("<td>{0}</td>", ucSelectStorageAddress.Storagename);//分公司/项目体
                 foreach (var assetcategory in categories)
@@ -306,6 +307,22 @@ namespace FixedAsset.Web.Admin
             }
 
             #endregion
+
+            #region 合计信息
+            content.AppendFormat(@"<tr {0} style=""padding: 0 0 0 0"">", isEven ? @"class=""even""" : string.Empty).AppendLine();
+            content.Append(@"<td colspan=""2"">合计</td>");//序号
+            foreach (var assetcategory in categories)
+            {
+                var subCategories = AssetCategories.Where(p => p.Assetparentcategoryid == assetcategory.Assetcategoryid).ToList();
+                foreach (var subCategory in subCategories)
+                {
+                    var currentCategorycount = currentReportData.Where(p => p.Assetcategoryid == subCategory.Assetcategoryid).Sum(p => p.Currentcount);
+                    content.AppendFormat("<td>{0}</td>", currentCategorycount);
+                }
+            }
+            content.AppendLine("</tr>");
+            #endregion
+
             content.AppendLine(" </table>");
 
             literAssetRegister.Text = content.ToString();
