@@ -6,29 +6,13 @@ using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using FixedAsset.Domain;
 using FixedAsset.Services;
+using SeallNet.Utility;
 
 namespace FixedAsset.Web.Admin.UserControl
 {
-    public enum BillCategory
-    {
-        /// <summary>
-        /// 安装申请单
-        /// </summary>
-        SetupBill=1,
-        /// <summary>
-        /// 维修申请单
-        /// </summary>
-        RepairBill=2,
-        /// <summary>
-        /// 拆机申请单
-        /// </summary>
-        RemoveBill=3,
-        /// <summary>
-        /// 移机申请单
-        /// </summary>
-        MoveBill=4
-    }
+    
     /// <summary>
     /// 查询同1大类的资产
     /// </summary>
@@ -42,7 +26,7 @@ namespace FixedAsset.Web.Admin.UserControl
                 {
                     ViewState["BillCategory"] = BillCategory.SetupBill;
                 }
-                return (BillCategory)Enum.Parse(typeof(UserControl.BillCategory), ViewState["BillCategory"].ToString());
+                return (BillCategory)Enum.Parse(typeof(BillCategory), ViewState["BillCategory"].ToString());
             }
             set { ViewState["BillCategory"] = value; }
         }
@@ -57,6 +41,30 @@ namespace FixedAsset.Web.Admin.UserControl
                 return ViewState["AssetCategoryId"].ToString();
             }
             set { ViewState["AssetCategoryId"] = value; }
+        }
+        public string Storagetitle
+        {
+            get
+            {
+                if (ViewState["Storagetitle"] == null)
+                {
+                    ViewState["Storagetitle"] = string.Empty;
+                }
+                return ViewState["Storagetitle"].ToString();
+            }
+            set { ViewState["Storagetitle"] = value; }
+        }
+        public string StorageId
+        {
+            get
+            {
+                if (ViewState["StorageId"] == null)
+                {
+                    ViewState["StorageId"] = string.Empty;
+                }
+                return ViewState["StorageId"].ToString();
+            }
+            set { ViewState["StorageId"] = value; }
         }
         public List<string> AssetIds
         {
@@ -106,7 +114,10 @@ namespace FixedAsset.Web.Admin.UserControl
             {
 
                 var script = new StringBuilder();  //return false;
-                script.AppendFormat(@"ShowTopDialogFrame('资产选择', '{0}?AssetCategoryId={1}&BillCategory={2}','SelectedMultiAssets()',790,420);", ResolveUrl("~/Admin/SelectedMultiAssets.aspx"), AssetCategoryId,BillCategory);
+                script.AppendFormat(@"ShowTopDialogFrame('{3}资产选择', '{0}?AssetCategoryId={1}&BillCategory={2}&Storagetitle={4}&StorageId={5}','SelectedMultiAssets()',790,420);"
+                                    ,ResolveUrl("~/Admin/SelectedMultiAssets.aspx")
+                                    ,AssetCategoryId, BillCategory
+                                    , EnumUtil.RetrieveEnumDescript(BillCategory), Storagetitle, StorageId);
                 if (updatePanel == null)
                 {
                     ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "SelectedMultiAssets",

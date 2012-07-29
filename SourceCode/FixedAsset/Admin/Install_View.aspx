@@ -18,7 +18,7 @@
     <div class="content-box">
         <div class="content-box-header">
             <h3 style="cursor: s-resize;">
-                <asp:Literal runat="server" ID="litTitle" Text="安装单查看" />
+                <asp:Literal runat="server" ID="litTitle" Text="安装查看" />
             </h3>
         </div>
         <div class="content-box-content">
@@ -229,7 +229,7 @@
                                                             <%#EnumUtil.RetrieveEnumDescript((AssetState)Eval("State"))%>
                                                         </td>
                                                         <td>
-                                                            <%#((DateTime)Eval("Purchasedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                                            <%# Eval("Purchasedate") == null ? "" : ((DateTime)Eval("Purchasedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                                                         </td>
                                                           <td align="right">
                                                             <%#((decimal)Eval("Unitprice")).ToString(FixedAsset.Web.AppCode.UiConst.MoneyFormat)%>
@@ -258,7 +258,7 @@
                                                             <%#EnumUtil.RetrieveEnumDescript((AssetState)Eval("State"))%>
                                                         </td>
                                                         <td>
-                                                            <%#((DateTime)Eval("Purchasedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                                            <%# Eval("Purchasedate") == null ? "" : ((DateTime)Eval("Purchasedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                                                         </td>
                                                           <td align="right">
                                                             <%#((decimal)Eval("Unitprice")).ToString(FixedAsset.Web.AppCode.UiConst.MoneyFormat)%>
