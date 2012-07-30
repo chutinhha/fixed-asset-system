@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using FixedAsset.Domain;
 using FixedAsset.IServices;
 using FixedAsset.Services;
@@ -23,6 +20,10 @@ namespace FixedAsset.Web.Admin
             {
                 return new AssetService();
             }
+        }
+        protected IAssetsupplierService AssetsupplierService
+        {
+            get { return new AssetsupplierService(); }
         }
         protected List<Assetcategory> AssetCategories
         {
@@ -75,30 +76,54 @@ namespace FixedAsset.Web.Admin
         protected void InitData()
         {
             InitAssetState(ddlSrchState, true);
-            InitFinanceCategory(ddlAccountingType, true);
+            InitFinanceCategory(ddlFinancecategory, true);
             InitManageMode(ddlManagementModel, true);
+            LoadSupplierData();
+        }
+        protected void LoadSupplierData()
+        {
+            var search = new AssetsupplierSearch();
+            int recordCount = 0;
+            var list = AssetsupplierService.RetrieveAssetsuppliersPaging(search, 0, 10, out recordCount);
+            list.Insert(0, new Assetsupplier() { Supplierid = string.Empty, Suppliername = "全部" });
+            ddlSuppliers.DataTextField = "Suppliername";
+            ddlSuppliers.DataValueField = "Supplierid";
+            ddlSuppliers.DataSource = list;
+            ddlSuppliers.DataBind();
         }
         protected void LoadData(int pageIndex)
         {
             var search = new AssetSearch();
             search.Assetno = txtSrchAssetno.Text;//设备编号
-            //search.Assetcategoryid = txtSrchAssetcategoryid.Text;//设备类别
-            //search.Assetname = txtSrchAssetname.Text;//设备名称
-            //search.Storage = txtSrchStorage.Text;//存放地点
-            //if (ddlSrchState.SelectedIndex > 0)
-            //{
-            //    search.States.Add((AssetState)Enum.Parse(typeof(AssetState), ddlSrchState.SelectedValue));//设备状态
-            //}
+            if (ddlAssetCategory.SelectedIndex > 0)
+            {
+                //设备类别
+                search.FirstLevelCategoryId = ddlAssetCategory.SelectedValue;
+                if (ddlSubAssetCategory.SelectedIndex > 0)
+                {
+                    search.Assetcategoryid = ddlSubAssetCategory.SelectedValue;
+                }
+            }
+            if (ucStartPurchasedate.DateValue.HasValue)
+            {
+                search.StartPurchasedate = ucStartPurchasedate.DateValue.Value;//购入日期
+            }
+            if (ucEndPurchasedate.DateValue.HasValue)
+            {
+                search.EndPurchasedate = ucEndPurchasedate.DateValue.Value;//购入日期
+            }
+            search.Assetname = txtSrchAssetname.Text;//设备名称
+            
+            if (ddlSrchState.SelectedIndex > 0)
+            {
+                search.States.Add((AssetState)Enum.Parse(typeof(AssetState), ddlSrchState.SelectedValue));//设备状态
+            }
             //search.Brand = txtSrchBrand.Text;//品牌
-            //search.Supplierid = txtSrchSupplierid.Text;//供应商
-            //if (ucSrchStartPurchasedate.DateValue.HasValue)
-            //{
-            //    search.StartPurchasedate = ucSrchStartPurchasedate.DateValue.Value;//购入日期
-            //}
-            //if (ucSrchEndPurchasedate.DateValue.HasValue)
-            //{
-            //    search.EndPurchasedate = ucSrchEndPurchasedate.DateValue.Value;//购入日期
-            //}
+            //search.Storage = txtSrchStorage.Text;//存放地点
+            if(ddlSuppliers.SelectedIndex>0)
+            {
+                search.Supplierid = ddlSuppliers.SelectedValue;//供应商  
+            }
             //if (ucSrchStartExpireddate.DateValue.HasValue)
             //{
             //    search.StartExpireddate = ucSrchStartExpireddate.DateValue.Value;//折旧到期日期
@@ -109,61 +134,16 @@ namespace FixedAsset.Web.Admin
             //}
             //search.Assetspecification = txtSrchAssetspecification.Text;//设备规格
             //search.Storageflag = txtSrchStorageflag.Text;//存放地点标识来源
-            //search.Assetno = txtSrchAssetno.Text.Trim();
-            //if (ddlEquipmentStatus.SelectedIndex > 0)
-            //{
-            //    search.States.Add((AssetState)Enum.Parse(typeof(AssetState), ddlEquipmentStatus.SelectedValue));
-            //}
-            //if (ddlAccountingType.SelectedIndex > 0)
-            //{
-            //    search.FinanceCategories.Add((FinanceCategory)Enum.Parse(typeof(FinanceCategory), ddlAccountingType.SelectedValue));
-            //}
-            //if (ddlManagementModel.SelectedIndex > 0)
-            //{
-            //    search.ManageModes.Add((ManageMode)Enum.Parse(typeof(ManageMode), ddlManagementModel.SelectedValue));
-            //}
-            //if (ucStartPurchasedate.DateValue.HasValue)
-            //{
-            //    search.StartPurchasedate = ucStartPurchasedate.DateValue.Value;
-            //}
-            //if (ucEndPurchasedate.DateValue.HasValue)
-            //{
-            //    search.EndPurchasedate = ucEndPurchasedate.DateValue.Value;
-            //}
-            //if (ddlAssetCategory.SelectedIndex > 0)
-            //{
-            //    search.FirstLevelCategoryId = ddlAssetCategory.SelectedValue;
-            //    if (ddlSubAssetCategory.SelectedIndex > 0)
-            //    {
-            //        search.Assetcategoryid = ddlSubAssetCategory.SelectedValue;
-            //    }
-            //}
-            //search.Assetname = txtSrchAssetname.Text;
-            //search.Storage = txtSrchStorage.Text;
-            //search.Brand = txtSrchBrand.Text;
-            //search.Supplierid = txtSrchSupplierid.Text;
-            //DateTime startpurchasedate = DateTime.MinValue;
-            //if (DateTime.TryParse(txtSrchStartPurchasedate.Text, out startpurchasedate))
-            //{
-            //    search.StartPurchasedate = startpurchasedate;
-            //}
-            //DateTime endpurchasedate = DateTime.MinValue;
-            //if (DateTime.TryParse(txtSrchEndPurchasedate.Text, out endpurchasedate))
-            //{
-            //    search.EndPurchasedate = endpurchasedate;
-            //}
-            //DateTime startexpireddate = DateTime.MinValue;
-            //if (DateTime.TryParse(txtSrchStartExpireddate.Text, out startexpireddate))
-            //{
-            //    search.StartExpireddate = startexpireddate;
-            //}
-            //DateTime endexpireddate = DateTime.MinValue;
-            //if (DateTime.TryParse(txtSrchEndExpireddate.Text, out endexpireddate))
-            //{
-            //    search.EndExpireddate = endexpireddate;
-            //}
-            //search.Assetspecification = txtSrchAssetspecification.Text;
-            //search.Storageflag = txtSrchStorageflag.Text;
+            
+
+            if (ddlFinancecategory.SelectedIndex > 0)
+            {
+                search.FinanceCategories.Add((FinanceCategory)Enum.Parse(typeof(FinanceCategory), ddlFinancecategory.SelectedValue));//财务类别
+            }
+            if (ddlManagementModel.SelectedIndex > 0)
+            {
+                search.ManageModes.Add((ManageMode)Enum.Parse(typeof(ManageMode), ddlManagementModel.SelectedValue));//管理模式
+            }
             int recordCount = 0;
             var list = AssetService.RetrieveAssetsPagingForZongheSearch(search, pageIndex, pcData.PageSize, out recordCount);
             rptAssetsList.DataSource = list;

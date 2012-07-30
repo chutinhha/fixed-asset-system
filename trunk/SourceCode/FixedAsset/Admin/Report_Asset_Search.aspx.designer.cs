@@ -40,6 +40,33 @@ namespace FixedAsset.Web.Admin {
         protected global::System.Web.UI.WebControls.DropDownList ddlSubAssetCategory;
         
         /// <summary>
+        /// txtSrchAssetname 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSrchAssetname;
+        
+        /// <summary>
+        /// ddlSrchState 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSrchState;
+        
+        /// <summary>
+        /// ddlManagementModel 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlManagementModel;
+        
+        /// <summary>
         /// ucStartPurchasedate 控件。
         /// </summary>
         /// <remarks>
@@ -58,31 +85,22 @@ namespace FixedAsset.Web.Admin {
         protected global::FixedAsset.Web.Admin.UserControl.ucDatePicker ucEndPurchasedate;
         
         /// <summary>
-        /// ddlManagementModel 控件。
+        /// ddlFinancecategory 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlManagementModel;
+        protected global::System.Web.UI.WebControls.DropDownList ddlFinancecategory;
         
         /// <summary>
-        /// ddlSrchState 控件。
+        /// ddlSuppliers 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSrchState;
-        
-        /// <summary>
-        /// ddlAccountingType 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlAccountingType;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSuppliers;
         
         /// <summary>
         /// BtnSearch 控件。
