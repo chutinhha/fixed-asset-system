@@ -552,6 +552,13 @@
     <Compile Include="Admin\Report_AssetStorageAddress.aspx.designer.cs">
       <DependentUpon>Report_AssetStorageAddress.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Report_AssetUserdPlan.aspx.cs">
+      <DependentUpon>Report_AssetUserdPlan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Report_AssetUserdPlan.aspx.designer.cs">
+      <DependentUpon>Report_AssetUserdPlan.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Report_Asset_Search.aspx.cs">
       <DependentUpon>Report_Asset_Search.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -880,6 +887,7 @@
     <Content Include="Admin\Report_AssetRepair_Detail.aspx" />
     <Content Include="Admin\Report_AssetState.aspx" />
     <Content Include="Admin\Report_AssetStorageAddress.aspx" />
+    <Content Include="Admin\Report_AssetUserdPlan.aspx" />
     <Content Include="Admin\Report_Asset_Search.aspx" />
     <Content Include="Admin\Report_ShowCurrentAssets.aspx" />
     <Content Include="Admin\Role_Add.aspx" />
