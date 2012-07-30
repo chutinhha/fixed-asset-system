@@ -7,6 +7,22 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
     <link href="css/mail.css" rel="stylesheet" type="text/css" />
+    <script language="javascript" type="text/javascript">
+        function tabChange(tabId, currentContentId, otherContent1) {
+            var obj = document.getElementById(tabId);
+            var arrayli = document.getElementById("tags").getElementsByTagName("li"); //获取ul数组
+            for (i = 0; i < arrayli.length; i++) {
+                if (arrayli[i] == obj) {
+                    arrayli[i].className = "selectTag";
+                }
+                else {
+                    arrayli[i].className = "";
+                }
+            }
+            document.getElementById(currentContentId).style.display = "block";
+            document.getElementById(otherContent1).style.display = "none";
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
     <div class="content-box">
@@ -24,53 +40,115 @@
                     </div>
                 </div>
                 <div class="column-right" style="width: 79%;">
-                    <asp:Repeater ID="rptAssetUsedPlan" runat="server">
-                        <HeaderTemplate>
-                            <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
-                                align="center" class="gridtable">
-                                <tr class="thbg" style="padding: 0 0 0 0">
-                                    <th align="left" style="width: 20%">
-                                        系统
-                                    </th>
-                                    <th align="left" style="width: 40%">
-                                        设备
-                                    </th>
-                                    <th align="left" style="width: 20%">
-                                        计划数量
-                                    </th>
+                    <div id="tag" class="thin blue">
+                        <ul id="tags">
+                            <li id="monthPlan" class="selectTag"><a href="#" onclick="javascript:tabChange('monthPlan','monthPlanContent','weeklyPlanContent')">
+                                月计划</a> </li>
+                            <li id="weeklyPlan"><a href="javascript:tabChange('weeklyPlan','weeklyPlanContent','monthPlanContent')">
+                                周计划</a> </li>
+                        </ul>
+                        <p class="gap">
+                        </p>
+                    </div>
+                    <div id="monthPlanContent" style="display: block; width:100%">
+                        <asp:Repeater ID="rptAssetUsedPlan" runat="server">
+                            <HeaderTemplate>
+                                <table style="width: 100%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
+                                    align="center" class="gridtable">
+                                    <tr class="thbg" style="padding: 0 0 0 0">
+                                        <th align="left" style="width: 20%">
+                                            系统
+                                        </th>
+                                        <th align="left" style="width: 60%">
+                                            设备
+                                        </th>
+                                        <th align="left" style="width: 20%">
+                                            计划数量
+                                        </th>
+                                    </tr>
+                            </HeaderTemplate>
+                            <ItemTemplate>
+                                <tr>
+                                    <td style="width: 20%" align="left" runat="server" id="tdAssetparentcategoryname">
+                                        <%#Eval("Assetparentcategoryname")%>
+                                    </td>
+                                    <td align="left" style="width: 60%">
+                                        <%#Eval("Assetsubcategoryname")%>
+                                    </td>
+                                    <td align="left" style="width: 20%">
+                                        <asp:TextBox Width="100px" ID="txtPlanCount" runat="server" Text='<%#Eval("AssetCount") %>'></asp:TextBox>
+                                    </td>
                                 </tr>
-                        </HeaderTemplate>
-                        <ItemTemplate>
-                            <tr>
-                                <td style="width: 20%" align="left" runat="server" id="tdAssetparentcategoryname">
-                                    <%#Eval("Assetparentcategoryname")%>
-                                </td>
-                                <td align="left" style="width: 40%">
-                                    <%#Eval("Assetsubcategoryname")%>
-                                </td>
-                                <td align="left" style="width: 20%">
-                                    <asp:TextBox Width="100px" ID="txtPlanCount" runat="server" Text='<%#Eval("AssetCount") %>'></asp:TextBox>
-                                </td>
-                            </tr>
-                        </ItemTemplate>
-                        <AlternatingItemTemplate>
-                            <tr>
-                                <td style="width: 20%" align="left" runat="server" id="tdAssetparentcategoryname">
-                                    <%#Eval("Assetparentcategoryname")%>
-                                </td>
-                                <td style="width: 40%" align="left">
-                                    <%#Eval("Assetsubcategoryname")%>
-                                </td>
-                                <td align="left" style="width: 20%">
-                                    <asp:TextBox Width="100px" ID="txtPlanCount" runat="server" Text='<%#Eval("AssetCount") %>'></asp:TextBox>
-                                </td>
-                            </tr>
-                        </AlternatingItemTemplate>
-                        <FooterTemplate>
-                            </table>
-                        </FooterTemplate>
-                    </asp:Repeater>
-                    <div class="clear">
+                            </ItemTemplate>
+                            <AlternatingItemTemplate>
+                                <tr>
+                                    <td style="width: 20%" align="left" runat="server" id="tdAssetparentcategoryname">
+                                        <%#Eval("Assetparentcategoryname")%>
+                                    </td>
+                                    <td style="width: 60%" align="left">
+                                        <%#Eval("Assetsubcategoryname")%>
+                                    </td>
+                                    <td align="left" style="width: 20%">
+                                        <asp:TextBox Width="100px" ID="txtPlanCount" runat="server" Text='<%#Eval("AssetCount") %>'></asp:TextBox>
+                                    </td>
+                                </tr>
+                            </AlternatingItemTemplate>
+                            <FooterTemplate>
+                                </table>
+                            </FooterTemplate>
+                        </asp:Repeater>
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div id="weeklyPlanContent" style="display: block;">
+                        <asp:Repeater ID="Repeater1" runat="server">
+                            <HeaderTemplate>
+                                <table style="width: 100%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
+                                    align="center" class="gridtable">
+                                    <tr class="thbg" style="padding: 0 0 0 0">
+                                        <th align="left" style="width: 20%">
+                                            系统
+                                        </th>
+                                        <th align="left" style="width: 60%">
+                                            设备
+                                        </th>
+                                        <th align="left" style="width: 20%">
+                                            计划数量
+                                        </th>
+                                    </tr>
+                            </HeaderTemplate>
+                            <ItemTemplate>
+                                <tr>
+                                    <td style="width: 20%" align="left" runat="server" id="tdAssetparentcategoryname">
+                                        <%#Eval("Assetparentcategoryname")%>
+                                    </td>
+                                    <td align="left" style="width: 60%">
+                                        <%#Eval("Assetsubcategoryname")%>
+                                    </td>
+                                    <td align="left" style="width: 20%">
+                                        <asp:TextBox Width="100px" ID="txtPlanCount" runat="server" Text='<%#Eval("AssetCount") %>'></asp:TextBox>
+                                    </td>
+                                </tr>
+                            </ItemTemplate>
+                            <AlternatingItemTemplate>
+                                <tr>
+                                    <td style="width: 20%" align="left" runat="server" id="tdAssetparentcategoryname">
+                                        <%#Eval("Assetparentcategoryname")%>
+                                    </td>
+                                    <td style="width: 60%" align="left">
+                                        <%#Eval("Assetsubcategoryname")%>
+                                    </td>
+                                    <td align="left" style="width: 20%">
+                                        <asp:TextBox Width="100px" ID="txtPlanCount" runat="server" Text='<%#Eval("AssetCount") %>'></asp:TextBox>
+                                    </td>
+                                </tr>
+                            </AlternatingItemTemplate>
+                            <FooterTemplate>
+                                </table>
+                            </FooterTemplate>
+                        </asp:Repeater>
+                        <div class="clear">
+                        </div>
                     </div>
                 </div>
             </div>

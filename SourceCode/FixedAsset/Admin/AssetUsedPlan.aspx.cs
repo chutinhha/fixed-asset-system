@@ -119,6 +119,9 @@ namespace FixedAsset.Web.Admin
             rptAssetUsedPlan.DataSource = dt;
             rptAssetUsedPlan.DataBind();
 
+            Repeater1.DataSource = dt;
+            Repeater1.DataBind();
+
             // 合并单元格
             for (int i = rptAssetUsedPlan.Items.Count - 1; i > 0; i--)
             {
@@ -133,8 +136,26 @@ namespace FixedAsset.Web.Admin
                     oCell.Visible = false;
                     oCell_previous.RowSpan += oCell.RowSpan;
                 }
-            } 
-          
+            }
+
+            // 合并单元格
+            for (int i = Repeater1.Items.Count - 1; i > 0; i--)
+            {
+                HtmlTableCell oCell_previous = Repeater1.Items[i - 1].FindControl("tdAssetparentcategoryname") as HtmlTableCell;
+                HtmlTableCell oCell = Repeater1.Items[i].FindControl("tdAssetparentcategoryname") as HtmlTableCell;
+
+                oCell.RowSpan = (oCell.RowSpan == -1) ? 1 : oCell.RowSpan;
+                oCell_previous.RowSpan = (oCell_previous.RowSpan == -1) ? 1 : oCell_previous.RowSpan;
+
+                if (oCell.InnerText == oCell_previous.InnerText)
+                {
+                    oCell.Visible = false;
+                    oCell_previous.RowSpan += oCell.RowSpan;
+                }
+            }
+
+            ClientScript.RegisterStartupScript(this.GetType(), "a", "document.getElementById('weeklyPlanContent').style.display='none';", true);
+
         }
         #endregion
     }
