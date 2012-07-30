@@ -562,11 +562,16 @@ namespace FixedAsset.DataAccess
                 }
                 #endregion
 
-                #region 设备类别
+                #region 资产分类
+                if (!string.IsNullOrEmpty(info.FirstLevelCategoryId))
+                {
+                    this.Database.AddInParameter(":Assetparentcategoryid", DbType.AnsiString, info.FirstLevelCategoryId);
+                    sqlCommand.AppendLine(@"  ""ASSETCATEGORY"".""ASSETPARENTCATEGORYID"" = :Assetparentcategoryid");
+                }
                 if (!string.IsNullOrEmpty(info.Assetcategoryid))
                 {
-                    this.Database.AddInParameter(":Assetcategoryid", DbType.AnsiString, "%" + info.Assetcategoryid + "%");
-                    condition.Add(@" ""ASSET"".""ASSETCATEGORYID"" LIKE :Assetcategoryid");
+                    this.Database.AddInParameter(":Assetcategoryid", DbType.AnsiString, info.Assetcategoryid);
+                    sqlCommand.AppendLine(@"  ""ASSET"".""ASSETCATEGORYID"" = :Assetcategoryid");
                 }
                 #endregion
 
@@ -615,8 +620,8 @@ namespace FixedAsset.DataAccess
                 #region 供应商
                 if (!string.IsNullOrEmpty(info.Supplierid))
                 {
-                    this.Database.AddInParameter(":Supplierid", "%" + info.Supplierid + "%");
-                    condition.Add(@" ""ASSET"".""SUPPLIERID"" LIKE :Supplierid");
+                    this.Database.AddInParameter(":Supplierid", info.Supplierid);
+                    condition.Add(@" ""ASSET"".""SUPPLIERID"" = :Supplierid");
                 }
                 #endregion
 
@@ -657,8 +662,8 @@ namespace FixedAsset.DataAccess
                 #region 分公司
                 if (!string.IsNullOrEmpty(info.Subcompany))
                 {
-                    this.Database.AddInParameter(":Subcompany", DbType.AnsiString, "%" + info.Subcompany + "%");
-                    condition.Add(@" ""ASSET"".""SUBCOMPANY"" LIKE :Subcompany");
+                    this.Database.AddInParameter(":Subcompany", DbType.AnsiString, info.Subcompany);
+                    condition.Add(@" ""ASSET"".""SUBCOMPANY"" = :Subcompany");
                 }
                 #endregion 
 

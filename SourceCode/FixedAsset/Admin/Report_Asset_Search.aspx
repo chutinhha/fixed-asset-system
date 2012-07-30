@@ -37,6 +37,28 @@
                         </asp:DropDownList>
                     </td>
                     <td>
+                        设备名称
+                    </td>
+                    <td>
+                        <asp:TextBox ID="txtSrchAssetname" Width="150" CssClass="text_inp" runat="server" />
+                    </td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td>
+                        设备状态
+                    </td>
+                    <td>
+                        <asp:DropDownList ID="ddlSrchState" runat="server" Width="150">
+                        </asp:DropDownList>
+                    </td>
+                    <td>
+                        管理模式
+                    </td>
+                    <td>
+                        <asp:DropDownList ID="ddlManagementModel" runat="server" Width="150px">
+                        </asp:DropDownList>
+                    </td>
+                    <td>
                         购入日期
                     </td>
                     <td>
@@ -47,25 +69,24 @@
                 </tr>
                 <tr style="height: 30px;">
                     <td>
-                        管理模式
-                    </td>
-                    <td>
-                        <asp:DropDownList ID="ddlManagementModel" runat="server" Width="150px">
-                        </asp:DropDownList>
-                    </td>
-                    <td>
-                        设备状态
-                    </td>
-                    <td>
-                        <asp:DropDownList ID="ddlSrchState" runat="server" Width="150">
-                        </asp:DropDownList>
-                    </td>
-                    <td>
                         账务类别
                     </td>
                     <td>
-                        <asp:DropDownList ID="ddlAccountingType" runat="server" Width="150">
+                        <asp:DropDownList ID="ddlFinancecategory" runat="server" Width="150">
                         </asp:DropDownList>
+                    </td>
+                    <td>
+                        供应商
+                    </td>
+                    <td>
+                        <asp:DropDownList ID="ddlSuppliers" runat="server" Width="150px">
+                        </asp:DropDownList>
+                    </td>
+                    <td>
+                        存放地点
+                    </td>
+                    <td>
+                        
                     </td>
                 </tr>
                 <tr>
@@ -75,131 +96,156 @@
                 </tr>
             </table>
             <div style="overflow-x: scroll;">
-            <table style="padding-top: 0px;" cellspacing="0px" cellpadding="0px"
-                align="center" class="gridtable">
-                <asp:Repeater ID="rptAssetsList" runat="server">
-                    <HeaderTemplate>
-                        <tr class="thbg" style="padding: 0 0 0 0">
-                            <th align="center" style="width:100px;">
-                                设备编号
-                            </th>
-                            <th align="center" style="width:100px;">
-                                分公司
-                            </th>
-                            <th align="center" style="width:60px;">
-                                供应商
-                            </th>
-                            <th align="center" style="width:150px;">
-                                存放地点
-                            </th>
-                            <th align="center" style="width:100px;">
-                                设备类别
-                            </th>
-                            <th align="center" style="width:150px;">
-                                设备名称
-                            </th>
-                            <th align="center" style="width:60px;">
-                                设备状态
-                            </th>
-                            <th align="center" style="width:75px;">
-                                购入日期
-                            </th>
-                            <th align="center" style="width:75px;">
-                                单价
-                            </th>
-                            <th align="center" style="width:120px;">
-                                采购合同编号
-                            </th>
-                            <th align="center" style="width:75px;">
-                                账务类别
-                            </th>
-                        </tr>
-                    </HeaderTemplate>
-                    <ItemTemplate>
-                        <tr>
-                            <td align="left">
-                                <a href='javascript:ShowTopDialogFrame("设备明细", "ShowAssetDetail.aspx?Assetno=<%#Eval("Assetno")%>","",900,560);'>
-                                    <%#Eval("Assetno")%></a>
-                            </td>
-                            <td align="left">
-                                <%#Eval("Subcompanyfullname")%>
-                            </td>
-                            <td align="left">
-                                <%#Eval("Suppliername")%>
-                            </td>
-                            <td align="left" style="word-wrap: break-word;">
-                                <%#Eval("Subcompanyname")==null?Eval("Storagename"):(Eval("Subcompanyname").ToString() == Eval("Storagename").ToString() ? Eval("Storagename") : Eval("Subcompanyname").ToString() + "-" + Eval("Storagename").ToString())%>
-                            </td>
-                            <td align="left">
-                                
-                                <%#Eval("Categoryallpathname")%>
-                            </td>
-                            <td align="left">
-                                <%#Eval("Assetname")%>
-                            </td>
-                            <td align="left">
-                                <%#EnumUtil.RetrieveEnumDescript((AssetState)Eval("State"))%>
-                            </td>
-                            <td align="left">
-                                <%# Eval("Purchasedate") == null ? "" : ((DateTime)Eval("Purchasedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
-                            </td>
-                            <td align="right">
-                                <%#((decimal)Eval("Unitprice")).ToString(FixedAsset.Web.AppCode.UiConst.MoneyFormat)%>
-                            </td>
-                            <td align="left">
-                                <%#Eval("Contractid")%>
-                            </td>
-                            <td align="left">
-                                <%#EnumUtil.RetrieveEnumDescript((FinanceCategory)Eval("Financecategory"))%>
-                            </td>
-                        </tr>
-                    </ItemTemplate>
-                    <AlternatingItemTemplate>
-                        <tr class="even">
-                             <td align="left">
-                                <a href='javascript:ShowTopDialogFrame("设备明细", "ShowAssetDetail.aspx?Assetno=<%#Eval("Assetno")%>","",900,560);'>
-                                    <%#Eval("Assetno")%></a>
-                            </td>
-                            <td align="left">
-                                <%#Eval("Subcompanyfullname")%>
-                            </td>
-                            <td align="left">
-                                <%#Eval("Suppliername")%>
-                            </td>
-                            <td align="left" style="word-wrap: break-word;">
-                                <%#Eval("Subcompanyname")==null?Eval("Storagename"):(Eval("Subcompanyname").ToString() == Eval("Storagename").ToString() ? Eval("Storagename") : Eval("Subcompanyname").ToString() + "-" + Eval("Storagename").ToString())%>
-                            </td>
-                            <td align="left">
-                                
-                                <%#Eval("Categoryallpathname")%>
-                            </td>
-                            <td align="left">
-                                <%#Eval("Assetname")%>
-                            </td>
-                            <td align="left">
-                                <%#EnumUtil.RetrieveEnumDescript((AssetState)Eval("State"))%>
-                            </td>
-                            <td align="left">
-                                <%# Eval("Purchasedate") == null ? "" : ((DateTime)Eval("Purchasedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
-                            </td>
-                            <td align="right">
-                                <%#((decimal)Eval("Unitprice")).ToString(FixedAsset.Web.AppCode.UiConst.MoneyFormat)%>
-                            </td>
-                            <td align="left">
-                                <%#Eval("Contractid")%>
-                            </td>
-                            <td align="left">
-                                <%#EnumUtil.RetrieveEnumDescript((FinanceCategory)Eval("Financecategory"))%>
-                            </td>
-                        </tr>
-                    </AlternatingItemTemplate>
-                </asp:Repeater>
-                <tr style="height: 28px">
-                    <td colspan="9" style="height: 28px; width: 98%;" align="center">
-                        <cc1:PagingControl ID="pcData" runat="server" MaxNavigatePageCount="7" OnPageIndexClick="pcData_PageIndexClick" />
-                    </td>
-                </tr>
-            </table>
+                <table style="padding-top: 0px;" cellspacing="0px" cellpadding="0px" align="center"
+                    class="gridtable">
+                    <asp:Repeater ID="rptAssetsList" runat="server">
+                        <HeaderTemplate>
+                            <tr class="thbg" style="padding: 0 0 0 0">
+                                <th align="center" style="width: 100px;">
+                                    设备编号
+                                </th>
+                                <th align="center" style="width: 100px;">
+                                    分公司
+                                </th>
+                                <th align="center" style="width: 60px;">
+                                    供应商
+                                </th>
+                                <th align="center" style="width: 150px;">
+                                    存放地点
+                                </th>
+                                <th align="center" style="width: 100px;">
+                                    设备类别
+                                </th>
+                                <th align="center" style="width: 150px;">
+                                    设备名称
+                                </th>
+                                <th align="center" style="width: 150px;">
+                                    品牌
+                                </th>
+                                <th align="center" style="width: 150px;">
+                                    设备规格
+                                </th>
+                                <th align="center" style="width: 60px;">
+                                    设备状态
+                                </th>
+                                <th align="center" style="width: 75px;">
+                                    购入日期
+                                </th>
+                                <th align="center" style="width: 75px;">
+                                    折旧年限
+                                </th>
+                                <th align="center" style="width: 75px;">
+                                    单价
+                                </th>
+                                <th align="center" style="width: 75px;">
+                                    账务类别
+                                </th>
+                                <th align="center" style="width: 75px;">
+                                    管理模式
+                                </th>
+                            </tr>
+                        </HeaderTemplate>
+                        <ItemTemplate>
+                            <tr>
+                                <td align="left">
+                                    <a href='javascript:ShowTopDialogFrame("设备明细", "ShowAssetDetail.aspx?Assetno=<%#Eval("Assetno")%>","",900,560);'>
+                                        <%#Eval("Assetno")%></a>
+                                </td>
+                                <td align="left">
+                                    <%#Eval("Subcompanyfullname")%>
+                                </td>
+                                <td align="left">
+                                    <%#Eval("Suppliername")%>
+                                </td>
+                                <td align="left" style="word-wrap: break-word;">
+                                    <%#Eval("Subcompanyname")==null?Eval("Storagename"):(Eval("Subcompanyname").ToString() == Eval("Storagename").ToString() ? Eval("Storagename") : Eval("Subcompanyname").ToString() + "-" + Eval("Storagename").ToString())%>
+                                </td>
+                                <td align="left">
+                                    <%#Eval("Categoryallpathname")%>
+                                </td>
+                                <td align="left">
+                                    <%#Eval("Assetname")%>
+                                </td>
+                                <td align="left">
+                                    <%#Eval("Brand")%>
+                                </td>
+                                <td align="left">
+                                    <%#Eval("Assetspecification")%>
+                                </td>
+                                <td align="left">
+                                    <%#EnumUtil.RetrieveEnumDescript((AssetState)Eval("State"))%>
+                                </td>
+                                <td align="left">
+                                    <%# Eval("Purchasedate") == null ? "" : ((DateTime)Eval("Purchasedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                </td>
+                                <td align="center">
+                                    <%#Eval("Depreciationyear")%>
+                                </td>
+                                <td align="right">
+                                    <%#((decimal)Eval("Unitprice")).ToString(FixedAsset.Web.AppCode.UiConst.MoneyFormat)%>
+                                </td>
+                                <td align="left">
+                                    <%#EnumUtil.RetrieveEnumDescript((FinanceCategory)Eval("Financecategory"))%>
+                                </td>
+                                <td align="left">
+                                    <%#EnumUtil.RetrieveEnumDescript((ManageMode)Eval("Managemode"))%>
+                                </td>
+                            </tr>
+                        </ItemTemplate>
+                        <AlternatingItemTemplate>
+                            <tr class="even">
+                                <td align="left">
+                                    <a href='javascript:ShowTopDialogFrame("设备明细", "ShowAssetDetail.aspx?Assetno=<%#Eval("Assetno")%>","",900,560);'>
+                                        <%#Eval("Assetno")%></a>
+                                </td>
+                                <td align="left">
+                                    <%#Eval("Subcompanyfullname")%>
+                                </td>
+                                <td align="left">
+                                    <%#Eval("Suppliername")%>
+                                </td>
+                                <td align="left" style="word-wrap: break-word;">
+                                    <%#Eval("Subcompanyname")==null?Eval("Storagename"):(Eval("Subcompanyname").ToString() == Eval("Storagename").ToString() ? Eval("Storagename") : Eval("Subcompanyname").ToString() + "-" + Eval("Storagename").ToString())%>
+                                </td>
+                                <td align="left">
+                                    <%#Eval("Categoryallpathname")%>
+                                </td>
+                                <td align="left">
+                                    <%#Eval("Assetname")%>
+                                </td>
+                                <td align="left">
+                                    <%#Eval("Brand")%>
+                                </td>
+                                <td align="left">
+                                    <%#Eval("Assetspecification")%>
+                                </td>
+                                <td align="left">
+                                    <%#EnumUtil.RetrieveEnumDescript((AssetState)Eval("State"))%>
+                                </td>
+                                <td align="left">
+                                    <%# Eval("Purchasedate") == null ? "" : ((DateTime)Eval("Purchasedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                </td>
+                                <td align="center">
+                                    <%#Eval("Depreciationyear")%>
+                                </td>
+                                <td align="right">
+                                    <%#((decimal)Eval("Unitprice")).ToString(FixedAsset.Web.AppCode.UiConst.MoneyFormat)%>
+                                </td>
+                                <td align="left">
+                                    <%#EnumUtil.RetrieveEnumDescript((FinanceCategory)Eval("Financecategory"))%>
+                                </td>
+                                <td align="left">
+                                    <%#EnumUtil.RetrieveEnumDescript((ManageMode)Eval("Managemode"))%>
+                                </td>
+                            </tr>
+                        </AlternatingItemTemplate>
+                    </asp:Repeater>
+                    <tr style="height: 28px">
+                        <td colspan="9" style="height: 28px; width: 98%;" align="center">
+                            <cc1:PagingControl ID="pcData" runat="server" MaxNavigatePageCount="7" OnPageIndexClick="pcData_PageIndexClick" />
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
