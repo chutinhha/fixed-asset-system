@@ -13,6 +13,7 @@ namespace FixedAsset.Web.Admin
 {
     public partial class Report_AssetRegister : BasePage
     {
+        #region Properties
         protected IAssetService AssetService
         {
             get
@@ -46,7 +47,9 @@ namespace FixedAsset.Web.Admin
                 return Session["VStorageAddress"] as List<Vstorageaddress>;
             }
         }
+        #endregion
 
+        #region Events
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
@@ -64,6 +67,7 @@ namespace FixedAsset.Web.Admin
         {
             LoadCurrentData();
         }
+        #endregion
 
         #region Methods
         protected void LoadAssetCategory()
@@ -327,47 +331,6 @@ namespace FixedAsset.Web.Admin
 
             literAssetRegister.Text = content.ToString();
         }
-        #endregion
-
-        protected void LoadData(int pageIndex)
-        {
-            #region MyRegion
-            //System.Data.DataTable dt = new System.Data.DataTable();
-            //dt.Columns.Add("AssetStorageCategory");
-            //dt.Columns.Add("AssetSubStorageCategory");
-            //dt.Columns.Add("AssetCount");
-
-            //foreach (Assetsupplier supplier in assetSuppliers)
-            //{
-            //    System.Data.DataRow dr = dt.NewRow();
-            //    dr["AssetStorageCategory"] = supplier.Suppliername;
-            //    dr["AssetSubStorageCategory"] = "";
-            //    //dr["AssetCount"] = list.Where(p => p.Storageflag.ToLower().Equals("supplier") && p.Supplierid.ToLower().Equals(supplier.Supplierid.ToLower())).Count();
-            //    dr["AssetCount"] = list.Where(p => p.Storageflag == Vstorageaddress.Supplier && p.Storage == supplier.Supplierid).Count();
-            //    dt.Rows.Add(dr);
-            //}
-            //foreach (Subcompanyinfo subcom in subcompanyinfos)
-            //{
-            //    System.Data.DataRow dr = dt.NewRow();
-            //    dr["AssetStorageCategory"] = subcom.Subcompanyname;
-            //    dr["AssetSubStorageCategory"] = "";
-            //    dr["AssetCount"] = list.Where(p => p.Storageflag == Vstorageaddress.Subcompany && p.Storage == subcom.Subcompanyid.ToString()).Count();
-            //    //list.Where(o =>o.Storageflag.ToLower().Equals("subcompany") &&o.Subcompany.ToLower().Equals(subcom.Subcompanyid.ToString().ToLower())).Count();
-            //    dt.Rows.Add(dr);
-            //    var currentProjects = Project.Where(p => p.Fgsid == subcom.Subcompanyid).ToList();
-            //    foreach (var currentProject in currentProjects)
-            //    {
-            //        System.Data.DataRow drproject = dt.NewRow();
-            //        drproject["AssetStorageCategory"] = subcom.Subcompanyname;
-            //        drproject["AssetSubStorageCategory"] = currentProject.Xmt;
-            //        drproject["AssetCount"] = list.Where(p => p.Storageflag == Vstorageaddress.Project && p.Storage == currentProject.Xmtid.ToString()).Count();
-            //        //drproject["AssetCount"] = list.Where(p => p.Storageflag.ToLower().Equals("project") && p.Storage.ToLower().Equals(lbfgsxmt.Xmtid.ToString().ToLower())).Count();
-            //        dt.Rows.Add(drproject);
-            //    }
-            //}
-            //rptAssetsStorageCategoryList.DataSource = dt;
-            //rptAssetsStorageCategoryList.DataBind(); 
-            #endregion
-        }
+        #endregion  
     }
 }
