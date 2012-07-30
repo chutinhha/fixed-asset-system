@@ -146,9 +146,12 @@ namespace FixedAsset.Web.Admin
                 , MonthFirstDate.ToString(UiConst.DateFormatCh), MonthLastDate.ToString(UiConst.DateFormatCh));
             LoadCurrentData();
         }
-        protected void BtnSearch_Click(object sender, EventArgs e)
+        protected void BtnSave_Click(object sender, EventArgs e)
         {
-            LoadCurrentData();
+            var list=new List<Assetrunplan>();
+            var categories = AssetCategories.Where(p => string.IsNullOrEmpty(p.Assetparentcategoryid) || p.Assetparentcategoryid == Assetcategory.FixedAssetCategory).ToList();
+
+            
         }
         #endregion
 
@@ -184,13 +187,12 @@ namespace FixedAsset.Web.Admin
         protected void LoadCurrentData()
         {
             #region Weekly
-
+            var categories = AssetCategories.Where(p => string.IsNullOrEmpty(p.Assetparentcategoryid) || p.Assetparentcategoryid == Assetcategory.FixedAssetCategory).ToList();
             var weekData = AssetrunplanService.RetrieveAssetrunplanByCondition(WeeklyPlandatecycle,
                                                                                ucSelectStorageAddress.Storagetitle,
                                                                                ucSelectStorageAddress.StorageId);
             if(weekData.Count==0)
             {
-                var categories = AssetCategories.Where(p => string.IsNullOrEmpty(p.Assetparentcategoryid) || p.Assetparentcategoryid == Assetcategory.FixedAssetCategory).ToList();
                 foreach (var assetcategory in categories)
                 {
                     var subCategories = AssetCategories.Where(p => p.Assetparentcategoryid == assetcategory.Assetcategoryid).ToList();
@@ -222,7 +224,6 @@ namespace FixedAsset.Web.Admin
                                                                                ucSelectStorageAddress.StorageId);
             if (monthlyData.Count == 0)
             {
-                var categories = AssetCategories.Where(p => string.IsNullOrEmpty(p.Assetparentcategoryid) || p.Assetparentcategoryid == Assetcategory.FixedAssetCategory).ToList();
                 foreach (var assetcategory in categories)
                 {
                     var subCategories = AssetCategories.Where(p => p.Assetparentcategoryid == assetcategory.Assetcategoryid).ToList();
