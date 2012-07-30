@@ -78,6 +78,7 @@
                                         </td>
                                         <td align="left" style="width: 20%">
                                             <asp:HiddenField ID="hfPlanid" runat="server" Value='<%#Eval("Planid") %>' />
+                                            <asp:HiddenField ID="hfAssetcategoryid" runat="server" Value='<%#Eval("Assetcategoryid") %>' />
                                             <asp:TextBox Width="100px" ID="txtPlanCount" runat="server" Text='<%#Eval("AssetCount") %>'></asp:TextBox>
                                         </td>
                                     </tr>
@@ -92,6 +93,7 @@
                                         </td>
                                         <td align="left" style="width: 20%">
                                             <asp:HiddenField ID="hfPlanid" runat="server" Value='<%#Eval("Planid") %>' />
+                                            <asp:HiddenField ID="hfAssetcategoryid" runat="server" Value='<%#Eval("Assetcategoryid") %>' />
                                             <asp:TextBox Width="100px" ID="txtPlanCount" runat="server" Text='<%#Eval("AssetCount") %>'></asp:TextBox>
                                         </td>
                                     </tr>
@@ -131,6 +133,7 @@
                                         </td>
                                         <td align="left" style="width: 20%">
                                             <asp:HiddenField ID="hfPlanid" runat="server" Value='<%#Eval("Planid") %>' />
+                                            <asp:HiddenField ID="hfAssetcategoryid" runat="server" Value='<%#Eval("Assetcategoryid") %>' />
                                             <asp:TextBox Width="100px" ID="txtPlanCount" runat="server" Text='<%#Eval("AssetCount") %>'></asp:TextBox>
                                         </td>
                                     </tr>
@@ -145,6 +148,7 @@
                                         </td>
                                         <td align="left" style="width: 20%">
                                             <asp:HiddenField ID="hfPlanid" runat="server" Value='<%#Eval("Planid") %>' />
+                                            <asp:HiddenField ID="hfAssetcategoryid" runat="server" Value='<%#Eval("Assetcategoryid") %>' />
                                             <asp:TextBox Width="100px" ID="txtPlanCount" runat="server" Text='<%#Eval("AssetCount") %>'></asp:TextBox>
                                         </td>
                                     </tr>
