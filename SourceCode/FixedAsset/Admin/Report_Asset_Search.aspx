@@ -1,5 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/MasterPage.master" AutoEventWireup="true" CodeBehind="Report_Asset_Search.aspx.cs" Inherits="FixedAsset.Web.Admin.Report_Asset_Search" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/MasterPage.master" AutoEventWireup="true"
+    CodeBehind="Report_Asset_Search.aspx.cs" Inherits="FixedAsset.Web.Admin.Report_Asset_Search" %>
 
 <%@ Import Namespace="FixedAsset.Domain" %>
 <%@ Import Namespace="SeallNet.Utility" %>
@@ -19,7 +19,7 @@
         <div id="dTab1" class="Box text_box">
             <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
                 align="center">
-                <tr>
+                <tr style="height: 30px;">
                     <td>
                         设备编号
                     </td>
@@ -45,7 +45,7 @@
                         <uc1:DatePicker ID="ucEndPurchasedate" runat="server" />
                     </td>
                 </tr>
-                <tr>
+                <tr style="height: 30px;">
                     <td>
                         管理模式
                     </td>
@@ -57,7 +57,7 @@
                         设备状态
                     </td>
                     <td>
-                        <asp:DropDownList ID="ddlEquipmentStatus" runat="server" Width="150">
+                        <asp:DropDownList ID="ddlSrchState" runat="server" Width="150">
                         </asp:DropDownList>
                     </td>
                     <td>
@@ -71,18 +71,25 @@
                 <tr>
                     <td colspan="6" align="right">
                         <asp:Button ID="BtnSearch" runat="server" CssClass="button" Text="查询" OnClick="BtnSearch_Click" />
-                        <input type="button" class="button" runat="server" id="btnAdd" value="新增" onclick="javascript:window.location='NewEquipment.aspx'" />
                     </td>
                 </tr>
             </table>
             <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
                 align="center" class="gridtable">
-                <asp:Repeater ID="rptAssetsList" runat="server" OnItemDataBound="rptAssetsList_ItemDataBound"
-                    OnItemCommand="rptAssetsList_ItemCommand">
+                <asp:Repeater ID="rptAssetsList" runat="server">
                     <HeaderTemplate>
                         <tr class="thbg" style="padding: 0 0 0 0">
                             <th align="center">
                                 设备编号
+                            </th>
+                            <th>
+                                分公司
+                            </th>
+                            <th>
+                                供应商
+                            </th>
+                            <th align="center">
+                                存放地点
                             </th>
                             <th align="center">
                                 设备类别
@@ -105,9 +112,6 @@
                             <th align="center">
                                 账务类别
                             </th>
-                            <th align="center">
-                                操作
-                            </th>
                         </tr>
                     </HeaderTemplate>
                     <ItemTemplate>
@@ -116,8 +120,18 @@
                                 <a href='javascript:ShowTopDialogFrame("设备明细", "ShowAssetDetail.aspx?Assetno=<%#Eval("Assetno")%>","",900,560);'>
                                     <%#Eval("Assetno")%></a>
                             </td>
+                            <td>
+                                <%#Eval("Subcompanyfullname")%>
+                            </td>
+                            <td>
+                                <%#Eval("Suppliername")%>
+                            </td>
                             <td align="center">
-                                <asp:Literal ID="litCategoryName" runat="server" />
+                                <%#Eval("Subcompanyname")==null?Eval("Storagename"):(Eval("Subcompanyname").ToString() == Eval("Storagename").ToString() ? Eval("Storagename") : Eval("Subcompanyname").ToString() + "-" + Eval("Storagename").ToString())%>
+                            </td>
+                            <td align="center">
+                                
+                                <%#Eval("Categoryallpathname")%>
                             </td>
                             <td align="center">
                                 <%#Eval("Assetname")%>
@@ -136,13 +150,6 @@
                             </td>
                             <td align="center">
                                 <%#EnumUtil.RetrieveEnumDescript((FinanceCategory)Eval("Financecategory"))%>
-                            </td>
-                            <td align="center">
-                                <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"
-                                    AlternateText="编辑" ToolTip="编辑" CommandArgument='<%#Eval("Assetno")%>' CommandName="EditDetail" />
-                                <asp:ImageButton ID="BtnDeleted" runat="server" ImageUrl="~/images/Button/delete.GIF"
-                                    CommandArgument='<%#Eval("Assetno")%>' CommandName="DeleteDetail" OnClientClick="return confirm('确认要删除吗？');"
-                                    AlternateText="删除" ToolTip="删除" />
                             </td>
                         </tr>
                     </ItemTemplate>
@@ -152,8 +159,18 @@
                                 <a href='javascript:ShowTopDialogFrame("设备明细", "ShowAssetDetail.aspx?Assetno=<%#Eval("Assetno")%>","",900,560);'>
                                     <%#Eval("Assetno")%></a>
                             </td>
+                            <td>
+                                <%#Eval("Subcompanyfullname")%>
+                            </td>
+                            <td>
+                                <%#Eval("Suppliername")%>
+                            </td>
                             <td align="center">
-                                <asp:Literal ID="litCategoryName" runat="server" />
+                                <%#Eval("Subcompanyname")==null?Eval("Storagename"):(Eval("Subcompanyname").ToString() == Eval("Storagename").ToString() ? Eval("Storagename") : Eval("Subcompanyname").ToString() + "-" + Eval("Storagename").ToString())%>
+                            </td>
+                            <td align="center">
+                                
+                                <%#Eval("Categoryallpathname")%>
                             </td>
                             <td align="center">
                                 <%#Eval("Assetname")%>
@@ -173,12 +190,6 @@
                             <td align="center">
                                 <%#EnumUtil.RetrieveEnumDescript((FinanceCategory)Eval("Financecategory"))%>
                             </td>
-                            <td align="center">
-                                <asp:ImageButton ID="BtnEdit" runat="server" ImageUrl="~/images/Button/edit.GIF"
-                                    AlternateText="编辑" ToolTip="编辑" CommandArgument='<%#Eval("Assetno")%>' CommandName="EditDetail" />
-                                <asp:ImageButton ID="BtnDeleted" runat="server" ImageUrl="~/images/Button/delete.GIF"
-                                    CommandArgument='<%#Eval("Assetno")%>' CommandName="DeleteDetail" OnClientClick="return confirm('确认要删除吗？');"
-                                    AlternateText="删除" ToolTip="删除" />
                         </tr>
                     </AlternatingItemTemplate>
                 </asp:Repeater>
@@ -191,4 +202,3 @@
         </div>
     </div>
 </asp:Content>
-

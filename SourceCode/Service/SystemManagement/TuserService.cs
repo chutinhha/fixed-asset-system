@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
+using System.Linq;
 using FixedAsset.Domain;
 using FixedAsset.DataAccess;
 using FixedAsset.IServices;
@@ -170,6 +171,11 @@ namespace FixedAsset.Services
                 }
                 var rolepermissionManagement=new RolepermissionManagement(Management);
                 var list = rolepermissionManagement.RetrieveMenuItemsByRoleId(roleInfos[0].Roleid);
+                list = (from p in list
+                        orderby p.Parentmenuid
+                        orderby p.Orderby
+                        orderby p.Menuid 
+                        select p).ToList();
                 menuItems.AddRange(list);
             }
             return menuItems;
