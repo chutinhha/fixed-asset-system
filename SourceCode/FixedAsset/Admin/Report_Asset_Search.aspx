@@ -17,7 +17,7 @@
     </ul>
     <div id="cnt">
         <div id="dTab1" class="Box text_box">
-            <table style="width: 98%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
+            <table style="width: 100%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
                 align="center">
                 <tr style="height: 30px;">
                     <td>
@@ -95,52 +95,52 @@
                     </td>
                 </tr>
             </table>
-            <div style="overflow-x: scroll;">
-                <table style="padding-top: 0px;" cellspacing="0px" cellpadding="0px" align="center"
+            <div style="overflow-x: scroll; width:100%; padding:0 0 0 0; margin:0 0 0 0" >
+                <table style="padding-top: 0px;" width="100%" cellspacing="0px" cellpadding="0px" align="center"
                     class="gridtable">
                     <asp:Repeater ID="rptAssetsList" runat="server">
                         <HeaderTemplate>
                             <tr class="thbg" style="padding: 0 0 0 0">
-                                <th align="center" style="width: 100px;">
+                                <th align="center">
                                     设备编号
                                 </th>
-                                <th align="center" style="width: 100px;">
+                                <th align="center">
                                     分公司
                                 </th>
-                                <th align="center" style="width: 60px;">
+                                <th align="center">
                                     供应商
                                 </th>
-                                <th align="center" style="width: 150px;">
+                                <th align="center" style="width:150px">
                                     存放地点
                                 </th>
-                                <th align="center" style="width: 100px;">
+                                <th align="center">
                                     设备类别
                                 </th>
-                                <th align="center" style="width: 150px;">
+                                <th align="center">
                                     设备名称
                                 </th>
-                                <th align="center" style="width: 150px;">
+                                <th align="center">
                                     品牌
                                 </th>
-                                <th align="center" style="width: 150px;">
+                                <th align="center">
                                     设备规格
                                 </th>
-                                <th align="center" style="width: 60px;">
+                                <th align="center">
                                     设备状态
                                 </th>
-                                <th align="center" style="width: 75px;">
+                                <th align="center">
                                     购入日期
                                 </th>
-                                <th align="center" style="width: 75px;">
+                                <th align="center">
                                     折旧年限
                                 </th>
-                                <th align="center" style="width: 75px;">
+                                <th align="center">
                                     单价
                                 </th>
-                                <th align="center" style="width: 75px;">
+                                <th align="center">
                                     账务类别
                                 </th>
-                                <th align="center" style="width: 75px;">
+                                <th align="center">
                                     管理模式
                                 </th>
                             </tr>
@@ -241,7 +241,7 @@
                         </AlternatingItemTemplate>
                     </asp:Repeater>
                     <tr style="height: 28px">
-                        <td colspan="9" style="height: 28px; width: 98%;" align="center">
+                        <td colspan="14" style="height: 28px; width: 98%;" align="center">
                             <cc1:PagingControl ID="pcData" runat="server" MaxNavigatePageCount="7" OnPageIndexClick="pcData_PageIndexClick" />
                         </td>
                     </tr>
