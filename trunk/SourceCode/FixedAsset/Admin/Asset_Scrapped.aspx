@@ -74,7 +74,7 @@
                 <asp:Repeater ID="rptScrappedList" runat="server" OnItemDataBound="rptScrappedList_ItemDataBound"
                     OnItemCommand="rptScrappedList_ItemCommand">
                     <HeaderTemplate>
-                        <tr class="thbg" style="padding:0 0 0 0">
+                        <tr class="thbg" style="padding: 0 0 0 0">
                             <th style="width: 11%">
                                 <input type="checkbox" id="chkAll" />设备编号
                             </th>
@@ -99,7 +99,6 @@
                             <th style="width: 9%">
                                 报废申请单号
                             </th>
-                            
                             <th style="width: 7%">
                                 报废人
                             </th>
@@ -137,12 +136,11 @@
                                 <%# Eval("Purchasedate") == null ? "" : ((DateTime)Eval("Purchasedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
                             <td>
-                                <%#((DateTime)Eval("Expireddate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                <%# Eval("Expireddate") == null ? "" : ((DateTime)Eval("Expireddate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
                             <td align="center">
                                 <%#Eval("Assetscrappedid")%>
                             </td>
-                            
                             <td>
                                 <%#Eval("Scrappeduser")%>
                             </td>
@@ -163,7 +161,7 @@
                         </tr>
                     </ItemTemplate>
                     <AlternatingItemTemplate>
-                        <tr  class="even">
+                        <tr class="even">
                             <td align="center">
                                 <asp:CheckBox ID="ckbAssetno" runat="server" TextAlign="Right" />
                                 <a href='javascript:ShowTopDialogFrame("设备明细", "ShowAssetDetail.aspx?Assetno=<%#Eval("Assetno")%>","",900,560);'>
@@ -185,11 +183,11 @@
                                 <%# Eval("Purchasedate") == null ? "" : ((DateTime)Eval("Purchasedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
                             <td>
-                                <%#((DateTime)Eval("Expireddate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                <%# Eval("Expireddate") == null ? "" : ((DateTime)Eval("Expireddate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
                             </td>
                             <td align="center">
                                 <%#Eval("Assetscrappedid")%>
-                            </td>                   
+                            </td>
                             <td>
                                 <%#Eval("Scrappeduser")%>
                             </td>
