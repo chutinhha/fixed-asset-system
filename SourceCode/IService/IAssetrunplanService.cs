@@ -15,6 +15,7 @@ namespace FixedAsset.IServices
     public interface IAssetrunplanService
     {
         List<Assetrunplan> RetrieveAssetrunplansPaging(AssetrunplanSearch info,int pageIndex, int pageSize,out int count);
+        List<Assetrunplan> RetrieveAssetrunplanByCondition(string Plandatecycle, string Storageflag, string Storage);
         Assetrunplan CreateAssetrunplan(Assetrunplan info);
         Assetrunplan UpdateAssetrunplanByPlanid(Assetrunplan info);
         Assetrunplan RetrieveAssetrunplanByPlanid(int planid);

@@ -70,13 +70,62 @@ namespace FixedAsset.DataAccess
         }
         #endregion
 
+        #region RetrieveAssetrunplanByCondition
+        public  List<Assetrunplan> RetrieveAssetrunplanByCondition(string Plandatecycle,string Storageflag,string Storage)
+        {
+            try
+            {    
+                if(string.IsNullOrEmpty(Plandatecycle)||string.IsNullOrEmpty(Storageflag)||string.IsNullOrEmpty(Storage))
+                {
+                    return new List<Assetrunplan>();
+                }
+                var sqlCommand = new StringBuilder(@" SELECT ""ASSETRUNPLAN"".""PLANID"",""ASSETRUNPLAN"".""ASSETPARENTCATEGORYID"",""ASSETRUNPLAN"".""ASSETCATEGORYID""
+                    ,""ASSETRUNPLAN"".""STORAGEFLAG"",""ASSETRUNPLAN"".""STORAGE""
+                    ,""ASSETRUNPLAN"".""PLANDATECYCLE"",""ASSETRUNPLAN"".""CREATEDDATE"",""ASSETRUNPLAN"".""STARTDATE""
+                    ,""ASSETRUNPLAN"".""ENDDATE"",""ASSETRUNPLAN"".""PLANCATEGORY"",ASSETCOUNT
+                    ,f.ASSETCATEGORYNAME AS Assetparentcategoryname,e.ASSETCATEGORYNAME AS Assetsubcategoryname
+                      FROM ""ASSETRUNPLAN""
+                      INNER JOIN ASSETCATEGORY e on e.ASSETCATEGORYID=ASSETRUNPLAN.ASSETCATEGORYID 
+                      INNER JOIN ASSETCATEGORY f on f.ASSETCATEGORYID=e.ASSETPARENTCATEGORYID
+                    ");
+
+                var condition = new List<string>();
+                #region 分公司、项目体标识
+                this.Database.AddInParameter(":Storageflag", Storageflag);
+                condition.Add(@" ""ASSETRUNPLAN"".""STORAGEFLAG"" = :Storageflag");
+                this.Database.AddInParameter(":Storage", Storage);
+                condition.Add(@" ""ASSETRUNPLAN"".""STORAGE"" = :Storage");
+                #endregion
+
+                #region 时间段（如：周计划，20120723-20120729）
+                this.Database.AddInParameter(":Plandatecycle", Plandatecycle);
+                condition.Add(@" ""ASSETRUNPLAN"".""PLANDATECYCLE"" = :Plandatecycle");
+                #endregion
+
+                if (condition.Count > 0)
+                {
+                    for (int i = 0; i < condition.Count; i++)
+                    {
+                        sqlCommand.Append(i == 0 ? " WHERE " : " AND ").Append(condition[i]);
+                    }
+                }
+                sqlCommand.AppendLine(@"  ORDER BY ""ASSETRUNPLAN"".""PLANID"" DESC");
+                return this.Database.ExecuteToList<Assetrunplan>(sqlCommand.ToString());
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
+        #endregion
+
         #region RetrieveAssetrunplansPaging
         public List<Assetrunplan> RetrieveAssetrunplansPaging(AssetrunplanSearch info, int pageIndex, int pageSize, out int count)
         {
             try
             {
                 var sqlCommand = new StringBuilder(@" SELECT ""ASSETRUNPLAN"".""PLANID"",""ASSETRUNPLAN"".""ASSETPARENTCATEGORYID"",""ASSETRUNPLAN"".""ASSETCATEGORYID"",""ASSETRUNPLAN"".""STORAGEFLAG"",""ASSETRUNPLAN"".""STORAGE"",
-                     ""ASSETRUNPLAN"".""PLANDATECYCLE"",""ASSETRUNPLAN"".""CREATEDDATE"",""ASSETRUNPLAN"".""STARTDATE"",""ASSETRUNPLAN"".""ENDDATE"",""ASSETRUNPLAN"".""PLANCATEGORY""
+                     ""ASSETRUNPLAN"".""PLANDATECYCLE"",""ASSETRUNPLAN"".""CREATEDDATE"",""ASSETRUNPLAN"".""STARTDATE"",""ASSETRUNPLAN"".""ENDDATE"",ASSETCOUNT,""ASSETRUNPLAN"".""PLANCATEGORY""
                      FROM ""ASSETRUNPLAN"" 
                     ");
                 var condition = new List<string>();

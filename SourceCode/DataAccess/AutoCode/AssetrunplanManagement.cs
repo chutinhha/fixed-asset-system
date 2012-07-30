@@ -19,7 +19,7 @@ namespace FixedAsset.DataAccess
     public partial class AssetrunplanManagement : BaseManagement
     {
         #region Construct
-        private const int ColumnCount = 10;
+        private const int ColumnCount = 11;
         public AssetrunplanManagement()
         { }
         public AssetrunplanManagement(BaseManagement baseManagement)
@@ -43,7 +43,8 @@ namespace FixedAsset.DataAccess
                 this.Database.AddInParameter(":Startdate", info.Startdate);//DBType:DATE
                 this.Database.AddInParameter(":Enddate", info.Enddate);//DBType:DATE
                 this.Database.AddInParameter(":Plancategory", info.Plancategory);//DBType:NUMBER
-                string sqlCommand = @"INSERT INTO ""ASSETRUNPLAN"" (""PLANID"",""ASSETPARENTCATEGORYID"",""ASSETCATEGORYID"",""STORAGEFLAG"",""STORAGE"",""PLANDATECYCLE"",""CREATEDDATE"",""STARTDATE"",""ENDDATE"",""PLANCATEGORY"") VALUES (:Planid,:Assetparentcategoryid,:Assetcategoryid,:Storageflag,:Storage,:Plandatecycle,:Createddate,:Startdate,:Enddate,:Plancategory)";
+                this.Database.AddInParameter(":Assetcount", info.Assetcount);//DBType:NUMBER
+                string sqlCommand = @"INSERT INTO ""ASSETRUNPLAN"" (""PLANID"",""ASSETPARENTCATEGORYID"",""ASSETCATEGORYID"",""STORAGEFLAG"",""STORAGE"",""PLANDATECYCLE"",""CREATEDDATE"",""STARTDATE"",""ENDDATE"",""PLANCATEGORY"",""ASSETCOUNT"") VALUES (:Planid,:Assetparentcategoryid,:Assetcategoryid,:Storageflag,:Storage,:Plandatecycle,:Createddate,:Startdate,:Enddate,:Plancategory,:Assetcount)";
                 this.Database.ExecuteNonQuery(sqlCommand);
             }
             finally
@@ -82,7 +83,8 @@ namespace FixedAsset.DataAccess
                 this.Database.AddInParameter(":Startdate", info.Startdate);//DBType:DATE
                 this.Database.AddInParameter(":Enddate", info.Enddate);//DBType:DATE
                 this.Database.AddInParameter(":Plancategory", info.Plancategory);//DBType:NUMBER
-                string sqlCommand = @"UPDATE ""ASSETRUNPLAN"" SET  ""ASSETPARENTCATEGORYID""=:Assetparentcategoryid , ""ASSETCATEGORYID""=:Assetcategoryid , ""STORAGEFLAG""=:Storageflag , ""STORAGE""=:Storage , ""PLANDATECYCLE""=:Plandatecycle , ""CREATEDDATE""=:Createddate , ""STARTDATE""=:Startdate , ""ENDDATE""=:Enddate , ""PLANCATEGORY""=:Plancategory WHERE  ""PLANID""=:Planid";
+                this.Database.AddInParameter(":Assetcount", info.Assetcount);//DBType:NUMBER
+                string sqlCommand = @"UPDATE ""ASSETRUNPLAN"" SET  ""ASSETPARENTCATEGORYID""=:Assetparentcategoryid , ""ASSETCATEGORYID""=:Assetcategoryid , ""STORAGEFLAG""=:Storageflag , ""STORAGE""=:Storage , ""PLANDATECYCLE""=:Plandatecycle , ""CREATEDDATE""=:Createddate , ""STARTDATE""=:Startdate , ""ENDDATE""=:Enddate , ""PLANCATEGORY""=:Plancategory , ""ASSETCOUNT""=:Assetcount WHERE  ""PLANID""=:Planid";
                 this.Database.ExecuteNonQuery(sqlCommand);
             }
             finally
@@ -142,5 +144,6 @@ namespace FixedAsset.DataAccess
             }
         }
         #endregion
+
     }
 }

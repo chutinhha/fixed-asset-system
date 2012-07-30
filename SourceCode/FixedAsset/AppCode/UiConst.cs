@@ -9,6 +9,7 @@ namespace FixedAsset.Web.AppCode
     {
         public const string CurrentException = "CurrentException";
         public const string DateFormat = "yyyy-MM-dd";
+        public const string DateFormat2 = "yyyyMMdd";
         public const string DateFormatCh = "yyyy\x5e74MM\x6708dd\x65e5";
         public const string DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
         public const string RateFormat = "0.00";

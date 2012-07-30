@@ -18,6 +18,9 @@ namespace FixedAsset.Domain
     [Serializable]
     public partial class Assetrunplan
     {
+        public const string Monthly = "Monthly";
+        public const string Weekly = "Weekly";
+
         #region 计划编号（时间段+分公司或项目体+分类ID等字符串的哈希值）
         ///<summary>
         ///计划编号（时间段+分公司或项目体+分类ID等字符串的哈希值）,PLANID;NOT NULL
@@ -30,6 +33,8 @@ namespace FixedAsset.Domain
         ///设备父类别,ASSETPARENTCATEGORYID;Size:40;
         ///</summary>
         public string Assetparentcategoryid { get; set; }
+
+        public string Assetparentcategoryname { get; set; }
         #endregion
 
         #region 设备子类别
@@ -37,6 +42,8 @@ namespace FixedAsset.Domain
         ///设备子类别,ASSETCATEGORYID;Size:40;
         ///</summary>
         public string Assetcategoryid { get; set; }
+
+        public string Assetsubcategoryname { get; set; }
         #endregion
 
         #region 分公司、项目体标识
@@ -88,5 +95,11 @@ namespace FixedAsset.Domain
         public int Plancategory { get; set; }
         #endregion
 
+        #region 计划设备数量
+        ///<summary>
+        ///计划设备数量,ASSETCOUNT;
+        ///</summary>
+        public int Assetcount { get; set; }
+        #endregion
     }
 }
