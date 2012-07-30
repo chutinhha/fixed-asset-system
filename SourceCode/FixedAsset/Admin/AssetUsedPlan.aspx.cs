@@ -182,17 +182,17 @@ namespace FixedAsset.Web.Admin
                 {
                     var currentSubCategory = subCategories[i];
                     var info = new Assetrunplan();
-                    info.Planid = i;//计划编号（时间段+分公司或项目体+分类ID等字符串的哈希值
+                    info.Planid = i;//计划编号（时间段+分公司或项目体+分类ID等字符串的哈希值）
                     info.Assetparentcategoryid = assetcategory.Assetcategoryid;//设备父类别
                     info.Assetparentcategoryname = assetcategory.Assetcategoryname;
                     info.Assetcategoryid = currentSubCategory.Assetcategoryid;//设备子类别
                     info.Assetsubcategoryname = currentSubCategory.Assetcategoryname;
                     info.Storageflag = ucSelectStorageAddress.Storagetitle;//分公司、项目体标识
                     info.Storage = ucSelectStorageAddress.StorageId;//分公司、项目体ID
-                    info.Plandatecycle = WeeklyPlandatecycle;//时间段（如：周计划，20120723-20120729）
+                    info.Plandatecycle = MonthlyPlandatecycle;//时间段（如：周计划，20120723-20120729）
                     info.Createddate = DateTime.Now;//创建时间
-                    info.Startdate = WeekFirstDate;//开始日期
-                    info.Enddate = WeekLastDate;//结束日期
+                    info.Startdate = MonthFirstDate;//开始日期
+                    info.Enddate = MonthLastDate;//结束日期
                     info.Plancategory = 1;//计划类别
                     info.Assetcount = 0;//计划设备数量
                     list.Add(info);
@@ -209,8 +209,8 @@ namespace FixedAsset.Web.Admin
             int dayOfWeek = Convert.ToInt32(DateTime.Today.DayOfWeek);
             int daydiff = (-1) * dayOfWeek + 1;
             int dayadd = 7 - dayOfWeek;
-            WeekFirstDate = DateTime.Now.AddDays(daydiff).AddDays(7);
-            WeekLastDate = DateTime.Now.AddDays(dayadd).AddDays(7);
+            WeekFirstDate = DateTime.Today.AddDays(daydiff).AddDays(7);
+            WeekLastDate = DateTime.Today.AddDays(dayadd).AddDays(7);
             WeeklyPlandatecycle = WeekFirstDate.ToString(UiConst.DateFormat2) + WeekLastDate.ToString(UiConst.DateFormat2);
 
             //月计划
