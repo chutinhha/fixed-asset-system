@@ -77,6 +77,7 @@
                                             <%#Eval("Assetsubcategoryname")%>
                                         </td>
                                         <td align="left" style="width: 20%">
+                                            <asp:HiddenField ID="hfPlanid" runat="server" Value='<%#Eval("Planid") %>' />
                                             <asp:TextBox Width="100px" ID="txtPlanCount" runat="server" Text='<%#Eval("AssetCount") %>'></asp:TextBox>
                                         </td>
                                     </tr>
@@ -90,6 +91,7 @@
                                             <%#Eval("Assetsubcategoryname")%>
                                         </td>
                                         <td align="left" style="width: 20%">
+                                            <asp:HiddenField ID="hfPlanid" runat="server" Value='<%#Eval("Planid") %>' />
                                             <asp:TextBox Width="100px" ID="txtPlanCount" runat="server" Text='<%#Eval("AssetCount") %>'></asp:TextBox>
                                         </td>
                                     </tr>
@@ -128,6 +130,7 @@
                                             <%#Eval("Assetsubcategoryname")%>
                                         </td>
                                         <td align="left" style="width: 20%">
+                                            <asp:HiddenField ID="hfPlanid" runat="server" Value='<%#Eval("Planid") %>' />
                                             <asp:TextBox Width="100px" ID="txtPlanCount" runat="server" Text='<%#Eval("AssetCount") %>'></asp:TextBox>
                                         </td>
                                     </tr>
@@ -141,6 +144,7 @@
                                             <%#Eval("Assetsubcategoryname")%>
                                         </td>
                                         <td align="left" style="width: 20%">
+                                            <asp:HiddenField ID="hfPlanid" runat="server" Value='<%#Eval("Planid") %>' />
                                             <asp:TextBox Width="100px" ID="txtPlanCount" runat="server" Text='<%#Eval("AssetCount") %>'></asp:TextBox>
                                         </td>
                                     </tr>
@@ -152,6 +156,7 @@
                         <div class="clear">
                         </div>
                     </div>
+                    <asp:Button ID="BtnSave" runat="server" Text="保存" CssClass="button" OnClick="BtnSave_Click" />
                 </div>
             </div>
         </div>
