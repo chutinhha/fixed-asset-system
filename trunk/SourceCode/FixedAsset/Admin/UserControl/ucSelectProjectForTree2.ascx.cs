@@ -13,6 +13,18 @@ namespace FixedAsset.Web.Admin.UserControl
     public partial class ucSelectProjectForTree2 : System.Web.UI.UserControl
     {
         #region Properties
+        public bool HasSupplier
+        {
+            get
+            {
+                if (ViewState["HasSupplier"] == null)
+                {
+                    ViewState["HasSupplier"] = false;
+                }
+                return bool.Parse(ViewState["HasSupplier"].ToString());
+            }
+            set { ViewState["HasSupplier"] = value; }
+        }
         public string Storagetitle
         {
             get
@@ -133,6 +145,10 @@ namespace FixedAsset.Web.Admin.UserControl
                  {
                      Storagetitle = Vstorageaddress.Project;
                  }
+                 else if (tvStorageAddress.SelectedNode.Value.Contains(Vstorageaddress.Supplier))
+                 {
+                     Storagetitle = Vstorageaddress.Supplier;
+                 }
                  else
                  {
                      return;
@@ -144,8 +160,8 @@ namespace FixedAsset.Web.Admin.UserControl
                  }
                  if (currentInfo.Storagetitle == Vstorageaddress.Supplier || currentInfo.Storagetitle == Vstorageaddress.Subcompany)
                  {
-                     this.StorageId = currentInfo.Storageid;
-                     this.Storagename = currentInfo.Storagename;
+                     StorageId = currentInfo.Storageid;
+                     Storagename = currentInfo.Storagename;
                  }
                  else if (currentInfo.Storagetitle == Vstorageaddress.Project)
                  {
@@ -173,8 +189,17 @@ namespace FixedAsset.Web.Admin.UserControl
         protected void LoadTreeView()
         {
             var rootCompanyNode = new TreeNode("上海建工七建集团有限公司", string.Format(@"{0}{0}", Vstorageaddress.RootCompany));
+            var infos = VStorageAddress.Where(p => p.Storagetitle == Vstorageaddress.Supplier);
+            if (HasSupplier)
+            {
+                //供应商仓库
+                foreach (var currentInfo in infos)
+                {
+                    rootCompanyNode.ChildNodes.Add(new TreeNode(currentInfo.Storagename,string.Format(@"{0}{1}", Vstorageaddress.Supplier,currentInfo.Storageid)));
+                }
+            }
             //分公司项目体
-            var infos = VStorageAddress.Where(p => p.Storagetitle == Vstorageaddress.Project).OrderBy(p => p.Subcompanyname);
+            infos = VStorageAddress.Where(p => p.Storagetitle == Vstorageaddress.Project).OrderBy(p => p.Subcompanyname);
             var subCompanies = infos.Select(p => p.Subcompanyid).Distinct();
             foreach (var subCompany in subCompanies)
             {

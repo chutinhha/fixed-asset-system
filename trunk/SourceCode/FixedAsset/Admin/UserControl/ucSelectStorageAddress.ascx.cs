@@ -145,37 +145,6 @@ namespace FixedAsset.Web.Admin.UserControl
                 Subcompanyid = currentInfo.Subcompanyid;
                 Subcompanyname = currentInfo.Subcompanyname;
             }
-
-            #region DeletedCode
-            //if(tvStorageAddress.SelectedNode.ChildNodes.Count>0)
-            //{
-            //    return;
-            //}
-            //var rootNode = tvStorageAddress.SelectedNode.Parent;
-            //if(rootNode.Parent==null)
-            //{
-            //    Storagetitle = rootNode.Value;
-            //}
-            //else
-            //{
-            //    Storagetitle = rootNode.Parent.Value;
-            //}
-            //var currentInfo = VStorageAddress.Where(p => p.Storagetitle == this.Storagetitle && p.Storageid == tvStorageAddress.SelectedNode.Value).FirstOrDefault();
-            //if (currentInfo == null) { return; }
-            //if (currentInfo.Storagetitle == Vstorageaddress.Supplier || currentInfo.Storagetitle == Vstorageaddress.Subcompany)
-            //{
-            //    this.StorageId = currentInfo.Storageid;
-            //    this.Storagename = currentInfo.Storagename;
-            //}
-            //else if (currentInfo.Storagetitle == Vstorageaddress.Project)
-            //{
-            //    StorageId = currentInfo.Storageid;
-            //    Storagename = currentInfo.Storagename;
-            //    Subcompanyid = currentInfo.Subcompanyid;
-            //    Subcompanyname = currentInfo.Subcompanyname;
-            //}
-            #endregion
-
             if (SelectedStorageNodeChange!=null)
             {
                 SelectedStorageNodeChange(this,new EventArgs());
@@ -198,18 +167,7 @@ namespace FixedAsset.Web.Admin.UserControl
             {
                 tvStorageAddress.Nodes.Add(new TreeNode(currentInfo.Storagename, string.Format(@"{0}{1}", Vstorageaddress.Supplier, currentInfo.Storageid)));
             }
-            ////trNodeSupplier.Expanded = false;
-            ////tvStorageAddress.Nodes.Add(trNodeSupplier);
-            //var trNodeSubCommpanies = new TreeNode("分公司", Vstorageaddress.Subcompany);
-            //infos = VStorageAddress.Where(p => p.Storagetitle == Vstorageaddress.Subcompany);
-            //foreach (var info in infos)
-            //{
-            //    trNodeSubCommpanies.ChildNodes.Add(new TreeNode(info.Storagename, info.Storageid));
-            //}
-            //trNodeSubCommpanies.Expanded = false;
-            //tvStorageAddress.Nodes.Add(trNodeSubCommpanies);
             //分公司项目体
-            //var trNodeProjects = new TreeNode("分公司项目体", Vstorageaddress.Project);
             infos = VStorageAddress.Where(p => p.Storagetitle == Vstorageaddress.Project).OrderBy(p=>p.Subcompanyname);
             var subCompanies = infos.Select(p => p.Subcompanyid).Distinct();
             foreach (var subCompany in subCompanies)
@@ -224,48 +182,7 @@ namespace FixedAsset.Web.Admin.UserControl
                 currentSubCompanyNode.Expanded = false;
                 tvStorageAddress.Nodes.Add(currentSubCompanyNode);
             }
-            //tvStorageAddress.Nodes.Add(trNodeProjects);
             tvStorageAddress.ShowExpandCollapse = true;
-
-            #region DeletedCode
-            ////供应商
-            //var trNodeSupplier = new TreeNode("供应商", Vstorageaddress.Supplier);
-            //var infos = VStorageAddress.Where(p => p.Storagetitle == Vstorageaddress.Supplier);
-            //foreach (var info in infos)
-            //{
-            //    //trNodeSupplier.ChildNodes.Add(new TreeNode(info.Storagename, info.Storageid));
-            //    //trNodeSupplier.ChildNodes.Add(new TreeNode(info.Storagename, Server.HtmlEncode(string.Format(@"{0}{1}", Vstorageaddress.Supplier, info.Storageid))));
-            //    trNodeSupplier.ChildNodes.Add(new TreeNode(info.Storagename, string.Format(@"{0}{1}", Vstorageaddress.Supplier, info.Storageid)));
-            //}
-            //trNodeSupplier.Expanded = false;
-            //tvStorageAddress.Nodes.Add(trNodeSupplier);
-            //var trNodeSubCommpanies = new TreeNode("分公司", Vstorageaddress.Subcompany);
-            //infos = VStorageAddress.Where(p => p.Storagetitle == Vstorageaddress.Subcompany);
-            //foreach (var info in infos)
-            //{
-            //    trNodeSubCommpanies.ChildNodes.Add(new TreeNode(info.Storagename, info.Storageid));
-            //}
-            //trNodeSubCommpanies.Expanded = false;
-            //tvStorageAddress.Nodes.Add(trNodeSubCommpanies);
-            ////分公司项目体
-            //var trNodeProjects = new TreeNode("分公司项目体", Vstorageaddress.Project);
-            //infos = VStorageAddress.Where(p => p.Storagetitle == Vstorageaddress.Project);
-            //var subCompanies = infos.Select(p => p.Subcompanyid).Distinct();
-            //foreach (var subCompany in subCompanies)
-            //{
-            //    var currentSubCompany = infos.Where(p => p.Subcompanyid == subCompany).FirstOrDefault();
-            //    var currentSubCompanyNode = new TreeNode(currentSubCompany.Subcompanyname, subCompany);
-            //    var currentProjects = infos.Where(p => p.Subcompanyid == subCompany).ToList();
-            //    foreach (var currentProject in currentProjects)
-            //    {
-            //        currentSubCompanyNode.ChildNodes.Add(new TreeNode(currentProject.Storagename, currentProject.Storageid));
-            //    }
-            //    currentSubCompanyNode.Expanded = false;
-            //    trNodeProjects.ChildNodes.Add(currentSubCompanyNode);
-            //}
-            //tvStorageAddress.Nodes.Add(trNodeProjects);
-            //tvStorageAddress.ShowExpandCollapse = true;
-            #endregion
         }
         #endregion
     }
