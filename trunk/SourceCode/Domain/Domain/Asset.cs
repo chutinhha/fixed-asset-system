@@ -33,6 +33,8 @@ namespace FixedAsset.Domain
         ///ColumnName:设备类别;Size:40;
         ///</summary>
         public string Assetcategoryid{  get;set;}
+
+        public string Categoryallpathname { get; set; }
         #endregion
 
         #region 设备名称
@@ -54,6 +56,11 @@ namespace FixedAsset.Domain
         ///ColumnName:存放地点;Size:80;
         ///</summary>
         public string Storage{  get;set;}
+        ///<summary>
+        ///存放地点中的分公司
+        ///</summary>
+        public string Subcompanyname { get; set; }
+        public string Storagename { get; set; }
         #endregion
 
         #region 设备状态
@@ -103,6 +110,7 @@ namespace FixedAsset.Domain
         ///ColumnName:供应商;Size:80;
         ///</summary>
         public string Supplierid{  get;set;}
+        public string Suppliername { get; set; }
         #endregion
 
         #region 购入日期
@@ -131,6 +139,7 @@ namespace FixedAsset.Domain
         ///ColumnName:分公司;Size:50;
         ///</summary>
         public string Subcompany { get; set; }
+        public string Subcompanyfullname { get; set; }
         #endregion
 
         #region 合同编号
@@ -145,21 +154,7 @@ namespace FixedAsset.Domain
         ///ColumnName:合同明细编号;Size:50;
         ///</summary>
         public string Contractdetailid { get; set; }
-        #endregion
-
-        //#region 报废日期
-        /////<summary>
-        /////ColumnName:报废日期;
-        /////</summary>
-        //public DateTime? Scrappeddate { get; set; }
-        //#endregion
-
-        //#region 报废人
-        /////<summary>
-        /////ColumnName:报废人;Size:80;
-        /////</summary>
-        //public string Scrappeduser { get; set; }
-        //#endregion
+        #endregion 
 
         #region 分类值（用于生成设备编号）冗余
         ///<summary>

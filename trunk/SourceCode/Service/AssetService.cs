@@ -39,6 +39,10 @@ namespace FixedAsset.Services
         #endregion
 
         #region RetrieveAssetsPaging
+        public List<Asset> RetrieveAssetsPagingForZongheSearch(AssetSearch info, int pageIndex, int pageSize, out int count)
+        {
+            return Management.RetrieveAssetsPagingForZongheSearch(info, pageIndex, pageSize, out count);
+        }
         public List<Asset> RetrieveAssetsPaging(AssetSearch info, int pageIndex, int pageSize, out int count)
         {
             return Management.RetrieveAssetsPaging(info, pageIndex, pageSize, out count);
