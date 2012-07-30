@@ -127,7 +127,7 @@ namespace FixedAsset.Web.Admin
         #endregion
 
         #region Events
-     
+
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
@@ -140,18 +140,65 @@ namespace FixedAsset.Web.Admin
         }
         protected void ucSelectStorageAddress_SelectedStorageNodeChange(object sender, EventArgs e)
         {
-            litMonthlyContent.Text = string.Format(@"{0}{1}~{2}设备使用计划",string.IsNullOrEmpty(ucSelectStorageAddress.Subcompanyname)?ucSelectStorageAddress.Storagename:ucSelectStorageAddress.Subcompanyname+"->"+ucSelectStorageAddress.Storagename
-                ,WeekFirstDate.ToString(UiConst.DateFormatCh),WeekLastDate.ToString(UiConst.DateFormatCh));
+            litMonthlyContent.Text = string.Format(@"{0}{1}~{2}设备使用计划", string.IsNullOrEmpty(ucSelectStorageAddress.Subcompanyname) ? ucSelectStorageAddress.Storagename : ucSelectStorageAddress.Subcompanyname + "->" + ucSelectStorageAddress.Storagename
+                , WeekFirstDate.ToString(UiConst.DateFormatCh), WeekLastDate.ToString(UiConst.DateFormatCh));
             litMonthlyContent.Text = string.Format(@"{0}{1}~{2}设备使用计划", string.IsNullOrEmpty(ucSelectStorageAddress.Subcompanyname) ? ucSelectStorageAddress.Storagename : ucSelectStorageAddress.Subcompanyname + "->" + ucSelectStorageAddress.Storagename
                 , MonthFirstDate.ToString(UiConst.DateFormatCh), MonthLastDate.ToString(UiConst.DateFormatCh));
             LoadCurrentData();
         }
         protected void BtnSave_Click(object sender, EventArgs e)
         {
-            var list=new List<Assetrunplan>();
+            var list = new List<Assetrunplan>();
             var categories = AssetCategories.Where(p => string.IsNullOrEmpty(p.Assetparentcategoryid) || p.Assetparentcategoryid == Assetcategory.FixedAssetCategory).ToList();
-
-            
+            foreach (var assetcategory in categories)
+            {
+                var subCategories = AssetCategories.Where(p => p.Assetparentcategoryid == assetcategory.Assetcategoryid).ToList();
+                for (int i = 0; i < subCategories.Count; i++)
+                {
+                    var currentSubCategory = subCategories[i];
+                    var info = new Assetrunplan();
+                    info.Planid = i;//计划编号（时间段+分公司或项目体+分类ID等字符串的哈希值
+                    info.Assetparentcategoryid = assetcategory.Assetcategoryid;//设备父类别
+                    info.Assetparentcategoryname = assetcategory.Assetcategoryname;
+                    info.Assetcategoryid = currentSubCategory.Assetcategoryid;//设备子类别
+                    info.Assetsubcategoryname = currentSubCategory.Assetcategoryname;
+                    info.Storageflag = ucSelectStorageAddress.Storagetitle;//分公司、项目体标识
+                    info.Storage = ucSelectStorageAddress.StorageId;//分公司、项目体ID
+                    info.Plandatecycle = WeeklyPlandatecycle;//时间段（如：周计划，20120723-20120729）
+                    info.Createddate = DateTime.Now;//创建时间
+                    info.Startdate = WeekFirstDate;//开始日期
+                    info.Enddate = WeekLastDate;//结束日期
+                    info.Plancategory = 1;//计划类别
+                    info.Assetcount = 0;//计划设备数量
+                    list.Add(info);
+                }
+            }
+            AssetrunplanService.SaveAssetRunPlan(list);
+            list.Clear();
+            foreach (var assetcategory in categories)
+            {
+                var subCategories = AssetCategories.Where(p => p.Assetparentcategoryid == assetcategory.Assetcategoryid).ToList();
+                for (int i = 0; i < subCategories.Count; i++)
+                {
+                    var currentSubCategory = subCategories[i];
+                    var info = new Assetrunplan();
+                    info.Planid = i;//计划编号（时间段+分公司或项目体+分类ID等字符串的哈希值
+                    info.Assetparentcategoryid = assetcategory.Assetcategoryid;//设备父类别
+                    info.Assetparentcategoryname = assetcategory.Assetcategoryname;
+                    info.Assetcategoryid = currentSubCategory.Assetcategoryid;//设备子类别
+                    info.Assetsubcategoryname = currentSubCategory.Assetcategoryname;
+                    info.Storageflag = ucSelectStorageAddress.Storagetitle;//分公司、项目体标识
+                    info.Storage = ucSelectStorageAddress.StorageId;//分公司、项目体ID
+                    info.Plandatecycle = WeeklyPlandatecycle;//时间段（如：周计划，20120723-20120729）
+                    info.Createddate = DateTime.Now;//创建时间
+                    info.Startdate = WeekFirstDate;//开始日期
+                    info.Enddate = WeekLastDate;//结束日期
+                    info.Plancategory = 1;//计划类别
+                    info.Assetcount = 0;//计划设备数量
+                    list.Add(info);
+                }
+            }
+            AssetrunplanService.SaveAssetRunPlan(list);
         }
         #endregion
 
@@ -191,7 +238,7 @@ namespace FixedAsset.Web.Admin
             var weekData = AssetrunplanService.RetrieveAssetrunplanByCondition(WeeklyPlandatecycle,
                                                                                ucSelectStorageAddress.Storagetitle,
                                                                                ucSelectStorageAddress.StorageId);
-            if(weekData.Count==0)
+            if (weekData.Count == 0)
             {
                 foreach (var assetcategory in categories)
                 {
@@ -253,7 +300,7 @@ namespace FixedAsset.Web.Admin
 
             #endregion
 
-            
+
             // 合并单元格
             for (int i = rptWeeklyData.Items.Count - 1; i > 0; i--)
             {

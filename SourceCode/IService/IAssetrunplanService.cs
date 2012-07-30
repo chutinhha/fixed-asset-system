@@ -16,10 +16,11 @@ namespace FixedAsset.IServices
     {
         List<Assetrunplan> RetrieveAssetrunplansPaging(AssetrunplanSearch info,int pageIndex, int pageSize,out int count);
         List<Assetrunplan> RetrieveAssetrunplanByCondition(string Plandatecycle, string Storageflag, string Storage);
-        Assetrunplan CreateAssetrunplan(Assetrunplan info);
-        Assetrunplan UpdateAssetrunplanByPlanid(Assetrunplan info);
-        Assetrunplan RetrieveAssetrunplanByPlanid(int planid);
-        List<Assetrunplan> RetrieveAssetrunplanByPlanid(List<int> planid);
+        void SaveAssetRunPlan(List<Assetrunplan> list);
+        //Assetrunplan CreateAssetrunplan(Assetrunplan info);
+        //Assetrunplan UpdateAssetrunplanByPlanid(Assetrunplan info);
+        //Assetrunplan RetrieveAssetrunplanByPlanid(int planid);
+        //List<Assetrunplan> RetrieveAssetrunplanByPlanid(List<int> planid);
         void DeleteAssetrunplanByPlanid(int planid);
     }
 }
