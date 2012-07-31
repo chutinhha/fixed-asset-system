@@ -141,7 +141,7 @@ namespace FixedAsset.Web.Admin
         }
         protected void ucSelectStorageAddress_SelectedStorageNodeChange(object sender, EventArgs e)
         {
-            litMonthlyContent.Text = string.Format(@"{0}{1}~{2}设备使用计划", string.IsNullOrEmpty(ucSelectStorageAddress.Subcompanyname) ? ucSelectStorageAddress.Storagename : ucSelectStorageAddress.Subcompanyname + "->" + ucSelectStorageAddress.Storagename
+            litWeeklyContent.Text = string.Format(@"{0}{1}~{2}设备使用计划", string.IsNullOrEmpty(ucSelectStorageAddress.Subcompanyname) ? ucSelectStorageAddress.Storagename : ucSelectStorageAddress.Subcompanyname + "->" + ucSelectStorageAddress.Storagename
                 , WeekFirstDate.ToString(UiConst.DateFormatCh), WeekLastDate.ToString(UiConst.DateFormatCh));
             litMonthlyContent.Text = string.Format(@"{0}{1}~{2}设备使用计划", string.IsNullOrEmpty(ucSelectStorageAddress.Subcompanyname) ? ucSelectStorageAddress.Storagename : ucSelectStorageAddress.Subcompanyname + "->" + ucSelectStorageAddress.Storagename
                 , MonthFirstDate.ToString(UiConst.DateFormatCh), MonthLastDate.ToString(UiConst.DateFormatCh));

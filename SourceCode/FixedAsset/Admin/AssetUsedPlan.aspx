@@ -50,7 +50,7 @@
                         <p class="gap">
                         </p>
                     </div>
-                    <div id="monthPlanContent" style="display: block; width: 100%">
+                    <div id="monthPlanContent" style="display: block;">
                         <asp:Literal ID="litMonthlyContent" runat="server"></asp:Literal>
                         <table style="width: 100%; padding-top: 0px;" cellspacing="0px" cellpadding="0px"
                             align="center" class="gridtable">
