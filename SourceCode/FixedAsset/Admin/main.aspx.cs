@@ -28,6 +28,7 @@ namespace FixedAsset.Web.Admin
             var menuItems = WebContext.Current.UserMenuItems;
             if(menuItems==null||menuItems.Count==0){return;}
             var rootMenuItems = (from p in menuItems
+                                 orderby p.Orderby ascending 
                                  orderby p.Menuid ascending
                                  where p.Parentmenuid == Menuitem.DefaultParentCode
                                  select p).ToList();
@@ -38,7 +39,11 @@ namespace FixedAsset.Web.Admin
                 content.AppendFormat("    <a href='javascript:void(0)'>{0}</a></h1>",rootMenuItem.Menuname).AppendLine();
                 content.AppendLine(@"<div class='content' style=""height: auto;"">");
                 content.AppendLine("    <ul class='MM'>");
-                var subMenuItems = menuItems.Where(p => p.Parentmenuid == rootMenuItem.Menuid).OrderBy(p=>p.Menuid).ToList();
+                var subMenuItems = (from p in menuItems
+                                    orderby p.Orderby ascending 
+                                    orderby p.Menuid
+                                    where p.Parentmenuid == rootMenuItem.Menuid
+                                    select p).ToList();
                 foreach (var subMenuItem in subMenuItems)
                 {
                     content.AppendFormat("        <li><a href='{0}' target='aa'>{1}</a></li>",ResolveUrl(subMenuItem.Menuaddress),subMenuItem.Menuname); 
