@@ -13,6 +13,10 @@ namespace FixedAsset.Web.Admin
         protected IAssetcategoryService AssetcategoryService
         {
             get { return new AssetcategoryService(); }
+        } 
+        protected ISubcompanyinfoService SubcompanyinfoService
+        {
+            get { return new SubcompanyinfoService(); }
         }
         protected IAssetService AssetService
         {
@@ -79,6 +83,7 @@ namespace FixedAsset.Web.Admin
             InitFinanceCategory(ddlFinancecategory, true);
             InitManageMode(ddlManagementModel, true);
             LoadSupplierData();
+            LoadSubCompanyData();
         }
         protected void LoadSupplierData()
         {
@@ -90,6 +95,18 @@ namespace FixedAsset.Web.Admin
             ddlSuppliers.DataValueField = "Supplierid";
             ddlSuppliers.DataSource = list;
             ddlSuppliers.DataBind();
+        }
+        protected void LoadSubCompanyData()
+        {
+            var search = new SubcompanyinfoSearch();
+            int recordCount = 0;
+            var list = SubcompanyinfoService.RetrieveSubcompanyinfosPaging(search, 0, 10, out recordCount);
+            list.Insert(0, new Subcompanyinfo() { Subcompanyid = 0, Subcompanyname = "全部" });
+            ddlSubCompanies.DataTextField = "Subcompanyname";
+            ddlSubCompanies.DataValueField = "Subcompanyid";
+            ddlSubCompanies.DataSource = list;
+            ddlSubCompanies.DataBind();
+            
         }
         protected void LoadData(int pageIndex)
         {
@@ -118,24 +135,16 @@ namespace FixedAsset.Web.Admin
             {
                 search.States.Add((AssetState)Enum.Parse(typeof(AssetState), ddlSrchState.SelectedValue));//设备状态
             }
-            //search.Brand = txtSrchBrand.Text;//品牌
-            //search.Storage = txtSrchStorage.Text;//存放地点
+            search.Storageflag = ucSelectStorageAddressForSearch.Storagetitle; //存放地点
+            search.Storage = ucSelectStorageAddressForSearch.StorageId;
             if(ddlSuppliers.SelectedIndex>0)
             {
                 search.Supplierid = ddlSuppliers.SelectedValue;//供应商  
             }
-            //if (ucSrchStartExpireddate.DateValue.HasValue)
-            //{
-            //    search.StartExpireddate = ucSrchStartExpireddate.DateValue.Value;//折旧到期日期
-            //}
-            //if (ucSrchEndExpireddate.DateValue.HasValue)
-            //{
-            //    search.EndExpireddate = ucSrchEndExpireddate.DateValue.Value;//折旧到期日期
-            //}
-            //search.Assetspecification = txtSrchAssetspecification.Text;//设备规格
-            //search.Storageflag = txtSrchStorageflag.Text;//存放地点标识来源
-            
-
+            if(ddlSubCompanies.SelectedIndex>0)
+            {
+                search.Subcompany = ddlSubCompanies.SelectedValue;//分公司
+            } 
             if (ddlFinancecategory.SelectedIndex > 0)
             {
                 search.FinanceCategories.Add((FinanceCategory)Enum.Parse(typeof(FinanceCategory), ddlFinancecategory.SelectedValue));//财务类别

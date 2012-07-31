@@ -8,6 +8,8 @@
 <%@ Register Src="~/Admin/UserControl/ucDatePicker.ascx" TagName="DatePicker" TagPrefix="uc1" %>
 <%@ Register Src="~/Admin/UserControl/ucShowAssetDetail.ascx" TagName="ucShowAssetDetail"
     TagPrefix="uc1" %>
+    <%@ Register Src="~/Admin/UserControl/ucSelectStorageAddressForSearch.ascx" TagName="SelectStorageAddressForSearch"
+    TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="css/mail.css" rel="stylesheet" type="text/css" />
 </asp:Content>
@@ -83,10 +85,19 @@
                         </asp:DropDownList>
                     </td>
                     <td>
+                        分公司
+                    </td>
+                    <td>
+                        <asp:DropDownList ID="ddlSubCompanies" runat="server" Width="150px">
+                        </asp:DropDownList>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         存放地点
                     </td>
                     <td>
-                        
+                    <uc1:SelectStorageAddressForSearch ID="ucSelectStorageAddressForSearch" runat="server" />
                     </td>
                 </tr>
                 <tr>
@@ -95,9 +106,9 @@
                     </td>
                 </tr>
             </table>
-            <div style="overflow-x: scroll; width:100%; padding:0 0 0 0; margin:0 0 0 0" >
-                <table style="padding-top: 0px;" width="100%" cellspacing="0px" cellpadding="0px" align="center"
-                    class="gridtable">
+            <div style="overflow-x: scroll; width: 100%; padding: 0 0 0 0; margin: 0 0 0 0">
+                <table style="padding-top: 0px;" width="100%" cellspacing="0px" cellpadding="0px"
+                    align="center" class="gridtable">
                     <asp:Repeater ID="rptAssetsList" runat="server">
                         <HeaderTemplate>
                             <tr class="thbg" style="padding: 0 0 0 0">
@@ -110,7 +121,7 @@
                                 <th align="center">
                                     供应商
                                 </th>
-                                <th align="center" style="width:150px">
+                                <th align="center" style="width: 150px">
                                     存放地点
                                 </th>
                                 <th align="center">

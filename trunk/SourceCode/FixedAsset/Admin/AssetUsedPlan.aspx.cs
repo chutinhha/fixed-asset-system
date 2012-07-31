@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
 using FixedAsset.Domain;
 using FixedAsset.IServices;
 using FixedAsset.Services;
@@ -149,56 +150,79 @@ namespace FixedAsset.Web.Admin
         protected void BtnSave_Click(object sender, EventArgs e)
         {
             var list = new List<Assetrunplan>();
-            var categories = AssetCategories.Where(p => string.IsNullOrEmpty(p.Assetparentcategoryid) || p.Assetparentcategoryid == Assetcategory.FixedAssetCategory).ToList();
-            foreach (var assetcategory in categories)
+            for (int i = 0; i < rptWeeklyData.Items.Count; i++)
             {
-                var subCategories = AssetCategories.Where(p => p.Assetparentcategoryid == assetcategory.Assetcategoryid).ToList();
-                for (int i = 0; i < subCategories.Count; i++)
+                var rowItem = rptWeeklyData.Items[i];
+                var hfAssetcategoryid = rowItem.FindControl("hfAssetcategoryid") as HiddenField;
+                var currentCategoryId = hfAssetcategoryid.Value;
+                var currentCategory =AssetCategories.Where(p => p.Assetcategoryid == currentCategoryId).FirstOrDefault();
+                if(currentCategory!=null)
                 {
-                    var currentSubCategory = subCategories[i];
                     var info = new Assetrunplan();
-                    info.Planid = i;//计划编号（时间段+分公司或项目体+分类ID等字符串的哈希值
-                    info.Assetparentcategoryid = assetcategory.Assetcategoryid;//设备父类别
-                    info.Assetparentcategoryname = assetcategory.Assetcategoryname;
-                    info.Assetcategoryid = currentSubCategory.Assetcategoryid;//设备子类别
-                    info.Assetsubcategoryname = currentSubCategory.Assetcategoryname;
+                    int planId = 0;
+                    var hfPlanid = rowItem.FindControl("hfPlanid") as HiddenField;
+                    if (int.TryParse(hfPlanid.Value, out planId))
+                    {
+                        info.Planid = planId;//计划编号（时间段+分公司或项目体+分类ID等字符串的哈希值 
+                    }
+                    info.Assetparentcategoryid = currentCategory.Assetparentcategoryid;//设备父类别
+                    info.Assetcategoryid = currentCategory.Assetcategoryid;//设备子类别
                     info.Storageflag = ucSelectStorageAddress.Storagetitle;//分公司、项目体标识
                     info.Storage = ucSelectStorageAddress.StorageId;//分公司、项目体ID
                     info.Plandatecycle = WeeklyPlandatecycle;//时间段（如：周计划，20120723-20120729）
                     info.Createddate = DateTime.Now;//创建时间
                     info.Startdate = WeekFirstDate;//开始日期
                     info.Enddate = WeekLastDate;//结束日期
-                    info.Plancategory = 1;//计划类别
+                    info.Plancategory = Assetrunplan.Weekly;//计划类别
                     info.Assetcount = 0;//计划设备数量
+                    var txtPlanCount = rowItem.FindControl("txtPlanCount") as TextBox;
+                    int count = 0;
+                    if(int.TryParse(txtPlanCount.Text,out count))
+                    {
+                        info.Assetcount = count;//计划设备数量
+                    }
                     list.Add(info);
                 }
             }
             AssetrunplanService.SaveAssetRunPlan(list);
             list.Clear();
-            foreach (var assetcategory in categories)
+            for (int i = 0; i < rptMonthlyData.Items.Count; i++)
             {
-                var subCategories = AssetCategories.Where(p => p.Assetparentcategoryid == assetcategory.Assetcategoryid).ToList();
-                for (int i = 0; i < subCategories.Count; i++)
+                var rowItem = rptMonthlyData.Items[i];
+                var hfAssetcategoryid = rowItem.FindControl("hfAssetcategoryid") as HiddenField;
+                var currentCategoryId = hfAssetcategoryid.Value;
+                var currentCategory = AssetCategories.Where(p => p.Assetcategoryid == currentCategoryId).FirstOrDefault();
+                if (currentCategory != null)
                 {
-                    var currentSubCategory = subCategories[i];
                     var info = new Assetrunplan();
-                    info.Planid = i;//计划编号（时间段+分公司或项目体+分类ID等字符串的哈希值）
-                    info.Assetparentcategoryid = assetcategory.Assetcategoryid;//设备父类别
-                    info.Assetparentcategoryname = assetcategory.Assetcategoryname;
-                    info.Assetcategoryid = currentSubCategory.Assetcategoryid;//设备子类别
-                    info.Assetsubcategoryname = currentSubCategory.Assetcategoryname;
+                    int planId = 0;
+                    var hfPlanid = rowItem.FindControl("hfPlanid") as HiddenField;
+                    if(int.TryParse(hfPlanid.Value,out planId))
+                    {
+                        info.Planid = planId;//计划编号（时间段+分公司或项目体+分类ID等字符串的哈希值 
+                    }
+                    info.Assetparentcategoryid = currentCategory.Assetparentcategoryid;//设备父类别
+                    info.Assetcategoryid = currentCategory.Assetcategoryid;//设备子类别
                     info.Storageflag = ucSelectStorageAddress.Storagetitle;//分公司、项目体标识
                     info.Storage = ucSelectStorageAddress.StorageId;//分公司、项目体ID
                     info.Plandatecycle = MonthlyPlandatecycle;//时间段（如：周计划，20120723-20120729）
                     info.Createddate = DateTime.Now;//创建时间
                     info.Startdate = MonthFirstDate;//开始日期
                     info.Enddate = MonthLastDate;//结束日期
-                    info.Plancategory = 1;//计划类别
+                    info.Plancategory = Assetrunplan.Monthly;//计划类别
                     info.Assetcount = 0;//计划设备数量
+                    var txtPlanCount = rowItem.FindControl("txtPlanCount") as TextBox;
+                    int count = 0;
+                    if (int.TryParse(txtPlanCount.Text, out count))
+                    {
+                        info.Assetcount = count;//计划设备数量
+                    }
                     list.Add(info);
                 }
             }
             AssetrunplanService.SaveAssetRunPlan(list);
+            UIHelper.Alert(this, "保存成功！");
+            ClientScript.RegisterStartupScript(this.GetType(), Guid.NewGuid().ToString("N"), "tabChange('weeklyPlan','weeklyPlanContent','monthPlanContent');", true);
         }
         #endregion
 
@@ -214,11 +238,9 @@ namespace FixedAsset.Web.Admin
             WeeklyPlandatecycle = WeekFirstDate.ToString(UiConst.DateFormat2) + WeekLastDate.ToString(UiConst.DateFormat2);
 
             //月计划
-            //Log.Info("WeeklyPlandatecycle--" + WeeklyPlandatecycle);
             MonthFirstDate = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1).AddMonths(1);
             MonthLastDate = MonthFirstDate.AddMonths(1).AddDays(-1);
             this.MonthlyPlandatecycle = MonthFirstDate.ToString(UiConst.DateFormat2) + MonthLastDate.ToString(UiConst.DateFormat2);
-            //Log.Info("MonthlyPlandatecycle--" + MonthlyPlandatecycle);
         }
         protected void LoadAssetCategory()
         {
@@ -258,7 +280,7 @@ namespace FixedAsset.Web.Admin
                         info.Createddate = DateTime.Now;//创建时间
                         info.Startdate = WeekFirstDate;//开始日期
                         info.Enddate = WeekLastDate;//结束日期
-                        info.Plancategory = 1;//计划类别
+                        info.Plancategory = Assetrunplan.Weekly;//计划类别
                         info.Assetcount = 0;//计划设备数量
                         weekData.Add(info);
                     }
@@ -266,7 +288,23 @@ namespace FixedAsset.Web.Admin
             }
             rptWeeklyData.DataSource = weekData;
             rptWeeklyData.DataBind();
-            var monthlyData = AssetrunplanService.RetrieveAssetrunplanByCondition(WeeklyPlandatecycle,
+            // 合并单元格
+            for (int i = rptWeeklyData.Items.Count - 1; i > 0; i--)
+            {
+                var previousCell = rptWeeklyData.Items[i - 1].FindControl("tdAssetparentcategoryname") as HtmlTableCell;
+                var currentCell = rptWeeklyData.Items[i].FindControl("tdAssetparentcategoryname") as HtmlTableCell;
+                currentCell.RowSpan = (currentCell.RowSpan == -1) ? 1 : currentCell.RowSpan;
+                previousCell.RowSpan = (previousCell.RowSpan == -1) ? 1 : previousCell.RowSpan;
+                if (currentCell.InnerText == previousCell.InnerText)
+                {
+                    currentCell.Visible = false;
+                    previousCell.RowSpan += currentCell.RowSpan;
+                }
+            }
+            #endregion
+
+            #region Monthly
+            var monthlyData = AssetrunplanService.RetrieveAssetrunplanByCondition(MonthlyPlandatecycle,
                                                                                ucSelectStorageAddress.Storagetitle,
                                                                                ucSelectStorageAddress.StorageId);
             if (monthlyData.Count == 0)
@@ -289,7 +327,7 @@ namespace FixedAsset.Web.Admin
                         info.Createddate = DateTime.Now;//创建时间
                         info.Startdate = MonthFirstDate;//开始日期
                         info.Enddate = MonthLastDate;//结束日期
-                        info.Plancategory = 1;//计划类别
+                        info.Plancategory = Assetrunplan.Monthly;//计划类别
                         info.Assetcount = 0;//计划设备数量
                         monthlyData.Add(info);
                     }
@@ -297,40 +335,22 @@ namespace FixedAsset.Web.Admin
             }
             rptMonthlyData.DataSource = monthlyData;
             rptMonthlyData.DataBind();
-
-            #endregion
-
-
-            // 合并单元格
-            for (int i = rptWeeklyData.Items.Count - 1; i > 0; i--)
-            {
-                HtmlTableCell oCell_previous = rptWeeklyData.Items[i - 1].FindControl("tdAssetparentcategoryname") as HtmlTableCell;
-                HtmlTableCell oCell = rptWeeklyData.Items[i].FindControl("tdAssetparentcategoryname") as HtmlTableCell;
-
-                oCell.RowSpan = (oCell.RowSpan == -1) ? 1 : oCell.RowSpan;
-                oCell_previous.RowSpan = (oCell_previous.RowSpan == -1) ? 1 : oCell_previous.RowSpan;
-
-                if (oCell.InnerText == oCell_previous.InnerText)
-                {
-                    oCell.Visible = false;
-                    oCell_previous.RowSpan += oCell.RowSpan;
-                }
-            }
-
             // 合并单元格
             for (int i = rptMonthlyData.Items.Count - 1; i > 0; i--)
             {
-                HtmlTableCell oCell_previous = rptMonthlyData.Items[i - 1].FindControl("tdAssetparentcategoryname") as HtmlTableCell;
-                HtmlTableCell oCell = rptMonthlyData.Items[i].FindControl("tdAssetparentcategoryname") as HtmlTableCell;
-                oCell.RowSpan = (oCell.RowSpan == -1) ? 1 : oCell.RowSpan;
-                oCell_previous.RowSpan = (oCell_previous.RowSpan == -1) ? 1 : oCell_previous.RowSpan;
-                if (oCell.InnerText == oCell_previous.InnerText)
+                var previousCell = rptMonthlyData.Items[i - 1].FindControl("tdAssetparentcategoryname") as HtmlTableCell;
+                var currentCell = rptMonthlyData.Items[i].FindControl("tdAssetparentcategoryname") as HtmlTableCell;
+                currentCell.RowSpan = (currentCell.RowSpan == -1) ? 1 : currentCell.RowSpan;
+                previousCell.RowSpan = (previousCell.RowSpan == -1) ? 1 : previousCell.RowSpan;
+                if (currentCell.InnerText == previousCell.InnerText)
                 {
-                    oCell.Visible = false;
-                    oCell_previous.RowSpan += oCell.RowSpan;
+                    currentCell.Visible = false;
+                    previousCell.RowSpan += currentCell.RowSpan;
                 }
             }
-            ClientScript.RegisterStartupScript(this.GetType(), "a", "document.getElementById('weeklyPlanContent').style.display='none';", true);
+            #endregion
+
+            ClientScript.RegisterStartupScript(this.GetType(), Guid.NewGuid().ToString("N"), "tabChange('weeklyPlan','weeklyPlanContent','monthPlanContent');", true);
         }
         #endregion
     }
