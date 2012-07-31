@@ -18,8 +18,8 @@ namespace FixedAsset.Domain
     [Serializable]
     public partial class Assetrunplan
     {
-        public const string Monthly = "Monthly";
-        public const string Weekly = "Weekly";
+        public const int Monthly = 1;
+        public const int Weekly = 2;
 
         #region 计划编号（时间段+分公司或项目体+分类ID等字符串的哈希值）
         ///<summary>

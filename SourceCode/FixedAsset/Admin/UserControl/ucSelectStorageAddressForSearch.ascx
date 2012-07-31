@@ -1,6 +1,8 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ucSelectStorageAddressForSearch.ascx.cs" Inherits="FixedAsset.Web.Admin.UserControl.ucSelectStorageAddressForSearch" %>
-    <asp:Literal ID="litStorage" runat="server"/>
-<asp:ImageButton ID="btnSelectStorageAddress" ImageUrl="../../images/Button/PickUp.GIF" runat="server" CausesValidation="false" OnClick="btnSelectStorageAddress_Click" />
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ucSelectStorageAddressForSearch.ascx.cs"
+    Inherits="FixedAsset.Web.Admin.UserControl.ucSelectStorageAddressForSearch" %>
+<asp:Literal ID="litStorage" runat="server" />
+<asp:ImageButton ID="btnSelectStorageAddress" ImageUrl="../../images/Button/PickUp.GIF"
+    runat="server" CausesValidation="false" OnClick="btnSelectStorageAddress_Click" />
 <script type="text/javascript" language="javascript">
     function SelectStorageAddress() {
         var returnValue = getCookie("dialogReturn_key");
@@ -13,6 +15,6 @@
 </script>
 <div style="display: none">
     <asp:HiddenField ID="hfStorageAddress" runat="server" />
-    <asp:Button ID="BtnRetrieveStorageAddress" CausesValidation="false" runat="server" Text="" OnClick="BtnRetrieveStorageAddress_Click"
-        Width="0px" Height="0px" />
+    <asp:Button ID="BtnRetrieveStorageAddress" CausesValidation="false" runat="server"
+        Text="" OnClick="BtnRetrieveStorageAddress_Click" Width="0px" Height="0px" />
 </div>

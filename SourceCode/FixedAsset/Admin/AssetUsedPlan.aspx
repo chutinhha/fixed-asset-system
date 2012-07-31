@@ -19,7 +19,7 @@
                     arrayli[i].className = "";
                 }
             }
-            document.getElementById(currentContentId).style.display = "block";
+            document.getElementById(currentContentId).style.display = "";
             document.getElementById(otherContent1).style.display = "none";
         }
     </script>
@@ -42,10 +42,10 @@
                 <div class="column-right" style="width: 79%;">
                     <div id="tag" class="thin blue">
                         <ul id="tags">
-                            <li id="monthPlan" class="selectTag"><a href="#" onclick="javascript:tabChange('monthPlan','monthPlanContent','weeklyPlanContent')">
-                                月计划</a> </li>
                             <li id="weeklyPlan"><a href="javascript:tabChange('weeklyPlan','weeklyPlanContent','monthPlanContent')">
                                 周计划</a> </li>
+                            <li id="monthPlan" class="selectTag"><a href="#" onclick="javascript:tabChange('monthPlan','monthPlanContent','weeklyPlanContent')">
+                                月计划</a> </li>
                         </ul>
                         <p class="gap">
                         </p>
