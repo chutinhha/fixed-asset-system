@@ -25,7 +25,7 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
-    <div class="content-box">
+    <div class="content-box" style="padding:0 0 0 0; margin:0 0 0 0;">
         <div class="content-box-header">
             <h3 style="cursor: s-resize;">
                 <asp:Literal runat="server" ID="litTitle" Text="用工计划" /></h3>
@@ -160,7 +160,10 @@
                         <div class="clear">
                         </div>
                     </div>
-                    <asp:Button ID="BtnSave" runat="server" Text="保存" CssClass="button" OnClick="BtnSave_Click" />
+                    <div style="text-align:center">
+                      <asp:Button ID="BtnSave" runat="server" Text="保存" CssClass="button" OnClick="BtnSave_Click" />
+                    </div>
+                  
                 </div>
             </div>
         </div>

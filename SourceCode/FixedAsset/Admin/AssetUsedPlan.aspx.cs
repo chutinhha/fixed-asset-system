@@ -137,6 +137,7 @@ namespace FixedAsset.Web.Admin
                 InitData();
                 AssetCategories.Clear();
                 LoadAssetCategory();
+                BtnSave.Visible = false;
             }
         }
         protected void ucSelectStorageAddress_SelectedStorageNodeChange(object sender, EventArgs e)
@@ -146,6 +147,8 @@ namespace FixedAsset.Web.Admin
             litMonthlyContent.Text = string.Format(@"{0}{1}~{2}设备使用计划", string.IsNullOrEmpty(ucSelectStorageAddress.Subcompanyname) ? ucSelectStorageAddress.Storagename : ucSelectStorageAddress.Subcompanyname + "->" + ucSelectStorageAddress.Storagename
                 , MonthFirstDate.ToString(UiConst.DateFormatCh), MonthLastDate.ToString(UiConst.DateFormatCh));
             LoadCurrentData();
+            ClientScript.RegisterStartupScript(this.GetType(), Guid.NewGuid().ToString("N"), " document.getElementById('weeklyPlanContent').style.display = 'none';", true);
+            BtnSave.Visible = true;
         }
         protected void BtnSave_Click(object sender, EventArgs e)
         {
@@ -222,7 +225,8 @@ namespace FixedAsset.Web.Admin
             }
             AssetrunplanService.SaveAssetRunPlan(list);
             UIHelper.Alert(this, "保存成功！");
-            ClientScript.RegisterStartupScript(this.GetType(), Guid.NewGuid().ToString("N"), "tabChange('weeklyPlan','weeklyPlanContent','monthPlanContent');", true);
+            ClientScript.RegisterStartupScript(this.GetType(), Guid.NewGuid().ToString("N"), " document.getElementById('weeklyPlanContent').style.display = 'none';", true);
+          //  ClientScript.RegisterStartupScript(this.GetType(), Guid.NewGuid().ToString("N"), "tabChange('weeklyPlan','weeklyPlanContent','monthPlanContent');", true);
         }
         #endregion
 
@@ -350,7 +354,8 @@ namespace FixedAsset.Web.Admin
             }
             #endregion
 
-            ClientScript.RegisterStartupScript(this.GetType(), Guid.NewGuid().ToString("N"), "tabChange('weeklyPlan','weeklyPlanContent','monthPlanContent');", true);
+          //  ClientScript.RegisterStartupScript(this.GetType(), Guid.NewGuid().ToString("N"), "tabChange('weeklyPlan','weeklyPlanContent','monthPlanContent');", true);
+            ClientScript.RegisterStartupScript(this.GetType(), Guid.NewGuid().ToString("N"), " document.getElementById('weeklyPlanContent').style.display = 'none';", true);
         }
         #endregion
     }
