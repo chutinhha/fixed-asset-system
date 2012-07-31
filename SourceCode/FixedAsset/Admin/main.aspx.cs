@@ -28,8 +28,7 @@ namespace FixedAsset.Web.Admin
             var menuItems = WebContext.Current.UserMenuItems;
             if(menuItems==null||menuItems.Count==0){return;}
             var rootMenuItems = (from p in menuItems
-                                 orderby p.Orderby ascending 
-                                 orderby p.Menuid ascending
+                                 orderby p.Orderby ascending
                                  where p.Parentmenuid == Menuitem.DefaultParentCode
                                  select p).ToList();
             var content=new StringBuilder();
@@ -40,8 +39,7 @@ namespace FixedAsset.Web.Admin
                 content.AppendLine(@"<div class='content' style=""height: auto;"">");
                 content.AppendLine("    <ul class='MM'>");
                 var subMenuItems = (from p in menuItems
-                                    orderby p.Orderby ascending 
-                                    orderby p.Menuid
+                                    orderby p.Orderby ascending
                                     where p.Parentmenuid == rootMenuItem.Menuid
                                     select p).ToList();
                 foreach (var subMenuItem in subMenuItems)
