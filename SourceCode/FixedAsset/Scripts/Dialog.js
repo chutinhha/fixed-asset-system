@@ -30,8 +30,8 @@ function ShowAlert(title,message)
         title="<div class='info'></div><div class='title'>"+title+"</div>";
         message="<UL><LI>"+message+"</LI></UL>";   
         var defaultValue = window.document.body.scroll;
-        SetFrameScroll(false,defaultValue); 
-        Ext.MessageBox.alert(title,message,function(){ SetFrameScroll(true,defaultValue);});});
+        SetFrameScroll(false, defaultValue); 
+        Ext.MessageBox.alert(title,message,function(){ SetFrameScroll(false,defaultValue);});});
 }
  
 function ShowConfirm(title,message,callback)
