@@ -21,35 +21,45 @@ namespace FixedAsset.Domain
         #region 设备父类别
         public string Assetparentcategoryid
         {
-            get;set; 
+            get;
+            set;
         }
         #endregion
 
         #region 设备子类别
         public string Assetcategoryid
         {
-            get;set; 
+            get;
+            set;
         }
+        #endregion
+
+        #region 分公司、项目体标识ID
+        private List<string> projectIds = new List<string>();
+        public List<string> ProjectIds { get { return projectIds; } }
         #endregion
 
         #region 分公司、项目体标识
         public string Storageflag
         {
-            get;set; 
+            get;
+            set;
         }
         #endregion
 
         #region 分公司、项目体ID
         public string Storage
         {
-            get;set; 
+            get;
+            set;
         }
         #endregion
 
         #region 时间段（如：周计划，20120723-20120729）
         public string Plandatecycle
         {
-            get;set; 
+            get;
+            set;
         }
         #endregion
 

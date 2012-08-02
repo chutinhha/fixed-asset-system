@@ -21,6 +21,7 @@ namespace FixedAsset.IServices
         //Assetrunplan UpdateAssetrunplanByPlanid(Assetrunplan info);
         //Assetrunplan RetrieveAssetrunplanByPlanid(int planid);
         //List<Assetrunplan> RetrieveAssetrunplanByPlanid(List<int> planid);
+        List<Assetrunplan> RetrieveAssetrunplanByCondition(AssetrunplanSearch info);
         void DeleteAssetrunplanByPlanid(int planid);
     }
 }

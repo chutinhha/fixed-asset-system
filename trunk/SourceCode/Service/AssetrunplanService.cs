@@ -100,6 +100,12 @@ namespace FixedAsset.Services
         #endregion
 
         #region DeleteAssetrunplanByPlanid
+
+        public List<Assetrunplan> RetrieveAssetrunplanByCondition(AssetrunplanSearch info)
+        {
+            return Management.RetrieveAssetrunplanByCondition(info);            
+        }
+
         public void DeleteAssetrunplanByPlanid(int planid)
         {
             try
