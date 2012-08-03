@@ -20,6 +20,10 @@ namespace FixedAsset.Web.Admin
                     litUsername.Text = WebContext.Current.CurrentUser.Username;//用户姓名
                     litUserRole.Text = WebContext.Current.CurrentUser.Rolename;//角色名
                 }
+                else
+                {
+                    Response.Redirect("~/admin/Login.aspx");
+                }
             }
         }
         protected void LoadUserMenuItems()
