@@ -131,7 +131,6 @@ namespace FixedAsset.Web.Admin
         #endregion
 
         #region Events
-
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
