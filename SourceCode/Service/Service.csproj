@@ -97,8 +97,10 @@
     <Compile Include="AssetmaintaindetailService.cs" />
     <Compile Include="AssetmaintainService.cs" />
     <Compile Include="AssetmovedetailService.cs" />
+    <Compile Include="AssetmoveplanService.cs" />
     <Compile Include="AssetmoveService.cs" />
     <Compile Include="AssetremovedetailService.cs" />
+    <Compile Include="AssetremoveplanService.cs" />
     <Compile Include="AssetremoveService.cs" />
     <Compile Include="AssetrunplanService.cs" />
     <Compile Include="AssetscrappedService.cs" />
