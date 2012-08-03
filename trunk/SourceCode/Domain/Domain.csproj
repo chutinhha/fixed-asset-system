@@ -103,9 +103,11 @@
     <Compile Include="Domain\Assetmaintaindetail.cs" />
     <Compile Include="Domain\Assetmove.cs" />
     <Compile Include="Domain\Assetmovedetail.cs" />
+    <Compile Include="Domain\Assetmoveplan.cs" />
     <Compile Include="Domain\AssetRegisterSearch.cs" />
     <Compile Include="Domain\Assetremove.cs" />
     <Compile Include="Domain\Assetremovedetail.cs" />
+    <Compile Include="Domain\Assetremoveplan.cs" />
     <Compile Include="Domain\Assetrunplan.cs" />
     <Compile Include="Domain\AssetRunTimeReport.cs" />
     <Compile Include="Domain\Assetscrapped.cs" />
@@ -135,8 +137,10 @@
     <Compile Include="SearchObject\AssetmaintaindetailSearch.cs" />
     <Compile Include="SearchObject\AssetmaintainSearch.cs" />
     <Compile Include="SearchObject\AssetmovedetailSearch.cs" />
+    <Compile Include="SearchObject\AssetmoveplanSearch.cs" />
     <Compile Include="SearchObject\AssetmoveSearch.cs" />
     <Compile Include="SearchObject\AssetremovedetailSearch.cs" />
+    <Compile Include="SearchObject\AssetremoveplanSearch.cs" />
     <Compile Include="SearchObject\AssetremoveSearch.cs" />
     <Compile Include="SearchObject\AssetrunplanSearch.cs" />
     <Compile Include="SearchObject\AssetscrappedSearch.cs" />

@@ -103,8 +103,10 @@
     <Compile Include="AutoCode\AssetManagement.cs" />
     <Compile Include="AutoCode\AssetmovedetailManagement.cs" />
     <Compile Include="AutoCode\AssetmoveManagement.cs" />
+    <Compile Include="AutoCode\AssetmoveplanManagement.cs" />
     <Compile Include="AutoCode\AssetremovedetailManagement.cs" />
     <Compile Include="AutoCode\AssetremoveManagement.cs" />
+    <Compile Include="AutoCode\AssetremoveplanManagement.cs" />
     <Compile Include="AutoCode\AssetrunplanManagement.cs" />
     <Compile Include="AutoCode\AssetscrappedManagement.cs" />
     <Compile Include="AutoCode\AssetsetupdetailManagement.cs" />
@@ -135,8 +137,10 @@
     <Compile Include="UserCode\AssetManagement.cs" />
     <Compile Include="UserCode\AssetmovedetailManagement.cs" />
     <Compile Include="UserCode\AssetmoveManagement.cs" />
+    <Compile Include="UserCode\AssetmoveplanManagement.cs" />
     <Compile Include="UserCode\AssetremovedetailManagement.cs" />
     <Compile Include="UserCode\AssetremoveManagement.cs" />
+    <Compile Include="UserCode\AssetremoveplanManagement.cs" />
     <Compile Include="UserCode\AssetrunplanManagement.cs" />
     <Compile Include="UserCode\AssetscrappedManagement.cs" />
     <Compile Include="UserCode\AssetsetupdetailManagement.cs" />
