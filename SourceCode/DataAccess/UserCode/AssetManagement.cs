@@ -566,12 +566,12 @@ namespace FixedAsset.DataAccess
                 if (!string.IsNullOrEmpty(info.FirstLevelCategoryId))
                 {
                     this.Database.AddInParameter(":Assetparentcategoryid", DbType.AnsiString, info.FirstLevelCategoryId);
-                    condition.Add(@"  ""ASSETCATEGORY"".""ASSETPARENTCATEGORYID"" = :Assetparentcategoryid");
+                    condition.Add(@"  e.ASSETPARENTCATEGORYID = :Assetparentcategoryid");
                 }
                 if (!string.IsNullOrEmpty(info.Assetcategoryid))
                 {
                     this.Database.AddInParameter(":Assetcategoryid", DbType.AnsiString, info.Assetcategoryid);
-                    condition.Add(@"  ""ASSET"".""ASSETCATEGORYID"" = :Assetcategoryid");
+                    condition.Add(@"  ASSET.ASSETCATEGORYID = :Assetcategoryid");
                 }
                 #endregion
 
