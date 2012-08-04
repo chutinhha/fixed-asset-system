@@ -14,11 +14,8 @@ namespace FixedAsset.IServices
 {
     public interface IAssetremoveplanService
     {
-        List<Assetremoveplan> RetrieveAssetremoveplansPaging(AssetremoveplanSearch info,int pageIndex, int pageSize,out int count);
-        Assetremoveplan CreateAssetremoveplan(Assetremoveplan info);
-        Assetremoveplan UpdateAssetremoveplanByPlanid(Assetremoveplan info);
-        Assetremoveplan RetrieveAssetremoveplanByPlanid(int planid);
-        List<Assetremoveplan> RetrieveAssetremoveplanByPlanid(List<int> planid);
-        void DeleteAssetremoveplanByPlanid(int planid);
+        void SaveAssetremoveplan(List<Assetremoveplan> list);
+        List<Assetremoveplan> RetrieveAssetremoveplanByCondition(string Plandatecycle, string Storageflag, string Storage);
+        List<Assetremoveplan> RetrieveAssetremoveplanByCondition(AssetremoveplanSearch info); 
     }
 }

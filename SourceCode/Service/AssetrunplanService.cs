@@ -38,104 +38,14 @@ namespace FixedAsset.Services
 
         #endregion
 
-        #region RetrieveAssetrunplansPaging
-        public List<Assetrunplan> RetrieveAssetrunplansPaging(AssetrunplanSearch info,int pageIndex, int pageSize,out int count)
-        {
-            return Management.RetrieveAssetrunplansPaging(info,pageIndex,pageSize,out count);
-        }
+        #region RetrieveAssetrunplanByCondition
         public  List<Assetrunplan> RetrieveAssetrunplanByCondition(string Plandatecycle,string Storageflag,string Storage)
         {
             return Management.RetrieveAssetrunplanByCondition(Plandatecycle, Storageflag, Storage);
         }
-        #endregion
-
-        #region RetrieveAssetrunplanByPlanid
-        public Assetrunplan RetrieveAssetrunplanByPlanid(int planid)
-        {
-            return Management.RetrieveAssetrunplanByPlanid(planid);
-        }
-        #endregion
-
-        #region RetrieveAssetrunplanByPlanid
-        public List<Assetrunplan> RetrieveAssetrunplanByPlanid(List<int> planids)
-        {
-            return Management.RetrieveAssetrunplanByPlanid(planids);
-        }
-        #endregion
-
-        #region CreateAssetrunplan
-        public Assetrunplan CreateAssetrunplan(Assetrunplan info)
-        {
-            try
-            {
-                Management.BeginTransaction();
-                Management.CreateAssetrunplan(info);
-                Management.Commit();
-            }
-            catch
-            {
-                Management.Rollback();
-                throw;
-            }
-            return info;
-        }
-        #endregion
-
-        #region UpdateAssetrunplanByPlanid
-        public Assetrunplan UpdateAssetrunplanByPlanid(Assetrunplan info)
-        {
-            try
-            {
-                Management.BeginTransaction();
-                Management.UpdateAssetrunplanByPlanid(info);
-                Management.Commit();
-            }
-            catch
-            {
-                Management.Rollback();
-                throw;
-            }
-            return info;
-        }
-        #endregion
-
-        #region DeleteAssetrunplanByPlanid
-
         public List<Assetrunplan> RetrieveAssetrunplanByCondition(AssetrunplanSearch info)
         {
-            return Management.RetrieveAssetrunplanByCondition(info);            
-        }
-
-        public void DeleteAssetrunplanByPlanid(int planid)
-        {
-            try
-            {
-                Management.BeginTransaction();
-                Management.DeleteAssetrunplanByPlanid(planid);
-                Management.Commit();
-            }
-            catch
-            {
-                Management.Rollback();
-                throw;
-            }
-        }
-        #endregion
-
-        #region DeleteAssetrunplanByPlanid
-        public void DeleteAssetrunplanByPlanid(List<int> planids)
-        {
-            try
-            {
-                Management.BeginTransaction();
-                Management.DeleteAssetrunplanByPlanid(planids);
-                Management.Commit();
-            }
-            catch
-            {
-                Management.Rollback();
-                throw;
-            }
+            return Management.RetrieveAssetrunplanByCondition(info);
         }
         #endregion 
 
