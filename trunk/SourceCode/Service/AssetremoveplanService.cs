@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
+using System.Linq;
 using FixedAsset.Domain;
 using FixedAsset.DataAccess;
 using FixedAsset.IServices;
@@ -38,96 +39,66 @@ namespace FixedAsset.Services
 
         #endregion
 
-        #region RetrieveAssetremoveplansPaging
-        public List<Assetremoveplan> RetrieveAssetremoveplansPaging(AssetremoveplanSearch info,int pageIndex, int pageSize,out int count)
+        #region RetrieveAssetremoveplanByCondition
+        public List<Assetremoveplan> RetrieveAssetremoveplanByCondition(string Plandatecycle, string Storageflag, string Storage)
         {
-            return Management.RetrieveAssetremoveplansPaging(info,pageIndex,pageSize,out count);
+            return Management.RetrieveAssetremoveplanByCondition(Plandatecycle, Storageflag, Storage);
+        }
+        public List<Assetremoveplan> RetrieveAssetremoveplanByCondition(AssetremoveplanSearch info)
+        {
+            return Management.RetrieveAssetremoveplanByCondition(info);
         }
         #endregion
 
-        #region RetrieveAssetremoveplanByPlanid
-        public Assetremoveplan RetrieveAssetremoveplanByPlanid(int planid)
+        public void SaveAssetremoveplan(List<Assetremoveplan> list)
         {
-            return Management.RetrieveAssetremoveplanByPlanid(planid);
-        }
-        #endregion
-
-        #region RetrieveAssetremoveplanByPlanid
-        public List<Assetremoveplan> RetrieveAssetremoveplanByPlanid(List<int> planids)
-        {
-            return Management.RetrieveAssetremoveplanByPlanid(planids);
-        }
-        #endregion
-
-        #region CreateAssetremoveplan
-        public Assetremoveplan CreateAssetremoveplan(Assetremoveplan info)
-        {
-            try
+            if (list.Count == 0)
             {
-                Management.BeginTransaction();
-                Management.CreateAssetremoveplan(info);
-                Management.Commit();
+                return;
             }
-            catch
+            var existInfos = Management.RetrieveAssetremoveplanByCondition(list[0].Plandatecycle, list[0].Storageflag,
+                                                                        list[0].Storage);
+            if (existInfos.Count > 0)
             {
-                Management.Rollback();
-                throw;
+                try
+                {
+                    Management.BeginTransaction();
+                    foreach (var info in list)
+                    {
+                        var existInfo = (from p in existInfos
+                                         where p.Planid == info.Planid
+                                         select p).FirstOrDefault();
+                        if (existInfo != null)
+                        {
+                            existInfo.Assetcount = info.Assetcount;
+                            Management.UpdateAssetremoveplanByPlanid(existInfo);
+                        }
+                    }
+                    Management.Commit();
+                }
+                catch
+                {
+                    Management.Rollback();
+                    throw;
+                }
             }
-            return info;
-        }
-        #endregion
-
-        #region UpdateAssetremoveplanByPlanid
-        public Assetremoveplan UpdateAssetremoveplanByPlanid(Assetremoveplan info)
-        {
-            try
+            else
             {
-                Management.BeginTransaction();
-                Management.UpdateAssetremoveplanByPlanid(info);
-                Management.Commit();
-            }
-            catch
-            {
-                Management.Rollback();
-                throw;
-            }
-            return info;
-        }
-        #endregion
-
-        #region DeleteAssetremoveplanByPlanid
-        public void DeleteAssetremoveplanByPlanid(int planid)
-        {
-            try
-            {
-                Management.BeginTransaction();
-                Management.DeleteAssetremoveplanByPlanid(planid);
-                Management.Commit();
-            }
-            catch
-            {
-                Management.Rollback();
-                throw;
+                try
+                {
+                    Management.BeginTransaction();
+                    foreach (var info in list)
+                    {
+                        Management.CreateAssetremoveplan(info);
+                    }
+                    Management.Commit();
+                }
+                catch
+                {
+                    Management.Rollback();
+                    throw;
+                }
             }
         }
-        #endregion
-
-        #region DeleteAssetremoveplanByPlanid
-        public void DeleteAssetremoveplanByPlanid(List<int> planids)
-        {
-            try
-            {
-                Management.BeginTransaction();
-                Management.DeleteAssetremoveplanByPlanid(planids);
-                Management.Commit();
-            }
-            catch
-            {
-                Management.Rollback();
-                throw;
-            }
-        }
-        #endregion
-
     }
 }

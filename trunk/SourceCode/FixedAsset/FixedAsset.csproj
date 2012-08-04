@@ -293,6 +293,13 @@
     <Compile Include="Admin\Move_Confirm.aspx.designer.cs">
       <DependentUpon>Move_Confirm.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Move_Plan.aspx.cs">
+      <DependentUpon>Move_Plan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Move_Plan.aspx.designer.cs">
+      <DependentUpon>Move_Plan.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Move_Reply.aspx.cs">
       <DependentUpon>Move_Reply.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -418,6 +425,13 @@
     </Compile>
     <Compile Include="Admin\Remove_Confirm.aspx.designer.cs">
       <DependentUpon>Remove_Confirm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Remove_Plan.aspx.cs">
+      <DependentUpon>Remove_Plan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Remove_Plan.aspx.designer.cs">
+      <DependentUpon>Remove_Plan.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Remove_Reply.aspx.cs">
       <DependentUpon>Remove_Reply.aspx</DependentUpon>
@@ -565,6 +579,20 @@
     </Compile>
     <Compile Include="Admin\Report_Asset_Search.aspx.designer.cs">
       <DependentUpon>Report_Asset_Search.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Report_Move_Plan.aspx.cs">
+      <DependentUpon>Report_Move_Plan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Report_Move_Plan.aspx.designer.cs">
+      <DependentUpon>Report_Move_Plan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Report_Remove_Plan.aspx.cs">
+      <DependentUpon>Report_Remove_Plan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Report_Remove_Plan.aspx.designer.cs">
+      <DependentUpon>Report_Remove_Plan.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Report_ShowCurrentAssets.aspx.cs">
       <DependentUpon>Report_ShowCurrentAssets.aspx</DependentUpon>
@@ -869,6 +897,7 @@
     <Content Include="Admin\Install_View.aspx" />
     <Content Include="Admin\Login.aspx" />
     <Content Include="Admin\Move_Confirm.aspx" />
+    <Content Include="Admin\Move_Plan.aspx" />
     <Content Include="Admin\Move_Reply.aspx" />
     <Content Include="Admin\Move_View.aspx" />
     <Content Include="Admin\NewRemoving.aspx" />
@@ -876,6 +905,7 @@
     <Content Include="Admin\New_ImportAssetFromContract.aspx" />
     <Content Include="Admin\New_ImportContractDetail_Edit.aspx" />
     <Content Include="Admin\Remove_Confirm.aspx" />
+    <Content Include="Admin\Remove_Plan.aspx" />
     <Content Include="Admin\Remove_Reply.aspx" />
     <Content Include="Admin\Remove_View.aspx" />
     <Content Include="Admin\Repair_Confirm.aspx" />
@@ -896,6 +926,8 @@
     <Content Include="Admin\Report_AssetStorageAddress.aspx" />
     <Content Include="Admin\Report_AssetUserdPlan.aspx" />
     <Content Include="Admin\Report_Asset_Search.aspx" />
+    <Content Include="Admin\Report_Move_Plan.aspx" />
+    <Content Include="Admin\Report_Remove_Plan.aspx" />
     <Content Include="Admin\Report_ShowCurrentAssets.aspx" />
     <Content Include="Admin\Role_Add.aspx" />
     <Content Include="Admin\Role_AddRight.aspx" />

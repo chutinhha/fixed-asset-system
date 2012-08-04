@@ -70,84 +70,39 @@ namespace FixedAsset.DataAccess
         }
         #endregion
 
-        #region RetrieveAssetmoveplansPaging
-        public List<Assetmoveplan> RetrieveAssetmoveplansPaging(AssetmoveplanSearch info,int pageIndex, int pageSize,out int count)
+        #region RetrieveAssetmoveplanByCondition
+        public List<Assetmoveplan> RetrieveAssetmoveplanByCondition(string Plandatecycle, string Storageflag, string Storage)
         {
             try
             {
-                var sqlCommand = new StringBuilder(@" SELECT ""ASSETMOVEPLAN"".""PLANID"",""ASSETMOVEPLAN"".""ASSETPARENTCATEGORYID"",""ASSETMOVEPLAN"".""ASSETCATEGORYID"",""ASSETMOVEPLAN"".""STORAGEFLAG"",""ASSETMOVEPLAN"".""STORAGE"",
-                     ""ASSETMOVEPLAN"".""PLANDATECYCLE"",""ASSETMOVEPLAN"".""CREATEDDATE"",""ASSETMOVEPLAN"".""STARTDATE"",""ASSETMOVEPLAN"".""ENDDATE"",""ASSETMOVEPLAN"".""PLANCATEGORY"",
-                     ""ASSETMOVEPLAN"".""ASSETCOUNT""
-                     FROM ""ASSETMOVEPLAN"" 
+                if (string.IsNullOrEmpty(Plandatecycle) || string.IsNullOrEmpty(Storageflag) || string.IsNullOrEmpty(Storage))
+                {
+                    return new List<Assetmoveplan>();
+                }
+                var sqlCommand = new StringBuilder(@" SELECT ""ASSETMOVEPLAN"".""PLANID"",""ASSETMOVEPLAN"".""ASSETPARENTCATEGORYID"",""ASSETMOVEPLAN"".""ASSETCATEGORYID""
+                    ,""ASSETMOVEPLAN"".""STORAGEFLAG"",""ASSETMOVEPLAN"".""STORAGE""
+                    ,""ASSETMOVEPLAN"".""PLANDATECYCLE"",""ASSETMOVEPLAN"".""CREATEDDATE"",""ASSETMOVEPLAN"".""STARTDATE""
+                    ,""ASSETMOVEPLAN"".""ENDDATE"",""ASSETMOVEPLAN"".""PLANCATEGORY"",ASSETCOUNT
+                    ,f.ASSETCATEGORYNAME AS Assetparentcategoryname,e.ASSETCATEGORYNAME AS Assetsubcategoryname
+                      FROM ""ASSETMOVEPLAN""
+                      INNER JOIN ASSETCATEGORY e on e.ASSETCATEGORYID=Assetmoveplan.ASSETCATEGORYID 
+                      INNER JOIN ASSETCATEGORY f on f.ASSETCATEGORYID=e.ASSETPARENTCATEGORYID
                     ");
-                var condition=new List<string>();
-                #region 设备父类别
-                if (!string.IsNullOrEmpty(info.Assetparentcategoryid))
-                {
-                    this.Database.AddInParameter(":Assetparentcategoryid",DbType.AnsiString,"%"+info.Assetparentcategoryid+"%");
-                    condition.Add(@" ""ASSETMOVEPLAN"".""ASSETPARENTCATEGORYID"" LIKE :Assetparentcategoryid");
-                }
-                #endregion
 
-                #region 设备子类别
-                if (!string.IsNullOrEmpty(info.Assetcategoryid))
-                {
-                    this.Database.AddInParameter(":Assetcategoryid",DbType.AnsiString,"%"+info.Assetcategoryid+"%");
-                    condition.Add(@" ""ASSETMOVEPLAN"".""ASSETCATEGORYID"" LIKE :Assetcategoryid");
-                }
-                #endregion
-
+                var condition = new List<string>();
                 #region 分公司、项目体标识
-                if (!string.IsNullOrEmpty(info.Storageflag))
-                {
-                    this.Database.AddInParameter(":Storageflag", "%"+info.Storageflag+"%");
-                    condition.Add(@" ""ASSETMOVEPLAN"".""STORAGEFLAG"" LIKE :Storageflag");
-                }
-                #endregion
-
-                #region 分公司、项目体ID
-                if (!string.IsNullOrEmpty(info.Storage))
-                {
-                    this.Database.AddInParameter(":Storage", "%"+info.Storage+"%");
-                    condition.Add(@" ""ASSETMOVEPLAN"".""STORAGE"" LIKE :Storage");
-                }
+                this.Database.AddInParameter(":Storageflag", Storageflag);
+                condition.Add(@" ""ASSETMOVEPLAN"".""STORAGEFLAG"" = :Storageflag");
+                this.Database.AddInParameter(":Storage", Storage);
+                condition.Add(@" ""ASSETMOVEPLAN"".""STORAGE"" = :Storage");
                 #endregion
 
                 #region 时间段（如：周计划，20120723-20120729）
-                if (!string.IsNullOrEmpty(info.Plandatecycle))
-                {
-                    this.Database.AddInParameter(":Plandatecycle",DbType.AnsiString,"%"+info.Plandatecycle+"%");
-                    condition.Add(@" ""ASSETMOVEPLAN"".""PLANDATECYCLE"" LIKE :Plandatecycle");
-                }
+                this.Database.AddInParameter(":Plandatecycle", Plandatecycle);
+                condition.Add(@" ""ASSETMOVEPLAN"".""PLANDATECYCLE"" = :Plandatecycle");
                 #endregion
 
-                //#region 开始日期
-                //if (info.StartStartdate.HasValue)
-                //{
-                //    this.Database.AddInParameter(":StartStartdate",info.StartStartdate.Value.Date);
-                //    condition.Add(@"  ""ASSETMOVEPLAN"".""STARTDATE"" >= :StartStartdate");
-                //}
-                //if (info.EndStartdate.HasValue)
-                //{
-                //    this.Database.AddInParameter(":EndStartdate",info.EndStartdate.Value.Date.AddDays(1).AddSeconds(-1));
-                //    condition.Add(@" ""ASSETMOVEPLAN"".""STARTDATE"" <= :EndStartdate");
-                //}
-                //#endregion
-
-                //#region 结束日期
-                //if (info.StartEnddate.HasValue)
-                //{
-                //    this.Database.AddInParameter(":StartEnddate",info.StartEnddate.Value.Date);
-                //    condition.Add(@"  ""ASSETMOVEPLAN"".""ENDDATE"" >= :StartEnddate");
-                //}
-                //if (info.EndEnddate.HasValue)
-                //{
-                //    this.Database.AddInParameter(":EndEnddate",info.EndEnddate.Value.Date.AddDays(1).AddSeconds(-1));
-                //    condition.Add(@" ""ASSETMOVEPLAN"".""ENDDATE"" <= :EndEnddate");
-                //}
-                //#endregion
-
-                if(condition.Count>0)
+                if (condition.Count > 0)
                 {
                     for (int i = 0; i < condition.Count; i++)
                     {
@@ -155,7 +110,93 @@ namespace FixedAsset.DataAccess
                     }
                 }
                 sqlCommand.AppendLine(@"  ORDER BY ""ASSETMOVEPLAN"".""PLANID"" DESC");
-                return this.ExecuteReaderPaging<Assetmoveplan>(sqlCommand.ToString(), pageIndex, pageSize, out count);
+                return this.Database.ExecuteToList<Assetmoveplan>(sqlCommand.ToString());
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
+        #endregion
+
+        #region RetrieveAssetmoveplanByCondition
+        public List<Assetmoveplan> RetrieveAssetmoveplanByCondition(AssetmoveplanSearch search)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(search.Plandatecycle) || string.IsNullOrEmpty(search.Storageflag) || string.IsNullOrEmpty(search.Storage))
+                {
+                    return new List<Assetmoveplan>();
+                }
+                var sqlCommand = new StringBuilder(@" SELECT ""ASSETMOVEPLAN"".""PLANID"",""ASSETMOVEPLAN"".""ASSETPARENTCATEGORYID"",""ASSETMOVEPLAN"".""ASSETCATEGORYID""
+                    ,""ASSETMOVEPLAN"".""STORAGEFLAG"",""ASSETMOVEPLAN"".""STORAGE""
+                    ,""ASSETMOVEPLAN"".""PLANDATECYCLE"",""ASSETMOVEPLAN"".""CREATEDDATE"",""ASSETMOVEPLAN"".""STARTDATE""
+                    ,""ASSETMOVEPLAN"".""ENDDATE"",""ASSETMOVEPLAN"".""PLANCATEGORY"",ASSETCOUNT
+                    ,f.ASSETCATEGORYNAME AS Assetparentcategoryname,e.ASSETCATEGORYNAME AS Assetsubcategoryname
+                      FROM ""ASSETMOVEPLAN""
+                      INNER JOIN ASSETCATEGORY e on e.ASSETCATEGORYID=Assetmoveplan.ASSETCATEGORYID 
+                      INNER JOIN ASSETCATEGORY f on f.ASSETCATEGORYID=e.ASSETPARENTCATEGORYID
+                    ");
+
+                var condition = new List<string>();
+
+                #region 时间段（如：周计划，20120723-20120729）
+                this.Database.AddInParameter(":Plandatecycle", search.Plandatecycle);
+                condition.Add(@" ""ASSETMOVEPLAN"".""PLANDATECYCLE"" = :Plandatecycle");
+                #endregion
+
+                #region 项目体ID或分公司ID
+
+                var subsqlcondition = new StringBuilder();
+                if (search.Storageflag == Vstorageaddress.RootCompany)
+                {
+                    subsqlcondition.AppendLine(@"  ASSETMOVEPLAN.STORAGEFLAG = :STORAGEFLAG ");
+                    this.Database.AddInParameter(":STORAGEFLAG", DbType.AnsiString, Vstorageaddress.Subcompany);
+                }
+                else if (search.Storageflag == Vstorageaddress.Project)
+                {
+                    subsqlcondition.AppendLine(@"  ASSETMOVEPLAN.STORAGEFLAG = :STORAGEFLAG AND ASSETMOVEPLAN.STORAGE = :Storage");
+                    this.Database.AddInParameter(":STORAGEFLAG", DbType.AnsiString, Vstorageaddress.Project);
+                    this.Database.AddInParameter(":Storage", DbType.AnsiString, search.Storage);
+                }
+                else if (search.Storageflag == Vstorageaddress.Subcompany)
+                {
+                    this.Database.AddInParameter(":STORAGEFLAG", DbType.AnsiString, Vstorageaddress.Subcompany);
+                    this.Database.AddInParameter(":Storage", DbType.AnsiString, search.Storage);
+                    subsqlcondition.AppendLine(@" ((ASSETMOVEPLAN.STORAGEFLAG = :STORAGEFLAG AND ASSETMOVEPLAN.STORAGE = :Storage )");
+                    if (search.ProjectIds.Count > 0)
+                    {
+                        this.Database.AddInParameter(":Storagetitle0", DbType.AnsiString, Vstorageaddress.Project);
+                        this.Database.AddInParameter(":Storage0", DbType.AnsiString, search.ProjectIds[0]);
+                        subsqlcondition.AppendLine(@" OR (ASSETMOVEPLAN.STORAGEFLAG = :Storagetitle0  AND (ASSETMOVEPLAN.STORAGE = :Storage0 ");
+                        for (int i = 1; i < search.ProjectIds.Count; i++)
+                        {
+                            this.Database.AddInParameter(":Storage" + i.ToString(), search.ProjectIds[i]);
+                            subsqlcondition.AppendLine(@" OR ASSETMOVEPLAN.STORAGE=:Storage" + i.ToString());
+                        }
+                        subsqlcondition.Append(")");
+                        subsqlcondition.Append(")");
+                    }
+                    subsqlcondition.Append(")");
+                }
+                else
+                {
+                    return new List<Assetmoveplan>();
+                }
+
+                if (subsqlcondition.Length > 0)
+                    condition.Add(subsqlcondition.ToString());
+                #endregion
+
+                if (condition.Count > 0)
+                {
+                    for (int i = 0; i < condition.Count; i++)
+                    {
+                        sqlCommand.Append(i == 0 ? " WHERE " : " AND ").Append(condition[i]);
+                    }
+                }
+                sqlCommand.AppendLine(@"  ORDER BY ""ASSETMOVEPLAN"".""PLANID"" DESC");
+                return this.Database.ExecuteToList<Assetmoveplan>(sqlCommand.ToString());
             }
             finally
             {

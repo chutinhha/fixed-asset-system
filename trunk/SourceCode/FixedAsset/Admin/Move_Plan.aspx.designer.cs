@@ -10,7 +10,7 @@
 namespace FixedAsset.Web.Admin {
     
     
-    public partial class AssetUsedPlan {
+    public partial class Move_Plan {
         
         /// <summary>
         /// litTitle 控件。

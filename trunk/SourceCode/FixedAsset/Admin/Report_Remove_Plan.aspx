@@ -1,5 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/MasterPage.master" AutoEventWireup="true" CodeBehind="Report_AssetUserdPlan.aspx.cs" Inherits="FixedAsset.Web.Admin.Report_AssetUserdPlan" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/MasterPage.master" AutoEventWireup="true" CodeBehind="Report_Remove_Plan.aspx.cs" Inherits="FixedAsset.Web.Admin.Report_Remove_Plan" %>
 <%@ Import Namespace="FixedAsset.Domain" %>
 <%@ Register Src="~/Admin/UserControl/ucSelectProjectForTree2.ascx" TagName="SelectStorageAddress"
     TagPrefix="uc1" %>
@@ -28,7 +27,7 @@
     <div class="content-box" style="padding: 0 0 0 0; margin: 0 0 0 0;">
         <div class="content-box-header">
             <h3 style="cursor: s-resize;">
-                <asp:Literal runat="server" ID="litTitle" Text="安装计划汇总" /></h3>
+                <asp:Literal runat="server" ID="litTitle" Text="拆机计划汇总" /></h3>
         </div>
         <div class="content-box-content">
             <div class="tab-content default-tab">
