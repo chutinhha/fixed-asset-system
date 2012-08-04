@@ -136,13 +136,19 @@ namespace FixedAsset.Web.Admin
             base.OnLoad(e);
             if (!IsPostBack)
             {
-                InitData();
+                ucSrchDate.DateValue = DateTime.Today;
                 AssetCategories.Clear();
                 LoadAssetCategory();
             }
         }
         protected void ucSelectStorageAddress_SelectedStorageNodeChange(object sender, EventArgs e)
         {
+            if(!ucSrchDate.DateValue.HasValue)
+            {
+                UIHelper.Alert(this, "请选择时间！");
+                return;
+            }
+            InitData();
             litWeeklyContent.Text = string.Format(@"{0}{1}~{2}设备使用计划汇总", string.IsNullOrEmpty(ucSelectStorageAddress.Subcompanyname) ? ucSelectStorageAddress.Storagename : ucSelectStorageAddress.Subcompanyname + "->" + ucSelectStorageAddress.Storagename
                 , WeekFirstDate.ToString(UiConst.DateFormatCh), WeekLastDate.ToString(UiConst.DateFormatCh));
             litMonthlyContent.Text = string.Format(@"{0}{1}~{2}设备使用计划汇总", string.IsNullOrEmpty(ucSelectStorageAddress.Subcompanyname) ? ucSelectStorageAddress.Storagename : ucSelectStorageAddress.Subcompanyname + "->" + ucSelectStorageAddress.Storagename
@@ -150,25 +156,26 @@ namespace FixedAsset.Web.Admin
             litMonthlyBody.Text = LoadCurrentData(MonthlyPlandatecycle);
             litWeeklyBody.Text = LoadCurrentData(WeeklyPlandatecycle);
             ClientScript.RegisterStartupScript(this.GetType(), Guid.NewGuid().ToString("N"), "tabChange('weeklyPlan','weeklyPlanContent','monthPlanContent');", true);
-            //ClientScript.RegisterStartupScript(this.GetType(), Guid.NewGuid().ToString("N"), " document.getElementById('weeklyPlanContent').style.display = 'none';", true);           
         }
         #endregion
 
         #region Methods
         protected void InitData()
-        {
+        { 
+            if(!ucSrchDate.DateValue.HasValue){return;}
+            DateTime currentDate = ucSrchDate.DateValue.Value;
             //周计划
-            int dayOfWeek = Convert.ToInt32(DateTime.Today.DayOfWeek);
+            int dayOfWeek = Convert.ToInt32(currentDate.DayOfWeek);
             int daydiff = (-1) * dayOfWeek + 1;
             int dayadd = 7 - dayOfWeek;
-            WeekFirstDate = DateTime.Today.AddDays(daydiff).AddDays(7);
-            WeekLastDate = DateTime.Today.AddDays(dayadd).AddDays(7);
+            WeekFirstDate = currentDate.AddDays(daydiff);
+            WeekLastDate = currentDate.AddDays(dayadd);
             WeeklyPlandatecycle = WeekFirstDate.ToString(UiConst.DateFormat2) + WeekLastDate.ToString(UiConst.DateFormat2);
 
             //月计划
-            MonthFirstDate = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1).AddMonths(1);
+            MonthFirstDate = new DateTime(currentDate.Year, currentDate.Month, 1);
             MonthLastDate = MonthFirstDate.AddMonths(1).AddDays(-1);
-            this.MonthlyPlandatecycle = MonthFirstDate.ToString(UiConst.DateFormat2) + MonthLastDate.ToString(UiConst.DateFormat2);
+            MonthlyPlandatecycle = MonthFirstDate.ToString(UiConst.DateFormat2) + MonthLastDate.ToString(UiConst.DateFormat2);
         }
 
         protected void LoadAssetCategory()

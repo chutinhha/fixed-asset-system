@@ -21,9 +21,9 @@ namespace FixedAsset.Domain
         public const int Monthly = 1;
         public const int Weekly = 2;
 
-        #region 计划编号（时间段+分公司或项目体+分类ID等字符串的哈希值）
+        #region 计划编号
         ///<summary>
-        ///计划编号（时间段+分公司或项目体+分类ID等字符串的哈希值）,PLANID;NOT NULL
+        ///计划编号
         ///</summary>
         public int Planid { get; set; }
         #endregion
