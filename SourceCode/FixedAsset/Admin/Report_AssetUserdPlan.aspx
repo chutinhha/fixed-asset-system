@@ -3,6 +3,7 @@
 <%@ Import Namespace="FixedAsset.Domain" %>
 <%@ Register Src="~/Admin/UserControl/ucSelectProjectForTree2.ascx" TagName="SelectStorageAddress"
     TagPrefix="uc1" %>
+    <%@ Register Src="~/Admin/UserControl/ucDatePicker.ascx" TagName="DatePicker" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
     <link href="css/mail.css" rel="stylesheet" type="text/css" />
@@ -39,6 +40,8 @@
                     </div>
                 </div>
                 <div class="column-right" style="width: 79%;">
+                <b>时间：</b>
+                <uc1:DatePicker ID="ucSrchDate" runat="server" />
                     <div id="tag" class="thin blue">
                         <ul id="tags">
                             <li id="weeklyPlan"><a href="javascript:tabChange('weeklyPlan','weeklyPlanContent','monthPlanContent')">
