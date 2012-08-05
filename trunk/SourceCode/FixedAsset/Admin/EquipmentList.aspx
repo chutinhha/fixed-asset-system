@@ -13,7 +13,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
     <ul id="TabPage1">
-        <li id="Tab1" title="设备管理">设备管理</li>
+        <li id="Tab1" title="设备登记">设备登记</li>
     </ul>
     <div id="cnt">
         <div id="dTab1" class="Box text_box">
@@ -72,6 +72,7 @@
                     <td colspan="6" align="right">
                         <asp:Button ID="BtnSearch" runat="server" CssClass="button" Text="查询" OnClick="BtnSearch_Click" />
                         <input type="button" class="button" runat="server" id="btnAdd" value="新增" onclick="javascript:window.location='NewEquipment.aspx'" />
+                        <input type="button" class="button" runat="server" id="Button1" value="设备导入" onclick="javascript:window.location='New_Contract_List.aspx'" />
                     </td>
                 </tr>
             </table>
