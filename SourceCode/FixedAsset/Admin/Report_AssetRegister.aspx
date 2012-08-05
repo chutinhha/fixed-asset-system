@@ -11,7 +11,7 @@
     <div class="content-box">
         <div class="content-box-header">
             <h3 style="cursor: s-resize;">
-                <asp:Literal runat="server" ID="litTitle" Text="设备登记台账" /></h3>
+                <asp:Literal runat="server" ID="litTitle" Text="设备台账" /></h3>
         </div>
         <div class="content-box-content">
             <div class="tab-content default-tab">

@@ -13,7 +13,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
     <ul id="TabPage1">
-        <li id="Tab1" title="报修管理">报修管理</li>
+        <li id="Tab1" title="维修登记">维修登记</li>
     </ul>
     <div id="cnt">
         <div id="dTab1" class="Box text_box">
