@@ -421,8 +421,9 @@ namespace FixedAsset.DataAccess
                 #region 项目体ID或分公司ID)
                 if (info.Storagetitle == Vstorageaddress.RootCompany)
                 {
-                    sqlCommand.AppendLine(@" where c.STORAGEFLAG = :Storagetitle ");
+                    sqlCommand.AppendLine(@" where (c.STORAGEFLAG = :Storagetitle Or c.STORAGEFLAG = :Storagetitle2)  ");
                     this.Database.AddInParameter(":Storagetitle", DbType.AnsiString, Vstorageaddress.Subcompany);
+                    this.Database.AddInParameter(":Storagetitle2", DbType.AnsiString, Vstorageaddress.Supplier);
                 }
                 else if (info.Storagetitle == Vstorageaddress.Project)
                 {
