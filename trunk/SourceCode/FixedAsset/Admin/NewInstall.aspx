@@ -72,9 +72,8 @@
                                 项目体(分公司)联系人: <span style="color: Red">*</span>
                             </td>
                             <td>
-                               
-                               <asp:TextBox ID="txtProjectcontactorid" MaxLength="100" CssClass="text_inp" runat="server"
-    Width="300" />
+                                <asp:TextBox ID="txtProjectcontactorid" MaxLength="100" CssClass="text_inp" runat="server"
+                                    Width="300" />
                             </td>
                         </tr>
                         <tr>
@@ -126,7 +125,8 @@
                                             align="center" class="gridtable">
                                             <tr style="border-bottom-width: 1px;">
                                                 <td colspan="6" align="right">
-                                                    设备选择<uc1:SelectedMultiAssets ID="ucSelectedMultiAssets" BillCategory="SetupBill" runat="server" OnSelectAssetChange="ucSelectedMultiAssets_SelectAssetChange" />
+                                                    设备选择<uc1:SelectedMultiAssets ID="ucSelectedMultiAssets" BillCategory="SetupBill"
+                                                        runat="server" OnSelectAssetChange="ucSelectedMultiAssets_SelectAssetChange" />
                                                 </td>
                                             </tr>
                                             <asp:Repeater ID="rptAssetsList" runat="server" OnItemDataBound="rptAssetsList_ItemDataBound"
@@ -134,34 +134,34 @@
                                                 <HeaderTemplate>
                                                     <tr style="background-color: #EFFFEA; border-bottom-width: 1px;">
                                                         <tr class="thbg" style="padding: 0 0 0 0">
-                                                        <th style="width: 100px;" align="center">
-                                                            设备编号
-                                                        </th>
-                                                        <th>
-                                                            设备类别
-                                                        </th>
-                                                        <th>
-                                                            设备名称
-                                                        </th>
-                                                        <th>
-                                                            设备状态
-                                                        </th>
-                                                        <th>
-                                                            购入日期
-                                                        </th>
-                                                        <th>
-                                                            单价
-                                                        </th>
-                                                        <th>
-                                                            品牌
-                                                        </th>
-                                                        <th>
-                                                            账务类别
-                                                        </th>
-                                                        <th>
-                                                            操作
-                                                        </th>
-                                                    </tr>
+                                                            <th style="width: 100px;" align="center">
+                                                                设备编号
+                                                            </th>
+                                                            <th>
+                                                                设备类别
+                                                            </th>
+                                                            <th>
+                                                                设备名称
+                                                            </th>
+                                                            <th>
+                                                                设备状态
+                                                            </th>
+                                                            <th>
+                                                                购入日期
+                                                            </th>
+                                                            <th>
+                                                                单价
+                                                            </th>
+                                                            <th>
+                                                                品牌
+                                                            </th>
+                                                            <th>
+                                                                账务类别
+                                                            </th>
+                                                            <th>
+                                                                操作
+                                                            </th>
+                                                        </tr>
                                                 </HeaderTemplate>
                                                 <ItemTemplate>
                                                     <tr>
@@ -244,7 +244,7 @@
                                 <asp:Button ID="btnSubmit" runat="server" Text="提 交" CssClass="button" ValidationGroup="Vaild"
                                     OnClick="btnSubmit_Click" />
                                 <asp:Button ID="btnReset" runat="server" Text="返 回" CssClass="button" CausesValidation="false"
-                                     OnClick="btnReset_Click" />
+                                    OnClick="btnReset_Click" />
                             </td>
                         </tr>
                     </table>
