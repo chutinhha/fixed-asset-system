@@ -56,33 +56,34 @@
                     OnItemCommand="rptRepairList_ItemCommand">
                     <HeaderTemplate>
                         <tr class="thbg" style="padding: 0 0 0 0">
-                            <th style="width: 100px;" align="center">
+                        <th style="width: 9%;" align="center">
                                 维修单号
                             </th>
-                            <th align="center" style="width: 40px;">
+                            <th align="center" style="width: 3%;">
                                 系统
                             </th>
-                            <th align="center" style="width: 60px;">
+                            <th align="center" style="width: 8%;">
                                 分公司
                             </th>
-                            <th align="center" style="width: 150px;">
+                            <th align="center" style="width:18%;">
                                 项目体
                             </th>
-                            <th align="center" style="width: 75px;">
+                            <th align="center" style="width: 6%;">
                                 申请日期
                             </th>
-                            <th align="center" style="width: 50px;">
+                            <th align="center" style="width: 4%;">
                                 申请人
                             </th>
-                            <th align="center">
+                            <th align="center" style="width: 28%;">
                                 申请内容
                             </th>
-                            <th align="center" style="width: 60px;">
+                            <th align="center" style="width: 6%;">
                                 状态
                             </th>
-                            <th align="center" style="width: 65px;">
+                            <th align="center" style="width: 7%;">
                                 操作
                             </th>
+                           
                         </tr>
                     </HeaderTemplate>
                     <ItemTemplate>
