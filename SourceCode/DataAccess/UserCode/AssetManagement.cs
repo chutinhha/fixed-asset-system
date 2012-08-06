@@ -404,9 +404,8 @@ namespace FixedAsset.DataAccess
             try
             {
                 var sqlCommand = new StringBuilder(@" select c.STORAGEFLAG as Storagetitle,c.STORAGE as Storageid, c.assetcategoryid as Assetcategoryid,
-                                                  count(c.assetno) as Currentcount
-                                                       from asset
-                                                       c ");
+                                                        count(c.assetno) as Currentcount
+                                                       from asset c ");
 
                 #region 项目体ID或分公司ID)
                 if (info.Storagetitle == Vstorageaddress.RootCompany)
@@ -468,6 +467,60 @@ namespace FixedAsset.DataAccess
 
                 sqlCommand.AppendLine(@"  group by c.STORAGEFLAG,c.STORAGE , c.assetcategoryid");
                 return this.Database.ExecuteToList<AssetRegisterReport>(sqlCommand.ToString());
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
+        #endregion
+
+        #region ReportAssetCategory
+        public List<ReportAssetCategory> ReportAssetCategory()
+        {
+            try
+            {
+                var sqlCommand = new StringBuilder(@" select c.assetcategoryid as Assetcategoryid,
+                                                        count(c.assetno) as Currentcount
+                                                       from asset c ");
+                sqlCommand.AppendLine(@"  group by c.assetcategoryid");
+                return this.Database.ExecuteToList<ReportAssetCategory>(sqlCommand.ToString());
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
+        #endregion
+
+        #region ReportAssetState
+        public List<AssetStateReport> ReportAssetState()
+        {
+            try
+            {
+                var sqlCommand = new StringBuilder(@" select c.STATE,
+                                                        count(c.assetno) as Currentcount
+                                                       from asset c ");
+                sqlCommand.AppendLine(@"  group by c.STATE");
+                return this.Database.ExecuteToList<AssetStateReport>(sqlCommand.ToString());
+            }
+            finally
+            {
+                this.Database.ClearParameter();
+            }
+        }
+        #endregion
+
+        #region RetrieveAssetRegisterReport
+        public List<AssetStorageReport> RetrieveAssetStorageReport()
+        {
+            try
+            {
+                var sqlCommand = new StringBuilder(@" select c.STORAGEFLAG as Storagetitle,c.STORAGE as Storageid, 
+                                                        count(c.assetno) as Currentcount
+                                                       from asset c ");                                                                                    
+                sqlCommand.AppendLine(@"  group by c.STORAGEFLAG,c.STORAGE");
+                return this.Database.ExecuteToList<AssetStorageReport>(sqlCommand.ToString());
             }
             finally
             {

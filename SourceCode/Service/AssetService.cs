@@ -83,25 +83,7 @@ namespace FixedAsset.Services
         {
             return Management.RetrieveAssetByAssetno(assetnos);
         }
-        #endregion
-
-        #region CreateAsset
-        public Asset CreateAsset(Asset info)
-        {
-            try
-            {
-                Management.BeginTransaction();
-                Management.CreateAsset(info);
-                Management.Commit();
-            }
-            catch
-            {
-                Management.Rollback();
-                throw;
-            }
-            return info;
-        }
-        #endregion
+        #endregion 
 
         #region UpdateAssetByAssetno
         public Asset UpdateAssetByAssetno(Asset info)
@@ -146,23 +128,6 @@ namespace FixedAsset.Services
             {
                 Management.BeginTransaction();
                 Management.DeleteAssetByAssetno(assetno);
-                Management.Commit();
-            }
-            catch
-            {
-                Management.Rollback();
-                throw;
-            }
-        }
-        #endregion
-
-        #region DeleteAssetByAssetno
-        public void DeleteAssetByAssetno(List<string> assetnos)
-        {
-            try
-            {
-                Management.BeginTransaction();
-                Management.DeleteAssetByAssetno(assetnos);
                 Management.Commit();
             }
             catch
@@ -247,6 +212,18 @@ namespace FixedAsset.Services
         public List<Asset> RetrieveAllAsset()
         {
             return Management.RetrieveAllAsset();
+        }
+        public List<ReportAssetCategory> ReportAssetCategory()
+        {
+            return Management.ReportAssetCategory();
+        }
+        public List<AssetStorageReport> RetrieveAssetStorageReport()
+        {
+            return Management.RetrieveAssetStorageReport();
+        }
+        public List<AssetStateReport> ReportAssetState()
+        {
+            return Management.ReportAssetState();
         }
     }
 }

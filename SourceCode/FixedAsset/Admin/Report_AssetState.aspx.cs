@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -31,26 +32,32 @@ namespace FixedAsset.Web.Admin
 
         protected void LoadData()
         {
-            List<Asset> list = AssetService.RetrieveAllAsset();
-            System.Data.DataTable dt = new System.Data.DataTable();
+            var list = AssetService.ReportAssetState();
+            DataTable dt = new System.Data.DataTable();
             dt.Columns.Add("State");
             dt.Columns.Add("AssetCount");
+
             System.Data.DataRow drInUse = dt.NewRow();
             drInUse["State"] = EnumUtil.RetrieveEnumDescript(AssetState.InUse);
-            drInUse["AssetCount"] = list.Where(p => p.State.Equals(FixedAsset.Domain.AssetState.InUse)).Count();
+            drInUse["AssetCount"] = 0; 
+            var currentInfo = list.Where(p => p.State == AssetState.InUse).FirstOrDefault();
+            if (currentInfo != null) { drInUse["AssetCount"] = currentInfo.Currentcount; }
             dt.Rows.Add(drInUse);
-            System.Data.DataRow drNoUse = dt.NewRow();
+
+            var drNoUse = dt.NewRow();
             drNoUse["State"] = EnumUtil.RetrieveEnumDescript(AssetState.NoUse);
-            drNoUse["AssetCount"] = list.Where(p => p.State.Equals(FixedAsset.Domain.AssetState.NoUse)).Count();
+            drNoUse["AssetCount"] = 0;
+            currentInfo = list.Where(p => p.State == AssetState.NoUse).FirstOrDefault();
+            if (currentInfo != null) { drNoUse["AssetCount"] = currentInfo.Currentcount; }
             dt.Rows.Add(drNoUse);
-            System.Data.DataRow drScrapped = dt.NewRow();
+
+            var drScrapped = dt.NewRow();
             drScrapped["State"] = EnumUtil.RetrieveEnumDescript(AssetState.Scrapped);
-            drScrapped["AssetCount"] = list.Where(p => p.State.Equals(FixedAsset.Domain.AssetState.Scrapped)).Count();
+            drScrapped["AssetCount"] = 0;
+            currentInfo = list.Where(p => p.State == AssetState.Scrapped).FirstOrDefault();
+            if (currentInfo != null) { drScrapped["AssetCount"] = currentInfo.Currentcount; }
             dt.Rows.Add(drScrapped);
-            //System.Data.DataRow drLogicalDeleted = dt.NewRow();
-            //drLogicalDeleted["State"] = "已废除";
-            //drLogicalDeleted["AssetCount"] = list.Where(p => p.State.Equals(FixedAsset.Domain.AssetState.LogicalDeleted)).Count();
-            //dt.Rows.Add(drLogicalDeleted);
+            
             rptAssetsList.DataSource = dt;
             rptAssetsList.DataBind();
         }
