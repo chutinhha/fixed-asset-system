@@ -204,6 +204,7 @@ namespace FixedAsset.Services
                     var currentNo = int.Parse(priorInfo.Assetno.Substring(codePrefix.Length));
                     var content = new StringBuilder();
                     content.Append(codePrefix.ToString());
+                    if(currentNo==9999){throw new Exception("不能再插入该类别的资产!");}
                     currentNo = currentNo + 1;
                     for (int ii = 0; ii < 4 - currentNo.ToString().Length; ii++)
                     {
