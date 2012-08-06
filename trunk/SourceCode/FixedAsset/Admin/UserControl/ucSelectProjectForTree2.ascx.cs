@@ -126,6 +126,11 @@ namespace FixedAsset.Web.Admin.UserControl
         }
         protected void tvStorageAddress_SelectedNodeChanged(object sender, EventArgs e)
         {
+            Storagetitle = string.Empty;
+            StorageId = string.Empty;
+            Storagename = string.Empty;
+            Subcompanyid = string.Empty;
+            Subcompanyname = string.Empty;
             if (tvStorageAddress.SelectedNode == null)
             {
                 return;
