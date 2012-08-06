@@ -50,5 +50,12 @@ namespace FixedAsset.Domain
         ///</summary>
         public string Subcompanyname { get; set; }
         #endregion
+
+        #region 排序ID
+        ///<summary>
+        ///ColumnName:排序ID;Size:100;
+        ///</summary>
+        public string Fgssortid { get; set; }
+        #endregion
     }
 }

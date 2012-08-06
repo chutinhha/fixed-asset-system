@@ -14,7 +14,7 @@ namespace FixedAsset.IServices
 {
     public interface IAssetmaintaindetailService
     {
-        List<AssetmaintaindetailEx> RetrieveAssetmaintaindetailsPaging(AssetmaintaindetailSearch info,int pageIndex, int pageSize,out int count);
+        List<Assetmaintaindetail> RetrieveAssetmaintaindetailsPaging(AssetmaintaindetailSearch info,int pageIndex, int pageSize,out int count);
         Assetmaintaindetail CreateAssetmaintaindetail(Assetmaintaindetail info);
         Assetmaintaindetail UpdateAssetmaintaindetailByDetailid(Assetmaintaindetail info);
         Assetmaintaindetail RetrieveAssetmaintaindetailByDetailid(string detailid);

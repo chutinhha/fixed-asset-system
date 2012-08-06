@@ -20,6 +20,7 @@ namespace FixedAsset.Domain
     {
         public const string RuleCode = "Œ¨–ﬁ";
         public const string C_MaintainType = "Maintaintype";
+        public const string C_RepairReason = "RepairReason";
 
         #region Œ¨–ﬁµ•±‡∫≈
         ///<summary>
@@ -210,5 +211,11 @@ namespace FixedAsset.Domain
         public DateTime? Createddate{  get;set;}
         #endregion
 
+        #region –ﬁ∏¥‘≠“Ú
+        ///<summary>
+        ///–ﬁ∏¥‘≠“Ú,REASON;Size:400;
+        ///</summary>
+        public string Reason { get; set; }
+        #endregion
     } 
 }

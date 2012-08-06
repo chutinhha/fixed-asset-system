@@ -141,6 +141,18 @@
                         </tr>
                         <tr>
                             <td style="width: 180px;">
+                                修复原因: 
+                            </td>
+                            <td>
+                                <asp:DropDownList ID="ddlReason" Width="150" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlReason_SelectedIndexChange">
+                                </asp:DropDownList>
+                                <br />
+                                <asp:TextBox TextMode="MultiLine" Height="80px" ID="txtReason" runat="server" MaxLength="500"
+                                    Width="500" Rows="10" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 180px;">
                                 已维修明细: 
                             </td>
                             <td>

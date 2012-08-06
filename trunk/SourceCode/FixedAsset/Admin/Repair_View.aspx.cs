@@ -179,6 +179,7 @@ namespace FixedAsset.Web.Admin
             }
             litConfirmuser.Text = headInfo.Confirmuser;//确认人
             litApproveresult.Text = EnumUtil.RetrieveEnumDescript(headInfo.Approveresult); //状态
+            litReason.Text = headInfo.Reason;//修复原因
         }
         protected void LoadDetailList()
         {

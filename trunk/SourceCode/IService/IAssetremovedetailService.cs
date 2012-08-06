@@ -14,7 +14,7 @@ namespace FixedAsset.IServices
 {
     public interface IAssetremovedetailService
     {
-        List<AssetremovedetailEx> RetrieveAssetremovedetailsPaging(AssetremovedetailSearch info,int pageIndex, int pageSize,out int count);
+        List<Assetremovedetail> RetrieveAssetremovedetailsPaging(AssetremovedetailSearch info,int pageIndex, int pageSize,out int count);
         Assetremovedetail CreateAssetremovedetail(Assetremovedetail info);
         Assetremovedetail UpdateAssetremovedetailByDetailid(Assetremovedetail info);
         Assetremovedetail RetrieveAssetremovedetailByDetailid(string detailid);

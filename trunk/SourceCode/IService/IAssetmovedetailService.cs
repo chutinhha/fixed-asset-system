@@ -14,7 +14,7 @@ namespace FixedAsset.IServices
 {
     public interface IAssetmovedetailService
     {
-        List<AssetmovedetailEx> RetrieveAssetmovedetailsPaging(AssetmovedetailSearch info,int pageIndex, int pageSize,out int count);
+        List<Assetmovedetail> RetrieveAssetmovedetailsPaging(AssetmovedetailSearch info,int pageIndex, int pageSize,out int count);
         Assetmovedetail CreateAssetmovedetail(Assetmovedetail info);
         Assetmovedetail UpdateAssetmovedetailByDetailid(Assetmovedetail info);
         Assetmovedetail RetrieveAssetmovedetailByDetailid(string detailid);

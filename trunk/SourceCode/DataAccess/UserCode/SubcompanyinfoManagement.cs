@@ -93,7 +93,7 @@ namespace FixedAsset.DataAccess
                     sqlCommand.AppendLine(@" AND ""SUBCOMPANYINFO"".""SUBCOMPANYCODE"" LIKE :Subcompanycode");
                 }
 
-                sqlCommand.AppendLine(@"  ORDER BY ""SUBCOMPANYINFO"".""SUBCOMPANYID"" DESC");
+                sqlCommand.AppendLine(@"  ORDER BY ""SUBCOMPANYINFO"".""FGSSORTID"" ASC");
                 return this.ExecuteReaderPaging<Subcompanyinfo>(sqlCommand.ToString(), pageIndex, pageSize, out count);
             }
             finally

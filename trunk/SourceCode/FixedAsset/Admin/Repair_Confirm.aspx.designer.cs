@@ -148,6 +148,24 @@ namespace FixedAsset.Web.Admin {
         protected global::FixedAsset.Web.Admin.UserControl.ucDatePicker ucActualmaintaindate;
         
         /// <summary>
+        /// ddlReason 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlReason;
+        
+        /// <summary>
+        /// txtReason 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtReason;
+        
+        /// <summary>
         /// txtMaintaincontent 控件。
         /// </summary>
         /// <remarks>

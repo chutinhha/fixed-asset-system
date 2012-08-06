@@ -1,7 +1,7 @@
 /********************************************************************
 * File Name:AssetmaintainManagement
 * Copyright (C) 2012 Bruce.huang 
-* Creater & Date:Bruce.huang - 2012-06-04
+* Creater & Date:Bruce.huang - 2012-08-06
 * Create Explain:
 * Description:DataBase Access Class
 * Modify Explain:
@@ -16,13 +16,14 @@ using FixedAsset.Domain;
 
 namespace FixedAsset.DataAccess
 {
-    public partial class AssetmaintainManagement:BaseManagement
+    public partial class AssetmaintainManagement : BaseManagement
     {
         #region Construct
-        private const int ColumnCount = 24;
+        private const int ColumnCount = 25;
         public AssetmaintainManagement()
         { }
-        public AssetmaintainManagement(BaseManagement baseManagement): base(baseManagement)
+        public AssetmaintainManagement(BaseManagement baseManagement)
+            : base(baseManagement)
         { }
         #endregion
 
@@ -31,7 +32,7 @@ namespace FixedAsset.DataAccess
         {
             try
             {
-                string sqlCommand = @"INSERT INTO ""ASSETMAINTAIN"" (""ASSETMAINTAINID"",""ASSETCATEGORYID"",""MAINTAINTYPE"",""APPLYDATE"",""APPLYUSERID"",""APPLYCONTENT"",""APPROVEUSER"",""APPROVEDATE"",""APPROVERESULT"",""REJECTREASON"",""PLANMAINTAINDATE"",""ACTUALMAINTAINDATE"",""CONFIRMDATE"",""CONFIRMUSER"",""MAINTAINCONTENT"",""STORAGETITLE"",""STORAGEID"",""SUBCOMPANY"",""SUBCOMPANYCONTACTORID"",""CONTACTPHONE"",""PROJECTCONTACTORID"",""PROJECTCONTACTORPHONE"",""CREATOR"",""CREATEDDATE"") VALUES (:Assetmaintainid,:Assetcategoryid,:Maintaintype,:Applydate,:Applyuserid,:Applycontent,:Approveuser,:Approvedate,:Approveresult,:Rejectreason,:Planmaintaindate,:Actualmaintaindate,:Confirmdate,:Confirmuser,:Maintaincontent,:Storagetitle,:Storageid,:Subcompany,:Subcompanycontactorid,:Contactphone,:Projectcontactorid,:Projectcontactorphone,:Creator,:Createddate)";
+
                 this.Database.AddInParameter(":Assetmaintainid", info.Assetmaintainid);//DBType:VARCHAR2
                 this.Database.AddInParameter(":Assetcategoryid", info.Assetcategoryid);//DBType:VARCHAR2
                 this.Database.AddInParameter(":Maintaintype", info.Maintaintype);//DBType:VARCHAR2
@@ -56,8 +57,9 @@ namespace FixedAsset.DataAccess
                 this.Database.AddInParameter(":Projectcontactorphone", info.Projectcontactorphone);//DBType:VARCHAR2
                 this.Database.AddInParameter(":Creator", info.Creator);//DBType:VARCHAR2
                 this.Database.AddInParameter(":Createddate", info.Createddate);//DBType:DATE
+                this.Database.AddInParameter(":Reason", info.Reason);//DBType:NVARCHAR2
+                string sqlCommand = @"INSERT INTO ""ASSETMAINTAIN"" (""ASSETMAINTAINID"",""ASSETCATEGORYID"",""MAINTAINTYPE"",""APPLYDATE"",""APPLYUSERID"",""APPLYCONTENT"",""APPROVEUSER"",""APPROVEDATE"",""APPROVERESULT"",""REJECTREASON"",""PLANMAINTAINDATE"",""ACTUALMAINTAINDATE"",""CONFIRMDATE"",""CONFIRMUSER"",""MAINTAINCONTENT"",""STORAGETITLE"",""STORAGEID"",""SUBCOMPANY"",""SUBCOMPANYCONTACTORID"",""CONTACTPHONE"",""PROJECTCONTACTORID"",""PROJECTCONTACTORPHONE"",""CREATOR"",""CREATEDDATE"",""REASON"") VALUES (:Assetmaintainid,:Assetcategoryid,:Maintaintype,:Applydate,:Applyuserid,:Applycontent,:Approveuser,:Approvedate,:Approveresult,:Rejectreason,:Planmaintaindate,:Actualmaintaindate,:Confirmdate,:Confirmuser,:Maintaincontent,:Storagetitle,:Storageid,:Subcompany,:Subcompanycontactorid,:Contactphone,:Projectcontactorid,:Projectcontactorphone,:Creator,:Createddate,:Reason)";
                 this.Database.ExecuteNonQuery(sqlCommand);
-
             }
             finally
             {
@@ -96,7 +98,8 @@ namespace FixedAsset.DataAccess
                 this.Database.AddInParameter(":Projectcontactorphone", info.Projectcontactorphone);//DBType:VARCHAR2
                 this.Database.AddInParameter(":Creator", info.Creator);//DBType:VARCHAR2
                 this.Database.AddInParameter(":Createddate", info.Createddate);//DBType:DATE
-                string sqlCommand = @"UPDATE ""ASSETMAINTAIN"" SET  ""ASSETCATEGORYID""=:Assetcategoryid , ""MAINTAINTYPE""=:Maintaintype , ""APPLYDATE""=:Applydate , ""APPLYUSERID""=:Applyuserid , ""APPLYCONTENT""=:Applycontent , ""APPROVEUSER""=:Approveuser , ""APPROVEDATE""=:Approvedate , ""APPROVERESULT""=:Approveresult , ""REJECTREASON""=:Rejectreason , ""PLANMAINTAINDATE""=:Planmaintaindate , ""ACTUALMAINTAINDATE""=:Actualmaintaindate , ""CONFIRMDATE""=:Confirmdate , ""CONFIRMUSER""=:Confirmuser , ""MAINTAINCONTENT""=:Maintaincontent , ""STORAGETITLE""=:Storagetitle , ""STORAGEID""=:Storageid , ""SUBCOMPANY""=:Subcompany , ""SUBCOMPANYCONTACTORID""=:Subcompanycontactorid , ""CONTACTPHONE""=:Contactphone , ""PROJECTCONTACTORID""=:Projectcontactorid , ""PROJECTCONTACTORPHONE""=:Projectcontactorphone , ""CREATOR""=:Creator , ""CREATEDDATE""=:Createddate WHERE  ""ASSETMAINTAINID""=:Assetmaintainid";
+                this.Database.AddInParameter(":Reason", info.Reason);//DBType:NVARCHAR2
+                string sqlCommand = @"UPDATE ""ASSETMAINTAIN"" SET  ""ASSETCATEGORYID""=:Assetcategoryid , ""MAINTAINTYPE""=:Maintaintype , ""APPLYDATE""=:Applydate , ""APPLYUSERID""=:Applyuserid , ""APPLYCONTENT""=:Applycontent , ""APPROVEUSER""=:Approveuser , ""APPROVEDATE""=:Approvedate , ""APPROVERESULT""=:Approveresult , ""REJECTREASON""=:Rejectreason , ""PLANMAINTAINDATE""=:Planmaintaindate , ""ACTUALMAINTAINDATE""=:Actualmaintaindate , ""CONFIRMDATE""=:Confirmdate , ""CONFIRMUSER""=:Confirmuser , ""MAINTAINCONTENT""=:Maintaincontent , ""STORAGETITLE""=:Storagetitle , ""STORAGEID""=:Storageid , ""SUBCOMPANY""=:Subcompany , ""SUBCOMPANYCONTACTORID""=:Subcompanycontactorid , ""CONTACTPHONE""=:Contactphone , ""PROJECTCONTACTORID""=:Projectcontactorid , ""PROJECTCONTACTORPHONE""=:Projectcontactorphone , ""CREATOR""=:Creator , ""CREATEDDATE""=:Createddate , ""REASON""=:Reason WHERE  ""ASSETMAINTAINID""=:Assetmaintainid";
                 this.Database.ExecuteNonQuery(sqlCommand);
             }
             finally
@@ -128,22 +131,22 @@ namespace FixedAsset.DataAccess
         {
             try
             {
-                if(Assetmaintainids.Count==0){ return ;}
+                if (Assetmaintainids.Count == 0) { return; }
                 StringBuilder sqlCommand = new StringBuilder();
                 sqlCommand.AppendLine(@"DELETE FROM  ""ASSETMAINTAIN"" WHERE 1=1");
-                if(Assetmaintainids.Count==1)
+                if (Assetmaintainids.Count == 1)
                 {
-                    this.Database.AddInParameter(":Assetmaintainid"+0.ToString(),Assetmaintainids[0]);//DBType:VARCHAR2
+                    this.Database.AddInParameter(":Assetmaintainid" + 0.ToString(), Assetmaintainids[0]);//DBType:VARCHAR2
                     sqlCommand.AppendLine(@" AND ""ASSETMAINTAINID""=:Assetmaintainid0");
                 }
-                else if(Assetmaintainids.Count>1&&Assetmaintainids.Count<=2000)
+                else if (Assetmaintainids.Count > 1 && Assetmaintainids.Count <= 2000)
                 {
-                    this.Database.AddInParameter(":Assetmaintainid"+0.ToString(),Assetmaintainids[0]);//DBType:VARCHAR2
+                    this.Database.AddInParameter(":Assetmaintainid" + 0.ToString(), Assetmaintainids[0]);//DBType:VARCHAR2
                     sqlCommand.AppendLine(@" AND (""ASSETMAINTAINID""=:Assetmaintainid0");
                     for (int i = 1; i < Assetmaintainids.Count; i++)
                     {
-                    this.Database.AddInParameter(":Assetmaintainid"+i.ToString(),Assetmaintainids[i]);//DBType:VARCHAR2
-                    sqlCommand.AppendLine(@" OR ""ASSETMAINTAINID""=:Assetmaintainid"+i.ToString());
+                        this.Database.AddInParameter(":Assetmaintainid" + i.ToString(), Assetmaintainids[i]);//DBType:VARCHAR2
+                        sqlCommand.AppendLine(@" OR ""ASSETMAINTAINID""=:Assetmaintainid" + i.ToString());
                     }
                     sqlCommand.AppendLine(" )");
                 }

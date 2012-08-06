@@ -47,6 +47,4 @@ namespace FixedAsset.Domain
         #endregion
 
     }
-
-
 }

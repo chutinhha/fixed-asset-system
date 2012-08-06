@@ -75,7 +75,7 @@ namespace FixedAsset.DataAccess
                     sqlCommand.AppendLine(" )");
                 }
 
-                sqlCommand.AppendLine(@" ORDER BY ""SUPPLIERID"" DESC");
+                sqlCommand.AppendLine(@" ORDER BY ""SUPPLIERID"" ASC");
                 return this.Database.ExecuteToList<Assetsupplier>(sqlCommand.ToString());
             }
             finally
@@ -103,7 +103,7 @@ namespace FixedAsset.DataAccess
                     this.Database.AddInParameter(":Suppliername", "%"+info.Suppliername+"%");
                     sqlCommand.AppendLine(@" AND ""ASSETSUPPLIER"".""SUPPLIERNAME"" LIKE :Suppliername");
                 }
-                sqlCommand.AppendLine(@"  ORDER BY ""ASSETSUPPLIER"".""SUPPLIERID"" DESC");
+                sqlCommand.AppendLine(@"  ORDER BY ""ASSETSUPPLIER"".""SUPPLIERID"" ASC");
                 return this.ExecuteReaderPaging<Assetsupplier>(sqlCommand.ToString(), pageIndex, pageSize, out count);
             }
             finally

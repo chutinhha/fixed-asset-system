@@ -189,7 +189,7 @@ namespace FixedAsset.Web.Admin.UserControl
         protected void LoadTreeView()
         {
             var rootCompanyNode = new TreeNode("上海建工七建集团有限公司", string.Format(@"{0}{0}", Vstorageaddress.RootCompany));
-            var infos = VStorageAddress.Where(p => p.Storagetitle == Vstorageaddress.Supplier);
+            var infos = VStorageAddress.Where(p => p.Storagetitle == Vstorageaddress.Supplier).ToList();
             if (HasSupplier)
             {
                 //供应商仓库
@@ -199,13 +199,12 @@ namespace FixedAsset.Web.Admin.UserControl
                 }
             }
             //分公司项目体
-            infos = VStorageAddress.Where(p => p.Storagetitle == Vstorageaddress.Project).OrderBy(p => p.Subcompanyname);
-            var subCompanies = infos.Select(p => p.Subcompanyid).Distinct();
+            infos = VStorageAddress.Where(p => p.Storagetitle == Vstorageaddress.Project).ToList();
+            var subCompanies = VStorageAddress.Where(p => p.Storagetitle == Vstorageaddress.Subcompany).ToList();
             foreach (var subCompany in subCompanies)
             {
-                var currentSubCompany = infos.Where(p => p.Subcompanyid == subCompany).FirstOrDefault();
-                var currentSubCompanyNode = new TreeNode(currentSubCompany.Subcompanyname, string.Format(@"{0}{1}", Vstorageaddress.Subcompany, subCompany));
-                var currentProjects = infos.Where(p => p.Subcompanyid == subCompany).ToList();
+                var currentSubCompanyNode = new TreeNode(subCompany.Subcompanyname, string.Format(@"{0}{1}", Vstorageaddress.Subcompany, subCompany.Subcompanyid));
+                var currentProjects = infos.Where(p => p.Subcompanyid == subCompany.Subcompanyid).ToList();
                 foreach (var currentProject in currentProjects)
                 {
                     currentSubCompanyNode.ChildNodes.Add(new TreeNode(currentProject.Storagename, string.Format(@"{0}{1}", Vstorageaddress.Project, currentProject.Storageid)));

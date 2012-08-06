@@ -74,6 +74,13 @@ namespace FixedAsset.Web.Admin
                 return new AssetcategoryService();
             }
         }
+        protected IAssetconfigService AssetconfigService
+        {
+            get
+            {
+                return new AssetconfigService();
+            }
+        }
         #endregion
 
         #region Events
@@ -109,6 +116,14 @@ namespace FixedAsset.Web.Admin
             headInfo.Confirmdate = DateTime.Parse(litConfirmdate.Text);
             headInfo.Confirmuser = ucConfirmuser.Username;
             headInfo.Maintaincontent = txtMaintaincontent.Text;//已维修明细
+            if(ddlReason.SelectedItem.Text.Contains("其他"))
+            {
+                headInfo.Reason = txtReason.Text;
+            }
+            else
+            {
+                headInfo.Reason = ddlReason.SelectedValue;
+            }
             AssetmaintainService.UpdateAssetmaintainByAssetmaintainid(headInfo);
             //更新设备状态,存放地点
             var detailInfos = AssetmaintaindetailService.RetrieveAssetmaintaindetailListByAssetmaintainid(Assetmaintainid);
@@ -157,7 +172,23 @@ namespace FixedAsset.Web.Admin
                 }
             }
         }
-
+        protected void ddlReason_SelectedIndexChange(object sender,EventArgs e)
+        {
+            if(!IsPostBack){return;}
+            if(ddlReason.SelectedIndex<0)
+            {
+                return;
+            }
+            
+            if(ddlReason.SelectedItem.Text.Contains("其他"))
+            {
+                txtReason.Enabled = true;
+            }
+            else
+            {
+                txtReason.Enabled = false;
+            }
+        }
         #endregion
 
         #region Methods
@@ -178,6 +209,17 @@ namespace FixedAsset.Web.Admin
             }
             ucMaintaintype.CategoryId = Assetmaintain.C_MaintainType;
             ucMaintaintype.Enabled = false;
+
+            var configItems = AssetconfigService.RetrieveAssetconfigByCategoryId(Assetmaintain.C_RepairReason);
+            ddlReason.DataSource = configItems;
+            ddlReason.DataTextField = @"Configname";
+            ddlReason.DataValueField = @"Configname";
+            ddlReason.DataBind();
+            ddlReason.SelectedIndex = 0;
+            if(ddlReason.SelectedItem.Text.Contains("其他"))
+            {
+                txtReason.Enabled = true; 
+            }
         }
         protected void ReadEntityToControl(Assetmaintain headInfo)
         {
@@ -203,6 +245,36 @@ namespace FixedAsset.Web.Admin
             if (headInfo.Planmaintaindate.HasValue)
             {
                 litPlanmaintaindate.Text = headInfo.Planmaintaindate.Value.ToString(UiConst.DateFormat);//计划维修日期  
+            }
+            if(!string.IsNullOrEmpty(headInfo.Reason))
+            {
+                int index = -1;
+                if (ddlReason.Items.Count > 0)
+                {
+                    for (int i = 0; i < ddlReason.Items.Count; i++)
+                    {
+                        var currentItem = ddlReason.Items[i];
+                        if (currentItem.Value.Contains(headInfo.Reason))
+                        {
+                            ddlReason.SelectedIndex = i;
+                            index = i;
+                            break;
+                        }
+                    }
+                }
+                if (index == -1)
+                {
+                    txtReason.Text = headInfo.Reason;
+                    for (int i = 0; i < ddlReason.Items.Count; i++)
+                    {
+                        var currentItem = ddlReason.Items[i];
+                        if (currentItem.Value.Contains("其他"))
+                        {
+                            ddlReason.SelectedIndex = i;
+                            break;
+                        }
+                    }
+                }
             }
         }
         protected void LoadDetailList()

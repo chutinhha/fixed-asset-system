@@ -119,9 +119,12 @@ namespace FixedAsset.Web.Admin.UserControl
             if (!string.IsNullOrEmpty(hfStorageAddress.Value))
             {
                 var values = hfStorageAddress.Value.Split(new char[] { ',' });
-                Storagetitle = values[0];
-                StorageId = values[3];
-                LoadData();
+                if (values.Length == 4)
+                {
+                    Storagetitle = values[0];
+                    StorageId = values[3];
+                    LoadData();
+                }
             }
         }
         #endregion
