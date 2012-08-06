@@ -35,5 +35,17 @@ namespace FixedAsset.IServices
         /// <returns></returns>
         List<AssetRegisterReport> RetrieveAssetRegisterReport(AssetRegisterSearch info);
         List<Asset> RetrieveAssetRegisterReportDetailInfoPaging(AssetRunTimeSearch info, int pageIndex, int pageSize,out int count);
+        /// <summary>
+        /// 资产类别统计
+        /// </summary>
+        /// <returns></returns>
+        List<ReportAssetCategory> ReportAssetCategory();
+        /// <summary>
+        /// 存放地点统计
+        /// </summary>
+        /// <returns></returns>
+        List<AssetStorageReport> RetrieveAssetStorageReport();
+
+        List<AssetStateReport> ReportAssetState();
     }
 }

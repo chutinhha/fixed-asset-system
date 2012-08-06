@@ -39,28 +39,28 @@ namespace FixedAsset.Web.Admin
         protected void LoadData(int pageIndex)
         {
             List<Assetcategory> assetcategory = AssetCategoryService.RetrieveAllAssetcategory();
-            var categories = assetcategory.Where(p => !string.IsNullOrEmpty(p.Assetparentcategoryid)&&p.Assetparentcategoryid!=Assetcategory.FixedAssetCategory).ToList();
+            var categories = assetcategory.Where(p => !string.IsNullOrEmpty(p.Assetparentcategoryid) && p.Assetparentcategoryid != Assetcategory.FixedAssetCategory).ToList();
             var parentcategories = assetcategory.Where(p => string.IsNullOrEmpty(p.Assetparentcategoryid) || p.Assetparentcategoryid == Assetcategory.FixedAssetCategory).ToList();
-            List<Asset> list = AssetService.RetrieveAllAsset();
-            DataTable dt = new System.Data.DataTable();
+            var list = AssetService.ReportAssetCategory();
+            var dt = new System.Data.DataTable();
             dt.Columns.Add("AssetCategory");
             dt.Columns.Add("AssetSubCategory");
             dt.Columns.Add("AssetCount");
             foreach (Assetcategory category in categories)
             {
-                System.Data.DataRow dr = dt.NewRow();
-                dr["AssetCategory"] =parentcategories.Where(p=>p.Assetcategoryid.ToLower().Equals(category.Assetparentcategoryid.ToLower())).Select(obj=>obj.Assetcategoryname).FirstOrDefault();
-                dr["AssetSubCategory"]= category.Assetcategoryname;
-                dr["AssetCount"] = list.Where(p => p.Assetcategoryid.ToLower().Equals(category.Assetcategoryid.ToLower())).ToList().Count;
+                var dr = dt.NewRow();
+                dr["AssetCategory"] = parentcategories.Where(p => p.Assetcategoryid.ToLower().Equals(category.Assetparentcategoryid.ToLower())).Select(obj => obj.Assetcategoryname).FirstOrDefault();
+                dr["AssetSubCategory"] = category.Assetcategoryname;
+                dr["AssetCount"] = 0;
+                var currentInfo = list.Where(p => p.Assetcategoryid == category.Assetcategoryid).FirstOrDefault();
+                if(currentInfo!=null)
+                {
+                    dr["AssetCount"] = currentInfo.Currentcount;
+                }
                 dt.Rows.Add(dr);
             }
             rptAssetsCategoryList.DataSource = dt;
             rptAssetsCategoryList.DataBind();
-        }
-
-        protected void pcData_PageIndexClick(object sender, KFSQ.Web.Controls.PageIndexClickEventArgs e)
-        {
-            LoadData(e.PageIndex);
         }
     }
 }

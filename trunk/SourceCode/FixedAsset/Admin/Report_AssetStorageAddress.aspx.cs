@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using FixedAsset.Domain;
 using FixedAsset.IServices;
@@ -53,10 +54,10 @@ namespace FixedAsset.Web.Admin
         {
             List<Assetsupplier> assetSuppliers = AssetsupplierService.RetrieveAllAssetsupplier();
             List<Subcompanyinfo> subcompanyinfos = SubcompanyinfoService.RetrieveAllSubCompanyinfo();
-            List<Lbfgsxmt> Project = LbfgsxmtService.RetrieveAllLbfgsxmt();
-            List<Asset> list = AssetService.RetrieveAllAsset();
-
-            System.Data.DataTable dt = new System.Data.DataTable();
+            List<Lbfgsxmt> projectList = LbfgsxmtService.RetrieveAllLbfgsxmt();
+            
+            var list = AssetService.RetrieveAssetStorageReport();
+            var dt = new System.Data.DataTable();
             dt.Columns.Add("AssetStorageCategory");
             dt.Columns.Add("AssetSubStorageCategory");
             dt.Columns.Add("AssetCount");
@@ -65,37 +66,37 @@ namespace FixedAsset.Web.Admin
             {
                 System.Data.DataRow dr = dt.NewRow();
                 dr["AssetStorageCategory"] = supplier.Suppliername;
-                dr["AssetSubStorageCategory"] = "";
-                //dr["AssetCount"] = list.Where(p => p.Storageflag.ToLower().Equals("supplier") && p.Supplierid.ToLower().Equals(supplier.Supplierid.ToLower())).Count();
-                dr["AssetCount"] = list.Where(p=>p.Storageflag==Vstorageaddress.Supplier&&p.Storage==supplier.Supplierid).Count();
+                dr["AssetSubStorageCategory"] = string.Empty;
+                dr["AssetCount"] = 0;
+                var currentInfo =list.Where(p => p.Storagetitle == Vstorageaddress.Supplier && p.Storageid == supplier.Supplierid).
+                        FirstOrDefault();
+                if (currentInfo != null) { dr["AssetCount"] = currentInfo.Currentcount; }
                 dt.Rows.Add(dr);
             }
             foreach (Subcompanyinfo subcom in subcompanyinfos)
             {
                 System.Data.DataRow dr = dt.NewRow();
                 dr["AssetStorageCategory"] = subcom.Subcompanyname;
-                dr["AssetSubStorageCategory"] = "";
-                dr["AssetCount"] = list.Where(p => p.Storageflag == Vstorageaddress.Subcompany && p.Storage == subcom.Subcompanyid.ToString()).Count(); 
-                    //list.Where(o =>o.Storageflag.ToLower().Equals("subcompany") &&o.Subcompany.ToLower().Equals(subcom.Subcompanyid.ToString().ToLower())).Count();
+                dr["AssetSubStorageCategory"] = string.Empty;
+                dr["AssetCount"] = 0;
+                var currentInfo = list.Where(p => p.Storagetitle == Vstorageaddress.Subcompany && p.Storageid == subcom.Subcompanyid.ToString()).
+                        FirstOrDefault();
+                if (currentInfo != null) { dr["AssetCount"] = currentInfo.Currentcount; }
                 dt.Rows.Add(dr);
-                var currentProjects = Project.Where(p => p.Fgsid == subcom.Subcompanyid).ToList();
+                var currentProjects = projectList.Where(p => p.Fgsid == subcom.Subcompanyid).ToList();
                 foreach (var currentProject in currentProjects)
                 {
                     System.Data.DataRow drproject = dt.NewRow();
                     drproject["AssetStorageCategory"] = subcom.Subcompanyname;
                     drproject["AssetSubStorageCategory"] = currentProject.Xmt;
-                    drproject["AssetCount"] = list.Where(p => p.Storageflag == Vstorageaddress.Project && p.Storage == currentProject.Xmtid.ToString()).Count(); 
-                    //drproject["AssetCount"] = list.Where(p => p.Storageflag.ToLower().Equals("project") && p.Storage.ToLower().Equals(lbfgsxmt.Xmtid.ToString().ToLower())).Count();
+                    drproject["AssetCount"] = 0;
+                    currentInfo = list.Where(p => p.Storagetitle == Vstorageaddress.Project && p.Storageid == currentProject.Xmtid.ToString()).FirstOrDefault();
+                    if (currentInfo != null) { drproject["AssetCount"] = currentInfo.Currentcount; }
                     dt.Rows.Add(drproject);
                 }
             }
             rptAssetsStorageCategoryList.DataSource = dt;
             rptAssetsStorageCategoryList.DataBind();
-        }
-
-        protected void pcData_PageIndexClick(object sender, KFSQ.Web.Controls.PageIndexClickEventArgs e)
-        {
-            LoadData(e.PageIndex);
         }
     }
 }
