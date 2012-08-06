@@ -108,11 +108,13 @@ namespace FixedAsset.Domain
         ///</summary>
         public FinanceCategory Financecategory { get; set; }
         #endregion
-    }
 
-    [Serializable]
-    public partial class AssetmaintaindetailEx:Assetmaintaindetail
-    {
-    }
-
+        #region 分公司或项目体
+        ///<summary>
+        ///分公司或项目体
+        ///</summary>
+        public string Subcompanyname { get; set; }
+        public string Storagename { get; set; }
+        #endregion
+    } 
 }

@@ -149,6 +149,14 @@
                         </tr>
                         <tr>
                             <td style="width: 180px;">
+                                修复原因: 
+                            </td>
+                            <td style="word-wrap: break-word; overflow: hidden; width: 680px;">
+                                <asp:Literal ID="litReason" runat="server" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 180px;">
                                 已维修明细:
                             </td>
                             <td style="word-wrap: break-word; overflow: hidden; width: 680px;">

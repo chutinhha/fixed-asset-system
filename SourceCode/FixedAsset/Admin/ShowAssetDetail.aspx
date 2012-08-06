@@ -1,8 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/MasterPage.master" AutoEventWireup="true"
     CodeBehind="ShowAssetDetail.aspx.cs" Inherits="FixedAsset.Web.Admin.ShowAssetDetail" %>
+
 <%@ Import Namespace="FixedAsset.Domain" %>
 <%@ Import Namespace="SeallNet.Utility" %>
-
 <%@ Register Src="~/Admin/UserControl/ucShowStorageAddress.ascx" TagName="ShowStorageAddress"
     TagPrefix="uc1" %>
 <%@ Register Src="~/Admin/UserControl/ucSelectSubCompany.ascx" TagName="SelectSubCompany"
@@ -17,7 +17,7 @@
             for (i = 0; i < arrayli.length; i++) {
                 if (arrayli[i] == obj) {
                     arrayli[i].className = "selectTag";
-                }                    
+                }
                 else {
                     arrayli[i].className = "";
                 }
@@ -163,6 +163,9 @@
                                         安装单号
                                     </th>
                                     <th>
+                                        分公司或项目体
+                                    </th>
+                                    <th>
                                         计划安装日期
                                     </th>
                                     <th>
@@ -174,6 +177,9 @@
                                 <tr>
                                     <td>
                                         <%#Eval("Setupid")%>
+                                    </td>
+                                    <td align="left" style="word-wrap: break-word;">
+                                        <%#Eval("Subcompanyname")==null?Eval("Storagename"):(Eval("Subcompanyname").ToString() == Eval("Storagename").ToString() ? Eval("Storagename") : Eval("Subcompanyname").ToString() + "-" + Eval("Storagename").ToString())%>
                                     </td>
                                     <td>
                                         <%# Eval("Plansetupdate") == null ? "" : ((DateTime)Eval("Plansetupdate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
@@ -187,6 +193,9 @@
                                 <tr class="even">
                                     <td>
                                         <%#Eval("Setupid")%>
+                                    </td>
+                                    <td align="left" style="word-wrap: break-word;">
+                                        <%#Eval("Subcompanyname")==null?Eval("Storagename"):(Eval("Subcompanyname").ToString() == Eval("Storagename").ToString() ? Eval("Storagename") : Eval("Subcompanyname").ToString() + "-" + Eval("Storagename").ToString())%>
                                     </td>
                                     <td>
                                         <%# Eval("Plansetupdate") == null ? "" : ((DateTime)Eval("Plansetupdate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
@@ -209,6 +218,9 @@
                                         维修单号
                                     </th>
                                     <th>
+                                        分公司或项目体
+                                    </th>
+                                    <th>
                                         计划维修日期
                                     </th>
                                     <th>
@@ -220,6 +232,9 @@
                                 <tr>
                                     <td>
                                         <%#Eval("Assetmaintainid")%>
+                                    </td>
+                                    <td align="left" style="word-wrap: break-word;">
+                                        <%#Eval("Subcompanyname")==null?Eval("Storagename"):(Eval("Subcompanyname").ToString() == Eval("Storagename").ToString() ? Eval("Storagename") : Eval("Subcompanyname").ToString() + "-" + Eval("Storagename").ToString())%>
                                     </td>
                                     <td>
                                         <%# Eval("Plandate") == null ? "" : ((DateTime)Eval("Plandate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
@@ -233,6 +248,9 @@
                                 <tr class="even">
                                     <td>
                                         <%#Eval("Assetmaintainid")%>
+                                    </td>
+                                    <td align="left" style="word-wrap: break-word;">
+                                        <%#Eval("Subcompanyname")==null?Eval("Storagename"):(Eval("Subcompanyname").ToString() == Eval("Storagename").ToString() ? Eval("Storagename") : Eval("Subcompanyname").ToString() + "-" + Eval("Storagename").ToString())%>
                                     </td>
                                     <td>
                                         <%# Eval("Plandate") == null ? "" : ((DateTime)Eval("Plandate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
@@ -255,6 +273,9 @@
                                         移机单号
                                     </th>
                                     <th>
+                                        分公司或项目体
+                                    </th>
+                                    <th>
                                         计划移机日期
                                     </th>
                                     <th>
@@ -266,6 +287,9 @@
                                 <tr>
                                     <td>
                                         <%#Eval("Assetmoveid")%>
+                                    </td>
+                                    <td align="left" style="word-wrap: break-word;">
+                                        <%#Eval("Subcompanyname")==null?Eval("Storagename"):(Eval("Subcompanyname").ToString() == Eval("Storagename").ToString() ? Eval("Storagename") : Eval("Subcompanyname").ToString() + "-" + Eval("Storagename").ToString())%>
                                     </td>
                                     <td>
                                         <%# Eval("Planmovedate") == null ? "" : ((DateTime)Eval("Planmovedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
@@ -279,6 +303,9 @@
                                 <tr class="even">
                                     <td>
                                         <%#Eval("Assetmoveid")%>
+                                    </td>
+                                    <td align="left" style="word-wrap: break-word;">
+                                        <%#Eval("Subcompanyname")==null?Eval("Storagename"):(Eval("Subcompanyname").ToString() == Eval("Storagename").ToString() ? Eval("Storagename") : Eval("Subcompanyname").ToString() + "-" + Eval("Storagename").ToString())%>
                                     </td>
                                     <td>
                                         <%# Eval("Planmovedate") == null ? "" : ((DateTime)Eval("Planmovedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
@@ -301,6 +328,9 @@
                                         拆机单号
                                     </th>
                                     <th>
+                                        分公司或项目体
+                                    </th>
+                                    <th>
                                         计划拆机日期
                                     </th>
                                     <th>
@@ -312,6 +342,9 @@
                                 <tr>
                                     <td>
                                         <%#Eval("Assetremoveid")%>
+                                    </td>
+                                    <td align="left" style="word-wrap: break-word;">
+                                        <%#Eval("Subcompanyname")==null?Eval("Storagename"):(Eval("Subcompanyname").ToString() == Eval("Storagename").ToString() ? Eval("Storagename") : Eval("Subcompanyname").ToString() + "-" + Eval("Storagename").ToString())%>
                                     </td>
                                     <td>
                                         <%# Eval("Planremovedate") == null ? "" : ((DateTime)Eval("Planremovedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
@@ -325,6 +358,9 @@
                                 <tr class="even">
                                     <td>
                                         <%#Eval("Assetremoveid")%>
+                                    </td>
+                                    <td align="left" style="word-wrap: break-word;">
+                                        <%#Eval("Subcompanyname")==null?Eval("Storagename"):(Eval("Subcompanyname").ToString() == Eval("Storagename").ToString() ? Eval("Storagename") : Eval("Subcompanyname").ToString() + "-" + Eval("Storagename").ToString())%>
                                     </td>
                                     <td>
                                         <%# Eval("Planremovedate") == null ? "" : ((DateTime)Eval("Planremovedate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
@@ -345,11 +381,11 @@
                                 <tr class="thbg" style="padding: 0 0 0 0">
                                     <th style="width: 120px;" align="center">
                                         报废申请单号
-                                    </th>                                   
+                                    </th>
                                     <th>
                                         报废人
                                     </th>
-                                     <th>
+                                    <th>
                                         报废日期
                                     </th>
                                     <th>
@@ -360,33 +396,33 @@
                             <ItemTemplate>
                                 <tr>
                                     <td align="center">
-                                <%#Eval("Assetscrappedid")%>
-                            </td>                   
-                            <td>
-                                <%#Eval("Scrappeduser")%>
-                            </td>
-                            <td>
-                                <%# Eval("Scrappeddate") == null ? "" : ((DateTime)Eval("Scrappeddate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
-                            </td>
-                            <td>
-                                <%#EnumUtil.RetrieveEnumDescript((AssetScrappedState)Eval("Approvedstate"))%>
-                            </td>
+                                        <%#Eval("Assetscrappedid")%>
+                                    </td>
+                                    <td>
+                                        <%#Eval("Scrappeduser")%>
+                                    </td>
+                                    <td>
+                                        <%# Eval("Scrappeddate") == null ? "" : ((DateTime)Eval("Scrappeddate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                    </td>
+                                    <td>
+                                        <%#EnumUtil.RetrieveEnumDescript((AssetScrappedState)Eval("Approvedstate"))%>
+                                    </td>
                                 </tr>
                             </ItemTemplate>
                             <AlternatingItemTemplate>
                                 <tr class="even">
-                                   <td align="center">
-                                <%#Eval("Assetscrappedid")%>
-                            </td>                   
-                            <td>
-                                <%#Eval("Scrappeduser")%>
-                            </td>
-                            <td>
-                                <%# Eval("Scrappeddate") == null ? "" : ((DateTime)Eval("Scrappeddate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
-                            </td>
-                            <td>
-                                <%#EnumUtil.RetrieveEnumDescript((AssetScrappedState)Eval("Approvedstate"))%>
-                            </td>
+                                    <td align="center">
+                                        <%#Eval("Assetscrappedid")%>
+                                    </td>
+                                    <td>
+                                        <%#Eval("Scrappeduser")%>
+                                    </td>
+                                    <td>
+                                        <%# Eval("Scrappeddate") == null ? "" : ((DateTime)Eval("Scrappeddate")).ToString(FixedAsset.Web.AppCode.UiConst.DateFormat)%>
+                                    </td>
+                                    <td>
+                                        <%#EnumUtil.RetrieveEnumDescript((AssetScrappedState)Eval("Approvedstate"))%>
+                                    </td>
                                 </tr>
                             </AlternatingItemTemplate>
                         </asp:Repeater>

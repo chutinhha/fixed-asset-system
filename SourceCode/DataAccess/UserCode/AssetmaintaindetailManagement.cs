@@ -166,14 +166,15 @@ namespace FixedAsset.DataAccess
         #endregion
 
         #region RetrieveAssetmaintaindetailsPaging
-        public List<AssetmaintaindetailEx> RetrieveAssetmaintaindetailsPaging(AssetmaintaindetailSearch info,int pageIndex, int pageSize,out int count)
+        public List<Assetmaintaindetail> RetrieveAssetmaintaindetailsPaging(AssetmaintaindetailSearch info,int pageIndex, int pageSize,out int count)
         {
             try
             {
                 StringBuilder sqlCommand = new StringBuilder(@" SELECT ""ASSETMAINTAINDETAIL"".""DETAILID"",""ASSETMAINTAINDETAIL"".""ASSETMAINTAINID"",""ASSETMAINTAINDETAIL"".""ASSETNO"",""ASSETMAINTAINDETAIL"".""PLANDATE"",""ASSETMAINTAINDETAIL"".""ACTUALDATE"",
-                     ""ASSETMAINTAINDETAIL"".""MAINTAINCONTENT""
+                     ""ASSETMAINTAINDETAIL"".""MAINTAINCONTENT"",c.StorageName,c.subcompanyname AS subcompanyname
                      FROM ""ASSETMAINTAINDETAIL"" 
-                     INNER JOIN ""ASSETMAINTAIN"" ON ""ASSETMAINTAINDETAIL"".""ASSETMAINTAINID""=""ASSETMAINTAIN"".""ASSETMAINTAINID"" 
+                     INNER JOIN ""ASSETMAINTAIN"" ON ""ASSETMAINTAINDETAIL"".""ASSETMAINTAINID""=""ASSETMAINTAIN"".""ASSETMAINTAINID""
+                     INNER JOIN  v_storage_address c on c.StorageTitle=ASSETMAINTAIN.STORAGETITLE and c.StorageId=ASSETMAINTAIN.STORAGEID  
                      WHERE 1=1");
 
                 #region Ã÷Ï¸±àºÅ
@@ -235,7 +236,7 @@ namespace FixedAsset.DataAccess
                 #endregion
 
                 sqlCommand.AppendLine(@"  ORDER BY ""ASSETMAINTAINDETAIL"".""DETAILID"" DESC");
-                return this.ExecuteReaderPaging<AssetmaintaindetailEx>(sqlCommand.ToString(), pageIndex, pageSize, out count);
+                return this.ExecuteReaderPaging<Assetmaintaindetail>(sqlCommand.ToString(), pageIndex, pageSize, out count);
             }
             finally
             {

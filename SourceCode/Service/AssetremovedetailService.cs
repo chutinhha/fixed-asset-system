@@ -39,7 +39,7 @@ namespace FixedAsset.Services
         #endregion
 
         #region RetrieveAssetremovedetailsPaging
-        public List<AssetremovedetailEx> RetrieveAssetremovedetailsPaging(AssetremovedetailSearch info,int pageIndex, int pageSize,out int count)
+        public List<Assetremovedetail> RetrieveAssetremovedetailsPaging(AssetremovedetailSearch info,int pageIndex, int pageSize,out int count)
         {
             return Management.RetrieveAssetremovedetailsPaging(info,pageIndex,pageSize,out count);
         }

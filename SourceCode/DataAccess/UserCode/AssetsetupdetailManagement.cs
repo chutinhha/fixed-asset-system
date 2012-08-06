@@ -171,8 +171,10 @@ namespace FixedAsset.DataAccess
             {
                 StringBuilder sqlCommand = new StringBuilder(@" SELECT ""ASSETSETUPDETAIL"".""DETAILID"",""ASSETSETUPDETAIL"".""SETUPID"",""ASSETSETUPDETAIL"".""ASSETNO"",""ASSETSETUPDETAIL"".""PLANSETUPDATE"",""ASSETSETUPDETAIL"".""ACTUALSETUPDATE"",
                      ""ASSETSETUPDETAIL"".""SETUPCONTENT""
+                     ,c.StorageName,c.subcompanyname AS subcompanyname
                      FROM ""ASSETSETUPDETAIL"" 
-                     INNER JOIN ""ASSETSETUPINFO"" ON ""ASSETSETUPDETAIL"".""SETUPID""=""ASSETSETUPINFO"".""SETUPID"" 
+                     INNER JOIN ""ASSETSETUPINFO"" ON ""ASSETSETUPDETAIL"".""SETUPID""=""ASSETSETUPINFO"".""SETUPID""
+                     INNER JOIN  v_storage_address c on c.StorageTitle=ASSETSETUPINFO.STORAGETITLE and c.StorageId=ASSETSETUPINFO.STORAGEID 
                      WHERE 1=1");
                 if (!string.IsNullOrEmpty(info.Detailid))
                 {
