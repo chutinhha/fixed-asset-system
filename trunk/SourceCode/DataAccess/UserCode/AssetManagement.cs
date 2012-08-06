@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
+using System.Linq;
 using System.Text;
 using FixedAsset.Domain;
 
@@ -53,27 +54,16 @@ namespace FixedAsset.DataAccess
             try
             {
                 if (Assetnos.Count == 0) { return new List<Asset>(); }
-                StringBuilder sqlCommand = new StringBuilder();
-                sqlCommand.AppendLine(@"SELECT *  FROM  ""ASSET"" WHERE 1=1");
-                if (Assetnos.Count == 1)
+                var sqlCommand = new StringBuilder();
+                for (int i = 0; i < Assetnos.Count; i++)
                 {
-                    this.Database.AddInParameter(":Assetno" + 0.ToString(), Assetnos[0]);//DBType:VARCHAR2
-                    sqlCommand.AppendLine(@" AND ""ASSETNO""=:Assetno0");
+                    if (i > 0) {sqlCommand.Append(" UNION");}
+                    sqlCommand.AppendFormat(@" SELECT *  FROM  ASSET WHERE ASSETNO=:Assetno{0}",i).AppendLine();
+                    this.Database.AddInParameter(":Assetno" + i.ToString(), Assetnos[i]);//DBType:VARCHAR2
                 }
-                else if (Assetnos.Count > 1 && Assetnos.Count <= 2000)
-                {
-                    this.Database.AddInParameter(":Assetno" + 0.ToString(), Assetnos[0]);//DBType:VARCHAR2
-                    sqlCommand.AppendLine(@" AND (""ASSETNO""=:Assetno0");
-                    for (int i = 1; i < Assetnos.Count; i++)
-                    {
-                        this.Database.AddInParameter(":Assetno" + i.ToString(), Assetnos[i]);//DBType:VARCHAR2
-                        sqlCommand.AppendLine(@" OR ""ASSETNO""=:Assetno" + i.ToString());
-                    }
-                    sqlCommand.AppendLine(" )");
-                }
-
-                sqlCommand.AppendLine(@" ORDER BY ""ASSETNO"" DESC");
-                return this.Database.ExecuteToList<Asset>(sqlCommand.ToString());
+                var list=this.Database.ExecuteToList<Asset>(sqlCommand.ToString());
+                list = (from p in list orderby p.Assetno descending select p).ToList();
+                return list;
             }
             finally
             {
