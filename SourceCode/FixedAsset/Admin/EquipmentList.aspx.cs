@@ -164,38 +164,15 @@ namespace FixedAsset.Web.Admin
                     search.Assetcategoryid = ddlSubAssetCategory.SelectedValue;
                 }
             }
-            //search.Assetname = txtSrchAssetname.Text;
-            //search.Storage = txtSrchStorage.Text;
-            //search.Brand = txtSrchBrand.Text;
-            //search.Supplierid = txtSrchSupplierid.Text;
-            //DateTime startpurchasedate = DateTime.MinValue;
-            //if (DateTime.TryParse(txtSrchStartPurchasedate.Text, out startpurchasedate))
-            //{
-            //    search.StartPurchasedate = startpurchasedate;
-            //}
-            //DateTime endpurchasedate = DateTime.MinValue;
-            //if (DateTime.TryParse(txtSrchEndPurchasedate.Text, out endpurchasedate))
-            //{
-            //    search.EndPurchasedate = endpurchasedate;
-            //}
-            //DateTime startexpireddate = DateTime.MinValue;
-            //if (DateTime.TryParse(txtSrchStartExpireddate.Text, out startexpireddate))
-            //{
-            //    search.StartExpireddate = startexpireddate;
-            //}
-            //DateTime endexpireddate = DateTime.MinValue;
-            //if (DateTime.TryParse(txtSrchEndExpireddate.Text, out endexpireddate))
-            //{
-            //    search.EndExpireddate = endexpireddate;
-            //}
-            //search.Assetspecification = txtSrchAssetspecification.Text;
-            //search.Storageflag = txtSrchStorageflag.Text;
+            DateTime startDate = DateTime.Now;
             int recordCount = 0;
             var list = AssetService.RetrieveAssetsPaging(search, pageIndex, pcData.PageSize, out recordCount);
             rptAssetsList.DataSource = list;
             rptAssetsList.DataBind();
             pcData.RecordCount = recordCount;
             pcData.CurrentIndex = pageIndex;
+            DateTime endDate = DateTime.Now;
+            Log.Info("cost time:"+(endDate-startDate).ToString());
         }
         protected void LoadAssetCategory()
         {
