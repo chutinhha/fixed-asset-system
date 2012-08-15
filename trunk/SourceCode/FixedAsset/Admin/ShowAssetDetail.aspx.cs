@@ -8,7 +8,7 @@ using UiConst = SeallNet.Utility.UiConst;
 
 namespace FixedAsset.Web.Admin
 {
-    public partial class ShowAssetDetail : System.Web.UI.Page
+    public partial class ShowAssetDetail : BasePage
     {
         #region Properties
         protected string Assetno
@@ -79,7 +79,10 @@ namespace FixedAsset.Web.Admin
             {
                 Assetno = PageUtility.GetQueryStringValue("Assetno");
                 if (string.IsNullOrEmpty(Assetno)) { return; }
+                DateTime startDate = DateTime.Now;
                 var currentInfo = AssetService.RetrieveAssetByAssetno(Assetno);
+                DateTime endDate = DateTime.Now;
+                Log.Info("RetrieveAssetByAssetno cost time:" + (endDate - startDate).ToString());
                 if (currentInfo != null)
                 {
                     ReadEntityToControl(currentInfo);

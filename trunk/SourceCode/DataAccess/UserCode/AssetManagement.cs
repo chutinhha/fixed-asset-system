@@ -81,8 +81,8 @@ namespace FixedAsset.DataAccess
                      ""ASSET"".""DEPRECIATIONYEAR"",""ASSET"".""UNITPRICE"",""ASSET"".""BRAND"",""ASSET"".""MANAGEMODE"",""ASSET"".""FINANCECATEGORY"",
                      ""ASSET"".""SUPPLIERID"",""ASSET"".""PURCHASEDATE"",""ASSET"".""EXPIREDDATE"",""ASSET"".""ASSETSPECIFICATION"",""ASSET"".""STORAGEFLAG"",
                      ""ASSET"".""SUBCOMPANY"",""ASSET"".""CONTRACTID""
-                     FROM ""ASSET"" ,""ASSETCATEGORY"" 
-                     WHERE ""ASSET"".""ASSETCATEGORYID""=""ASSETCATEGORY"".""ASSETCATEGORYID""");
+                     FROM ""ASSET"" INNER JOIN ""ASSETCATEGORY"" ON ""ASSET"".""ASSETCATEGORYID""=""ASSETCATEGORY"".""ASSETCATEGORYID""
+                     WHERE 1=1");
                 if (!string.IsNullOrEmpty(info.Assetno))
                 {
                     this.Database.AddInParameter(":Assetno", DbType.AnsiString, "%" + info.Assetno + "%");
