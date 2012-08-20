@@ -72,7 +72,7 @@ namespace FixedAsset.Services
             try
             {
                 var coderuleManagement = new CoderuleManagement(Management);
-                info.Assetscrappedid = coderuleManagement.GenerateCodeRule(Assetscrapped.RuleCode + DateTime.Today.ToString("yyyyMM"), false);
+                info.Assetscrappedid = coderuleManagement.GenerateCodeRule(Assetscrapped.ScrappedRuleCode + DateTime.Today.ToString("yyyyMM"), false);
                 Management.BeginTransaction();
                 Management.CreateAssetscrapped(info);
                 Management.Commit();

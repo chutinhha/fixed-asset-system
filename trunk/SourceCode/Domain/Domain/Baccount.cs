@@ -18,19 +18,19 @@ namespace FixedAsset.Domain
     [Serializable]
     public partial class Baccount:Asset
     {
-        #region 设备编号
-        ///<summary>
-        ///ColumnName:设备编号;Size:20;NOT NULL
-        ///</summary>
-        public string Assetno{  get;set;}
-        #endregion
+        //#region 设备编号
+        /////<summary>
+        /////ColumnName:设备编号;Size:20;NOT NULL
+        /////</summary>
+        //public string Assetno{  get;set;}
+        //#endregion
 
-        #region 设备名称（冗余字段）
-        ///<summary>
-        ///ColumnName:设备名称（冗余字段）;Size:200;
-        ///</summary>
-        public string Assetname{  get;set;}
-        #endregion
+        //#region 设备名称（冗余字段）
+        /////<summary>
+        /////ColumnName:设备名称（冗余字段）;Size:200;
+        /////</summary>
+        //public string Assetname{  get;set;}
+        //#endregion
 
         #region 入账日期
         ///<summary>
