@@ -18,7 +18,7 @@ namespace FixedAsset.Domain
     [Serializable]
     public partial class Assetscrapped:Asset
     {
-        public const string RuleCode = "报废";
+        public const string ScrappedRuleCode = "报废";
 
         public Assetscrapped():base()
         {
@@ -46,12 +46,12 @@ namespace FixedAsset.Domain
         public string Scrappeduser{  get;set;}
         #endregion
 
-        #region 设备编号
-        ///<summary>
-        ///ColumnName:设备编号;Size:20;NOT NULL
-        ///</summary>
-        public string Assetno{  get;set;}
-        #endregion
+        //#region 设备编号
+        /////<summary>
+        /////ColumnName:设备编号;Size:20;NOT NULL
+        /////</summary>
+        //public string Assetno{  get;set;}
+        //#endregion
 
         #region 审核人
         ///<summary>
