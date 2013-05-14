@@ -1,5 +1,8 @@
-exp asset/asset@asset file= E:\Projects\七建资产管理\Doc\db\asset.dmp
+
 exp asset/asset@asset file= D:\Work\七建固定资产管理\FixedAssetSystem\Doc\db\asset.dmp
 exp ideal_oa/ideal_oa@asset file= D:\Work\七建固定资产管理\FixedAssetSystem\Doc\db\ideal_oa.dmp
 exp labor/labor@asset file= D:\Work\七建固定资产管理\FixedAssetSystem\Doc\db\labor.dmp
 imp asset/asset@orcl file= E:\Work\asset.dmp full=y
+
+exp asset/asset@asset file= E:\Projects\七建资产管理\Doc\db\asset.dmp
+

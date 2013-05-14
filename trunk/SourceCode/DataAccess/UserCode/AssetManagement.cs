@@ -92,7 +92,7 @@ namespace FixedAsset.DataAccess
                 #region 资产分类
                 if (!string.IsNullOrEmpty(info.FirstLevelCategoryId))
                 {
-                    this.Database.AddInParameter(":Assetparentcategoryid", DbType.AnsiString,  info.FirstLevelCategoryId);
+                    this.Database.AddInParameter(":Assetparentcategoryid", DbType.AnsiString, info.FirstLevelCategoryId);
                     sqlCommand.AppendLine(@" AND ""ASSETCATEGORY"".""ASSETPARENTCATEGORYID"" = :Assetparentcategoryid");
                 }
                 if (!string.IsNullOrEmpty(info.Assetcategoryid))
@@ -195,6 +195,137 @@ namespace FixedAsset.DataAccess
                 }
                 sqlCommand.AppendLine(@"  ORDER BY ""ASSET"".""ASSETNO"" DESC");
                 return this.ExecuteReaderPaging<Asset>(sqlCommand.ToString(), pageIndex, pageSize, out count);
+//                var sqlCommand = new StringBuilder(@" SELECT T0.""ASSETNO"",T0.""ASSETCATEGORYID"",T0.""ASSETNAME"",T0.""STORAGE"",T0.""STATE"",
+//                     T0.""DEPRECIATIONYEAR"",T0.""UNITPRICE"",T0.""BRAND"",T0.""MANAGEMODE"",T0.""FINANCECATEGORY"",
+//                     T0.""SUPPLIERID"",T0.""PURCHASEDATE"",T0.""EXPIREDDATE"",T0.""ASSETSPECIFICATION"",T0.""STORAGEFLAG"",
+//                     T0.""SUBCOMPANY"",T0.""CONTRACTID"",T0.""CONTRACTDETAILID""
+//                     FROM ""ASSET""  T0
+//                    ");
+//                var condition = new List<string>();
+//                #region 设备编号
+//                if (!string.IsNullOrEmpty(info.Assetno))
+//                {
+//                    this.Database.AddInParameter(":Assetno", DbType.AnsiString, "%" + info.Assetno + "%");
+//                    condition.Add(@" T0.""ASSETNO"" LIKE :Assetno");
+//                }
+//                #endregion
+
+//                #region 设备类别
+//                if (!string.IsNullOrEmpty(info.Assetcategoryid))
+//                {
+//                    this.Database.AddInParameter(":Assetcategoryid", DbType.AnsiString, "%" + info.Assetcategoryid + "%");
+//                    condition.Add(@" T0.""ASSETCATEGORYID"" LIKE :Assetcategoryid");
+//                }
+//                #endregion
+
+//                #region 设备名称
+//                if (!string.IsNullOrEmpty(info.Assetname))
+//                {
+//                    this.Database.AddInParameter(":Assetname", "%" + info.Assetname + "%");
+//                    condition.Add(@" T0.""ASSETNAME"" LIKE :Assetname");
+//                }
+//                #endregion
+
+//                #region 存放地点
+//                if (!string.IsNullOrEmpty(info.Storage))
+//                {
+//                    this.Database.AddInParameter(":Storage", "%" + info.Storage + "%");
+//                    condition.Add(@" T0.""STORAGE"" LIKE :Storage");
+//                }
+//                #endregion
+
+//                #region 设备状态
+//                if (info.States.Count > 0)
+//                {
+//                    this.Database.AddInParameter(":State", info.States[0]);
+//                    var content = new StringBuilder();
+//                    content.AppendLine(@"  (T0.""STATE""=:State");
+//                    for (int i = 1; i < info.States.Count; i++)
+//                    {
+//                        this.Database.AddInParameter(":State" + i.ToString(), info.States[i]);
+//                        content.AppendLine(@" OR T0.""STATE""=:State" + i.ToString());
+//                    }
+//                    content.AppendLine(@" )");
+//                    condition.Add(content.ToString());
+//                }
+//                #endregion
+
+//                #region 品牌
+//                if (!string.IsNullOrEmpty(info.Brand))
+//                {
+//                    this.Database.AddInParameter(":Brand", "%" + info.Brand + "%");
+//                    condition.Add(@" T0.""BRAND"" LIKE :Brand");
+//                }
+//                #endregion
+
+//                #region 供应商
+//                if (!string.IsNullOrEmpty(info.Supplierid))
+//                {
+//                    this.Database.AddInParameter(":Supplierid", "%" + info.Supplierid + "%");
+//                    condition.Add(@" T0.""SUPPLIERID"" LIKE :Supplierid");
+//                }
+//                #endregion
+
+//                #region 购入日期
+//                if (info.StartPurchasedate.HasValue)
+//                {
+//                    this.Database.AddInParameter(":StartPurchasedate", info.StartPurchasedate.Value.Date);
+//                    condition.Add(@"  T0.""PURCHASEDATE"" >= :StartPurchasedate");
+//                }
+//                if (info.EndPurchasedate.HasValue)
+//                {
+//                    this.Database.AddInParameter(":EndPurchasedate", info.EndPurchasedate.Value.Date.AddDays(1).AddSeconds(-1));
+//                    condition.Add(@" T0.""PURCHASEDATE"" <= :EndPurchasedate");
+//                }
+//                #endregion
+
+//                #region 折旧到期日期
+//                if (info.StartExpireddate.HasValue)
+//                {
+//                    this.Database.AddInParameter(":StartExpireddate", info.StartExpireddate.Value.Date);
+//                    condition.Add(@"  T0.""EXPIREDDATE"" >= :StartExpireddate");
+//                }
+//                if (info.EndExpireddate.HasValue)
+//                {
+//                    this.Database.AddInParameter(":EndExpireddate", info.EndExpireddate.Value.Date.AddDays(1).AddSeconds(-1));
+//                    condition.Add(@" T0.""EXPIREDDATE"" <= :EndExpireddate");
+//                }
+//                #endregion
+
+//                #region 设备规格
+//                if (!string.IsNullOrEmpty(info.Assetspecification))
+//                {
+//                    this.Database.AddInParameter(":Assetspecification", "%" + info.Assetspecification + "%");
+//                    condition.Add(@" T0.""ASSETSPECIFICATION"" LIKE :Assetspecification");
+//                }
+//                #endregion
+
+//                #region 存放地点标识来源
+//                if (!string.IsNullOrEmpty(info.Storageflag))
+//                {
+//                    this.Database.AddInParameter(":Storageflag", "%" + info.Storageflag + "%");
+//                    condition.Add(@" T0.""STORAGEFLAG"" LIKE :Storageflag");
+//                }
+//                #endregion
+
+//                #region 分公司
+//                if (!string.IsNullOrEmpty(info.Subcompany))
+//                {
+//                    this.Database.AddInParameter(":Subcompany", DbType.AnsiString, "%" + info.Subcompany + "%");
+//                    condition.Add(@" T0.""SUBCOMPANY"" LIKE :Subcompany");
+//                }
+//                #endregion 
+
+//                if (condition.Count > 0)
+//                {
+//                    for (int i = 0; i < condition.Count; i++)
+//                    {
+//                        sqlCommand.Append(i == 0 ? " WHERE " : " AND ").Append(condition[i]);
+//                    }
+//                    condition.Clear();
+//                }
+//                sqlCommand.AppendLine(@"  ORDER BY T0.""ASSETNO"" DESC");
+//                return this.ExecuteReaderPaging<Asset>(sqlCommand.ToString(), pageIndex, pageSize, out count);
             }
             finally
             {
