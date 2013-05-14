@@ -150,8 +150,7 @@ namespace FixedAsset.Web.Admin
                 }
                 else
                 {
-                    var category = AssetCategories.Where(p => p.Assetcategoryid == subCategory.Assetparentcategoryid).
-                            FirstOrDefault();
+                    var category = AssetCategories.Where(p => p.Assetcategoryid == subCategory.Assetparentcategoryid).FirstOrDefault();
                     litCategoryName.Text = string.Format(@"{0}-{1}", category.Assetcategoryname, subCategory.Assetcategoryname);
                 }
             }

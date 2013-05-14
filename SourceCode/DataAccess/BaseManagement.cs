@@ -91,12 +91,24 @@ namespace FixedAsset.DataAccess
             this.ParsePagingQuerystring(statement, pageIndex, pageSize, out getCountStatement, out getTableStatement);
 
             count = Convert.ToInt32(this.Database.ExecuteScalar(getCountStatement));
+            if(count>1000)
+            {
+                count = 1000;
+            }
             var dataReader = this.Database.ExecuteReader(getTableStatement);
             return dataReader;
         }
 
         #region ParsePagingQuerystring
 
+        /// <summary>
+        /// Oracle ·ÖÒ³²Î¿¼ÎÄµµ:http://blog.sina.com.cn/s/blog_8604ca230100vro9.html
+        /// </summary>
+        /// <param name="statement"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="getCountStatement"></param>
+        /// <param name="getTableStatement"></param>
         private void ParsePagingQuerystring(string statement, int pageIndex, int pageSize, out string getCountStatement, out string getTableStatement)
         {
             string sqlStatement = statement.ToUpper();
@@ -108,21 +120,17 @@ namespace FixedAsset.DataAccess
             {
                 throw new ArgumentException(@"Statement must include ""SELECT "".", statement);
             }
-
             if (indexOfFrom == -1)
             {
                 throw new ArgumentException(@"Statement must include "" FROM "".", statement);
             }
-
-            if (indexOfOrderBy == -1)
-            {
-                throw new ArgumentException(@"Statement must include ""ORDER BY"".", statement);
-            }
-
+            //if (indexOfOrderBy == -1)
+            //{
+            //    throw new ArgumentException(@"Statement must include ""ORDER BY"".", statement);
+            //}
             var fields = statement.Substring(indexOfSelect + "SELECT ".Length, indexOfFrom - (indexOfSelect + "SELECT ".Length)).Trim();
 
-            var tables=string.Empty;
-
+            var tables = string.Empty;
             if (indexOfWhere == -1)
             {
                 tables = statement.Substring(indexOfFrom + " FROM ".Length, indexOfOrderBy - (indexOfFrom + " FROM ".Length));
@@ -131,45 +139,50 @@ namespace FixedAsset.DataAccess
             {
                 tables = statement.Substring(indexOfFrom + " FROM ".Length, indexOfWhere - (indexOfFrom + " FROM ".Length));
             }
-
-            string condition = string.Empty;
-
+            string condition = string.Empty; 
             if (indexOfWhere != -1)
             {
                 condition = statement.Substring(indexOfWhere + " WHERE ".Length, indexOfOrderBy - (indexOfWhere + " WHERE ".Length));
             }
-
-            var order = statement.Substring(indexOfOrderBy + "ORDER BY".Length, statement.Length - (indexOfOrderBy + "ORDER BY".Length));
-
-            getCountStatement = "SELECT COUNT(1) FROM " + tables;
-
+            getCountStatement = "SELECT COUNT(*) FROM " + tables;
             if (!string.IsNullOrEmpty(condition))
             {
                 getCountStatement += " WHERE " + condition;
+                getCountStatement += " AND ROWNUM<10000 ";
             }
-
-            var columns = this.GetColumns(fields);
-
-            var stringBuilder = new StringBuilder();
-
+            else
+            {
+                getCountStatement += " WHERE ROWNUM<10000 ";
+            }
+            var order = string.Empty;
+            if (indexOfOrderBy != -1)
+            {
+                order = statement.Substring(indexOfOrderBy + "ORDER BY".Length, statement.Length - (indexOfOrderBy + "ORDER BY".Length));
+            }
+            var columns = this.GetColumns(fields); 
+            var stringBuilder = new StringBuilder(); 
             stringBuilder.Append("SELECT ");
-
             stringBuilder.Append(columns[0]);
-
             for (int i = 1; i < columns.Length; ++i)
             {
                 stringBuilder.Append("," + columns[i]);
-            }
-
-            stringBuilder.AppendFormat(" FROM (SELECT {0}, ROWNUM AS RowNumber FROM {1}", fields,tables);
-
+            } 
+            stringBuilder.AppendFormat(" FROM (SELECT {0}, ROWNUM AS RowNumber FROM {1}", fields, tables);
             if (!string.IsNullOrEmpty(condition))
             {
                 stringBuilder.AppendFormat(" WHERE {0}", condition);
+                stringBuilder.Append("  AND ROWNUM<10000");
+            }
+            else
+            {
+                stringBuilder.Append(" WHERE ROWNUM<10000");
             }
             stringBuilder.Append(" ORDER BY ").Append(order).Append(" ");
 
             stringBuilder.AppendFormat(") TempTable WHERE RowNumber BETWEEN {0} AND {1}", pageIndex * pageSize + 1, (pageIndex + 1) * pageSize);
+
+//            stringBuilder.AppendFormat(@"SELECT * FROM (
+//                                        SELECT A.*,ROWNUM SearchRowNum FROM ({0}) A WHERE  ROWNUM<={2}) WHERE SearchRowNum>={1}", sqlStatement, pageIndex * pageSize + 1, (pageIndex + 1) * pageSize);
 
             getTableStatement = stringBuilder.ToString();
         }
